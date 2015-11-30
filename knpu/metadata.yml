@@ -13,13 +13,13 @@ summary: |
     In this screencast, we start building an application from the ground-up, exploring
     the most fundamental parts of the application:
 
-    Installation and Setup
-    Routes
-    Controllers
-    Services and the Container
-    Twig
-    JSON Responses
-    Configuration and Environments
+    * Installation and Setup
+    * Route Essentials
+    * Mastering Controllers & Response
+    * Services and the Container
+    * Twig
+    * JSON Responses
+    * Configuration and Environments
 
     ... and other goodies mixed in.
 
