@@ -9,7 +9,32 @@
             "id": "setup-new-project",
             "name": "Setup: New project",
             "description": null
+        },
+        {
+            "id": "setup-remove-controller",
+            "name": "Setup: Remove controller",
+            "description": null
+        },
+        {
+            "id": "route-first-route-controller",
+            "name": "Route: First route\/controller",
+            "description": null
+        },
+        {
+            "id": "route-add-wildcard",
+            "name": "Route: Add wildcard",
+            "description": null
+        },
+        {
+            "id": "route-misname-wildcard",
+            "name": "Route: Misname wildcard",
+            "description": null
+        },
+        {
+            "id": "route-fix-wildcard-name",
+            "name": "Route: Fix wildcard name",
+            "description": null
         }
     ],
-    "sha": "d36a0595ba876c98ed81ebe922adf5522045d9c4"
+    "sha": "ff4551ae2fd451ed5352a4a3994e119bf3cabc32"
 }

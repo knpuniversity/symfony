@@ -1,0 +1,13 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 1f58687..674e742 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
+ class GenusController
+ {
+     /**
+-     * @Route("/genus/{genusName2}")
++     * @Route("/genus/{genusName}")
+      */
+     public function showAction($genusName)
+     {

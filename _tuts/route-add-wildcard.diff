@@ -1,0 +1,18 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index a6a1917..674e742 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
+ class GenusController
+ {
+     /**
+-     * @Route("/genus")
++     * @Route("/genus/{genusName}")
+      */
+-    public function showAction()
++    public function showAction($genusName)
+     {
+-        return new Response('Under the sea!');
++        return new Response('The genus: '.$genusName);
+     }
+ }
