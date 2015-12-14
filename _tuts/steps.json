@@ -1,0 +1,15 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "setup-new-project",
+            "name": "Setup: New project",
+            "description": null
+        }
+    ],
+    "sha": "d36a0595ba876c98ed81ebe922adf5522045d9c4"
+}
