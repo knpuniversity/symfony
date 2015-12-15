@@ -1,0 +1,12 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 12df62a..2926904 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -1,5 +1,7 @@
+ {% extends 'base.html.twig' %}
+ 
++{% block title %}Genus {{ name }}{% endblock %}
++
+ {% block body %}
+ <h1>The Genus {{ name }}</h1>
+ 

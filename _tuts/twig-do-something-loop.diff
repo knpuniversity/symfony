@@ -1,0 +1,14 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index b9b7ee8..f9e1cb6 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -1,3 +1,7 @@
+ <h1>The Genus {{ name }}</h1>
+ 
+-{{ dump() }}
+\ No newline at end of file
++<ul>
++    {% for note in notes %}
++        <li>{{ note }}</li>
++    {% endfor %}
++</ul>

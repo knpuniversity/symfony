@@ -1,0 +1,17 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index c9ef631..12df62a 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -1,5 +1,6 @@
+ {% extends 'base.html.twig' %}
+ 
++{% block body %}
+ <h1>The Genus {{ name }}</h1>
+ 
+ <ul>
+@@ -7,3 +8,4 @@
+         <li>{{ note }}</li>
+     {% endfor %}
+ </ul>
++{% endblock %}
+\ No newline at end of file

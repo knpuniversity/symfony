@@ -1,0 +1,17 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 4cc266f..1184a39 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -13,11 +13,8 @@ class GenusController extends Controller
+      */
+     public function showAction($genusName)
+     {
+-        $templating = $this->container->get('templating');
+-        $html = $templating->render('genus/show.html.twig', array(
++        return $this->render('genus/show.html.twig', array(
+             'name' => $genusName
+         ));
+-
+-        return new Response($html);
+     }
+ }

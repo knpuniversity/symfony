@@ -34,7 +34,47 @@
             "id": "route-fix-wildcard-name",
             "name": "Route: Fix wildcard name",
             "description": null
+        },
+        {
+            "id": "templating-render-basic-template",
+            "name": "Templating: Render basic template",
+            "description": null
+        },
+        {
+            "id": "templating-render-short-way",
+            "name": "Templating: Render short way",
+            "description": null
+        },
+        {
+            "id": "twig-use-dump",
+            "name": "Twig: Use dump()",
+            "description": null
+        },
+        {
+            "id": "twig-do-something-loop",
+            "name": "Twig: Do something loop",
+            "description": null
+        },
+        {
+            "id": "twig-extend-without-block",
+            "name": "Twig: Extend without block",
+            "description": null
+        },
+        {
+            "id": "twig-use-block-body",
+            "name": "Twig: Use block body",
+            "description": null
+        },
+        {
+            "id": "twig-override-title-block",
+            "name": "Twig: Override title block",
+            "description": null
+        },
+        {
+            "id": "layout-include-our-layout",
+            "name": "Layout: Include our layout",
+            "description": null
         }
     ],
-    "sha": "ff4551ae2fd451ed5352a4a3994e119bf3cabc32"
+    "sha": "7673a6b886fddec0517dc9aa3acc71ddd14b8117"
 }

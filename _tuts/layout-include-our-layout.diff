@@ -1,0 +1,14 @@
+diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
+index bafd28d..af68534 100644
+--- a/app/Resources/views/base.html.twig
++++ b/app/Resources/views/base.html.twig
+@@ -8,6 +8,8 @@
+     </head>
+     <body>
+         {% block body %}{% endblock %}
+-        {% block javascripts %}{% endblock %}
++        {% block javascripts %}
++            <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
++        {% endblock %}
+     </body>
+ </html>

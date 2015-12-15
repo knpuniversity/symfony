@@ -1,0 +1,30 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index a3c2b8b..b9b7ee8 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -1 +1,3 @@
+ <h1>The Genus {{ name }}</h1>
++
++{{ dump() }}
+\ No newline at end of file
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 1184a39..5d06db9 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -13,8 +13,15 @@ class GenusController extends Controller
+      */
+     public function showAction($genusName)
+     {
++        $notes = [
++            'Octopus asked me a riddle, outsmarted me',
++            'I counted 8 legs... as they wrapped around me',
++            'Inked!'
++        ];
++
+         return $this->render('genus/show.html.twig', array(
+-            'name' => $genusName
++            'name' => $genusName,
++            'notes' => $notes
+         ));
+     }
+ }
