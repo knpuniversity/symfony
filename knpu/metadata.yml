@@ -1,0 +1,32 @@
+title: Joyful Development with Symfony 3
+
+summary: |
+    **Release in December 2015!**
+
+    Ready to get serious with Symfony? You've come to the right place!
+    
+    Get your first application off on the right foot by coding along with a real
+    application, using the right tools and learning the best practices from the
+    lead author of the Symfony documentation. These fundamentals will get you ready
+    for *everything* else you'll need to do with Symfony in the future.
+
+    In this screencast, we start building an application from the ground-up, exploring
+    the most fundamental parts of the application:
+
+    * Installation and Setup
+    * Route Essentials
+    * Mastering Controllers & Response
+    * Services and the Container
+    * Twig
+    * JSON Responses
+    * Configuration and Environments
+
+    ... and other goodies mixed in.
+
+illustration: symfony.png
+
+# tuts_hero:
+#     start_step: start
+#     finish_step: ~
+
+chapters: []
