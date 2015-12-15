@@ -1,0 +1,43 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 5d06db9..8c1d3e2 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Controller;
+ 
++use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Symfony\Component\HttpFoundation\Response;
+@@ -13,15 +14,26 @@ class GenusController extends Controller
+      */
+     public function showAction($genusName)
+     {
++        return $this->render('genus/show.html.twig', array(
++            'name' => $genusName,
++        ));
++    }
++
++    /**
++     * @Route("/genus/{genusName}/notes")
++     * @Method("GET")
++     */
++    public function getNotesAction($genusName)
++    {
+         $notes = [
+             'Octopus asked me a riddle, outsmarted me',
+             'I counted 8 legs... as they wrapped around me',
+             'Inked!'
+         ];
+-
+-        return $this->render('genus/show.html.twig', array(
+-            'name' => $genusName,
++        $data = [
+             'notes' => $notes
+-        ));
++        ];
++
++        return new Response(json_encode($data));
+     }
+ }

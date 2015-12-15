@@ -74,7 +74,37 @@
             "id": "layout-include-our-layout",
             "name": "Layout: Include our layout",
             "description": null
+        },
+        {
+            "id": "json-new-simple-json-endpoint",
+            "name": "JSON: New simple JSON endpoint",
+            "description": null
+        },
+        {
+            "id": "json-use-jsonresponse",
+            "name": "JSON: Use JsonResponse",
+            "description": null
+        },
+        {
+            "id": "json-link-to-page",
+            "name": "JSON: Link to page",
+            "description": null
+        },
+        {
+            "id": "json-finish-ajax-call",
+            "name": "JSON: Finish AJAX call",
+            "description": null
+        },
+        {
+            "id": "routing-new-yaml-homepage",
+            "name": "Routing: New YAML homepage",
+            "description": null
+        },
+        {
+            "id": "routing-convert-to-annotations",
+            "name": "Routing: Convert to annotations",
+            "description": null
         }
     ],
-    "sha": "fdabdd5a1195baadb4e78dd412b03e033a6c2243"
+    "sha": "c34c87c3f7d3095cf0c0a344796c0c0ccfa21523"
 }

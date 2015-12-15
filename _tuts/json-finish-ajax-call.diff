@@ -1,0 +1,32 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 1f337e4..23d26e7 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -5,8 +5,24 @@
+ {% block body %}
+ <h1>The Genus {{ name }}</h1>
+ 
+-<a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
+-
+-<ul>
++<ul class="js-notes-wrapper">
+ </ul>
+ {% endblock %}
++
++{% block javascripts %}
++    {{ parent() }}
++    <script>
++        $(document).ready(function() {
++            $.ajax({
++                url: '{{ path('genus_show_notes', {'genusName': name}) }}',
++                method: 'GET',
++                success: function(data) {
++                    var $notesWrapper = $('.js-notes-wrapper');
++                    $.each(data.notes, function(key, note) {
++                        $notesWrapper.append('<li>'+note+'</li>');
++                    });
++                }
++            });
++        });
++    </script>
++{% endblock %}

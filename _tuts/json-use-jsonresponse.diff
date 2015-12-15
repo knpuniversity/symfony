@@ -1,0 +1,20 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 8c1d3e2..e653a19 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
++use Symfony\Component\HttpFoundation\JsonResponse;
+ use Symfony\Component\HttpFoundation\Response;
+ 
+ class GenusController extends Controller
+@@ -34,6 +35,6 @@ class GenusController extends Controller
+             'notes' => $notes
+         ];
+ 
+-        return new Response(json_encode($data));
++        return new JsonResponse($data);
+     }
+ }

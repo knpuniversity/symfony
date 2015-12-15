@@ -1,0 +1,31 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 2926904..1f337e4 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -5,9 +5,8 @@
+ {% block body %}
+ <h1>The Genus {{ name }}</h1>
+ 
++<a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
++
+ <ul>
+-    {% for note in notes %}
+-        <li>{{ note }}</li>
+-    {% endfor %}
+ </ul>
+-{% endblock %}
+\ No newline at end of file
++{% endblock %}
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index e653a19..8ccb084 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -21,7 +21,7 @@ class GenusController extends Controller
+     }
+ 
+     /**
+-     * @Route("/genus/{genusName}/notes")
++     * @Route("/genus/{genusName}/notes", name="genus_show_notes")
+      * @Method("GET")
+      */
+     public function getNotesAction($genusName)
