@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>AquaNote</title>
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="search-bar">
+            <form method="GET" action="/search" class="js-sea-search sea-search">
+                <input type="search" name="q" placeholder="Search Sea Creatures" autocomplete="off" class="search-input">
+            </form>
+        </div>
+        <header class="header">
+            <img class="logo-icon" src='images/aquanote-logo.png'>
+            <h1 class="logo">AquaNote</h1>
+            <ul class="navi">
+                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </header>
+
+        <h2 class="genus-name">Octopus</h2>
+        <div class="sea-creature-container">
+            <div class="genus-photo"></div>
+            <div class="genus-details">
+                <dl class="genus-details-list">
+                    <dt>Subfamily:</dt>
+                    <dd>Octopodinae</dd>
+                    <dt>Known Species:</dt>
+                    <dd>289</dd>
+                    <dt>Fun Fact:</dt>
+                    <dd>Octopuses can change the color of their body in just three-tenths of a second!</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="notes-container">
+            <h2 class="notes-header">Notes</h2>
+            <div><i class="fa fa-plus plus-btn"></i></div>
+        </div>
+        <section id="cd-timeline">
+            <div class="cd-timeline-block">
+                <div class="cd-timeline-img">
+        			<img src="images/leanna.jpeg" class="img-circle" alt="Picture">
+        		</div>
+                <div class="cd-timeline-content">
+        			<h2><a href="#">AquaPelham</a></h2>
+        			<p>30 minutes observation.</p>
+        			<span class="cd-date">Dec. 10, 2015</span>
+        		</div>
+            </div>
+
+            <div class="cd-timeline-block">
+                <div class="cd-timeline-img">
+                    <img src="images/ryan.jpeg" class="img-circle" alt="Picture">
+                </div>
+                <div class="cd-timeline-content">
+                    <h2><a href="#">AquaWeaver</a></h2>
+                    <p>Prepared for April's expedition to the deep blue sea.</p>
+                    <span class="cd-date">Nov. 01, 2015</span>
+                </div>
+            </div>
+
+            <div class="cd-timeline-block">
+                <div class="cd-timeline-img">
+                    <img src="images/leanna.jpeg" class="img-circle" alt="Picture">
+                </div>
+                <div class="cd-timeline-content">
+                    <h2><a href="#">AquaPelham</a></h2>
+                    <p>Discovered a new species of Octopus</p>
+                    <span class="cd-date">Aug. 20, 2015</span>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="footer">
+            <p class="footer-text">Made with <span class="heart"><3</span> <a href="http://knpuniversity.com">KnpUniversity</a></p>
+        </div>
+
+
+    </body>
+</html>
