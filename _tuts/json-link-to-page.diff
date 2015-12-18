@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index b146cae..a281f31 100644
+index b146cae..5c0242c 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -4,6 +4,9 @@
@@ -12,10 +12,11 @@ index b146cae..a281f31 100644
      <div class="sea-creature-container">
          <div class="genus-photo"></div>
          <div class="genus-details">
-@@ -22,17 +25,17 @@
+@@ -21,18 +24,5 @@
+         <h2 class="notes-header">Notes</h2>
          <div><i class="fa fa-plus plus-btn"></i></div>
      </div>
-     <section id="cd-timeline">
+-    <section id="cd-timeline">
 -        {% for note in notes %}
 -            <div class="cd-timeline-block">
 -                <div class="cd-timeline-img">
@@ -28,19 +29,8 @@ index b146cae..a281f31 100644
 -        		</div>
 -            </div>
 -        {% endfor %}
-+        {#{% for note in notes %}#}
-+            {#<div class="cd-timeline-block">#}
-+                {#<div class="cd-timeline-img">#}
-+        			{#<img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">#}
-+        		{#</div>#}
-+                {#<div class="cd-timeline-content">#}
-+        			{#<h2><a href="#">AquaPelham</a></h2>#}
-+        			{#<p>{{ note }}</p>#}
-+        			{#<span class="cd-date">Dec. 10, 2015</span>#}
-+        		{#</div>#}
-+            {#</div>#}
-+        {#{% endfor %}#}
-     </section>
+-    </section>
++    <section id="cd-timeline"></section>
  {% endblock %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
 index a4a7ae6..8a363b7 100644

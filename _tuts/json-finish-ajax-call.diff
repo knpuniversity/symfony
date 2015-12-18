@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index a281f31..ef98923 100644
+index 5c0242c..d0a8d3b 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -5,8 +5,6 @@
@@ -11,7 +11,7 @@ index a281f31..ef98923 100644
      <div class="sea-creature-container">
          <div class="genus-photo"></div>
          <div class="genus-details">
-@@ -20,22 +18,37 @@
+@@ -20,9 +18,22 @@
              </dl>
          </div>
      </div>
@@ -19,20 +19,7 @@ index a281f31..ef98923 100644
 -        <h2 class="notes-header">Notes</h2>
 -        <div><i class="fa fa-plus plus-btn"></i></div>
 -    </div>
--    <section id="cd-timeline">
--        {#{% for note in notes %}#}
--            {#<div class="cd-timeline-block">#}
--                {#<div class="cd-timeline-img">#}
--        			{#<img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">#}
--        		{#</div>#}
--                {#<div class="cd-timeline-content">#}
--        			{#<h2><a href="#">AquaPelham</a></h2>#}
--        			{#<p>{{ note }}</p>#}
--        			{#<span class="cd-date">Dec. 10, 2015</span>#}
--        		{#</div>#}
--            {#</div>#}
--        {#{% endfor %}#}
--    </section>
+-    <section id="cd-timeline"></section>
 +    <div id="js-notes-wrapper"></div>
 +{% endblock %}
 +
@@ -50,21 +37,6 @@ index a281f31..ef98923 100644
 +          <NoteSection url={url} />,
 +          document.getElementById('js-notes-wrapper')
 +        );
-+    </script>
-+
-+    <script>
-+        $(document).ready(function() {
-+            $.ajax({
-+                url: '{{ path('genus_show_notes', {'genusName': name}) }}',
-+                method: 'GET',
-+                success: function(data) {
-+                    var $notesWrapper = $('.js-notes-wrapper');
-+                    $.each(data.notes, function(key, note) {
-+                        $notesWrapper.append('<li>'+note+'</li>');
-+                    });
-+                }
-+            });
-+        });
 +    </script>
  {% endblock %}
 diff --git a/web/js/notes.react.js b/web/js/notes.react.js
