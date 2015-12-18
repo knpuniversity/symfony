@@ -1,11 +1,25 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index a281f31..dd09efe 100644
+index a281f31..ef98923 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
-@@ -25,17 +25,25 @@
-         <div><i class="fa fa-plus plus-btn"></i></div>
+@@ -5,8 +5,6 @@
+ {% block body %}
+     <h2 class="genus-name">{{ name }}</h2>
+ 
+-    <a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
+-
+     <div class="sea-creature-container">
+         <div class="genus-photo"></div>
+         <div class="genus-details">
+@@ -20,22 +18,37 @@
+             </dl>
+         </div>
      </div>
-     <section id="cd-timeline">
+-    <div class="notes-container">
+-        <h2 class="notes-header">Notes</h2>
+-        <div><i class="fa fa-plus plus-btn"></i></div>
+-    </div>
+-    <section id="cd-timeline">
 -        {#{% for note in notes %}#}
 -            {#<div class="cd-timeline-block">#}
 -                {#<div class="cd-timeline-img">#}
@@ -18,13 +32,26 @@ index a281f31..dd09efe 100644
 -        		{#</div>#}
 -            {#</div>#}
 -        {#{% endfor %}#}
-+        <ul class="js-notes-wrapper">
-+        </ul>
-     </section>
- {% endblock %}
+-    </section>
++    <div id="js-notes-wrapper"></div>
++{% endblock %}
 +
 +{% block javascripts %}
 +    {{ parent() }}
++    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
++    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
++    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
++
++    <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
++    <script type="text/babel">
++        var url = '{{ path('genus_show_notes', {'genusName': name}) }}';
++
++        ReactDOM.render(
++          <NoteSection url={url} />,
++          document.getElementById('js-notes-wrapper')
++        );
++    </script>
++
 +    <script>
 +        $(document).ready(function() {
 +            $.ajax({
@@ -39,4 +66,78 @@ index a281f31..dd09efe 100644
 +            });
 +        });
 +    </script>
-+{% endblock %}
+ {% endblock %}
+diff --git a/web/js/notes.react.js b/web/js/notes.react.js
+new file mode 100644
+index 0000000..c88f934
+--- /dev/null
++++ b/web/js/notes.react.js
+@@ -0,0 +1,68 @@
++var NoteSection = React.createClass({
++    getInitialState: function() {
++        return {
++            notes: []
++        }
++    },
++
++    componentDidMount: function() {
++        this.loadNotesFromServer();
++        setInterval(this.loadNotesFromServer, 2000);
++    },
++
++    loadNotesFromServer: function() {
++        $.ajax({
++            url: this.props.url,
++            success: function (data) {
++                this.setState({notes: data.notes});
++            }.bind(this)
++        });
++    },
++
++    render: function() {
++        return (
++            <div>
++                <div className="notes-container">
++                    <h2 className="notes-header">Notes</h2>
++                    <div><i className="fa fa-plus plus-btn"></i></div>
++                </div>
++                <NoteList notes={this.state.notes} />
++            </div>
++        );
++    }
++});
++
++var NoteList = React.createClass({
++    render: function() {
++        var noteNodes = this.props.notes.map(function(note) {
++            return (
++                <NoteBox username={note.username} avatarUri={note.avatarUri} date={note.date} key={note.id}>{note.note}</NoteBox>
++            );
++        });
++
++        return (
++            <section id="cd-timeline">
++                {noteNodes}
++            </section>
++        );
++    }
++});
++
++var NoteBox = React.createClass({
++    render: function() {
++        return (
++            <div className="cd-timeline-block">
++                <div className="cd-timeline-img">
++                    <img src={this.props.avatarUri} className="img-circle" alt="Leanna!" />
++                </div>
++                <div className="cd-timeline-content">
++                    <h2><a href="#">{this.props.username}</a></h2>
++                    <p>{this.props.children}</p>
++                    <span className="cd-date">{this.props.date}</span>
++                </div>
++            </div>
++        );
++    }
++});
++
++window.NoteSection = NoteSection;

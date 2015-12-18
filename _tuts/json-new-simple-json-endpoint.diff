@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 5d06db9..8c1d3e2 100644
+index 5d06db9..585e549 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -2,6 +2,7 @@
@@ -14,10 +14,17 @@ index 5d06db9..8c1d3e2 100644
       */
      public function showAction($genusName)
      {
-+        return $this->render('genus/show.html.twig', array(
-+            'name' => $genusName,
-+        ));
-+    }
+-        $notes = [
+-            'Octopus asked me a riddle, outsmarted me',
+-            'I counted 8 legs... as they wrapped around me',
+-            'Inked!'
+-        ];
+-
+         return $this->render('genus/show.html.twig', array(
+             'name' => $genusName,
+-            'notes' => $notes
+         ));
+     }
 +
 +    /**
 +     * @Route("/genus/{genusName}/notes")
@@ -25,19 +32,15 @@ index 5d06db9..8c1d3e2 100644
 +     */
 +    public function getNotesAction($genusName)
 +    {
-         $notes = [
-             'Octopus asked me a riddle, outsmarted me',
-             'I counted 8 legs... as they wrapped around me',
-             'Inked!'
-         ];
--
--        return $this->render('genus/show.html.twig', array(
--            'name' => $genusName,
++        $notes = [
++            ['id' => 1, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Octopus asked me a riddle, outsmarted me', 'date' => 'Dec. 10, 2015'],
++            ['id' => 2, 'username' => 'AquaWeaver', 'avatarUri' => '/images/ryan.jpeg', 'note' => 'I counted 8 legs... as they wrapped around me', 'date' => 'Dec. 1, 2015'],
++            ['id' => 3, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Inked!', 'date' => 'Aug. 20, 2015'],
++        ];
 +        $data = [
-             'notes' => $notes
--        ));
++            'notes' => $notes
 +        ];
 +
 +        return new Response(json_encode($data));
-     }
++    }
  }
