@@ -3417,6 +3417,21 @@ UOsA85{1ZFxz0|<+L+C62*{?mC{Qv*}
 literal 0
 HcmV?d00001
 
+diff --git a/web/js/main.js b/web/js/main.js
+new file mode 100644
+index 0000000..be7fbe7
+--- /dev/null
++++ b/web/js/main.js
+@@ -0,0 +1,9 @@
+++function ($) {
++
++    $(document).ready(function() {
++        $('.js-header-search-toggle').on('click', function() {
++            $('.search-bar').slideToggle();
++        });
++    });
++
++}(jQuery);
 diff --git a/web/vendor/bootstrap/css/bootstrap-theme.css b/web/vendor/bootstrap/css/bootstrap-theme.css
 new file mode 100644
 index 0000000..ebe57fb
