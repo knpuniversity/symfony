@@ -1,21 +1,47 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 2926904..1f337e4 100644
+index b146cae..a281f31 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
-@@ -5,9 +5,8 @@
- {% block body %}
- <h1>The Genus {{ name }}</h1>
+@@ -4,6 +4,9 @@
  
-+<a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
+ {% block body %}
+     <h2 class="genus-name">{{ name }}</h2>
 +
- <ul>
--    {% for note in notes %}
--        <li>{{ note }}</li>
--    {% endfor %}
- </ul>
--{% endblock %}
-\ No newline at end of file
-+{% endblock %}
++    <a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
++
+     <div class="sea-creature-container">
+         <div class="genus-photo"></div>
+         <div class="genus-details">
+@@ -22,17 +25,17 @@
+         <div><i class="fa fa-plus plus-btn"></i></div>
+     </div>
+     <section id="cd-timeline">
+-        {% for note in notes %}
+-            <div class="cd-timeline-block">
+-                <div class="cd-timeline-img">
+-        			<img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">
+-        		</div>
+-                <div class="cd-timeline-content">
+-        			<h2><a href="#">AquaPelham</a></h2>
+-        			<p>{{ note }}</p>
+-        			<span class="cd-date">Dec. 10, 2015</span>
+-        		</div>
+-            </div>
+-        {% endfor %}
++        {#{% for note in notes %}#}
++            {#<div class="cd-timeline-block">#}
++                {#<div class="cd-timeline-img">#}
++        			{#<img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">#}
++        		{#</div>#}
++                {#<div class="cd-timeline-content">#}
++        			{#<h2><a href="#">AquaPelham</a></h2>#}
++        			{#<p>{{ note }}</p>#}
++        			{#<span class="cd-date">Dec. 10, 2015</span>#}
++        		{#</div>#}
++            {#</div>#}
++        {#{% endfor %}#}
+     </section>
+ {% endblock %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
 index e653a19..8ccb084 100644
 --- a/src/AppBundle/Controller/GenusController.php

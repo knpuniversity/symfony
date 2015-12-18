@@ -1,16 +1,26 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 1f337e4..23d26e7 100644
+index a281f31..dd09efe 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
-@@ -5,8 +5,24 @@
- {% block body %}
- <h1>The Genus {{ name }}</h1>
- 
--<a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
--
--<ul>
-+<ul class="js-notes-wrapper">
- </ul>
+@@ -25,17 +25,25 @@
+         <div><i class="fa fa-plus plus-btn"></i></div>
+     </div>
+     <section id="cd-timeline">
+-        {#{% for note in notes %}#}
+-            {#<div class="cd-timeline-block">#}
+-                {#<div class="cd-timeline-img">#}
+-        			{#<img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">#}
+-        		{#</div>#}
+-                {#<div class="cd-timeline-content">#}
+-        			{#<h2><a href="#">AquaPelham</a></h2>#}
+-        			{#<p>{{ note }}</p>#}
+-        			{#<span class="cd-date">Dec. 10, 2015</span>#}
+-        		{#</div>#}
+-            {#</div>#}
+-        {#{% endfor %}#}
++        <ul class="js-notes-wrapper">
++        </ul>
+     </section>
  {% endblock %}
 +
 +{% block javascripts %}
