@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}AquaNote!{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="search-bar">
+            <form method="GET" action="" class="js-sea-search sea-search">
+                <input type="search" name="q" placeholder="Search Sea Creatures" autocomplete="off" class="search-input">
+            </form>
+        </div>
+        <header class="header">
+            <img class="logo-icon" src="{{ asset('images/aquanote-logo.png') }}">
+            <h1 class="logo">AquaNote</h1>
+            <ul class="navi">
+                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </header>
+
+        {% block body %}{% endblock %}
+
+        <div class="footer">
+            <p class="footer-text">Made with <span class="heart"><3</span> <a href="https://knpuniversity.com">KnpUniversity</a></p>
+        </div>
+
+        {% block javascripts %}
+            <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

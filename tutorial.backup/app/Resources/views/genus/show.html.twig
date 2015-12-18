@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genus {{ name }}{% endblock %}
+
+{% block body %}
+    <h2 class="genus-name">{{ name }}</h2>
+    <div class="sea-creature-container">
+        <div class="genus-photo"></div>
+        <div class="genus-details">
+            <dl class="genus-details-list">
+                <dt>Subfamily:</dt>
+                <dd>Octopodinae</dd>
+                <dt>Known Species:</dt>
+                <dd>289</dd>
+                <dt>Fun Fact:</dt>
+                <dd>Octopuses can change the color of their body in just three-tenths of a second!</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="notes-container">
+        <h2 class="notes-header">Notes</h2>
+        <div><i class="fa fa-plus plus-btn"></i></div>
+    </div>
+    <section id="cd-timeline">
+        {% for note in notes %}
+            <div class="cd-timeline-block">
+                <div class="cd-timeline-img">
+        			<img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">
+        		</div>
+                <div class="cd-timeline-content">
+        			<h2><a href="#">AquaPelham</a></h2>
+        			<p>{{ note }}</p>
+        			<span class="cd-date">Dec. 10, 2015</span>
+        		</div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
