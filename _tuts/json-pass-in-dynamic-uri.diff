@@ -1,16 +1,15 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index d0a8d3b..b011382 100644
+index 62b4c38..b011382 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
-@@ -29,10 +29,10 @@
+@@ -29,8 +29,10 @@
  
      <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
      <script type="text/babel">
--        var url = '{{ path('genus_show_notes', {'genusName': name}) }}';
 +        var notesUrl = '{{ path('genus_show_notes', {'genusName': name}) }}';
- 
++
          ReactDOM.render(
--          <NoteSection url={url} />,
+-          <NoteSection />,
 +          <NoteSection url={notesUrl} />,
            document.getElementById('js-notes-wrapper')
          );
