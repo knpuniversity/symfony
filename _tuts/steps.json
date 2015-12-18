@@ -96,6 +96,11 @@
             "description": null
         },
         {
+            "id": "json-pass-in-dynamic-uri",
+            "name": "JSON: Pass in dynamic URI",
+            "description": null
+        },
+        {
             "id": "routing-new-yaml-homepage",
             "name": "Routing: New YAML homepage",
             "description": null
@@ -106,5 +111,5 @@
             "description": null
         }
     ],
-    "sha": "1d7abb95120ef04eca1eed6dbbbe2fba697f301d"
+    "sha": "226fa8401e932515d04ba543fbad2d8d3e28e382"
 }

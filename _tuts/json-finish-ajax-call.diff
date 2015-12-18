@@ -41,7 +41,7 @@ index 5c0242c..d0a8d3b 100644
  {% endblock %}
 diff --git a/web/js/notes.react.js b/web/js/notes.react.js
 new file mode 100644
-index 0000000..c88f934
+index 0000000..0735701
 --- /dev/null
 +++ b/web/js/notes.react.js
 @@ -0,0 +1,68 @@
@@ -59,7 +59,7 @@ index 0000000..c88f934
 +
 +    loadNotesFromServer: function() {
 +        $.ajax({
-+            url: this.props.url,
++            url: '/genus/octopus/notes',
 +            success: function (data) {
 +                this.setState({notes: data.notes});
 +            }.bind(this)
