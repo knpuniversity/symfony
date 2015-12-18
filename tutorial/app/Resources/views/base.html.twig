@@ -21,7 +21,7 @@
             <img class="logo-icon" src="{{ asset('images/aquanote-logo.png') }}">
             <h1 class="logo">AquaNote</h1>
             <ul class="navi">
-                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                <li class="search"><a href="#" class="js-header-search-toggle"><i class="fa fa-search"></i></a></li>
                 <li><a href="#">Login</a></li>
             </ul>
         </header>
@@ -34,6 +34,7 @@
 
         {% block javascripts %}
             <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
         {% endblock %}
     </body>
 </html>
