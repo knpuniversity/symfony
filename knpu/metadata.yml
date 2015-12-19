@@ -46,3 +46,15 @@ chapters:
         is_free: true
         video_key: ~
         is_finished: false
+    services-useful-objects:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    listing-services:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    hello-twig:
+        is_free: true
+        video_key: ~
+        is_finished: false
