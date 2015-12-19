@@ -41,7 +41,7 @@ service and it will return that object. It's super simple.
 
 Quickly, open the `var` directory, right click on the `cache` directory and click
 "mark this directory as excluded". Symfony caches things... that's not important
-yet, but excluding this *is* imporotant: this directory confuses autocompletion.
+yet, but excluding this *is* important: this directory confuses autocompletion.
 
 Now type `$this->container->get('templating')`. Well hey autocompletion!
 

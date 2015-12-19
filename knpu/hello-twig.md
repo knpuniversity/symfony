@@ -16,7 +16,7 @@ a `for` loop, or setting a variable, you'll use `{% %}`.
 Head over to Twig's website at [twig.sensiolabs.org](http://twig.sensiolabs.orghttp://twig.sensiolabs.org),
 click Documentation and scroll down. Ah, this is a list of *everything* Twig does.
 
-Look at the Tgas column first: this is the short list of *all* "do something" tags.
+Look at the Tags column first: this is the short list of *all* "do something" tags.
 Click on `if` to see some usage. Do something tags are always `{%` and then `if`
 or `set` or one of these "tags". The `for` tag - used as `{% for %}` is for looping.
 You'll probably end up only using 5 or 6 of these commonly.

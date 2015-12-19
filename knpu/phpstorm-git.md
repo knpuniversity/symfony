@@ -39,7 +39,7 @@ git init
 git add .
 ```
 
-The project already has a `.gitignore` file that's setup to avoid commiting anything
+The project already has a `.gitignore` file that's setup to avoid committing anything
 we don't want, like the `vendor/` directory and the file that holds database credentials.
 Hey thanks Symfony! Make the first commit and give it a clever message... hopefully
 more clever than mine.

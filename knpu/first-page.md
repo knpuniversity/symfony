@@ -38,7 +38,7 @@ Hit escape and then right-click on `src` and select "mark directory as sources r
 Now re-create `GenusController`. This time it fills in the namespace for me. If namespaces
 are new to you, welcome! Take a break and watch our [PHP Namespaces Tutorial](http://knpuniversity.com/namespaces).
 The most important thing is that the namespace *must* match the directory structure.
-If it doesnt, Symfony won't be able to find the class. By setting the sources root,
+If it doesn't, Symfony won't be able to find the class. By setting the sources root,
 PhpStorm is able tok guess the namespace. And that saves us precious time.
 
 ### Controller and Route

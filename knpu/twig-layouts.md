@@ -21,7 +21,7 @@ in this case - to put content inside this `body` block, you need to *override* i
 If you want to replace the title, then you'll override the `title` block. 
 
 Right now, our `show.html.twig` file is just barfing content. We're telling Twig
-we wnat to use `base.html.twig`, but it doesn't know *where* in that file this
+we want to use `base.html.twig`, but it doesn't know *where* in that file this
 content should be placed.
 
 To fix this, wrap *all* of the content in a block: `{% block body %}`. At the end,
