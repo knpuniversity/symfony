@@ -34,6 +34,10 @@ chapters:
         is_free: true
         video_key: ~
         is_finished: false
+    phpstorm-git:
+        is_free: true
+        video_key: ~
+        is_finished: false
     first-page:
         is_free: true
         video_key: ~
