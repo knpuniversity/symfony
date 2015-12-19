@@ -17,7 +17,7 @@ Delete that! Do it! Now we have an absolutely empty project. Refresh the homepag
 
 Perfect! That's Symfony's way of saying "Yo! There's no page here."
 
-Now back to the main event: building real page.
+Now back to the main event: building a real page.
 
 Our top secret project is called AquaNote: a research database for Aquanauts. These
 cool underwater explorers log their discoveries of different sea creatures to this
@@ -33,13 +33,13 @@ is a function that builds that page.
 So, step 1: create a route! Actually, we're going to start with step 2: you'll see
 why. Create a new class in `AppBundle/Controller` called `GenusController`. But wait!
 The `namespace` box is empty. That's ok, but PhpStorm can help us out a bit more.
-Hit escape and then right-click on `src` and select "mark directory as sources route".
+Hit escape and then right-click on `src` and select "mark directory as sources root".
 
 Now re-create `GenusController`. This time it fills in the namespace for me. If namespaces
 are new to you, welcome! Take a break and watch our [PHP Namespaces Tutorial](http://knpuniversity.com/namespaces).
 The most important thing is that the namespace *must* match the directory structure.
 If it doesn't, Symfony won't be able to find the class. By setting the sources root,
-PhpStorm is able tok guess the namespace. And that saves us precious time.
+PhpStorm is able to guess the namespace. And that saves us precious time.
 
 ### Controller and Route
 
@@ -61,7 +61,7 @@ to build the page. The *only* rule for a controller is that it must return a Sym
 
 But hold on. Let's just all remember what our *only* job is as web developers: to
 understand the incoming request and send back a response, whether that's an HTML
-response, a JSON response of a PDF file.
+response, a JSON response of a PDF file. Symfony is modeled around this idea.
 
 Keep things simple: `return new Response`. The `Response` class is the one from
 the `HttpFoundation` component. Hit tab to auto-complete it. This adds the `use`

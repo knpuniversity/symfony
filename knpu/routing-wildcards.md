@@ -55,7 +55,7 @@ in `debug:router`. Let's run that:
 
 ```bash
 php bin/console debug:router
-```.
+```
 
 Nice! This prints out *every* route. You can see our route at the bottom:
 `/genus/{genusName}`. But there are other routes, I wonder where those are coming
