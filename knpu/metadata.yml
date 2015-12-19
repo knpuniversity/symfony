@@ -29,4 +29,16 @@ illustration: symfony.png
 #     start_step: start
 #     finish_step: ~
 
-chapters: []
+chapters:
+    start-project:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    first-page:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    routing-wildcards:
+        is_free: true
+        video_key: ~
+        is_finished: false
