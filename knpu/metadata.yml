@@ -58,3 +58,7 @@ chapters:
         is_free: true
         video_key: ~
         is_finished: false
+    twig-layouts:
+        is_free: true
+        video_key: ~
+        is_finished: false
