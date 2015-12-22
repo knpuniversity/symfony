@@ -32,12 +32,10 @@ illustration: symfony.png
 chapters:
     start-project:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 149777580
     phpstorm-git:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 149779816
     first-page:
         is_free: true
         video_key: ~
