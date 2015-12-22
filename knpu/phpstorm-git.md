@@ -24,8 +24,8 @@ click the "Enable Plugin for this Project" checkbox. Do this once per project. O
 and also make sure that these paths say `var/cache` instead of `app`.
 
 ***SEEALSO
-If you're interested in more PHPStorm tricks we have an entire screencast on it for
-you to enjoy: http://knpuniversity.com/screencast/phpstorm.
+If you're interested in more PHPStorm tricks we have an entire [screencast][1] on it
+for you to enjoy.
 ***
 
 ## Starting the git Repository
@@ -37,9 +37,17 @@ a new tab. Here, run:
 ```bash
 git init
 git add .
+git status
 ```
 
 The project already has a `.gitignore` file that's setup to avoid committing anything
 we don't want, like the `vendor/` directory and the file that holds database credentials.
-Hey thanks Symfony! Make the first commit and give it a clever message... hopefully
-more clever than mine.
+Hey, thanks Symfony! Make the first commit and give it a clever message... hopefully,
+more clever than mine:
+
+```bash
+git commit
+```
+
+
+[1]: http://knpuniversity.com/screencast/phpstorm
