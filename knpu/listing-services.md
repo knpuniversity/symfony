@@ -55,4 +55,4 @@ you'll get back, which you can use to find the methods on it.
 We just figured this out without *any* documentation.
 
 There's a lot more to say later about services and the container. In fact, it's one
-of the most fundamentally important things that makes Symfony special... and so fast.
+of the most fundamentally important things that makes Symfony so special... and so fast.

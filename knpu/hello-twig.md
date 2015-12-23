@@ -46,7 +46,7 @@ and bonus time: you can also use `dump()` in PHP code: Symfony gives us that fun
 
 To print out the notes, add a `<ul>` and open up a `for` tag with
 `{% for note in notes %}`. Close it with an `{% endfor %}` tag. Now, it's simple:
-print out each of note, which is a string.
+print out each note, which is a string.
 
 Back to the browser to see what we've got. Refresh! Well, it's not pretty yet, but
 it is working. Open the source: it's still *just* this html, there's no HTML layout.

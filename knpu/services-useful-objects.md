@@ -1,6 +1,6 @@
 # Intro to Services
 
-Ok! The first half of Symfony: route-controller-response is in the boos!
+Ok! The first half of Symfony: route-controller-response is in the books!
 
 The second half is all about useful objects. Obviously, returning a string response
 like this is not going to take us very far. Our aquanauts demand more! In real life,
@@ -30,7 +30,7 @@ before too long. That's when things get really cool.
 
 ## Accessing the Container
 
-the first useful object is the `templating` service: it renders Twig templates. To
+The first useful object is the `templating` service: it renders Twig templates. To
 get access to the service container, you need to extend Symfony's base controller.
 In `GenusController`, add `extends Controller` from FrameworkBundle. Hit tab to
 autocomplete and get the `use` statement.

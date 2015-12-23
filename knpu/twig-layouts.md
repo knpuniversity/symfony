@@ -45,7 +45,7 @@ keep exploring this as we go along.
 ## Overriding a Second Block
 
 Ok, the title of the page - "welcome" - well, that's not terribly inspiring or accurate
-for this page. That comes from the base layout, but it's wrapper in a block called
+for this page. That comes from the base layout, but it's wrapped in a block called
 `title`. Let's override that!
 
 Add `{% block title %}Genus {{ name }}{% endblock %}`. The order of blocks doesn't
