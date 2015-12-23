@@ -13,7 +13,7 @@ and *just* focus on `src/` and `app/`.
 Remember the functional homepage? It's coming from this `DefaultController.php` file.
 Delete that! Do it! Now we have an absolutely empty project. Refresh the homepage!
 
-> No route found for "/"
+> No route found for "GET /"
 
 Perfect! That's Symfony's way of saying "Yo! There's no page here."
 
@@ -35,23 +35,38 @@ why. Create a new class in `AppBundle/Controller` called `GenusController`. But 
 The `namespace` box is empty. That's ok, but PhpStorm can help us out a bit more.
 Hit escape and then right-click on `src` and select "mark directory as sources root".
 
-Now re-create `GenusController`. This time it fills in the namespace for me. If namespaces
-are new to you, welcome! Take a break and watch our [PHP Namespaces Tutorial](http://knpuniversity.com/namespaces).
+Now re-create `GenusController`. This time it fills in the namespace for me:
+
+[[[ code('a38a533735') ]]]
+
+***SEEALSO
+If namespaces are new to you, welcome! Take a break and watch our [PHP Namespaces Tutorial][1].
+***
+
 The most important thing is that the namespace *must* match the directory structure.
 If it doesn't, Symfony won't be able to find the class. By setting the sources root,
 PhpStorm is able to guess the namespace. And that saves us precious time.
 
 ### Controller and Route
 
-Inside, add a `public function showAction()`. Hey, this is the controller - the function
-that will (eventually) build the page - and its name isn't important. To create the
-route, we'll use annotations: a comment that is parsed as configuration. Start with
-`/**` and add `@Route`. Be sure to let PhpStorm autocomplete that from the
-`FrameworkExtraBundle` by hitting tab. This is important: it added a `use` statement
-at the top of the class that we need.
+Inside, add a `public function showAction()`:
 
-Finish this by adding `"/genus"`. Beautiful, that's the route and the URL for the
-page is `/genus`.
+[[[ code('6fb3a28a3b') ]]]
+
+Hey, this is the controller - the function that will (eventually) build the page -
+and its name isn't important. To create the route, we'll use annotations: a comment
+that is parsed as configuration. Start with `/**` and add `@Route`. Be sure to let
+PhpStorm autocomplete that from the `FrameworkExtraBundle` by hitting tab:
+
+[[[ code('f14d6cf72b') ]]]
+
+This is important: it added a `use` statement at the top of the class that we need.
+
+Finish this by adding `"/genus"`:
+
+[[[ code('e798558c1e') ]]]
+
+Beautiful, that's the route and the URL for the page is `/genus`.
 
 ## Returning a Response
 
@@ -65,7 +80,14 @@ response, a JSON response of a PDF file. Symfony is modeled around this idea.
 
 Keep things simple: `return new Response`. The `Response` class is the one from
 the `HttpFoundation` component. Hit tab to auto-complete it. This adds the `use`
-statement on top that we need. For the content, how about: `'Under the Sea!'`.
+statement on top that we need:
+
+[[[ code('d5da381679') ]]]
+
+For the content, how about: `'Under the Sea!'`:
+
+[[[ code('43a64d0927') ]]]
+
 That's it!
 
 We've only created one file with one function, but we already have a route, a controller
@@ -76,3 +98,6 @@ the URL: `/genus`. Woh! There's your first page in Symfony, done in about 10 lin
 of code. Simple enough for you?
 
 Next, let's create a dynamic URL.
+
+
+[1]: http://knpuniversity.com/screencast/php-namespaces-in-120-seconds
