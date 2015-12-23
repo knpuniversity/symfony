@@ -56,15 +56,11 @@ Inside, add a `public function showAction()`:
 Hey, this is the controller - the function that will (eventually) build the page -
 and its name isn't important. To create the route, we'll use annotations: a comment
 that is parsed as configuration. Start with `/**` and add `@Route`. Be sure to let
-PhpStorm autocomplete that from the `FrameworkExtraBundle` by hitting tab:
+PhpStorm autocomplete that from the `FrameworkExtraBundle` by hitting tab. This is
+important: it added a `use` statement at the top of the class that we need. Finish
+this by adding `"/genus"`:
 
-[[[ code('f14d6cf72b') ]]]
-
-This is important: it added a `use` statement at the top of the class that we need.
-
-Finish this by adding `"/genus"`:
-
-[[[ code('e798558c1e') ]]]
+[[[ code('0eb5bddd53') ]]]
 
 Beautiful, that's the route and the URL for the page is `/genus`.
 
@@ -80,13 +76,9 @@ response, a JSON response of a PDF file. Symfony is modeled around this idea.
 
 Keep things simple: `return new Response`. The `Response` class is the one from
 the `HttpFoundation` component. Hit tab to auto-complete it. This adds the `use`
-statement on top that we need:
+statement on top that we need. For the content, how about: `'Under the Sea!'`:
 
-[[[ code('d5da381679') ]]]
-
-For the content, how about: `'Under the Sea!'`:
-
-[[[ code('43a64d0927') ]]]
+[[[ code('cf4b818272') ]]]
 
 That's it!
 
