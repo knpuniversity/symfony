@@ -57,3 +57,19 @@ chapters:
         is_free: true
         video_key: ~
         is_finished: false
+    layout-assets:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    json-api-route-generation:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    reactjs-api:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    demystify-config:
+        is_free: true
+        video_key: ~
+        is_finished: false
