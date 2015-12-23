@@ -22,10 +22,10 @@ doing *amazing* things with the Symfony framework.
 
 ## The Symfony Installer
 
-Let's get our first Symfony project rolling. Head over to Symfony.com and click
-'Download'. Our first task is to get the `Symfony Installer`. Depending on your
-system, this means running commands from one of these boxes. Since I'm on a mac,
-I'll copy the `curl` command and paste it into the terminal:
+Let's get our first Symfony project rolling. Head over to [Symfony.com](http://symfony.com/download)
+and click 'Download'. Our first task is to get the `Symfony Installer`. Depending
+on your system, this means running commands from one of these boxes. Since I'm on
+a mac, I'll copy the `curl` command and paste it into the terminal:
 
 ```bash
 sudo curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony

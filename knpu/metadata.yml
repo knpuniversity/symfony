@@ -25,9 +25,9 @@ summary: |
 
 illustration: symfony.png
 
-# tuts_hero:
-#     start_step: start
-#     finish_step: ~
+tuts_hero:
+    start_step: start
+    finish_step: ~
 
 chapters:
     start-project:
