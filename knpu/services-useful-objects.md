@@ -32,6 +32,12 @@ before too long. That's when things get really cool.
 
 The first useful object is the `templating` service: it renders Twig templates. To
 get access to the service container, you need to extend Symfony's base controller.
+
+***SEEALSO
+Why does extending `Controller` give you access to the container? Find out:
+http://knpuniversity.com/screencast/symfony-journey/determine-the-controller#injecting-the-container-containerawareinterface (advanced)
+***
+
 In `GenusController`, add `extends Controller` from FrameworkBundle. Hit tab to
 autocomplete and get the `use` statement.
 
@@ -57,6 +63,11 @@ into Twig that's set to `$genusName`.
 
 Finally, what do we always do in Symfony controllers? We always return a `Response`
 object. Stick, that `$html` into the response object and return it.
+
+***SEEALSO
+You can actually return *anything* from a controller via the `kernel.view` event:
+http://knpuniversity.com/screencast/symfony-journey/kernel.view-event (advanced)
+***
 
 ## Create the Template
 
