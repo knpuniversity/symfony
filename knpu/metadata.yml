@@ -42,12 +42,10 @@ chapters:
         video_key: 149889890
     services-useful-objects:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150274646
     listing-services:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150275061
     hello-twig:
         is_free: true
         video_key: ~
