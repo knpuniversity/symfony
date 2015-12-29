@@ -48,8 +48,7 @@ chapters:
         video_key: 150275061
     hello-twig:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150277110
     twig-layouts:
         is_free: true
         video_key: ~
