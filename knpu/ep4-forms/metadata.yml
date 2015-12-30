@@ -1,0 +1,38 @@
+title: Getting started with Symfony 3: Forms
+
+summary: |
+    Ah, forms: one of the most *powerful* - but sometimes
+    hated - features in all of Symfony. Here's the deal: forms
+    are just plain hard. You need to manage the HTML form elements,
+    validation, data transformation and a lot more. The Form
+    component is probably the most complex part of Symfony. But
+    the more you work with it, the more you'll like it.
+
+    In this episode, we'll learn how to use Symfony forms to
+    handle simple situations as well as some complex setups.
+    Most importantly, I'll show you how to avoid the pitalls
+    that many developers often fall into that causes the form
+    component to spiral into complexity hell. The form system
+    is a tool: in this tutorial, we'll put the joy back into it:
+
+    * Creating a basic form
+    * Basic form rendering and customization
+    * Handling a form submit
+    * Backing your form with an entity
+    * Adding validation
+    * Form field guessing
+    * Pre-filling with default data
+    * Creating a form "type" class
+    * Using forms to handle an API POST request
+    * Understanding how forms *really* work
+    * Flash messages
+
+    ... and form tips and tricks stuck in all over!
+
+illustration: symfony.png
+
+tuts_hero:
+#    start_step: start
+#    finish_step: ~
+
+chapters: []

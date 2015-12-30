@@ -1,0 +1,42 @@
+title: Getting started with Symfony 3: Security
+
+summary: |
+    Ah, security! Quick run!
+
+    Wait, come back! Security in Symfony is *awesome*! Seriously,
+    between things called "voters" and the Guard authentication
+    system, you can do anything you want inside of Symfony, and
+    the code to do it is simple and expressive.
+
+    Security has two sides: authentication (who are you?) and
+    authorization (do you have access to do X). We'll talk about
+    each of these, creating an traditional form login system
+    *and* and API token authentication system using Json web tokens
+    (not as scary as they sound!). Then, we'll turn to authorization,
+    with roles, voters and other good stuff:
+
+    * Security & Firewall Fundamentals
+    * Creating a custom login form
+    * Making a User (ooOOOoo)
+    * User Providers (why you need them, but don't care)
+    * Password Encryption
+    * Logging out!
+    * Protecting entire URLs with access_control(s)
+    * IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_REMEMBERED
+    * Checking access with roles! ROLE_USER
+    * Denying access in a controller
+    * Introduction to voters
+    * Role hierarchies
+    * Impersonation (`switch_user`) & Remember me
+    * Manual authentication
+
+    ... and how to create a back door into your site. Just kidding!
+    Let's make some secure sites!
+
+illustration: symfony.png
+
+tuts_hero:
+#    start_step: start
+#    finish_step: ~
+
+chapters: []

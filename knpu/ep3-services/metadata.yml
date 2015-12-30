@@ -1,0 +1,32 @@
+title: Getting started with Symfony 3: Services and the Container
+
+summary: |
+    With [episode 1](http://knpuniversity.com/screencast/symfony)
+    and [episode 2](http://knpuniversity.com/screencast/symfony-doctrine)
+    in the books, we've got an app with a rich data model backed
+    by Doctrine.
+
+    Now it's time to get serious by mastering *services*. These
+    puppies are the backbone of what makes Symfony special & fast.
+    It's also the reason that organizing your code into reusable
+    chunks is so easy. But beyond that, once you understand how
+    services and the service container work, you'll be absolutely
+    unstoppable inside of Symfony. Yep, let's do that:
+
+    * Understanding what a service is
+    * Listing, fetching and using existing services
+    * Creating your own custom services
+    * Registering your service
+    * Checking out the (mystical) dumped container
+    * Configuration Parameters
+    * Dependency Injection Tags
+
+    This is the episode where it all starts coming together. Let's go!
+
+illustration: symfony.png
+
+tuts_hero:
+#    start_step: start
+#    finish_step: ~
+
+chapters: []

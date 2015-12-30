@@ -1,0 +1,34 @@
+title: Getting started with Symfony 3: Doctrine & the Database
+
+summary: |
+    After [episode 1](http://knpuniversity.com/screencast/symfony), you
+    are already up and running with Symfony. Check you out!
+
+    Now it's time to make things more interesting by talking to the
+    database with Doctrine.
+
+    Doctrine has a reputation for being tough to learn, and that's
+    unfortunate, because it's an amazing tool. In this tutorial, we'll
+    get you rolling with Doctrine: learn how to use it, how to get
+    hard work done easily and how to avoid the common pitfalls that
+    *can* make Doctrine hard:
+
+    * Creating entity classes
+    * Managing migrations
+    * Saving new data
+    * Querying for data
+    * Custom repositories
+    * Custom queries and the query builder
+    * Mapping options (and how to find them!)
+    * ManyToOne relationships (associations)
+    * Fixtures (Dummy data) using Faker
+
+    ... and (like always) a lot more goodies are mixed in.
+
+illustration: symfony.png
+
+tuts_hero:
+#    start_step: start
+#    finish_step: ~
+
+chapters: []
