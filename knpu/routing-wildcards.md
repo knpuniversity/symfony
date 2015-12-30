@@ -4,14 +4,21 @@ This page has a boring, hardcoded URL. What our aquanauts deserve is a dynamic r
 that can handle the URL for any genus - like `/genus/octopus` or  `/genus/hippocampus`
 which is the genus that sea horses belong to. Oh man, sea horses are cute. 
 
-How? Change the URL to `/genus/{genusName}`. This `genusName` part could be named
-anything: the important part is that it is surrounded by curly braces. As soon as
-you do this, you are allowed to have a `$genusName` argument to your controller. When
-we go to `/genus/octopus` this variable will be set to octopus. That's pretty awesome.
+How? Change the URL to `/genus/{genusName}`:
+
+[[[ code('47d7097331') ]]]
+
+This `genusName` part could be named anything: the important part is that it is surrounded
+by curly braces. As soon as you do this, you are allowed to have a `$genusName` argument
+to your controller. When we go to `/genus/octopus` this variable will be set to octopus.
+That's pretty awesome.
 
 The important thing is that the routing wildcard matches the variable name.
 
-To test this is, change the message in the response to `'The genus: '.$genusName`.
+To test this is, change the message in the response to `'The genus: '.$genusName`:
+
+[[[ code('086c4c19c1') ]]]
+
 Head back to the browser and refresh. Ah! A 404 error. That's because the URL is
 no longer `/genus`, it's now `/genus/something`: we have to have something on the
 other side of the URL. Throw octopus on the end of that (`/genus/octopus`). There's
@@ -20,15 +27,17 @@ the new message. And of course, we could change this to whatever we want.
 So what would happen if the wildcard and the variable name *didn't* match? Um I don't
 know: let's try it: change the wildcard name and refresh!
 
+[[[ code('9c659c702d') ]]]
+
 OMG: that's a sweet error:
 
-> The Controller showAction requires that you provide a value for the $genusName argument.
+> The `Controller::showAction()` requires that you provide a value for the `$genusName` argument.
 
 What Symfony is trying to tell you is:
 
-> Hey fellow ocean explorer, I'm trying to call your showAction, but I can't
-> figure out what value to pass to `genusName` because I don't see a
-> `{genusName}` wildcard in the route. I'm shore you can help me.
+> Hey fellow ocean explorer, I'm trying to call your `showAction()`, but I can't figure out
+  what value to pass to `genusName` because I don't see a `{genusName}` wildcard in the
+  route. I'm shore you can help me.
 
 As long as those always match, you'll be great.
 

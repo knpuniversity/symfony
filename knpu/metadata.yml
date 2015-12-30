@@ -39,24 +39,19 @@ chapters:
         video_key: 149782509
     routing-wildcards:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 149889890
     services-useful-objects:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150274646
     listing-services:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150275061
     hello-twig:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150277110
     twig-layouts:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150277487
     layout-assets:
         is_free: true
         video_key: ~
