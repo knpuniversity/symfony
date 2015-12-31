@@ -4,11 +4,6 @@ Unless you're building a pure API, Twig is your new best friend. Rarely do you f
 a library that's this much fun to use. It's also really easy, so let me just give
 you a quick intro.
 
-***SEEALSO
-Check our separate screencast [Twig Templating for Friendly Frontend Devs][2] for
-more information about Twig templating engine.
-***
-
 ## {{ SaySomething }}, {% doSomething %}
 
 Twig has two syntaxes: `{{ }}` - which is the "say something" tag - and `{% %}` -
@@ -52,7 +47,8 @@ With the `dump()` function, you can expand the variables in really cool ways. Oh
 and bonus time: you can also use `dump()` in PHP code: Symfony gives us that function.
 
 ***SEEALSO
-See more usage examples of the `dump()` function in [The dump Function for Debugging][3]
+See more usage examples of the `dump()` function in [The dump Function for Debugging][2]
+of the separate Twig screencast.
 chapter.
 ***
 
@@ -70,5 +66,4 @@ Time to fix that.
 
 
 [1]: http://twig.sensiolabs.org
-[2]: https://knpuniversity.com/screencast/twig
-[3]: https://knpuniversity.com/screencast/twig/functions-filters#the-dump-function-for-debugging
+[2]: https://knpuniversity.com/screencast/twig/functions-filters#the-dump-function-for-debugging
