@@ -35,13 +35,18 @@ get access to the service container, you need to extend Symfony's base controlle
 
 ***SEEALSO
 Why does extending `Controller` give you access to the container? Find out:
-http://knpuniversity.com/screencast/symfony-journey/determine-the-controller#injecting-the-container-containerawareinterface (advanced)
+[Injecting the Container (ContainerAwareInterface)][] (advanced).
 ***
 
-In `GenusController`, add `extends Controller` from FrameworkBundle. Hit tab to
-autocomplete and get the `use` statement.
+In `GenusController`, add `extends Controller` from `FrameworkBundle`. Hit tab to
+autocomplete and get the `use` statement:
 
-To get the `templating` service, add `$templating = $this->container->get('templating')`.
+[[[ code('5b15e8d678') ]]]
+
+To get the `templating` service, add `$templating = $this->container->get('templating')`:
+
+[[[ code('91682ab135') ]]]
+
 The container pretty much only has one method: `get`. Give it the nickname to the
 service and it will return that object. It's super simple.
 
@@ -56,17 +61,21 @@ Now type `$this->container->get('templating')`. Well hey autocompletion!
 With the templating object we can... well... render a template! Add
 `$html = $templating->render('')` followed by the name of the template. This could
 be anything, but let's be logical: `genus/show.html.twig`. I'll show you where this
-lives in a second.
+lives in a second:
+
+[[[ code('e5fac212d9') ]]]
 
 We'll also want to pass some variables into the template. Pass a `name` variable
 into Twig that's set to `$genusName`.
 
-Finally, what do we always do in Symfony controllers? We always return a `Response`
-object. Stick, that `$html` into the response object and return it.
+Finally, what do we always do in Symfony controllers? We always return a Symfony's
+`Response` object. Stick, that `$html` into the response object and return it:
+
+[[[ code('4476121646') ]]]
 
 ***SEEALSO
 You can actually return *anything* from a controller via the `kernel.view` event:
-http://knpuniversity.com/screencast/symfony-journey/kernel.view-event (advanced)
+[The kernel.view Event][2] (advanced)
 ***
 
 ## Create the Template
@@ -78,12 +87,17 @@ if you want to, then delete it!
 
 Create a new `genus` directory and then a new file: `show.html.twig`. Welcome to
 Twig! You'll love it. Add an `<h1>` tag with `The Genus` and then `{{ name }}` to
-print the `name` variable. More on Twig in a second.
+print the `name` variable. More on Twig in a second:
 
-But that's it! Refresh the browser. Check out that sweet h1 tag. 
+[[[ code('5e9e3ad586') ]]]
+
+But that's it! Refresh the browser. Check out that sweet `h1` tag. 
 
 Now back up: we just did something really cool: used our first service. We now know
 that rendering a template isn't done by some deep, dark part of Symfony: it's done
 by the templating object. In fact, Symfony doesn't really do *anything*: everything
 is done by one of these services.
 
+
+[1]: http://knpuniversity.com/screencast/symfony-journey/determine-the-controller#injecting-the-container-containerawareinterface
+[2]: http://knpuniversity.com/screencast/symfony-journey/kernel.view-event
