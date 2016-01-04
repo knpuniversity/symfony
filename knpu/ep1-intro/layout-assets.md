@@ -1,24 +1,93 @@
-# Loading CSS & Js Assets
+# Loading CSS & JS Assets
 
-We have an HTML layout.  It’s just a little boring, so let’s spice it up.  If you downloaded the code for this project, in the start directory, you’ll find a tutorial directory.  I’ve already copied it into our project here.  This has some files that we’ll use in our project just to help get things looking a little bit better.
+We have an HTML layout, yay! Good for us!
 
-First thing, in the web directory, copy the four directories into web.  We’re not doing anything fancy with front-end assets in this screencast.  We just have css, images, js, and then some vendor files for bootstrap and fontawesome.  Now, we’re moving those into the web directory because the web directory is the public root.  Anything in web can be visible to the public.  If you’re not in web, then you’re not visible to the public.
+But... it's *super* boring... and that's just no fun. Besides, I want to talk about
+assets!
 
-Once you’ve done that, go into the app directory and grab a new base layout.  Let’s paste that, overwrite the original, and open it up and take a look.
+If you download the code for this project, in the `start/` directory, you'll find a
+`tutorial/` directory. I've already copied this into my project. It holds some goodies
+that we need to help get things looking less ugly, and more interesting!
 
-So, obviously, we wanna include some of the CSS and JS files that we just put inside of our web directory.  And, out of the box, Symfony doesn’t care about your assets.  It just wants you to take care of them yourselves.  However, I want to show you two things.  First of all, notice that the CSS files are inside a block stylesheets.  Really, technically, that does nothing.  You don’t have to do that.  But, as you’ll see later, if we wanna add page-specific CSS files, by putting the main ones inside this block stylesheets, we’re gonna be able to override the block and add our stylesheets below.
+## Copying web files
 
-So, if that doesn’t make sense yet, it’s cool.  That’s okay.  Just know that it’s a good practice to put CSS inside of your stylesheets.  And then at the bottom, I have my JavaScript inside of a JavaScript block.  It just gives you a little bit more flexibility.
+First, copy the 4 directories in `web/`... to `web/`: this includes some CSS, images,
+JS and vendor files for Bootstrap and FontAwesome:
 
-Second thing.  When we refer to any static asset in the system, we use a special twig function called asset.  And asset is one of the most underwhelming things you’ll ever hear of in Symfony.  So, basically, instead of just hardcoding the URL, we use asset, and then we put the path to the CSS or JS or image file, relative to the web directory.  So, vendor/bootstrap/css/boostrap.min.css, and that’s it.
+```
+web/css
+web/images
+web/js
+web/vendor
+```
 
-Now, what does that do?  Well, out of the box, really, nothing.  It does have a little magic behind the scenes in case your project is deployed to not the root of your domain, like mycoolsite.com/symfony, that’s where your project is located.  But the most important thing the asset function does, it allows you later to configure a CDN.  So, if you use the asset function, you can go to one configuration spot in your code, tell Symfony that you have this awesome CDN over here, superfast.cdn.com, and it will automatically prefix all of these with the host name to your CDN.  So, asset function is really not important, but we use it when you refer to static files.
+These are boring, normal, traditional static files: we're not doing anything fancy
+with frontend assets in this screencast.
 
-Other than that, this is exactly like before.  We have the block title, we have our block body down the middle, we have block javascripts.  We just filled it in with some cool stuff.
+***SEEALSO
+One way to get fancy is by using Gulp to process, minify and combine assets.
+See [Gulp! Refreshment for Your Frontend Assets](knpuniversity.com/screencast/gulp).
+***
 
-Last thing, grab the show.html.twig and use that to overwrite ours.  And same thing, it’s just like before.  It extends base.html.twig.  We’re still printing out the genus name.  We’re still looping over the notes and printing them out, but we have a little extra markup here to spice things up.  And notice, once again, when I’m referring to a image this time, I’m using the asset function.
+Ok, important thing: the `web/` directory is the document root. In other words,
+anything in `web/` can be accessed by the public. If I wanted to load up that `favicon.ico`,
+I'd use my hostname `/favicon.ico` - like `http://localhost:8000/favicon.ico`. If
+a file is *outside* of web, then it's *not* publicly accessible.
 
-All right, so, let’s check that out.  Refresh.  Boom!  A lot prettier.
+## Including Static Assets
 
-We talk more about asset handling in other screencasts, but for now, that’s all you need to know.  Simple.
+Ok, more work: go into the `app/` directory and copy the new `base.html.twig` file.
+Paste that over the original and open it up.
 
+Hey! We have some real-looking HTML! To bring this to life, we need to include some
+of those CSS and JS assets that we just put into `web/`. And here's the key: Symfony
+doesn't care about your assets... at all. It's not personal, it keeps things simple.
+You include CSS and JS files the way you always have: with tried-and-true `link`
+and `script` tags. These paths are relative to the `web/` directory, because that's
+the document root. 
+
+### The stylesheets and javascripts block
+
+Ok ok, in reality there are *two* little-itty-bitty Symfony things to show you about
+assets. First, notice that the link tags live inside a block called `stylesheets`.
+Really, technically, that does... nothing! Seriously: you don't have to do this,
+it will make no difference... for now.
+
+But, in the future, doing this will give you the power to add page-specific CSS by
+adding *more* `link` tags to the bottom of the `stylesheets` block from inside a
+child template. I'll show you that later. Just know that it's a good practice to
+put CSS inside of a block, like `stylesheets`.
+
+The same is true for script tags: I've got mine in a block called `javascripts`.
+
+### The asset function
+
+You're probably already looking at the *second* important Symfony thing about assets:
+the `asset()` function. *Whenever* you refer to a static file, you'll wrap the path
+in `{{ asset() }}`. This does... you guessed it! Nothing! Ok, that's not totally true.
+But it really doesn't do much, and you'd be just fine if you forgot it and hardcoded
+the path.
+
+So what *does* `asset()` do? Well, if you eventually deploy and use a CDN, it will
+save your butt. With just one tiny config change, Symfony can prefix *every* static
+URL with your CDN host. So `/css/styles.css` becomes `superfastcdn.com/css/styles.css`.
+That's pretty awesome, so be good an use `asset()` in case you need it. You can also
+do some cool cache-busting stuff.
+
+Other than the asset stuff, the base layout is just like before: it has a `title`
+block, a `body` block in the middle and some `javascripts`. We just added the pretty
+markup.
+
+## Updating show.html.twig
+
+Let's finish this! Copy `show.html.twig` and overwrite our boring version. And yep,
+it's also similar to before - I swear I'm not trying to sneak in any magic! It still
+extends `base.html.twig`, prints out the genus name and loops over the notes. Oh,
+and hey! When I refer to the image - which is a static file - I'm using the `asset()`
+function.
+
+Ok, ready for this? Refresh the page. Boom! So much prettier.
+
+These days, you can do some pretty crazy things with assets via frontend tools like
+Gulp or PHP tools like Assetic. But you *might* not need any of these. If you can,
+keep it simple.
