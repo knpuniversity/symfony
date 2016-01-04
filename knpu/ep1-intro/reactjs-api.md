@@ -1,68 +1,79 @@
 # ReactJS talks to your API
 
-Okay. Let’s remove this link here and add some JavaScript to just this page.
-Now, in our base template, we already have JavaScript that’s included on every
-single page, but now I wanna include JavaScript that’s just included on this
-page. And I wanna do that for performance.
+Remove the link. In `base.html.twig`, we already have a few JavaScript files that
+are included on every page. But now, I want to include some JavaScript on *just*
+this page - I don't need this stuff everywhere.
 
-And notice this is in a block javascripts, so what we can do below here is we
-can just override that block. Block javascripts endblock, and then put whatever
-JavaScript we inside of here. But wait. When you override blocks, you override
-them completely. So if I just do this, it will completely replace the scripts
-in my base template, and I don’t want that. The trick is to use the curly-curly
-parent function. That will include all of the scripts from the parent block,
-and then below that, we can add our own stuff.
+## Page-Specific JavaScript (or CSS)
 
-Okay. So, I’m gonna render all of these comments – the comments that we had on
-the page – dynamically by using our API endpoints. We’re gonna do that with
-React.js, which is super fun to play with. If you’re not familiar with it, it’s
-okay. We’re just gonna touch on it a little bit to show off how things work.
+Remember [from earlier](/screencast/symfony/layout-assets) that those script tags
+live in a `javascripts` block. Hey, that's perfect! In the child template, we can
+override that block: `{% block javascripts %}` then `{% endblock %}`. Now, whatever
+JS we put here will end up at the bottom of the layout. Perfect, right?
 
-First, I’ll include three external script tags. And then I’m gonna include one
-more script tag that points to a JavaScript file in our project, which is
-notes.react.js. Let’s take a look at that. Remember, this is in the web
-directory, js/notes.react.js. So, this is a little React.js application that I
-created that goes to our API endpoints and then builds all of the markup that
-we had before in our page dynamically. So, you recognize this as the markup
-that we were using before for our comments.
+No, not perfect! When you override blocks, you override them *completely*. With this
+code, it will completely replace the other scripts in the base template. I don't want
+that! I really want to *append* content to this block.
 
-Now, notice one thing here. It makes an AJAX endpoint just using jQuery – so,
-very simple – but I have the URL hardcoded right now to /genus/octopus/notes.
-So obviously, that’s a problem, but we’re going – but let’s just ignore it for
-a second. Trust me – we’ll fix it.
+The secret awesome solution to this is the `parent()` function. This prints all of
+the content from the parent block, and *then* we can put our cool stuff below that.
 
-Back in our template, to get things working, make another script tag for text
-equals babel. Then here, we will boot the application, ReactDOM.render, and
-FutureStorm is not gonna like how this looks, but we’ll ignore it. And we’ll
-render our NoteSection, and then we’re gonna render into
-document.getElementById(‘js-notes-wrapper’). What I’ll do is actually create
-that element up here, so I don’t need any of this notes stuff anymore because
-that’s about to be done dynamically. Instead, we’ll have id equals that. So,
-everything will get rendered into that div.
+## Including the ReactJS Code
 
-Cool. Let’s give it a try. So, refresh, and it’s alive. It happened really
-quickly, but this is actually loading dynamically. And in fact, I put a little
-interval in there, so this is actually reloading automatically about every two
-seconds. So, if we go into our controller here, maybe we take out AquaWeaver in
-the middle. Go back, and boom! It’s gone. We put it back, and then it comes
-back. So, really cool stuff.
+Here's the goal: add some JavaScript that will make an AJAX request to the notes
+API endpoint and use that to render them with the same markup we had before. We'll
+use ReactJS to do this. It's powerful... and super fun, but if it's new to you, don't
+worry. We're not going to learn it now, just preview it to see how to get our API
+working with a JavaScript frontend.
 
-But we still have that hardcoded URL inside of here, and I don’t like that. So,
-the way you fix this is gonna be specific to what you’re using, AngularJS,
-React.js, but it kinda has the same idea. We need to pass the dynamic value
-into here. So, the way we’re gonna do that in React is change this to
-this.props.url, which means now we need to pass a URL property into our
-NoteSection. And since you’re creating that down here, we can do that in this
-spot.
+First, include three external script tags for React itself. Next, I'm going to include
+one more script tag that points to a file in *our* project: `notes.react.js`. Let's
+check that file out! Remember, it's in `web/js/notes.react.js`.
 
-So first, let’s get the URL to that AJAX endpoint, so we’ll say var notesUrl =,
-and we’ll set up a JavaScript variable. And inside of here, we’ll actually
-inline some twigs. This’ll look a little weird – we have twig inside of
-JavaScript. And we’ll link to our genus_show_notes and then pass it the
-genusName set to the name variable, so it’s the same way we regenerated the
-link before. And to pass it into React, we could say url={notesUrl}. And with
-that, we should be able to refresh, and everything still works.
+## The ReactJS App
 
-So, either we have a twig template front-end or this awesome API for our sweet
-React.js front-end. It doesn’t really matter. We can have a mix of the two.
-It’s all the same fundamental philosophy.
+This is a small ReactJS app that uses our API to build all of the same markup that
+we had on the page before, but dynamically. It uses jQuery to make the AJAX call...
+but I have a hardcoded URL right now - `/genus/octopus/notes`. Obviously, that's
+a problem, and lame. But ignore it for a second.
+
+Back in the template, we need to start up the ReactJS app. Add a `script` tag with
+`type="text/babel"` - that's a React thing. To boot the app, add ReactDOM.render.
+PhpStorm is *not* going to like how this looks, but ignore it. Render the `NoteSection`
+into `document.getElementById('js-notes-wrapper')`. Back in the HTML area, add clear
+things out and add an empty div with this `id`. Everything will be rendered here.
+
+Ya know what? I think we should try it. Refresh. It's alive! It happened quickly,
+but this *is* loading dynamically. In fact, I added some simple magic so that it
+checks for new comments every two seconds. Let's see if it'll update without refreshing.
+
+In the controller, remove one of the notes - take out `AquaWeaver` in the middle.
+Back to the browser! Boom! It's gone. Now put it back. There it is! So, really cool
+stuff.
+
+## Generating the URL for JavaScript
+
+But... we still have that hardcoded URL. That's still lame, and a problem. *How*
+you fix this will depend on if you're using AngularJS, ReacTJS or something else.
+But the idea is the same: we need to pass the dynamic value into JavaScript. Change
+the URL to `this.props.url`. This means that we will pass a `url` property to `NoteSection`.
+Since we create that in the Twig template, we'll pass it in there.
+
+First, we need to get the URL to the API endpoint. Add `var notesUrl = ''`. Inside,
+generate the URL with twig using `path()`. Pass it `genus_show_notes` and the `genusName`
+set to `name`. Yes, this is Twig inside of JavaScript. And yes, I know it can feel
+a little crazy.
+
+Finally, pass this into React as a prop using `url={notesUrl}`. Try that out. It
+still works very nicely.
+
+Congrats on making it this far: it means you're serious! We've just started, but
+we've already created a rich HTML page *and* an API endpoint to fuel some sweet JavaScript.
+And we're just starting to scratch the surface of Symfony.
+
+What about talking to a database, using forms, setting up security or handling API
+input and validation? How and why should you register your own services? And what
+are event listeners? The answers to these will make you *truly* dangerous not just
+in Symfony, but as a programmer in general.
+
+See you on the next challenge.

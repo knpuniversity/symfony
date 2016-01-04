@@ -58,6 +58,10 @@ adding *more* `link` tags to the bottom of the `stylesheets` block from inside a
 child template. I'll show you that later. Just know that it's a good practice to
 put CSS inside of a block, like `stylesheets`.
 
+***SEEALSO
+How can you add page-specific CSS or JS files? See [ReactJS talks to your API](/screencast/symfony/reactjs-api).
+***
+
 The same is true for script tags: I've got mine in a block called `javascripts`.
 
 ### The asset function
