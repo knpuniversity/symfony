@@ -9,7 +9,9 @@ That's it. Make sure this works by refreshing.
 
 So what does this magic-looking `render()` function actually do? Let's find out!
 Hold command or control (depending on your OS) and click `render()` to be taken straight
-into the base `Controller` class where this function lives: deep in the heart of Symfony.
+into the base `Controller` class where this function lives: deep in the heart of Symfony:
+
+[[[ code('bfdb702039') ]]]
 
 Ah, hah! In reality, this function simply goes out to the `templating` service - just
 like we did - and calls a method named `renderResponse()`. This method is like the `render()`
