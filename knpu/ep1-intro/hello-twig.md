@@ -36,7 +36,9 @@ with some hardcoded text and pass it into our Twig template:
 [[[ code('9b556285f8') ]]]
 
 But before we loop over this, I want to show you a small piece of awesome: the
-`dump()` function.
+`dump()` function:
+
+[[[ code('9688c01ce3') ]]]
 
 This is like `var_dump()` in PHP, but better, *and* you can use it without *any*
 arguments to print details about *every* available variable.
