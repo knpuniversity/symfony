@@ -67,6 +67,11 @@ a little crazy.
 Finally, pass this into React as a prop using `url={notesUrl}`. Try that out. It
 still works very nicely.
 
+***SEEALSO
+There is also an open-source bundle called [FOSJsRoutingBundle](https://github.com/FriendsOfSymfony/FOSJsRoutingBundle)
+that allows you to generate URLs purely from JavaScript. It's pretty awesome.
+***
+
 Congrats on making it this far: it means you're serious! We've just started, but
 we've already created a rich HTML page *and* an API endpoint to fuel some sweet JavaScript.
 And we're just starting to scratch the surface of Symfony.
