@@ -75,7 +75,7 @@ the path.
 So what *does* `asset()` do? Well, if you eventually deploy and use a CDN, it will
 save your butt. With just one tiny config change, Symfony can prefix *every* static
 URL with your CDN host. So `/css/styles.css` becomes `superfastcdn.com/css/styles.css`.
-That's pretty awesome, so be good an use `asset()` in case you need it. You can also
+That's pretty awesome, so be good and use `asset()` in case you need it. You can also
 do some cool cache-busting stuff.
 
 Other than the asset stuff, the base layout is just like before: it has a `title`

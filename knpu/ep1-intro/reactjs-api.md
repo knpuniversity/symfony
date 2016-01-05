@@ -38,9 +38,9 @@ but I have a hardcoded URL right now - `/genus/octopus/notes`. Obviously, that's
 a problem, and lame. But ignore it for a second.
 
 Back in the template, we need to start up the ReactJS app. Add a `script` tag with
-`type="text/babel"` - that's a React thing. To boot the app, add ReactDOM.render.
+`type="text/babel"` - that's a React thing. To boot the app, add `ReactDOM.render`.
 PhpStorm is *not* going to like how this looks, but ignore it. Render the `NoteSection`
-into `document.getElementById('js-notes-wrapper')`. Back in the HTML area, add clear
+into `document.getElementById('js-notes-wrapper')`. Back in the HTML area, clear
 things out and add an empty div with this `id`. Everything will be rendered here.
 
 Ya know what? I think we should try it. Refresh. It's alive! It happened quickly,
@@ -54,7 +54,7 @@ stuff.
 ## Generating the URL for JavaScript
 
 But... we still have that hardcoded URL. That's still lame, and a problem. *How*
-you fix this will depend on if you're using AngularJS, ReacTJS or something else.
+you fix this will depend on if you're using AngularJS, ReactJS or something else.
 But the idea is the same: we need to pass the dynamic value into JavaScript. Change
 the URL to `this.props.url`. This means that we will pass a `url` property to `NoteSection`.
 Since we create that in the Twig template, we'll pass it in there.

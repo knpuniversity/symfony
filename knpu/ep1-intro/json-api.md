@@ -33,7 +33,7 @@ HTTP method should be used for each route.
 ## Missing Annotation use Statement
 
 Hmm, it's highlighting the `@Method` as a missing import. Ah! Don't forget when
-you use annotations to PhpStorm autocomplete them for you. That's important because
+you use annotations, let PhpStorm autocomplete them for you. That's important because
 when you do that, PhpStorm adds a `use` statement at the top of the file that you
 need. If you forget this, you'll get a pretty clear error about it.
 
@@ -66,7 +66,7 @@ Congratulations, you've just created your first Symfony API endpoint.
 ## JsonResponse
 
 But you know, that *could* have been easier. Replace the Response with `new JsonResponse`
-and pass it `$data` without the `json_encode.`. This does two things. First, it
+and pass it `$data` without the `json_encode`. This does two things. First, it
 calls `json_encode()` for you. Hey thanks! And second, it sets the `application/json`
 `Content-Type` header on the Response, which we could have set manually, but this
 is easier.
