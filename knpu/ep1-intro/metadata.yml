@@ -54,17 +54,13 @@ chapters:
         video_key: 150277487
     layout-assets:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150914818
     json-api:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150915380
     url-generation:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150915478
     reactjs-api:
         is_free: true
-        video_key: ~
-        is_finished: false
+        video_key: 150920349
