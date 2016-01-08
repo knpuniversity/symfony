@@ -119,5 +119,5 @@ in Symfony, but as a programmer in general.
 See you on the next challenge.
 
 
-[1] http://knpuniversity.com/screencast/symfony/layout-assets
-[2] https://github.com/FriendsOfSymfony/FOSJsRoutingBundle
+[1]: http://knpuniversity.com/screencast/symfony/layout-assets
+[2]: https://github.com/FriendsOfSymfony/FOSJsRoutingBundle
