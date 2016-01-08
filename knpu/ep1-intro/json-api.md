@@ -23,7 +23,9 @@ out to be really easy.
 
 Create a new controller: I'll call it `getNotesAction()`. This will return notes
 for a specific genus. Use `@Route("/genus/{genusName}/notes")`. We really only want
-this endpoint to be used for `GET` requests to this URL. Add `@Method("GET")`.
+this endpoint to be used for `GET` requests to this URL. Add `@Method("GET")`:
+
+[[[ code('c9f252a70f') ]]]
 
 Without this, the route will match a request using *any* HTTP method, like `POST`.
 But with this, the route will only match if you make a GET request to this URL. Did
@@ -35,12 +37,16 @@ HTTP method should be used for each route.
 Hmm, it's highlighting the `@Method` as a missing import. Ah! Don't forget when
 you use annotations, let PhpStorm autocomplete them for you. That's important because
 when you do that, PhpStorm adds a `use` statement at the top of the file that you
-need. If you forget this, you'll get a pretty clear error about it.
+need:
+
+[[[ code('fdeae7b606') ]]]
+
+If you forget this, you'll get a pretty clear error about it.
 
 Ok, let's see if Symfony sees the route! Head to the console and run `debug:router`:
 
 ```bash
-php app/console debug:router
+php bin/console debug:router
 ```
 
 Hey! There's the new route at the bottom, with its method set to GET.
@@ -48,17 +54,31 @@ Hey! There's the new route at the bottom, with its method set to GET.
 ## The JSON Controller
 
 Remove the `$notes` from the other controller: we won't pass that to the template
-anymore. In the new controller, I'll paste a new `$notes` variable set to some beautiful
-data. We're not using a database yet, but you can already see that this kind of *looks*
-like it came from one: it has a username, a photo for each avatar, and the actual note.
-It'll be pretty easy to make this dynamic in the [next episode](http://knpuniversity.com/screencast/symfony-doctrine).
+anymore:
+
+[[[ code('cfb58bd6e8') ]]]
+
+In the new controller, I'll paste a new `$notes` variable set to some beautiful
+data:
+
+[[[ code('62b22cdc9e') ]]]
+
+We're not using a database yet, but you can already see that this kind of *looks*
+like it came from one: it has a username, a photo for each avatar, and the actual
+note. It'll be pretty easy to make this dynamic in the [next episode][1].
 
 Next, create a `$data` variable, set it to an array, and put the `$notes` in a `notes`
 key inside of that. Don't worry about this: I'm just creating a future JSON structure
-I like.
+I like:
+
+[[[ code('cb8214a92f') ]]]
 
 Now, how do we finally return `$data` as JSON? Simple: `return new Response()` and
-pass it `json_encode($data)`. Simple!
+pass it `json_encode($data)`:
+
+[[[ code('66e480328b') ]]]
+
+Simple!
 
 Hey, let's see if this works. Copy the existing URL and add `/notes` at the end.
 Congratulations, you've just created your first Symfony API endpoint.
@@ -66,9 +86,16 @@ Congratulations, you've just created your first Symfony API endpoint.
 ## JsonResponse
 
 But you know, that *could* have been easier. Replace the Response with `new JsonResponse`
-and pass it `$data` without the `json_encode`. This does two things. First, it
+and pass it `$data` without the `json_encode`:
+
+[[[ code('7a85429388') ]]]
+
+This does two things. First, it
 calls `json_encode()` for you. Hey thanks! And second, it sets the `application/json`
 `Content-Type` header on the Response, which we could have set manually, but this
 is easier.
 
 Refresh. It still works perfectly.
+
+
+[1]: http://knpuniversity.com/screencast/symfony-doctrine
