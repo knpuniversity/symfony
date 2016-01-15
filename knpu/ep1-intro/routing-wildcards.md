@@ -17,6 +17,8 @@ The important thing is that the routing wildcard matches the variable name.
 
 To test this is, change the message in the response to `'The genus: '.$genusName`:
 
+**NOTE:** Returning a raw response should only be done in development as it will introduce a security issue called XSS. You can [read more about XSS here.](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29)
+
 [[[ code('086c4c19c1') ]]]
 
 Head back to the browser and refresh. Ah! A 404 error. That's because the URL is
