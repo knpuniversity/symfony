@@ -42,7 +42,7 @@ to whatever you want and can add as many as you need.
 
 With this fixed up, head back to the browser and refresh. Cool! It's the same page,
 but now it has a full html source. Bonus time! Once you have a full html page, the
-web debug toolbar makes an appearance. This is a killer feature in Symfony: it includes
+web debug toolbar makes an appearance. This is a killer feature in Symfony: it
 includes information about which route was matched, which controller was executed,
 how fast the page loaded, who is logged in and more.
 
