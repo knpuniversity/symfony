@@ -17,6 +17,11 @@ In Preferences, search for Symfony and click the plugins option. From here, clic
 'Browse Repositories` and then find the Symfony Plugin. You'll recognize it as the
 one with over 1.3 *million* downloads.
 
+***TIP
+You should *also* install the [PHP Annotations](https://plugins.jetbrains.com/plugin/7320).
+Search for "PHP Annotations" and install it the same way.
+***
+
 I already have it installed, but if you don't, you'll see an `Install Plugin` button.
 Click that and then restart PHPStorm. Once you're back, go into Preferences again
 and search for Symfony to find the new "Symfony Plugin" item. To activate the magic,
