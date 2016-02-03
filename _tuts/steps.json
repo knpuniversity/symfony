@@ -116,6 +116,11 @@
             "description": null
         },
         {
+            "id": "bundle-use-this-get-in-controller",
+            "name": "Bundle: Use $this->get() in controller",
+            "description": null
+        },
+        {
             "id": "config-use-twig-config",
             "name": "Config: Use twig config",
             "description": null
@@ -176,5 +181,5 @@
             "description": null
         }
     ],
-    "sha": "9cce16bd5f18f4a5556a811af3da26f19547e582"
+    "sha": "13c37e16783ac069b0eb42826a599d78dc5b1dd8"
 }

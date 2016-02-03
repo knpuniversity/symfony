@@ -1,0 +1,13 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index df82f63..9f421eb 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -16,7 +16,7 @@ class GenusController extends Controller
+     public function showAction($genusName)
+     {
+         $funFact = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
+-        $funFact = $this->container->get('markdown.parser')
++        $funFact = $this->get('markdown.parser')
+             ->transform($funFact);
+ 
+         return $this->render('genus/show.html.twig', array(
