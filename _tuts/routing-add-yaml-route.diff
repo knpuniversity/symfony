@@ -1,0 +1,44 @@
+diff --git a/app/Resources/views/main/homepage.html.twig b/app/Resources/views/main/homepage.html.twig
+new file mode 100644
+index 0000000..56b5060
+--- /dev/null
++++ b/app/Resources/views/main/homepage.html.twig
+@@ -0,0 +1,5 @@
++{% extends 'base.html.twig' %}
++
++{% block body %}
++    <h1 class="page-header text-center">Welcome Aquanauts!</h1>
++{% endblock %}
+diff --git a/app/config/routing.yml b/app/config/routing.yml
+index 8eadc31..e88b48e 100644
+--- a/app/config/routing.yml
++++ b/app/config/routing.yml
+@@ -1,3 +1,8 @@
+ app:
+     resource: "@AppBundle/Controller/"
+     type:     annotation
++
++homepage:
++    path: /
++    defaults:
++        _controller: AppBundle:Main:homepage
+diff --git a/src/AppBundle/Controller/MainController.php b/src/AppBundle/Controller/MainController.php
+new file mode 100644
+index 0000000..ae8b6ea
+--- /dev/null
++++ b/src/AppBundle/Controller/MainController.php
+@@ -0,0 +1,13 @@
++<?php
++
++namespace AppBundle\Controller;
++
++use Symfony\Bundle\FrameworkBundle\Controller\Controller;
++
++class MainController extends Controller
++{
++    public function homepageAction()
++    {
++        return $this->render('main/homepage.html.twig');
++    }
++}
+\ No newline at end of file

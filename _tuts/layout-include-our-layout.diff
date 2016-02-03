@@ -1,8 +1,8 @@
 diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
-index bafd28d..df11921 100644
+index bafd28d..15fb4d6 100644
 --- a/app/Resources/views/base.html.twig
 +++ b/app/Resources/views/base.html.twig
-@@ -1,13 +1,40 @@
+@@ -1,13 +1,42 @@
  <!DOCTYPE html>
  <html>
      <head>
@@ -20,6 +20,8 @@ index bafd28d..df11921 100644
          <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
      </head>
      <body>
+-        {% block body %}{% endblock %}
+-        {% block javascripts %}{% endblock %}
 +        <div class="search-bar">
 +            <form method="GET" action="" class="js-sea-search sea-search">
 +                <input type="search" name="q" placeholder="Search Sea Creatures" autocomplete="off" class="search-input">
@@ -34,8 +36,9 @@ index bafd28d..df11921 100644
 +            </ul>
 +        </header>
 +
-         {% block body %}{% endblock %}
--        {% block javascripts %}{% endblock %}
++        <div class="main-content">
++            {% block body %}{% endblock %}
++        </div>
 +
 +        <div class="footer">
 +            <p class="footer-text">Made with <span class="heart"><3</span> <a href="https://knpuniversity.com">KnpUniversity</a></p>
@@ -99,10 +102,10 @@ index 2926904..b146cae 100644
 +{% endblock %}
 diff --git a/web/css/styles.css b/web/css/styles.css
 new file mode 100644
-index 0000000..296d12e
+index 0000000..4fd34a7
 --- /dev/null
 +++ b/web/css/styles.css
-@@ -0,0 +1,665 @@
+@@ -0,0 +1,669 @@
 +/******************************
 +Flexbox Layout
 +*******************************/
@@ -119,6 +122,10 @@ index 0000000..296d12e
 +.navi {
 +    flex: 1;
 +    justify-content: flex-end;
++}
++
++.main-content {
++    min-height: 300px;
 +}
 +
 +.sea-creature-container {

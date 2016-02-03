@@ -169,7 +169,12 @@
             "id": "parameters-remove-swiftmailer-parameters-yml",
             "name": "Parameters: Remove swiftmailer parameters.yml",
             "description": null
+        },
+        {
+            "id": "routing-add-yaml-route",
+            "name": "Routing: Add YAML route",
+            "description": null
         }
     ],
-    "sha": "51861f0127204ed2ac5e683f7ee9da34c06babfc"
+    "sha": "76c043619a87008421b01ca23dc616c244ed7f06"
 }
