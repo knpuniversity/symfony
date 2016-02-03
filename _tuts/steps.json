@@ -99,16 +99,6 @@
             "id": "json-pass-in-dynamic-uri",
             "name": "JSON: Pass in dynamic URI",
             "description": null
-        },
-        {
-            "id": "routing-new-yaml-homepage",
-            "name": "Routing: New YAML homepage",
-            "description": null
-        },
-        {
-            "id": "routing-convert-to-annotations",
-            "name": "Routing: Convert to annotations",
-            "description": null
         }
     ],
     "sha": "186d3e32e95e5a2d588f2fbf444d181017c5d921"
