@@ -1,0 +1,35 @@
+title: Symfony 3 Fundamentals: Bundles, Configuration & Environments
+
+summary: |
+    After [episode 1](http://knpuniversity.com/screencast/symfony), you've
+    got Symfony up and running. CELEBRATION!
+
+    In this episode, it's time to get down to work by learning the
+    fundamental concepts of bundles, configuration and environments!
+    We'll discover what all the files in a Symfony project do and why,
+    the purpose of bundles and the power behind *environments*. So
+    let's get to work: what we're about to learn will pay dividends
+    for us in the future:
+
+    - Where do services come from?
+    - Installing an external bundle
+    - Configuring bundles
+    - Controller outside services
+    - Using `config:dump-reference`
+    - Understanding Symfony environments
+    - Create your own environment
+    - The `prod` environment and `cache:clear`
+    - The famous `parameters.yml`
+    - Where do routes come from?
+    - `src/` versus `app`
+
+
+    Ready, set, go!
+
+illustration: sf-ep2.png
+
+tuts_hero:
+#    start_step: start
+#    finish_step: ~
+
+chapters: []
