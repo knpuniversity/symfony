@@ -16,6 +16,10 @@ Flexbox Layout
     justify-content: flex-end;
 }
 
+.main-content {
+    min-height: 300px;
+}
+
 .sea-creature-container {
     flex-direction: column;
     -webkit-align-items: center;
