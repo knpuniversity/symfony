@@ -690,12 +690,12 @@ index 0000000..1eca671
 +}
 diff --git a/composer.json b/composer.json
 new file mode 100644
-index 0000000..eb04166
+index 0000000..c0d6136
 --- /dev/null
 +++ b/composer.json
 @@ -0,0 +1,63 @@
 +{
-+    "name": "weaverryan/foo",
++    "name": "knpuniversity/symfony",
 +    "license": "proprietary",
 +    "type": "project",
 +    "autoload": {

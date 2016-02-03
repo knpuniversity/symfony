@@ -13,7 +13,7 @@ index ff6d5d2..f04accd 100644
          );
  
 diff --git a/composer.json b/composer.json
-index eb04166..a849d99 100644
+index c0d6136..fbb223d 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,7 +25,8 @@
