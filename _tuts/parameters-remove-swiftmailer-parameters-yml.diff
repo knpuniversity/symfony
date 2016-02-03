@@ -1,0 +1,47 @@
+diff --git a/app/AppKernel.php b/app/AppKernel.php
+index 56a39b9..3bbadf8 100644
+--- a/app/AppKernel.php
++++ b/app/AppKernel.php
+@@ -12,7 +12,7 @@ class AppKernel extends Kernel
+             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+             new Symfony\Bundle\TwigBundle\TwigBundle(),
+             new Symfony\Bundle\MonologBundle\MonologBundle(),
+-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
++            //new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+ 
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 2ef5f5c..2f0da75 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -63,14 +63,6 @@ doctrine:
+         naming_strategy: doctrine.orm.naming_strategy.underscore
+         auto_mapping: true
+ 
+-# Swiftmailer Configuration
+-swiftmailer:
+-    transport: "%mailer_transport%"
+-    host:      "%mailer_host%"
+-    username:  "%mailer_user%"
+-    password:  "%mailer_password%"
+-    spool:     { type: memory }
+-
+ doctrine_cache:
+     providers:
+         my_markdown_cache:
+diff --git a/app/config/parameters.yml.dist b/app/config/parameters.yml.dist
+index 886c92b..156580c 100644
+--- a/app/config/parameters.yml.dist
++++ b/app/config/parameters.yml.dist
+@@ -10,10 +10,5 @@ parameters:
+     # You should uncomment this if you want use pdo_sqlite
+     # database_path: "%kernel.root_dir%/data.db3"
+ 
+-    mailer_transport:  smtp
+-    mailer_host:       127.0.0.1
+-    mailer_user:       ~
+-    mailer_password:   ~
+-
+     # A secret key that's used to generate certain security-related tokens
+     secret:            ThisTokenIsNotSoSecretChangeIt

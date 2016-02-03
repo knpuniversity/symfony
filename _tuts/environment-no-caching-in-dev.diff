@@ -1,0 +1,13 @@
+diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
+index abd84b2..b1b22be 100644
+--- a/app/config/config_dev.yml
++++ b/app/config/config_dev.yml
+@@ -43,3 +43,8 @@ monolog:
+ 
+ #swiftmailer:
+ #    delivery_address: me@example.com
++
++doctrine_cache:
++    providers:
++        my_markdown_cache:
++            type: array

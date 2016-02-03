@@ -1,0 +1,11 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 149e667..da5049c 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -74,4 +74,5 @@ doctrine_cache:
+     providers:
+         my_markdown_cache:
+             type: file_system
+-            directory: /tmp/doctrine_cache
++            file_system:
++                directory: /tmp/doctrine_cache

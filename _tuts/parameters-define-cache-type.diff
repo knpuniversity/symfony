@@ -1,0 +1,20 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index da5049c..78759bb 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -7,6 +7,7 @@ imports:
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ parameters:
+     locale: en
++    cache_type: file_system
+ 
+ framework:
+     #esi:             ~
+@@ -73,6 +74,6 @@ swiftmailer:
+ doctrine_cache:
+     providers:
+         my_markdown_cache:
+-            type: file_system
++            type: %cache_type%
+             file_system:
+                 directory: /tmp/doctrine_cache

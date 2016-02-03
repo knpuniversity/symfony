@@ -1,0 +1,49 @@
+diff --git a/app/AppKernel.php b/app/AppKernel.php
+index f04accd..56a39b9 100644
+--- a/app/AppKernel.php
++++ b/app/AppKernel.php
+@@ -17,6 +17,7 @@ class AppKernel extends Kernel
+             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+ 
+             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
++            new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
+ 
+             new AppBundle\AppBundle(),
+         );
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 0ae7b20..a542876 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -69,3 +69,8 @@ swiftmailer:
+     username:  "%mailer_user%"
+     password:  "%mailer_password%"
+     spool:     { type: memory }
++
++doctrine_cache:
++    providers:
++        my_markdown_cache:
++            type: file_system
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 9f421eb..bc09621 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -16,8 +16,17 @@ class GenusController extends Controller
+     public function showAction($genusName)
+     {
+         $funFact = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
+-        $funFact = $this->get('markdown.parser')
+-            ->transform($funFact);
++
++        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
++        $key = md5($funFact);
++        if ($cache->contains($key)) {
++            $funFact = $cache->fetch($key);
++        } else {
++            sleep(1); // fake how slow this could be
++            $funFact = $this->get('markdown.parser')
++                ->transform($funFact);
++            $cache->save($key, $funFact);
++        }
+ 
+         return $this->render('genus/show.html.twig', array(
+             'name' => $genusName,

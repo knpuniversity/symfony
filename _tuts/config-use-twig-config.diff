@@ -1,0 +1,26 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 8b27823..db277eb 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -12,7 +12,7 @@
+                 <dt>Subfamily:</dt>
+                 <dd>Octopodinae</dd>
+                 <dt>Known Species:</dt>
+-                <dd>289</dd>
++                <dd>{{ '99999'|number_format }}</dd>
+                 <dt>Fun Fact:</dt>
+                 <dd>{{ funFact|raw }}</dd>
+             </dl>
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 4c44687..0ae7b20 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -37,6 +37,8 @@ framework:
+ twig:
+     debug:            "%kernel.debug%"
+     strict_variables: "%kernel.debug%"
++    number_format:
++        thousands_separator: '.'
+ 
+ # Doctrine Configuration
+ doctrine:

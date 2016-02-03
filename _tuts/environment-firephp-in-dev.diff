@@ -1,0 +1,31 @@
+diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
+index 2988f4f..abd84b2 100644
+--- a/app/config/config_dev.yml
++++ b/app/config/config_dev.yml
+@@ -34,9 +34,9 @@ monolog:
+             channels: ["doctrine"]
+         # uncomment to get logging in your browser
+         # you may have to allow bigger header sizes in your Web server configuration
+-        #firephp:
+-        #    type:   firephp
+-        #    level:  info
++        firephp:
++            type:   firephp
++            level:  info
+         #chromephp:
+         #    type:   chromephp
+         #    level:  info
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index bc09621..105613b 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -28,6 +28,9 @@ class GenusController extends Controller
+             $cache->save($key, $funFact);
+         }
+ 
++        $this->get('logger')
++            ->info('Showing genus: '.$genusName);
++
+         return $this->render('genus/show.html.twig', array(
+             'name' => $genusName,
+             'funFact' => $funFact,

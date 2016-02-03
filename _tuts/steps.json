@@ -99,7 +99,77 @@
             "id": "json-pass-in-dynamic-uri",
             "name": "JSON: Pass in dynamic URI",
             "description": null
+        },
+        {
+            "id": "bundle-install-knpmarkdownbundle",
+            "name": "Bundle: Install KnpMarkdownBundle",
+            "description": null
+        },
+        {
+            "id": "bundle-render-funfact-dynamically",
+            "name": "Bundle: Render funFact dynamically",
+            "description": null
+        },
+        {
+            "id": "bundle-use-markdown-parser-service",
+            "name": "Bundle: Use markdown.parser service",
+            "description": null
+        },
+        {
+            "id": "config-use-twig-config",
+            "name": "Config: Use twig config",
+            "description": null
+        },
+        {
+            "id": "config-use-doctrinecachebundle",
+            "name": "Config: Use DoctrineCacheBundle",
+            "description": null
+        },
+        {
+            "id": "config-cache-cache-dir-incorrectly",
+            "name": "Config: Cache cache dir incorrectly",
+            "description": null
+        },
+        {
+            "id": "config-cache-dir-correctly",
+            "name": "Config: Cache dir correctly",
+            "description": null
+        },
+        {
+            "id": "environment-firephp-in-dev",
+            "name": "Environment: Firephp in dev",
+            "description": null
+        },
+        {
+            "id": "environment-no-caching-in-dev",
+            "name": "Environment: no caching in dev",
+            "description": null
+        },
+        {
+            "id": "environment-remove-die-statement",
+            "name": "Environment: remove die statement",
+            "description": null
+        },
+        {
+            "id": "parameters-define-cache-type",
+            "name": "Parameters: Define cache_type",
+            "description": null
+        },
+        {
+            "id": "parameters-override-in-config-dev-yml",
+            "name": "Parameters: Override in config_dev.yml",
+            "description": null
+        },
+        {
+            "id": "parameters-use-built-in",
+            "name": "Parameters: use built-in",
+            "description": null
+        },
+        {
+            "id": "parameters-remove-swiftmailer-parameters-yml",
+            "name": "Parameters: Remove swiftmailer parameters.yml",
+            "description": null
         }
     ],
-    "sha": "186d3e32e95e5a2d588f2fbf444d181017c5d921"
+    "sha": "51861f0127204ed2ac5e683f7ee9da34c06babfc"
 }

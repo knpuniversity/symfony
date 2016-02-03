@@ -1,0 +1,23 @@
+diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
+index b1b22be..09dc7b3 100644
+--- a/app/config/config_dev.yml
++++ b/app/config/config_dev.yml
+@@ -1,6 +1,9 @@
+ imports:
+     - { resource: config.yml }
+ 
++parameters:
++    cache_type: array
++
+ framework:
+     router:
+         resource: "%kernel.root_dir%/config/routing_dev.yml"
+@@ -43,8 +46,3 @@ monolog:
+ 
+ #swiftmailer:
+ #    delivery_address: me@example.com
+-
+-doctrine_cache:
+-    providers:
+-        my_markdown_cache:
+-            type: array
