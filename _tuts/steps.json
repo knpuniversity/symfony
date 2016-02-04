@@ -151,8 +151,8 @@
             "description": null
         },
         {
-            "id": "environment-remove-die-statement",
-            "name": "Environment: remove die statement",
+            "id": "environment-make-number-format-comma",
+            "name": "Environment: make number_format comma",
             "description": null
         },
         {
@@ -181,5 +181,5 @@
             "description": null
         }
     ],
-    "sha": "13c37e16783ac069b0eb42826a599d78dc5b1dd8"
+    "sha": "e8098bb0c0db1092031fd19796cb862e1f9d8d5d"
 }

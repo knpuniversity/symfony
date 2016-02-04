@@ -12,7 +12,7 @@ index 56a39b9..3bbadf8 100644
              new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
  
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 2ef5f5c..2f0da75 100644
+index e4cec87..198a7fe 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -63,14 +63,6 @@ doctrine:

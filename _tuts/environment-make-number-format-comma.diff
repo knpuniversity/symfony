@@ -1,0 +1,13 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index da5049c..4698dc3 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -38,7 +38,7 @@ twig:
+     debug:            "%kernel.debug%"
+     strict_variables: "%kernel.debug%"
+     number_format:
+-        thousands_separator: '.'
++        thousands_separator: ','
+ 
+ # Doctrine Configuration
+ doctrine:
