@@ -229,7 +229,32 @@
             "id": "migrations-set-nullable-make-migration",
             "name": "Migrations: set nullable, make migration",
             "description": null
+        },
+        {
+            "id": "query-basic-listaction",
+            "name": "Query: Basic listAction",
+            "description": null
+        },
+        {
+            "id": "query-use-entity-shortcut-alias",
+            "name": "Query: use entity shortcut alias",
+            "description": null
+        },
+        {
+            "id": "twig-entity-render-template-dump",
+            "name": "Twig entity: render template, dump",
+            "description": null
+        },
+        {
+            "id": "twig-entity-render-properties",
+            "name": "Twig entity: render properties",
+            "description": null
+        },
+        {
+            "id": "twig-entity-use-updatedat",
+            "name": "Twig entity: use updatedAt",
+            "description": null
         }
     ],
-    "sha": "2870549199280cebf7282dc54995cc0111718667"
+    "sha": "ee00fb92d34b9250383fb6321798d7415faa4b83"
 }

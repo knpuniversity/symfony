@@ -1,0 +1,13 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index aedb966..0daa916 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -35,7 +35,7 @@ class GenusController extends Controller
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        $products = $em->getRepository('AppBundle\Entity\Genus')
++        $products = $em->getRepository('AppBundle:Genus')
+             ->findAll();
+         dump($products);die;
+     }

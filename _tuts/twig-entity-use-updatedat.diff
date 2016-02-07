@@ -1,0 +1,33 @@
+diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
+index 4dd6a4f..0fd1849 100644
+--- a/app/Resources/views/genus/list.html.twig
++++ b/app/Resources/views/genus/list.html.twig
+@@ -6,6 +6,7 @@
+             <tr>
+                 <th>Genus</th>
+                 <th># of species</th>
++                <th>Last updated</th>
+             </tr>
+         </thead>
+         <tbody>
+@@ -13,6 +14,7 @@
+                 <tr>
+                     <td>{{ product.name }}</td>
+                     <td>{{ product.speciesCount }}</td>
++                    <td>{{ product.updatedAt|date('Y-m-d') }}</td>
+                 </tr>
+             {% endfor %}
+         </tbody>
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 1c38378..9254e41 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -77,4 +77,8 @@ class Genus
+         $this->funFact = $funFact;
+     }
+ 
++    public function getUpdatedAt()
++    {
++        return new \DateTime('-'.rand(0, 100).' days');
++    }
+ }
