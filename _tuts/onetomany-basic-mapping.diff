@@ -1,0 +1,52 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 157a23d..a39daf4 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Entity;
+ 
++use Doctrine\Common\Collections\ArrayCollection;
+ use Doctrine\ORM\Mapping as ORM;
+ 
+ /**
+@@ -37,6 +38,16 @@ class Genus
+      */
+     private $funFact;
+ 
++    /**
++     * @ORM\OneToMany(targetEntity="GenusNote", mappedBy="genus")
++     */
++    private $notes;
++
++    public function __construct()
++    {
++        $this->notes = new ArrayCollection();
++    }
++
+     public function getName()
+     {
+         return $this->name;
+@@ -81,4 +92,9 @@ class Genus
+     {
+         return new \DateTime('-'.rand(0, 100).' days');
+     }
++
++    public function getNotes()
++    {
++        return $this->notes;
++    }
+ }
+diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
+index 22f4bf1..8dc6ff9 100644
+--- a/src/AppBundle/Entity/GenusNote.php
++++ b/src/AppBundle/Entity/GenusNote.php
+@@ -38,7 +38,7 @@ class GenusNote
+     private $createdAt;
+ 
+     /**
+-     * @ORM\ManyToOne(targetEntity="Genus")
++     * @ORM\ManyToOne(targetEntity="Genus", inversedBy="notes")
+      * @ORM\JoinColumn(nullable=false)
+      */
+     private $genus;

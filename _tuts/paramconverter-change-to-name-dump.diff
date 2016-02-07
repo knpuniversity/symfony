@@ -1,0 +1,32 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 3c5092b..551fb1f 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -29,7 +29,7 @@
+ 
+     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
+     <script type="text/babel">
+-        var notesUrl = '{{ path('genus_show_notes', {'genusName': genus.name}) }}';
++        var notesUrl = '{{ path('genus_show_notes', {'name': genus.name}) }}';
+ 
+         ReactDOM.render(
+           <NoteSection url={notesUrl} />,
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index d2d6fa0..21f3e53 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -85,11 +85,12 @@ class GenusController extends Controller
+     }
+ 
+     /**
+-     * @Route("/genus/{genusName}/notes", name="genus_show_notes")
++     * @Route("/genus/{name}/notes", name="genus_show_notes")
+      * @Method("GET")
+      */
+-    public function getNotesAction($genusName)
++    public function getNotesAction(Genus $genus)
+     {
++        dump($genus);
+         $notes = [
+             ['id' => 1, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Octopus asked me a riddle, outsmarted me', 'date' => 'Dec. 10, 2015'],
+             ['id' => 2, 'username' => 'AquaWeaver', 'avatarUri' => '/images/ryan.jpeg', 'note' => 'I counted 8 legs... as they wrapped around me', 'date' => 'Dec. 1, 2015'],
