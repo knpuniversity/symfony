@@ -1,0 +1,37 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 801bc2c..2dbb958 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -17,6 +17,13 @@ class GenusController extends Controller
+     public function newAction()
+     {
+         $genus = new Genus();
++        $genus->setName('Octopus');
++
++        $em = $this->getDoctrine()->getManager();
++        $em->persist($genus);
++        $em->flush();
++
++        return new Response('Genus created!');
+     }
+ 
+     /**
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 226825b..a24c27c 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -21,4 +21,14 @@ class Genus
+      * @ORM\Column(type="string")
+      */
+     private $name;
++
++    public function getName()
++    {
++        return $this->name;
++    }
++
++    public function setName($name)
++    {
++        $this->name = $name;
++    }
+ }

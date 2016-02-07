@@ -1,0 +1,27 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 105613b..801bc2c 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Controller;
+ 
++use AppBundle\Entity\Genus;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+@@ -11,6 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
+ class GenusController extends Controller
+ {
+     /**
++     * @Route("/genus/new")
++     */
++    public function newAction()
++    {
++        $genus = new Genus();
++    }
++
++    /**
+      * @Route("/genus/{genusName}")
+      */
+     public function showAction($genusName)

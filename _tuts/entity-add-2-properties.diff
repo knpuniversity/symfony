@@ -1,0 +1,20 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 0cc31e4..226825b 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -10,5 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
+  */
+ class Genus
+ {
++    /**
++     * @ORM\Id
++     * @ORM\GeneratedValue(strategy="AUTO")
++     * @ORM\Column(type="integer")
++     */
++    private $id;
+ 
++    /**
++     * @ORM\Column(type="string")
++     */
++    private $name;
+ }

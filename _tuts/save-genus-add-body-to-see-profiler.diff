@@ -1,0 +1,13 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 2dbb958..88f6dfa 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -23,7 +23,7 @@ class GenusController extends Controller
+         $em->persist($genus);
+         $em->flush();
+ 
+-        return new Response('Genus created!');
++        return new Response('<html><body>Genus created!</body></html>');
+     }
+ 
+     /**

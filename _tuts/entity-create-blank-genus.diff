@@ -1,0 +1,13 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+new file mode 100644
+index 0000000..93f219e
+--- /dev/null
++++ b/src/AppBundle/Entity/Genus.php
+@@ -0,0 +1,7 @@
++<?php
++
++namespace AppBundle\Entity;
++
++class Genus
++{
++}

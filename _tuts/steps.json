@@ -179,7 +179,57 @@
             "id": "routing-add-yaml-route",
             "name": "Routing: Add YAML route",
             "description": null
+        },
+        {
+            "id": "entity-create-blank-genus",
+            "name": "Entity: Create blank Genus",
+            "description": null
+        },
+        {
+            "id": "entity-add-class-annotation",
+            "name": "Entity: Add class annotation",
+            "description": null
+        },
+        {
+            "id": "entity-add-2-properties",
+            "name": "Entity: Add 2 properties",
+            "description": null
+        },
+        {
+            "id": "save-genus-start-controller-code",
+            "name": "Save Genus: Start controller code",
+            "description": null
+        },
+        {
+            "id": "save-genus-add-setter-persist",
+            "name": "Save Genus: Add setter + persist",
+            "description": null
+        },
+        {
+            "id": "save-genus-add-body-to-see-profiler",
+            "name": "Save Genus: Add body to see profiler",
+            "description": null
+        },
+        {
+            "id": "migrations-install-bundle",
+            "name": "Migrations: Install bundle",
+            "description": null
+        },
+        {
+            "id": "migrations-add-fields-make-migration",
+            "name": "Migrations: Add fields, make migration",
+            "description": null
+        },
+        {
+            "id": "migrations-set-all-fields-but-funfact",
+            "name": "Migrations: Set all fields but funFact",
+            "description": null
+        },
+        {
+            "id": "migrations-set-nullable-make-migration",
+            "name": "Migrations: set nullable, make migration",
+            "description": null
         }
     ],
-    "sha": "e8098bb0c0db1092031fd19796cb862e1f9d8d5d"
+    "sha": "2870549199280cebf7282dc54995cc0111718667"
 }
