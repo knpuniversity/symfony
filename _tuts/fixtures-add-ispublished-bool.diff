@@ -1,0 +1,75 @@
+diff --git a/app/DoctrineMigrations/Version20160207083347.php b/app/DoctrineMigrations/Version20160207083347.php
+new file mode 100644
+index 0000000..b11cb1a
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20160207083347.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20160207083347 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus ADD is_published TINYINT(1) NOT NULL');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus DROP is_published');
++    }
++}
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index 89ad0e4..58e64d6 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -4,3 +4,4 @@ AppBundle\Entity\Genus:
+         subFamily: <text(20)>
+         speciesCount: <numberBetween(100, 100000)>
+         funFact: <sentence()>
++        isPublished: <boolean(75)>
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 9254e41..965e68b 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -37,6 +37,11 @@ class Genus
+      */
+     private $funFact;
+ 
++    /**
++     * @ORM\Column(type="boolean")
++     */
++    private $isPublished = true;
++
+     public function getName()
+     {
+         return $this->name;
+@@ -81,4 +86,9 @@ class Genus
+     {
+         return new \DateTime('-'.rand(0, 100).' days');
+     }
++
++    public function setIsPublished($isPublished)
++    {
++        $this->isPublished = $isPublished;
++    }
+ }

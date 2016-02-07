@@ -266,6 +266,31 @@
             "description": null
         },
         {
+            "id": "fixtures-install-alice-doctrinefixturesbundle",
+            "name": "Fixtures: Install alice+DoctrineFixturesBundle",
+            "description": null
+        },
+        {
+            "id": "fixtures-empty-fixture-class",
+            "name": "Fixtures: Empty fixture class",
+            "description": null
+        },
+        {
+            "id": "fixtures-adding-alice-yml-file",
+            "name": "Fixtures: Adding Alice yml file",
+            "description": null
+        },
+        {
+            "id": "fixtures-custom-genus-function",
+            "name": "Fixtures: Custom genus function",
+            "description": null
+        },
+        {
+            "id": "fixtures-add-ispublished-bool",
+            "name": "Fixtures: Add isPublished bool",
+            "description": null
+        },
+        {
             "id": "repository-dump-repo-object",
             "name": "Repository: Dump repo object",
             "description": null
@@ -331,5 +356,5 @@
             "description": null
         }
     ],
-    "sha": "5a34cd70d751ab4430ce5d07191376c8ebad2947"
+    "sha": "a27b9cc5e797be9416e48b6069bd52f1f5a240ba"
 }

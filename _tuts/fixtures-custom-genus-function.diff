@@ -1,0 +1,55 @@
+diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
+index ab00e6a..247253c 100644
+--- a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
++++ b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
+@@ -11,6 +11,36 @@ class LoadFixtures implements FixtureInterface
+ {
+     public function load(ObjectManager $manager)
+     {
+-        $objects = Fixtures::load(__DIR__.'/fixtures.yml', $manager);
++        $objects = Fixtures::load(
++            __DIR__.'/fixtures.yml',
++            $manager,
++            [
++                'providers' => [$this]
++            ]
++        );
++    }
++
++    public function genus()
++    {
++        $genera = [
++            'Octopus',
++            'Balaena',
++            'Orcinus',
++            'Hippocampus',
++            'Asterias',
++            'Amphiprion',
++            'Carcharodon',
++            'Aurelia',
++            'Cucumaria',
++            'Balistoides',
++            'Paralithodes',
++            'Chelonia',
++            'Trichechus',
++            'Eumetopias'
++        ];
++
++        $key = array_rand($genera);
++
++        return $genera[$key];
+     }
+ }
+\ No newline at end of file
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index fecb92b..89ad0e4 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -1,6 +1,6 @@
+ AppBundle\Entity\Genus:
+     genus_{1..10}:
+-        name: <name()>
++        name: <genus()>
+         subFamily: <text(20)>
+         speciesCount: <numberBetween(100, 100000)>
+         funFact: <sentence()>

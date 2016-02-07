@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 157a23d..a39daf4 100644
+index ad4b6c5..2300eb8 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -2,6 +2,7 @@
@@ -10,11 +10,11 @@ index 157a23d..a39daf4 100644
  use Doctrine\ORM\Mapping as ORM;
  
  /**
-@@ -37,6 +38,16 @@ class Genus
-      */
+@@ -38,9 +39,20 @@ class Genus
      private $funFact;
  
-+    /**
+     /**
++<<<<<<< HEAD
 +     * @ORM\OneToMany(targetEntity="GenusNote", mappedBy="genus")
 +     */
 +    private $notes;
@@ -23,13 +23,17 @@ index 157a23d..a39daf4 100644
 +    {
 +        $this->notes = new ArrayCollection();
 +    }
-+
++=======
+      * @ORM\Column(type="boolean")
+      */
+     private $isPublished = true;
++>>>>>>> _tuts/master/paramconverter-change-to-name-dump
+ 
      public function getName()
      {
-         return $this->name;
-@@ -81,4 +92,9 @@ class Genus
+@@ -91,4 +103,9 @@ class Genus
      {
-         return new \DateTime('-'.rand(0, 100).' days');
+         $this->isPublished = $isPublished;
      }
 +
 +    public function getNotes()

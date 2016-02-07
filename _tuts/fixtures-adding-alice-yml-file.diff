@@ -1,0 +1,37 @@
+diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
+index cb48a00..ab00e6a 100644
+--- a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
++++ b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
+@@ -5,17 +5,12 @@ namespace AppBundle\DataFixtures\ORM;
+ use AppBundle\Entity\Genus;
+ use Doctrine\Common\DataFixtures\FixtureInterface;
+ use Doctrine\Common\Persistence\ObjectManager;
++use Nelmio\Alice\Fixtures;
+ 
+ class LoadFixtures implements FixtureInterface
+ {
+     public function load(ObjectManager $manager)
+     {
+-        $genus = new Genus();
+-        $genus->setName('Octopus'.rand(1, 100));
+-        $genus->setSubFamily('Octopodinae');
+-        $genus->setSpeciesCount(rand(100, 99999));
+-
+-        $manager->persist($genus);
+-        $manager->flush();
++        $objects = Fixtures::load(__DIR__.'/fixtures.yml', $manager);
+     }
+ }
+\ No newline at end of file
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+new file mode 100644
+index 0000000..fecb92b
+--- /dev/null
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -0,0 +1,6 @@
++AppBundle\Entity\Genus:
++    genus_{1..10}:
++        name: <name()>
++        subFamily: <text(20)>
++        speciesCount: <numberBetween(100, 100000)>
++        funFact: <sentence()>
