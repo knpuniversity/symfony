@@ -22,7 +22,7 @@ index 0000000..1d4f844
 +    </table>
 +{% endblock %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 0daa916..9fe0d4f 100644
+index 750e6f0..cc3049b 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -37,7 +37,10 @@ class GenusController extends Controller

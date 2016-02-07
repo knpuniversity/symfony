@@ -279,7 +279,37 @@
             "id": "repository-basic-qb-method",
             "name": "Repository: Basic QB method",
             "description": null
+        },
+        {
+            "id": "manytoone-genusnote-entity",
+            "name": "ManyToOne: GenusNote entity",
+            "description": null
+        },
+        {
+            "id": "manytoone-setup-genusnote-genus-property",
+            "name": "ManyToOne: Setup GenusNote.genus property",
+            "description": null
+        },
+        {
+            "id": "manytoone-type-hint-setter-for-clarity",
+            "name": "ManyToOne: Type-hint setter for clarity",
+            "description": null
+        },
+        {
+            "id": "manytoone-generate-migration",
+            "name": "ManyToOne: Generate migration",
+            "description": null
+        },
+        {
+            "id": "manytoone-manually-setting-in-newaction",
+            "name": "ManyToOne: Manually setting in newAction",
+            "description": null
+        },
+        {
+            "id": "manytoone-adding-nullable-false",
+            "name": "ManyToOne: Adding nullable=false",
+            "description": null
         }
     ],
-    "sha": "4457c00ad0cff246f694dc4f8a532770c3d10734"
+    "sha": "83a790230f845f4c61340012a8cecea8e8c57fa9"
 }

@@ -1,0 +1,31 @@
+diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
+index e0bb42a..455b7fe 100644
+--- a/src/AppBundle/Entity/GenusNote.php
++++ b/src/AppBundle/Entity/GenusNote.php
+@@ -37,6 +37,11 @@ class GenusNote
+      */
+     private $createdAt;
+ 
++    /**
++     * @ORM\ManyToOne(targetEntity="Genus")
++     */
++    private $genus;
++
+     public function getUsername()
+     {
+         return $this->username;
+@@ -76,4 +81,14 @@ class GenusNote
+     {
+         $this->createdAt = $createdAt;
+     }
++
++    public function getGenus()
++    {
++        return $this->genus;
++    }
++
++    public function setGenus($genus)
++    {
++        $this->genus = $genus;
++    }
+ }

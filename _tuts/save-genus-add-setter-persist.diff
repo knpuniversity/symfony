@@ -1,12 +1,12 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 801bc2c..2dbb958 100644
+index 801bc2c..6c150aa 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -17,6 +17,13 @@ class GenusController extends Controller
      public function newAction()
      {
          $genus = new Genus();
-+        $genus->setName('Octopus');
++        $genus->setName('Octopus'.rand(1, 100));
 +
 +        $em = $this->getDoctrine()->getManager();
 +        $em->persist($genus);
