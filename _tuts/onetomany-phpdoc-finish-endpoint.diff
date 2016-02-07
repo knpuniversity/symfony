@@ -23,10 +23,10 @@ index 95d1a1b..3afedf4 100644
              'notes' => $notes
          ];
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 2300eb8..349f069 100644
+index 264b39a..7bafd19 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -104,6 +104,9 @@ class Genus
+@@ -103,6 +103,9 @@ class Genus
          $this->isPublished = $isPublished;
      }
  
