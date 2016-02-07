@@ -254,7 +254,32 @@
             "id": "twig-entity-use-updatedat",
             "name": "Twig entity: use updatedAt",
             "description": null
+        },
+        {
+            "id": "link-add-route-name-and-link",
+            "name": "Link: Add route name and link",
+            "description": null
+        },
+        {
+            "id": "show-query-in-show-action-render",
+            "name": "Show: query in show action, render",
+            "description": null
+        },
+        {
+            "id": "repository-dump-repo-object",
+            "name": "Repository: Dump repo object",
+            "description": null
+        },
+        {
+            "id": "repository-create-empty-configure",
+            "name": "Repository: Create empty + configure",
+            "description": null
+        },
+        {
+            "id": "repository-basic-qb-method",
+            "name": "Repository: Basic QB method",
+            "description": null
         }
     ],
-    "sha": "ee00fb92d34b9250383fb6321798d7415faa4b83"
+    "sha": "4457c00ad0cff246f694dc4f8a532770c3d10734"
 }

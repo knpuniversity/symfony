@@ -1,0 +1,29 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 9254e41..157a23d 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
+ use Doctrine\ORM\Mapping as ORM;
+ 
+ /**
+- * @ORM\Entity
++ * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusRepository")
+  * @ORM\Table(name="genus")
+  */
+ class Genus
+diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
+new file mode 100644
+index 0000000..9071950
+--- /dev/null
++++ b/src/AppBundle/Repository/GenusRepository.php
+@@ -0,0 +1,10 @@
++<?php
++
++namespace AppBundle\Repository;
++
++use Doctrine\ORM\EntityRepository;
++
++class GenusRepository extends EntityRepository
++{
++
++}

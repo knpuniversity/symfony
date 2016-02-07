@@ -1,0 +1,40 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 46041a3..6768578 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -35,9 +35,8 @@ class GenusController extends Controller
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        dump($em->getRepository('AppBundle:Genus'));
+         $products = $em->getRepository('AppBundle:Genus')
+-            ->findAll();
++            ->findAllPublishedOrderedBySize();
+ 
+         return $this->render('genus/list.html.twig', [
+             'products' => $products
+diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
+index 9071950..024cf56 100644
+--- a/src/AppBundle/Repository/GenusRepository.php
++++ b/src/AppBundle/Repository/GenusRepository.php
+@@ -2,9 +2,19 @@
+ 
+ namespace AppBundle\Repository;
+ 
++use AppBundle\Entity\Genus;
+ use Doctrine\ORM\EntityRepository;
+ 
+ class GenusRepository extends EntityRepository
+ {
+-
++    /**
++     * @return Genus[]
++     */
++    public function findAllPublishedOrderedBySize()
++    {
++        return $this->createQueryBuilder('genus')
++            ->orderBy('genus.speciesCount', 'DESC')
++            ->getQuery()
++            ->execute();
++    }
+ }

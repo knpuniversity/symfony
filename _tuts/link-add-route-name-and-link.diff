@@ -1,0 +1,30 @@
+diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
+index 0fd1849..8eaedde 100644
+--- a/app/Resources/views/genus/list.html.twig
++++ b/app/Resources/views/genus/list.html.twig
+@@ -12,7 +12,11 @@
+         <tbody>
+             {% for product in products %}
+                 <tr>
+-                    <td>{{ product.name }}</td>
++                    <td>
++                        <a href="{{ path('genus_show', {'genusName': product.name}) }}">
++                            {{ product.name }}
++                        </a>
++                    </td>
+                     <td>{{ product.speciesCount }}</td>
+                     <td>{{ product.updatedAt|date('Y-m-d') }}</td>
+                 </tr>
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 9fe0d4f..8b62789 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -44,7 +44,7 @@ class GenusController extends Controller
+     }
+ 
+     /**
+-     * @Route("/genus/{genusName}")
++     * @Route("/genus/{genusName}", name="genus_show")
+      */
+     public function showAction($genusName)
+     {
