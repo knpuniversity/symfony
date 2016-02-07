@@ -14,10 +14,10 @@ index a038226..55b3765 100644
          return $this->render('genus/list.html.twig', [
              'products' => $products
 diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
-index 9071950..024cf56 100644
+index 9071950..e19fe35 100644
 --- a/src/AppBundle/Repository/GenusRepository.php
 +++ b/src/AppBundle/Repository/GenusRepository.php
-@@ -2,9 +2,19 @@
+@@ -2,9 +2,21 @@
  
  namespace AppBundle\Repository;
  
@@ -33,6 +33,8 @@ index 9071950..024cf56 100644
 +    public function findAllPublishedOrderedBySize()
 +    {
 +        return $this->createQueryBuilder('genus')
++            ->andWhere('genus.isPublished = :isPublished')
++            ->setParameter('isPublished', true)
 +            ->orderBy('genus.speciesCount', 'DESC')
 +            ->getQuery()
 +            ->execute();

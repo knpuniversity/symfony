@@ -1,0 +1,15 @@
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index 58e64d6..8da0d77 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -5,3 +5,10 @@ AppBundle\Entity\Genus:
+         speciesCount: <numberBetween(100, 100000)>
+         funFact: <sentence()>
+         isPublished: <boolean(75)>
++
++AppBundle\Entity\GenusNote:
++    genus.note_{1..50}:
++        username: <userName()>
++        userAvatarFilename: '50%? leanna.jpeg : ryan.jpeg'
++        note: <paragraph()>
++        createdAt: <dateTimeBetween('-1 year', 'now')>

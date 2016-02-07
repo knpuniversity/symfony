@@ -1,0 +1,9 @@
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index 8da0d77..1199ddc 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -12,3 +12,4 @@ AppBundle\Entity\GenusNote:
+         userAvatarFilename: '50%? leanna.jpeg : ryan.jpeg'
+         note: <paragraph()>
+         createdAt: <dateTimeBetween('-1 year', 'now')>
++        genus: '@genus_*'

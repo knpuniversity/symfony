@@ -311,6 +311,11 @@
             "description": null
         },
         {
+            "id": "manytoone-genusnote-fixtures",
+            "name": "ManyToOne: GenusNote fixtures",
+            "description": null
+        },
+        {
             "id": "manytoone-setup-genusnote-genus-property",
             "name": "ManyToOne: Setup GenusNote.genus property",
             "description": null
@@ -336,6 +341,11 @@
             "description": null
         },
         {
+            "id": "manytoone-fixtures-with-reference",
+            "name": "ManyToOne: Fixtures with reference",
+            "description": null
+        },
+        {
             "id": "paramconverter-change-to-name-dump",
             "name": "ParamConverter: Change to name, dump",
             "description": null
@@ -356,5 +366,5 @@
             "description": null
         }
     ],
-    "sha": "d96b805dba27116d83304e2df2dc03d6fa495a46"
+    "sha": "559327a9b9c93f659dc8bb82e1a1c8f5d9551fee"
 }
