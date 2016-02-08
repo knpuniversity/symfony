@@ -63,6 +63,21 @@ right there! Perfect!
 
 Now, we'll need the cache key. We just want to make sure that the same string doesn't
 get rendered twice through markdown as it gets cached. So, we'll just add `$key = md5('$funFact');`
+Now use that object by saying `if ($cache->contains($key))` if we've already cached
+that key, then simply `$funFact = $cache->fetch($key);`. Else, we're going to need
+to run through the markdown. 
 
+To make this a little more interesting, put a `sleep(1);` to pretend like our markdown
+transformation is taking a really long time, this will make it easier to test this. 
+Then we'll make the fun fact and finish with `$cache->save($key)` and then save the 
+new `$funFact` cached version. There we go! 
+
+Back to the browser, and watch closely. Refresh, and things are moving a bit slow.
+The important thing is that in the web debug toolbar you can see 1048 ms. Refresh again
+and now it's super fast! 41 ms because the second time it comes from the cache directory.
+Uhh... so where is this being cached?
+
+Out of the box this bundle caches into the `var/cache` directory. Over in the terminal
+run `ls var/cache/` and then `ls var/cache/dev`
 
 
