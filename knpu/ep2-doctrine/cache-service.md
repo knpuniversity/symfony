@@ -78,6 +78,35 @@ and now it's super fast! 41 ms because the second time it comes from the cache d
 Uhh... so where is this being cached?
 
 Out of the box this bundle caches into the `var/cache` directory. Over in the terminal
-run `ls var/cache/` and then `ls var/cache/dev`
+run `ls var/cache/` and then `ls var/cache/dev` and inside of there is a `doctrine`
+directory and a `cache/file_system` directory. Ah ha, and there is our cached markdown.
+The point here is that one of the assumptions that the bundle made is where you want
+it to actually cache things on your file system. Clearly, there needs to be a way
+to control that as well. 
+
+Rerun the `config:dump-reference doctrine_cache` and we'll see that there is a directory
+key we can use to specify things further. Back in our IDE add some new configuration for
+`directory`. Let's put things in `/tmp/doctrine_cache` for the time being. Don't worry
+we'll change that later. 
+
+Back to the browser and refresh! Poseidon's beard, check out that HUGE error! 
+"Unrecognized option 'directory'". One of the really cool things about configuration
+in Symfony is that it's validated. If you mess something up, which I totally just did,
+it's not going to fail silently, it's going to tell you. 
+
+Going back to the terminal, we'll see that the problem here is that I actually needed
+to have `providers:`, my provider `name:` and then a `file_system` key before the
+`directory` key. In the IDE let's plug in `file_system` just above directory and fix
+the indentation. Now that's fixed, back to the browser to refresh!
+
+It should be slow the first time, just like that. And then it's super fast the second
+time. In the terminal we can even see the `/tmp/doctrine_cache/` directory. 
+
+This is the whole thing here, we installed a bundle, and then we used its configuration
+to update one specific service. The way you configure a bundle is going to be different
+for every single one. 
+
+I used `config:dump-reference` to reverse engineer things which is great and I want
+you to know that is there. But, don't skip on reading the bundle's documentation. 
 
 
