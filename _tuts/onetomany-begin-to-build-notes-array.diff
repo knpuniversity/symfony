@@ -1,8 +1,8 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 21f3e53..95d1a1b 100644
+index c341e6d..455d00c 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
-@@ -90,7 +90,15 @@ class GenusController extends Controller
+@@ -94,7 +94,15 @@ class GenusController extends Controller
       */
      public function getNotesAction(Genus $genus)
      {

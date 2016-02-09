@@ -1,0 +1,33 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index de5b6ac..c0b4a9f 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -45,7 +45,7 @@ class GenusController extends Controller
+         $em = $this->getDoctrine()->getManager();
+ 
+         $genuses = $em->getRepository('AppBundle:Genus')
+-            ->findAllPublishedOrderedBySize();
++            ->findAllPublishedOrderedByRecentlyActive();
+ 
+         return $this->render('genus/list.html.twig', [
+             'genuses' => $genuses
+diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
+index e19fe35..ef4682c 100644
+--- a/src/AppBundle/Repository/GenusRepository.php
++++ b/src/AppBundle/Repository/GenusRepository.php
+@@ -10,12 +10,13 @@ class GenusRepository extends EntityRepository
+     /**
+      * @return Genus[]
+      */
+-    public function findAllPublishedOrderedBySize()
++    public function findAllPublishedOrderedByRecentlyActive()
+     {
+         return $this->createQueryBuilder('genus')
+             ->andWhere('genus.isPublished = :isPublished')
+             ->setParameter('isPublished', true)
+-            ->orderBy('genus.speciesCount', 'DESC')
++            ->leftJoin('genus.notes', 'genus_note')
++            ->orderBy('genus_note.createdAt', 'DESC')
+             ->getQuery()
+             ->execute();
+     }

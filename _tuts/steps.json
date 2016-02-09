@@ -266,6 +266,11 @@
             "description": null
         },
         {
+            "id": "show-404-on-bad-genus",
+            "name": "Show: 404 on bad genus",
+            "description": null
+        },
+        {
             "id": "fixtures-install-alice-doctrinefixturesbundle",
             "name": "Fixtures: Install alice+DoctrineFixturesBundle",
             "description": null
@@ -364,7 +369,32 @@
             "id": "onetomany-phpdoc-finish-endpoint",
             "name": "OneToMany: phpdoc + finish endpoint",
             "description": null
+        },
+        {
+            "id": "onetomany-order-by-on-relation",
+            "name": "OneToMany: Order by on relation",
+            "description": null
+        },
+        {
+            "id": "join-lazy-filter-for-recent-notes",
+            "name": "Join: Lazy filter for recent notes",
+            "description": null
+        },
+        {
+            "id": "join-genusrepository-simple-query",
+            "name": "Join: GenusRepository simple query",
+            "description": null
+        },
+        {
+            "id": "join-finish-query-on-relation",
+            "name": "Join: Finish query on relation",
+            "description": null
+        },
+        {
+            "id": "join-join-query-to-order-by-relation",
+            "name": "Join: Join query to order by relation",
+            "description": null
         }
     ],
-    "sha": "559327a9b9c93f659dc8bb82e1a1c8f5d9551fee"
+    "sha": "65e2cee6a7dd8fc8e7ab09677a10f9cd32236326"
 }

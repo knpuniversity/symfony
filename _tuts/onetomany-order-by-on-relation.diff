@@ -1,0 +1,12 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 7bafd19..ca2cd9e 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -45,6 +45,7 @@ class Genus
+ 
+     /**
+      * @ORM\OneToMany(targetEntity="GenusNote", mappedBy="genus")
++     * @ORM\OrderBy({"createdAt" = "DESC"})
+      */
+     private $notes;
+ 

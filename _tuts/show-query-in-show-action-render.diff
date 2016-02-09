@@ -38,7 +38,7 @@ index db277eb..3c5092b 100644
          ReactDOM.render(
            <NoteSection url={notesUrl} />,
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index ed61bc2..92fe565 100644
+index 32cb716..b770382 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -48,8 +48,13 @@ class GenusController extends Controller

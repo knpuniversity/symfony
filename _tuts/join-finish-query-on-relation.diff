@@ -1,0 +1,14 @@
+diff --git a/src/AppBundle/Repository/GenusNoteRepository.php b/src/AppBundle/Repository/GenusNoteRepository.php
+index ae393f6..f93ec7a 100644
+--- a/src/AppBundle/Repository/GenusNoteRepository.php
++++ b/src/AppBundle/Repository/GenusNoteRepository.php
+@@ -15,6 +15,9 @@ class GenusNoteRepository extends EntityRepository
+     public function findAllRecentNotesForGenus(Genus $genus)
+     {
+         return $this->createQueryBuilder('genus_note')
++            ->andWhere('genus_note.genus = :genus')
++            ->setParameter('genus', $genus)
++            ->orderBy('genus_note.createdAt', 'DESC')
+             ->getQuery()
+             ->execute();
+     }

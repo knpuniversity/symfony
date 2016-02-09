@@ -12,10 +12,10 @@ index 3c5092b..551fb1f 100644
          ReactDOM.render(
            <NoteSection url={notesUrl} />,
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index d2d6fa0..21f3e53 100644
+index 0852e01..c341e6d 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
-@@ -85,11 +85,12 @@ class GenusController extends Controller
+@@ -89,11 +89,12 @@ class GenusController extends Controller
      }
  
      /**

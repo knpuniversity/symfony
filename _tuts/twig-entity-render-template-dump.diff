@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
 new file mode 100644
-index 0000000..1d4f844
+index 0000000..f98ab5d
 --- /dev/null
 +++ b/app/Resources/views/genus/list.html.twig
 @@ -0,0 +1,17 @@
@@ -15,24 +15,24 @@ index 0000000..1d4f844
 +            </tr>
 +        </thead>
 +        <tbody>
-+            {% for product in products %}
-+                {{ dump(product) }}
++            {% for genus in genuses %}
++                {{ dump(genus) }}
 +            {% endfor %}
 +        </tbody>
 +    </table>
 +{% endblock %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 750e6f0..cc3049b 100644
+index f5663e4..efd665c 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -37,7 +37,10 @@ class GenusController extends Controller
  
-         $products = $em->getRepository('AppBundle:Genus')
+         $genuses = $em->getRepository('AppBundle:Genus')
              ->findAll();
--        dump($products);die;
+-        dump($genuses);die;
 +
 +        return $this->render('genus/list.html.twig', [
-+            'products' => $products
++            'genuses' => $genuses
 +        ]);
      }
  

@@ -1,0 +1,57 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 33f4b04..de5b6ac 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -83,10 +83,8 @@ class GenusController extends Controller
+         $this->get('logger')
+             ->info('Showing genus: '.$genusName);
+ 
+-        $recentNotes = $genus->getNotes()
+-            ->filter(function(GenusNote $note) {
+-                return $note->getCreatedAt() > new \DateTime('-3 months');
+-            });
++        $recentNotes = $em->getRepository('AppBundle:GenusNote')
++            ->findAllRecentNotesForGenus($genus);
+ 
+         return $this->render('genus/show.html.twig', array(
+             'genus' => $genus,
+diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
+index c024352..df67408 100644
+--- a/src/AppBundle/Entity/GenusNote.php
++++ b/src/AppBundle/Entity/GenusNote.php
+@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
+ use Doctrine\ORM\Mapping as ORM;
+ 
+ /**
+- * @ORM\Entity
++ * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusNoteRepository")
+  * @ORM\Table(name="genus_note")
+  */
+ class GenusNote
+diff --git a/src/AppBundle/Repository/GenusNoteRepository.php b/src/AppBundle/Repository/GenusNoteRepository.php
+new file mode 100644
+index 0000000..ae393f6
+--- /dev/null
++++ b/src/AppBundle/Repository/GenusNoteRepository.php
+@@ -0,0 +1,21 @@
++<?php
++
++namespace AppBundle\Repository;
++
++use AppBundle\Entity\Genus;
++use AppBundle\Entity\GenusNote;
++use Doctrine\ORM\EntityRepository;
++
++class GenusNoteRepository extends EntityRepository
++{
++    /**
++     * @param Genus $genus
++     * @return GenusNote[]
++     */
++    public function findAllRecentNotesForGenus(Genus $genus)
++    {
++        return $this->createQueryBuilder('genus_note')
++            ->getQuery()
++            ->execute();
++    }
++}

@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
-index 4dd6a4f..0fd1849 100644
+index 357146d..9e7e36e 100644
 --- a/app/Resources/views/genus/list.html.twig
 +++ b/app/Resources/views/genus/list.html.twig
 @@ -6,6 +6,7 @@
@@ -12,9 +12,9 @@ index 4dd6a4f..0fd1849 100644
          <tbody>
 @@ -13,6 +14,7 @@
                  <tr>
-                     <td>{{ product.name }}</td>
-                     <td>{{ product.speciesCount }}</td>
-+                    <td>{{ product.updatedAt|date('Y-m-d') }}</td>
+                     <td>{{ genus.name }}</td>
+                     <td>{{ genus.speciesCount }}</td>
++                    <td>{{ genus.updatedAt|date('Y-m-d') }}</td>
                  </tr>
              {% endfor %}
          </tbody>

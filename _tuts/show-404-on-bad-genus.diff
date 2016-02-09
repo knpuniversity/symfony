@@ -1,0 +1,15 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index b770382..199046a 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -53,6 +53,10 @@ class GenusController extends Controller
+         $genus = $em->getRepository('AppBundle:Genus')
+             ->findOneBy(['name' => $genusName]);
+ 
++        if (!$genus) {
++            throw $this->createNotFoundException('genus not found');
++        }
++
+         // todo - add the caching back later
+         /*
+         $cache = $this->get('doctrine_cache.providers.my_markdown_cache');

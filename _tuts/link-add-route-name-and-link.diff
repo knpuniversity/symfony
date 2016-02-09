@@ -1,22 +1,22 @@
 diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
-index 0fd1849..8eaedde 100644
+index 9e7e36e..eb8b2c8 100644
 --- a/app/Resources/views/genus/list.html.twig
 +++ b/app/Resources/views/genus/list.html.twig
 @@ -12,7 +12,11 @@
          <tbody>
-             {% for product in products %}
+             {% for genus in genuses %}
                  <tr>
--                    <td>{{ product.name }}</td>
+-                    <td>{{ genus.name }}</td>
 +                    <td>
-+                        <a href="{{ path('genus_show', {'genusName': product.name}) }}">
-+                            {{ product.name }}
++                        <a href="{{ path('genus_show', {'genusName': genus.name}) }}">
++                            {{ genus.name }}
 +                        </a>
 +                    </td>
-                     <td>{{ product.speciesCount }}</td>
-                     <td>{{ product.updatedAt|date('Y-m-d') }}</td>
+                     <td>{{ genus.speciesCount }}</td>
+                     <td>{{ genus.updatedAt|date('Y-m-d') }}</td>
                  </tr>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index cc3049b..ed61bc2 100644
+index efd665c..32cb716 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -44,7 +44,7 @@ class GenusController extends Controller

@@ -1,0 +1,33 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 551fb1f..4b72686 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -15,6 +15,8 @@
+                 <dd>{{ genus.speciesCount|number_format }}</dd>
+                 <dt>Fun Fact:</dt>
+                 <dd>{{ genus.funFact }}</dd>
++                <dt>Recent Notes</dt>
++                <dd>{{ recentNoteCount }}</dd>
+             </dl>
+         </div>
+     </div>
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index ba5a61e..33f4b04 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -83,8 +83,14 @@ class GenusController extends Controller
+         $this->get('logger')
+             ->info('Showing genus: '.$genusName);
+ 
++        $recentNotes = $genus->getNotes()
++            ->filter(function(GenusNote $note) {
++                return $note->getCreatedAt() > new \DateTime('-3 months');
++            });
++
+         return $this->render('genus/show.html.twig', array(
+-            'genus' => $genus
++            'genus' => $genus,
++            'recentNoteCount' => count($recentNotes)
+         ));
+     }
+ 

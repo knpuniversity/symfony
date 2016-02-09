@@ -1,15 +1,15 @@
 diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
-index 1d4f844..4dd6a4f 100644
+index f98ab5d..357146d 100644
 --- a/app/Resources/views/genus/list.html.twig
 +++ b/app/Resources/views/genus/list.html.twig
 @@ -10,7 +10,10 @@
          </thead>
          <tbody>
-             {% for product in products %}
--                {{ dump(product) }}
+             {% for genus in genuses %}
+-                {{ dump(genus) }}
 +                <tr>
-+                    <td>{{ product.name }}</td>
-+                    <td>{{ product.speciesCount }}</td>
++                    <td>{{ genus.name }}</td>
++                    <td>{{ genus.speciesCount }}</td>
 +                </tr>
              {% endfor %}
          </tbody>
