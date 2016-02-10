@@ -46,5 +46,50 @@ This is how you "choose" your environment and typically you will be picking the
 
 How do we control the configuration of each environment? If you compare these two
 files, other than this big `if` block on the top of `app_dev.php` that prevents you
-from deploying this file since this file is only for development and you really
-don't want your users taking on that role. 
+from deploying this file to production, the only important difference is this line
+that says `$kernel = new AppKernel('prod', false);`. Remember, that `AppKernel` is
+our file in the `App` directory which boots our bundles. 
+
+The first argument to it is `prod` in `app.php` and `dev` in `app_dev.php` and that
+defines your environment. The second argument is `true` or `false` which is a debug
+flag and it controls whether or not errors should be shown. 
+
+Ok so we've got `dev` and `prod` what exactly do they do? When Symfony boots, it loads
+only one configuration file to get all the configuration that it needs. In the `dev` 
+environment it loads `config_dev.yml` and in the `prod` environment it loads
+`config_prod.yml`. 
+
+Ok fellow deep sea explorers, this is where things get really cool! Checkout the
+first line of `config_dev.yml`. It uses a special directory that imports the main
+`config.yml`. Why? When we're in the `dev` environment it allows us to import all of
+the main default configuration and then it overrides settings that are specific to
+the `dev` environment. 
+
+Check this out! Down here under `monolog`, which is the bundle that gives us the
+logger service, it configures extra logging for the `dev` environment. Including
+this one that says that the `action_level` is `debug` which says "log everything no matter
+its message priority".
+
+In `config_prod.yml`, unsurprisngly, does the exact same thing. It loads the main
+configuration, and then it starts overriding settings that are specific to the `prod`
+environment. In this case, you can see s similar setup for the logger, but now it 
+says `action_level: error` which will only log things that are at an error level 
+which is a pretty high level -- and it doesn't include debug errors.
+
+Let's start messing around with stuff in just the `dev` environment! One of the
+settings that is commented out down here under `monolog` in `config_dev.yml` is
+a thing called `firephp`. This is a cool extension that allows you to get log
+messages right in your browser. 
+
+Head back to the browser and inspect element. Check that the URL is for the `dev`
+environment and then refresh. Check this out, we have all these little messages 
+down here telling us what route was matched and even what route was matched for our
+ajax call. That is the `firephp` extention doing its work, just note that you will
+need a chrome or firefox extension to see those. But, we controlled the logger service
+in a way that only impacted the `dev` environment. 
+
+Swim on over to the `GenusController` and log one more message, `$this->get('logger')`
+and send an `->info()`, since we're logging everything at the `info` setting and above.
+`'showing genus:'` and pop out the `.$genusName`. 
+
+
