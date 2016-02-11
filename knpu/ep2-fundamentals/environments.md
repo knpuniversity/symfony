@@ -92,4 +92,53 @@ Swim on over to the `GenusController` and log one more message, `$this->get('log
 and send an `->info()`, since we're logging everything at the `info` setting and above.
 `'showing genus:'` and pop out the `.$genusName`. 
 
+Jump back to the browser and refresh. Now we can see our "app Showing genus: octopus"
+message. If we did this in the `prod` environment we would not see those messages
+because the logger is not configured to do that. 
 
+We can use this to control anything. Earlier we setup caching for markdown, perhaps
+we don't want that happening in the `dev` environment. Copy this block here, in
+`config.yml` and override it in `config_dev.yml`. Change the `type` from `file_system`
+to `array`. `array` is a built in type that basically means: "don't cache". 
+
+With just that change, go back to the browser, refresh and since this is not caching
+we can see that it takes a whole second because of the `sleep(1)` I have in there.
+Refresh again, and it's still not caching. Switch over to the prod environment and
+refresh, beautiful, things are still really fast over here. 
+
+There is another important thing to know about the `prod` environment. Head over
+to `config.yml`, remember we configured the twig service to use a thousands separator
+of periods, change that back to a comma which is the default value. 
+
+Back to the browser and refresh in the `dev` environment. And there's our comma
+back in the species count. Now refresh in the `prod` environment. Huh, we are still
+seeing the period here. Here's the thing, the `prod` environment is primed for 
+speed. Which means, that when you change configuration in the `prod` environment,
+it does not automatically update your cache. It's just using the existing cache since
+that is super fast. 
+
+Whenever you do switch to the `prod` environment, you need to clear the production
+cache. Do that in the terminal with `./bin/console cache:clear --env=prod`. Even
+the bin console script runs in an environment by default it's the `dev` environment.
+
+Normally you won't worry about this while you're developing because you will not
+go to the prod environment much. You really only need to worry about this when you
+deploy. 
+
+Back to the browser and refresh again in `prod` and boom, there's our comma!
+
+Ok, so what about all these other configuration files? Well, most of them are 
+included the same way. At the top of `config.yml` we've got `parameters.yml`,
+`security.yml` and `services.yml` being imported. The important thing to understand
+here is that all of the files are just loading each other. There is nothing
+special about them. There is no configuration in `security.yml` that couldn't
+live in `config.yml`. 
+
+In fact, I could copy this entire file, paste it into `config.yml`, completely
+delete `security.yml` and everything would be fine. All that to say that these
+configuration files are a part of the same system. There are two reasons why they
+are separated into multiple files: 
+
+1. The environment specific override files
+2. Space! Security configuration is kind of big, having services on its own makes
+easier to create your own later. 
