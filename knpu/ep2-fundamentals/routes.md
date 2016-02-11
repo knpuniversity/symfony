@@ -36,4 +36,21 @@ a `defaults` key, an `_controller` key, and then we can use something like this,
 mean that we will have a controller in `AppBundle` called `MainController`. 
 
 In the controller directory, create a new class named, `MainController`. And
-then because it was `homepage` we will have a `public function ()`
+then because it was `homepage` we will have a `public function homepageAction()`.
+Have this class extend Symfony's base controller which gives us access to the
+`render ()` function. We'll render `'main/homepage.html.twig'` without passing
+any variables. Let's create this real quick in `app/resources/views`, new file, 
+`main/homepage.html.twig`. 
+
+Remember, templates basically always look the same. Extend the base template, 
+`base.html.twig`, which sits right here in the same directory. And override 
+one or more of its blocks. Here override `block body` because that is the block that
+holds the main content of our base template. 
+
+In here put an `h1` with class `page-header text-center` with "Welcome Aquanauts!"
+
+Before trying that in the browser, head over to the terminal and run `debug:router`
+to check that the new route is now in our list, and hey there it is! This is a 
+different way to configure routes but ultimately the result is exactly the same.
+
+Now let's try out that browser refresh. Thank you `yml` for that lovely brand new route. 
