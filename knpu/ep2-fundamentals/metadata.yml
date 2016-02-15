@@ -32,4 +32,27 @@ tuts_hero:
 #    start_step: start
 #    finish_step: ~
 
-chapters: []
+chapters:
+    install-bundles:
+        is_free: true
+        is_finished: false
+        video_key: ~
+    using-services:
+        is_free: true
+        is_finished: false
+        video_key: ~
+    config.yml:
+        is_finished: false
+        video_key: ~
+    cache-service:
+        is_finished: false
+        video_key: ~
+    environments:
+        is_finished: false
+        video_key: ~
+    parameters:
+        is_finished: false
+        video_key: ~
+    routes:
+        is_finished: false
+        video_key: ~

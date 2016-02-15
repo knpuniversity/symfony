@@ -1,4 +1,6 @@
-# Cache Service
+# Configuring a Cache Service
+
+
 
 New challenge! Eventually we'll be rendering a lot of markdown. Maybe even really
 big pieces of markdown. Rendering this takes time, so we don't want to do it on

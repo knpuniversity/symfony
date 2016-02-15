@@ -1,60 +1,71 @@
-# Config.yml
+# Config.yml: Control Center for Services
 
-Ok, I get it, I bring in a bundle and it gives me more services (useful objects). 
-There must be a way for us to control those services. For example, Symfony has a
-logger service. By default, it logs into `var/logs/dev.log`, but certainly there
-must be a way for us to control that. Maybe we want to log to a database or have
-the logs be rotated every 24 hours. 
+Ok, I get it: I bring in a bundle and it gives me more useful objects. But, there
+*must* be a way for us to configure and *control* how these services behave, right?
+Otherwise, how could we control what server the `mailer` uses for sending emails?
+Or what if we want to change how the logger works: making it log to a database instead
+of the default `var/logs/dev.log` file?
 
-The answer to how we can take more control lies within one file, `app/config/config.yml`.
-Now, you are probably noticing the other configuration files in here, I'll get to 
-those, but just ignore them for now. Just pretend this is the only configuration
-file in the entire system. 
+The answer to *all* of this lies in just *one* file: `app/config/config.yml`. That's
+right: *one* file is responsible for controlling everything from the log file to
+the database password. That's pretty powerful: so let's find out how it works!
 
-Other than imports and parameters on top, every route key you see here, like framework,
-twig and doctrine corresponds to a bundle that is being configured. All of this 
-stuff under here is you configuring the framework bundle. All the stuff under
-twig is you configuring the twig bundle. Wait a second, if the job of the bundle is
-to give you services then what we're really doing here is configuring the services
-that the framework bundle gives us. 
+Other than `imports` - which loads other files - and `parameters` - which we'll talk
+about soon - *every* root key in this file - like `framework`, `twig` and `doctrine` -
+corresponds to a *bundle* that is being configured.
 
-Wonderfully, it is in this fairly user friendly format. Typically it will be easy
-to figure out what you want to configure by following the names of things. So now
-you may be wondering what ethings can you control under one of these keys?
+All of this stuff under `framework` is configuration for the `FrameworkBundle`. Everything
+under `twig` is used to *control* the behavior of the services from TwigBundle.
+The job of a bundle is to give us services. And this is *our* chance to *tweak* how
+those services behave.
 
-If I've said it once I'll say it again, you can read the documenation. There's a 
-great reference section on symfony.com to show all of this. But I'll show you another
-way. 
+## Get a big List of all Configuration
 
-Head back to terminal and use our favorite `./bin/console` and run `config:dump-reference`.
-This gives us a nice little map with the bundle name on the left and the extension
-alias on the right, which is a fancy way of saying the route key. This is what
-we'll use in `config.yml` to configure that bundle. 
+That's amazing! Except... how are we supposed to know *what* keys can live under
+each of these sections? Documentation of course! There's a great reference section
+on symfony.com that shows you *everything* you can control for each bundle.
 
-One of these is called `twig`, so rerun our console command again with twig. Look 
-at this! It dumped a giant yml example of everything you can configure under the
-twig key. Now that's pretty incredible. 
+But I'll show you an even cooler way.
 
-Let's play with this a bit, at the bottom here, there's a spot called `number_format:`
-`thousands_separator` let me show you what that does. When we call `$this->render`
-that uses twig in the background so if we want to control how all that works, it's
-going to be by doing things under the `twig` key in `config.yml`. 
+Head back to terminal and use our favorite `./bin/console` to run `config:dump-reference`.
+This shows us a map with the bundle name on the left and the "extension alias" on
+the right... that's a fancy way of saying the root config key.
 
-Let's pretend for a moment that the known species is this big 99999 number. Use
-a built in filter in twig called `number_format` and when we refresh this isn the
-browser we get a nice 99 comma 999 since most of the world does thousands with
-a comma. But, let's say you are from one of the counties that uses a period instead,
-you'll want to change the twig service that's rendering these templates. To do that,
-following our `config:dump-reference` we can go to `config.yml` and add 
-`number_format:` `thousands_separator:'.'`. Behind the scenes this changes how
-the service works and when we refresh we get 99 point 999. 
+***TIP
+You can also use the shorter: `./bin/console debug:config` command.
+***
 
-Since Symfony really isn't doing anything, it's actually one of these services, 
-if you're trying to control something in Symfony what you're really trying to do
-is figure out what configuration you need to change in `config.yml` to change
-the behavoir of the service you're working on. 
+That's not really that useful. But re-run it with an argument: `twig`:
 
-The last cool thing about this file is that it is validated, so if we have a typo
-like adding an s to `thousand_separator` and we refresh, our browser gives us a
-huge error. From here we can go back and figure out what's wrong. 
+```bash
+./bin/console debug:config twig
+```
 
+Woh! It dumped a giant yml example of *everything* you can configure under the
+twig key. Ok, it's not all documented... but honestly, this is usually enough to
+find what you need.
+
+## Playing with Configuration
+
+Ok, lets's experiment! Obiously, the `render()` function we use in the controller
+leverages a `twig` service behind the scenes. Pretend that the number of known species
+is this big 99999 number and send that through a built-in filter called `number_format`.
+
+Refresh! That filter gives us a nice, `99,999`, formatted-string. But what if we
+lived in a country that formats using a `.` instead? Time to panic!!?? Of course
+not: the bundle that gives us the `twig` service *probably* gives us a way to control
+this behavior.
+
+How? In the `config:dump-reference` dump, there's a  `number_format:`,
+`thousands_separator` key. In config.yml, add `number_format:` then
+`thousands_separator: '.'`. Behind the scenes,this changes how the service behaves.
+And when we refresh, that filter gives us `99.999`.
+
+If this makes sense, you'll be able to control virtually *every* behavior of *any*
+service in Symfony. And since *everything* is done with a service... well, that makes
+you pretty dangerous.
+
+Now, what if you make a typo in this file? Does it just ignore your config? Hmm,
+try it out: rename this key to `thousand_separators` with an extra `s`. Refresh!
+Boom! A *huge* error! All of the configuration is *validated*: if you make a typo,
+Symfony has your back.
