@@ -44,13 +44,22 @@ chapters:
     config.yml:
         is_finished: false
         video_key: ~
-    cache-service:
+    add-cache-service:
         is_finished: false
         video_key: ~
-    environments:
+    configure-cache-service:
         is_finished: false
         video_key: ~
-    parameters:
+    understanding-environments:
+        is_finished: false
+        video_key: ~
+    config_dev.yml-config_prod.yml:
+        is_finished: false
+        video_key: ~
+    caching-by-environment:
+        is_finished: false
+        video_key: ~
+    config-parameters:
         is_finished: false
         video_key: ~
     routes:

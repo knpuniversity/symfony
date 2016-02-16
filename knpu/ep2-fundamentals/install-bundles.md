@@ -1,6 +1,6 @@
 # Bundles
 
-Oh my gosh, you're back! Hey friend! Ok, I'm glad you're here: this is a *big*
+Woh! You're back! Hey friend! Ok, I'm glad you're here: this is a *big*
 episode for us. We're about to learn some of the most critical concepts that will
 *really* help you to master Symfony... and of course, impress all your friends.
 

@@ -28,6 +28,7 @@ on symfony.com that shows you *everything* you can control for each bundle.
 But I'll show you an even cooler way.
 
 Head back to terminal and use our favorite `./bin/console` to run `config:dump-reference`.
+Actually, there's a shorter version of this called `debug:config`.
 This shows us a map with the bundle name on the left and the "extension alias" on
 the right... that's a fancy way of saying the root config key.
 
