@@ -19,7 +19,7 @@ bother logging.
 
 Symfony has *two* environments by default: `dev` and `prod`. In the `dev` environment
 your code is booted with a lot of logging and debugging tools. But in the `prod`
-environment, that same code is booted with minimial logging and other configuration
+environment, that same code is booted with minimal logging and other configuration
 that makes everything fast.
 
 ***TIP

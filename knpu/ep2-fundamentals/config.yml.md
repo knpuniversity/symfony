@@ -48,7 +48,7 @@ find what you need.
 
 ## Playing with Configuration
 
-Ok, lets's experiment! Obiously, the `render()` function we use in the controller
+Ok, lets's experiment! Obviously, the `render()` function we use in the controller
 leverages a `twig` service behind the scenes. Pretend that the number of known species
 is this big 99999 number and send that through a built-in filter called `number_format`.
 

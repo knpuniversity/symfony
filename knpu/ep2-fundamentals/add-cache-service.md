@@ -14,7 +14,7 @@ can give us *exactly* this.
 First, double-check that you have the bundle in your composer.json file. If for some
 reason you don't, use `composer` to download it.
 
-The bundle lives in the `vendor/` directory, but it isn't enabled. Do thta in the
+The bundle lives in the `vendor/` directory, but it isn't enabled. Do that in the
 `AppKernel` class with `new DoctrineCacheBundle()`. That added a `use` statement
 on top of the class... which is great - but I'll move it down to be consistent with
 everything else. Awesome!

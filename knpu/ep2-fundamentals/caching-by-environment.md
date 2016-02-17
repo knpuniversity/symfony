@@ -21,7 +21,7 @@ Yep! No problems. Now refresh in the `prod` environment. Huh, it's *still* a per
 What gives?
 
 Here's the thing: the `prod` environment is primed for speed. And that means, when
-you change *any* configuation, you need to manually clear the cache before you'll
+you change *any* configuration, you need to manually clear the cache before you'll
 see those changes.
 
 How do you do that? Simple: in the terminal, run:
