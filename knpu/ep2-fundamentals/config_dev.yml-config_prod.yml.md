@@ -1,7 +1,7 @@
 # config_dev.yml & config_prod.yml
 
-We have two environments! That's *so* flexible... or it will be, just as soon as
-we figure out how to actually *control* each environment. Let's do that.
+We have two environments! That's *super* flexible... or I think it will be, just
+as soon as we figure out how the heck we can *configure* each environment.
 
 Compare `app.php` and `app_dev.php`. What are the differences? Ok, ignore that big
 `if` block in `app_dev.php`. The *important* difference is a single line: the one

@@ -1,12 +1,12 @@
 # Environments
 
 Question: if `config.yml` is so important - then what the heck is the point of all
-of these other files - like `config_dev.yml`, `config_test.yml`, `parameters.yml`
+of these other files - like `config_dev.yml`, `config_test.yml`, `parameters.yml`,
  `security.yml` and `services.yml`. What is their purpose?
 
 ## What is an Environment?
 
-The answer is *environment*. Now, I don't mean environments like `dev`, `staging`,
+The answer is *environments*. Now, I don't mean environments like `dev`, `staging`,
 or `production` on your servers. In Symfony, an environment is a set of configuration.
 Environments are also one of its most *powerful* features.
 
