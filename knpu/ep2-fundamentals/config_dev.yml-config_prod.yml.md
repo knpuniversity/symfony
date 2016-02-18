@@ -16,12 +16,12 @@ flag and basically controls whether or not errors should be shown. That's less i
 
 Now, what do these `dev` and `prod` strings do? Here's the key: when Symfony boots,
 it loads only *one* configuration file for the entire system. And no, it's *not*
-`config.yml` - I was lying to you. Sorry about that. No, in the `dev` environment
+`config.yml` - I was lying to you. Sorry about that. No, the `dev` environment
 loads *only* `config_dev.yml` and in `prod`, the only file it loads is `config_prod.yml`.
 
 Ok fellow deep sea explorers, this is where things get cool! Look at the first line
 of `config_dev.yml`. What does it do? It *imports* the main `config.yml`: the main
-*shared* configuration. Then, anything it overrides any configuration that's special
+*shared* configuration. Then, it overrides any configuration that's special
 for the `dev` environment.
 
 Check this out! Under `monolog` - which is the bundle that gives us the `logger`
@@ -44,8 +44,8 @@ Head over to it and run "Inspect Element". Make sure that the URL will access th
 telling us what route was matched. Heck, we can even see what route was matched for
 our ajax call. To see this working, you'll need a `FirePHP` extension installed in
 your browser. In your app, Monolog is attaching these messages to your response headers,
-and then extension is reading those. We don't want this to happen on production,
+and the extension is reading those. We don't want this to happen on production,
 so we only enabled this in the `dev` environment. 
 
-Environments are awesome! But how could we use them *only* cache our markdown string
+Environments are awesome! So how could we use them *only* cache our markdown string
 in the `prod` environment?

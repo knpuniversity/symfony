@@ -15,7 +15,7 @@ Surprise! There are a lot more than just the two routes that we've created. Wher
 are these coming from?
 
 Answer time: when Symfony loads the route list, it only loads *one* routing file.
-In the `dev` environments, it loads `routing_dev.yml`. In *all* environments, it
+In the `dev` environment, it loads `routing_dev.yml`. In *all* environments, it
 loads `routing.yml`. Inside `routing_dev.yml`, we're importing additional routes from
 `WebProfilerBundle` and the `TwigBundle`. That's why there are *extra* routes in
 `debug:router`. This *also* imports `routing.yml` at the bottom to load all the main
@@ -50,7 +50,7 @@ will have a controller in `AppBundle` called `MainController` with a method name
 In the `Controller` directory, create that new `MainController` class. Next add
 `public function homepageAction()`. Make this class extend Symfony's base `Controller`
 so that we can access the `render()` function. Set it to render `main/homepage.html.twig`
-without passing any variables. Create this *real* quick in `app/resources/views`:
+without passing any variables. Create this *real* quick in `app/Resources/views`:
 new file, `main/homepage.html.twig`. 
 
 Templates basically always look the same: extend the base template - `base.html.twig` -
@@ -71,5 +71,5 @@ same. Refresh the browser. Thank you `yml` for that lovely brand new route.
 
 Woh guys. This course was a *serious* step forward. In the next parts, we're going
 to start adding big features: like talking to a database, forms, security and more.
-And when we do, I've got some exciting new: because of your work here, it's all going
+And when we do, I've got some exciting news: because of your work here, it's all going
 to make sense. Let's keep going and get really productive with Symfony.

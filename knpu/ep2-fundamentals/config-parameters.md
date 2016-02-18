@@ -1,7 +1,7 @@
 # Parameters: The Variables of Configuration
 
-We've basically mastered Symfony configuration and environments. But there's just
-*one* more near trick up its sleeve.
+We've basically mastered Symfony configuration and environment system. But there's
+just *one* more trick it has up its sleeve.
 
 Look closely inside `config.yml` file: one of the settings - `default_locale` - is
 set to a strange-looking value: `%locale%`. Huh.

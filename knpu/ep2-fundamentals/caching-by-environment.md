@@ -46,7 +46,7 @@ all part of the *exact* same configuration system we've just mastered. So where 
 The key point is that *all* of the files are just loading each other: it's all the
 same system.
 
-In fact, I could all of `security.yml`, paste it into `config.yml`, completely
+In fact, I could copy all of `security.yml`, paste it into `config.yml`, completely
 delete `security.yml` and everything would be fine. In fact, the only reason
 `security.yml` even exists is because it *feels* good to keep that stuff in its
 own file. The same goes for `services.yml` - a *big* topic we'll talk about in the

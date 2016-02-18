@@ -34,13 +34,13 @@ one machine where the code is deployed to another.
 For example, your database password is most likely *not* the same as *my* database
 password and hopefully not the same as the production database password. But if
 we put that password right in the middle of `config.yml`, that would be a nightmare!
-In that scenario *I*' would probably commit my password to git and then you would
+In that scenario *I* would probably commit my password to git and then you would
 have to change it to *your* password but then try to not commit that change. Gross.
 
 Instead of that confusing mess of seaweed, we use parameters in `config.yml`. This
 allows us to isolate all the machine-specific configuration to `parameters.yml`.
 And here's the final key: `parameters.yml` is *not* committed to the repository - you
-can see there's an entry for it in `app/config/parameters.yml`.
+can see there's an entry for it in `.gitignore`.
 
 Of course, if I just cloned this project, and I won't have a `parameters.yml` file:
 I have to create it manually. Actually, this is the *exact* reason for this other
@@ -48,6 +48,12 @@ file: `parameters.yml.dist`. This is not read by Symfony, it's just a template o
 all of the parameters this project needs. If you add or remove things from the
 `parameters.yml`, be sure to add and remove them from `parameters.yml.dist`. You
 *do* commit this file to git.
+
+***TIP
+Due to a post-install command in your `composer.json`, after running `composer install`,
+Symfony *will* read `parameters.yml.dist` and ask you to fill in any values that
+are missing from `parameters.yml`.
+***
 
 Let's put this into practice. What if our app does *not* need to send emails. That
 means we *don't* need SwiftmailerBundle. And *that* means we don't need any of these
