@@ -1,20 +1,15 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index c53d6d3..9ba6842 100644
+index c341e6d..c53d6d3 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
-@@ -94,9 +94,14 @@ class GenusController extends Controller
+@@ -94,7 +94,9 @@ class GenusController extends Controller
       */
      public function getNotesAction(Genus $genus)
      {
-+        $notes = [];
-+
-         foreach ($genus->getNotes() as $note) {
--            dump($note);
-+            $notes[] = [
-+                'id' => $note->getId(),
-+            ];
-         }
-+
+-        dump($genus);
++        foreach ($genus->getNotes() as $note) {
++            dump($note);
++        }
          $notes = [
              ['id' => 1, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Octopus asked me a riddle, outsmarted me', 'date' => 'Dec. 10, 2015'],
              ['id' => 2, 'username' => 'AquaWeaver', 'avatarUri' => '/images/ryan.jpeg', 'note' => 'I counted 8 legs... as they wrapped around me', 'date' => 'Dec. 1, 2015'],
