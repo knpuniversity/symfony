@@ -1,0 +1,23 @@
+# Custom Queries
+
+We just finished adding this $isPublished Boolean field and some fixtures so that it’s usually true but not always true.  On the list page, I wanna only show the genuses that are set to be published.  So far, we’re just using this findAll() function, which does not allow us to do really anything inside of there.  There are a few other built-in methods that might help us, but eventually you’re going to need to write a custom query, and that’s what we’re gonna do.  And the key to doing that is this Repository object.
+
+So, let me show you something.  I’m gonna start by actually dumping $em->getRepository Genus, so you can see what the heck this thing is.  So, refresh.  And I didn’t put a die statement on there, so the dump is actually down here in the Web Debug Toolbar.  And it turns out it’s an Entity Repository, so that’s a core Doctrine object, which has a couple of those built-in methods for us.
+
+So, how can we add our own methods to that object so that we can build our own queries in that?  The way you’re gonna do it is by creating your own entity class.  Create a new directory in a bundle called Repository.  And inside of there, we’ll put a new PHP class called Genus Repository.  And for now, I’ll keep this class empty, but make it extend Entity Repository.  That’s actually the class that we’re currently getting back when we call getRepository(), and it’s the one that has all the shortcuts like findAll().
+
+Okay, here’s the key.  In your Genus entity, all the way at the top where you have @ORM\Entity, that’s currently empty.  Add parentheses, and add repositoryClass=, and then the full class name to your Genus Repository class.  And just by doing that, when you refresh now, that dump is now returning a Genus Repository object.  And this is really cool because it still extends Entity Repository, so everything still works.  We have all of the shortcuts that we normally have, but now we can go into our Genus Repository and start adding new custom functions that make custom queries.  So, each entity that needs a custom query will have its own Repository class, and every custom query you write should live inside of one of these to keep everything organized.
+
+So, let’s make a new public function called findAllPublishedOrderedBySize().  I’m following Doctrine’s naming convention of findAll for an array – or find for a single thing – and then just kind of describing what we’re looking for.
+
+Printing custom queries’ gonna always look the same.  I’ll start with, return $this->createQueryBuilder(‘genus’).  This returns us a really cool Query Builder object that’s gonna help us write queries in no time.  The genus there is the alias, so it’s like in MySQL when you say, select * from genus g, g is the alias.  In this case, I’m actually going to alias the table to the entire string ‘genus’.
+
+Okay, so first thing, we need a where clause, so I’ll say, ->andWhere(), and we’ll say, genus.isPublished = :isPublished.  And that :isPublished might look weird, but that’s just a parameter, so on the next line, we’ll say, ->setParameter(‘isPublished’, true).  So, we do that instead of actually putting any dynamic values in the string, and this protects us from SQL injection attacks.  So, never concatenate your query strings.
+
+Okay, next, ->orderBy(), we’ll just do orderBy, and we’ll say, genus.speciesCount, and we want to order descending.  And that’s really it.  You’re always gonna end the query in the same way, which is, ->getQuery() – that turns the Query Builder into a query, not that that’s important – and then, ->execute().  And actually, execute() will return an array of results.  And the other function you wanna know about is getOneOrNullResult(), which you should use if you want either a single object back or null.  So, execute() gives you a set of results; getOneOrNullResult() gives you back a single object or null.  So, use whichever one is most appropriate to your situation.
+
+And like good developers, we’ll add a little PHP doc above there, and we can do better than @return next. We know that this will return an array of Genus objects, so Genus[].
+
+Now, using this Genus Controller is effortless.  Instead of findAll(), we’ll use findAllPublishedOrderedBySize().  Go back, refresh, and there it is.  A few of them disappear because they’re unpublished, and then orders with the most species first.  Super easy.  
+
+We have an entire tutorial on doing crazy custom queries in Doctrine, so we will talk a little bit more about queries, but if you want to start selecting only a few columns or doing raw SQL or doing really complex joins, check out that other tutorial.  It’s really, really helpful.
