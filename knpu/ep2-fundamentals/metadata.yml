@@ -55,7 +55,7 @@ chapters:
         video_key: ~
     config_dev.yml-config_prod.yml:
         is_finished: false
-        video_key: ~
+        video_key: 156772465
     caching-by-environment:
         is_finished: false
         video_key: ~
