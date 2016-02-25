@@ -26,7 +26,7 @@ for the `dev` environment.
 
 Check this out! Under `monolog` - which is the bundle that gives us the `logger`
 service - it configures extra logging for the `dev` environment. By setting
-`action_level` to `debug`, we're saying "log everything no matter its priority!"
+`level` to `debug`, we're saying "log everything no matter its priority!"
 
 So what about `config_prod.yml`? No surprise: it does the *exact* same thing: it
 loads the main `config.yml` file and then overrides things. This file has a similar
