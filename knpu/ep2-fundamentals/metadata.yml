@@ -58,8 +58,7 @@ chapters:
     config-parameters:
         video_key: 156778452
     parameters.yml-kernel.root_dir:
-        is_finished: false
-        video_key: ~
+        video_key: 156781809
     mastering-route-loading:
         is_finished: false
         video_key: ~
