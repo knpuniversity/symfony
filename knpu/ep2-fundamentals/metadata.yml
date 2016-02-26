@@ -56,8 +56,7 @@ chapters:
     caching-by-environment:
         video_key: 156775067
     config-parameters:
-        is_finished: false
-        video_key: ~
+        video_key: 156778452
     parameters.yml-kernel.root_dir:
         is_finished: false
         video_key: ~
