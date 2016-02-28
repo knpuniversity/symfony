@@ -98,7 +98,7 @@ from the docs and paste that into `AppKernel`: the order of these doesn't matter
 
 [[[ code('6da43114e1') ]]]
 
-That's it! Just wait for composer to finish its job... and maybe send a nice
+That's it! Just wait for Composer to finish its job... and maybe send a nice
 tweet to Jordi - he's the creator and maintainer of Composer. There we go!
 
 Ok, before we do *anything* else, let's run an experiment. Try running
