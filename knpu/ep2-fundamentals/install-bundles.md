@@ -27,7 +27,9 @@ The second half of Symfony is a all about the huge number of optional useful obj
 that can help you get your work done. For example, there's a *logger* object, a *mailer*
 object, and a *templating* object that... uh... renders templates. In fact, the
 `$this->render()` shortcut we've been using in the controller is just a shortcut
-to go out to the `templating` object and call a method on it. 
+to go out to the `templating` object and call a method on it:
+
+[[[ code('b6b40f1546') ]]]
 
 All of these useful objects - or services - are put into one big *beautiful* object
 called the container. If I give you the container, then you're *incredibly* dangerous:
