@@ -29,8 +29,8 @@ summary: |
 illustration: sf-fundamentals.png
 
 tuts_hero:
-#    start_step: start
-#    finish_step: ~
+    start_step: json-pass-in-dynamic-uri
+    finish_step: routing-add-yaml-route
 
 chapters:
     install-bundles:
