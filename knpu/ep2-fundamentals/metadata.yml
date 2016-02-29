@@ -44,8 +44,7 @@ chapters:
     add-cache-service:
         video_key: 157145102
     configure-cache-service:
-        is_finished: false
-        video_key: ~
+        video_key: 157151825
     understanding-environments:
         is_finished: false
         video_key: ~
