@@ -17,7 +17,7 @@ are these coming from?
 Answer time: when Symfony loads the route list, it only loads *one* routing file.
 In the `dev` environment, it loads `routing_dev.yml`:
 
-[[[[ code('4c4f3f9472') ]]]
+[[[ code('4c4f3f9472') ]]]
 
 In *all* environments, it loads `routing.yml`:
 

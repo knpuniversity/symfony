@@ -15,7 +15,7 @@ First, double-check that you have the bundle in your `composer.json` file:
 
 [[[ code('e7b54100d4') ]]]
 
-If for some reason you don't, use `composer` to download it.
+If for some reason you don't, use Composer to download it.
 
 The bundle lives in the `vendor/` directory, but it isn't enabled. Do that in the
 `AppKernel` class with `new DoctrineCacheBundle()`:
