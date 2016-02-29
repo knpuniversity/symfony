@@ -1,4 +1,4 @@
-# Parameters.yml & %kernel.root_dir%_
+# parameters.yml & %kernel.root_dir%
 
 There are some really *special* parameters I need to tell you about. In this big
 list that `debug:container` gave us, find the group that starts with `kernel.`. You
