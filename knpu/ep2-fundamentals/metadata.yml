@@ -46,8 +46,7 @@ chapters:
     configure-cache-service:
         video_key: 157151825
     understanding-environments:
-        is_finished: false
-        video_key: ~
+        video_key: 157154562
     config_dev.yml-config_prod.yml:
         video_key: 156772465
     caching-by-environment:
