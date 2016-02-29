@@ -42,8 +42,7 @@ chapters:
     config.yml:
         video_key: 156731265
     add-cache-service:
-        is_finished: false
-        video_key: ~
+        video_key: 157145102
     configure-cache-service:
         is_finished: false
         video_key: ~
