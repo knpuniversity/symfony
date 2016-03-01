@@ -11,7 +11,7 @@ Let's create a new page that will show off *all* the genuses. Create
 Remember, *everything* in Doctrine starts with the all-powerful entity manager. Just
 like before, get it with `$em = $this->getDoctrine()->getManager()`.
 
-To make a query, you'll always start the same way: `$genus = $em->getRepository()`.
+To make a query, you'll always start the same way: `$genuses = $em->getRepository()`.
 Pass this the *class* name - not the table name - that you want to query from:
 `AppBundle\Entity\Genus`. This gives us a repository object, and hey! He's *really*
 good at querying from the `genus` table. In fact, it's got a bunch of useful methods

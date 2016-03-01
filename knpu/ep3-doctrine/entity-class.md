@@ -71,11 +71,11 @@ called `genus`.
 ## Configuring the Columns
 
 But that table won't have *any* columns yet. Lame. Add two properties to get us rolling:
-`id` and `name`. To tell Doctrine that these should map to columns in, open up the
+`id` and `name`. To tell Doctrine that these should map to columns, open up the
 Code->Generate menu again - or command+N. This time, select `ORM Annotation` and
 highlight both properties. And, boom again!
 
-Now we have annotations above each property. The `id` columns is special - it will
+Now we have annotations above each property. The `id` columns\ is special - it will
 almost always look exactly like this: it basically says that `id` is the primary
 key.
 

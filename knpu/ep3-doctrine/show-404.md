@@ -1,23 +1,63 @@
-# Show 404
+# Show them a Genus, and the 404
 
-Now, our application’s starting to come alive. We have this list page.  We also have a show page, so let’s link these guys up here.
+We have a list page! Heck, we have a show page. Let's link them together.
 
-To link to the show page, we, of course, have to give this route a name, so I’ll add name=, how about ‘genus show’?  That sounds good to me.  And then in the list, turn this guy into a nice anchor tag.  Using the path function, we go ‘genus show’, and remember, we need to pass in genus Name, so here, I’ll do curly braces.  If you want, you can even break this onto multiple lines.  And you can say ‘genus Name’ is genus.name, and then for the text in the link, we’ll keep printing out the genus.name.
+First, the poor show route is nameless. Give it a name - and a new reason to live -
+with `name="genus_show"`. That sounds good.
 
-Okay, so, wonderful.  Refresh the list page.  Those turn into links.  And let’s click the first one.  So, it says Octopus66, but you can see that the Fun Fact is still the same hardcoded thing as before, and the Known Species is probably not right.
+In the list template, and the `a` tag and use the `path()` function to point this
+to the `genus_show` route. Remember - this route has a `{genusName}` wildcard, so
+we *must* pass a value for that here. Add a set of curly-braces to make an array...
+But this is getting a little long: so break onto multiple lines. Much better. Finish
+with `genusName: genus.name`. And make sure the text is still `genus.name`.
 
-Remember, in show Action, all this stuff is still just hardcoded.  So, it’s time to grow up, guys, and actually fix this.  So, first, get rid of the fun Fact.  We need a query for a genus matching that genus Name, and remember, that always starts with the Entity Manager, $em = $this->getDoctrine()->getManager().  And then because we’re querying, we’re gonna go out to the repository class to get it, so $genus = $em->getRepository, and we can use our nice shortcut syntax that autocompletes.  
+Cool! Refresh. Oooh, pretty links. Click the first one. The name is Octopus66, but
+the fun fact and other stuff is *still* hardcoded. It's time to grow up and finally
+make this dynamic!
 
-And then we need to find a method on here that can help us find this.  And the one we can use is findOneBy, and we pass it an array, ‘name’ => $genusName, so this will find one where the name is set to that genus Name.
+## Querting for One Genus
 
-Now temporarily, it’s gonna be kind of annoying to have all this caching inside of here since it slows things down, so let’s comment out the caching – we’ll add that back later – and then our template doesn’t need all the information to be passed individually anymore.  It just simplifies passing the entire genus object because, remember, Doctrine gives us back entire objects by default.
+In the controller, get rid of `$funFact`. We need to query for a Genus that matches
+the `$genusName`. First, fetch the entity manager with `$em = $this->getDoctrine()->getManager()`.
+Then, `$genus = $em->getRepository()` with the `AppBundle:Genus` shortcut.
 
-In show.html.twig, let’s update some stuff.  We can say genus.name, genus.name again, and then we can actually get rid of this hardcoded stuff and say genus.subFamily and genus.speciesCount and genus.funFact, and we get rid of the raw because we’re not rendering through markdown temporarily.  And then one more spot down here when we set up the JavaScript.  Change this to genus.name.  
+Ok now, is there a method that can help us? Ah, how about `findOneBy()`. This
+works by passing it an array of things to find by - in our case `'name' => $genusName`.
 
-Okay.  Let’s give this a try.  Refresh.  Awesome, looks good.  Known Species is the actual number of known species that there should be, and of course, we don’t have a Fun Fact, and we didn’t break our JavaScript down here.
+Oh, and comment out the caching for now - it's temporarily going to get in the way.
+Get outta here caching!
 
-So, what would happen, though, if somebody went to a genus name that did not exist, like FOOBARFAKENAMEILOVEOCTOPUS?  If we do that, okay, we get a bad error.  The error’s actually coming from Twig – cannot access attribute (“name”) on a null variable – because on Line 3 of genus is null, so the whole thing blows up.  We do not want that.  We want the user to see a nice 404 page.
+Finally, since we have a `Genus` *object*, we can simplify the `render()` call and
+*only* pass it.
 
-So, whenever you query for one object, you’re gonna wanna check to see if that object does not exist – it will either be that object or null – and if it doesn’t exist, throw $this->createNotFoundException(‘No genus found’).  That message will only be shown to the developers.  That won’t be shown to your end user.
+Open up `show.html.twig`: we just changed the variables passed into this template,
+so we've got work to do. First, use `genus.name` and then `genus.name` again. Remove
+the hardcoded sadness and replace it with `genus.subFamily` `genus.speciesCount`
+and `genus.funFact`. Oh, and remove the `raw` filter - we're temporarily not rendering
+this through markdown. Put it on the todo list.
 
-Head back, refresh, and there’s the proper 404 page.  It’s still the nice developer version for us, but you’re gonna be able to customize how all of your 404 pages look for your users.
+There's *one* more spot down in the JavaScript - change this to `genus.name`.
+
+Okay team, let's give it a try. Refresh. Looks awesome! The known species is the
+number it should be, there is no fun fact, and the JavaScript is still working.
+
+## Handling 404's
+
+But what would happen if somebody went to a genus name that *did* not exist - like
+FOOBARFAKENAMEILOVEOCTOPUS? Woh! We get a bad error. This is coming from Twig:
+
+> cannot access attribute ("name") on a null variable
+
+because on line 3, of `genus` is null - it's *not* a Genus object. In the `prod`
+environment, this would be a 500 page. We do *not* want that - we want the user
+to see a nice 404 page, ideally with something really funny on it.
+
+Back in the controller, the `findOneBy()` method will either return *one* Genus object
+or null. If it does *not* return an object, throw 
+`$this->createNotFoundException('No genus found')`. Oh, and that message will only
+be shown to developers - not to end-users.
+
+Head back, refresh, and *this* is a 404. In the `prod` environment, the user
+will see a 404 template that you need to setup. I won't cover how to customize the
+template here - it's pretty easy - just make sure it's really clever, and send me
+a screenshot. Do it!

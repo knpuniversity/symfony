@@ -32,7 +32,7 @@ With that in mind, I have a challenge! Add a third column to the table called
 is `{{ genus.updatedAt }}`. If this existed and returned a DateTime object,
 we could pipe it through the built-in Twig `date` filter to format it.
 
-But this *won't* work - there is *not* `updatedAt` property. We'll add one later,
+But this *won't* work - there is *not* an `updatedAt` property. We'll add one later,
 but we're stuck right now.
 
 Wait! We can fake it! Add a `public function getUpdatedAt()`. and return a random

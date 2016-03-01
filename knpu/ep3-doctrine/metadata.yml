@@ -59,6 +59,9 @@ chapters:
     show-404:
         is_finished: false
         video_key: ~
+    dummy-data:
+        is_finished: false
+        video_key: ~
     fixtures-alice:
         is_finished: false
         video_key: ~

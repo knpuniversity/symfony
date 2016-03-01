@@ -13,7 +13,7 @@ to it.
 ## Be Careful with Route Ordering!
 
 Oh, and side-note: I put `newAction` *above* `showAction`. Does that matter? In this
-case, absolutely. Remember, rutes match from top to botton. If I had put `newAction`
+case, absolutely. Remember, routes match from top to botton. If I had put `newAction`
 *below* `showAction`, going to `/genus/new` would have matched `showAction` - passing
 the word "new" as the `genusName`. To avoid this, put your most generic-matching
 routes near the bottom.

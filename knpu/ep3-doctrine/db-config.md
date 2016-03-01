@@ -21,7 +21,7 @@ is what tells Doctrine all about your database connection.
 
 But, the information is not hardcoded here - these are references to parameters
 that are defined in `parameters.yml`. Update the `database_name` to `aqua_note`
-and on my super-secure local machine, the database password is `root` with no password.
+and on my super-secure local machine, the database user is `root` with no password.
 
 ***SEEALSO
 Find out more about these parameters in our [Symfony Fundamentals Series](http://knpuniversity.com/screencast/symfony-fundamentals/config-parameters).

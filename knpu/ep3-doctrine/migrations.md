@@ -49,7 +49,7 @@ php bin/console doctrine:migrations:diff
 This created a new file in `app/DoctrineMigrations`. Go open that up.
 
 Check this out: the `up()` method executes the *exact* SQL that we would have gotten
-from the `doctrine:schema:update` command. But insted of running it, it saves it
+from the `doctrine:schema:update` command. But instead of running it, it saves it
 into this file. This is *our* chance to look at it and make sure it's perfect.
 
 When you're ready, run the migration with:
@@ -61,7 +61,7 @@ php bin/console doctrine:migrations:migrate
 Done! Obviously, when you deploy, you'll *also* run this command. But here's the
 *really* cool part: this command will *only* run the migration files that have *not*
 been executed before. Behind the scenes, this bundle creates a `migrations_versions`
-table that keepstrack of which migration files it has already executed. This means
+table that keep strack of which migration files it has already executed. This means
 you can safely run `doctrine:migrations:migrate` on every deploy: the bundle will
 take care of only running the new files.
 
@@ -74,12 +74,12 @@ failure, it's a bad thing and it's better to diagnose and fix it manually.
 ## Making Columns nullable
 
 In `newAction()`, I'll add some code that sets fake data on the `subFamily`
-and `genusCount` properties. But, I'll keep `funFact`: maybe some genuses just aren't
+and `speciesCount` properties. But, I'll keep `funFact` blank: maybe some genuses just aren't
 very fun.
 
 Ok, head over to `/genus/new` to try it out! Woh, a huge explosion!
 
-> Integrity constraint, violation column fun fact cannot be null
+> Integrity constraint violation column fun_fact cannot be null
 
 Here's the deal: Doctrine configures *all* columns to be required in the database
 by default. If you *do* want a column to be "nullable", find the column and add

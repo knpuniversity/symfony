@@ -1,9 +1,9 @@
 # Adding More Columns
 
-We're *close* to make the genus page dynamic - but it has a few fields that we don't
+We're *close* to making the genus page dynamic - but it has a few fields that we don't
 have yet - like sub family, number of known species, and fun fact.
 
-Let's add these... and be as lazy as possible when do it! In `Genus`, create the
+Let's add these... and be as lazy as possible when we do it! In `Genus`, create the
 properties first: `private $subFamily`, `private $speciesCount` and `private $funFact`.
 
 Now, just do the same thing we did before: bring up the Code->Generate menu - or
@@ -25,7 +25,7 @@ and setters if you need them.
 
 ## Updating the Table Schema
 
-Now, can we Doctrine to somehow *alter* the `genus` table and add these columns?
+Now, can we tell Doctrine to somehow *alter* the `genus` table and add these columns?
 Absolutely. In fact, it's one of the most *incredible* features of Doctrine.
 
 In the terminal, run:
@@ -37,12 +37,12 @@ php bin/console doctrine:schema:update --dump-sql
 Look familiar? That's the *same* command we ran before. But look: it actually
 says, "ALTER TABLE genus" add `sub_family`, `species_count`, and `fun_fact`.
 This is *amazing*. It's able to look at the database, look at the entity, and
-calculating the *difference* between the them.
+calculating the *difference* between them.
 
 So if we were to run this with `--force`, it would run that query and life would
-be good. Should we do it! No! Wait, hold on!
+be good. Should we do it? No! Wait, hold on!
 
-It *would* work. But imagine our app was *already* deployed and working with
+It *would* work. But imagine our app was *already* deployed and working
 on production with the first version of the `genus` table. When you deploy the new
 code, you'll need to run this command on production to update your table.
 
@@ -51,4 +51,4 @@ For example, what if I rename a property? Well, this command might *drop* the ex
 column and add a new one. All the data from the old column would be gone! The point
 is: running `doctrine:schema:update` is just *too* dangerous on production.
 
-But, w'ere going to replace it with something *just* as good.
+But, we're going to replace it with something *just* as good.
