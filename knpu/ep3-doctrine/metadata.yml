@@ -35,12 +35,15 @@ chapters:
     entity-class:
         is_finished: false
         video_key: ~
+        is_free: true
     db-config:
         is_finished: false
         video_key: ~
+        is_free: true
     insert-object:
         is_finished: false
         video_key: ~
+        is_free: true
     adding-more-columns:
         is_finished: false
         video_key: ~

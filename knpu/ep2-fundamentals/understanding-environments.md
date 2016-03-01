@@ -32,13 +32,16 @@ we been using so far?
 
 ## app.php versus app_dev.php
 
-The answer to that lives in the `web` directory, which is the document root. This
+The answer to that lives in the `web` directory, which is the *document root*. This
 is the only directory whose files can be accessed publicly.
 
 These two files - `app.php` and `app_dev.php` - are the keys. When you visit your
 app, you're always executing *one* of these files. Since we're using the `server:run`
-built-in web server: we're executing `app_dev.php`. The web server is preconfigured
-to hit this file.
+built-in web server: we're executing `app_dev.php`:
+
+[[[ code('dc1cbf5027') ]]]
+
+The web server is preconfigured to hit this file.
 
 That means that when we go to `localhost:8000/genus/octopus` that's equivalent to
 going to `localhost:8000/app_dev.php/genus/octopus`. With that URL, the page still
@@ -46,7 +49,11 @@ loads *exactly* like before.
 
 So how can we switch to the `prod` environment? Just copy that URL and change
 `app_dev.php` to `app.php`. Welcome to the `prod` environment: same app, but no web
-debug toolbar or other dev tools. This baby is optimized for speed.
+debug toolbar or other dev tools:
+
+[[[ code('205113c0ae') ]]]
+
+This baby is optimized for speed.
 
 But don't worry: in production you won't have this ugly `app.php` in your URL: you'll
 configure your web server to execute that file when nothing appears in the URL.

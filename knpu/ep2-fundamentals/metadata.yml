@@ -29,8 +29,8 @@ summary: |
 illustration: sf-fundamentals.png
 
 tuts_hero:
-#    start_step: start
-#    finish_step: ~
+    start_step: json-pass-in-dynamic-uri
+    finish_step: routing-add-yaml-route
 
 chapters:
     install-bundles:
@@ -42,14 +42,11 @@ chapters:
     config.yml:
         video_key: 156731265
     add-cache-service:
-        is_finished: false
-        video_key: ~
+        video_key: 157145102
     configure-cache-service:
-        is_finished: false
-        video_key: ~
+        video_key: 157151825
     understanding-environments:
-        is_finished: false
-        video_key: ~
+        video_key: 157154562
     config_dev.yml-config_prod.yml:
         video_key: 156772465
     caching-by-environment:
@@ -59,5 +56,4 @@ chapters:
     parameters.yml-kernel.root_dir:
         video_key: 156781809
     mastering-route-loading:
-        is_finished: false
-        video_key: ~
+        video_key: 157142212
