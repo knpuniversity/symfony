@@ -31,4 +31,54 @@ tuts_hero:
 #    start_step: start
 #    finish_step: ~
 
-chapters: []
+chapters:
+    entity-class:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    db-config:
+        is_free: true
+        video_key: ~
+        is_finished: false
+    insert-object:
+        video_key: ~
+        is_finished: false
+    migrations:
+        video_key: ~
+        is_finished: false
+    query-list:
+        video_key: ~
+        is_finished: false
+    show-404:
+        video_key: ~
+        is_finished: false
+    fixtures-alice:
+        video_key: ~
+        is_finished: false
+    alice-faker-function:
+        video_key: ~
+        is_finished: false
+    custom-queries:
+        video_key: ~
+        is_finished: false
+    create-genus-note:
+        video_key: ~
+        is_finished: false
+    many-to-one-relation:
+        video_key: ~
+        is_finished: false
+    param-conversion:
+        video_key: ~
+        is_finished: false
+    one-to-many:
+        video_key: ~
+        is_finished: false
+    one-to-many-order-by:
+        video_key: ~
+        is_finished: false
+    array-collection-tricks:
+        video_key: ~
+        is_finished: false
+    relations-query-joins:
+        video_key: ~
+        is_finished: false
