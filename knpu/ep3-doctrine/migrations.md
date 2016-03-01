@@ -1,9 +1,105 @@
-# Migrations
+# Database Migrations
 
-Our actual genus page has some more fields that we don’t have in our list yet, like sub-family, known species, and fun fact.  So let’s make this more realistic and actually add those.  When you do it, be sure to be as lazy as possible.  Just create the properties first.  So we’ll say sub-family, private species count, and private fun fact.  Because remember we can use that action shortcut, which is option enter on Mac.  We can use the generate menu, which is control enter on the Mac, but not the annotation option. It’s going to create those annotations for us.  Just make sure you update the type to whatever type you need.  So species count should clearly be an integer.  Down on the bottom, I might not always need getters and setters, but let’s create getters and setters for these three new fields.
-Great.  That was really really easy.  Now, problem, how do we update our database table?  It does not automatically have these three new fields.  Well I have really good news for you.  This is when you’re going to love Doctrine.  In the terminal run, doctrine schema update dash dash dump dash SQL, we use this originally to create our genus table, but now look.  It actually says, “Alter table genus.  Add sub-family, species count, and fun fact.”  This is amazing.  It’s actually looking at our database, looking at our entities, and calculating the difference between the two of them.  So, if I were to run dash dash force, it would run that query and life would be good.  But hold on a second, because there’s an even better way.  The problem with doing this, is that once you push your code to production, it means that you’re going to need to run this document schema update dash dash force on production, and that’s probably going to work 99 percent of the time.
-But sometimes this update isn’t quite right.  Like, for example, what if I rename a field?  This SQL generates here in a way that actually drops a column and then adds a new column, while all the data for that column would be empty.  So running document schema update dash dash force is too dangerous on production.  So I’m going to replace it with something just as good.  Google for doctrine migrations bundle.  This does not come with our application, so we’re going to go ahead and install it.  So I’ll copy the composer require line.  Again, I don’t need to have the version there, so I’m going to leave the version off.  And then while we’re waiting for that, obviously in step two when we bring in a new bundle is to grab the new statement for that bundle and put that into our app panel class.
-Beautiful.  Now of course the main job for bundles is to give us new services.  This bundle primarily gives us something different.  It gives us a bunch of new bin console commands.  So as soon as this finishes, I’ll show you.  Just run bin console.  Now in the middle there’s a whole group for doctrine migrations, and then diff execute status and version.  So instead of bringing back to the schema update where we’re going to generate these migrations, let me show you the workflow.  First, we’re going to drop the database entirely and start from scratch.  This is the only time you’re going to need to do this.  Of course recreate the database.  So now we have no tables in our database.  So instead of running doctrine schema update, we’re going to run bin console doctrine migrations diff.  You see, it dumps out, and this created a new migration class, and it creates it in app slash doctrine migrations, and there it is.  And check this out.
-Create table genus, this creates the exact SQL that we would have gotten from doctrine schema update, but instead of running it, it saves it in this file, so we can look at it and make sure that it looks okay.  	 Now this does look okay, so to actually execute this we’ll run bin, console, doctrine migrations, migrate, and it runs that file.  The cool thing about this is that you will actually commit this file to your repository and deploy it.  So now in deploy, you’ll always run doctrine migrations migrate, and it will automatically run all of the migration files that have not already been run on your production server.  And since we actually looked inside this file to make sure it looks right, we know it’s going to be safe to run.  Behind the scenes, the way this works is it creates a new migrations versions table on your database which automatically keeps track of all the migrations that have already been run.  So you can safely just run doctrine migrations migrate, and it’ll figure out which ones it needs to execute.
-Let’s make sure we fill in these new fields inside of our fake new action.  So, genus arrow, set sub family, the sub family is octopodinae, and genus set species count, and to make this interesting, how about rand of 100 to 99,000.  And I’m going to keep fun fact empty because maybe not all species, all genus, have a fun fact.  So let’s try this.  I’ll go back over, do slash genus, slash new, and huge explosion.  Integrity constraint, violation column fun fact cannot be null.  So it turns out that in doctrine, all of your fields by default are set up in the database to be not null.  So if you do want a column to be nullable, you need to add nullable equals true.  Now of course, just because we made that change here doesn’t mean that it’s automatically updated our database behind the scenes.  
-What we need is another migration to make that change.  So no problem.  Go back and run bin console doctrine migrations diff.  That creates a new migration file, so let’s go check that out.  And inside of here it has alter table genus change fun fact to be a default of null, which is perfect.  So to run that, run bin console doctrine migrations migrate, and boom, it’s all good.  Head back, refresh this page, and there we go.  Things are saving and we have such great control over our database schema.
+Google for `DoctrineMigrationsBundle`. To install it, copy the `composer require`
+line. But again, we don't need to have the version - Composer will find the best
+version for us:
+
+```bash
+composer require doctrine/doctrine-migrations-bundle
+```
+
+While Jordi is preparing that for us, let's keep busy. Copy the `new` statement from
+the docs and paste that into the `AppKernel` class. Beautiful!
+
+We already know that the *main* job of a bundle is to give us new services. But this
+bundle primarily gives us something different: a new set of console commands. Run
+`bin/console` with no arguments:
+
+```bash
+php bin/console
+```
+
+Hiding in the middle is a whole group starting with `doctrine:migrations`. These
+are our new best friend.
+
+## The Migrations Workflow
+
+Our goal is to find a way to *safely* update our database schema both locally *and*
+on production.
+
+To do this right, drop the database entirely to remove all the tables: like we have
+a new project.
+
+```bash
+php bin/console doctrine:database:drop --force
+```
+
+This is the *only* time you'll need to do this. Now, re-create the database:
+
+```bash
+php bin/console doctrine:database:create
+```
+
+Now, instead of running `doctrine:schema:update`, run:
+
+```bash
+php bin/console doctrine:migrations:diff
+```
+
+This created a new file in `app/DoctrineMigrations`. Go open that up.
+
+Check this out: the `up()` method executes the *exact* SQL that we would have gotten
+from the `doctrine:schema:update` command. But insted of running it, it saves it
+into this file. This is *our* chance to look at it and make sure it's perfect.
+
+When you're ready, run the migration with:
+
+```bash
+php bin/console doctrine:migrations:migrate
+```
+
+Done! Obviously, when you deploy, you'll *also* run this command. But here's the
+*really* cool part: this command will *only* run the migration files that have *not*
+been executed before. Behind the scenes, this bundle creates a `migrations_versions`
+table that keepstrack of which migration files it has already executed. This means
+you can safely run `doctrine:migrations:migrate` on every deploy: the bundle will
+take care of only running the new files.
+
+***TIP
+You *can* run migration in reverse in case something fails. Personally, I never
+do this and I never worry about `down()` being correct. If you have a migration
+failure, it's a bad thing and it's better to diagnose and fix it manually.
+***
+
+## Making Columns nullable
+
+In `newAction()`, I'll add some code that sets fake data on the `subFamily`
+and `genusCount` properties. But, I'll keep `funFact`: maybe some genuses just aren't
+very fun.
+
+Ok, head over to `/genus/new` to try it out! Woh, a huge explosion!
+
+> Integrity constraint, violation column fun fact cannot be null
+
+Here's the deal: Doctrine configures *all* columns to be required in the database
+by default. If you *do* want a column to be "nullable", find the column and add
+`nullable=true`.
+
+## Creating Another Migration
+
+Of course, just because we made this change doesn't mean that our table was automatically
+updated behind the scenes. Nope: we need another migration. No problem! Go back to
+the terminal and run:
+
+```bash
+php bin/console doctrine:migrations:diff
+```
+
+Open up the new migration file: `ALTER TABLE genus CHANGE fun_fact` to have a default
+of `null`. This look perfect. Run it with:
+
+```bash
+php bin/console doctrine:migrations:migrate
+```
+
+So easy! Refresh the page again: *no* errors. Migrations are awesome.

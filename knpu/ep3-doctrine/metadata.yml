@@ -41,10 +41,16 @@ chapters:
     insert-object:
         is_finished: false
         video_key: ~
+    adding-more-columns:
+        is_finished: false
+        video_key: ~
     migrations:
         is_finished: false
         video_key: ~
     query-list:
+        is_finished: false
+        video_key: ~
+    twig-dot-syntax:
         is_finished: false
         video_key: ~
     show-404:

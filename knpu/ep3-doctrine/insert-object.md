@@ -1,16 +1,89 @@
-# Insert Object
+# Inserting new Objects
 
-If we wanted our users to be able to add new genuses into the system whenever a new genus is discovered or organized, how would we do that?  Well, we’d probably have a new URL like /genus/new.  The user would see a form.  They’d hit submit and that would go into the database.  So, we’re not gunna get all of the way there right now, but that’s exactly how we’re gunna start.  So, in Genus Controller make a new action called with the URL /genus/new. And I won’t give it a name yet.  Now real quick, unrelated to Doctrine, notice that I put this newAction above showAction.  Remember routes match from top to bottom.  
+Fearless aquanauts are constantly discovering and re-classifying deep-sea animals.
+If a new genus needed to be added to the system, what would that look like? Well,
+we would probably have a URL like `/genus/new`. The user would fill out a form,
+hit submit, and the database fairies would insert a new record into the `genus`
+table. 
 
-So, if I had put /genus/new below showAction then when we went to /genus/new it would actually match this route.  Passing new in as the genus name.  So, you wanna have your more specific routes up top so that they match and your generic ones below that.  Instead of creating a form all you’re gunna do now is literally create a new genus object in here and save it to the database.  Skipping the whole form part.  Just so we can get some data in there and see how it works.  So quite literally with Doctrine when you wanna insert something you create your new object.  And then you just put data on it.  
+Sounds good to me! In `GenusController`, create a `newAction` with the URL
+`/genus/new`. I won't give the route a name yet - that's not needed until we link
+to it.
 
-So, in our case the only data that we really have is our name.  It’s a private property right now.  So, we can’t actually set data on it.  So, I’m gunna go down here.  Go to my Generate menu which is command N on a Mac.  Go down to Getters and Setters.  I only really need the Setter, but I’ll add the Getter too.  And now I can say genus–>setName and let’s call it octopus and maybe even make it a little bit random so that we get some interesting results.  Okay, so we have our object.  It’s populated with data.  The last thing we need to do is say “Hey Doctrine.  I want you to save this to our genus table.”  
+## Be Careful with Route Ordering!
 
-Now for as powerful as Doctrine is everything comes back down to a single object – a single service in Doctrine called the entity manager.  No matter what you want to do – save or query or anything else, you’re probably going to first need to get the entity manager.  In the controller there’s a shortcut to get it so I’ll say $em = $this–>getDoctrine( ) –>getManager( );.  So, there’s our entity manager service.  And to save something you’re gunna call em –>persist and pass in want you wanna say and then em –>flush.  Now why two calls here instead of just something like save?  
+Oh, and side-note: I put `newAction` *above* `showAction`. Does that matter? In this
+case, absolutely. Remember, rutes match from top to botton. If I had put `newAction`
+*below* `showAction`, going to `/genus/new` would have matched `showAction` - passing
+the word "new" as the `genusName`. To avoid this, put your most generic-matching
+routes near the bottom.
 
+***TIP
+You can often also use route *requirements* to make a wildcard only match certain
+patterns (instead of matching everything).
+***
 
-Well, the first persist tells Doctrine that you wanna save this, but it doesn’t actually make the query yet.  Then, finally when you call flush, that’s when it makes the query.  It’s done this way in case you need to flush, save multiple objects.  You can persist a bunch of objects at once and then flush them all at once for a super-fast query to the database.  All right and then remember what does our controller always return?  A response object.  So, for simplicity I’m not gunna render a template like we’re doing below.  I’m just going to return a new response object from http foundation.  It’ll say genus created.  
+## Inserting a Genus
 
-All right, you guys ready?  Let’s try it out – /genus/new.  Okay.  It looks like it worked.  No errors, that’s cool.  But notice there’s also no web debug toolbar on the bottom which has a nice feature that allows us to see what queries were just made.  And the reason it doesn’t have a web debug tool bar is that we need to have a valid HTML page in order for that to show up.  So, for now let’s just kinda cheat and make a valid HTML page.  Refresh and there’s our web debug tool bar.  And if you go down here you can actually see there were three database queries made.  And really it’s just one start transaction and there is our insert into genus.  
+Ok, back to the database-world. Let's be *really* lazy and skip creating a form -
+there's a *whole* series on forms later, and, I'd just hate to spoil the fun.
 
-And you can view that query in a formatted way.  A runnable version of it or even you can run an explain query on that to see if it’s a well written query.  And then to really make sure this worked, let’s actually check in the database.  There’s actually a – if you wanna make just a random sql calls in your database you’re gunna course through them directly.  But there’s also a Doctrine query sql command.  So, you can say ‘select * from genus’ and there they are.  So, adding objects with Doctrine.  Pretty darn easy. 
+Instead, insert some hardcoded data. How? Simple: start with `$genus = new Genus()`,
+put some data on that object, and tell Doctrine to save it. Doctrine wants you to
+*stop* thinking about queries, and instead think about *objects*.
+
+Right now... `name` is the only real field we have. And it's a private property, so
+we *can't* actually put data on it. To make this mutable - to use a really fancy
+term that means "changeable" - go to the bottom of the class and open the Code->Generate
+menu. Select "Getters and Setters" - we'll need the getter function later.
+
+Great! Now use `$genus->setName()` and call it `Octopus` with a random ending to
+make things more fun!
+
+Object, check! Populated with data, check! The last step is to say:
+
+> Hey Doctrine. I want you to save this to our genus table.
+
+Remember how *everything* in Symfony is done with a service? Doctrine is no exception:
+it has *one* magical service that saves *and* queries. It's called, the *entity manager*.
+In fact, it's so hip that it has its own controller shortcut to get it:
+`$em = $this->getDoctrine()->getManager()`. What a celebrity.
+
+To save data, use two methods `$em->persist($genus)` and `$em->flush()`.
+
+And yes, you need *both* lines. The first just tells Doctrine that you *want* to
+save this. But the query isn't made until you call `flush()`. What's *really* cool
+is that you'll use these *exact* two lines whether you're inserting a new Genus
+or updating an existing one. Doctrine figures out the right query to use.
+
+## Finishing the New Page
+
+Ok, let's finish up! Do you remember what a controller must *always* return? Yep!
+A `Response` object. Skip a template and just `return new Response()` - the one from
+the `HttpFoundation` component - with `Genus Created`.
+
+Deep breath. Head to `/genus/new`. Okay, okay - no errors. I *think* we're winning?
+
+## Debugging with the Web Debug Toolbar
+
+The web debug toolbar has a way to see the queries that were made... but huh, it's
+missing! Why? Because we don't have a full, valid HTML page. That's a bummer - so
+go back to the controller and hack in some HTML markup into the response.
+
+Try it again! Ah, there you are fancy web debug toolbar. There are actually *three*
+database queries. Interesting. Click the icon to enter the profiler. Ah, there's
+the insert query, hiding inside a transaction.
+
+And by the way, how sweet is this for debugging? You can see a formatted query, a
+runnable version, or run EXPLAIN on a slow query.
+
+## Running SQL Queries in the Terminal
+
+I still can't believe it's working - things never work on the first try! To
+triple-check it, head to the terminal. To run a raw SQL query, use:
+
+```bash
+bin/console doctrine:query:sql 'SELECT * FROM genus'
+```
+
+There they are. So inserting objects with Doctrine... pretty darn easy.

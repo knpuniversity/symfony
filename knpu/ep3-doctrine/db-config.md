@@ -1,9 +1,54 @@
-# Database Configuration
+# Database Config and Automatic Table Creation
 
-We’ve got the entity set up so we know we need a genus table, an ID column and a name column.  So, how do we create that table?  Do we have to do it ourselves?  Absolutely not.  Doctrine’s gunna do all of the work of creating the tables, modifying the tables of the future…we don’t have to worry about any of that.  But first, before that we need to actually create from the database.  Of course creating a database is easy, but there’s also a command to do it, bin/console doctrine:database:create.  But wait, how will Doctrine know what database to create?  It doesn’t know what our database name is, our database user, our database password, none of that stuff.  
+We *described* the `genus` table to Doctrine via annotations, but this table doesn't
+exist yet. No worries - Doctrine can create it for us!
 
-That stuff needs to be configured.  And more specifically the service in the container that takes care of all that stuff needs to be configured.  And where do we configure services?  In app, config, config.yml.  If you scroll down to the Doctrine key, you’ll see all the stuff you’re looking for.  This is what tells Doctrine all about your database connection.  But, the information is not hardcoded here, because we don’t wanna commit it to our repository.  Instead we’re using parameters and these parameters are defined in parameters.yml.  Let’s update this to the aqua_note and on my super secure local machine the database user is root and there is no password.  
-	
-So, we’re good there.  So, now let’s go back over here.  Hit enter.  Perfect.  Database created.  So, next we need our genus table.  To do that you can run doctrine:schema:update and first I’m gunna pass a --dump -sql flag and instead of actually running this query it’s gunna show us the query it’s about to do.  So, you can look at that if you want to and say “Yeah that looks right.”  Create table genus.  It has our two columns.  Life is good.  When you wanna actually run that command you’ll do --force.  Now this command here is one of the most powerful commands you’re gunna see and I’m gunna wow you with some stuff in a few seconds that it’s able to do.  
+And actually, we don't even have a database yet. Doctrine can also handle this. Head
+to the terminal use the console to run:
 
-But right now, with just almost no work we have access to our new aqua_note database.  Cool, so now let’s start putting data in.  Let’s start inserting data into that table. 
+```bash
+php bin/console doctrine:database:create
+```
+
+But wait! Can Doctrine do this yet? We haven't told it *anything* about the database:
+not the name we want, the user or the password.
+
+## Configuring the Database
+
+Where do we do that? The same place that *everything*, meaning all *services* are
+configured: `app/config/config.yml`. Scroll down to the `doctrine` key. Ah, *this*
+is what tells Doctrine all about your database connection.
+
+But, the information is not hardcoded here - these are references to parameters
+that are defined in `parameters.yml`. Update the `database_name` to `aqua_note`
+and on my super-secure local machine, the database password is `root` with no password.
+
+***SEEALSO
+Find out more about these parameters in our [Symfony Fundamentals Series](http://knpuniversity.com/screencast/symfony-fundamentals/config-parameters).
+***
+
+Back to the terminal! *Now* hit enter on the command:
+
+```bash
+php bin/console doctrine:database:create
+```
+
+Database created. To create the table, run:
+
+```bash
+php bin/console doctrine:schema:update --dump-sql
+```
+
+This looks great - `CREATE TABLE genus` with the two columns. But this didn't *execute*
+the query yet - the `--dump-sql` option is used to preview the query if you're curious.
+Replace it with `--force`.
+
+```bash
+php bin/console doctrine:schema:update --force
+```
+
+So hey guys, this is really cool - we can be totally lazy and let Doctrine do all
+the heavy database-lifting for us. This `doctrine:schema:update` command is actually
+more powerful than it looks - it's going to "wow" us in a few minutes.
+
+But first, let's learn how to insert data into the new table.

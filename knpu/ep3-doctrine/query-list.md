@@ -1,8 +1,35 @@
-# Query List
+# Query for a List of Genuses
 
-We know how to create genus objects and persist and flush them in the database.  So what about querying?  Let’s create a new end point which is going to be public function list action, and we’ll list all of the genuses.  So make at route slash genus.  So everything that you do in doctrine always starts with the entity manager.  So like before, we’re going to start with EM equals this, get doctrine, get manager. And every time you query, you’re going to do it by asking for a repository object.  So let me show you the code at first.  Start with dollar sign genuses equals EM arrow get repository, and then the class name that you want to create for them.  Not the table name, but the class name, which is app bundle slash entity slash genus.
-This returns a repository object that’s really really good at querying from the genus table, and it has a bunch of built in methods that help you do it, like find all, find one by, and find, find by the ID.  And of course later we’re going to talk about actually making them really really customized grids, but for now we can just call it find all.  Before we go any further, let’s dump genuses to see what that looks like.  And by the way, the technical plural term for genus is genera, but that’s confusing, so I’m using genuses.  Head to your browser, go to slash genus, and there’s the dump, and check out what it is.  It’s an array of genus objects.  There’s only one in there right now.  If you go to slash genus slash new and refresh, that’ll add a couple more, and there we go.  Now we have four in here.
-So it returns objects, and that’s important.  That’s doctrine’s job is to return entire populated genus objects.  You can, of course, make queries that just return specific bits of content, but that’s for later.  Objects are very very easy to work with.  Now before we actually run the template, I’m going to change this get repository here to just the app bundle colon genus.  This is actually what you’re going to see out there in other people’s code, and what you should use.  This is just a shortcut.  When we use app colon genus, doctrine knows to automatically look in the entity directory of our bundle for our class there.  So don’t get confused by that.  It’s just a shortcut.  
-So finally, let’s get to rendering.  Return, this arrow render, genus slash list dot html dot twig, passing genuses.  And then you guys know the drill from here.  We’re going to app resources, views, and create that new list dot html dot twig, and start by extending the base layout and overriding block body.  I’ll paste down the table here to get us started where we’re going to list all those genuses.  And down in T body our job is really simple.  Genuses in array, so we’re going to say for genus in genuses, end for.  And just to make sure we’re not getting confused here, let’s used the dump function to dump each genus inside that table.  Okay, this looks good.  Let’s head back.  Refresh, awesome.  We have four genus objects dumped out here.  And what we want to do first is dump out the name property and the species count property.  So in the TD we’ll do curly genus dot name, and curly curly genus dot species count.  Notice that you’re getting auto completion there, which is kind of nice.
-And now when you refresh it’s exactly how you want it.  But wait, a cool thing just happened in the background.  Notice we just say genus dot name here, but name is a private property, so we should not be able to access it that way.  So this is one of the nice things about twig.  When we say genus dot name, it actually calls the get name property, and same thing when you call genus dot species, it calls get species account, so it’s smart enough to figure out how to access that data.  With that in mind, let’s add a third column called last updated.  This will be the last time that information about the genus was updated.  And here’s what I want to do, but this will not work yet.  I want to say something like genus dot updated at which will be a date time object, which I can then use the built in twig filter to put that into a year month date format.
-But that’s not going to work, because we don’t have an updated at property yet.  We’ll add one later, but there’s nothing there.  But we can really really easily fake it by adding a public function get updated at.  As long as we have this which will call it when we say genus dot updated at.  And inside of here we’ll use a random date.  Okay, let’s try that out.  That’s awesome. 
+Woh guys, we can *already* create new tables, add columns *and* insert or update
+data. There's just one big piece left: querying. 
+
+Let's create a new page that will show off *all* the genuses. Create
+`public function listAction` and give it a route path of `/genus`.
+
+## Querying? Get the Entity Manager
+
+Remember, *everything* in Doctrine starts with the all-powerful entity manager. Just
+like before, get it with `$em = $this->getDoctrine()->getManager()`.
+
+To make a query, you'll always start the same way: `$genus = $em->getRepository()`.
+Pass this the *class* name - not the table name - that you want to query from:
+`AppBundle\Entity\Genus`. This gives us a repository object, and hey! He's *really*
+good at querying from the `genus` table. In fact, it's got a bunch of useful methods
+on it like `findAll()` and `findOneBy`. Use `findAll()`.
+
+What does this return exactly? Um... I don't know - so let's find out! Dump `$genuses`
+to see what it looks like.
+
+Back to the browser! Go to `/genus`... and there's the dump! Ah, it's an array of
+`Genus` objects. That makes sense - Doctrine is obsessed with always using objects.
+And sure, you *can* make queries that only return *some* columns, but that's for
+later.
+
+## The AppBundle:Genus Alias
+
+Back to the controller! Now change the `Genus` class name to just `AppBundle:Genus`.
+
+Wait, what? Didn't I say this should be the *class* name? What is this garbage?
+It's cool - this is just a shortcut. Internally, Doctrine converts this to
+`AppBundle\Entity\Genus`. You can use either form, but usually you'll see the shorter
+one.... ya know, because programmers are efficient... or maybe lazy.

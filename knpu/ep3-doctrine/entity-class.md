@@ -1,17 +1,89 @@
-# Entity Class
+# Creating an Entity Class
 
-Hey guys!  Welcome back.  So, in this tutorial things are gunna go up a big level because we are going to be using a library called Doctrine to talk to your database. So, actually Symfony itself doesn’t have any way to talk to the database because there are other tools for this.  You can use a direct Pedio connection in Symfony or you can use Doctrine which is one of the nicest libraries that you’re ever gunna use.  Doctrine does have a reputation of having a high learning curve, but I think you’ll find in this tutorial that it’s actually gunna feel really easy and as you get used to it, incredibly powerful.  
+Yo guys! Time to level-up our project in a *big* way. I mean, *big*. This series
+is *all* about an incredible library called Dog-trine. Wait, that's not right - it's
+*Doctrine*. But anyways, Doctrine is *kinda* like a dog: a dog fetches a bone, Doctrine
+fetches data from the database. But Doctrine does *not* pee in the house. That's
+part of what makes it awesome.
 
-So, like always if you wanna code along with me, download the code from this screencast page and move into the start directory.  I already have our starting code right here.  So, as usual I’m gunna open up a new terminal and run bin/console server:run to get our built-in web server running.  Perfect.  So, Doctrines called an ORM, object relational mapper.  And we already know when you query a database normally you get back an array, which is nice.  But wouldn’t it be nicer if instead of it getting back an array, you got back an object with each of the columns as a property because objects are a little bit nicer to work with.  
+But back up: is Doctrine part of Symfony? Nope. Symfony doesn't care *how* or *if*
+you talk to a database at all. You could use a direct PDO connection, use Doctrine,
+or do something else entirely. As usual, you're in control.
 
-And it wouldn’t it also be nice when you want to actually save something back to the table if you were able to create an object.  And instead of having to worry about the insert and update statements and all the columns, you can just say “save this object.”  And as an added bonus, Doctrine will actually know whether or not that object already exists and figure out if it should be an update or an insert for you.  So, in a nutshell, object relational mapper allows us to work with objects and properties and it takes care of saving and querying from tables and columns.
+If you want to code along - which you *should* - then download the code from the
+screencast page and move into the directory called `start`. I already have the `start`
+code downloaded, so I'll go straight to opening up a new terminal and starting the
+built-in sever with:
 
-	Now before we hop in, I’m just wanna remind you that you don’t have to use Doctrine and you don’t have to use it for everything.  Remember, everything in Symfony is optional.  Use it if it helps you and if it doesn’t, you’re always free to use something else.  So, since Doctrine maps objects to database tables, the first thing we’re gunna need is a class.  And as you know we’ve been working with genuses.  So, instead of hard coding the genus information in our application like we’re doing so far; we need to pull from a database.  So, let’s create a genus class which will ultimately create a genus table.  You’ll see what I mean.  
+```bash
+php bin/console server:run
+```
 
-When you create these classes you’re gunna put them in an entity directory and you’re gunna hear that word a lot in Doctrine.  An entity is simply a PHP class that is saved to the database.  It’s no different than any other PHP class.  So, we’ll just create a normal genus class like this.  Now in order – the one thing we do need to help Doctrine out with is what table should we call this and what columns does this need?  And to do that we’re gunna use annotations.  And remember all annotations need a use statement so this will seem a little weird, but what I want you to do is start a use statement for the column.  
+Perfect!
 
-Autocomplete from Doctrine\ORM\Mapping and get rid of the last part and add “as ORM.”  So, we’re importing that entire name space and aliasing it as “as ORM.”  When we do that, if you put your cursor in the middle of class and hit command N, which is the code generate menu, one of the options is gunna be for an ORM class.  Click that and boom, it adds @ORM\Entity and @ORM\Table in the top and already because of those two lines, Doctrine knows that it should have a genus table that this class is going to get saved to.
+## Doctrine is an ORM
 
-	So, next we start adding the columns or the properties that we want.  So, almost every table that you’re gunna have is gunna have an ID and for now let’s also just add a name.  To tell Doctrine that these properties should be columns in the table, I’m going to go to generate again, command N, go down to ORM annotation, select both fields and it’s gunna add annotations above each of them that says that these are columns.  Now the ID column is special, it will always have these three lines here and it’s basically saying this is the primary key.  
+Doctrine is an ORM: object relational mapper. In short, that means that every table -
+like `genus` - will have a corresponding PHP class that we will create. When you query
+the `genus` table, Doctrine will give you a `Genus` object. Every property in the
+class maps to a column in the table. Keep this simple idea in mind as we go along:
+this mapping between a table and a PHP class is Doctrine's main goal.
 
-So, you’ll always just leave that the way it is.  After that you’re gunna have any number of different properties you want and you notice the type string here.  That’s a Doctrine type.  There are different types for strings, floats, text and a lot more.  And we’ll talk about those in a little bit.  The string is your most basic field and it maps to a varjar in my skew L.  And just with these 25 lines of code, we’re basically done.  In a few short moments, we’re going to be able to have Doctrine create this table for us and we’re going to be saving new genus objects to it with almost no effort.
+Oh, and before we hop in, I want you to remember something very important: all the tools
+in Symfony are *optional*, including Doctrine. If Doctrine - or any tool - does more
+harm than good while solving a problem, skip it and do something simpler. Tools are
+meant to serve *you*, not the other way around.
+
+## Your First Entity Class
+
+Our sweet app displays information about different ocean-living genuses... but so
+far, all that info is hardcoded. That's so sad.
+
+Instead, let's create a `genus` table in the database and load all of this dynamically
+from there. How do you create a database table with Doctrine? You don't! Your job
+is to create a class, then Doctrine will create the table *based* on that class.
+It's pretty sweet. Oh, and the *whole* setup is going to take about 2 minutes and
+25 lines of code. Watch.
+
+Create an `Entity` directory in `AppBundle` and then create a normal class inside
+called `Genus`. You're going to hear this word - *entity* - a lot with Doctrine.
+Entity - it sounds like an alien parasite. Fortunately, it's less scary than that:
+an entity is just a class that Doctrine will map to a database table.
+
+## Configuration with... Annotations!
+
+To do that - Doctrine needs to know two things: what the table should be called and
+what columns it needs. To help it out, we're going to use... drumroll... annotations!
+Remember, whenever you use an annotation, you need a `use` statement for it. This
+will look weird, but add a `use` for a `Column` class and let it auto-complete from
+`Doctrine\ORM\Mapping`. Remove the `Column` part and add `as ORM`.
+
+***TIP
+You can also configure Doctrine with YAML, XML or PHP, instead of annotations.
+***
+
+Every entity class will have that *same* `use` statement. Next, put your cursor inside
+the class and open up the Code->Generate menu - cmd+N on a Mac. Ooh, one of the options
+is `ORM Class`. Click that... and boom! It adds two annotations - `@ORM\Entity` and
+`@ORM\Table` above the class. Doctrine now knows this class should map to a table
+called `genus`.
+
+## Configuring the Columns
+
+But that table won't have *any* columns yet. Lame. Add two properties to get us rolling:
+`id` and `name`. To tell Doctrine that these should map to columns in, open up the
+Code->Generate menu again - or command+N. This time, select `ORM Annotation` and
+highlight both properties. And, boom again!
+
+Now we have annotations above each property. The `id` columns is special - it will
+almost always look exactly like this: it basically says that `id` is the primary
+key.
+
+After that, you'll have whatever other columns you need. Hey, look at the `type`
+option that's set to `string`. That's a Doctrine "type", and it will map to a varchar
+in MySQL. There are other Doctrine types for strings, floats and text - we'll talk
+about those soon! 
+
+And with just 25 lines of code, we're done! In a second, we'll ask Doctrine to create
+the `genus `table for us and we'll be ready to start saving stuff. Well, let's get
+to it!
