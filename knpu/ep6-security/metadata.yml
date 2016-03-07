@@ -36,7 +36,8 @@ summary: |
 illustration: sf-ep6.png
 
 tuts_hero:
+# todo - fill in the steps properly
 #    start_step: start
-#    finish_step: ~
+    finish_step: start
 
 chapters: []
