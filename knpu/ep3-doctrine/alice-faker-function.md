@@ -66,7 +66,7 @@ bin/console doctrine:migrations:migrate
 
 Last step: we want to have a *few* unpublished genuses in the random data set. Open
 the Faker documentation and search for "boolean". Perfect! There's a built-in `boolean()`
-function *and* we can control the `$changeOfGettingTrue`. In the fixtures file,
+function *and* we can control the `$chanceOfGettingTrue`. In the fixtures file,
 add `isPublished` and set that to `boolean(75)` - so that *most* genuses are published.
 
 Re-run the fixtures!
@@ -75,4 +75,5 @@ Re-run the fixtures!
 bin/console doctrine:fixtures:load
 ```
 
-Hey, no errors! To *only* use the published genuses, we need a custom query.
+Hey, no errors! Now, to only show the published genuses on the list page, we need
+a custom query.

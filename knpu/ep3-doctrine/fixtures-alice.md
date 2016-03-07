@@ -12,9 +12,9 @@ to do that. It's the PHP circle of life!
 ## Creating the Fixture YAML File
 
 Find the ORM directory and create a new file called - how about `fixtures.yml`. That
-that filename lacks excitement, but at least it's clear.
+filename lacks excitement, but at least it's clear.
 
-Start with the class name you want to create - `AppBunde\Entity\Genus`. Next, each
+Start with the class name you want to create - `AppBundle\Entity\Genus`. Next, each
 genus needs an internal, unique name - it could be anything. But wait! Finish the
 name with 1..10.
 

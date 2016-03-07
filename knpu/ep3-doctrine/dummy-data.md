@@ -1,6 +1,6 @@
 # Fixtures: Dummy Data Rocks
 
-It's *so* much more fun to developer when your database has real, interesting data.
+It's *so* much more fun to develop when your database has real, interesting data.
 We *do* have a way to add some fake genuses into the database, but they're not very
 interesting. And when we need more dummy data - like users and genus notes -
 it's just not going to work well.
@@ -25,7 +25,7 @@ While Composer is communicating with the mothership, copy the `new` bundle line 
 add it to `AppKernel`. But put it in the section that's inside of the `dev` `if`
 statement. This makes the bundle - and any services, commands, etc that it gives
 us - *not* available in the `prod` environment. That's fine for us - this is a development
-tool - and keeps the `prod` environment a little smaller.
+tool - and it keeps the `prod` environment a little smaller.
 
 ## Creating the Fixture Class
 
@@ -35,12 +35,12 @@ we'll create dummy data.
 
 Copy the example fixture class. In AppBundle, add a `DataFixtures/ORM` directory.
 Then, add a new PHP class called - well, it doesn't matter - how about `LoadFixtures`.
-Past the example class we so aggressively stole from the docs and update its class
+Paste the example class we so aggressively stole from the docs and update its class
 name to be `LoadFixtures`.
 
-Clear our that `User` code. We need to create Genuses.. and we have some perfectly
+Clear out that `User` code. We need to create Genuses.. and we have some perfectly
 good code in `newAction` we can steal to do that. Paste that it. The `$manager`
-argumenet passed to this class is the entity manager. Use it to persist `$genus`
+argument passed to this function is the entity manager. Use it to persist `$genus`
 and don't forget the `Genus` `use` statement. Oh, and only one namespace - whoops!
 
 I know this is *not* very interesting yet - stay with me. To run this, head over

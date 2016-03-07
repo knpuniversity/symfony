@@ -15,7 +15,7 @@ Cool! Refresh. Oooh, pretty links. Click the first one. The name is Octopus66, b
 the fun fact and other stuff is *still* hardcoded. It's time to grow up and finally
 make this dynamic!
 
-## Querting for One Genus
+## Querying for One Genus
 
 In the controller, get rid of `$funFact`. We need to query for a Genus that matches
 the `$genusName`. First, fetch the entity manager with `$em = $this->getDoctrine()->getManager()`.
@@ -48,7 +48,7 @@ FOOBARFAKENAMEILOVEOCTOPUS? Woh! We get a bad error. This is coming from Twig:
 
 > cannot access attribute ("name") on a null variable
 
-because on line 3, of `genus` is null - it's *not* a Genus object. In the `prod`
+because on line 3, `genus` is null - it's *not* a Genus object. In the `prod`
 environment, this would be a 500 page. We do *not* want that - we want the user
 to see a nice 404 page, ideally with something really funny on it.
 

@@ -1,6 +1,6 @@
 # Custom Queries
 
-Time to put that *lazy*  `isPublished` field to work. I only* want to show *published*
+Time to put that *lazy*  `isPublished` field to work. I *only* want to show *published*
 genuses on the list page. Up until now, we've been the lazy ones - by using `findAll()`
 to return *every* Genus object. We've avoided writing queries.
 
@@ -54,7 +54,7 @@ more descriptive.
 
 ### WHERE
 
-To add a WHERE class, chain `->andWhere()` with `genus.isPublished = :isPublished`.
+To add a WHERE clause, chain `->andWhere()` with `genus.isPublished = :isPublished`.
 I know: the `:isPublished` looks weird - it's a parameter, like a placeholder. To
 fill it in, add `->setParameter('isPublished', true)`. We always set variables like
 this using parameters to avoid SQL injection attacks. Never concatenate strings in
@@ -70,7 +70,7 @@ and `DESC`. Query, done!
 To execute the query, add `->getQuery()` and then `->execute()`.
 
 That's it! Your query will always end with either `execute()` - if you want an *array*
-of results - or `getOneOrNullResut()` - if you want just *one* result... or obviously
+of results - or `getOneOrNullResult()` - if you want just *one* result... or obviously
 null if nothing is matched.
 
 Let's really show off by adding some PHP doc above the method. Oh, we can do better
@@ -90,7 +90,7 @@ to start selecting only a few columns, using raw SQL or doing really complex joi
 check out the [Go Pro with Doctrine Queries](https://knpuniversity.com/screencast/doctrine-queries).
 
 Woh guys - we just *crushed* all the Doctrine basics - go build something cool and
-tell me about it. There's just *one* bug topic we *didn't* cover - relationships.
+tell me about it. There's just *one* big topic we *didn't* cover - relationships.
 These are *beautiful* in Doctrine, but there's a lot of confusing and over-complicated
 information about there. So let's master that in the next tutorial. Seeya guys next
 time!
