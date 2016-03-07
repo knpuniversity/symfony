@@ -1,3 +1,15 @@
+diff --git a/README.md b/README.md
+index dcbf020..155a50e 100644
+--- a/README.md
++++ b/README.md
+@@ -39,6 +39,7 @@ schema!
+ ```
+ php bin/console doctrine:database:create
+ php bin/console doctrine:migrations:migrate
++php bin/console doctrine:fixtures:load
+ ```
+ 
+ If you get an error that the database exists, that should
 diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 new file mode 100644
 index 0000000..cb48a00

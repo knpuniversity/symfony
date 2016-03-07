@@ -1,3 +1,29 @@
+diff --git a/README.md b/README.md
+index 4ce3108..dcbf020 100644
+--- a/README.md
++++ b/README.md
+@@ -30,6 +30,21 @@ composer install
+ You may alternatively need to run `php composer.phar install`, depending
+ on how you installed Composer.
+ 
++**Setup the Database**
++
++Again, make sure `app/config/parameters.yml` is setup
++for your computer. Then, create the database and the
++schema!
++
++```
++php bin/console doctrine:database:create
++php bin/console doctrine:migrations:migrate
++```
++
++If you get an error that the database exists, that should
++be ok. But if you have problems, completely drop the
++database (`doctrine:database:drop --force`) and try again.
++
+ **Start the built-in web server**
+ 
+ You can use Nginx or Apache, but the built-in web server works
 diff --git a/app/DoctrineMigrations/Version20160207083131.php b/app/DoctrineMigrations/Version20160207083131.php
 new file mode 100644
 index 0000000..0eb5b01
