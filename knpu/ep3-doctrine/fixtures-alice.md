@@ -1,35 +1,52 @@
 # Delightful Dummy Data with Alice
 
-Now
-here's where things get really really fun. We also installed another bundle.
-Google for Nelmio Alice and find their GitHub page. So here's what this library
-is. This library allows you to write Nelmio files and create fixtures that way.
-It has a really really expressive syntax, and it also has a bunch of built in
-functions that generate random data. It actually uses another library called
-faker for all of those random data functions. So in that same ORM directory
-now, we're putting in a file called fixtures dot YML, and start with the class
-name that we want to add. So, app bundle slash entity slash genus. Let's create
-10 genuses. So we'll give each one an internal name. This doesn't matter. But
-instead of doing 10 whole entries, we can actually use this cool syntax where
-we say genus underscore one dot dot 10, and just by doing that it's actually
-going to loop over and create 10 genus objects. And below that, we're going to
-put the names of our properties. So name, colon, and it'll actually use a built
-in faker function called name, and then sub family, use another built in faker
-function called text 20, and the functions are denoted by having the less than
-sign, the name of the function, and the greater than sign. And then species
-count, we can use a function called number between 100 and 100,000, and then
-fun fact, we'll have faker do a random sentence, and that's it. To use this
-file, you can actually get rid of all our code inside this function and simply
-say fixtures, auto complete that, load, and it'll pass it the files we want.
-Which is underscore underscore DIR underscore underscore dot slash fixtures dot
-YML and then past the entity manager is the second. And run fixtures is the
-exact same command. So run that, but now refresh your list page, and viola, we
-have 10 completely random genuses. Now the name of every genus is actually the
-name of a person, which is pretty ridiculous, so we'll fix that in a second.
-But real quick, in Nelmio's documentation, there's a lot of examples of crazy
-things you can do inside of here. One of the biggest things that you're going
-to want to look at is actually the faker library that it integrates, because
-it's going to tell you all of these built in functions that we were just
-creating, like a number between, random word sentence, and all of that. So a
-lot of tools here built in automatically. Now if we can just make the genus
-name a little more realistic.
+Now things are about to get fun. A few minutes ago, we installed a library called
+[nelmio/alice](https://github.com/nelmio/alice) - search for that and find their
+GitHub page.
+
+In a nutshell, this library lets us add fixtures data via YAML files. It has an expressive
+syntax *and* it ships with a bunch of built-in functions for generating random data.
+Actually, *it* uses yet *another* library behind the scenes called [Faker](https://github.com/fzaninotto/Faker)
+to do that. It's the PHP circle of life!
+
+## Creating the Fixture YAML File
+
+Find the ORM directory and create a new file called - how about `fixtures.yml`. That
+that filename lacks excitement, but at least it's clear.
+
+Start with the class name you want to create - `AppBunde\Entity\Genus`. Next, each
+genus needs an internal, unique name - it could be anything. But wait! Finish the
+name with 1..10.
+
+With this syntax, Alice will loop over and create *10* Genus objects for free. Boom!
+
+To finish things, set values on each of the Genus properties: `name: <name()>`. You
+could just put any value here, but when use `<>`, you're calling a built-in *Faker*
+function. Next, use `subFamily: <text(20)>` to generate 20 characters of random text,
+`speciesCount: <numberBetween(100, 100000)>` and `funFact: <sentence()>`.
+
+That's it team! To *load* this file, open up `LoadFixtures` and remove all of that
+boring garbage. Replace it with `Fixtures` - autocomplete that to get the `use` statement -
+then `::load()`. Pass this `__DIR__.'/fixtures.yml'` and then the entity manager.
+
+Now, run the *exact* command as before:
+
+```bash
+php bin/console doctrine:fixtures:load
+```
+
+I *love* when there are no errors. Refresh the list page. Voila: 10 completely random
+genuses. I *love* Alice.
+
+## All The Faker Functions
+
+Well.... the genus name is actually the name of a person... which is pretty ridiculous.
+Let's fix that in a second.
+
+But first, Nelmio's documentation has a *ton* of cool examples of things you can
+do with this library. But the *biggest* things you'll want to check out is the *Faker*
+library that this integrates.  This shows you *all* of the built-in functions we
+were just using - like `numberBetween`, `word`, `sentence` and a ton more. There
+is some *great* stuff in here.
+
+Now if we can *just* make the genus name a little more realistic.
