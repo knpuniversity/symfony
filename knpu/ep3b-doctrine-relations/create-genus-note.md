@@ -1,8 +1,8 @@
 # Create Genus Note
 
-It's you again! Welcome back my friend. In this tutorial, we're going back into
-Doctrine: this time to master database relations. And have fun of course! Database
-are *super* fun guys.
+It's you again! Welcome back friend! In this tutorial, we're diving back into
+Doctrine: this time to master database relations. And to have fun of course - databases
+are *super* fun.
 
 Like usual, you should code along with me or risk 7 years of bad luck. Sorry.
 To do that, download the code from the course page and use the `start` directory.
@@ -12,69 +12,76 @@ I already have the code - so I'll startup our fancy, built-in web server:
 php bin/console server:run
 ```
 
-You may also need to run `composer install` and a few other things. Check the
+You may also need to run `composer install` and a few other tasks. Check the
 README in the download for those details.
 
 When you're ready, pull up the genus list page at `http://localhost:8000/genus`.
 Nice!
 
+## Create the GenusNote Entity
 
+Click to view a specific genus. See these notes down here? These are loaded via
+a ReactJS app that talks to our app like an API. But, the notes themselves are
+still hardcoded right in a controller. Bummer! Time to make them dynamic - time to
+create a second database table to store genus notes.
 
-Now that this Genus is actually dynamic, we need to make the Genus Notes
-dynamic. This is where we're going to start talking about database
-relationships because, clearly, we have one. This Genus is related to these
-many Genus Notes, which right now are just hardcoded.
+To do that, create a new `GenusNote` class in the `Entity` directory. Copy the ORM
+`use` statement from `Genus` that all entities need and paste it here.
+With that, open the Code->Generate menu - or Cmd+N on a Mac - and select "ORM Class".
+Bam! This is now an entity!
 
-So, we'll start first by making a Genus Note entity, and there isn't
-bin/console command to do this, but I'll start the same way I always do, by
-just creating a PHP class, Genus Note. Then the only thing we need to grab is
-this use statement, or you can write it manually, and then use Cmd+N to bring
-up the Generate menu and add the Annotation class, and then just start adding
-some properties.
+Next: add the properties we need. Let's see... we need a `username`, an `userAvatarFilename`,
+`notes` and a `createdAt` property. When we add a user table later - we'll replace
+`username` with a relationship to that table. But for now, keep it simple.
 
-So, let's see here. We are going to need a username, an avatar filename, a
-notes, and a created at. So, private $username; private $userAvatarFilename;
-private $note; and private $createdAt. Then Cmd+N again to add all of those
-annotations for me. And always, just make sure they actually have the right
-type. Let's see. The only thing I probably wanna change is $note to “text,”
-which is a bigger field in the database; it can hold more than just 255
-characters.
+Open the Code->Generate menu again and select "ORM Annotation". Make sure each
+field `type` looks right. Hmm, we probably want to change `$note` to be a `text`
+type - that type can hold a lot more than the normal 255 characters.
 
-And then, we'll make the getters and the setters for all that stuff. I don't
-usually make a setter for the Id because you probably shouldn't be setting the
-Id, but I will make a getter for the Id. And you might not add getters and
-setters till you need them, but it's a good idea if you wanna just kinda make
-your life simple.
+Finally, go back to our best friend - the Code->Generate menu - and generate the
+getter and setters for every field - except for `id`. You don't usually want to
+set the `id`, but generate a getter for it.
 
-All right, so this is a new entity. It's not related to Genus yet, but we
-already know that we need to go over here and generate a migration,
-doctrine:migrations:diff. Copy the filename. I'm gonna open that filename.
-Remember, this just lives in the `app/doctrine/migrations` directory. And yeah,
-great table. That looks just fine. So, go back to our ./bin/console
-doctrine:migrations:migrate, and there we go.
+### Generate Migrations
 
-Next, just like with Genus, we need to set up some fixtures for these Genus
-Notes. So, I'll go into the same fixtures.yml file, and this time we'll make
-the class name AppBundle\Entity\GenusNote, and then we'll start a very similar
-way. So, I'll say, genus.note_, and let's create 100, so we'll use 1..100, and
-we'll start filling the data. So, username, and I'll do, <username()>.
-Remember, all these function things are coming from the Faker library, so I
-don't know these by heart, but if you look through here in the Faker
-documentation, you'll find all these shortcuts, and you can find ones that you
-want to use.
+Entity done! Well, *almost* done - we still need to somehow *relate* each `GenusNote`
+to a `Genus`. We'll handle that in a second.
 
-userAvatarFilename. Now right, eventually, that users are probably gonna need
-to upload their own custom avatar, but for right now, it's just a filename, and
-there are two filenames in the system, leanna.jpeg and ryan.jpeg. So, I'm gonna
-use a really cool syntax here, and it looks like this: ‘50%? leanna.jpeg :
-ryan.jpeg'. And you can just see how we're reading that. 50 percent of the
-time, it's going to be leanna; 50 percent of the time, it's going to be ryan.
+But first, don't forget to generate a migration for the new table:
 
-Okay, note: <paragraph()>, and then a, createdAt:, and we can use a cool thing
-called <dateTimeBetween>, and we'll do things between -6 months and right now.
-And that should be it, so let's go back and rerun our fixtures,
-doctrine:fixtures:load. And we're not showing those anywhere yet. We can
-already go, doctrine:query:sql ‘SELECT * FROM genus_note'. Awesome! There they
-are.
+```bash
+php bin/console doctrine:migrations:diff
+```
 
-So, two entities. Let's join these together.
+Open up that file to make sure it looks right - it it lives in `app/Doctrine/migrations`.
+`CREATE TABLE genus_note` - it looks great! Head back to the console and run the
+migration:
+
+```bash
+php bin/console doctrine:migrations:migrate
+```
+
+## Adding Fixtures
+
+Man, that was *easy*. We'll want some good dummy notes too. Open up the `fixtures.yml`
+file and add a new section for `AppBundle\Entity\GenusNote`. Start just like before:
+`genus.note_` and - let's create 100 notes - so use 1..100. Next, fill in each
+property using the Faker functions: `username: <username()>` and then `userAvatarFilename:`.
+Ok, eventually users might upload their *own* avatars, but for now, we have two
+hardcoded options: `leanna.jpeg` and `ryan.jpeg`. Let's select one of these randomly
+with a sweet syntax: `50%? leanna.jpg : ryan.jpeg`. That's Alice awesomeness.
+
+The rest are easy: `note: <paragraph()>` and `createdAt: <dateTimeBetween('-6 months', 'now')>`.
+Ok, run the fixtures!
+
+```bash
+php doctrine:fixtures:load
+```
+
+Double-check them with a query:
+
+```bash
+php doctrine:query:sql 'SELECT * FROM genus_note'
+```
+
+So awesome! Ok team, we have two entiteis: let's add a relationship!

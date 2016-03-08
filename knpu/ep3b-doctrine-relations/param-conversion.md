@@ -1,13 +1,56 @@
-# Param Conversion
+# Controller Magic: Param Conversion
 
-With [inaudible] [00:00:02] and Genus Note linked, we can finally make these Genus Notes down here not hard coded anymore. It’s already in database relationship and we can use that to print out the real notes for this Genus. As a reminder, in Genus Controller, there’s a get notes action. This is the API endpoint, the Ajax endpoint that’s being hit to populate those notes on the client side. So the first thing we need to do inside of here is actually query for the Genus and we have the Genus name right in the URL to do that. 
+Time to *finally* make these genus notes dynamic! Woo! 
 
-So how do we query different things? Well, you guys already know. We get the entity manager and we call it a method on the particular repository and it’s really simple, but I’m going to show you an even simpler way. First thing, I want you to change this clearly braced genus name to name. Now that will break any links that you have to this route because they’re going to be providing a genus name, not name. So no problem. 
+Remember, those are loaded by a ReactJS app, and *that* makes an AJAX call to an API
+endpoint in `GenusController`. Here it is: `getNotesAction`. 
 
-I’ll go over here to my terminal, git grep genus_show_notes, the route name and it shows me it’s used in just this one spot in this template. So let’s go there show.html.twig and down at the bottom here, we need to pass name to match our clearly braced name. So that didn’t change anything at all. Everything will still work just as before. So why did I do that? Well, I did that because in Genus, we actually have a name property. 
+Step 1: use the `$genusName` argument to query for a `Genus` object. But you guys
+already know how to do that: get the entity manager, get the Genus repository,
+and then call a method on it - like `findOneBy()`. Old news.
 
-So the name of our property now matches the clearly brace that we have in the routing wild card and when we do this, and normally because we have a clearly braced name, we need to do a dollar sign name and then of course we would use the entity manager to query for the Genus based on that name, find one by name, but because the clearly braced name matches the name of the property, we can actually just type in this argument with Genus and then do dollar sign Genus and that will automatically query for the object for me and do prove it I will dump the genus here. 
+Let's do something *much* cooler. First, change `{genusName}` in the route to `{name}`,
+but don't ask why yet. Just trust me. This doesn't change the URL to this page...
+but it *does* break all the links we have to this route.
 
-We’ll go back, refresh. Cool, so the Ajax endpoint happened there. I’m now going to go to /_profiler and we can find one of these – click of these Ajax endpoints for the notes because I’m dumping that variable and we’re going to go down to the debug panel and there is our junked genus object. This is called pram conversion and don’t get confused. The normal rule is that whatever you have as your clearly braces in your route, those are the only things that you can have as arguments to controller. The exception to that are doctrine entities. 
+To fix those, go to the terminal and search for the route name:
 
-If you type hint, and that is the important part here, that we’ve type hinted the argument with genus, Symphony will automatically look at the clearly braced wild cards and try and make a query that finds based on those wild cards. In order to do that, the wild card name has to match the property name. So this is a great shortcut when you can take advantage of it. If you can’t because your wild card is named different than your property or you have some more complex route, it just doesn’t work, cool. No worries. You can always query for your object manually. 
+```bash
+git grep genus_show_notes
+```
+
+Oh cool! It's only used in *one* spot. Open `show.html.twig` and find it at the bottom.
+Just change the key from `genusName` to `name`.
+
+## Using Param Conversion
+
+So... doing all of this didn't change *anything*. So why did I make us do all that?
+Let me show you. You might *expect* me to add a `$name` argument. But don't! Instead,
+type-hint the argument with the `Genus` class and then add `$genus`.
+
+What? I just violated one of the *cardinal* rules of routing: that every argument
+must match the *name* of a routing wildcard. The truth is, if you type-hint an argument
+with an entity class - like `Genus` - Symfony will automatically query for it. This
+works as long as the wildcard has the same name as a property on `Genus`. *That's*
+why we changed `{genusName}` to `{name}`. Btw, this is called "param conversion".
+
+***TIP
+Param Conversion comes from the [SensioFrameworkExtraBundle](http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html).
+***
+
+Dump the `$genus` to prove it's working.
+
+Go back and refresh! We don't see the dump because it's actually an AJAX call - one
+that happens automatically each second.
+
+## Seeing the Profiler for an AJAX Request
+
+But don't worry! Go to `/_profiler` to see a list of the most recent requests, including
+AJAX request. Select one of these: this is the profiler for that AJAX call, and in
+the `Debug` panel... *there's* the dump. It's alive!
+
+So be lazy: setup your routes with a wildcard that matches a property name and use
+a type-hint to activate param conversion. If a genus can't be found for this page,
+it'll automatically 404. And if you *can'* use param conversion because you need
+to run a custom query: cool - just get the entity manager and query like normal.
+Use the shortcut when it helps!

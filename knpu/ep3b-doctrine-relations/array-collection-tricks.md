@@ -1,9 +1,36 @@
-# Array Collection Tricks
+# Tricks with ArrayCollection
 
-Well, new challenge guys. Boss just came in and said it’s great that we’re showing all of the genus notes down here, but he wants a really fast way to be able to see how many recent notes there are. So new section here that says there have been 10 recent notes over the past three months. So that means up here in show action, we need to somehow get a number of the recent notes, all the notes within three months and that means that if I said recent notes equals genus arrow get notes, that’s everything, not just the recent ones. So we can’t use our lazy relationship in this case. Well, that’s not entirely true. 
+Oh man, the project manager just came to me with a new challenge. Showing all the
+notes below is great, but they want a new section on top to easily see how many notes
+have been posted during the past 3 months.
 
-It has some – remember that get notes actually returns an array collection object. That array collection object has some tricks on it and some of the tricks actually allow you to take all the notes and filter them down to a smaller collection. In fact, the method is called filter and you pass it anonymous function and that anonymous function will get a single argument which is the individual item that we’re looking through. So in this case we know it’s a genus note and here let’s just return note arrow get created at is greater than new date time of minus three months. 
+Hmm. In `showAction()`, we need to somehow count all the recent notes for this `Genus`.
+We *could* start with `$recentNotes = $genus->getNotes()`... but that's *everything*. Do
+we need to finally stop being lazy and make a custom query? Not necessarily.
 
-So anything newer than three months is going to get filtered back and now pretty simple we can just pass recent note count is count of recent notes and then heading toward our template, add new DT to this, recent notes and just print out recent note count. All right. Give it a try. Refresh. Six. Perfect. We clearly have a lot more than six comments. That’s just getting a subset. So the array collection has lots of fun methods on it like that. Methods like contains or contains key count for all which allows you to call a method on all the individual objects so on and so forth. 
+Remember: `getNotes()` returns an `ArrayCollection` object and it has some tricks
+on it - like a method for filtering! Chain a call to the `filter()` method and pass
+this an anonymous function with a `GenusNote` argument. The ArrayCollection will
+call this function for *each* item. If we return true, it stays. If we return false,
+it disappears.
 
-So just be aware of those and take advantage of them. Now the one big downside of this and it could be a big downside depending on how many notes you have is this actually queries for all of the genus note objects and then we filter down smaller. So there’s a performance impact to using this shortcut. So what we should really do is make a real query to only return the recent genus notes. Let’s do that next. 
+Easy enough! Return `$genusNote->getCreatedAt() > new \DateTime('-3 months');`.
+
+Next, pass a new `recentNoteCount` variable into twig that's set to `count($recentNotes)`.
+In the template, add a new `dt` for `Recent Notes` and a `dd` with `{{ recentNoteCount }}`.
+
+All right - give it a try! Refresh. Six notes - perfect: we clearly have a lot more
+than six in total.
+
+The `ArrayCollection` has lots of fun methods on it like this, including `contains()`,
+`containsKey()`, `forAll()`, `map()` and other goodies.
+
+## Don't Abuse ArrayCollection
+
+Do you see any downsides to this? There's one big one: this queries for *all* of
+the notes, even though we don't need them all. If you know you'll only ever have
+a few notes, no big deal. But if you may have *many* notes: don't do this - you
+*will* feel the performance impact of loading up hundreds of extra objects.
+
+So what's the *right* way? Finally making a custom query that only returns the
+GenusNote objects we need. Let's do that next.

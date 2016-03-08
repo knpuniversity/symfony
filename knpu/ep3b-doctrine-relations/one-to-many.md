@@ -1,23 +1,83 @@
-# One to Many
+# OneToMany: Inverse Side of the Relation
 
-We have the genus object. So how can we get the collection of related genus note objects? Well, the simplest way is just to make a query. In the database you would want to say something like select star from genus note where genus ID equals the ID of the genus object that we have here and you can totally do that in [inaudible] [00:00:23] easily. You’ll get the genus note repository and you can find one by and pass it genus equal arrow dollar sign genus and you can pass either the object or the ID and it’ll figure out how to make that query. 
+We have the `Genus` object. So how can we get the collection of related `GenusNote`
+Well, the simplest way is just to make a query - in fact, you could fetch the `GenusNote`
+repository and call `findOneBy(['genus' => $genus])`. It's really that simple.
 
-So we already have everything we need in the database and everything that we need in doctrine to figure out what notes this genus has, but if we could be even lazier? And this is totally optional. What if you want to be able to say genus arrow get notes just like that? And automatically it would go and query for all the notes objects without you having to do it. That would be pretty cool. So let’s do it. Remember genus note, we already have a many to one relationship. That’s always the main sign of your relationship and you always start with a many to one and that’s all you may ever need. 
+***TIP
+You can also pass the Genus's *id* in queries, instead of the entire `Genus` object.
+***
 
-The only other real relationship is a many to many which we’ll talk about later, but for now many to one is your go to relationship. If you want this convenience that you’re talking about, then you’ll go into the other side of the relationship. So in this case genus and you’ll add a new private notes property and this one will be at arm slash one to many. So many to one is always your real one that you start with and then if you want the convenience to do this lazy genus arrow get notes then you will use one to many. 
+But what if we could be even lazier? What if we were able to just say `$genus->getNotes()`?
+That'd be cool! Let's hook it up!
 
-We’ll set target entity do genus notes and then a mapped by set to genus and that refers to the property on the other side that forms the other side of this relationship. So there’s only one relationship in the database. There are just two ways to look at it. You can start with the genus note and look at which genus you have or you can start with genus and ask which genus notes you have. 
+## Setting up the OneToMany Side
 
-So that’s the reason why we have two properties sort of pointing at each other and as soon as you have both sides of this relationship, on genus note you’ll also add an inverse by which will point to notes. This points to property on the other side and the two different sides of the relationship are called the owning side. That’s where the actual form key is. So the genus note is the owning side and the inverse side and this is the side that is just there for convenience. I’ll talk more about owning versus inverse side of the relationships in a second, but one important thing to notice already is that this change will not require any database scheming changes. 
+Open up `GenusNote`. Remember, there are only two types of relationships: ManyToOne
+and ManyToMany. For this, we needed `ManyToOne`.
 
-There will be no migration to run because there’s not that we need to change the database. The structure is all completely already set up. When you do have an inverse side like this, you need to add a construct function and make sure that the property notes is initialized to a new array collection. So it’s not really that important. We know that notes is going to be an array of genus note objects, but it internal doctrine instead of using arrays, it actually uses this array collection object. 
+But actually, you can think about any relationship in two directions: each `GenusNote`
+has *one* `Genus`. Or, each `Genus` has many `GenusNote`. And in Doctrine, you can
+*map* just one side of a relationship, *or* both. Let me show you:
 
-So when we do eventually say genus arrow get notes, we’ll actually have an array collection object instead of just a plain, old PHP array. So you won’t really notice or care because the array collection object looks and acts and smells like an array. You can use the array accessor syntax. You can loop over it, but just don’t forget to initialize it like this. And finally, let’s go down to the bottom and add a getter for notes. However, we can say genus arrow get notes. All right? 
+Open `Genus` and add a new `$notes` property. This is the *inverse* side of the
+relationship. Above this, add a `OneToMany` annotation with `targetEntity` set to
+`GenusNote` and a `mappedBy` set to `genus` - that's the *property* in `GenusNote`
+that forms the main, side of the relation.
 
-Let’s try it out. So in get notes action just for now, I’m going to loop over at genus arrow get notes, has note. Let’s just dump that note object. Cool. Now I’m going to go back to page, refresh, let the AJAX call happen in the background then go to profiler, find the AJAX profiler right here and then go down to debug and there it is. You can see that we have about 15 or so genus note objects related to this specific genus and even more interesting if you look at the doctrine key, you can see the query that was used to make that. 
+But don't get confused: there's still only *one* relation in the database: but now
+there are two ways to access the data on it: `$genusNote->getGenus()` and now
+`$genus->getNotes()`.
 
-The first query here goes and returns just the genus object, but the second query here actually queries from the genus note and this doesn’t happen until the moment where we say genus arrow get notes. At that moment, it lazily makes a query to go get all the genus notes related to this genus object. So it makes the same query behind the scenes that you would have. It’s just there for your convenience and if you don’t need this convenience or don’t like this convenience then don’t do it. Don’t the one to many. 
+Add an `inversedBy` set to `notes` on this side: to point to the other property.
+I'm not sure why this is *also* needed - it feels redundant - but oh well.
 
-You’re always free just to make a custom query to get the genus notes for a genus. Now one less important thing about the owning versus the inverse side, notice I did not make a set notes function on genus and I did that on purpose. This is a really tricky thing. When you are actually setting data on this relationship, you can only set data on the owning side. That means that if you want to associate a genus note with a genus, then you need to actually set the genus on the genus note and that’s exactly what we’ve been doing already to make these two things associated. 
+Next, generate a migration! Not! This is *super* important to understand: this didn't
+cause any changes in the database: we just added some sugar to our Doctrine setup.
 
-What you cannot do is set a genus note on a genus. If you do, doctrine will totally ignore it. So only set data on your owning side, never on the inverse side and with most relationships make sense. Only set the data on the side of the relationship where the form key column exists. I never make a setter on the other side so that I don’t accidentally do this and expect it to work. 
+## Add the ArrayCollection
+
+Ok, one last detail: in `Genus`, add a `__construct()` method and initialize the
+`notes` property to a new `ArrayCollection`. This object is like a PHP array on
+steroids. You can loop over it like an array, but it has other super powers we'll
+see soon. Doctrine always returns one of these for relationships instead of a normal
+PHP array.
+
+*Finally*, go to the bottom of the class and add a getter for `notes`.
+
+Time to try it out! In `getNotesAction()` - just for now - loop over `$genus->getNotes()`
+as `$note` and `dump($note)`. Head back and refresh! Let the AJAX call happen and
+then go to `/_profiler` to find the dump. Yes! A *bunch* of `GenusNote` objects.
+
+Oh, and look at the Doctrine section: you can see the extra query that was made to
+fetch these. This query doesn't happen until you *actually* call `$genus->getNotes()`.
+Love it!
+
+## Owning and Inverse Sides
+
+That's was pretty easy: *if* you want this shortcut, just add a few lines to map
+the *other* side of the relationship.
+
+But actually, you just learned the *hardest* thing in Doctrine. Whenever you have
+a relation: start by figuring out which entity should have the foreign key column
+and then add the `ManyToOne` relationship there first. *This* is the only side of
+the relationship that you *must* have - it's called the "owning" side.
+
+Mapping the *other* side - the OneToMany *inverse* side - is always optional. I don't
+map it until I *need* to - either because I want a cute shortcut like `$genus->getNotes()`
+or because I want to join in a query from `Genus` to `GenusNote` - something we'll
+see in a few minutes.
+
+***TIP
+ManyToMany relationships - the only other *real* type of relationship - also have
+an owning and inverse side, but you can *choose* which is which. We'll save that
+topic for later.
+***
+
+Now, there is *one* gotcha. Notice I did *not* add a `setNotes()` method to `Genus`.
+That's because you cannot *set* data on the inverse side: you can only set it on
+the *owning* side. In other words, `$genusNote->setGenus()` will work, but `$genus->setNotes()`
+would *not* work: Doctrine will ignore that when saving.
+
+So when you setup the inverse side of a relation, do yourself a favor: do *not*
+generate the setter function.

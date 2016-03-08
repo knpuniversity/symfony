@@ -31,6 +31,12 @@ chapters:
     many-to-one-relation:
         is_finished: false
         video_key: ~
+    save-relation:
+        is_finished: false
+        video_key: ~
+    join-column-relation-fixtures:
+        is_finished: false
+        video_key: ~        
     param-conversion:
         is_finished: false
         video_key: ~

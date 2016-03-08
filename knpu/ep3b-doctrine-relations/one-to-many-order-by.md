@@ -1,13 +1,33 @@
-# One to Many Order By
+# Order By with a OneToMany
 
-All right. Let’s finish this up. Ultimately I want to create a structure that looks like this notes structure that we have right here so that we don’t change the J sound representation that we’re sending back. Our Java script is already accustomed to reading something in just this format. So above the 4H, I’m making new notes variable and then in the 4H, let’s populate that starting with the ID and we’ll say note arrow get ID and notice I do not get auto completion on that. 
+Let's finish this! Ultimately, we need to create the same `$notes` structure, but
+with the *real* data. Above the `foreach` add a new `$notes` variable. Inside, add
+a new entry to that and start populating it with `id => $note->getId()`.
 
-So that doesn’t mean that code is wrong, but it might mean that and I’m going to fix my code to make sure that I get auto completion. So the first problem is that genus arrow get notes, if you look at that function [inaudible] [00:00:50] has no idea what that returns. So I’m going to put documentation on that and it is correct that it returns an array collection object, but I’m going to do a pipe genus note luster bracket, right start bracket and that’s going to give us auto completion as if this were an array of genus note objects which it really is. 
+Hey! Where's my autocompletion on that method!? Check out `getNotes()` method in
+`Genus`. Ah, there's no `@return` - so PhpStorm has no idea what that returns. Sorry
+PhpStorm - my bad. Add some PhpDoc with `@return ArrayCollection|GenusNote[]`. This
+will autocomplete any methods from `ArrayCollection` *and* auto-complete from `GenusNote`
+if we loop over these results.
 
-When we loop over it, we’re dealing with genus note objects. So now we should auto completion on get ID. Perfect. So next we’ll have user name is no arrow get user name and I’ll actually paste in the last couple fields here. [Inaudible], note and date. Perfect. We can finally delete our hard coded notes. Okay. Moment of truth. Let’s see if this guy works. Go back and there it is. Instantly the AJAX request goes and it fires our 15 or so notes on this which are awesomely random thanks to Alison Faker. 
+*Now* we get autocompletion for `getId()`. Next, add `username => $note->getUsername()`
+and I'll paste in the other fields: `avatarUri`, `note` and `date`. Ok, delete that
+hardcoded stuff!
 
-So the downside to using the lazy way, just saying genus arrow get notes is you don’t have a lot of control on how that query is made. For example, if you only wanted to get some notes, maybe published notes then you can’t use the shortcut. You need to make a custom query on the genus notes repository to return genus notes related to this genus and which are published or that are less than 30 days old, whatever criteria you need. So this shortcut method is only going to work if you have really straightforward queries. 
+Deep breath: moment of truth. Refresh! Ha! There are the 15 beautiful, random notes,
+courtesy of the AJAX request, Alice and Faker.
 
-Now there is one thing that you can do to customize it and that’s ordering. So probably we want to have our newest comments on top and right now they’re just kind of randomly ordered however they’re coming back in the database. To do that, go to your genus where you have your inverse side of your relationship and you can control this ordering by saying at or [inaudible] order by and then curly brace created at. That’s the name of the property on genus note that you want to order by equals descending and then close up your curly. 
+## Ordering the OneToMany
 
-Head back. Refresh and there it is. Newest ones on top, oldest one is on bottom. So you have some control, but if you’ve got to push further than that with this query, it’s not going to work. Make a custom query. 
+But wait - the order of the notes is weird: these should really be ordered from newest
+to oldest. That's the *downside* of using the `$genus->getNotes()` shortcut: you
+can't customize the query - it just happens magically in the background.
+
+Well ok, I'm lying a *little* bit: you *can* control the order. Open up `Genus`
+and find the `$notes` property. Add another annotation: `@ORM\OrderBy` with
+`{"createdAt"="DESC"}`. I know, the curly-braces and quotes look a little crazy here:
+just Google this if you can't remember the syntax. I do!
+
+Ok, refresh! Hey! Newest ones on top, oldest ones on the bottom. So we do have *some*
+control. But if you need to go further - like only returning the GenusNotes that
+are less than 30 days old - you'll need to do a little bit more work.
