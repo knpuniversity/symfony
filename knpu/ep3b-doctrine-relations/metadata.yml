@@ -49,6 +49,9 @@ chapters:
     array-collection-tricks:
         is_finished: false
         video_key: ~
-    relation-query-joins:
+    relation-query:
+        is_finished: false
+        video_key: ~
+    query-with-join:
         is_finished: false
         video_key: ~
