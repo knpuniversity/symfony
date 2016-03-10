@@ -27,5 +27,5 @@ to set this field - it'll default to true instead of null.
 Woo! No errors this time. Check out the queries for the page. Nice! Two insert queries:
 `INSERT INTO genus` and then `INSERT INTO genus_note` using 46: the new genus's id.
 
-With two lines to setup the relationsip, and one line to link a `GenusNote` to a
+With two lines to setup the relationship, and one line to link a `GenusNote` to a
 `Genus`, you've got a fantastic new relationship.

@@ -27,7 +27,7 @@ has all the info it needs to generate the full JOIN SQL.
 ## Joins and the Inverse Relation
 
 Remember, this is the optional, *inverse* side of the relationship: we added this
-for the conveniences of being able to say `$genus->getNotes()`. And this is the
+for the convenience of being able to say `$genus->getNotes()`. And this is the
 *second* reason you might decide to map the inverse side of the relation: it's required
 if you're doing a JOIN in this direction.
 
@@ -35,7 +35,7 @@ Back in `GenusRepository`, give `leftJoin` a second argument: `genus_note` - thi
 is the alias we can use during the rest of the query to reference fields on the joined
 `genus_note` table. This allows us to say `->orderBy('genus_note.createdAt', 'DESC')`.
 
-That's it! Same philosophiy of SQL joining... but it takes less work.
+That's it! Same philosophy of SQL joining... but it takes less work.
 
 Head back and refresh! Ok, the order *did* change. Look at the first one - the top
 note is from Feb 15th, the second genus has a note from Feb 11 and at the bottom,

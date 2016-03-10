@@ -2,7 +2,7 @@
 
 We have the `Genus` object. So how can we get the collection of related `GenusNote`
 Well, the simplest way is just to make a query - in fact, you could fetch the `GenusNote`
-repository and call `findOneBy(['genus' => $genus])`. It's really that simple.
+repository and call `findBy(['genus' => $genus])`. It's really that simple.
 
 ***TIP
 You can also pass the Genus's *id* in queries, instead of the entire `Genus` object.
@@ -18,7 +18,7 @@ and ManyToMany. For this, we needed `ManyToOne`.
 
 But actually, you can think about any relationship in two directions: each `GenusNote`
 has *one* `Genus`. Or, each `Genus` has many `GenusNote`. And in Doctrine, you can
-*map* just one side of a relationship, *or* both. Let me show you:
+*map* just one side of a relationship, *or* both. Let me show you.
 
 Open `Genus` and add a new `$notes` property. This is the *inverse* side of the
 relationship. Above this, add a `OneToMany` annotation with `targetEntity` set to
@@ -55,7 +55,7 @@ Love it!
 
 ## Owning and Inverse Sides
 
-That's was pretty easy: *if* you want this shortcut, just add a few lines to map
+That was pretty easy: *if* you want this shortcut, just add a few lines to map
 the *other* side of the relationship.
 
 But actually, you just learned the *hardest* thing in Doctrine. Whenever you have

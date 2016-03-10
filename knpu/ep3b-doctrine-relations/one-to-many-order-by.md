@@ -4,15 +4,15 @@ Let's finish this! Ultimately, we need to create the same `$notes` structure, bu
 with the *real* data. Above the `foreach` add a new `$notes` variable. Inside, add
 a new entry to that and start populating it with `id => $note->getId()`.
 
-Hey! Where's my autocompletion on that method!? Check out `getNotes()` method in
+Hey! Where's my autocompletion on that method!? Check out the `getNotes()` method in
 `Genus`. Ah, there's no `@return` - so PhpStorm has no idea what that returns. Sorry
 PhpStorm - my bad. Add some PhpDoc with `@return ArrayCollection|GenusNote[]`. This
 will autocomplete any methods from `ArrayCollection` *and* auto-complete from `GenusNote`
 if we loop over these results.
 
 *Now* we get autocompletion for `getId()`. Next, add `username => $note->getUsername()`
-and I'll paste in the other fields: `avatarUri`, `note` and `date`. Ok, delete that
-hardcoded stuff!
+and I'll paste in the other fields: `avatarUri`, `note` and `createdAt`. Ok, delete
+that hardcoded stuff!
 
 Deep breath: moment of truth. Refresh! Ha! There are the 15 beautiful, random notes,
 courtesy of the AJAX request, Alice and Faker.

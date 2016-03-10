@@ -15,7 +15,7 @@ Doctrine doesn't know about this new repository class yet, so go tell it! In
 `GenusNote`, find `@ORM\Entity` and add `repositoryClass="AppBundle\Repository\GenusNoteRepository"`.
 
 Finally, use the new method in `GenusController` -
-`$recentNotes = $em->getReository('AppBndle:Genus')->findAllRecentNotesForGenus()`
+`$recentNotes = $em->getRepository('AppBundle:Genus')->findAllRecentNotesForGenus()`
 and pass it the `$genus` object from above.
 
 Obviously, we're not done yet - but it should at least *not* break. Refresh. Ok,
@@ -26,18 +26,18 @@ for me.
 ## Using the Relationship in the Query
 
 Head back to the repository. This query is pretty simple actually: add
-an `->andWhere('genus_note.genus = :genus)`. Then, fill in `:genus` with
+an `->andWhere('genus_note.genus = :genus')`. Then, fill in `:genus` with
 `->setParameter('genus', $genus)`. This a simple query - equivalent to
 `SELECT * FROM genus_note WHERE genus_id = ` some number. The only tricky part is
 that the `andWhere` is done on the `genus` property - not the `genus_id` column:
 you *always* reference property names with Doctrine.
 
-Finish this with another `andWhere('genus_note.createdAt > :recentDate)` and
+Finish this with another `andWhere('genus_note.createdAt > :recentDate')` and
 `->setParameter('recentDate', new \DateTime('-3 months'))`. 
 
 Perfect! Go back and try it - the count *should* go back to 6. There we go! But now,
 instead of fetching *all* the notes just to count some of them, we're only querying
 for the ones we need. *And*, Doctrine *loves* returning objects, but you could make
 this even *faster* by returning *only* the count from the query, instead of the
-objects. Don't optimize too early -but when you're ready, we cover that in our
+objects. Don't optimize too early - but when you're ready, we cover that in our
 [Going Pro with Doctrine Queries](knpuniversity.com/screencast/doctrine-queries).

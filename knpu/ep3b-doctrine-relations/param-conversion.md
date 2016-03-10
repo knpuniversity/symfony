@@ -46,11 +46,11 @@ that happens automatically each second.
 ## Seeing the Profiler for an AJAX Request
 
 But don't worry! Go to `/_profiler` to see a list of the most recent requests, including
-AJAX request. Select one of these: this is the profiler for that AJAX call, and in
+AJAX requests. Select one of these: this is the profiler for that AJAX call, and in
 the `Debug` panel... *there's* the dump. It's alive!
 
 So be lazy: setup your routes with a wildcard that matches a property name and use
 a type-hint to activate param conversion. If a genus can't be found for this page,
-it'll automatically 404. And if you *can'* use param conversion because you need
+it'll automatically 404. And if you *can't* use param conversion because you need
 to run a custom query: cool - just get the entity manager and query like normal.
 Use the shortcut when it helps!

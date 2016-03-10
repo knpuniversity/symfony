@@ -53,7 +53,7 @@ But first, don't forget to generate a migration for the new table:
 php bin/console doctrine:migrations:diff
 ```
 
-Open up that file to make sure it looks right - it it lives in `app/Doctrine/migrations`.
+Open up that file to make sure it looks right - it lives in `app/DoctrineMigrations`.
 `CREATE TABLE genus_note` - it looks great! Head back to the console and run the
 migration:
 
@@ -69,19 +69,19 @@ file and add a new section for `AppBundle\Entity\GenusNote`. Start just like bef
 property using the Faker functions: `username: <username()>` and then `userAvatarFilename:`.
 Ok, eventually users might upload their *own* avatars, but for now, we have two
 hardcoded options: `leanna.jpeg` and `ryan.jpeg`. Let's select one of these randomly
-with a sweet syntax: `50%? leanna.jpg : ryan.jpeg`. That's Alice awesomeness.
+with a sweet syntax: `50%? leanna.jpeg : ryan.jpeg`. That's Alice awesomeness.
 
 The rest are easy: `note: <paragraph()>` and `createdAt: <dateTimeBetween('-6 months', 'now')>`.
 Ok, run the fixtures!
 
 ```bash
-php doctrine:fixtures:load
+php bin/console doctrine:fixtures:load
 ```
 
 Double-check them with a query:
 
 ```bash
-php doctrine:query:sql 'SELECT * FROM genus_note'
+php bin/console doctrine:query:sql 'SELECT * FROM genus_note'
 ```
 
-So awesome! Ok team, we have two entiteis: let's add a relationship!
+So awesome! Ok team, we have two entities: let's add a relationship!
