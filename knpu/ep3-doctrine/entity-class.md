@@ -70,7 +70,7 @@ You can also configure Doctrine with YAML, XML or PHP, instead of annotations. C
 ***
 
 Every entity class will have that *same* `use` statement. Next, put your cursor inside
-the class and open up the Code->Generate menu - `cmd`+`N` on a Mac. Ooh, one of the options
+the class and open up the "Code"->"Generate" menu - `cmd`+`N` on a Mac. Ooh, one of the options
 is `ORM Class`. Click that... and boom! It adds two annotations - `@ORM\Entity` and
 `@ORM\Table` above the class:
 
@@ -82,7 +82,7 @@ Doctrine now knows this class should map to a table called `genus`.
 
 But that table won't have *any* columns yet. Lame. Add two properties to get us rolling:
 `id` and `name`. To tell Doctrine that these should map to columns, open up the
-Code->Generate menu again - or `cmd`+`N`. This time, select `ORM Annotation` and
+"Code"->"Generate" menu again - or `cmd`+`N`. This time, select `ORM Annotation` and
 highlight both properties. And, boom again!
 
 [[[ code('e4bb6964fb') ]]]
