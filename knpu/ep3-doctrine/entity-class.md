@@ -16,7 +16,7 @@ code downloaded, so I'll go straight to opening up a new terminal and starting t
 built-in sever with:
 
 ```bash
-php bin/console server:run
+./bin/console server:run
 ```
 
 Perfect!
