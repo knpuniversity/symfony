@@ -46,9 +46,13 @@ It's pretty sweet. Oh, and the *whole* setup is going to take about 2 minutes an
 25 lines of code. Watch.
 
 Create an `Entity` directory in `AppBundle` and then create a normal class inside
-called `Genus`. You're going to hear this word - *entity* - a lot with Doctrine.
-Entity - it sounds like an alien parasite. Fortunately, it's less scary than that:
-an entity is just a class that Doctrine will map to a database table.
+called `Genus`:
+
+[[[ code('615448c4a0') ]]]
+
+You're going to hear this word - *entity* - a lot with Doctrine. Entity - it sounds
+like an alien parasite. Fortunately, it's less scary than that: an entity is just
+a class that Doctrine will map to a database table.
 
 ## Configuration with... Annotations!
 
@@ -56,34 +60,45 @@ To do that - Doctrine needs to know two things: what the table should be called 
 what columns it needs. To help it out, we're going to use... drumroll... annotations!
 Remember, whenever you use an annotation, you need a `use` statement for it. This
 will look weird, but add a `use` for a `Column` class and let it auto-complete from
-`Doctrine\ORM\Mapping`. Remove the `Column` part and add `as ORM`.
+`Doctrine\ORM\Mapping`. Remove the `Column` part and add `as ORM`:
+
+[[[ code('e0bcac15b4') ]]]
 
 ***TIP
-You can also configure Doctrine with YAML, XML or PHP, instead of annotations.
+You can also configure Doctrine with YAML, XML or PHP, instead of annotations. Check
+[Add Mapping Information][1] to see how to configure it.
 ***
 
 Every entity class will have that *same* `use` statement. Next, put your cursor inside
-the class and open up the Code->Generate menu - cmd+N on a Mac. Ooh, one of the options
+the class and open up the Code->Generate menu - `cmd`+`N` on a Mac. Ooh, one of the options
 is `ORM Class`. Click that... and boom! It adds two annotations - `@ORM\Entity` and
-`@ORM\Table` above the class. Doctrine now knows this class should map to a table
-called `genus`.
+`@ORM\Table` above the class:
+
+[[[ code('5298ae9b7d') ]]]
+
+Doctrine now knows this class should map to a table called `genus`.
 
 ## Configuring the Columns
 
 But that table won't have *any* columns yet. Lame. Add two properties to get us rolling:
 `id` and `name`. To tell Doctrine that these should map to columns, open up the
-Code->Generate menu again - or command+N. This time, select `ORM Annotation` and
+Code->Generate menu again - or `cmd`+`N`. This time, select `ORM Annotation` and
 highlight both properties. And, boom again!
 
-Now we have annotations above each property. The `id` columns\ is special - it will
+[[[ code('e4bb6964fb') ]]]
+
+Now we have annotations above each property. The `id` columns is special - it will
 almost always look exactly like this: it basically says that `id` is the primary
 key.
 
 After that, you'll have whatever other columns you need. Hey, look at the `type`
-option that's set to `string`. That's a Doctrine "type", and it will map to a varchar
+option that's set to `string`. That's a Doctrine "type", and it will map to a `varchar`
 in MySQL. There are other Doctrine types for strings, floats and text - we'll talk
 about those soon! 
 
 And with just 25 lines of code, we're done! In a second, we'll ask Doctrine to create
 the `genus `table for us and we'll be ready to start saving stuff. Well, let's get
 to it!
+
+
+[1]: http://symfony.com/doc/current/book/doctrine.html#add-mapping-information
