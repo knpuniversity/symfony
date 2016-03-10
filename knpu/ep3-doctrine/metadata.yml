@@ -31,12 +31,10 @@ tuts_hero:
 
 chapters:
     entity-class:
-        is_finished: false
-        video_key: ~
+        video_key: 158504468
         is_free: true
     db-config:
-        is_finished: false
-        video_key: ~
+        video_key: 158505230
         is_free: true
     insert-object:
         is_finished: false
