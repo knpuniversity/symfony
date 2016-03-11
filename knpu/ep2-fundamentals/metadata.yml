@@ -1,8 +1,8 @@
-title: Symfony 3 Fundamentals: Bundles, Configuration & Environments
+title: Symfony Fundamentals: Bundles, Configuration & Environments
 
 summary: |
-    After [episode 1](http://knpuniversity.com/screencast/symfony), you've
-    got Symfony up and running. CELEBRATION!
+    After the first couce - [Joyful Development with Symfony](http://knpuniversity.com/screencast/symfony),
+    you've got Symfony up and running. CELEBRATION!
 
     In this episode, it's time to get down to work by learning the
     fundamental concepts of bundles, configuration and environments!

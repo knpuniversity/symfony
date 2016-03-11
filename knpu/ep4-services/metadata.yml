@@ -1,12 +1,11 @@
-title: Getting started with Symfony 3: Services and the Container
+title: Symfony: Level up with Services and the Container
 
 summary: |
-    With [episode 1](http://knpuniversity.com/screencast/symfony)
-    and [episode 2](http://knpuniversity.com/screencast/symfony-doctrine)
-    in the books, we've got an app with a rich data model backed
-    by Doctrine.
+    Our app is coming to life! Thanks to the [Doctrine Course](http://knpuniversity.com/screencast/symfony-doctrine)
+    we have a rich data model. And after the course on [Configuration](knpuniversity.com/screencast/symfony-fundamentals),
+    well, using and configuring services is simple.'
 
-    Now it's time to get serious by mastering *services*. These
+    Now it's time to level-up with those *services*. These
     puppies are the backbone of what makes Symfony special & fast.
     It's also the reason that organizing your code into reusable
     chunks is so easy. But beyond that, once you understand how

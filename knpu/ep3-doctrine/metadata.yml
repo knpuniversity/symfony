@@ -1,11 +1,9 @@
-title: Getting started with Symfony 3: Doctrine & the Database
+title: Symfony: Doctrine & the Database
 
 summary: |
-    After [episode 1](http://knpuniversity.com/screencast/symfony), you
-    are already up and running with Symfony. Check you out!
-
-    Now it's time to make things more interesting by talking to the
-    database with Doctrine.
+    With already *two* courses checked off, you are *primed* and ready to put
+    Symfony to work! And that's what this course is all about: making things more
+    interesting by talking to the database with Doctrine.
 
     Doctrine has a reputation for being tough to learn, and that's
     unfortunate, because it's an amazing tool. In this tutorial, we'll
