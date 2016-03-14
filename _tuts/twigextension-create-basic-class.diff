@@ -1,0 +1,42 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index fd864e4..73c7f23 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -14,7 +14,7 @@
+                 <dt>Known Species:</dt>
+                 <dd>{{ genus.speciesCount|number_format }}</dd>
+                 <dt>Fun Fact:</dt>
+-                <dd>{{ genus.funFact|markdown }}</dd>
++                <dd>{{ genus.funFact|markdownify }}</dd>
+                 <dt>Recent Notes</dt>
+                 <dd>{{ recentNoteCount }}</dd>
+             </dl>
+diff --git a/src/AppBundle/Twig/MarkdownExtension.php b/src/AppBundle/Twig/MarkdownExtension.php
+new file mode 100644
+index 0000000..df71589
+--- /dev/null
++++ b/src/AppBundle/Twig/MarkdownExtension.php
+@@ -0,0 +1,23 @@
++<?php
++
++namespace AppBundle\Twig;
++
++class MarkdownExtension extends \Twig_Extension
++{
++    public function getFilters()
++    {
++        return [
++            new \Twig_SimpleFilter('markdownify', array($this, 'parseMarkdown'))
++        ];
++    }
++
++    public function parseMarkdown($str)
++    {
++        return strtoupper($str);
++    }
++
++    public function getName()
++    {
++        return 'app_markdown';
++    }
++}

@@ -1,0 +1,60 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 4b72686..e8cc92c 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -14,7 +14,7 @@
+                 <dt>Known Species:</dt>
+                 <dd>{{ genus.speciesCount|number_format }}</dd>
+                 <dt>Fun Fact:</dt>
+-                <dd>{{ genus.funFact }}</dd>
++                <dd>{{ funFact }}</dd>
+                 <dt>Recent Notes</dt>
+                 <dd>{{ recentNoteCount }}</dd>
+             </dl>
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index c0b4a9f..6c670c1 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
+ 
+ use AppBundle\Entity\Genus;
+ use AppBundle\Entity\GenusNote;
++use AppBundle\Service\MarkdownParser;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+@@ -66,6 +67,9 @@ class GenusController extends Controller
+             throw $this->createNotFoundException('genus not found');
+         }
+ 
++        $markdownParser = new MarkdownParser();
++        $funFact = $markdownParser->parse($genus->getFunFact());
++
+         // todo - add the caching back later
+         /*
+         $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
+@@ -88,6 +92,7 @@ class GenusController extends Controller
+ 
+         return $this->render('genus/show.html.twig', array(
+             'genus' => $genus,
++            'funFact' => $funFact,
+             'recentNoteCount' => count($recentNotes)
+         ));
+     }
+diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
+new file mode 100644
+index 0000000..6118d0e
+--- /dev/null
++++ b/src/AppBundle/Service/MarkdownParser.php
+@@ -0,0 +1,11 @@
++<?php
++
++namespace AppBundle\Service;
++
++class MarkdownParser
++{
++    public function parse($str)
++    {
++        return strtoupper($str);
++    }
++}

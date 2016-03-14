@@ -1,0 +1,27 @@
+diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
+index a8dd3ab..2202217 100644
+--- a/src/AppBundle/Service/MarkdownParser.php
++++ b/src/AppBundle/Service/MarkdownParser.php
+@@ -2,11 +2,13 @@
+ 
+ namespace AppBundle\Service;
+ 
++use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
++
+ class MarkdownParser
+ {
+     private $markdownParser;
+ 
+-    public function __construct($markdownParser)
++    public function __construct(MarkdownParserInterface $markdownParser)
+     {
+         $this->markdownParser = $markdownParser;
+     }
+@@ -14,6 +16,6 @@ class MarkdownParser
+     public function parse($str)
+     {
+         return $this->markdownParser
+-            ->transform($str);
++            ->transformMarkdown($str);
+     }
+ }

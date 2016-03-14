@@ -1,0 +1,26 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index e8cc92c..fd864e4 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -14,7 +14,7 @@
+                 <dt>Known Species:</dt>
+                 <dd>{{ genus.speciesCount|number_format }}</dd>
+                 <dt>Fun Fact:</dt>
+-                <dd>{{ funFact }}</dd>
++                <dd>{{ genus.funFact|markdown }}</dd>
+                 <dt>Recent Notes</dt>
+                 <dd>{{ recentNoteCount }}</dd>
+             </dl>
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index ca2cd9e..9f939f9 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -86,7 +86,7 @@ class Genus
+ 
+     public function getFunFact()
+     {
+-        return $this->funFact;
++        return '**TEST** '.$this->funFact;
+     }
+ 
+     public function setFunFact($funFact)

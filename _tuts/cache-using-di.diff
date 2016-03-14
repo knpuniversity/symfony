@@ -1,0 +1,40 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 3cbd843..83d95ca 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -6,4 +6,4 @@ parameters:
+ services:
+     app.markdown_parser:
+         class: AppBundle\Service\MarkdownParser
+-        arguments: ['@markdown.parser']
++        arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
+index 2ecea17..3a83bfe 100644
+--- a/src/AppBundle/Service/MarkdownParser.php
++++ b/src/AppBundle/Service/MarkdownParser.php
+@@ -2,20 +2,23 @@
+ 
+ namespace AppBundle\Service;
+ 
++use Doctrine\Common\Cache\Cache;
+ use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
+ 
+ class MarkdownParser
+ {
+     private $markdownParser;
++    private $cache;
+ 
+-    public function __construct(MarkdownParserInterface $markdownParser)
++    public function __construct(MarkdownParserInterface $markdownParser, Cache $cache)
+     {
+         $this->markdownParser = $markdownParser;
++        $this->cache = $cache;
+     }
+ 
+     public function parse($str)
+     {
+-        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
++        $cache = $this->cache;
+         $key = md5($str);
+         if ($cache->contains($key)) {
+             return $cache->fetch($key);

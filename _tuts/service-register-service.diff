@@ -1,0 +1,29 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 5c76fc5..3cbd843 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -4,6 +4,6 @@ parameters:
+ #    parameter_name: value
+ 
+ services:
+-#    service_name:
+-#        class: AppBundle\Directory\ClassName
+-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
++    app.markdown_parser:
++        class: AppBundle\Service\MarkdownParser
++        arguments: ['@markdown.parser']
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 155eec8..0528472 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -67,9 +67,7 @@ class GenusController extends Controller
+             throw $this->createNotFoundException('genus not found');
+         }
+ 
+-        $markdownParser = new MarkdownParser(
+-            $this->get('markdown.parser')
+-        );
++        $markdownParser = $this->get('app.markdown_parser');
+         $funFact = $markdownParser->parse($genus->getFunFact());
+ 
+         // todo - add the caching back later

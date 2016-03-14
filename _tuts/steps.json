@@ -399,7 +399,72 @@
             "id": "join-join-query-to-order-by-relation",
             "name": "Join: Join query to order by relation",
             "description": null
+        },
+        {
+            "id": "service-create-markdown-object",
+            "name": "Service: Create Markdown object",
+            "description": null
+        },
+        {
+            "id": "service-incorrectly-fetch-service",
+            "name": "Service: Incorrectly fetch service",
+            "description": null
+        },
+        {
+            "id": "service-manual-di",
+            "name": "Service: Manual DI",
+            "description": null
+        },
+        {
+            "id": "service-add-type-hint",
+            "name": "Service: Add type-hint",
+            "description": null
+        },
+        {
+            "id": "service-register-service",
+            "name": "Service: Register service",
+            "description": null
+        },
+        {
+            "id": "cache-start-caching-code",
+            "name": "Cache: Start caching code",
+            "description": null
+        },
+        {
+            "id": "cache-using-di",
+            "name": "Cache: Using DI",
+            "description": null
+        },
+        {
+            "id": "twigextension-use-existing-markdown-filter",
+            "name": "TwigExtension: Use existing markdown filter",
+            "description": null
+        },
+        {
+            "id": "twigextension-create-basic-class",
+            "name": "TwigExtension: Create basic class",
+            "description": null
+        },
+        {
+            "id": "twigextension-register-as-service",
+            "name": "TwigExtension: Register as service",
+            "description": null
+        },
+        {
+            "id": "twigextension-use-di",
+            "name": "TwigExtension: Use DI",
+            "description": null
+        },
+        {
+            "id": "twigextension-autowire",
+            "name": "TwigExtension: Autowire",
+            "description": null
+        },
+        {
+            "id": "twigextension-mark-as-safe",
+            "name": "TwigExtension: Mark as safe",
+            "description": null
         }
     ],
-    "sha": "6bb20584aaf21b54afb64bdfceeb72d7985d3af8"
+    "sha": "219eb5122fb8c21f432c29678dfb548490c47eb6"
 }

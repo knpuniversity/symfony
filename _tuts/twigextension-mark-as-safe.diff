@@ -1,0 +1,15 @@
+diff --git a/src/AppBundle/Twig/MarkdownExtension.php b/src/AppBundle/Twig/MarkdownExtension.php
+index 1077edc..08946a2 100644
+--- a/src/AppBundle/Twig/MarkdownExtension.php
++++ b/src/AppBundle/Twig/MarkdownExtension.php
+@@ -16,7 +16,9 @@ class MarkdownExtension extends \Twig_Extension
+     public function getFilters()
+     {
+         return [
+-            new \Twig_SimpleFilter('markdownify', array($this, 'parseMarkdown'))
++            new \Twig_SimpleFilter('markdownify', array($this, 'parseMarkdown'), [
++                'is_safe' => ['html']
++            ])
+         ];
+     }
+ 

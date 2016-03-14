@@ -1,0 +1,37 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 6c670c1..155eec8 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -67,7 +67,9 @@ class GenusController extends Controller
+             throw $this->createNotFoundException('genus not found');
+         }
+ 
+-        $markdownParser = new MarkdownParser();
++        $markdownParser = new MarkdownParser(
++            $this->get('markdown.parser')
++        );
+         $funFact = $markdownParser->parse($genus->getFunFact());
+ 
+         // todo - add the caching back later
+diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
+index 0494f61..a8dd3ab 100644
+--- a/src/AppBundle/Service/MarkdownParser.php
++++ b/src/AppBundle/Service/MarkdownParser.php
+@@ -4,9 +4,16 @@ namespace AppBundle\Service;
+ 
+ class MarkdownParser
+ {
++    private $markdownParser;
++
++    public function __construct($markdownParser)
++    {
++        $this->markdownParser = $markdownParser;
++    }
++
+     public function parse($str)
+     {
+-        return $this->get('markdown.parser')
++        return $this->markdownParser
+             ->transform($str);
+     }
+ }

@@ -1,0 +1,48 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 0528472..c413eb6 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -70,20 +70,6 @@ class GenusController extends Controller
+         $markdownParser = $this->get('app.markdown_parser');
+         $funFact = $markdownParser->parse($genus->getFunFact());
+ 
+-        // todo - add the caching back later
+-        /*
+-        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
+-        $key = md5($funFact);
+-        if ($cache->contains($key)) {
+-            $funFact = $cache->fetch($key);
+-        } else {
+-            sleep(1); // fake how slow this could be
+-            $funFact = $this->get('markdown.parser')
+-                ->transform($funFact);
+-            $cache->save($key, $funFact);
+-        }
+-        */
+-
+         $this->get('logger')
+             ->info('Showing genus: '.$genusName);
+ 
+diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
+index 2202217..2ecea17 100644
+--- a/src/AppBundle/Service/MarkdownParser.php
++++ b/src/AppBundle/Service/MarkdownParser.php
+@@ -15,7 +15,17 @@ class MarkdownParser
+ 
+     public function parse($str)
+     {
+-        return $this->markdownParser
++        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
++        $key = md5($str);
++        if ($cache->contains($key)) {
++            return $cache->fetch($key);
++        }
++
++        sleep(1);
++        $str = $this->markdownParser
+             ->transformMarkdown($str);
++        $cache->save($key, $str);
++
++        return $str;
+     }
+ }
