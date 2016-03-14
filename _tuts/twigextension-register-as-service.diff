@@ -1,10 +1,10 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 83d95ca..dbc1c6b 100644
+index e94e1d0..2ac7f2d 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -7,3 +7,8 @@ services:
-     app.markdown_parser:
-         class: AppBundle\Service\MarkdownParser
+     app.markdown_transformer:
+         class: AppBundle\Service\MarkdownTransformer
          arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
 +
 +    app.markdown_extension:

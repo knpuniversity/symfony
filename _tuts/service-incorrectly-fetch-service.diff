@@ -1,8 +1,8 @@
-diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
-index 6118d0e..0494f61 100644
---- a/src/AppBundle/Service/MarkdownParser.php
-+++ b/src/AppBundle/Service/MarkdownParser.php
-@@ -6,6 +6,7 @@ class MarkdownParser
+diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
+index fe572b1..d51a109 100644
+--- a/src/AppBundle/Service/MarkdownTransformer.php
++++ b/src/AppBundle/Service/MarkdownTransformer.php
+@@ -6,6 +6,7 @@ class MarkdownTransformer
  {
      public function parse($str)
      {

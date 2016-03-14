@@ -1,10 +1,10 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 0528472..c413eb6 100644
+index a26c782..6e17cbf 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -70,20 +70,6 @@ class GenusController extends Controller
-         $markdownParser = $this->get('app.markdown_parser');
-         $funFact = $markdownParser->parse($genus->getFunFact());
+         $markdownTransformer = $this->get('app.markdown_transformer');
+         $funFact = $markdownTransformer->parse($genus->getFunFact());
  
 -        // todo - add the caching back later
 -        /*
@@ -23,11 +23,11 @@ index 0528472..c413eb6 100644
          $this->get('logger')
              ->info('Showing genus: '.$genusName);
  
-diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
-index 2202217..2ecea17 100644
---- a/src/AppBundle/Service/MarkdownParser.php
-+++ b/src/AppBundle/Service/MarkdownParser.php
-@@ -15,7 +15,17 @@ class MarkdownParser
+diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
+index fb3bffb..ab0c2cb 100644
+--- a/src/AppBundle/Service/MarkdownTransformer.php
++++ b/src/AppBundle/Service/MarkdownTransformer.php
+@@ -15,7 +15,17 @@ class MarkdownTransformer
  
      public function parse($str)
      {

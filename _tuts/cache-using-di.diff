@@ -1,17 +1,17 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 3cbd843..83d95ca 100644
+index b87fef4..e94e1d0 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -6,4 +6,4 @@ parameters:
  services:
-     app.markdown_parser:
-         class: AppBundle\Service\MarkdownParser
+     app.markdown_transformer:
+         class: AppBundle\Service\MarkdownTransformer
 -        arguments: ['@markdown.parser']
 +        arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
-diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
-index 2ecea17..3a83bfe 100644
---- a/src/AppBundle/Service/MarkdownParser.php
-+++ b/src/AppBundle/Service/MarkdownParser.php
+diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
+index ab0c2cb..bb9baae 100644
+--- a/src/AppBundle/Service/MarkdownTransformer.php
++++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -2,20 +2,23 @@
  
  namespace AppBundle\Service;
@@ -19,7 +19,7 @@ index 2ecea17..3a83bfe 100644
 +use Doctrine\Common\Cache\Cache;
  use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
  
- class MarkdownParser
+ class MarkdownTransformer
  {
      private $markdownParser;
 +    private $cache;

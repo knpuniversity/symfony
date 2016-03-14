@@ -12,14 +12,14 @@ index 4b72686..e8cc92c 100644
                  <dd>{{ recentNoteCount }}</dd>
              </dl>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index c0b4a9f..6c670c1 100644
+index c0b4a9f..9804569 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -4,6 +4,7 @@ namespace AppBundle\Controller;
  
  use AppBundle\Entity\Genus;
  use AppBundle\Entity\GenusNote;
-+use AppBundle\Service\MarkdownParser;
++use AppBundle\Service\MarkdownTransformer;
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,7 +27,7 @@ index c0b4a9f..6c670c1 100644
              throw $this->createNotFoundException('genus not found');
          }
  
-+        $markdownParser = new MarkdownParser();
++        $markdownParser = new MarkdownTransformer();
 +        $funFact = $markdownParser->parse($genus->getFunFact());
 +
          // todo - add the caching back later
@@ -41,17 +41,17 @@ index c0b4a9f..6c670c1 100644
              'recentNoteCount' => count($recentNotes)
          ));
      }
-diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
+diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
 new file mode 100644
-index 0000000..6118d0e
+index 0000000..fe572b1
 --- /dev/null
-+++ b/src/AppBundle/Service/MarkdownParser.php
++++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -0,0 +1,11 @@
 +<?php
 +
 +namespace AppBundle\Service;
 +
-+class MarkdownParser
++class MarkdownTransformer
 +{
 +    public function parse($str)
 +    {

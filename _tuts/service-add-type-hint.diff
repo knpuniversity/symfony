@@ -1,14 +1,14 @@
-diff --git a/src/AppBundle/Service/MarkdownParser.php b/src/AppBundle/Service/MarkdownParser.php
-index a8dd3ab..2202217 100644
---- a/src/AppBundle/Service/MarkdownParser.php
-+++ b/src/AppBundle/Service/MarkdownParser.php
+diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
+index 51a7c43..fb3bffb 100644
+--- a/src/AppBundle/Service/MarkdownTransformer.php
++++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -2,11 +2,13 @@
  
  namespace AppBundle\Service;
  
 +use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 +
- class MarkdownParser
+ class MarkdownTransformer
  {
      private $markdownParser;
  
@@ -17,7 +17,7 @@ index a8dd3ab..2202217 100644
      {
          $this->markdownParser = $markdownParser;
      }
-@@ -14,6 +16,6 @@ class MarkdownParser
+@@ -14,6 +16,6 @@ class MarkdownTransformer
      public function parse($str)
      {
          return $this->markdownParser
