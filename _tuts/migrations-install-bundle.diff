@@ -25,7 +25,7 @@ index fbb223d..458fcc6 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 8a469d2..f75d9aa 100644
+index 9b04aac..92a11b1 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,8 @@
@@ -250,7 +250,7 @@ index 8a469d2..f75d9aa 100644
              "name": "paragonie/random_compat",
              "version": "1.1.0",
              "source": {
-@@ -1935,6 +2125,112 @@
+@@ -1936,6 +2126,112 @@
                  "templating"
              ],
              "time": "2015-11-05 12:49:06"

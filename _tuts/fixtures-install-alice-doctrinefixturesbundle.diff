@@ -26,7 +26,7 @@ index 458fcc6..eecf5ed 100644
      "scripts": {
          "post-install-cmd": [
 diff --git a/composer.lock b/composer.lock
-index f75d9aa..468ad5f 100644
+index 92a11b1..c5510e9 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,8 @@
@@ -40,7 +40,7 @@ index f75d9aa..468ad5f 100644
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -2235,6 +2235,230 @@
+@@ -2236,6 +2236,230 @@
      ],
      "packages-dev": [
          {

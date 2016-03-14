@@ -27,15 +27,15 @@ index c0d6136..fbb223d 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 5ed023b..8a469d2 100644
+index 6844b9c..9b04aac 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,8 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "hash": "425802a2afa42714b294dd7e1533cb21",
--    "content-hash": "c712c633bc335461c3fe07541e33e64d",
+-    "hash": "977ce43a6cea9500ca09cf7b54f0a46f",
+-    "content-hash": "145b762e43525a9b0d54f49c3c990183",
 +    "hash": "9f3f8c3f80d6d7c72706e479193018e3",
 +    "content-hash": "465678b671ace9387f2ebf848800e499",
      "packages": [
