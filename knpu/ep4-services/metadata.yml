@@ -26,7 +26,7 @@ illustration: sf-ep4.png
 
 tuts_hero:
 # todo - fill in the steps properly
-#    start_step: start
-    finish_step: start
+    start_step: join-join-query-to-order-by-relation
+    finish_step: twigextension-mark-as-safe
 
 chapters: []
