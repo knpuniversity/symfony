@@ -38,17 +38,13 @@ chapters:
         video_key: 158542711
         is_free: true
     adding-more-columns:
-        is_finished: false
-        video_key: ~
+        video_key: 159093914
     migrations:
-        is_finished: false
-        video_key: ~
+        video_key: 159094966
     query-list:
-        is_finished: false
-        video_key: ~
+        video_key: 159094873
     twig-dot-syntax:
-        is_finished: false
-        video_key: ~
+        video_key: 159095571
     show-404:
         is_finished: false
         video_key: ~
