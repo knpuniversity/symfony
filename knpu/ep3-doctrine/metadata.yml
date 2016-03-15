@@ -46,8 +46,7 @@ chapters:
     twig-dot-syntax:
         video_key: 159095571
     show-404:
-        is_finished: false
-        video_key: ~
+        video_key: 159096407
     dummy-data:
         is_finished: false
         video_key: ~
