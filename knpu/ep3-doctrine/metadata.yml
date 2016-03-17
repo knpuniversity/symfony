@@ -48,14 +48,11 @@ chapters:
     show-404:
         video_key: 159096407
     dummy-data:
-        is_finished: false
-        video_key: ~
+        video_key: 159396482
     fixtures-alice:
-        is_finished: false
-        video_key: ~
+        video_key: 159395744
     alice-faker-function:
-        is_finished: false
-        video_key: ~
+        video_key: 159396682
     custom-queries:
         is_finished: false
         video_key: ~
