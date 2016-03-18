@@ -29,4 +29,20 @@ tuts_hero:
 #    start_step: start
     finish_step: start
 
-chapters: []
+chapters:
+    create-service:
+        is_finished: false
+        video_key: ~
+    dependency-injection:
+        is_finished: false
+        video_key: ~
+    register-service:
+        is_finished: false
+        video_key: ~
+    inject-cache-service:
+        is_finished: false
+        video_key: ~ 
+    twig-extension:
+        is_finished: false
+        video_key: ~ 
+
