@@ -54,5 +54,4 @@ chapters:
     alice-faker-function:
         video_key: 159396682
     custom-queries:
-        is_finished: false
-        video_key: ~
+        video_key: 159506112
