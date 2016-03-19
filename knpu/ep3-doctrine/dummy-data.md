@@ -20,10 +20,14 @@ composer require --dev doctrine/doctrine-fixtures-bundle nelmio/alice
 ## Conditionally Load Dev Libraries
 
 Oh, and the `--dev` flag isn't too important. It means that these lines will be added
-to the `require-dev` section of `composer.json`, and that's meant for libraries that
-are only needed for development or to run tests. When you deploy - if you care enough -
-you can tell composer to *not* download the libraries in this section. But frankly,
-I don't bother.
+to the `require-dev` section of `composer.json`:
+
+[[[ code('92b38cf055') ]]]
+
+And that's meant for libraries that are only needed for development or to run tests.
+
+When you deploy - if you care enough - you can tell composer to *not* download the libraries
+in this section. But frankly, I don't bother.
 
 While Composer is communicating with the mothership, copy the `new` bundle line and
 add it to `AppKernel`. But put it in the section that's inside of the `dev` `if`
