@@ -38,29 +38,20 @@ chapters:
         video_key: 158542711
         is_free: true
     adding-more-columns:
-        is_finished: false
-        video_key: ~
+        video_key: 159093914
     migrations:
-        is_finished: false
-        video_key: ~
+        video_key: 159094966
     query-list:
-        is_finished: false
-        video_key: ~
+        video_key: 159094873
     twig-dot-syntax:
-        is_finished: false
-        video_key: ~
+        video_key: 159095571
     show-404:
-        is_finished: false
-        video_key: ~
+        video_key: 159096407
     dummy-data:
-        is_finished: false
-        video_key: ~
+        video_key: 159396482
     fixtures-alice:
-        is_finished: false
-        video_key: ~
+        video_key: 159395744
     alice-faker-function:
-        is_finished: false
-        video_key: ~
+        video_key: 159396682
     custom-queries:
-        is_finished: false
-        video_key: ~
+        video_key: 159506112

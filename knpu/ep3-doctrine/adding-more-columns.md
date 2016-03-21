@@ -4,11 +4,15 @@ We're *close* to making the genus page dynamic - but it has a few fields that we
 have yet - like sub family, number of known species, and fun fact.
 
 Let's add these... and be as lazy as possible when we do it! In `Genus`, create the
-properties first: `private $subFamily`, `private $speciesCount` and `private $funFact`.
+properties first: `private $subFamily`, `private $speciesCount` and `private $funFact`:
 
-Now, just do the same thing we did before: bring up the Code->Generate menu - or
-command+N on a mac - select "ORM Annotation" and choose all the fields to generate
-the `Column` annotations above each.
+[[[ code('5b32a32f16') ]]]
+
+Now, just do the same thing we did before: bring up the "Code"->"Generate" menu - or
+`command`+`N` on a Mac - select "ORM Annotation" and choose all the fields to generate
+the `Column` annotations above each:
+
+[[[ code('c11cef2b5c') ]]]
 
 These tries to *guess* the right field type - but it's not always right. `speciesCount`
 should clearly be an integer - set it to that. For a full-list of *all* the built-in
@@ -17,8 +21,10 @@ Doctrine types, check their docs. The most important are `string`, `integer`, `t
 
 Next, head to the bottom of the class to create the getter and setter methods. But
 wait! Realize: you might *not* need getters and setters for *every* field, so only
-add them if you need them. We *will* need them, so open Code->Generate again and
-select "Getters and Setters".
+add them if you need them. We *will* need them, so open "Code"->"Generate" again and
+select "Getters and Setters":
+
+[[[ code('3151be6a5a') ]]]
 
 And that's it! Create the properties, generate the annotations and generate the getters
 and setters if you need them.
@@ -31,7 +37,7 @@ Absolutely. In fact, it's one of the most *incredible* features of Doctrine.
 In the terminal, run:
 
 ```bash
-php bin/console doctrine:schema:update --dump-sql
+./bin/console doctrine:schema:update --dump-sql
 ```
 
 Look familiar? That's the *same* command we ran before. But look: it actually
