@@ -21,8 +21,8 @@ That's really powerful.
 And simple! Head to the browser to check it out - `/genus/new`. Whoops - an error:
 the `publishedAt` property cannot be null. My bad - that's unrelated. 
 
-In `Genus`, give the `isPublished` field a default value of `true`. Now, if you forget
-to set this field - it'll default to true instead of null.
+In `Genus`, give the `isPublished` field a default value of `false`. Now, if you forget
+to set this field - it'll default to false instead of null.
 
 Woo! No errors this time. Check out the queries for the page. Nice! Two insert queries:
 `INSERT INTO genus` and then `INSERT INTO genus_note` using 46: the new genus's id.
