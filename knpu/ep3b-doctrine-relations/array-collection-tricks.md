@@ -14,7 +14,7 @@ this an anonymous function with a `GenusNote` argument. The ArrayCollection will
 call this function for *each* item. If we return true, it stays. If we return false,
 it disappears.
 
-Easy enough! Return `$genusNote->getCreatedAt() > new \DateTime('-3 months');`.
+Easy enough! Return `$note->getCreatedAt() > new \DateTime('-3 months');`.
 
 Next, pass a new `recentNoteCount` variable into twig that's set to `count($recentNotes)`.
 In the template, add a new `dt` for `Recent Notes` and a `dd` with `{{ recentNoteCount }}`.
