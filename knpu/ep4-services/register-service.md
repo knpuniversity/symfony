@@ -1,13 +1,80 @@
-# Register Service
+# Register your Service in the Container
 
-The markdown transformer class, will sadly not be turning into a crime fighting robot. But it is a service because it does some work for us.  That’s pretty similar to the markdown parser which is a service or the logger which is a service, which is kind of making me wonder, every other service is in the service container, which I can see via debug, bin/console debug: container.  But our markdown transformer is not part of the container anymore.  It’s just an object that we can create if we want to.
-So here’s what I want. I would love to be able to just say transformer=this->get and then apt.transformer and have the container instantiate it for me.  So let’s do that and then I’m gonna talk about why that’s such a cool thing. 
-Now effectively what we’re gonna do is we’re gonna train the container on how to instantiate our markdown transformer so that we don’t have to anymore.  And the way you do that is an app config services.yml which already has some nice example coding there which I’m gonna clear out.  
-Under the services key give your new service a nickname.  How about app.markdown_transformer?  Now in order for the container to be able to instantiate this it needs to know two things.  First it needs to know what the class is for our markdown transformer.  So I’m gonna say class: markdown_transformer.  The second thing that it needs to know are what constructor arguments it should pass when it instantiates this.  Let’s tell about those in an arguments key: and the two left square brackets which is an erase syntax.  
-Now our markdown transformer has exactly one argument which is the markdown.parser service.  To tell us something about that type @markdown.parser.  And that’s it.  With just those four lines of configuration there’s now a new service in the container and Symfony knows exactly how to instantiate it.  The @ symbol we put in front of markdown.parser is special in this area.  If we left the @ symbol off then it would literally instantiate with the string markdown.parser.  But when we add the @ it knows to go get the service called markdown.parser and pass that.  So if you run bin/console debug: container markdown now you’ll see a new service in there; app.markdown_transformer.  
-And that’s it.  We have added something to the container.  This is huge.  Let’s go to genus controller and use it.  Instead of new MarkDownTransformer, transformer=this->getapp.markdown_transformer.  And that’s it.  Symfony instantiates that object for us behind the scenes.
-Now that may have seemed like a really simple thing.  We literally just centralized the instantiation of this object.  Instantiating objects is not that hard.  But there’s two major advantages to taking your service and registering it in the container.  The first is that this is just easier.  This ->get app.markdowntransformer, super simple.  So I can use this anywhere in my code and it’s always just as simple to instantiate the markdown transformer object.  The markdown transformer object could have ten construct arguments.  But now we don’t have to worry about that.  We just always ask for the app.markdowntransformer and Symfony figures out how to instantiate that object.  So that’s cool.
-The second thing is that if you ask for the app.markdowntransformer service more than once during a request, Symfony only requests one of them.  And this is really good for performance.  You might not realize that you’re asking for the app.markdowntransformer class maybe ten times in a request.  But we don’t need ten markdown transformers.  We only need one.  Symfony’s container makes sure that there’s only ever one in the container.  And by the way, it doesn’t actually create the markdown transformer object until and unless somebody asks for it.  So just adding more services to your container does not slow down your application.
-Now I’m gonna show you a really, really cool thing.  Ultimately, after Symfony parses this services.yml file, and really all of the configuration files, it dumps the container object down to a cache file.  So open up var, the var directory.  And inside there should be a cache directory.  And if there isn’t, make sure your php storm is set to the project mode because the project mode actually shows the directories that we’ve marked as excluded.  So go to var cache dev and then open AppDevDebugProjectContainer.php and search for markdown transformer.  There will be a string.  I’m gonna find the second one.  And you should find a getApp_MarkdownTransformerService.  
-So quite literally, this dumped object is the container.  When we say this->getapp.markdown_transformer, ultimately this method is called behind the scenes.  And look what it does.  It literally writes the exact same code that we had a second ago; new MarkdownTransformer.  And then this->get because this is the container markdown.parser.  
-Now if this doesn't make complete sense to you, the whole caching thing, don’t worry about it.  What I wanted to show you is that what we wrote in services.yml ultimately causes Symfony to instantiate our object just like we did before.  So there’s no magic going on behind the scenes.  We just describe how to instantiate our object.  And Symfony writes the php code behind the scenes that actually does that.  So this makes the container super, super fast.
+The `MarkdownTransformer` class is *not* an Autobot, nor a Decepticon, but it *is*
+a service because it does work for us. It's no different from any other service,
+like the `markdown.parser`, logger or *anything* else we see in `debug:container`...
+except for one thing: it sees dead people. I mean, it does *not* live in the container.
+
+Nope, we need to instantiate it *manually*: we can't just say something like
+`$this->get('app.markdown_transformer')` and expect the container to create it for
+us.
+
+Time to change that... and I'll tell you why it's awesome once we're done.
+
+Open up `app/config/services.yml`. To add a new service to the container, you basically
+need to *teach* the container *how* to instantiate your object.
+
+This file already has some example code to do this... kill it! Under the `services`
+key, give your new service a nickname: how about `app.markdown_transformer`. This
+can be anything: we'll use it later to *fetch* the service. Next, in order for the
+container to be able to instantiate this, it needs to know two things: the class
+name and what arguments to pass to the constructor. For the first, add `class:`
+then the full `AppBundle\Service\MarkdownTransformer`. For the second, add `arguments:`
+then make a YAML array: `[]`.
+
+These are the constructor arguments, and it's pretty simple. If we used `[sunshine, rainbows]`,
+it would pass the string `sunshine` as the first argument to `MarkdownTransformer`
+and `rainbow` as the second. And that would be a very pleasant service.
+
+In reality, `MarkdowTransformer` requires *one* argument: the `markdown.parser` service.
+To tell the container to pass that, add `@markdown.parser`. That's it. The `@` is
+special: it says:
+
+> Woh woh woh, don't pass the *string* `markdown.parser`, pass the
+> *service* `markdown.parser`.
+
+And with 4 lines of code, there is a *new* service in the container. I'm such
+a proud parent.
+
+Go look for it:
+
+```bash
+php bin/console debug:container markdown
+```bash
+
+And there is its! Hey, let's go use it! Instead of `new MarkdownTransformer()`, be
+even lazier: `$transformer = $this->get('app.markdown_transformer)`. When this line
+run, the container will create that object for us behind the scenes.
+
+## Why add a Service to the Container
+
+Believe it or not, this was a *huge* step. When you add your service to the container,
+there are two big advantages. First, using it is so much easier: `$this->get('app.markdown_transformer)`.
+We don't need to worry *here* about its constructor arguments: heck it could have
+*ten* constructor arguments and this simple line would stay the same.
+
+Second: if we ask for the `app.markdown_transformer` service more than once during
+a request, the container *only* creates one of them: it returns that same *one* object
+each time. That's nice for performance.
+
+Oh, and by the way: the container doesn't create the `MarkdownTransformer` object
+until and *unless* somebody asks for it. That means adding more services to your
+container does *not* slow things down.
+
+## The Dumped Container
+
+Ok, I *have* to show you something cool. Open up the `var/cache` directory. If you
+don't see it - you may have it excluded: switch to the "Project" mode.
+
+Open `var/cache/dev/appDevDebugProjectContainer.php`. *This* is the container: it's
+a class that's dynamically built from our configuration. Search for "markdowntransformer"
+and find the `getApp_MarkdownTransformerService()` method. Ultimately, when we ask
+for the `app.markdown_transformer` service, *this* method is called. And look! It
+runs the same PHP code that we had before in our controller: `new MarkdownTransformer()`
+and then `$this->get()` - since we're *inside* of the container - `markdown.parser`.
+
+You don't need to understand how this works - but it's important to see this. The
+configuration we wrote in `services.yml` may *feel* like magic, but it's not: it
+causes Symfony to write plain PHP code that creates this object. There's no magic:
+we *describe* how to instantiate the object, and Symfony writes the PHP code to do
+that. This makes the container blazingly fast.

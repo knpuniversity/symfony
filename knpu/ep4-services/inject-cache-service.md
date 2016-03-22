@@ -1,11 +1,66 @@
-# Inject Cache Service
+# Injecting the  Cache Service
 
-The last thing we need is to add caching to our markdown transformer.  And the already have the code for that.  So just like before, I’m gonna basically grab part of the comments and out-code that we have in our genus controller for caching and put that into our parse function.  I’ll change the if statement not to have an else and we can just return cache->fetch.  And then down at the bottom I’ll set the parser return to a variable. And then I’ll do a sleep function and I’ll call cache->save on it, return $str.  And let’s put back our sleep function so that it’s really obvious when it’s happening.  The last thing is make sure that all of your fun fact variables are changed to $str.  Perfect.
-So we know that this isn’t going to work yet because there’s no get functions out of here.  But the rest of the code should be fine.  We’re checking to see if the cache contains a key.  We’re returning it.  Otherwise we’re transforming markdown and we’re saving the cache.  
-So in order to make this work, we need access to our my_markdown_cache cache object from inside this class.  Do we have access to it?  No.  So how do we get access to an object when we don’t?  We add it as another argument to our constructor this time called cache.  And we’re going to type hint that.  So I’ll copy the service name.  We’ll go over to our terminal run; bin/console debug: container.  We’ll paste that service in.  And we can see that as an instance of ArrayCache.  
-But we don’t want to type in ArrayCache here.  You might remember from a previous episode that we actually used the file_system cache in the prod environment and the array cache.
-We don’t want to type at the ArrayCache because the ArrayCache is actually using the dead environment.  But you may remember from a previous episode that we actually used a different cache in a different environment.  So just like before, sometimes it’s a good idea just to open up that class and see what it extends.  So this extends a cache provider which sounds like a more generic class that we probably want to type in.  And this actually implements a number of interfaces, one of them being this cache interface.  
-So let’s try that.  Let’s see if cache interface is what we want to use.  If cache interface isn’t what we want, we’ll ultimately see that some of the methods down here at the bottom won’t autocomplete because of that cache.  Now I’m gonna use a keyboard shortcut which a mac is option enter to bring up this menu.  And I’m gonna go initialize fields.  And all that did was add the private cache property for me and set it down there.  So you can also just do that by hand.  So again, fairly simple, dependency injection.  And now in parse will say cache = this->cache.  And look, all of those warnings go away and we’re in good shape.  
-So the last step once we’ve done dependency injection in here is we need to update the code that instantiates this object.  And now that’s done by symphonyandservices.yml  So we just need to add a second item to arguments since I have quotes, it will say @ and then I’ll go and copy my doctrine cache providers, my markdown cache service and we’ll pass that there.  
-And that’s it.  That’s the pattern.  So I’ll go back and refresh.  And because of that sleep, it should be really slow.  And it is slow.  I’ll refresh again.  Still slow.   And then remember in the prod environment we actually have caching enabled.  That’s something we did in a previous episode.  We actually configured the cache would be different in the dead environment versus the prod environment.  So if we do cache: clear--env=prod we can go over and add app.php to the url.  And this might be still the first time.  But it should be really fast afterwards and it is.  
-So that proves that caching is working.  And it also showed the entire pattern of dependency injection, needing an object, adding an object to the constructor and updating your service file.  It showed how easy that is.  What’s really cool is did we have to update our controller at all?  No.  Our controller is dumb.  It just asks for the service.  And even though that service changed, we don’t have to change anything that’s not up there.
+Phew! Dependency injection, check! Registering new services, check! Delicious snack,
+check! Well, I *hope* you have a delicious snack.
+
+This tutorial is the victory lap. We need to add caching to the `MarkdownTransformer`,
+it should be pretty easy. Copy part of the *old* caching code and paste that into
+the `parse() function.` Remove the `else` part of the `if` and just return `$cache->fetch`.
+
+Below, set the method call to the `$str` variable and go grab the `$cache->save()`
+line. Return `$str` and re-add the sleep call so that things are *really* slow - that
+keeps it interesting.
+
+On top, change the `$funFact` variables to `$str`. Perfect!
+
+*We* know this won't work: there is no `get()` function in this class. And more importantly,
+we don't have access to the `doctrine_cache.provider.my_markdown_cache` service.
+How can we *get* access? Dependency injection.
+
+## Dependency Inject!
+
+This time, add a *second* argument to the constructor called `$cache`. And hmm,
+we should give this a type-hint. Copy the service name and run:
+
+```bash
+php bin/console debug:container doctrine_cache.provider.my_markdown_cache
+```
+
+This service is an instance of `ArrayCache`. But wait! Do *not* type-hint that. In
+our course on environments, we setup a cool system that uses the `ArrayCache` in
+the `dev` environment and a `FilesystemCache` in `prod`. If we type-hint with `ArrayCache`,
+this will explode in `prod`.
+
+Let's do some digging. Open up `ArrayCache`. This extends `CacheProvider`. That
+might work. But *it* implements several interface - one of them is just called
+`Cache`. Let's try that. If this isn't the right interface - if it doesn't contain
+the methods we're using - PhpStorm will keep highlighting those methods after we
+add the type-hint.
+
+I'll use a keyboard shortcut - option+enter on a Mac - and select initialize fields.
+All this did was add the `private $cache` property and set it in `__construct()`.
+You can easily do that by hand.
+
+Cool! Update `parse()` with `$cache = $this->cache`. And look! All of the warnings
+went away. That *was* the right interface to use.
+
+Because we added a new constructor argument, we need to update any code that instantiates
+the `MarkdownTransformer`. But now, that's not done by us: it's done by Symfony,
+and we help it in `services.yml`. Under arguments, add a comma and quotes. Copy
+the service name - `doctrine_cache.providers.my_markdown_cache` and paste it here.
+
+That's it! That's the dependency injection pattern.
+
+Go back to refresh. The `sleep()` should make it really slow. And it *is* slow.
+Refresh again: still slow because we setup caching to really only work in the `prod`
+environment.
+
+Clear the `prod` cache:
+
+```bash
+php bin/console cache:clear --env=prod
+```
+
+And now add `app.php/` in front of the URI to use this environment. This should be
+slow the first time... but then fast after. Super fast! Caching is working. And
+dependency injection is beind us.

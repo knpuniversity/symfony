@@ -30,10 +30,16 @@ tuts_hero:
     finish_step: twigextension-mark-as-safe
 
 chapters:
-    create-service:
+    services-save-the-world:
         is_finished: false
         video_key: ~
-    dependency-injection:
+    create-service-class:
+        is_finished: false
+        video_key: ~
+    the-dreaded-dependency-injection:
+        is_finished: false
+        video_key: ~
+    type-hinting-arguments:
         is_finished: false
         video_key: ~
     register-service:

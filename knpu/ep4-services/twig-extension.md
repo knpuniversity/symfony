@@ -1,25 +1,143 @@
-# Twig Extension
+# Adding a Twig Extension + DI Tags
 
-Right now because the fun fact has to get parse in markdown, we pass it independently into the template.  But it’d be even cooler if, instead of needing to do that, we could just say genus dot fun fact pipe markdown and in fact, we can.  Because of the KMP markdown bundle, there’s already a filter called “markdown” that parses a string via markdown – if I refresh.  So if you go back and move back into the dev environment, that parses it to markdown and it doesn’t look like it parses at markdown, because it’s actually not escaping the p-tag in this case and you’ll see why in a second.  When you build a filter, you can actually tell Twig, “I want to automatically not escape this output.”  
+Because the `$funFact` needs to be parsed through markdown, we have to pass it as
+an independent variable into the template. you know what would be *way* cooler? If
+we could just say `genus.funFact|markdown`. Ok, actually we *can* say this already:
+the KnpMarkdownBundle comes with a filter called `markdown`. Remove the `app.php`
+from the URL and refresh. Voilà! This parses the string to markdown. Well, it doesn't
+look like much - but if you view the HTML, there's a `p` tag from the process.
 
-So make this a little more obvious that markdown is actually working, we’re going to temporarily open up the genus entity and go to the get fun fact.  And let’s just hack in some markdown format there. And go back and refresh.  Cool.  Now we can see the word “test” with bold around it.  Very nice.  So what’s the problem?  Well the problem is that the markdown filter is going through the markdown parser from KMP markdown bundle, but I really wanna use my markdown transformer because that has cache enabled.  So what we’re gonna do is create our own Twig filter and have it use our code.  
+Let's make this a little more obvious while we're working. Open up the `Genus` entity
+and find `getFunFact()`. Temporarily hack in some bold markdown code.
 
-So here’s how you create a Twig extension.  And it touches on a really important, cool part of services.  In AppBundle, create a new directory called “Twig” and as always, the name of that directory is not important.  And, inside, let’s create a new class called a – called “MarkdownExtension.”  Now remember Twig is its own library.  It has nothing to do with Symfony and you can use it outside of Symfony.  And if you read Twig’s documentation on how to add a custom function or filter to Twig, these are the directions.  They say create a class, make it extend a core Twig underscore extension class, and then fill in some methods.  I’m going to the code generate menu, which is command N, and type in implement classes.  And the one method it forces you to have is a get name method, which is not important at all.  Just return something unique.  So how about app dot markdown?
+Ok, try it again.
 
-To add a filter, I’m gonna go back to the code generate menu or command N.  Go to override methods and select get filters.  And basically you’re just gonna return an array of the filters you want.  So let’s see we want a new Twig simple filter first argument’s the name of the filter so how about markdownify?  To be different than a markdown.  And then the name of the function – the call when that’s used instead of Twig.  So do this – parse markdown.  And then we’ll create a new public function – parse markdown.  We’re taking this string.  And, once again, for now, let’s just string the upper – that string.  Cool?  So that’s – outside of Symfony, this is how a markdown extension works.  And then in the Twig template we’ll change this to markdownify.  
+Nice! The bold **TEST** tells us that the `markdown` filter from KnpMarkdownBundle
+is working.
 
-But that’s not gonna work yet.  If you refresh, you get a huge error.  There’s unknown filter markdownify.  We have a valid Twig extension, but we need to hook it into Symfony somehow.  We need to say, “Hey Symfony, when you load the Twig service, I want you to add my markdown extension to it.”  And here is how you do it.  And by the way, what I’m about to show you is the same process you’ll go through whenever you want to hook into any part of Symfony.  If you want to add a Twig extension or an event listener or a new form field, it’s always this same process.  Step one, register this as a service.  The name doesn’t matter but we’ll call app dot markdown transformer.  Next, we’ll give it a class markdown tran – sorry, app dot markdown extension.  Give it the class of markdown extension and that’s it.  
+Ready for me to complicate things? I always do. The `markdown` filter uses the
+`markdown.parser` service from `KnpMarkdownBundle` - it does *not* use our `app.markdown_transformer`
+service. This means that it's not using our caching system. Instead, let's create
+our *own* new Twig filter.
 
-We don’t need an arguments key in this case because there aren’t any constructive arguments to this yet.  Now this service is not something that we are gonna use directly in our controller like markdown transformer.  Instead, we want Twig to know to use our service.  So we need to somehow raise our hand and say, “Oh oh oh oh!  This service is special.  This service is a Twig extension.”  To do that, you’re going to add a tag.  The syntax looks a little weird but add tags go out four spaces hit dash, curly brace, and then name Twig dot extension and that’s it.  So real quick, let’s make sure that works.  Go back, refresh.  There is the uppercase string.  Tags are the way that you hook your services into some existing core part of the system.  Quite literally, when Symfony starts the Twig service, it looks for all of the services in the container that are tagged with Twig dot extension.  And it makes sure to tell the Twig service about those. 
+## Creating a Twig Extension
 
-In fact, if you Google for “Symfony dependency injection tags,” there’s an awesome reference section on Symfony.com called “the dependency injection tags.”  And it lists all of the dependency injection tags that are in the core Symfony.  And if you’re using a dependency injection tag, then you’re doing something really cool.  So, for example, if you wanna register an event listener on Symfony and actually hook in the boot process you create a service and then tag it with kernel dot event listener.  So you don’t have to have these memorized or even know what they are.  But eventually you’re gonna try to do something in Symfony and you’re going to – it’s going to tell you to tag it and I want you to understand what that tag is actually doing.
+To do that, you need a new Twig "extension" - that's basically Twig's plugin system.
+Create a new directory called `Twig` - and nope, that name is *not* important. Inside,
+create a new php class - `MarkdownExtension`. 
 
-Finally, instead of actually doing STR to upper we want to – we actually wanna transform this into markdown.  So once again, we are in a service and we need access to an outside object.  We need access to our markdown transformer object.  How do we do that?  Dependency injection.  So when I public function underscore underscore and construct type hand it with markdown transformer and then I will hold option enter to go to initialize fields and that will add the property for me.  Again, you can just do that by hand if you don’t know that shortcut or watch our peach tree storm tutorial.  Then down here in parse markdown, let’s return this arrow markdown transformer arrow parse.  STR and that’s it – inside this class.  Then we just need to go to services dot YML and update it so Symfony knows to pass it arguments.  So arguments colon and then at app dot markdown transformer and that should be it.  
+Remember: Twig is its own, independent library. If you read Twig's documentation about
+creating a Twig extension, it will tell you to create a class, make it extend
+`\Twig_Extension` and then fill in some methods.
 
-Go back.  Refresh.  And it’s working.  You can tell because it’s actually taking longer.  Our service has that one second wait.  Now one thing you can do which is really cool is instead of having arguments here, you could do another key called “autowire.”  If you do that and refresh, it still works.  It’s total awesome magic.  When you use autowiring, Symfony looks at your class and looks at each argument constructor and tries to figure out what service to pass to you based on the type hint.  So in this case, it looked at our markdown transformer type hint and it figured out that there’s only one service in the container that has that class and it automatically passed that as the constructor argument.  
+Use the Code->Generate menu - or cmd+n - and select "Implement Methods". The *one*
+method you *must* have is called `getName()`. It's not important at all: just make
+it return something unique: like `app.markdown`.
 
-This doesn’t always work because sometimes there are certain classes with multiple instances, but this is a really cool thing to use when it works.  And it can save you a lot of time.  Now last detail is – you see this is still escaped.  We could fix that really easily by doing pipe E or pipe raw.  But instead, let’s actually update our filter so that that’s – always comes out on escape, because we know if you’re using the markdownify filter, your content should not be escaped.  To do that, a third argument Twig simple filter which is an array type is underscore safe and that in an array save HTML.  This means that, “Hey when this filter’s being used in the HTML context, hey, it’s safe so don’t escape it.”  And that’s it.
+To add a new filter, go back to the Code->Generate menu and select "Override Methods".
+Choose `getFilters`. Here, you'll return an array of new filters: each is described
+by a new `\Twig_SimpleFilter` object. The first method will be the filter name - how
+about `markdownify` - that sounds trendy. The point to a function in *this* class
+that should be called when that filter is used: `parseMarkdown`.
 
-All right, guys.  It didn’t take very long but you now know how to add your own services to the container.  You can now create a service-oriented architecture where instead of putting lots of code in your control; you start to isolate it into services, register those services with Symfony’s container, and create your own set of tools.  Eventually you’ll have many services inside of here, many tools that you built that you can reuse across your application.  Ingraining services is really quite simple.  You’re ultimately just teaching Symfony’s container how to instantiate your objects.  And you do that with the class key and the arguments key.  And the at symbol is the special thing that tells Symfony that this markdown dot parser is a service.  Because you can also pass just plain configuration to your services by just having a normal argument without the at symbol or even a parameter.  
+Create the new `public function parseMarkdown()` with a `$str` argument. For now,
+just `strtoupper` that guy to start. Cool? Update the Twig template to use this.
 
-You’ll need – and then the only extra thing with service is when you create a service – not so that you can use it yourself, but so your service can be hooked into some core part of the system.  And those are always done with tags.  So now, just understand when you see a tag you say, “It means this service is being hooked into some core part of Symfony.”  Oh, and don’t forget about autowiring.  Really, really cool shortcut.  Okay, that was short but that’s huge.  There’s really nothing that we can’t do in Symfony, so let’s start learning other important concepts in the next tutorials. 
+Our Twig extension is perfect... but it will *not* work yet. Refresh. Huge error:
+
+> Unknown filter markdownify
+
+Twig doesn't automatically find and load our extension. Somehow, we need to say:
+
+> Hey Symfony? How's it going? Oh, I'm good. Listen, when you load the
+> twig service, can you add my MarkdownExtension to it?
+
+## Dependency Injection Tags
+
+How? First, register it as a service. The name doesn't matter, so how about
+`app.markdown_extension`. Setup that class, but skip `arguments`: we don't have
+any arguments yet, so we don't need this.
+
+This service is a bit different: it's *not* something that we intend to use from
+our controller, like `app.markdown_transformer`. Instead, we 
+
+Now this service is not something that we
+are gonna use directly in our controller like markdown transformer. Instead, we
+want Twig to know to use our service. So we need to somehow raise our hand and
+say, "Oh oh oh oh! This service is special. This service is a Twig extension."
+To do that, you're going to add a tag. The syntax looks a little weird but add
+tags go out four spaces hit dash, curly brace, and then name Twig dot extension
+and that's it. So real quick, let's make sure that works. Go back, refresh.
+There is the uppercase string. Tags are the way that you hook your services
+into some existing core part of the system. Quite literally, when Symfony
+starts the Twig service, it looks for all of the services in the container that
+are tagged with Twig dot extension. And it makes sure to tell the Twig service
+about those.
+
+In fact, if you Google for "Symfony dependency injection tags," there's an
+awesome reference section on Symfony.com called "the dependency injection
+tags." And it lists all of the dependency injection tags that are in the core
+Symfony. And if you're using a dependency injection tag, then you're doing
+something really cool. So, for example, if you wanna register an event listener
+on Symfony and actually hook in the boot process you create a service and then
+tag it with kernel dot event listener. So you don't have to have these
+memorized or even know what they are. But eventually you're gonna try to do
+something in Symfony and you're going to – it's going to tell you to tag it and
+I want you to understand what that tag is actually doing.
+
+Finally, instead of actually doing STR to upper we want to – we actually wanna
+transform this into markdown. So once again, we are in a service and we need
+access to an outside object. We need access to our markdown transformer object.
+How do we do that? Dependency injection. So when I public function underscore
+underscore and construct type hand it with markdown transformer and then I will
+hold option enter to go to initialize fields and that will add the property for
+me. Again, you can just do that by hand if you don't know that shortcut or
+watch our peach tree storm tutorial. Then down here in parse markdown, let's
+return this arrow markdown transformer arrow parse. STR and that's it – inside
+this class. Then we just need to go to services dot YML and update it so
+Symfony knows to pass it arguments. So arguments colon and then at app dot
+markdown transformer and that should be it.
+
+Go back. Refresh. And it's working. You can tell because it's actually taking
+longer. Our service has that one second wait. Now one thing you can do which is
+really cool is instead of having arguments here, you could do another key
+called "autowire." If you do that and refresh, it still works. It's total
+awesome magic. When you use autowiring, Symfony looks at your class and looks
+at each argument constructor and tries to figure out what service to pass to
+you based on the type hint. So in this case, it looked at our markdown
+transformer type hint and it figured out that there's only one service in the
+container that has that class and it automatically passed that as the
+constructor argument.
+
+This doesn't always work because sometimes there are certain classes with
+multiple instances, but this is a really cool thing to use when it works. And
+it can save you a lot of time. Now last detail is – you see this is still
+escaped. We could fix that really easily by doing pipe E or pipe raw. But
+instead, let's actually update our filter so that that's – always comes out on
+escape, because we know if you're using the markdownify filter, your content
+should not be escaped. To do that, a third argument Twig simple filter which is
+an array type is underscore safe and that in an array save HTML. This means
+that, "Hey when this filter's being used in the HTML context, hey, it's safe so
+don't escape it." And that's it.
+
+All right, guys. It didn't take very long but you now know how to add your own
+services to the container. You can now create a service-oriented architecture
+where instead of putting lots of code in your control; you start to isolate it
+into services, register those services with Symfony's container, and create
+your own set of tools. Eventually you'll have many services inside of here,
+many tools that you built that you can reuse across your application.
+Ingraining services is really quite simple. You're ultimately just teaching
+Symfony's container how to instantiate your objects. And you do that with the
+class key and the arguments key. And the at symbol is the special thing that
+tells Symfony that this markdown dot parser is a service. Because you can also
+pass just plain configuration to your services by just having a normal argument
+without the at symbol or even a parameter.
+
+You'll need – and then the only extra thing with service is when you create a
+service – not so that you can use it yourself, but so your service can be
+hooked into some core part of the system. And those are always done with tags.
+So now, just understand when you see a tag you say, "It means this service is
+being hooked into some core part of Symfony." Oh, and don't forget about
+autowiring. Really, really cool shortcut. Okay, that was short but that's huge.
+There's really nothing that we can't do in Symfony, so let's start learning
+other important concepts in the next tutorials.
