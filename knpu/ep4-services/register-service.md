@@ -33,7 +33,7 @@ special: it says:
 > Woh woh woh, don't pass the *string* `markdown.parser`, pass the
 > *service* `markdown.parser`.
 
-And with 4 lines of code, there is a *new* service in the container. I'm such
+And with 4 lines of code, a *new* service has been born in the container. I'm such
 a proud parent.
 
 Go look for it:
@@ -42,15 +42,15 @@ Go look for it:
 php bin/console debug:container markdown
 ```bash
 
-And there is its! Hey, let's go use it! Instead of `new MarkdownTransformer()`, be
-even lazier: `$transformer = $this->get('app.markdown_transformer)`. When this line
-run, the container will create that object for us behind the scenes.
+There is its! And it's so cute. Idea! Let's use it! Instead of `new MarkdownTransformer()`,
+be lazier: `$transformer = $this->get('app.markdown_transformer)`. When this line
+runs, the container will create that object for us behind the scenes.
 
 ## Why add a Service to the Container
 
 Believe it or not, this was a *huge* step. When you add your service to the container,
-there are two big advantages. First, using it is so much easier: `$this->get('app.markdown_transformer)`.
-We don't need to worry *here* about its constructor arguments: heck it could have
+you get two great thing. First, using the service is *so* much easier: `$this->get('app.markdown_transformer)`.
+We don't need to worry about passing constructor arguments: heck it could have
 *ten* constructor arguments and this simple line would stay the same.
 
 Second: if we ask for the `app.markdown_transformer` service more than once during
@@ -58,23 +58,23 @@ a request, the container *only* creates one of them: it returns that same *one* 
 each time. That's nice for performance.
 
 Oh, and by the way: the container doesn't create the `MarkdownTransformer` object
-until and *unless* somebody asks for it. That means adding more services to your
-container does *not* slow things down.
+until and *unless* somebody asks for it. That means that adding more services to
+your container does *not* slow things down.
 
 ## The Dumped Container
 
 Ok, I *have* to show you something cool. Open up the `var/cache` directory. If you
-don't see it - you may have it excluded: switch to the "Project" mode.
+don't see it - you may have it excluded: switch to the "Project" mode in PhpStorm.
 
 Open `var/cache/dev/appDevDebugProjectContainer.php`. *This* is the container: it's
 a class that's dynamically built from our configuration. Search for "markdowntransformer"
 and find the `getApp_MarkdownTransformerService()` method. Ultimately, when we ask
 for the `app.markdown_transformer` service, *this* method is called. And look! It
 runs the same PHP code that we had before in our controller: `new MarkdownTransformer()`
-and then `$this->get()` - since we're *inside* of the container - `markdown.parser`.
+and then `$this->get('markdown.parser')` - since `$this` *is* the container.
 
 You don't need to understand how this works - but it's important to see this. The
 configuration we wrote in `services.yml` may *feel* like magic, but it's not: it
-causes Symfony to write plain PHP code that creates this object. There's no magic:
-we *describe* how to instantiate the object, and Symfony writes the PHP code to do
-that. This makes the container blazingly fast.
+causes Symfony to write plain PHP code that creates our service objects. There's
+no magic: we *describe* how to instantiate the object, and Symfony writes the PHP
+code to do that. This makes the container blazingly fast.

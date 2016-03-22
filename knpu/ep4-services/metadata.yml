@@ -48,7 +48,9 @@ chapters:
     inject-cache-service:
         is_finished: false
         video_key: ~ 
-    twig-extension:
+    create-twig-extension:
         is_finished: false
         video_key: ~ 
-
+    tagging-services:
+        is_finished: false
+        video_key: ~ 

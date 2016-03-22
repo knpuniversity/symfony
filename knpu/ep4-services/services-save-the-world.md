@@ -21,11 +21,11 @@ php bin/console server:run
 In your case, open up the `README.md` file in the `start` directory - it has a few
 extra instructions.
 
-## Services: Does of Good
+## Services: Doers of Good
 
 In the last courses, if I repeated anything too many times, it was this: Refresh!
 But second would be that Symfony is basically just a big container of useful objects
-called services... and *everything* that that happens is *actually* done by one of
+called services... and *everything* that happens is *actually* done by one of
 these.
 
 For example, the `render()` function - it's the key to rendering templates, right?
@@ -59,7 +59,7 @@ Why not? Three reasons:
 I could copy-and-paste? But then, how would I sleep at night?
 
 2. It's not instantly clear *what* these 15 lines do: I have to actually take time
-and read them to find out. IF you have a lot of chunks like this, suddenly *nobody* knows
+and read them to find out. If you have a lot of chunks like this, suddenly *nobody* knows
 what's going on in your app. You know what I'm talking about?
 
 3. If you want to unit test this code... well, you can't. To unit test something,

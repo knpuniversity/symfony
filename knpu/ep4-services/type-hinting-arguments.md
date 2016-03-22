@@ -4,7 +4,7 @@ What type of object is this `$markdownParser` argument? Oh, you can't tell? Well
 neither can I. With no type-hint, this could be anything! A MarkdownParser object,
 a string, an octopus!
 
-We need to add a *typehint* to make our code clearwe... and avoid weird errors
+We need to add a *typehint* to make our code clearer... and avoid weird errors
 in case we accidentally pass in something else... like an octopus.
 
 Run:

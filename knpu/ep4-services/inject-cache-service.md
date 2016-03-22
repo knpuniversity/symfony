@@ -1,13 +1,13 @@
 # Injecting the  Cache Service
 
 Phew! Dependency injection, check! Registering new services, check! Delicious snack,
-check! Well, I *hope* you have a delicious snack.
+check! Well, I *hope* you just had a delicious snack.
 
-This tutorial is the victory lap. We need to add caching to the `MarkdownTransformer`,
+This tutorial is the start to our victory lap. We need to add caching to `MarkdownTransformer`:
 it should be pretty easy. Copy part of the *old* caching code and paste that into
-the `parse() function.` Remove the `else` part of the `if` and just return `$cache->fetch`.
+the `parse() function.` Remove the `else` part of the `if` and just return `$cache->fetch()`.
 
-Below, set the method call to the `$str` variable and go grab the `$cache->save()`
+Below, assign the method call to the `$str` variable and go copy the old `$cache->save()`
 line. Return `$str` and re-add the sleep call so that things are *really* slow - that
 keeps it interesting.
 
@@ -27,22 +27,22 @@ php bin/console debug:container doctrine_cache.provider.my_markdown_cache
 ```
 
 This service is an instance of `ArrayCache`. But wait! Do *not* type-hint that. In
-our course on environments, we setup a cool system that uses the `ArrayCache` in
-the `dev` environment and a `FilesystemCache` in `prod`. If we type-hint with `ArrayCache`,
-this will explode in `prod`.
+our earlier course on environments, we setup a cool system that uses `ArrayCache` in
+the `dev` environment and `FilesystemCache` in `prod`. If we type-hint with `ArrayCache`,
+this will explode in `prod` because this service will be a different class.
 
-Let's do some digging. Open up `ArrayCache`. This extends `CacheProvider`. That
+Let's do some digging: open up `ArrayCache`. This extends `CacheProvider`. That
 might work. But *it* implements several interface - one of them is just called
-`Cache`. Let's try that. If this isn't the right interface - if it doesn't contain
-the methods we're using - PhpStorm will keep highlighting those methods after we
-add the type-hint.
+`Cache`. Let's try that. If this isn't the right interface - meaning it doesn't contain
+the methods we're using - PhpStorm will keep highlighting those after we add the
+type-hint.
 
 I'll use a keyboard shortcut - option+enter on a Mac - and select initialize fields.
 All this did was add the `private $cache` property and set it in `__construct()`.
-You can easily do that by hand.
+You can also do that by hand.
 
 Cool! Update `parse()` with `$cache = $this->cache`. And look! All of the warnings
-went away. That *was* the right interface to use.
+went away. That *was* the right interface to use. Yay!
 
 Because we added a new constructor argument, we need to update any code that instantiates
 the `MarkdownTransformer`. But now, that's not done by us: it's done by Symfony,
@@ -63,4 +63,4 @@ php bin/console cache:clear --env=prod
 
 And now add `app.php/` in front of the URI to use this environment. This should be
 slow the first time... but then fast after. Super fast! Caching is working. And
-dependency injection is beind us.
+dependency injection is behind us.
