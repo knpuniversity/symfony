@@ -5,7 +5,7 @@ register it as a service. The name doesn't matter, so how about `app.markdown_ex
 Set the class, but skip `arguments`: we don't have any yet, so this is optional.
 
 Now, this service is a bit different: it's *not* something that we intend to use
-directory in our controller, like `app.markdown_transformer`. Instead, we simply
+directly in our controller, like `app.markdown_transformer`. Instead, we simply
 want Twig to *know* about our service. We somehow need to raise our hand and say:
 
 > Oh, oh oh! This service is special - this service is a *Twig Extension*!

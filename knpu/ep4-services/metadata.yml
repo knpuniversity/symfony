@@ -54,3 +54,6 @@ chapters:
     tagging-services:
         is_finished: false
         video_key: ~ 
+    autowiring-madness:
+        is_finished: false
+        video_key: ~ 

@@ -40,7 +40,7 @@ Go look for it:
 
 ```bash
 php bin/console debug:container markdown
-```bash
+```
 
 There is its! And it's so cute. Idea! Let's use it! Instead of `new MarkdownTransformer()`,
 be lazier: `$transformer = $this->get('app.markdown_transformer)`. When this line
