@@ -19,7 +19,7 @@ That's really powerful.
 ## Defaulting the isPublished Field
 
 And simple! Head to the browser to check it out - `/genus/new`. Whoops - an error:
-the `publishedAt` property cannot be null. My bad - that's unrelated. 
+the `is_published` property cannot be null. My bad - that's unrelated.
 
 In `Genus`, give the `isPublished` field a default value of `true`. Now, if you forget
 to set this field - it'll default to true instead of null.
