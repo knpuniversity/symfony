@@ -21,7 +21,7 @@ summary: |
 
     ... and (like always) a lot more goodies are mixed in.
 
-illustration: sf-ep3.png
+illustration: doctrine-relationships.png
 
 tuts_hero:
     start_step: routing-add-yaml-route
