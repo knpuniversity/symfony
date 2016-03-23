@@ -26,20 +26,15 @@ tuts_hero:
 
 chapters:
     create-genus-note:
-        is_finished: false
-        video_key: ~
+        video_key: 160163498
     many-to-one-relation:
-        is_finished: false
-        video_key: ~
+        video_key: 160156613
     save-relation:
-        is_finished: false
-        video_key: ~
+        video_key: 160164728
     join-column-relation-fixtures:
-        is_finished: false
-        video_key: ~        
+        video_key: 160163887        
     param-conversion:
-        is_finished: false
-        video_key: ~
+        video_key: 160164929
     one-to-many:
         is_finished: false
         video_key: ~
