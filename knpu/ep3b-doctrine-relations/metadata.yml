@@ -18,7 +18,7 @@ summary: |
 
     ... and more - like some magic with the "Param Conversion".
 
-illustration: sf-ep3.png
+illustration: doctrine-relationships.png
 
 tuts_hero:
     start_step: repository-basic-qb-method
