@@ -13,7 +13,7 @@ Add a `Genus` type-hint to `setGenus()`:
 Yes, when we call `setGenus()`, we'll pass it an entire `Genus` *object* not an ID.
 More on that soon.
 
-### Generate the Migration
+## Generate the Migration
 
 Generate the migration for the change:
 
@@ -37,7 +37,7 @@ Run the migration to celebrate!
 
 Now, how do we actually *save* this relationship?
 
-# Saving a Relation
+## Saving a Relation
 
 Head back to `GenusController`. In `newAction()`, create a new `GenusNote` - let's
 see *how* we can relate this to a `Genus`:
