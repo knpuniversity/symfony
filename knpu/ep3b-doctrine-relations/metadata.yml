@@ -40,14 +40,10 @@ chapters:
     one-to-many:
         video_key: 160254347
     one-to-many-order-by:
-        is_finished: false
-        video_key: ~
+        video_key: 160257221
     array-collection-tricks:
-        is_finished: false
-        video_key: ~
+        video_key: 160257875
     relation-query:
-        is_finished: false
-        video_key: ~
+        video_key: 160258582
     query-with-join:
-        is_finished: false
-        video_key: ~
+        video_key: 160258855
