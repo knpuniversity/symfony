@@ -49,17 +49,17 @@ required in the database right now:
 
 [[[ code('0608467d0c') ]]]
 
-So how can we link *this* `GenusNote` to this `Genus`? Simple: `$genusNote->setGenus()`
+So how can we link *this* `GenusNote` to this `Genus`? Simple: `$note->setGenus()`
 and pass it the entire `$genus` object:
 
 [[[ code('f3f17b5925') ]]]
 
 That's it. Seriously! The only tricky part is that you set the entire *object*, not
-the id. With Doctrine relations, you almost need to forget about id's entirely: your
+the ID. With Doctrine relations, you almost need to forget about ID's entirely: your
 job is to link one object to another. When you save, Doctrine works out the details
 of how this should look in the database.
 
-Don't forget to persist the `$genusNote`:
+Don't forget to persist the `$note`:
 
 [[[ code('800117e8d5') ]]]
 
@@ -71,14 +71,14 @@ the `genus` first and then the `genus_note`. That's really powerful.
 And simple! Head to the browser to check it out - `/genus/new`. Whoops - an error:
 the `$isPublished` property cannot be null. My bad - that's totally unrelated.
 
-In `Genus`, give the `isPublished` field a default value of `true`:
+In `Genus`, give the `$isPublished` field a default value of `true`:
 
 [[[ code('9781a1ad33') ]]]
 
 Now, if you forget to set this field - it'll default to `true` instead of `null`.
 
 Woo! No errors this time. Check out the queries for the page. Nice! Two insert queries:
-`INSERT INTO genus` and then `INSERT INTO genus_note` using 46: the new genus's id.
+`INSERT INTO genus` and then `INSERT INTO genus_note` using 46: the new genus's ID.
 
 With two lines to setup the relationship, and one line to link a `GenusNote` to a
 `Genus`, you've got a fantastic new relationship.
