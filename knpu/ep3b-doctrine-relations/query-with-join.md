@@ -49,7 +49,7 @@ in our Doctrine Queries tutorial.
 
 Ok, that's it! That's everything - you are truly *dangerous* with Doctrine now.
 Sure, there *are* some more advanced topics - like Doctrine events, inheritance
-and ManyToMany relations - but we'll save those for another day. Get to work on
+and `ManyToMany` relations - but we'll save those for another day. Get to work on
 that project... or keep going with me to learn more Symfony! I promise, more bad
 jokes - like worse than ever.
 

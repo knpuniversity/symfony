@@ -11,16 +11,16 @@ this would be if each `product` had many tags, but also each tag related to many
 products.
 
 And when it comes to Doctrine relations - don't trust the Internet! Some people
-will try to confuse you with other relationships like OneToMany, OneToOne and some
+will try to confuse you with other relationships like `OneToMany`, `OneToOne` and some
 garbage about unidirectional and bidirectional associations. Gross. Ignore it all.
 I guarantee, all of that will make sense really soon.
 
-So your first job is simple: decide if you have a ManyToOne or ManyToMany relationship.
+So your first job is simple: decide if you have a `ManyToOne` or `ManyToMany` relationship.
 And it's easy. Just answer this question:
 
 > Do either of the sides of the relationship belong to only *one* of the other?
 
-Each `genus_note` belongs to only *one* `genus`, so we have a classic ManyToOne relationship.
+Each `genus_note` belongs to only *one* `genus`, so we have a classic `ManyToOne` relationship.
 
 ## Setting up a ManyToOne Relation
 
