@@ -5,7 +5,7 @@ Well, the simplest way is just to make a query - in fact, you could fetch the `G
 repository and call `findBy(['genus' => $genus])`. It's really that simple.
 
 ***TIP
-You can also pass the Genus's *id* in queries, instead of the entire `Genus` object.
+You can also pass the Genus's *ID* in queries, instead of the entire `Genus` object.
 ***
 
 But what if we could be even lazier? What if we were able to just say `$genus->getNotes()`?
