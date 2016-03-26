@@ -44,7 +44,11 @@ database completely, re-create it, and re-migrate from the beginning:
 
 ```bash
 ./bin/console doctrine:database:drop --force
+```
+```bash
 ./bin/console doctrine:database:create
+```
+```bash
 ./bin/console doctrine:migrations:migrate
 ```
 
