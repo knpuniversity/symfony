@@ -42,6 +42,19 @@ for the convenience of being able to say `$genus->getNotes()`:
 And this is the *second* reason you might decide to map the inverse side of the relation:
 it's required if you're doing a JOIN in this direction.
 
+***TIP
+Actually, not true! As Stof suggested in the comments on this page, it *is* possible
+to query over this join *without* mapping this side of the relationship, it just
+takes a little bit more work:
+
+```php
+    $this->createQueryBuilder('genus')
+        // ...
+        ->leftJoin('AppBundle:GenusNote', 'genus_note', \Doctrine\ORM\Query\Expr\Join::WITH, 'genus = genus_note.genus')
+        // ...
+```
+***
+
 Back in `GenusRepository`, give `leftJoin()` a second argument: `genus_note` - this
 is the alias we can use during the rest of the query to reference fields on the joined
 `genus_note` table. This allows us to say `->orderBy('genus_note.createdAt', 'DESC')`:
