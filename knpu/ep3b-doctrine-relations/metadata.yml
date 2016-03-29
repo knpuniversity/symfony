@@ -18,7 +18,7 @@ summary: |
 
     ... and more - like some magic with the "Param Conversion".
 
-illustration: sf-ep3.png
+illustration: doctrine-relationships.png
 
 tuts_hero:
     start_step: repository-basic-qb-method
@@ -26,32 +26,24 @@ tuts_hero:
 
 chapters:
     create-genus-note:
-        is_finished: false
-        video_key: ~
+        is_free: true
+        video_key: 160163498
     many-to-one-relation:
-        is_finished: false
-        video_key: ~
+        is_free:   true
+        video_key: 160156613
     save-relation:
-        is_finished: false
-        video_key: ~
+        video_key: 160164728
     join-column-relation-fixtures:
-        is_finished: false
-        video_key: ~        
+        video_key: 160163887        
     param-conversion:
-        is_finished: false
-        video_key: ~
+        video_key: 160164929
     one-to-many:
-        is_finished: false
-        video_key: ~
+        video_key: 160254347
     one-to-many-order-by:
-        is_finished: false
-        video_key: ~
+        video_key: 160257221
     array-collection-tricks:
-        is_finished: false
-        video_key: ~
+        video_key: 160257875
     relation-query:
-        is_finished: false
-        video_key: ~
+        video_key: 160258582
     query-with-join:
-        is_finished: false
-        video_key: ~
+        video_key: 160258855
