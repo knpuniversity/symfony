@@ -5,7 +5,7 @@ check! Well, I *hope* you just had a delicious snack.
 
 This tutorial is the start to our victory lap. We need to add caching to `MarkdownTransformer`:
 it should be pretty easy. Copy part of the *old* caching code and paste that into
-the `parse() function.` Remove the `else` part of the `if` and just return `$cache->fetch()`.
+the `parse()` function. Remove the `else` part of the `if` and just return `$cache->fetch()`.
 
 Below, assign the method call to the `$str` variable and go copy the old `$cache->save()`
 line. Return `$str` and re-add the sleep call so that things are *really* slow - that
