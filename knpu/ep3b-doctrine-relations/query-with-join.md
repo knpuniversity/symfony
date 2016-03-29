@@ -48,10 +48,15 @@ to query over this join *without* mapping this side of the relationship, it just
 takes a little bit more work:
 
 ```php
-    $this->createQueryBuilder('genus')
-        // ...
-        ->leftJoin('AppBundle:GenusNote', 'genus_note', \Doctrine\ORM\Query\Expr\Join::WITH, 'genus = genus_note.genus')
-        // ...
+$this->createQueryBuilder('genus')
+    // ...
+    ->leftJoin(
+        'AppBundle:GenusNote',
+        'genus_note',
+        \Doctrine\ORM\Query\Expr\Join::WITH,
+        'genus = genus_note.genus'
+    )
+    // ...
 ```
 ***
 
