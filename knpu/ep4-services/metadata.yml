@@ -31,14 +31,11 @@ tuts_hero:
 
 chapters:
     services-save-the-world:
-        is_finished: false
-        video_key: ~
+        video_key: 162382807
     create-service-class:
-        is_finished: false
-        video_key: ~
+        video_key: 162384766
     the-dreaded-dependency-injection:
-        is_finished: false
-        video_key: ~
+        video_key: 162390196
     type-hinting-arguments:
         is_finished: false
         video_key: ~
