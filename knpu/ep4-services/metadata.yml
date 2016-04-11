@@ -40,17 +40,12 @@ chapters:
         is_finished: false
         video_key: ~
     register-service:
-        is_finished: false
-        video_key: ~
+        video_key: 162405497
     inject-cache-service:
-        is_finished: false
-        video_key: ~ 
+        video_key: 162405792
     create-twig-extension:
-        is_finished: false
-        video_key: ~ 
+        video_key: 162406502 
     tagging-services:
-        is_finished: false
-        video_key: ~ 
+        video_key: 162408095 
     autowiring-madness:
-        is_finished: false
-        video_key: ~ 
+        video_key: 162407924 
