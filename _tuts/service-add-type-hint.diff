@@ -25,6 +25,27 @@ index 51a7c43..fb3bffb 100644
 +            ->transformMarkdown($str);
      }
  }
+diff --git a/vendor/knplabs/knp-markdown-bundle/MarkdownParserInterface.php b/vendor/knplabs/knp-markdown-bundle/MarkdownParserInterface.php
+new file mode 100644
+index 0000000..1cfe2d1
+--- /dev/null
++++ b/vendor/knplabs/knp-markdown-bundle/MarkdownParserInterface.php
+@@ -0,0 +1,15 @@
++<?php
++
++namespace Knp\Bundle\MarkdownBundle;
++
++interface MarkdownParserInterface
++{
++    /**
++     * Converts text to html using markdown rules
++     *
++     * @param string $text plain text
++     *
++     * @return string rendered html
++     */
++    function transformMarkdown($text);
++}
 diff --git a/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php b/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php
 new file mode 100644
 index 0000000..e24d262
