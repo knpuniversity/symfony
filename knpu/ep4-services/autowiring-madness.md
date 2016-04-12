@@ -1,14 +1,19 @@
 # Autowiring Madness
 
 Ooh, bonus feature! In `services.yml`, remove `arguments` and instead just say
-`autowire: true`.
+`autowire: true`:
+
+[[[ code('65334b7f81') ]]]
 
 Refresh again. It still works! But how? We didn't tell Symfony what arguments to pass
 to our constructor? What madness is this!? With `autowire: true`, Symfony reads the
-*type-hints* for each constructor argument and tries to automatically find the correct
-service to pass to you. In this case, it saw the `MarkdownTransformer` type-hint
-and knew to use the `app.markdown_transformer` service: since that is an instance
-of this class. You can also type-hint interfaces.
+*type-hints* for each constructor argument:
+
+[[[ code('489a2a0cfe') ]]]
+
+And tries to automatically find the correct service to pass to you. In this case,
+it saw the `MarkdownTransformer` type-hint and knew to use the `app.markdown_transformer`
+service: since that is an instance of this class. You can also type-hint interfaces.
 
 This doesn't *always* work, but Symfony will give you a big clear exception if it
 can't figure out what to do. But when it *does* work, it's a great time saver.
@@ -17,8 +22,11 @@ can't figure out what to do. But when it *does* work, it's a great time saver.
 
 The HTML is *still* being escaped - I don't want to finish before we fix that! We
 *could* add the `|raw` filter... but let's do something cooler. Add a third argument
-to `Twig_SimpleFilter`: an options array. Add `is_safe` set to an array containing
-`html`. This means it's *always* safe to output contents of this filter in HTML.
+to `Twig_SimpleFilter`: an options array. Add `is_safe` set to an array containing `html`:
+
+[[[ code('9e2bfbd6ed') ]]]
+
+This means it's *always* safe to output contents of this filter in HTML.
 Refresh one last time. Beautiful.
 
 ## Where now!?
