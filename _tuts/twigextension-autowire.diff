@@ -1,11 +1,11 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index b713805..5585414 100644
+index 558d48a..bf948d1 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -12,4 +12,5 @@ services:
          class: AppBundle\Twig\MarkdownExtension
          tags:
              - { name: twig.extension }
--        arguments: ['@app.markdown_parser']
-+        #arguments: ['@app.markdown_parser']
+-        arguments: ['@app.markdown_transformer']
++        #arguments: ['@app.markdown_transformer']
 +        autowire: true

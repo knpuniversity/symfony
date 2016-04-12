@@ -1,29 +1,29 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 2ac7f2d..b713805 100644
+index 2ac7f2d..558d48a 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -12,3 +12,4 @@ services:
          class: AppBundle\Twig\MarkdownExtension
          tags:
              - { name: twig.extension }
-+        arguments: ['@app.markdown_parser']
++        arguments: ['@app.markdown_transformer']
 diff --git a/src/AppBundle/Twig/MarkdownExtension.php b/src/AppBundle/Twig/MarkdownExtension.php
-index df71589..1077edc 100644
+index df71589..e2b9f07 100644
 --- a/src/AppBundle/Twig/MarkdownExtension.php
 +++ b/src/AppBundle/Twig/MarkdownExtension.php
 @@ -2,8 +2,17 @@
  
  namespace AppBundle\Twig;
  
-+use AppBundle\Service\MarkdownParser;
++use AppBundle\Service\MarkdownTransformer;
 +
  class MarkdownExtension extends \Twig_Extension
  {
-+    private $markdownParser;
++    private $markdownTransformer;
 +
-+    public function __construct(MarkdownParser $markdownParser)
++    public function __construct(MarkdownTransformer $markdownTransformer)
 +    {
-+        $this->markdownParser = $markdownParser;
++        $this->markdownTransformer = $markdownTransformer;
 +    }
 +
      public function getFilters()
@@ -34,7 +34,7 @@ index df71589..1077edc 100644
      public function parseMarkdown($str)
      {
 -        return strtoupper($str);
-+        return $this->markdownParser->parse($str);
++        return $this->markdownTransformer->parse($str);
      }
  
      public function getName()
