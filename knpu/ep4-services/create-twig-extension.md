@@ -61,7 +61,9 @@ just `strtoupper()` that guy to start:
 
 [[[ code('ee640e7c99') ]]]
 
-Cool? Update the Twig template to use this.
+Cool? Update the Twig template to use this:
+
+[[[ code('013f7a76d4') ]]]
 
 Our Twig extension is perfect... but it will *not* work yet. Refresh. Huge error:
 
