@@ -1,9 +1,9 @@
 title: Symfony: Level up with Services and the Container
 
 summary: |
-    Our app is coming to life! Thanks to the [Doctrine Course](http://knpuniversity.com/screencast/symfony-doctrine)
-    we have a rich data model. And after the course on [Configuration](knpuniversity.com/screencast/symfony-fundamentals),
-    well, using and configuring services is simple.'
+    Our app is coming to life! Thanks to the [Doctrine Course](https://knpuniversity.com/screencast/symfony-doctrine)
+    we have a rich data model. And after the course on [Configuration](https://knpuniversity.com/screencast/symfony-fundamentals),
+    well, using and configuring services is simple.
 
     Now it's time to level-up with those *services*. These
     puppies are the backbone of what makes Symfony special & fast.
