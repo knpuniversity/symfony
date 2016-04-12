@@ -1,0 +1,30 @@
+diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
+index 15fb4d6..d05245a 100644
+--- a/app/Resources/views/base.html.twig
++++ b/app/Resources/views/base.html.twig
+@@ -27,6 +27,12 @@
+         </header>
+ 
+         <div class="main-content">
++            {% for msg in app.session.flashBag.get('success') %}
++                <div class="alert alert-success">
++                    {{ msg }}
++                </div>
++            {% endfor %}
++
+             {% block body %}{% endblock %}
+         </div>
+ 
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 5b8cf28..68f19e6 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -42,6 +42,8 @@ class GenusAdminController extends Controller
+             $em->persist($genus);
+             $em->flush();
+ 
++            $this->addFlash('success', 'Genus created!');
++
+             return $this->redirectToRoute('admin_genus_list');
+         }
+ 

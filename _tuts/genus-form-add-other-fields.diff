@@ -1,0 +1,30 @@
+diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
+index 6e852c1..576d957 100644
+--- a/src/AppBundle/Entity/SubFamily.php
++++ b/src/AppBundle/Entity/SubFamily.php
+@@ -36,4 +36,9 @@ class SubFamily
+     {
+         $this->name = $name;
+     }
++
++    public function __toString()
++    {
++        return $this->getName();
++    }
+ }
+diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+index d3b1753..e4a5956 100644
+--- a/src/AppBundle/Form/ProductFormType.php
++++ b/src/AppBundle/Form/ProductFormType.php
+@@ -12,8 +12,11 @@ class ProductFormType extends AbstractType
+     {
+         $builder
+             ->add('name')
++            ->add('subFamily')
+             ->add('speciesCount')
+             ->add('funFact')
++            ->add('isPublished')
++            ->add('firstDiscoveredAt')
+         ;
+     }
+ 

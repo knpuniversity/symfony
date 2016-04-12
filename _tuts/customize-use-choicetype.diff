@@ -1,0 +1,26 @@
+diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+index e4a5956..a273516 100644
+--- a/src/AppBundle/Form/ProductFormType.php
++++ b/src/AppBundle/Form/ProductFormType.php
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Form;
+ 
+ use Symfony\Component\Form\AbstractType;
++use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+ use Symfony\Component\Form\FormBuilderInterface;
+ use Symfony\Component\OptionsResolver\OptionsResolver;
+ 
+@@ -15,7 +16,12 @@ class ProductFormType extends AbstractType
+             ->add('subFamily')
+             ->add('speciesCount')
+             ->add('funFact')
+-            ->add('isPublished')
++            ->add('isPublished', ChoiceType::class, [
++                'choices' => [
++                    'Yes' => true,
++                    'No' => false,
++                ]
++            ])
+             ->add('firstDiscoveredAt')
+         ;
+     }

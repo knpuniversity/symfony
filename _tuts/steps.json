@@ -464,7 +464,87 @@
             "id": "twigextension-mark-as-safe",
             "name": "TwigExtension: Mark as safe",
             "description": null
+        },
+        {
+            "id": "updates-add-subfamily",
+            "name": "Updates: Add SubFamily",
+            "description": null
+        },
+        {
+            "id": "updates-adding-genus-firstdiscoveredat",
+            "name": "Updates: Adding Genus.firstDiscoveredAt",
+            "description": null
+        },
+        {
+            "id": "updates-starting-admin-section",
+            "name": "Updates: Starting admin section",
+            "description": null
+        },
+        {
+            "id": "build-form-create-empty-productformtype",
+            "name": "Build Form: Create empty ProductFormType",
+            "description": null
+        },
+        {
+            "id": "build-form-basic-fields-and-rendering",
+            "name": "Build Form: Basic fields and rendering",
+            "description": null
+        },
+        {
+            "id": "build-form-bootstrap-theme",
+            "name": "Build Form: Bootstrap theme",
+            "description": null
+        },
+        {
+            "id": "build-form-very-basic-processing",
+            "name": "Build Form: Very basic processing",
+            "description": null
+        },
+        {
+            "id": "genus-form-add-data-class",
+            "name": "Genus Form: Add data_class",
+            "description": null
+        },
+        {
+            "id": "genus-form-add-other-fields",
+            "name": "Genus Form: Add other fields",
+            "description": null
+        },
+        {
+            "id": "genus-form-add-genus-getispublished",
+            "name": "Genus Form: Add Genus.getIsPublished",
+            "description": null
+        },
+        {
+            "id": "genus-form-save-and-redirect",
+            "name": "Genus Form: Save and redirect",
+            "description": null
+        },
+        {
+            "id": "flash-set-and-render-a-flash",
+            "name": "Flash: Set and render a flash",
+            "description": null
+        },
+        {
+            "id": "customize-use-choicetype",
+            "name": "Customize: Use ChoiceType",
+            "description": null
+        },
+        {
+            "id": "customize-add-placeholder-option",
+            "name": "Customize: Add placeholder option",
+            "description": null
+        },
+        {
+            "id": "customize-datetype-single-text-widget",
+            "name": "Customize: DateType single_text widget",
+            "description": null
+        },
+        {
+            "id": "customize-use-bootstrap-datepicker",
+            "name": "Customize: Use Bootstrap datepicker",
+            "description": null
         }
     ],
-    "sha": "76a9af1c34d3e72bd0022af4c8dcd87a97b0ba06"
+    "sha": "40f95ea3b14438139deec6517b5318313d26359c"
 }

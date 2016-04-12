@@ -1,0 +1,71 @@
+diff --git a/app/DoctrineMigrations/Version20160412165619.php b/app/DoctrineMigrations/Version20160412165619.php
+new file mode 100644
+index 0000000..fb5005d
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20160412165619.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20160412165619 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus ADD first_discovered_at DATE NOT NULL');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus DROP first_discovered_at');
++    }
++}
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index d0cd56c..4ab500d 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -45,6 +45,11 @@ class Genus
+     private $isPublished = true;
+ 
+     /**
++     * @ORM\Column(type="date")
++     */
++    private $firstDiscoveredAt;
++
++    /**
+      * @ORM\OneToMany(targetEntity="GenusNote", mappedBy="genus")
+      * @ORM\OrderBy({"createdAt" = "DESC"})
+      */
+@@ -115,4 +120,14 @@ class Genus
+     {
+         return $this->notes;
+     }
++
++    public function getFirstDiscoveredAt()
++    {
++        return $this->firstDiscoveredAt;
++    }
++
++    public function setFirstDiscoveredAt(\DateTime $firstDiscoveredAt)
++    {
++        $this->firstDiscoveredAt = $firstDiscoveredAt;
++    }
+ }

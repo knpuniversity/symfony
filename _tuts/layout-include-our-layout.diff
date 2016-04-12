@@ -102,10 +102,10 @@ index 2926904..b146cae 100644
 +{% endblock %}
 diff --git a/web/css/styles.css b/web/css/styles.css
 new file mode 100644
-index 0000000..4fd34a7
+index 0000000..cca1e34
 --- /dev/null
 +++ b/web/css/styles.css
-@@ -0,0 +1,669 @@
+@@ -0,0 +1,670 @@
 +/******************************
 +Flexbox Layout
 +*******************************/
@@ -762,6 +762,7 @@ index 0000000..4fd34a7
 +    padding: 20px;
 +    background: #E9D4B7;
 +    font-size: 1.3em;
++    margin-top: 40px;
 +}
 +
 +.footer-text {

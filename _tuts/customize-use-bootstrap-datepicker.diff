@@ -1,0 +1,43 @@
+diff --git a/app/Resources/views/product/new.html.twig b/app/Resources/views/product/new.html.twig
+index 57256de..4bcdfac 100644
+--- a/app/Resources/views/product/new.html.twig
++++ b/app/Resources/views/product/new.html.twig
+@@ -1,5 +1,23 @@
+ {% extends 'base.html.twig' %}
+ 
++{% block stylesheets %}
++    {{ parent() }}
++
++    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
++{% endblock %}
++
++{% block javascripts %}
++    {{ parent() }}
++
++    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
++
++    <script>
++        jQuery(document).ready(function() {
++            $('.js-datepicker').datepicker();
++        });
++    </script>
++{% endblock %}
++
+ {% block body %}
+     <h1>New Genus</h1>
+ 
+diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+index 1b5d270..c1a2578 100644
+--- a/src/AppBundle/Form/ProductFormType.php
++++ b/src/AppBundle/Form/ProductFormType.php
+@@ -26,7 +26,9 @@ class ProductFormType extends AbstractType
+                 ]
+             ])
+             ->add('firstDiscoveredAt', null, [
+-                'widget' => 'single_text'
++                'widget' => 'single_text',
++                'attr' => ['class' => 'js-datepicker'],
++                'html5' => false,
+             ])
+         ;
+     }

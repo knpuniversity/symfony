@@ -1,0 +1,14 @@
+diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+index ee1a603..d3b1753 100644
+--- a/src/AppBundle/Form/ProductFormType.php
++++ b/src/AppBundle/Form/ProductFormType.php
+@@ -19,6 +19,8 @@ class ProductFormType extends AbstractType
+ 
+     public function configureOptions(OptionsResolver $resolver)
+     {
+-
++        $resolver->setDefaults([
++            'data_class' => 'AppBundle\Entity\Genus'
++        ]);
+     }
+ }

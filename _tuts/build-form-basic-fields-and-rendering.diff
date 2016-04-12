@@ -1,0 +1,59 @@
+diff --git a/app/Resources/views/product/new.html.twig b/app/Resources/views/product/new.html.twig
+new file mode 100644
+index 0000000..57256de
+--- /dev/null
++++ b/app/Resources/views/product/new.html.twig
+@@ -0,0 +1,11 @@
++{% extends 'base.html.twig' %}
++
++{% block body %}
++    <h1>New Genus</h1>
++
++    {{ form_start(genusForm) }}
++        {{ form_widget(genusForm) }}
++
++        <button type="submit" class="btn btn-primary">Save</button>
++    {{ form_end(genusForm) }}
++{% endblock %}
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index f534c75..224eb94 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Controller\Admin;
+ 
++use AppBundle\Form\ProductFormType;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ 
+@@ -29,6 +30,10 @@ class GenusAdminController extends Controller
+      */
+     public function newAction()
+     {
+-        // let's go to work!
++        $form = $this->createForm(ProductFormType::class);
++
++        return $this->render('product/new.html.twig', [
++            'genusForm' => $form->createView()
++        ]);
+     }
+ }
+\ No newline at end of file
+diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+index fcf823e..ee1a603 100644
+--- a/src/AppBundle/Form/ProductFormType.php
++++ b/src/AppBundle/Form/ProductFormType.php
+@@ -10,7 +10,11 @@ class ProductFormType extends AbstractType
+ {
+     public function buildForm(FormBuilderInterface $builder, array $options)
+     {
+-
++        $builder
++            ->add('name')
++            ->add('speciesCount')
++            ->add('funFact')
++        ;
+     }
+ 
+     public function configureOptions(OptionsResolver $resolver)

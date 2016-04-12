@@ -1,0 +1,160 @@
+diff --git a/app/DoctrineMigrations/Version20160412160008.php b/app/DoctrineMigrations/Version20160412160008.php
+new file mode 100644
+index 0000000..bc9bcf7
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20160412160008.php
+@@ -0,0 +1,43 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20160412160008 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('CREATE TABLE sub_family (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
++        $this->addSql('ALTER TABLE genus ADD sub_family_id INT NOT NULL, DROP sub_family');
++        // clear all genuses - we're not on production yet, so we can take the lazy route
++        $this->addSql('DELETE FROM genus_note');
++        $this->addSql('DELETE FROM genus');
++        $this->addSql('ALTER TABLE genus ADD CONSTRAINT FK_38C5106ED15310D4 FOREIGN KEY (sub_family_id) REFERENCES sub_family (id)');
++        $this->addSql('CREATE INDEX IDX_38C5106ED15310D4 ON genus (sub_family_id)');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus DROP FOREIGN KEY FK_38C5106ED15310D4');
++        $this->addSql('DROP TABLE sub_family');
++        $this->addSql('DROP INDEX IDX_38C5106ED15310D4 ON genus');
++        $this->addSql('ALTER TABLE genus ADD sub_family VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, DROP sub_family_id');
++    }
++}
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 73c7f23..0c54c55 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -10,7 +10,7 @@
+         <div class="genus-details">
+             <dl class="genus-details-list">
+                 <dt>Subfamily:</dt>
+-                <dd>{{ genus.subFamily }}</dd>
++                <dd>{{ genus.subFamily.name }}</dd>
+                 <dt>Known Species:</dt>
+                 <dd>{{ genus.speciesCount|number_format }}</dd>
+                 <dt>Fun Fact:</dt>
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index 271735f..c550d3c 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -1,7 +1,7 @@
+ AppBundle\Entity\Genus:
+     genus_{1..10}:
+         name: <genus()>
+-        subFamily: <text(20)>
++        subFamily: '@subfamily_*'
+         speciesCount: <numberBetween(100, 100000)>
+         funFact: <sentence()>
+         isPublished: <boolean(75)>
+@@ -13,3 +13,8 @@ AppBundle\Entity\GenusNote:
+         note: <paragraph()>
+         createdAt: <dateTimeBetween('-6 months', 'now')>
+         genus: '@genus_*'
++
++AppBundle\Entity\SubFamily:
++    subfamily_{1..10}:
++        # use some fake data for this
++        name: <lastName()>
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 9f939f9..d0cd56c 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -24,7 +24,8 @@ class Genus
+     private $name;
+ 
+     /**
+-     * @ORM\Column(type="string")
++     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubFamily")
++     * @ORM\JoinColumn(nullable=false)
+      */
+     private $subFamily;
+ 
+@@ -64,12 +65,15 @@ class Genus
+         $this->name = $name;
+     }
+ 
++    /**
++     * @return SubFamily
++     */
+     public function getSubFamily()
+     {
+         return $this->subFamily;
+     }
+ 
+-    public function setSubFamily($subFamily)
++    public function setSubFamily(SubFamily $subFamily)
+     {
+         $this->subFamily = $subFamily;
+     }
+diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
+new file mode 100644
+index 0000000..6e852c1
+--- /dev/null
++++ b/src/AppBundle/Entity/SubFamily.php
+@@ -0,0 +1,39 @@
++<?php
++
++namespace AppBundle\Entity;
++
++use Doctrine\ORM\Mapping as ORM;
++
++/**
++ * @ORM\Entity
++ * @ORM\Table(name="sub_family")
++ */
++class SubFamily
++{
++    /**
++     * @ORM\Id
++     * @ORM\GeneratedValue(strategy="AUTO")
++     * @ORM\Column(type="integer")
++     */
++    private $id;
++
++    /**
++     * @ORM\Column(type="string")
++     */
++    private $name;
++
++    public function getId()
++    {
++        return $this->id;
++    }
++
++    public function getName()
++    {
++        return $this->name;
++    }
++
++    public function setName($name)
++    {
++        $this->name = $name;
++    }
++}

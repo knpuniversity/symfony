@@ -1,0 +1,16 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 4ab500d..fca9a5c 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -113,6 +113,11 @@ class Genus
+         $this->isPublished = $isPublished;
+     }
+ 
++    public function getIsPublished()
++    {
++        return $this->isPublished;
++    }
++
+     /**
+      * @return ArrayCollection|GenusNote[]
+      */

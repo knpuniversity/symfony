@@ -1,0 +1,26 @@
+diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+new file mode 100644
+index 0000000..fcf823e
+--- /dev/null
++++ b/src/AppBundle/Form/ProductFormType.php
+@@ -0,0 +1,20 @@
++<?php
++
++namespace AppBundle\Form;
++
++use Symfony\Component\Form\AbstractType;
++use Symfony\Component\Form\FormBuilderInterface;
++use Symfony\Component\OptionsResolver\OptionsResolver;
++
++class ProductFormType extends AbstractType
++{
++    public function buildForm(FormBuilderInterface $builder, array $options)
++    {
++
++    }
++
++    public function configureOptions(OptionsResolver $resolver)
++    {
++
++    }
++}
