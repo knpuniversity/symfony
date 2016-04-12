@@ -1,8 +1,10 @@
 # Tagging Services (and having Fun!)
 
-We need to somehow tell Twig about our fun new Twig Extension. To do that, first,
+We need to somehow tell Twig about our fun new Twig extension. To do that, first,
 register it as a service. The name doesn't matter, so how about `app.markdown_extension`.
-Set the class, but skip `arguments`: we don't have any yet, so this is optional.
+Set the class, but skip `arguments`: we don't have any yet, so this is optional:
+
+[[[ code('f6b8b0b57c') ]]]
 
 Now, this service is a bit different: it's *not* something that we intend to use
 directly in our controller, like `app.markdown_transformer`. Instead, we simply
@@ -11,7 +13,10 @@ want Twig to *know* about our service. We somehow need to raise our hand and say
 > Oh, oh oh! This service is special - this service is a *Twig Extension*!
 
 We do that by adding a *tag*. The syntax is weird, so stay with me: Add `tags:`,
-then under that a dash and a set of curly-braces. Inside, set `name` to `twig.extension`.
+then under that a dash and a set of curly-braces. Inside, set `name` to `twig.extension`:
+
+[[[ code('9cbc04ae04') ]]]
+
 And that's it.
 
 Real quick - make sure it works. Refresh! Boom! We see a pretty awesome-looking
@@ -25,9 +30,9 @@ that are *tagged* with `twig.extension`. It then configures these as extensions 
 `twig`.
 
 Google for "Symfony dependency injection tags": there's an awesome reference section
-on Symfony.com called [The Dependency Injection Tags](http://symfony.com/doc/current/reference/dic_tags.html).
-It lists *every* tag that can be used to hook into core Symfony. And if you're tagging
-a service, well, you're probably doing something really cool.
+on Symfony.com called [The Dependency Injection Tags][1]. It lists *every* tag that
+can be used to hook into core Symfony. And if you're tagging a service, well, you're
+probably doing something really cool.
 
 For example, if you want to register an event listener and actually hook into Symfony's
 boot process, you create a service and then tag it with `kernel.event_listener`.
@@ -42,16 +47,25 @@ in a familiar position: we're inside a service and need access to some *other* s
 `MarkdownTransformer`. Dependency injection!
 
 Add `public function __construct()` with a `MarkdownTransformer` argument. I'll hold
-option+enter and select "initialize fields" as a shortcut. Again, this just added
-the property for me and assigned it in `__construct()`.
+`option`+`enter` and select "Initialize fields" as a shortcut. Again, this just added
+the property for me and assigned it in `__construct()`:
+
+[[[ code('6f606645da') ]]]
 
 ***SEEALSO
-Watch our [PhpStorm Course](knpuniversity.com/screencast/phpstorm) to learn about
-these great shortcuts.
+Watch our [PhpStorm Course][2] to learn about these great shortcuts.
 ***
 
-In `parseMarkdown()`, return `$this->markdownTransformer->parse()` and pass it `$str`.
-The last step is to update our service in `services.yml`. Add
-`arguments: ['@app.markdown_transformer']`.
+In `parseMarkdown()`, return `$this->markdownTransformer->parse()` and pass it `$str`:
+
+[[[ code('e46cd4a3e9') ]]]
+
+The last step is to update our service in `services.yml`. Add `arguments: ['@app.markdown_transformer']`:
+
+[[[ code('f735cc4bee') ]]]
 
 Refresh! And it's working. Now, let me show you a shortcut.
+
+
+[1]: http://symfony.com/doc/current/reference/dic_tags.html
+[2]: https://knpuniversity.com/screencast/phpstorm
