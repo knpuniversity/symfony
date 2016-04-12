@@ -41,12 +41,16 @@ will be a different class.
 
 Let's do some digging: open up `ArrayCache`:
 
+[[[ code('c0ff6e601e') ]]]
+
+This extends `CacheProvider`:
+
 [[[ code('45fe273399') ]]]
 
-This extends `CacheProvider`. That might work. But *it* implements several
-interface - one of them is just called `Cache`. Let's try that. If this isn't
-the right interface - meaning it doesn't contain the methods we're using - PhpStorm
-will keep highlighting those after we add the type-hint:
+That might work. But *it* implements several interface - one of them is just
+called `Cache`. Let's try that. If this isn't the right interface - meaning it
+doesn't contain the methods we're using - PhpStorm will keep highlighting
+those after we add the type-hint:
 
 [[[ code('f4d238a2f7') ]]]
 
