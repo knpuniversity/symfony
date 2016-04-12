@@ -40,7 +40,7 @@ creating a Twig extension, it will tell you to create a class, make it extend
 
 Use the "Code"->"Generate" menu - or `cmd`+`n` - and select "Implement Methods".
 The *one* method you *must* have is called `getName()`. It's also the most boring:
-just make it return any unique string - like `app.markdown`:
+just make it return any unique string - like `app_markdown`:
 
 [[[ code('496ebd40a7') ]]]
 
