@@ -50,7 +50,7 @@ will keep highlighting those after we add the type-hint:
 
 [[[ code('f4d238a2f7') ]]]
 
-I'll use a keyboard shortcut - `option` + `enter` on a Mac - and select initialize fields:
+I'll use a keyboard shortcut - `option`+`enter` on a Mac - and select initialize fields:
 
 [[[ code('bb9d57b84e') ]]]
 
