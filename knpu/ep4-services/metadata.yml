@@ -37,8 +37,7 @@ chapters:
     the-dreaded-dependency-injection:
         video_key: 162390196
     type-hinting-arguments:
-        is_finished: false
-        video_key: ~
+        video_key: 162533237
     register-service:
         video_key: 162405497
     inject-cache-service:
