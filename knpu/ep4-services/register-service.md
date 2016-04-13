@@ -85,7 +85,7 @@ Open `var/cache/dev/appDevDebugProjectContainer.php`:
 [[[ code('19d52ec5d9') ]]]
 
 *This* is the container: it's a class that's dynamically built from our configuration.
-Search for "markdowntransformer" and find the `getApp_MarkdownTransformerService()` method:
+Search for "markdown\_transformer" and find the `getApp_MarkdownTransformerService()` method:
 
 [[[ code('734e3d6ad0') ]]]
 
