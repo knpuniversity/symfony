@@ -35,7 +35,7 @@ get access to the service container, you need to extend Symfony's base controlle
 
 ***SEEALSO
 Why does extending `Controller` give you access to the container? Find out:
-[Injecting the Container (ContainerAwareInterface)][] (advanced).
+[Injecting the Container (ContainerAwareInterface)][http://knpuniversity.com/screencast/symfony-journey/determine-the-controller#injecting-the-container-containerawareinterface] (advanced).
 ***
 
 In `GenusController`, add `extends Controller` from `FrameworkBundle`. Hit tab to
