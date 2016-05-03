@@ -16,7 +16,7 @@ index 15fb4d6..d05245a 100644
          </div>
  
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index 827fcab..700f9ed 100644
+index 39bed81..7a84ec0 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -42,6 +42,8 @@ class GenusAdminController extends Controller

@@ -1,7 +1,7 @@
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index e4a5956..a273516 100644
---- a/src/AppBundle/Form/ProductFormType.php
-+++ b/src/AppBundle/Form/ProductFormType.php
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 2ab818e..458e8c7 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
 @@ -3,6 +3,7 @@
  namespace AppBundle\Form;
  
@@ -10,7 +10,7 @@ index e4a5956..a273516 100644
  use Symfony\Component\Form\FormBuilderInterface;
  use Symfony\Component\OptionsResolver\OptionsResolver;
  
-@@ -15,7 +16,12 @@ class ProductFormType extends AbstractType
+@@ -15,7 +16,12 @@ class GenusFormType extends AbstractType
              ->add('subFamily')
              ->add('speciesCount')
              ->add('funFact')

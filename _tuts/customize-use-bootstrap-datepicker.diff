@@ -26,11 +26,11 @@ index 10cbdf9..71a57b5 100644
  {% block body %}
      <div class="container">
          <div class="row">
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index aece5c2..d90aefd 100644
---- a/src/AppBundle/Form/ProductFormType.php
-+++ b/src/AppBundle/Form/ProductFormType.php
-@@ -32,7 +32,9 @@ class ProductFormType extends AbstractType
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 9cf5732..c8da236 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -32,7 +32,9 @@ class GenusFormType extends AbstractType
                  ]
              ])
              ->add('firstDiscoveredAt', null, [

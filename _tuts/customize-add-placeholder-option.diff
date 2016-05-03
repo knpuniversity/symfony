@@ -1,7 +1,7 @@
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index a273516..4324ce9 100644
---- a/src/AppBundle/Form/ProductFormType.php
-+++ b/src/AppBundle/Form/ProductFormType.php
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 458e8c7..020cfd8 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
 @@ -2,6 +2,7 @@
  
  namespace AppBundle\Form;
@@ -10,7 +10,7 @@ index a273516..4324ce9 100644
  use Symfony\Component\Form\AbstractType;
  use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
  use Symfony\Component\Form\FormBuilderInterface;
-@@ -13,7 +14,9 @@ class ProductFormType extends AbstractType
+@@ -13,7 +14,9 @@ class GenusFormType extends AbstractType
      {
          $builder
              ->add('name')

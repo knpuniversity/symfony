@@ -1,9 +1,9 @@
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index d0823d1..5206bd3 100644
+index d25bb33..586e356 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
- use AppBundle\Form\ProductFormType;
+ use AppBundle\Form\GenusFormType;
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 +use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,7 @@ index d0823d1..5206bd3 100644
 -    public function newAction()
 +    public function newAction(Request $request)
      {
-         $form = $this->createForm(ProductFormType::class);
+         $form = $this->createForm(GenusFormType::class);
  
 +        // only handles data on POST
 +        $form->handleRequest($request);

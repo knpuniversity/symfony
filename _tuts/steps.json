@@ -481,8 +481,8 @@
             "description": null
         },
         {
-            "id": "build-form-create-empty-productformtype",
-            "name": "Build Form: Create empty ProductFormType",
+            "id": "build-form-create-empty-genusformtype",
+            "name": "Build Form: Create empty GenusFormType",
             "description": null
         },
         {
@@ -584,7 +584,12 @@
             "id": "validation-use-translator",
             "name": "Validation: Use translator",
             "description": null
+        },
+        {
+            "id": "edit-setup-edit-endpoint",
+            "name": "Edit: Setup edit endpoint",
+            "description": null
         }
     ],
-    "sha": "a9b15ef94e58782aff70351f492ea20d62bab955"
+    "sha": "81831ed44ae471d590f591a08a36b69c857ad8b5"
 }

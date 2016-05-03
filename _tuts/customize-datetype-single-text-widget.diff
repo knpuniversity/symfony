@@ -1,8 +1,8 @@
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index cc5c1d7..aece5c2 100644
---- a/src/AppBundle/Form/ProductFormType.php
-+++ b/src/AppBundle/Form/ProductFormType.php
-@@ -31,7 +31,9 @@ class ProductFormType extends AbstractType
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 256190a..9cf5732 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -31,7 +31,9 @@ class GenusFormType extends AbstractType
                      'No' => false,
                  ]
              ])

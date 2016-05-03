@@ -19,14 +19,14 @@ index b7dfb7f..10cbdf9 100644
 +{% endblock %}
 \ No newline at end of file
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index f534c75..d0823d1 100644
+index f534c75..d25bb33 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -2,6 +2,7 @@
  
  namespace AppBundle\Controller\Admin;
  
-+use AppBundle\Form\ProductFormType;
++use AppBundle\Form\GenusFormType;
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  
@@ -35,7 +35,7 @@ index f534c75..d0823d1 100644
      public function newAction()
      {
 -        // let's go to work!
-+        $form = $this->createForm(ProductFormType::class);
++        $form = $this->createForm(GenusFormType::class);
 +
 +        return $this->render('admin/genus/new.html.twig', [
 +            'genusForm' => $form->createView()
@@ -43,11 +43,11 @@ index f534c75..d0823d1 100644
      }
  }
 \ No newline at end of file
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index fcf823e..ee1a603 100644
---- a/src/AppBundle/Form/ProductFormType.php
-+++ b/src/AppBundle/Form/ProductFormType.php
-@@ -10,7 +10,11 @@ class ProductFormType extends AbstractType
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index bf8a4db..b909507 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -10,7 +10,11 @@ class GenusFormType extends AbstractType
  {
      public function buildForm(FormBuilderInterface $builder, array $options)
      {

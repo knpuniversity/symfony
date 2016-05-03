@@ -1,8 +1,8 @@
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
 new file mode 100644
-index 0000000..fcf823e
+index 0000000..bf8a4db
 --- /dev/null
-+++ b/src/AppBundle/Form/ProductFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
 @@ -0,0 +1,20 @@
 +<?php
 +
@@ -12,7 +12,7 @@ index 0000000..fcf823e
 +use Symfony\Component\Form\FormBuilderInterface;
 +use Symfony\Component\OptionsResolver\OptionsResolver;
 +
-+class ProductFormType extends AbstractType
++class GenusFormType extends AbstractType
 +{
 +    public function buildForm(FormBuilderInterface $builder, array $options)
 +    {

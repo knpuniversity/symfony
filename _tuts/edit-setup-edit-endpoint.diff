@@ -1,0 +1,130 @@
+diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
+new file mode 100644
+index 0000000..6b79ac7
+--- /dev/null
++++ b/app/Resources/views/admin/genus/edit.html.twig
+@@ -0,0 +1,42 @@
++{% extends 'base.html.twig' %}
++
++{% block stylesheets %}
++    {{ parent() }}
++
++    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
++{% endblock %}
++
++{% block javascripts %}
++    {{ parent() }}
++
++    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
++
++    <script>
++        jQuery(document).ready(function() {
++            $('.js-datepicker').datepicker();
++        });
++    </script>
++{% endblock %}
++
++{% block body %}
++    <div class="container">
++        <div class="row">
++            <div class="col-xs-12">
++                <h1>New Genus</h1>
++
++                {{ form_start(genusForm) }}
++                    {{ form_row(genusForm.name) }}
++                    {{ form_row(genusForm.subFamily) }}
++                    {{ form_row(genusForm.speciesCount, {
++                        'label': 'Number of Species'
++                    }) }}
++                    {{ form_row(genusForm.funFact) }}
++                    {{ form_row(genusForm.isPublished) }}
++                    {{ form_row(genusForm.firstDiscoveredAt) }}
++
++                    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
++                {{ form_end(genusForm) }}
++            </div>
++        </div>
++    </div>
++{% endblock %}
+diff --git a/app/Resources/views/admin/genus/list.html.twig b/app/Resources/views/admin/genus/list.html.twig
+index d9b8157..f624469 100644
+--- a/app/Resources/views/admin/genus/list.html.twig
++++ b/app/Resources/views/admin/genus/list.html.twig
+@@ -22,7 +22,7 @@
+                             <td>{{ genus.name }}</td>
+                             <td>{{ genus.subFamily.name }}</td>
+                             <td>
+-                                <a href="#" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
++                                <a href="{{ path('admin_genus_edit', {'id': genus.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                             </td>
+                         </tr>
+                     {% endfor %}
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 7a84ec0..3d3f1dc 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Controller\Admin;
+ 
++use AppBundle\Entity\Genus;
+ use AppBundle\Form\GenusFormType;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+@@ -51,4 +52,30 @@ class GenusAdminController extends Controller
+             'genusForm' => $form->createView()
+         ]);
+     }
++
++    /**
++     * @Route("/genus/{id}/edit", name="admin_genus_edit")
++     */
++    public function editAction(Request $request, Genus $genus)
++    {
++        $form = $this->createForm(GenusFormType::class, $genus);
++
++        // only handles data on POST
++        $form->handleRequest($request);
++        if ($form->isSubmitted() && $form->isValid()) {
++            $genus = $form->getData();
++
++            $em = $this->getDoctrine()->getManager();
++            $em->persist($genus);
++            $em->flush();
++
++            $this->addFlash('success', 'Genus updated!');
++
++            return $this->redirectToRoute('admin_genus_list');
++        }
++
++        return $this->render('admin/genus/edit.html.twig', [
++            'genusForm' => $form->createView()
++        ]);
++    }
+ }
+\ No newline at end of file
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 6f28598..a1cf141 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -66,6 +66,11 @@ class Genus
+         $this->notes = new ArrayCollection();
+     }
+ 
++    public function getId()
++    {
++        return $this->id;
++    }
++
+     public function getName()
+     {
+         return $this->name;
+@@ -101,7 +106,7 @@ class Genus
+ 
+     public function getFunFact()
+     {
+-        return '**TEST** '.$this->funFact;
++        return $this->funFact;
+     }
+ 
+     public function setFunFact($funFact)

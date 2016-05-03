@@ -12,11 +12,11 @@ index 6e852c1..576d957 100644
 +        return $this->getName();
 +    }
  }
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index d3b1753..e4a5956 100644
---- a/src/AppBundle/Form/ProductFormType.php
-+++ b/src/AppBundle/Form/ProductFormType.php
-@@ -12,8 +12,11 @@ class ProductFormType extends AbstractType
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index f939b71..2ab818e 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -12,8 +12,11 @@ class GenusFormType extends AbstractType
      {
          $builder
              ->add('name')

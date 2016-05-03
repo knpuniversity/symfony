@@ -11,10 +11,10 @@ index 576d957..95e9de7 100644
   * @ORM\Table(name="sub_family")
   */
  class SubFamily
-diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index 908e4c8..cc5c1d7 100644
---- a/src/AppBundle/Form/ProductFormType.php
-+++ b/src/AppBundle/Form/ProductFormType.php
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index baf0b8b..256190a 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
 @@ -2,6 +2,8 @@
  
  namespace AppBundle\Form;
@@ -24,7 +24,7 @@ index 908e4c8..cc5c1d7 100644
  use Symfony\Bridge\Doctrine\Form\Type\EntityType;
  use Symfony\Component\Form\AbstractType;
  use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-@@ -17,8 +19,8 @@ class ProductFormType extends AbstractType
+@@ -17,8 +19,8 @@ class GenusFormType extends AbstractType
              ->add('subFamily', EntityType::class, [
                  'placeholder' => 'Choose a Sub Family',
                  'class' => SubFamily::class,
