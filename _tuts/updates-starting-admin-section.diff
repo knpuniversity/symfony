@@ -38,6 +38,23 @@ index 0000000..d9b8157
 +    </div>
 +{% endblock %}
 \ No newline at end of file
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
+new file mode 100644
+index 0000000..b7dfb7f
+--- /dev/null
++++ b/app/Resources/views/admin/genus/new.html.twig
+@@ -0,0 +1,11 @@
++{% extends 'base.html.twig' %}
++
++{% block body %}
++    <div class="container">
++        <div class="row">
++            <div class="col-xs-12">
++                <h1>New Genus</h1>
++            </div>
++        </div>
++    </div>
++{% endblock %}
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
 new file mode 100644
 index 0000000..f534c75

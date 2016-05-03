@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
-index 57256de..4bcdfac 100644
+index 10cbdf9..71a57b5 100644
 --- a/app/Resources/views/admin/genus/new.html.twig
 +++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -1,5 +1,23 @@
@@ -24,8 +24,8 @@ index 57256de..4bcdfac 100644
 +{% endblock %}
 +
  {% block body %}
-     <h1>New Genus</h1>
- 
+     <div class="container">
+         <div class="row">
 diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
 index aece5c2..d90aefd 100644
 --- a/src/AppBundle/Form/ProductFormType.php

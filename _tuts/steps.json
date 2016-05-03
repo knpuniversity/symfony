@@ -554,7 +554,17 @@
             "id": "customize-use-bootstrap-datepicker",
             "name": "Customize: Use Bootstrap datepicker",
             "description": null
+        },
+        {
+            "id": "render-use-form-row",
+            "name": "Render: Use form_row",
+            "description": null
+        },
+        {
+            "id": "render-pass-label-var",
+            "name": "Render: Pass label var",
+            "description": null
         }
     ],
-    "sha": "5c6402cc903785b18974499a6a3dd1a981760767"
+    "sha": "bc8f4d85c65415dabe13b9cb3e4e0b90a7c784af"
 }
