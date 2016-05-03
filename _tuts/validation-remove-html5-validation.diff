@@ -1,8 +1,8 @@
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
-index aae4912..6b79ac7 100644
+index 6faf5c8..2f8467b 100644
 --- a/app/Resources/views/admin/genus/new.html.twig
 +++ b/app/Resources/views/admin/genus/new.html.twig
-@@ -34,7 +34,7 @@
+@@ -36,7 +36,7 @@
                      {{ form_row(genusForm.isPublished) }}
                      {{ form_row(genusForm.firstDiscoveredAt) }}
  

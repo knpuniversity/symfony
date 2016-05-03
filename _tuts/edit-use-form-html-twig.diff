@@ -1,0 +1,66 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+new file mode 100644
+index 0000000..7f49e54
+--- /dev/null
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -0,0 +1,12 @@
++{{ form_start(genusForm) }}
++    {{ form_row(genusForm.name) }}
++    {{ form_row(genusForm.subFamily) }}
++    {{ form_row(genusForm.speciesCount, {
++        'label': 'Number of Species'
++    }) }}
++    {{ form_row(genusForm.funFact) }}
++    {{ form_row(genusForm.isPublished) }}
++    {{ form_row(genusForm.firstDiscoveredAt) }}
++
++    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
++{{ form_end(genusForm) }}
+diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
+index 2f8467b..c770ab0 100644
+--- a/app/Resources/views/admin/genus/edit.html.twig
++++ b/app/Resources/views/admin/genus/edit.html.twig
+@@ -26,18 +26,7 @@
+             <div class="col-xs-12">
+                 <h1>New Genus</h1>
+ 
+-                {{ form_start(genusForm) }}
+-                    {{ form_row(genusForm.name) }}
+-                    {{ form_row(genusForm.subFamily) }}
+-                    {{ form_row(genusForm.speciesCount, {
+-                        'label': 'Number of Species'
+-                    }) }}
+-                    {{ form_row(genusForm.funFact) }}
+-                    {{ form_row(genusForm.isPublished) }}
+-                    {{ form_row(genusForm.firstDiscoveredAt) }}
+-
+-                    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+-                {{ form_end(genusForm) }}
++                {{ include('admin/genus/_form.html.twig') }}
+             </div>
+         </div>
+     </div>
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
+index 2f8467b..c770ab0 100644
+--- a/app/Resources/views/admin/genus/new.html.twig
++++ b/app/Resources/views/admin/genus/new.html.twig
+@@ -26,18 +26,7 @@
+             <div class="col-xs-12">
+                 <h1>New Genus</h1>
+ 
+-                {{ form_start(genusForm) }}
+-                    {{ form_row(genusForm.name) }}
+-                    {{ form_row(genusForm.subFamily) }}
+-                    {{ form_row(genusForm.speciesCount, {
+-                        'label': 'Number of Species'
+-                    }) }}
+-                    {{ form_row(genusForm.funFact) }}
+-                    {{ form_row(genusForm.isPublished) }}
+-                    {{ form_row(genusForm.firstDiscoveredAt) }}
+-
+-                    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+-                {{ form_end(genusForm) }}
++                {{ include('admin/genus/_form.html.twig') }}
+             </div>
+         </div>
+     </div>

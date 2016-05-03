@@ -1,9 +1,9 @@
 diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
 new file mode 100644
-index 0000000..6b79ac7
+index 0000000..2f8467b
 --- /dev/null
 +++ b/app/Resources/views/admin/genus/edit.html.twig
-@@ -0,0 +1,42 @@
+@@ -0,0 +1,44 @@
 +{% extends 'base.html.twig' %}
 +
 +{% block stylesheets %}
@@ -19,7 +19,9 @@ index 0000000..6b79ac7
 +
 +    <script>
 +        jQuery(document).ready(function() {
-+            $('.js-datepicker').datepicker();
++            $('.js-datepicker').datepicker({
++                format: 'yyyy-mm-dd'
++            });
 +        });
 +    </script>
 +{% endblock %}

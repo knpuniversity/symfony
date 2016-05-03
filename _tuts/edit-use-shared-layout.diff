@@ -1,0 +1,87 @@
+diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
+index c770ab0..1d5ac0c 100644
+--- a/app/Resources/views/admin/genus/edit.html.twig
++++ b/app/Resources/views/admin/genus/edit.html.twig
+@@ -1,24 +1,4 @@
+-{% extends 'base.html.twig' %}
+-
+-{% block stylesheets %}
+-    {{ parent() }}
+-
+-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+-{% endblock %}
+-
+-{% block javascripts %}
+-    {{ parent() }}
+-
+-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+-
+-    <script>
+-        jQuery(document).ready(function() {
+-            $('.js-datepicker').datepicker({
+-                format: 'yyyy-mm-dd'
+-            });
+-        });
+-    </script>
+-{% endblock %}
++{% extends 'admin/genus/formLayout.html.twig' %}
+ 
+ {% block body %}
+     <div class="container">
+diff --git a/app/Resources/views/admin/genus/formLayout.html.twig b/app/Resources/views/admin/genus/formLayout.html.twig
+new file mode 100644
+index 0000000..d20fcbc
+--- /dev/null
++++ b/app/Resources/views/admin/genus/formLayout.html.twig
+@@ -0,0 +1,21 @@
++{% extends 'base.html.twig' %}
++
++{% block stylesheets %}
++    {{ parent() }}
++
++    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
++{% endblock %}
++
++{% block javascripts %}
++    {{ parent() }}
++
++    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
++
++    <script>
++        jQuery(document).ready(function() {
++            $('.js-datepicker').datepicker({
++                format: 'yyyy-mm-dd'
++            });
++        });
++    </script>
++{% endblock %}
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
+index c770ab0..1d5ac0c 100644
+--- a/app/Resources/views/admin/genus/new.html.twig
++++ b/app/Resources/views/admin/genus/new.html.twig
+@@ -1,24 +1,4 @@
+-{% extends 'base.html.twig' %}
+-
+-{% block stylesheets %}
+-    {{ parent() }}
+-
+-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+-{% endblock %}
+-
+-{% block javascripts %}
+-    {{ parent() }}
+-
+-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+-
+-    <script>
+-        jQuery(document).ready(function() {
+-            $('.js-datepicker').datepicker({
+-                format: 'yyyy-mm-dd'
+-            });
+-        });
+-    </script>
+-{% endblock %}
++{% extends 'admin/genus/formLayout.html.twig' %}
+ 
+ {% block body %}
+     <div class="container">

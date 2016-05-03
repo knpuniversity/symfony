@@ -1,0 +1,15 @@
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
+index 71a57b5..9672b80 100644
+--- a/app/Resources/views/admin/genus/new.html.twig
++++ b/app/Resources/views/admin/genus/new.html.twig
+@@ -13,7 +13,9 @@
+ 
+     <script>
+         jQuery(document).ready(function() {
+-            $('.js-datepicker').datepicker();
++            $('.js-datepicker').datepicker({
++                format: 'yyyy-mm-dd'
++            });
+         });
+     </script>
+ {% endblock %}

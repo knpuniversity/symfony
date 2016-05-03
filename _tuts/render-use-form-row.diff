@@ -1,8 +1,8 @@
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
-index 71a57b5..7968036 100644
+index 9672b80..0aaef8e 100644
 --- a/app/Resources/views/admin/genus/new.html.twig
 +++ b/app/Resources/views/admin/genus/new.html.twig
-@@ -25,11 +25,16 @@
+@@ -27,11 +27,16 @@
                  <h1>New Genus</h1>
  
                  {{ form_start(genusForm) }}
