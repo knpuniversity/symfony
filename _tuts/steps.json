@@ -536,6 +536,16 @@
             "description": null
         },
         {
+            "id": "customize-start-query-builder-option",
+            "name": "Customize: Start query_builder option",
+            "description": null
+        },
+        {
+            "id": "customize-finish-query-builder-option",
+            "name": "Customize: Finish query_builder option",
+            "description": null
+        },
+        {
             "id": "customize-datetype-single-text-widget",
             "name": "Customize: DateType single_text widget",
             "description": null
@@ -546,5 +556,5 @@
             "description": null
         }
     ],
-    "sha": "40f95ea3b14438139deec6517b5318313d26359c"
+    "sha": "5c6402cc903785b18974499a6a3dd1a981760767"
 }

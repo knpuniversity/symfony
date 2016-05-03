@@ -1,8 +1,8 @@
-diff --git a/app/Resources/views/product/new.html.twig b/app/Resources/views/product/new.html.twig
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
 new file mode 100644
 index 0000000..57256de
 --- /dev/null
-+++ b/app/Resources/views/product/new.html.twig
++++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -0,0 +1,11 @@
 +{% extends 'base.html.twig' %}
 +
@@ -16,7 +16,7 @@ index 0000000..57256de
 +    {{ form_end(genusForm) }}
 +{% endblock %}
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index f534c75..224eb94 100644
+index f534c75..d0823d1 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -2,6 +2,7 @@
@@ -34,7 +34,7 @@ index f534c75..224eb94 100644
 -        // let's go to work!
 +        $form = $this->createForm(ProductFormType::class);
 +
-+        return $this->render('product/new.html.twig', [
++        return $this->render('admin/genus/new.html.twig', [
 +            'genusForm' => $form->createView()
 +        ]);
      }

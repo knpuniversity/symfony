@@ -1,7 +1,7 @@
-diff --git a/app/Resources/views/product/new.html.twig b/app/Resources/views/product/new.html.twig
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
 index 57256de..4bcdfac 100644
---- a/app/Resources/views/product/new.html.twig
-+++ b/app/Resources/views/product/new.html.twig
+--- a/app/Resources/views/admin/genus/new.html.twig
++++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -1,5 +1,23 @@
  {% extends 'base.html.twig' %}
  
@@ -27,10 +27,10 @@ index 57256de..4bcdfac 100644
      <h1>New Genus</h1>
  
 diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
-index 1b5d270..c1a2578 100644
+index aece5c2..d90aefd 100644
 --- a/src/AppBundle/Form/ProductFormType.php
 +++ b/src/AppBundle/Form/ProductFormType.php
-@@ -26,7 +26,9 @@ class ProductFormType extends AbstractType
+@@ -32,7 +32,9 @@ class ProductFormType extends AbstractType
                  ]
              ])
              ->add('firstDiscoveredAt', null, [

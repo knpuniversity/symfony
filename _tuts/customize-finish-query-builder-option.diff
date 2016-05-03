@@ -1,0 +1,58 @@
+diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
+index 576d957..95e9de7 100644
+--- a/src/AppBundle/Entity/SubFamily.php
++++ b/src/AppBundle/Entity/SubFamily.php
+@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
+ use Doctrine\ORM\Mapping as ORM;
+ 
+ /**
+- * @ORM\Entity
++ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubFamilyRepository")
+  * @ORM\Table(name="sub_family")
+  */
+ class SubFamily
+diff --git a/src/AppBundle/Form/ProductFormType.php b/src/AppBundle/Form/ProductFormType.php
+index 908e4c8..cc5c1d7 100644
+--- a/src/AppBundle/Form/ProductFormType.php
++++ b/src/AppBundle/Form/ProductFormType.php
+@@ -2,6 +2,8 @@
+ 
+ namespace AppBundle\Form;
+ 
++use AppBundle\Entity\SubFamily;
++use AppBundle\Repository\SubFamilyRepository;
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+@@ -17,8 +19,8 @@ class ProductFormType extends AbstractType
+             ->add('subFamily', EntityType::class, [
+                 'placeholder' => 'Choose a Sub Family',
+                 'class' => SubFamily::class,
+-                'query_builder' => function($repo) {
+-
++                'query_builder' => function(SubFamilyRepository $repo) {
++                    return $repo->createAlphabeticalQueryBuilder();
+                 }
+             ])
+             ->add('speciesCount')
+diff --git a/src/AppBundle/Repository/SubFamilyRepository.php b/src/AppBundle/Repository/SubFamilyRepository.php
+new file mode 100644
+index 0000000..f805ef7
+--- /dev/null
++++ b/src/AppBundle/Repository/SubFamilyRepository.php
+@@ -0,0 +1,15 @@
++<?php
++
++namespace AppBundle\Repository;
++
++use AppBundle\Entity\Genus;
++use Doctrine\ORM\EntityRepository;
++
++class SubFamilyRepository extends EntityRepository
++{
++    public function createAlphabeticalQueryBuilder()
++    {
++        return $this->createQueryBuilder('sub_family')
++            ->orderBy('sub_family.name', 'ASC');
++    }
++}

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index 75acded..5b8cf28 100644
+index 5206bd3..827fcab 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -36,7 +36,13 @@ class GenusAdminController extends Controller
@@ -16,4 +16,4 @@ index 75acded..5b8cf28 100644
 +            return $this->redirectToRoute('admin_genus_list');
          }
  
-         return $this->render('product/new.html.twig', [
+         return $this->render('admin/genus/new.html.twig', [
