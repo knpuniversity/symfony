@@ -38,6 +38,18 @@ index 0000000..fb5005d
 +        $this->addSql('ALTER TABLE genus DROP first_discovered_at');
 +    }
 +}
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index c550d3c..92cd1d7 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -5,6 +5,7 @@ AppBundle\Entity\Genus:
+         speciesCount: <numberBetween(100, 100000)>
+         funFact: <sentence()>
+         isPublished: <boolean(75)>
++        firstDiscoveredAt: <dateTimeBetween('-200 years', 'now')>
+ 
+ AppBundle\Entity\GenusNote:
+     genus.note_{1..100}:
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
 index d0cd56c..57c1d62 100644
 --- a/src/AppBundle/Entity/Genus.php
