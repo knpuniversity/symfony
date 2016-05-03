@@ -564,7 +564,27 @@
             "id": "render-pass-label-var",
             "name": "Render: Pass label var",
             "description": null
+        },
+        {
+            "id": "validation-remove-html5-validation",
+            "name": "Validation: Remove HTML5 validation",
+            "description": null
+        },
+        {
+            "id": "validation-basic-real-validation",
+            "name": "Validation: Basic real validation",
+            "description": null
+        },
+        {
+            "id": "validation-add-more-validation",
+            "name": "Validation: Add more validation",
+            "description": null
+        },
+        {
+            "id": "validation-use-translator",
+            "name": "Validation: Use translator",
+            "description": null
         }
     ],
-    "sha": "bc8f4d85c65415dabe13b9cb3e4e0b90a7c784af"
+    "sha": "a9b15ef94e58782aff70351f492ea20d62bab955"
 }

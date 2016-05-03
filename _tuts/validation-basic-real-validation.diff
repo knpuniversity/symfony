@@ -1,0 +1,20 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 0f62248..c34c318 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
+ 
+ use Doctrine\Common\Collections\ArrayCollection;
+ use Doctrine\ORM\Mapping as ORM;
++use Symfony\Component\Validator\Constraints as Assert;
+ 
+ /**
+  * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusRepository")
+@@ -19,6 +20,7 @@ class Genus
+     private $id;
+ 
+     /**
++     * @Assert\NotBlank()
+      * @ORM\Column(type="string")
+      */
+     private $name;

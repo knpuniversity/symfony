@@ -1,0 +1,13 @@
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
+index aae4912..6b79ac7 100644
+--- a/app/Resources/views/admin/genus/new.html.twig
++++ b/app/Resources/views/admin/genus/new.html.twig
+@@ -34,7 +34,7 @@
+                     {{ form_row(genusForm.isPublished) }}
+                     {{ form_row(genusForm.firstDiscoveredAt) }}
+ 
+-                    <button type="submit" class="btn btn-primary">Save</button>
++                    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+                 {{ form_end(genusForm) }}
+             </div>
+         </div>
