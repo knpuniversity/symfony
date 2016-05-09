@@ -36,4 +36,37 @@ tuts_hero:
 #    start_step: start
     finish_step: start
 
-chapters: []
+chapters:
+    render-form-bootstrap:
+        video_key:~
+        is_finished: false
+    process-form-data-class:
+        video_key:~
+        is_finished: false
+    save-redirect-set-flash:
+        video_key:~
+        is_finished: false
+    field-types-and-options:
+        video_key:~
+        is_finished: false
+    custom-entity-type-query:
+        video_key:~
+        is_finished: false
+    date-picker-field:
+        video_key:~
+        is_finished: false
+    date-format-sanity-validation:
+        video_key:~
+        is_finished: false
+    form-rendering-and-variables:
+        video_key:~
+        is_finished: false
+    disable-html5-validation:
+        video_key:~
+        is_finished: false
+    beautiful-form-validation:
+        video_key:~
+        is_finished: false
+    easy-edit-form:
+        video_key:~
+        is_finished: false
