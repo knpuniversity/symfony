@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
 new file mode 100644
-index 0000000..2f8467b
+index 0000000..550c3c5
 --- /dev/null
 +++ b/app/Resources/views/admin/genus/edit.html.twig
 @@ -0,0 +1,44 @@
@@ -30,7 +30,7 @@ index 0000000..2f8467b
 +    <div class="container">
 +        <div class="row">
 +            <div class="col-xs-12">
-+                <h1>New Genus</h1>
++                <h1>Edit Genus</h1>
 +
 +                {{ form_start(genusForm) }}
 +                    {{ form_row(genusForm.name) }}

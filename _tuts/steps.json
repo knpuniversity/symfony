@@ -604,7 +604,27 @@
             "id": "edit-use-shared-layout",
             "name": "Edit: use shared layout",
             "description": null
+        },
+        {
+            "id": "user-create-empty-user-userinterface-class",
+            "name": "User: Create empty User-UserInterface class",
+            "description": null
+        },
+        {
+            "id": "user-filling-in-basic-user-methods",
+            "name": "User: Filling in basic User methods",
+            "description": null
+        },
+        {
+            "id": "login-start-loginform",
+            "name": "Login: Start LoginForm",
+            "description": null
+        },
+        {
+            "id": "login-form-basic-controller-template",
+            "name": "Login Form: Basic controller\/template",
+            "description": null
         }
     ],
-    "sha": "02a0269dd029fcd0c1d19237137dcbc532eaa52e"
+    "sha": "cfd1ac635fbd7aac3c69387118954587b8d1d27b"
 }

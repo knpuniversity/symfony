@@ -1,0 +1,91 @@
+diff --git a/app/Resources/views/security/login.html.twig b/app/Resources/views/security/login.html.twig
+new file mode 100644
+index 0000000..a2f5574
+--- /dev/null
++++ b/app/Resources/views/security/login.html.twig
+@@ -0,0 +1,21 @@
++{% extends 'base.html.twig' %}
++
++{% block body %}
++    <div class="container">
++        <div class="row">
++            <div class="col-xs-12">
++                <h1>Login!</h1>
++
++                {% if error %}
++                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
++                {% endif %}
++
++                {{ form_start(form) }}
++                    {{ form_row(form._username) }}
++                    {{ form_row(form._password) }}
++                    <button type="submit" class="btn btn-success">Login <span class="fa fa-lock"></span></button>
++                {{ form_end(form) }}
++            </div>
++        </div>
++    </div>
++{% endblock %}
+diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
+new file mode 100644
+index 0000000..aa90602
+--- /dev/null
++++ b/src/AppBundle/Controller/SecurityController.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace AppBundle\Controller;
++
++use AppBundle\Form\LoginForm;
++use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
++use Symfony\Bundle\FrameworkBundle\Controller\Controller;
++
++class SecurityController extends Controller
++{
++    /**
++     * @Route("/login", name="security_login")
++     */
++    public function loginAction()
++    {
++        $authenticationUtils = $this->get('security.authentication_utils');
++
++        $error = $authenticationUtils->getLastAuthenticationError();
++        $lastUsername = $authenticationUtils->getLastUsername();
++
++        $form = $this->createForm(LoginForm::class, [
++            '_username' => $lastUsername,
++        ]);
++    
++        return $this->render(
++            'security/login.html.twig',
++            array(
++                // last username entered by the user
++                'form' => $form->createView(),
++                'error' => $error,
++            )
++        );
++    }
++}
+\ No newline at end of file
+diff --git a/src/AppBundle/Form/LoginForm.php b/src/AppBundle/Form/LoginForm.php
+index 1abfa32..47f3fa6 100644
+--- a/src/AppBundle/Form/LoginForm.php
++++ b/src/AppBundle/Form/LoginForm.php
+@@ -11,10 +11,18 @@ class LoginForm extends AbstractType
+ {
+     public function buildForm(FormBuilderInterface $builder, array $options)
+     {
++        $builder
++            ->add('_username')
++            ->add('_password', PasswordType::class)
++        ;
+     }
+ 
+     public function configureOptions(OptionsResolver $resolver)
+     {
++    }
+ 
++    public function getBlockPrefix()
++    {
++        return '';
+     }
+ }

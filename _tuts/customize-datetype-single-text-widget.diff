@@ -1,13 +1,21 @@
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index 256190a..9cf5732 100644
+index 256190a..2184687 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
-@@ -31,7 +31,9 @@ class GenusFormType extends AbstractType
+@@ -7,6 +7,7 @@ use AppBundle\Repository\SubFamilyRepository;
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
++use Symfony\Component\Form\Extension\Core\Type\DateType;
+ use Symfony\Component\Form\FormBuilderInterface;
+ use Symfony\Component\OptionsResolver\OptionsResolver;
+ 
+@@ -31,7 +32,9 @@ class GenusFormType extends AbstractType
                      'No' => false,
                  ]
              ])
 -            ->add('firstDiscoveredAt')
-+            ->add('firstDiscoveredAt', null, [
++            ->add('firstDiscoveredAt', DateType::class, [
 +                'widget' => 'single_text'
 +            ])
          ;

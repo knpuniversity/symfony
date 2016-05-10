@@ -27,13 +27,13 @@ index 10cbdf9..71a57b5 100644
      <div class="container">
          <div class="row">
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index 9cf5732..c8da236 100644
+index 2184687..0772a15 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
-@@ -32,7 +32,9 @@ class GenusFormType extends AbstractType
+@@ -33,7 +33,9 @@ class GenusFormType extends AbstractType
                  ]
              ])
-             ->add('firstDiscoveredAt', null, [
+             ->add('firstDiscoveredAt', DateType::class, [
 -                'widget' => 'single_text'
 +                'widget' => 'single_text',
 +                'attr' => ['class' => 'js-datepicker'],
