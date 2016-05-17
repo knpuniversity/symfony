@@ -43,6 +43,9 @@ chapters:
     render-form-bootstrap:
         video_key:~
         is_finished: false
+    process-that-form:
+        video_key:~
+        is_finished: false
     data-class-type-guessing:
         video_key:~
         is_finished: false

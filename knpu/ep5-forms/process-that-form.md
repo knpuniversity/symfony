@@ -1,13 +1,13 @@
 # Process that Form!
 
-Inspect the HTML and check out the `<form>` element. Notice that this has *no* `action`
-attribute. This means that the form will submit right back to the same route and
-controller that render it. You *can* totally change this, but we won't.
+Inspect the HTML and check out the `<form>` element. Notice: this does *not* have
+an `action` attribute. This means that the form will submit right back to the same
+route and controller that renders it. You *can* totally change this, but we won't.
 
-This means that a single controller will be responsible for *rendering* the form
+In other words, our single action method will be responsible for *rendering* the form
 *and* processing it when the request method is POST.
 
-Before we do any processing, we need the request. Type-hint an argument with `Request`.
+Before we do any processing, we need the request. Type-hint it as an argument.
 
 ## $form->handleRequest()
 
@@ -27,7 +27,7 @@ useful for search forms
 
 But if the form *was* just submitted, then we'll want to do something with that
 information, like save a new `Genus` to the database. Add an if statement:
-`if $form->isSubmitted() && $form->isValid()`. In other words, if this is a POST
+`if ($form->isSubmitted() && $form->isValid())`. In other words, if this is a POST
 request and if the form passed all validation. We'll add validation soon.
 
 ## Fetching $form->getData()

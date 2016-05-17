@@ -1,28 +1,28 @@
 # Binding Forms to Objects: data_class
 
 Open `GenusFormType` and find the `configureOptions()` method. Add `$resolver->setDefaults()`.
-Pass that in an array with a single key called `data_class` set to `AppBundle\Entity\Genus`.
+Pass that an array with a single key called `data_class` set to `AppBundle\Entity\Genus`.
 Do *nothing* else: refresh to re-submit the form.
 
-Boom! Now we have a band-new `Genus` object that's just waiting to be saved. Thanks
+Boom! Now we have a brand-new `Genus` object that's just waiting to be saved. Thanks
 to the `data_class` option, the form creates a new `Genus` object behind the scenes.
-But how does it set the data?
+And then it sets the data on it.
 
-When we got back an associative array, these field names - `name`, `speciesCount`
+Earlier, when we got back an associative array, these field names - `name`, `speciesCount`
 and `funFact` – could have been anything. But as soon as you bind your form to a
 class, `name`, `speciesCount` and `funFact` need to match property names inside of
 your class.
 
-Actually, that's a *small* lie. These properties are private, so the form component
-*can't* set them directly. In fact, it guesses a setter function for each field and
-uses that: `setName()`, `setSpeciesCount` and `setFunFact`. Technically, you could
+Actually, that's *kind of* lie. These properties are private, so the form component
+*can't* set them directly. In reality, it guesses a setter function for each field and
+call that: `setName()`, `setSpeciesCount` and `setFunFact`. Technically, you could
 add a form field call `outOnAMagicalyJourney` as long as you had a method in your class
 called `setOutOnAMagicalJourney`.
 
 ## Form Field Guessing!
 
-Head back to your browser, highlight the URL and hit enter. This just made a GET,
-which skipped form processing and just rendered things.
+Head back to your browser, highlight the URL and hit enter. This just made a GET
+request, which skipped form processing and just rendered the template.
 
 Let's add a few more field we need: like `subFamily`. Hey, we're even getting auto-complete
 now: PhpStorm knows `Genus` has a `subFamily` property!
@@ -36,13 +36,13 @@ Huge error!
 
 Okay: that's weird. What's going on?
 
-Until now, it looks like Symfony renders every field as an input text field by default.
-But that's not true! there's a lot more coolness going on behind the scenes!
+Until now, it looked like Symfony renders every field as an input text field by default.
+But that's not true! There's a lot more coolness going on behind the scenes!
 
 In reality, the form system looks at each field and tries to *guess* what type of
 field it should be. For example, for `subFamily`, it sees that this is a `ManyToOne`
-relationship to `SubFamily`. So, it tries to render this as a select menu of sub families.
-That's amazing, because it's *exactly* what we want.
+relationship to `SubFamily`. So, it tries to render this as a select drop-down of
+sub families. That's amazing, because it's *exactly* what we want.
 
 But, it needs to be able to turn a `SubFamily` object into a string so it can render
 the text for each option in the select. That's the source of the error.
@@ -57,9 +57,10 @@ is a date, it rendered it with year-month-day drop-down boxes. Now, those three
 boxes are *totally* ugly and we'll fix it later, but isn't it cool that it's *guessing*
 the right field types?
 
-Fill out the form again super-realistic data and submit. Woh! One more error:
+Fill out the form again with super-realistic data and submit. Woh! One more error:
 
-> Neither the property `isPublished` nor does `getIsPublished` exist.
+> Neither the property `isPublished`  nor one of the methods `getIsPublished` exist
+> and have public access.
 
 Remember how every form field needs a setter function on your class? Like name and
 `setName`? Every field *also* needs a *getter* function - like `getIsPublished()`
@@ -71,6 +72,6 @@ that getter.
 
 Refresh! It dumps the `Genus` object of course, but check out the `subFamily` field!
 It's not the SubFamily *id* - the form field took the submitted id, queried the
-database for the `SubFamily` object and set *that* on the object. That's HUGE.
+database for the `SubFamily` object and set *that* on the property. That's HUGE.
 
 We're ready to save this!
