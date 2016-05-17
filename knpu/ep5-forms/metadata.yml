@@ -37,10 +37,13 @@ tuts_hero:
     finish_step: start
 
 chapters:
+    the-form-type-class:
+        video_key:~
+        is_finished: false
     render-form-bootstrap:
         video_key:~
         is_finished: false
-    process-form-data-class:
+    data-class-type-guessing:
         video_key:~
         is_finished: false
     save-redirect-set-flash:

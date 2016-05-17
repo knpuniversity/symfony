@@ -1,19 +1,69 @@
-#Render From Bootstrap
+# Render that Form Pretty (Bootstrap)
 
-Hey, hey guys. Welcome back. Today we’re talking about forms. Symfony’s form component is maybe the most controversial part of Symfony. People have a lot of problems learning it. They find it difficult to use. And I understand why. It’s incredibly powerful, and there are parts of it that are complex. It has its quirks. But the form component is not hard. When I see people make a mess with the form component, they’re doing it to themselves. They create situations that are way too complicated. I wanna teach you guys how to use the form component correctly, because at the end of the day, it’s a tool. So let’s use this tool to help us, not to hurt us. 
+Head into the `GenusAdminController`. I gave us a *tiny* head start - there's already
+a `newAction`. In the admin area, the "Add" button points here. Click it! Yep, a
+great explosion!
 
-And the way we’re gonna teach this makes me more excited about this tutorial than any of the ones that we’ve done so far. So as usual, you’re gonna get the most out of this if you code along with me. So download the course code, and unzip it. I already have the starting course code right here, so I’ll go over here and start the built-in web server with bin counsel server run. If you download the code, check out the readme for a few other instructions that you need to run. And if you’ve been coding along so far, download the new code, because there are a couple new things that we have here.
+## Instantiating the Form Object
 
-For example, if you go to localhost/genus, everything looks the same. But remember that a genus has a subfamily, and before this was just a string field. But now I’ve added an actual subfamily entity, and this is a relation from genus note to subfamily, a many to one relationship. So every genus belongs to one subfamily. We also have a little admin section. I’ll open up a new tab; go to /admin/genus. So I’ve got this started. I could list off of our genuses, and in a second, we’re gonna be able to add a new one. This logic is all handled inside of this new genus admin controller.
+To create a form object, add `$form = $this->createForm()`. This is a shortcut method
+in the base `Controller` that calls a method on the `form.factory` service. That's
+my friendly reminder to you that *everything* - including form magic - is done by
+a service.
 
-Okay. So what we’re gonna do is build a form to add a new genus to the system. The way you do that is you describe the form, almost like a recipe. And you do this in a PHP class. These are usually called form types. So in PHP store, I’m gonna go to command N, and search for form. And let’s create a new genus form type. And that’s a little shortcut just to create this structure for us. And actually in Symfony 3, we don’t even need that get name method any more. So here’s how it works. In build form, we just start adding field. So I’ll say builder arrow add. Let’s add a name field. And if you look back, let’s just start simple. Let’s also add a species count field, and a fun fact field. So add species count, and add fun fact. Right now, these keys can be anything. You’ll see how these are important in a second. And that’s it. Our form is built.
+To `createForm()`, pass it the form type class name - `GenusFormType::class`. And
+because I used autocomplete, that *did* just add the `use` statement for me. The
+`::class` syntax is new in PHP 5.5 - and we're going to use it a lot.
 
-Once our form is built, we go into our controller to create that and pass it into our template. When I click the add button here, I already have the route and controller set up for this new end point, so we just need to fill in the logic. To create a form object, you’ll say $form equals this arrow create form. That’s a shortcut method in the base controller that uses the form.factory service. And here we’re gonna pass the class name to our genus form type. And we can use the PHP 5.5 shortcut, genus form type colon colon class. And because I used autocomplete, that did just add the use statement for me, so that’s important.
+## Rendering the Form
 
-And then we’ll just render template like normal. Return this render. Let’s render admin/genus/new.HTML at twig, following along on the structure that we have for our controller. And let’s call the variable genus form. That’ll make things a little bit more clear in our controller. And when you pass your form over to the template, you say form arrow create view. So every time you use a form, it’s those two – this is always what your controller looks like at first. 
+Now that we have a form object, just render a template a pass it in: `return $this->render()`
+with `admin/genus/new.html.twig` to follow the directory structure for the controller.
+Pass in one variable `genusForm` set to `$form->createView()`. Don't forget that
+`createView()` part - it's something we'll talk about more in a future course about
+form theming.
 
-Okay. Pull command to go into that template, because I already created this for us in the normal app resources view, admin/genus directory. In fact, let’s go check that out. To render a template, we use a bunch of built-in rendering functions, and it’s really simple to begin with. First we need a form opening tag. So we’ll say form start, and then we’ll pass that genus form. The form end tag will say form underscore end genus form. And then for all of the fields in the middle, for now, we’ll just say form underscore widget genus form. It’s gonna render all of our fields. And of course we’ll also need a button, so let’s do button type equals submit. We’ll even give that a h classes, like BTN, BTN primary, and we’ll say save. And that’s it.
+Hold command and click to jump into the template. Yep, I took the liberty of already
+creating this for us in the `app/Resources/views/admin/genus` directory.
 
-So form start renders the form starting tag, which seems pretty easy, but it also makes sure to add the multi-part ENC type if you have an upload field. And the form end field is even simpler. It just renders the closing form tag, which seems pretty simple, but it also has one other super power, where it’s rendering any of your hidden fields as well. So if you ever have any hidden fields in your form, which we actually do right now – I’ll talk about that later – you don’t need to worry about rendering them. So I head back, refresh, and there it is guys – a rendered form with basically no work.
+Here, we know we have a `genusForm` variable. So... how can we render it? You can't
+render! I'm kidding - you totally can, by using several special Twig functions that
+Symfony gives us.
 
-Now it is a little bit ugly. Now Symfony has some default markup that it uses when it renders all the labels and all the inputs and the errors and things like that, and right now it is a little bit ugly. Since we’re using bootstrap on this site, it would be really cool if Symfony could just render our fields by default using all of the bootstrap markup. And, yeah, that’s built in. Go to app config, config.yml, because we can configure how the twig service renders the form markup. Under twig at a form underscore themes key, and then add bootstrap three underscore layout.HTML.twig. Form themes are the way that you control how the markup for your forms are rendering. This is something that we’re gonna talk about in a different course later. But with just that one line, our form comes to life. Oh, and make sure it’s bootstrap underscore three underscore layout. Beautiful. All right so setting up the form rendering was actually incredibly simple. So now let’s handle form processing.
+First, we need an opening form tag. Render that with `form_start(genusForm)`. To
+add a closing form tag, add `form_end(genusForm)`. I know, having functions to create
+the HTML form tag seems a little silly. But, wait! `form_start()` is cool because it
+will add the `enctype="multipart/form-data"` attribute if the form has an upload
+field. And the `form_end()` function takes care of rendering hidden fields. So, these
+guys are friends.
+
+Between them, render all three fields at once with `form_widget(genusForm)`. And
+finally, we need a button! We can do that by hand: `<button type="submit">`, give
+it a few Bootstrap classes and call it Save.
+
+***TIP
+You *can* also add buttons as fields to your form. But this is helpful in very
+few cases, so I prefer just to render them by hand.
+***
+
+We're done! Head to the browser and refresh.
+
+There it is! A rendered form with almost no work. They're all text boxes now: we'll
+customize them soon.
+
+## The Bootstrap Form Theme
+
+Of course, it *is* pretty ugly... Symfony has default HTML markup that it uses to
+render everything you're seeing: the labels, the inputs and any validation errors.
+
+Since we're using Bootstrap, it would be *really* cool if Symfony could automatically
+render the fields using Bootstrap-friendly markup.
+
+Yep, that's built-in. Open `app/config/config.yml`. Under `twig`, add `form_themes`
+and then below that `- bootstrap3_layout.html.twig`. Actually, make that `bootstrap_3_layout.html.twig`.
+
+Form themes are how we can control the markup used to render forms. The `bootstrap_3_layout.html.twig`
+lives in the core of Symfony and now, our form markup will change to see HTML bits
+that live inside of it.
+
+Try it out. Beautiful. Now, let's submit this form and handle it!
