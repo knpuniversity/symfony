@@ -1,19 +1,81 @@
 # Field Types and Options
 
-So far, we just say the property name of the fields that we want, and then Symfony is actually automatically looking on those properties and trying to guess the best field type, how to actually render these things. So it is published as a Boolean in doctrine in the database so it guessed correctly that it wants this to be a checkbox. So obviously that’s not always gonna work, and we’re gonna need to control that. Google for Symfony form field types, and find a document called Form Types Reference. 
+So far, we set the property name of the fields we want and Symfony tries to *guess*
+the best field type to render. Since `isPublished` is a boolean in the database,
+it guessed a checkbox field.
 
-This is awesome stuff. So it turns out for every field you have a giant menu of different types you can use. And it’s stuff that you’d expect, like the text area type, and a bunch of HTML5 types, like email, integer, and money. And also some more interesting types, like date and date time, which can help you render date fields, either maybe as three drop downs, or probably more likely as a text field in a certain format. So this is your best friend for figuring out how you want to control how your fields are being rendered.
+But obviously, that's not always going to work: we need control.
 
-Now, I have this checkbox on here for “is published,” but instead of having a checkbox, I’d rather have a dropdown with a yes or no option. So, you won’t see a select type in here, because it’s handled by the choice type. The choice type can render things as select dropdowns, radio buttons, or checkboxes based on a number of different options that you give it. One of the options is choices, which, if you look down at the usage example here, you can that choices, very clearly, actually just specifies the three items that you want in the dropdown. 
+Google for "Symfony form field types", and find a document called
+[Form Types Reference](http://symfony.com/doc/current/reference/forms/types.html)
 
-So let’s use this inside of our form. So in genus form type, there’s an optional second argument to the add function, which is which type that you wanna use. So in our case, we wanna use choice type. So to select that, you’ll actually use its class name – choice type colon colon class. Then the third argument is an array of options to configure that field. Now the options for the fields are different based on which type you’re using. So a lot of the options are similar, like the options you see down here, like the ability to customize the label from here, but a lot of the options are custom only for this choice type. So if you look up the reference, then you’re gonna see all the options that you can do inside of here. 
+These are *all* the different field types we can choose from. It's got stuff you'd
+epect - like text and textarea, some HTML 5 fields - like `email` and `integer` and
+some more interesting types, like `date`, which helps render date fields, either
+as three drop-downs or a single text field.
 
-So, one of the options that we have to pass is the choices, because it needs to know what choices to pass. So let’s do choices, set that to an array, and then this is just an associative array between the text that you want in the option, and the value that should be set on your model class if somebody selects that. So if somebody selects the yes, then we wanna pass true to the set as published function. If they select no, then we wanna pass false to the set as published function. And it’s just that simple. 
+Right now, `isPublished` is a checkbox. But instead, I'd rather have a select drop-down
+with "yes" and "no" options. But... you won't see a "select" type in this list. Instead,
+it's called [ChoiceType](http://symfony.com/doc/current/reference/forms/types/choice.html).
 
-So let’s go back, let’s go to our form, refresh, and there it is. Simple as that. So let’s keep going with this. This subfamily field is also a dropdown, so it kind of looks like a choice type. In fact, it’s not quite a choice type. It’s called an entity type. An entity type is like a choice type, but it’s really good at querying trough doctrine for things in the database. So in this case, it’s automatically querying the subfamily entity to get all of the subfamilies. And, yeah, our subfamilies are kind of stupid. They’re actually just people’s last names.
+## Using ChoiceType
 
-Now one problem with our entity type is it auto selects the first one, so I’d rather have something in the top that says, “Choose a subfamily.”  So if we look down at these options, let’s see if one catches our eye, there’s one here called place holder. So click down to that, and yes, this is exactly what we want. This option determines whether or not a special empty option will appear at the top of a select widget. 
+ChoiceType can render a drop-down, radio buttons or checkboxes based on what options
+you pass to it. One of the options is `choices`, which, if you look down at the
+example, you can see controls the actual items on the drop-down.
 
-So let’s go back here and add that to our subfamily. Now, we know that this subfamily field is actually defaulting to use the entity type. But I’m gonna purposefully pass null as the second argument, and just set the placeholder argument to “Choose a subfamily.”  Why did I do that? Well first, because I can, because I can be lazy here, because if I pass null, then it will continue to guess this as the entity type field, which is cool. The second reason is that when you use the entity type field, there’s a required option called class. Let me show you an example. Class at bundle colon user. You have to tell it what field to query from. But if you let Symfony guess the field type for you, then it will automatically fill that in. So by being lazy here, and passing null, it’s guessing the field type for me, but it’s also guessing a few other options that are helpful for me, including class, so it’s just nice.
+Let's use this! In `GenusFormType`, the optional second argument to the `add` function
+is the field *type* you want to use. Set it to `ChoiceType::class`.
 
-Let’s go back, refresh, and there it is. So a key takeaway here is you guys have a giant dictionary of lots of built-in form field types and you’re gonna configure these by passing a third argument to the add function. 
+The third argument is an array of options to configure that field. What can you pass
+here? Well, each field tpye has different options... though there are a lot of options
+shared by *all* types, like the ability to customize the label.
+
+Either way, the reference section will tell you what you can use. Pass in the `choices`
+option and set that to an array. Add `Yes` mapped to `true` and `No` mapped to `false`.
+The keys - `Yes` and `No` will be the text in the drop down. The values - `true`
+and `false` will be the value that's passed to `setIsPublished` if that option is
+chosen.
+
+Let's try it! Head back to the form and refresh! Perfect.
+
+## The EntityType
+
+Let's keep going with this. This `subFamily` field is also a dropdown. So that's
+probably being *guessed* as a `ChoiceType`, right? *Almost*. Check out the `EntityType`.
+This is *just* like the `ChoiceType`, except it's really good and fetching the options
+by querying an entity.
+
+In this case, it's automatically querying for the `SubFamily` entity: it guessed
+which type to use *and* auto-configured it. And yeah, I know - these sub-families
+are totally silly. They're actually just the last names of people - coming from the
+Faker library - I was being lazy.
+
+I do have one problem with this `EntityType` field: it auto-selects the first option.
+That's lame - I'd rather have an option on top that says "Choose a Sub-Family".
+
+Check out the option on `EntityType`: there's one called `placeholder`. Click to
+read more about that. Yes! This is exactly what we want!
+
+Open the form class back up. We know that Symfony is guessing the `EntityType` for
+the `subFamily` field. We *could* now manually pass `EntityType::class` as the second
+argument. But don't! Pass `null` instead. Now, add a `placeholder` option set to
+`Choose a Sub-Family`.
+
+But wait, why did I pass `null` as the second argument? Well first, because I can!
+I can be lazy here: if I pass null, Symfony will guess the `EntityType` field. That's
+cool.
+
+Second, when you use the `EntityType` field, there's a required option called called
+`class`. Let me show you an example: `'class' => 'AppBundle:User'`. You have to tell
+it *which* entity to query from. But if you let Symfony *guess* the field type for
+you, then it will also guess any options it can, including this one. So by being
+lazy and passing null, it will continue to guess the field type *and* a few other
+options for me, like class.
+
+Anyways, go back, refresh, and there it is. Here are the key takeaways. First, you
+have a giant dictionary of built-in form field types. And second: you configure each
+fied by passing a third argument to the `add()` function.
+
+Now, how could we *further* control the query that's made for the `SubFamily` options?
+What if we need them to be listed alphabetically?
