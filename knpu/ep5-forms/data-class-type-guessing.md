@@ -16,7 +16,7 @@ your class.
 Actually, that's *kind of* lie. These properties are private, so the form component
 *can't* set them directly. In reality, it guesses a setter function for each field and
 call that: `setName()`, `setSpeciesCount` and `setFunFact`. Technically, you could
-add a form field call `outOnAMagicalyJourney` as long as you had a method in your class
+add a form field call `outOnAMagicalJourney` as long as you had a method in your class
 called `setOutOnAMagicalJourney`.
 
 ## Form Field Guessing!
