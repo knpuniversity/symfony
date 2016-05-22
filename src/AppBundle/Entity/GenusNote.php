@@ -37,6 +37,11 @@ class GenusNote
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Genus")
+     */
+    private $genus;
+
     public function getUsername()
     {
         return $this->username;
@@ -75,5 +80,15 @@ class GenusNote
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function getGenus()
+    {
+        return $this->genus;
+    }
+
+    public function setGenus($genus)
+    {
+        $this->genus = $genus;
     }
 }
