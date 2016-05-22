@@ -16,7 +16,9 @@ class MarkdownExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('markdownify', array($this, 'parseMarkdown'))
+            new \Twig_SimpleFilter('markdownify', array($this, 'parseMarkdown'), [
+                'is_safe' => ['html']
+            ])
         ];
     }
 
