@@ -35,7 +35,7 @@ class GenusController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $genuses = $em->getRepository('AppBundle\Entity\Genus')
+        $genuses = $em->getRepository('AppBundle:Genus')
             ->findAll();
         dump($genuses);die;
     }
