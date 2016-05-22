@@ -44,7 +44,7 @@ class GenusController extends Controller
     }
 
     /**
-     * @Route("/genus/{genusName}")
+     * @Route("/genus/{genusName}", name="genus_show")
      */
     public function showAction($genusName)
     {
