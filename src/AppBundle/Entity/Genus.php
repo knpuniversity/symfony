@@ -10,5 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Genus
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
 }
