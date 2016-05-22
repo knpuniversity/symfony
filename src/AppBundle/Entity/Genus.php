@@ -45,6 +45,7 @@ class Genus
 
     /**
      * @ORM\OneToMany(targetEntity="GenusNote", mappedBy="genus")
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $notes;
 
