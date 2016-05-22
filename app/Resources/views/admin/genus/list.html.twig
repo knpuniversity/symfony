@@ -22,7 +22,7 @@
                             <td>{{ genus.name }}</td>
                             <td>{{ genus.subFamily.name }}</td>
                             <td>
-                                <a href="#" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                                <a href="{{ path('admin_genus_edit', {'id': genus.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
                             </td>
                         </tr>
                     {% endfor %}
