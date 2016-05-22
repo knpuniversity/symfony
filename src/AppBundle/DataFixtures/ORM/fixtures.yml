@@ -1,7 +1,7 @@
 AppBundle\Entity\Genus:
     genus_{1..10}:
         name: <genus()>
-        subFamily: <text(20)>
+        subFamily: '@subfamily_*'
         speciesCount: <numberBetween(100, 100000)>
         funFact: <sentence()>
         isPublished: <boolean(75)>
@@ -13,3 +13,8 @@ AppBundle\Entity\GenusNote:
         note: <paragraph()>
         createdAt: <dateTimeBetween('-6 months', 'now')>
         genus: '@genus_*'
+
+AppBundle\Entity\SubFamily:
+    subfamily_{1..10}:
+        # use some fake data for this
+        name: <lastName()>
