@@ -37,7 +37,10 @@ class GenusController extends Controller
 
         $genuses = $em->getRepository('AppBundle:Genus')
             ->findAll();
-        dump($genuses);die;
+
+        return $this->render('genus/list.html.twig', [
+            'genuses' => $genuses
+        ]);
     }
 
     /**

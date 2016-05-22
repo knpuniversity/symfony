@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Genus</th>
+                <th># of species</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for genus in genuses %}
+                {{ dump(genus) }}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
