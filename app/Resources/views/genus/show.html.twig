@@ -29,8 +29,10 @@
 
     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
     <script type="text/babel">
+        var notesUrl = '{{ path('genus_show_notes', {'genusName': name}) }}';
+
         ReactDOM.render(
-          <NoteSection />,
+          <NoteSection url={notesUrl} />,
           document.getElementById('js-notes-wrapper')
         );
     </script>
