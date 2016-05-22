@@ -29,7 +29,7 @@
 
     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
     <script type="text/babel">
-        var notesUrl = '{{ path('genus_show_notes', {'genusName': genus.name}) }}';
+        var notesUrl = '{{ path('genus_show_notes', {'name': genus.name}) }}';
 
         ReactDOM.render(
           <NoteSection url={notesUrl} />,
