@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 class GenusController
 {
     /**
-     * @Route("/genus/{genusName2}")
+     * @Route("/genus/{genusName}")
      */
     public function showAction($genusName)
     {
