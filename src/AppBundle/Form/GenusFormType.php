@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,7 +14,9 @@ class GenusFormType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('subFamily')
+            ->add('subFamily', null, [
+                'placeholder' => 'Choose a Sub Family'
+            ])
             ->add('speciesCount')
             ->add('funFact')
             ->add('isPublished', ChoiceType::class, [
