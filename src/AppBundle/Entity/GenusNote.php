@@ -92,4 +92,9 @@ class GenusNote
     {
         $this->genus = $genus;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }
