@@ -16,7 +16,7 @@ class GenusController extends Controller
     public function showAction($genusName)
     {
         $funFact = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
-        $funFact = $this->container->get('markdown.parser')
+        $funFact = $this->get('markdown.parser')
             ->transform($funFact);
 
         return $this->render('genus/show.html.twig', array(
