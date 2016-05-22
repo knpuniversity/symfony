@@ -7,6 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    cache_type: file_system
 
 framework:
     #esi:             ~
@@ -73,6 +74,6 @@ swiftmailer:
 doctrine_cache:
     providers:
         my_markdown_cache:
-            type: file_system
+            type: %cache_type%
             file_system:
                 directory: /tmp/doctrine_cache
