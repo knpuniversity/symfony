@@ -6,6 +6,7 @@ class MarkdownTransformer
 {
     public function parse($str)
     {
-        return strtoupper($str);
+        return $this->get('markdown.parser')
+            ->transform($str);
     }
 }
