@@ -30,6 +30,21 @@ composer install
 You may alternatively need to run `php composer.phar install`, depending
 on how you installed Composer.
 
+**Setup the Database**
+
+Again, make sure `app/config/parameters.yml` is setup
+for your computer. Then, create the database and the
+schema!
+
+```
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+```
+
+If you get an error that the database exists, that should
+be ok. But if you have problems, completely drop the
+database (`doctrine:database:drop --force`) and try again.
+
 **Start the built-in web server**
 
 You can use Nginx or Apache, but the built-in web server works
