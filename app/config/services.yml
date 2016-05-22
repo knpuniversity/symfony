@@ -6,4 +6,4 @@ parameters:
 services:
     app.markdown_transformer:
         class: AppBundle\Service\MarkdownTransformer
-        arguments: ['@markdown.parser']
+        arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
