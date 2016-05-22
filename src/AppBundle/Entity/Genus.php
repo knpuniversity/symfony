@@ -26,12 +26,15 @@ class Genus
     private $name;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubFamily")
      * @ORM\JoinColumn(nullable=false)
      */
     private $subFamily;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Range(min=0, minMessage="Negative species! Come on...")
      * @ORM\Column(type="integer")
      */
     private $speciesCount;
@@ -47,6 +50,7 @@ class Genus
     private $isPublished = true;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="date")
      */
     private $firstDiscoveredAt;
