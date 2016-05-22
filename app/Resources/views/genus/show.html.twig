@@ -4,6 +4,9 @@
 
 {% block body %}
     <h2 class="genus-name">{{ name }}</h2>
+
+    <a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
+
     <div class="sea-creature-container">
         <div class="genus-photo"></div>
         <div class="genus-details">
@@ -21,18 +24,5 @@
         <h2 class="notes-header">Notes</h2>
         <div><i class="fa fa-plus plus-btn"></i></div>
     </div>
-    <section id="cd-timeline">
-        {% for note in notes %}
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img">
-        			<img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">
-        		</div>
-                <div class="cd-timeline-content">
-        			<h2><a href="#">AquaPelham</a></h2>
-        			<p>{{ note }}</p>
-        			<span class="cd-date">Dec. 10, 2015</span>
-        		</div>
-            </div>
-        {% endfor %}
-    </section>
+    <section id="cd-timeline"></section>
 {% endblock %}
