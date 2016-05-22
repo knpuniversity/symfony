@@ -1,0 +1,6 @@
+AppBundle\Entity\Genus:
+    genus_{1..10}:
+        name: <name()>
+        subFamily: <text(20)>
+        speciesCount: <numberBetween(100, 100000)>
+        funFact: <sentence()>
