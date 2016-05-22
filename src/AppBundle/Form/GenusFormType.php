@@ -14,8 +14,12 @@ class GenusFormType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('subFamily', null, [
-                'placeholder' => 'Choose a Sub Family'
+            ->add('subFamily', EntityType::class, [
+                'placeholder' => 'Choose a Sub Family',
+                'class' => SubFamily::class,
+                'query_builder' => function($repo) {
+
+                }
             ])
             ->add('speciesCount')
             ->add('funFact')
