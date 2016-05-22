@@ -5,8 +5,6 @@
 {% block body %}
     <h2 class="genus-name">{{ name }}</h2>
 
-    <a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
-
     <div class="sea-creature-container">
         <div class="genus-photo"></div>
         <div class="genus-details">
@@ -20,9 +18,20 @@
             </dl>
         </div>
     </div>
-    <div class="notes-container">
-        <h2 class="notes-header">Notes</h2>
-        <div><i class="fa fa-plus plus-btn"></i></div>
-    </div>
-    <section id="cd-timeline"></section>
+    <div id="js-notes-wrapper"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+    <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
+    <script type="text/babel">
+        ReactDOM.render(
+          <NoteSection />,
+          document.getElementById('js-notes-wrapper')
+        );
+    </script>
 {% endblock %}
