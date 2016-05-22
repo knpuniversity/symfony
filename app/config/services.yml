@@ -7,3 +7,8 @@ services:
     app.markdown_transformer:
         class: AppBundle\Service\MarkdownTransformer
         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+
+    app.markdown_extension:
+        class: AppBundle\Twig\MarkdownExtension
+        tags:
+            - { name: twig.extension }
