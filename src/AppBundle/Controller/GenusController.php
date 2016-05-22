@@ -28,6 +28,9 @@ class GenusController extends Controller
             $cache->save($key, $funFact);
         }
 
+        $this->get('logger')
+            ->info('Showing genus: '.$genusName);
+
         return $this->render('genus/show.html.twig', array(
             'name' => $genusName,
             'funFact' => $funFact,
