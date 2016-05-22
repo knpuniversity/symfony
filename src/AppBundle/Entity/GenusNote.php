@@ -87,7 +87,7 @@ class GenusNote
         return $this->genus;
     }
 
-    public function setGenus($genus)
+    public function setGenus(Genus $genus)
     {
         $this->genus = $genus;
     }
