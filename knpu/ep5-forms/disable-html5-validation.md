@@ -22,7 +22,7 @@ Here's the second problem: even if we like this HTML5 client-side validation, we
 still need to add true server-side validation. Otherwise, nasty users can go crazy
 on our site.
 
-## Disable HTML5 VAlidation
+## Disable HTML5 Validation
 
 So here's what I do: I disable HTML5 validation and rely purely on server-side validation.
 
