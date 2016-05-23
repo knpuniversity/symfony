@@ -1,9 +1,55 @@
-# Custom Entity Type Query
+# Custom Query in EntityType
 
-As cool as it is that it’s guessing my type here, I am actually going to put entity type colon colon class, and actually use the entity type explicitly. I don’t have to do that. I just wanna show you guys what a traditional field looks like. Now if I just do that and refresh, I’m gonna get an error because it says the required option class is missing, because as I just finished telling you, when you use the entity type, you need to give it a class option that says what entity to query from. We got away with this before because when we left that as null, it guessed the type and it also guessed the class option for us. But now we will say subfamily colon colon class. It’s a shortcut just for the string for that class name.
+As cool as it is that it's guessing my field type, I am actually going to add
+`EntityType::class` to use this type *explicitly*. I don't *have* to do this: I
+just want to show you guys what a traditional setup looks like.
 
-And now our form is put back together. But I have a second challenge for you. I wanna make this list alphabetical, which means I wanna customize how the query is made that goes and makes this dropdown. Okay, let’s check this out. So if we go back to the entity field side, immediately there’s an option that stands out to me called query builder. Let’s click it down. It says, “If specified, this is used to query the subset of options that should be used for the field.”  And actually, I’m gonna look for query builder, because I know there’s a better example on this page. And here it is right here. 
+Now, do *nothing* else and refresh. It'll still work, right? Right? Nope!
 
-So if you pass a query builder option, you set it to an anonymous function, and then doctrine will pass the entity repository for that particular entity in, and all we need to do is actually create a query builder for exactly how we want it to work. So let’s start this out. We have query underscore builder, and we get nice auto completion. Not a function, and let’s add a rebo argument to that. Now, I like to keep all of my queries inside of my repository classes, so I don’t wanna do an inline query right here. But, if you look, I don’t have a subfamily repository yet, which is what I need to query from the subfamily table.
+The required `class`option  is missing! As I just finished saying, we *must* pass
+a `class` option to the `EntityType`. We got away with this before, because when
+it's null, Symfony guesses the form "type" *and* the `class` option.
 
-So let’s copy the genus repository – it’s gonna be really easy to do – to a subfamily repository. Rename it the subfamily repository, clear it out, and then inside of the subfamily entity, we’ll find the at orient entity, and add repository class equals subfamily repository. Nice and easy. With that, back in our form, I know this repo is going to be an instance of subfamily repository. And let’s return a new method that we’re about to create called create alphabetical query builder. Perfect. Copy that, return repo arrow, perfect. Copy that, go back in the subfamily repository, and let’s create that function. Return this arrow. Create query builder, sub-underscore is a good alias, and then order by subfamily.name, and we’ll do it ascending. And that’s it. So now the query builder, when that’s needed, we’ll call our create alphabetical query builder function. And if we refresh, it doesn’t work. It actually give us an error. Hit refresh.  Now we have these in alphabetical order. I wanted to show you that because that’s one of the more complicated common options that you use with the entity type. 
+Set the option to `SubFamily::class` - and alternate syntax to the normal `AppBundle:SubFamily`.
+
+## The query_builder Option
+
+Now that our form is put back together, I have a second challenge: make the select
+order alphabetically. In other words, I want to customize the query that's made for
+the SubFamily's and add an ORDER BY.
+
+Head back to the `EntityType` docs. One option jumps out at me: `query_builder`.
+Click to check it out. Ok, it says:
+
+> If specified, this is used to query the subset of options that should be used
+> for the field.
+
+And actually, I need to search for `query_builder`: I know there's a better example
+on this page. Here it is!
+
+So, if you pass a `query_builder` option and set it to an anonymous function, Doctrine
+will pass that the *entity repository* for this specific entity. All we need to do
+is create whatever query builder we want and return it.
+
+In the form, add `query_builder` and enjoy that auto-completion. Set this to a
+function with a `$repo` argument.
+
+Now, I like to keep all of my queries inside of repository classes because I don't
+want queries laying around in random places, like in a form class. But, if you look, I don't
+have a `SubFamilyRepository` yet.
+
+No worries - copy the `GenusRepository`, paste it as `SubFamilyRepository`. Rename
+that class and clear it out. Open the `SubFamily` entity and hook it up with
+`@ORM\Entity(repositoryClass="")` and fill in `SubFamilyRepository`.
+
+Great! Back in our form, we know this repo will be an instance of `SubFamilyRepository`.
+Return `$repo->` and a new method that we're about to create called `createAlphabeticalQueryBuilder()`.
+
+Copy that name and head into the repository to create that function. Inside,
+Return `$this->createQueryBuilder('sub_family`) and then order by `sub_family.name`,
+`ASC`.
+
+Done! The `query_builder` method points here, and we handle the query.
+
+Alright, try it out! Nailed it! as far as form options go, we probably just conquered
+one of the most complex.
