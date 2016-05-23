@@ -9,7 +9,7 @@ classic `$em->persist($genus)` and `$em->flush()`.
 ## Always Redirect!
 
 Next, we *always* redirect after a successful form submit - ya know, to make sure
-that the user can't just refresh and re-post that data. That'd lame.
+that the user can't just refresh and re-post that data. That'd be lame.
 
 To do that, `return $this->redirectToRoute()`. Hmm, generate a URL to the
 `admin_genus_list` route - that's the main admin page I created before the
@@ -20,10 +20,10 @@ new "Sea Monster" genus. There it is! Awesome!
 
 ## Adding a Super Friendly (Flash) Message
 
-Now, tt worked... but it lack some spirit! There was no "Success! You're amazing! You
+Now, it worked... but it lack some spirit! There was no "Success! You're amazing! You
 created a new genus!" message.
 
-And I want to buildi a friendly site, so let's add that message. Back in `newAction()`,
+And I want to build a friendly site, so let's add that message. Back in `newAction()`,
 add some code *right* before the redirect:
 `$this->addFlash('success')` - you'll see where that key is used in a minute - then
 `Genus created. You are amazing.`. It's good to encourage users.

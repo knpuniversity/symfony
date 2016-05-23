@@ -46,10 +46,10 @@ Great! Back in our form, we know this repo will be an instance of `SubFamilyRepo
 Return `$repo->` and a new method that we're about to create called `createAlphabeticalQueryBuilder()`.
 
 Copy that name and head into the repository to create that function. Inside,
-Return `$this->createQueryBuilder('sub_family`) and then order by `sub_family.name`,
+Return `$this->createQueryBuilder('sub_family'`) and then order by `sub_family.name`,
 `ASC`.
 
 Done! The `query_builder` method points here, and we handle the query.
 
-Alright, try it out! Nailed it! as far as form options go, we probably just conquered
+Alright, try it out! Nailed it! As far as form options go, we probably just conquered
 one of the most complex.
