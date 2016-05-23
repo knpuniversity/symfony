@@ -18,7 +18,7 @@ take advantage of that to customize this message, even in English.
 ## Enabling the Translator
 
 First, in case you don't already have it enabled, open up `app/config/config.yml`.
-Activate the `translator` service but uncommenting out the `translator` key under
+Activate the `translator` service by uncommenting out the `translator` key under
 `framework`.
 
 Refresh this page and watch the web debug toolbar. Suddenly, there's an extra icon
@@ -30,7 +30,7 @@ This is because every form field and all validation errors are automatically sen
 through the translator. Nothing looks weird, because those strings are already English,
 so it's not really a problem that they aren't translated.
 
-## Translating Validation Messages
+## Changing Validation Messages
 
 But, if you want to customize this message, copy it. And, notice, the domain is
 `validators`: that's basically a translation "category", and it's important for

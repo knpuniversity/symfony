@@ -13,7 +13,7 @@ In `GenusAdminController`, I'm going to be lazy: copy the entire `newAction` and
 update the URL to `/genus/{id}/edit`. Give it a different route name: `admin_genus_edit`
 and call it `editAction`.
 
-Our first job should be to query for a `Genus` object. Ill be lazy again and just
+Our first job should be to query for a `Genus` object. I'll be lazy again and just
 type-hint an argument with `Genus`. Thanks to the param converter from
 SensioFrameworkExtraBundle, this will automatically query for `Genus` by using the
 `{id}` value.
