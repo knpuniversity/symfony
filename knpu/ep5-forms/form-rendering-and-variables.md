@@ -1,25 +1,86 @@
-# Form Rendering and Variables
+# Form Rendering and Form Variables
 
-Let’s talk about form rendering. It looks really nice right now, but all we’re doing to render all the fields is just this one line here. That doesn’t let us customize the order of the fields, and it’s not gonna let us do a couple other customizations that we’re gonna wanna do.
+Let's talk form rendering.
 
-So, in reality, I don’t usually use form_widget like this to render all my fields. Instead, I use a different function called form_row, and you pass that the-name-of-your-form.the-name-of-your-field, name.
+Sure, things looks nice right now, especially considering we're rendering all the
+fields in one line!
 
-So, in our case, we have 1, 2, 3, 4, 5, 6 fields, so I’m gonna copy that and paste it six times, and then I’m just gonna fill in our different fields, which is subfamily, speciesCount, funFact, isPublished, and firstDiscoveredAt. And if you refresh, you’re gonna see the exact same thing as before. The form widget we were using, this is what it does behind the scenes. It just loops over all of our fields and calls form_row. 
+The problem? First, we can't change the order of the fields. And second, we won't
+be able to control the labels or anything else that we're going to talk about.
 
-So, at this point, we need to be asking, “What else can I do? What other functions are there? What options can I pass these functions?” So Google for “form function twig” to find another reference section called “Twig Template Form Function and Variable Reference.” This you reference for all the form functions do. 
+## Using form_row
 
-The ones I want you to notice right now are, of course, form_row, and this renders the three parts to a field, which are the label for the field, the widget – which is the actual input field itself – and any validation errors for that field. If you ever need to render those individually, there’s also a form_widget function, form_errors function, and a form_label function. You can use that instead of form_row, but try to use form_row as much as possible because then you can keep all your form fields looking exactly alike.
+So, in reality, I don't use `form_widget` to render all my fields at once.
+Replace this with a different function: `form_row` and pass it `genusForm.` and
+then the name of one of the fields - like `name`.
 
-Now notice, most of these functions, including form_row, the second variable argument is called variables, and judging by this code example down here, apparently you can override the label for the field right there. So, this variables thing is incredibly powerful. It allows you to override almost every part of how the field is rendered.
+Since this form has 1, 2, 3, 4, 5, 6 fields, I'll copy that and paste it six times.
+Now, fill in all the field names: `subFamily`, `speciesCount`, `funFact`, `isPublished`
+and `firstDiscoveredAt`.
 
-If you scroll down to the bottom of this page, you’ll see a Form Variables Reference section. This gives you a big list of all the variables that you can override when rendering a field, including label, attr, label_attr, and other things.
+Refresh! OMG - it's the *exact* same thing as before!!! This is what `form_widget`
+was doing behind the scenes: looping over the fields and calling `form_row`.
 
-So, to show this off, let’s go to speciesCount and do a comma, open up a twig array, and then, we’ll override the label to say ‘Number of Species’. Go back, refresh, and it’s just that easy.
+## All the Form Rendering Functions
 
-Now, one other thing we haven’t looked at is as soon as you start using a form, you have a little clipboard down here. This is the web debug toolbar for your form, and it gives lots of really good information about your form itself. You can see how the form is built. If you click to speciesCount, you can see the different data for your species, which is not very interesting in this case because we have a blank form, any submitted data, and all of the variables that can be passed to that field.
+So, at this point, you're probably asking: "What else can I do? What other functions
+are there? What options can I pass to these functions?"
 
-The reference section we looked at is most of the variables but not all of the variables, so this is your place to actually know, “What are my values for my variables, and what can I override?”
+Look, I don't know! But I bet Google does: search for "form functions twig" to find
+another reference section called [Form Function and Variable Reference](http://symfony.com/doc/current/reference/forms/twig_reference.html).
 
-This also shows you the Resolved Options, so these are the options that are passed when you actually build your form type. So, if you want a really good way to figure out what else can you pass as the third argument to add, this is the full list of all of the options that are passed to that field. So, there’s just a really powerful, good debugging stuff inside of here.
+Ah hah! This is our cheatsheet!
 
-Also, check out this _token field. We did not add this to our form, but there it is. This is a CSRF token that’s automatically added to our form. It’s really cool because it protects us from CSRF attacks, but we don’t have to worry about it at all. It’s rendered when we call form_end because this renders all of the hidden fields automatically, so we don’t have to worry about rendering it. And when we submit, it’s automatically validated for us. So, just be aware that CSRF token’s there, but you don’t have to worry about it. If you ever get a validation message about the CSRF token, just make sure that you have form_end. The most likely cause is that you forgot to render the field.
+First - we already know about `form_row`: it renders the 3 parts of a field, which
+are the label, the HTML widget element itself and any validation errors.
+
+If you ever need more control, you can render those individually with `form_widget`,
+`form_label` and `form_errors`. Use these *instead* of `form_row`, *only* when you
+need to.
+
+## Form Variables
+
+Now notice, most of these functions - including `form_row` - have a second argument
+called "variables". And judging by this code example, you can apparently control
+the `label` with this argument.
+
+Listen closely: these "variables" are the most *powerful* part of form rendering.
+By passing different values, you can override almost *every* part of how a field
+is rendered.
+
+So what *can* you pass here? Scroll down near the bottom to find a big beautiful
+table called [Form Variables Reference](http://symfony.com/doc/current/reference/forms/twig_reference.html#form-variables-reference).
+
+This gives you a big list of all the variables that you can override when rendering
+a field, including label, attr, label_attr, and other stuff.
+
+To show this off, find the `speciesCount` field and add a second argument set to
+`{}` - the Twig array syntax. Override the `label` variable: set it to `Number of Species`.
+
+Refresh! It's just that easy.
+
+## The Amazing Form Profiler
+
+There's one *huge* form tool that we haven't looked at yet. Your web debug toolbar
+*should* have a clibboard icon. Click it.
+
+This is the profiler for your form, and it's *packed* with stuff that's going to
+make your form life better. If you click `speciesCount`, you can see the different
+data for your species - which isn't too interesting on this blank form. You can see
+any submitted data and all of the variables that can be passed to the field.
+
+It turns out, the reference section we looked at has *most* of the variables but
+*this* will have *all* of them. This is your place to answer:
+
+> What are the values for my variables? And, what can I override?
+
+This also shows you "Resolved Options": these are the final values of the options
+that can be passed as the third argument to the `add()` function.
+
+## CSRF Protection
+
+Oh, and check out this `_token` field. Do you remember adding this?
+
+Hopefully not - because we never did! This is a CSRF token that's automatically added
+to the form. It's rendered *for* us when we call `form_end` and validated behind the
+scenes along with all the other fields. It's free CSRF protection.

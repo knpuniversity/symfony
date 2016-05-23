@@ -1,19 +1,81 @@
-# Date Format Sanity Validation
+# Date Format & "Sanity" Validation
 
-So, check out what happens if we use our fancy new datepicker. Then, fill in a couple fields, and submit. Whoa! Okay, validation error. The good news is it looks nice. But did you guys add any validation? I didn’t add any validation. I don’t know where this validation’s coming from. So, what you’re seeing here is a really amazing automatic thing that Symfony does. It’s called “sanity validation.” 
+Let's use the fancy new date picker. Fill in the other fields and hit submit.
 
-You see, when we fill in this field – and this is just a text field even though we have a nice widget here – it needs to be filled in in a format that Symfony understands. So, in this case, it’s month/day/year, but what if Symfony is expecting it to be in year/month/day? Well, obviously, that is exactly what’s happening here. Symfony is expecting it to be in one format, and this widget is giving it to us in a different format.
+Whoa! Validation Error!
 
-So, it turns out that every single field has sanity validation. It basically makes sure that a sane value is passed, and if a sane value is not passed, it throws an exception. For the date field, if you pass a string format, which is not the format Symfony expected, validation error. For Species count, since this is a number type – and I know that because I can see this little up-and-down number that was automatically added – if we submit this – a string here, a word – we’re gonna get a validation error. And with dropdowns, if some crappy user inspects element and adds a new option to your dropdown and they submit, validation error. Normally, you don’t need to worry about these validation errors. It’s just good to know that Symfony has your back.
+First, the good news: the error looks nice! And we didn't do any work for that.
 
-But in this case, we need to make Symfony’s format for the date match the datepicker’s format. And, in fact, the format itself is an option on the date type, and you can configure exactly how you want it to look. By default – and I’ll hold CMD and click into the date type – when you use the single widget, it uses this HTML5_FORMAT, so it actually wants year-month-day. So, to make this work, we can either change it here, or we can change it in the jQuery widget. I’m gonna change it in the jQuery widget because this is actually a standard HTML5 format.
+Now, the bad news: do you remember adding any validation? Because I don't! So, where
+is that coming from?
 
-So, if you look at the datepicker and search for – you’ll see that it also has a format option, and we can specify the format there. Now, unfortunately, this format string and the format string used by the datepicker is not exactly the same format string, so you need to do a little bit of looking around to get the exact string, but it turns out that it’s this, format: ‘yyyy-mm-dd’.
+## The Format of the Date Field
 
-So now, go back. I’ll refresh that page. Let’s fill in the fields, and for the datepicker, now you can see it’s coming back in a different format. If I save this time, boom! Success.
+What you're seeing is a really amazing automatic thing that Symfony does. And I
+invented a term for it: "sanity validation".
 
-Another thing that’s not that important but I want you to be aware of is that, behind the scenes, there’s also something called a data transformer on each individual field. And basically, the job of a data transformer is to transform the data that’s inside of your PHP code to a format that’s visible to your user. So, our firstDiscoveredAt value on our Genus object, that’s actually a DateTime object, and the data transformer internally transforms that into the string format that you want in the textbox. Then, when that string format is submitted, that data transformer transforms it back into a DateTime object. And it’s usually when there’s a problem with this data transformation step that validation fails.
+Remember, even though this has a fancy date picker widget, this is *just* a text
+field, and it needs to be filled in with a very specific format. In this case, the
+widget fills in month/day/year.
 
-The data transformer’s also acting on the SubFamily because, of course, when we select the dropdown, we’re actually just selecting the ID of the SubFamily, but when we submit that, that automatically transforms it into an Entity object by making the query.
+But what if Symfony expects a different format - like year/month/day?
 
-So, just kinda keep in mind these data transformers and things are behind the scenes.
+Well, that's *exactly* what's happening: Symfony expects the date in one format, but
+the widget is generating something else. When Symfony fails to parse the date, it
+adds the validation error. 
+
+## Sanity Validation
+
+So, it turns out that many fields have sanity validation. It basically makes sure
+that a *sane* value is submitted by the user. If an *insane* value is sent, it blocks
+the way and shows a message.
+
+For example, the `speciesCount` is using Symfony's `NumberType`, which renders as
+an HTML5 field with up and down arrows on some browsers. If we tried to type a word
+here and submit, the `NumberType` would throw a validation error thanks to sanity
+validation.
+
+Our drop-down fields *also* have sanity validation. If a jerk user tries to hack
+the system by adding an option that we did *not* originally include, the field will
+fail validation. 99% of the time, you don't know or care that this is happening.
+Just know, Symfony has your back.
+
+## Making the Date Formats Match
+
+But how do we fix the date field? We just need to make Symfony's expected format match
+the format used by the datepicker. In fact, the `format` itself is an option on the
+`DateType`. I'll hold Command and click into `DateType`. When you use the `single_text`
+widget, it expects this `HTML5_FORMAT`: so year-month-day.
+
+Let's update the JavaScript widget to match this.
+
+How? On its docs, you'll see that it *also* has a `format` option. Cool!
+
+Now, unfortunately, the format string used by the DateType and the format string
+used by the datepicker widget are not *exactly* the same format - each has its own
+system, unfortunately. So, you may need to do some digging or trial and error.
+It turns out, the correct format is `yyyy-mm-dd`.
+
+Ok, go back and refresh that page. Fill out the top fields... and then select a
+date. Moment of truth. Got it!
+
+## Data Transformers
+
+So I keep telling you that the purpose of the field "types" is to control how a field
+is rendered. But that's only *half* of it. Behind the scenes, many fields have a
+"data transformer".
+
+Basically, the job of a data transformer is to transform the data that's inside of
+your PHP code to a format that's visible to your user. For example, the `firstDiscoveredAt`
+value on `Genus` is actually a `DateTime` object. The data transformer internally
+changes that into the string that's printed in the box.
+
+Then, when a date string is submitted, that same data transformer does its work in
+reverse: changing the string back into a DateTime object.
+
+The data transformer is also kicking butt on the `subFamily` field. The `id` of the
+selected `SubFamily` is submitted. Then, the data transformer uses that to query
+for a `SubFamily` object and set that on `Genus`.
+
+You don't need to know more about data transformers right now, I just want you to
+realize that this awesomeness is happening.

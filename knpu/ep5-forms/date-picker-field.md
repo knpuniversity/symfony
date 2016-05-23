@@ -1,15 +1,94 @@
-# Date Picker Field
+# Creating a Date Picker Field
 
-What’s the ugliest part of our form? Yeah, we all know. It’s this craziness down here. Okay, in modern times, if we’re gonna have a date field, we want it to render as a text field, and we want to have a cool Java script widget that helps us fill in that date. So if you go back to our list of fields, it doesn’t take long to figure out which field is being used right now for that. It’s the data type. And if we wanted to, we could, of course, specify this directly as a second argument to our first discovered at. But we don’t have to. This is the one that’s being used. Now if we look at this, let’s see if there’s a way to somehow transform this into something else. 
+What's the ugliest part of the form? Yeah, we all know. It's this crazy 3 drop-downs
+used for the date field.
 
-Check out the widget option. This says this is the basic way in which a field should be rendered. It can be either choice, three select inputs, which is what we have now, text, three text fields, or single underscore text, a single input of type data. That’s what we want. So on our form, let’s keep passing null as a second argument just to be lazy, and we’ll pass widget. Single underscore text. Back in our form, let’s go ahead and actually start using the date type specifically, even though we don’t have to. And then we’ll set widget to single underscore text. Cool. All right, refresh. 
+In modern times, if we need a date field, we're going to render it as a text field
+and use a fancy JavaScript widget to help the user fill it in.
 
-Boom!  Looks awesome. In fact, check this out. We actually already have kind of some widgety functionality. We have this dropdown over here. I have a little calendar. This is coming from my browser. Because as soon as we make this a single text field, this renders as input type equals date, and most browsers have a little date widget they automatically make for that, which is pretty rad. However, not all browsers have that, which means that if somebody’s using a browser that doesn’t have that, this is gonna be a fairly difficult field to deal with, because they’re gonna need to know the exact format to use. 
+Head back to the list of fields. It doesn't take long to find the one that's being
+guessed for the "First Discovered At" field: it's `DateType`.
 
-So instead, let’s hook this up with Java script. Google for bootstrap date picker, because we’re using bootstrap. So if we find a date picker that looks nice with bootstrap, awesome. So let’s use this guy. Seems pretty awesome. First let’s hook it up. All we need to do is just include a little CSS and Java script on our page, and then we can just start using it like this. So instead of new.HTML and twig, first we need to add a style sheet. So I’m gonna override block style sheets, something in our base template, end block. And because I’m lazy, we’ll call parent, so we don’t lose our original style sheet. Because I’m lazy, I’m gonna paste a CDN URL. If you google for bootstrap, date picker CDN URL. You could also download it into your project.
+Let's see if there's a way to render this as a text field instead.
 
-Then we’ll do the same thing for Java scripts. Block Java scripts because we have that in our base template, end block, call parent. And then same thing, I’m gonna cheat, and paste in a CDN for the actual Java script file itself. Okay, so we have the stuff on the page, so how do we activate it? Well, if you look at the documentation, it’s pretty simple. We just need to select our input date field, and call .datepicker on it. Now what I like to do is whenever I’m going to target something with Java script, I like to give it a special class with the JS prefix, like JS-date picker, and then in Java script, that’s what I select. So the question is, how do we give this text field a class? And there’s two answers to that is via the third argument to add. There’s an ATTR option, which is an array, of attribute to put on your widget, and we can give it one called JS-datepicker. And like always, you’d know this because in the reference section. 
+## Setting widget to single_text
 
-Now our template, we can do a little J query document.ready, and we’ll just look for $.JS-datepicker.datepicker. Easy. Let’s give it a try. Refresh and if we scroll down, hey!  There we go. Immediately we get this nice cool widget up here, but when I click nothing happens. Interesting. So if you google this, what’s actually happening here is the HTML5 functionality, this other widget that we get, is fighting with the one from the bootstrap date picker. In fact, this doesn’t happen on all browsers. It’s actually something special to Chrome. So what we need to do is we actually need to turn off the HTML5 functionality. In other words, we want this to render as a text field, but we don’t want Symfony to put the type equals date, because that’s what activates the special dropdown menu.
+Check out the `widget` option:
 
-So if you go back to the form type, you’re gonna see there’s an HTML5 option, which does exactly this. If set to false it makes the field use the text type. So once again, we can control a lot of things from this third option. So let’s say HTML5, and we’ll set this to false. Now if we go back, refresh, HTML5 is out of the picture and we can fill in some dates. Pretty awesome. 
+> The basic way in which this field should be rendered.
+
+It can be either choice - the three select fields, which is lame - 3 text fields,
+or a *single* text field with `single_text`. Ah hah!
+
+Back in the form, let's pass in `DateType::class` *even* though we could be lazy
+and pass null. Create the array for the third argument and add `widget` set
+to `single_text`.
+
+Check it out.
+
+## HTML5 Date Types are Cool(ish)
+
+Boom! It looks great. In fact, check this out: it *already* has some widget coolness:
+with a drop-down and a nice calendar.
+
+This is *not* coming from Symfony: it's coming from my browser. Because as soon as
+we made this a `single_text` widget, Symfony rendered it as an `<input type="date">`
+HTML5 field. Most browsers see this and add their own little date widget functionality.
+
+Ready for the lame news? Not all browsers do this. And that means that users *without*
+this feature will have a pretty tough time trying to figure out what date format
+to pass.
+
+## Adding a JavaScript Date Picker
+
+Instead, let's add a proper JavaScript widget. Google for "Bootstrap Date Picker".
+Ok, this first result looks pretty pretty awesome - let's go for it!
+
+First, we need to import new CSS and JS files. In `new.html.twig`, override the
+block `stylesheets` from the base layout. Add `{% endblock %}` and print `{{ parent() }}`.
+
+Because I'm lazy, I'll paste the URL to a CDN that hosts this CSS file. But, you can
+download it if you want.
+
+Do the same thing for `block javascripts`. Add `{% endblock %}` and call `parent()`.
+I've got a CDN URL ready for the JavaScript file too. Go me!
+
+## Adding a class Attribute
+
+Next, how do we activate the plugin? According to their docs: it's pretty simple:
+select the input and call `.datepicker()` on it.
+
+Personally, whenever I want to target an element in JavaScript, I give that element
+a class that starts with `js-` and use that with jQuery.
+
+So the question is, how do we give this text field a class? You can't!
+
+I mean you can! In 2 different ways! The first is by passing another option to the
+field in the form class. Add an `attr` option to an array. And give that array
+a `class` key set to `js-datepicker`. 
+
+## Setting up the JavaScript
+
+Next, in our template, add the `jQuery(document.ready)` block. Hook it up with
+`$('.js-datepicker').datepicker()`.
+
+Easy. Give it a try.
+
+Scroll down and... hey! There it is! I can see the cool widget. And if I click...
+um... if I click... then - why is nothing happening?
+
+## HTML5 versus DatePicker: Fight!
+
+It turns out, the HTML5 date functionality from my browser is *fighting* with the
+date picker. Silly kids. This doesn't happen in *all* browsers, it's actually something
+special to Chrome.
+
+To fix this, we need to turn *off* the HTML5 date functionality. In other words,
+we want render this as a true `<input type="text">` field, *not* a `date` field.
+
+To do that, open the form type. There's one last option that will help us: set
+`html5` to `false`.
+
+Try it one last time. HTML5 is out of the way and the date picker is in charge.
+
+Pretty awesome.

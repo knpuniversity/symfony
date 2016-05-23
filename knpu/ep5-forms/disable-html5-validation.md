@@ -1,5 +1,40 @@
 # Disable HTML5 Validation
 
-Leave everything blank and hit save. It doesn’t submit. Instead we get this field validation error. So where’s that coming from? It’s not server. side validation. That was HTML5 validation.  And it’s coming because when Symfony renders your field, it’s rendering it with a required equals required attribute, and that activates that HTML5 client. side validation.  Now, there are a couple problems with this.  First of all, Symfony always renders a field with required equals required, even if it’s not required in the database.  It’s borderline a bug in Symfony.  And actually, that’s not entirely true.  There is some intelligence with field guessing, so sometimes that won’t be rendered. But most of the time, Symfony’s just gonna blindly say that your field has required on the client side an attribute.  The second thing that’s a problem is even if we like this HTML5 client. side validation, we would still need to add server. side validation, because somebody can just skip this validation.  And now you need to maintain two sets of validation rules.  
+Leave everything blank and hit save.
 
-So here’s what I do.  I disable HTML5 validation, and rely purely on server. side validation.  If you still want some really fancy client. side validation instead of relying on HTML5, you should use a true client side Java script solution to render those.  There are even bundles that will render your server. side validation rules so that the client. side library can use those and give you a really nice experience on the front end.  That’s more flexible than HTML5 validation anyways, because you can’t actually control these messages or how they look very easily.  So how do we disable HTML5 validation across the board?  Very simple.  Find our submit button, and add form no validate.  And that’s it.  Refresh the page now and submit.  No more HTML5 validation.  But of course now, we’re going to need to add some server. side validation.
+Oh, it doesn't submit. Instead we get this validation error. So where's that coming
+from?
+
+## The Famous required Attribute
+
+Hint: it's not Symfony!. It's our friend HTML5. When Symfony renders the field, it's
+adding a `required="required"` attribute, and this activates HTML5 validation.
+
+But, there are a few problems with this. First, Symfony always adds the `required`
+attribute... even if it's not actually required in the database. It'a a borderline
+but in Symfony.
+
+And actually, that's not totally fair. If you use field-type-guessing, Symfony *will*
+guess whether or not it should render this by looking at your database and validation
+config. But as soon as you set your field type, it stops doing that. Boo!
+
+Here's the second problem: even if we like this HTML5 client-side validation, we
+still need to add true server-side validation. Otherwise, nasty users can go crazy
+on our site.
+
+## Disable HTML5 VAlidation
+
+So here's what I do: I disable HTML5 validation and rely purely on server-side validation.
+
+If you *do* want some fancy client-side validation, I recommend adding it with a
+JavaScript library. These give you more features and control than HTML 5 validation
+at this time.
+
+There's even a bundle - [JsFormValidatorBundle](https://github.com/formapro/JsFormValidatorBundle) - 
+that can dump your server-side rules into JavaScript.
+
+So how do we disable HTML5 validation? Very simple: find the submit button and add
+`formnovalidate`.
+
+That's it. Refresh the page now and submit. No more HTML5 validation. But of course
+now, we need server-side validation!

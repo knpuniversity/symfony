@@ -73,6 +73,12 @@ chapters:
     beautiful-form-validation:
         video_key:~
         is_finished: false
+    changing-validation-messages:
+        video_key:~
+        is_finished: false
     easy-edit-form:
+        video_key:~
+        is_finished: false
+    form-template-include:
         video_key:~
         is_finished: false

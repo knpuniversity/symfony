@@ -1,17 +1,47 @@
 # Beautiful Form Validation
 
-Server-side validation is really, really fun. Google for Symfony validation, and find the chapter in the book on this topic. So the only weird thing about validation in Symfony, and actually, I love it, is that you don’t apply validation to your form. So you might expect me to go genus form type and start applying validation rules here. Instead, you apply validation rules to your classes that are bound to the form. And then when the form is submitted, it automatically reads those validation rules off, and uses them. One of the format you can use for annotations, for validation, the one I like, is annotations. So as you guys know, whenever we use annotations, we need a use statement. So copy that use statement from the docs, find genus, and paste it on top. Now, we just go above each property and add validation rules, which are called constraints.
+Guess what! server-side validation is really, really fun. Google for Symfony validation,
+and find the book chapter.
 
-On the left side bar, you can see there’s a constraints link farther down, and this shows you an awesome list of all of these wonderful built-in constraints, like not blank, to require a field to not be blank. Not null, is true, is false, email, length, regex, pretty much anything you can dream up is inside of this list, so it’s really, really easy to apply those rules. So let’s start with a simple one. Above name, let’s do at not blank. Without touching anything else, refresh, boom!  Validation error, it’s rendered nice, life is good.
+There is *one* weird thing about vaidation... which I *love*. Here it is: you don't
+apply validation to your form. Nope, there will be *no* validation code inside of
+`GenusFormType`. Instead, you add validation to the *class* that is bound to your
+form. When the form is submitted, it automatically reads those validation rules
+and uses them.
 
-So, let’s add a couple more. Subfamily, we probably want people to specify a subfamily. So let’s make that not blank. Species count, let’s make that also not blank. But in addition to that, we want species count to be a positive number. We don’t want somebody to be able to go into our form and select negative ten. So if you go back to validation, there’s this one called number constraints. There’s one called range. So let’s check into that. 
+Typically, validation is added with annotations. Copy the `use` statement from the
+code block, find `Genus` and paste it on top.
 
-And cool, so just like the form field types, the constraint annotations have options that you can pass to them. So if you look, you can say add a cert slash range, and then you just pass a min max min message and max message. So we don’t care about the max, but let’s add at range with min equals zero, and let’s add a min message equal to negative species, come on. Cool. Keep going down. Fun fact – this is allowed to be null, so let’s not add any rules to that. Is published doesn’t need any rules, and let’s make first discovered at not blank as well. So that’s some really, really nice rich rules. So let’s keep everything blank. We’ll put negative ten for number of species, hit enter, there we go. 
+## The Giant List of Constraints
 
-And check out the web debug toolbar. Now it’s highlighted with a number of errors that we actually have, which is pretty cool, because we can actually where those are coming from. So, awesome.  Now, the rest of these say “This value should not be blank,” which we could easily change with a message option passed in not blank. But since you’re probably gonna have not blank in a lot of places, it might be nice to customize this message across the board to be something more interesting. Well, here’s the good news. All of these strings are passed through Symfony’s translator, and we can take advantage of it to translate our messages.
+Good start! Next, we'll add validation rules - called constraints - above each
+property. On the left side bar, find the "Constraints" link.
 
-So first, in case you don’t already don’t have it enabled, go to at config, config.ymail, and we’re configure the translator service by uncommenting out the translator key under framework. Now to refresh the page we’re in now, watch the web debug toolbar. We suddenly have a second item here which is from a translator, and it’s reporting that we have ten missing messages. In other words, apparently we are already sending ten messages through the translator that we haven’t translated. And the reason is because all of our form labels are automatically set through the translator, and all of our validation messages are automatically set through the translator. 
+Check out this menu of validation rules: `NotBlank`, `NotNull`, `Email`, `Length`,
+`Regex`... so many things! Pretty much anything you can dream up is inside of this
+list.
 
-So, if we wanna customize this message, we can copy it, and we just need to put it into a validator’s translation file. And that’s as simple as adding a translations directory in resources, and adding a new validators dot en dot yamil. And we’ll say this value should not be blank, and we will map that to “Hi. Please enter something for this field.”  And that should do it. Go back, refresh, and if it doesn’t work, it might be because of a little sometimes bug were Symfony doesn’t see the translations at first. So in that case, open up a new tab, run bin counsel cash corn clear. Doesn’t happen very often that you have to do that, but occasionally you do when you add new resources files that maybe Symfony doesn’t automatically see. So let’s refresh again. There it is.
+Let's start with an easy one. above the `name` property, add `@Assert\NotBlank`.
 
-So, yeah, validation – pretty much the easiest thing ever. The one validation constraint I want you to notice is the callback constraint, because this is going to be your Swiss army knife. It allows you to have an entire method that Symfony will call, and inside of that method, you can do whatever logic you want, whatever custom logic you want, to create validation errors, and map them to whichever fields you want. So this is a really good one to know about. 
+Without doing anything else, refresh. Boom! Validation error. And, it looks nice.
+
+Let's add some more. For `subFamily` - that should be required, so add `@NotBlank`.
+For `speciesCount`, add `@NotBlank` again. But in addition to that, we want `speciesCount`
+to be a positive number: we don't want some funny biologist entering negative 10.
+
+## Constraint Options
+
+On the constraints list, there's one called `Range`. Check that out.
+
+Ok cool: just like the form field types, you can pass options to the constraints.
+The `Range` constraint has several: `min`, `max`, `minMessage` and `maxMessage`.
+Add `@Assert\Range` with `min=0` and `minMessage="Negative species, come on!"`.
+
+Ok, let's finish up. It's ok if `funFact` is null - so don't add anything there.
+The same is true for `isPublished`: we *could* add a constraint to make sure this
+is a boolean, but the sanity validation on the form already takes care of that.
+
+Finally, let's make sure `firstDiscoveredAt` is also `NotBlank`.
+
+Ok, refresh! Leave everything blank and put -10 for the number of species. I love
+it!
