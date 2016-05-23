@@ -42,7 +42,7 @@ to pass.
 ## Adding a JavaScript Date Picker
 
 Instead, let's add a proper JavaScript widget. Google for "Bootstrap Date Picker".
-Ok, this first result looks pretty pretty awesome - let's go for it!
+Ok, this first result looks pretty awesome - let's go for it!
 
 First, we need to import new CSS and JS files. In `new.html.twig`, override the
 block `stylesheets` from the base layout. Add `{% endblock %}` and print `{{ parent() }}`.

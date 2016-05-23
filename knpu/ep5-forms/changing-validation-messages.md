@@ -12,12 +12,12 @@ We can easily change this by passing a `message` option to the annotation. But w
 a second: we're going to use `NotBlank` a lot. Is there a way to customize the default
 message across the whole system?
 
-Well yea! All of these strings are passed through Symfony's translator. And we can
+Yea! All of these strings are passed through Symfony's translator. And we can
 take advantage of that to customize this message, even in English.
 
 ## Enabling the Translator
 
-First, in case you don't already don't have it enabled, open up `app/config/config.yml`.
+First, in case you don't already have it enabled, open up `app/config/config.yml`.
 Activate the `translator` service but uncommenting out the `translator` key under
 `framework`.
 
@@ -38,7 +38,7 @@ what we do next.
 
 We don't have any translation files yet, so create a new directory called `translations`
 in `app/Resources`. Inside, add a new file: `validators.yml`. This is `validators`
-because the message is being translated through that domain.
+because the message is being translated in that domain.
 
 Inside, paste the string and set it to 
 
@@ -57,7 +57,7 @@ you add a new translation file, this happens.
 
 Let's refresh again. There it is!
 
-Yay validation! It's so nice! There's one more constraint I want you to notice:
-`Callback`. This is your Swiss army knife: it allows you to write whatever custom
-validation logic you want inside a method. Here, you can create different validation
-errors and map them to whatever field you want.
+So yay validation! There's one more constraint I want you to see: `Callback`. This
+is your Swiss army knife: it allows you to write whatever custom validation logic
+you want inside a method. There, you can create different validation errors and map
+them to any field.

@@ -7,14 +7,14 @@ and JS files.
 First, copy the form rendering code and move that into a new file: `_form.html.twig`.
 Paste it here.
 
-In edit, just include that function: `include('admin/genus/_form.html.twig')`. Copy
+In edit, just include that template: `include('admin/genus/_form.html.twig')`. Copy
 that, open `new.html.twig`, and paste it there.
 
-Ok, I'm feeling better. If there *were* any customizations you needed to make between
-new and edit, I would pass a variable in through the second argument of the `include`
-function and use that to control this differences. 
+Ok, I'm feeling better. Refresh now: everything still looks good.
 
-Refresh now: everything still looks good.
+And by the way, if there *were* any customizations you needed to make between
+new and edit, I would pass a variable in through the second argument of the `include`
+function and use that to control the differences. 
 
 ## Using a Form Layout
 
@@ -31,13 +31,12 @@ stylesheets and some JavaScripts. In edit, re-add the `extends` to use this temp
 `admin/genus/formLayout.html.twig`. Copy that, open `new.html.twig` and repeat: delete
 the `javascripts` and `stylesheets` and paste in the new extends.
 
-Try it! Cool! We're just using our Twig tools to get rid of duplication!
+Try it! Cool! We're using our Twig tools to get rid of duplication!
 
 ## A Word of Caution
 
 Congrats team - that's it for our first form episode. You should feel dangerous.
-
-Most of the time, forms are easy, and amazing!They do *a lot* of work for you.
+Most of the time, forms are easy, and amazing! They do *a lot* of work for you.
 
 Let me give you one last word of warning: because this is how I see people get into
 trouble.
@@ -53,7 +52,7 @@ my `Form` directory. For example, `GenusModel`. This class will have the *exact*
 properties that your form needs.
 
 Bind *this* class to your form and add all your validation rules like normal.
-After your submit your form, `$form->getData()` will return this *other* object.
+After you submit your form, `$form->getData()` will return this *other* object.
 Then, it'll be your job to write a little bit of extra code that reads this data,
 updates your entities - or whatever else you need that data for - and saves things.
 
@@ -62,4 +61,4 @@ If you have questions, let me know in the comments.
 There's certainly more to learn, but don't wait! Get out there and build something
 crazy cool!
 
-See you next time!
+Seeya guys next time!

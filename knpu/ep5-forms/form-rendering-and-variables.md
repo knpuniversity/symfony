@@ -62,7 +62,7 @@ Refresh! It's just that easy.
 ## The Amazing Form Profiler
 
 There's one *huge* form tool that we haven't looked at yet. Your web debug toolbar
-*should* have a clibboard icon. Click it.
+*should* have a clipboard icon. Click it.
 
 This is the profiler for your form, and it's *packed* with stuff that's going to
 make your form life better. If you click `speciesCount`, you can see the different

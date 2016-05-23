@@ -1,16 +1,16 @@
 # Beautiful Form Validation
 
-Guess what! server-side validation is really, really fun. Google for Symfony validation,
+Guess what! Server-side validation is really, really fun. Google for Symfony validation,
 and find the book chapter.
 
-There is *one* weird thing about vaidation... which I *love*. Here it is: you don't
+There is *one* weird thing about validation... which I *love*. Here it is: you don't
 apply validation to your form. Nope, there will be *no* validation code inside of
 `GenusFormType`. Instead, you add validation to the *class* that is bound to your
 form. When the form is submitted, it automatically reads those validation rules
 and uses them.
 
-Typically, validation is added with annotations. Copy the `use` statement from the
-code block, find `Genus` and paste it on top.
+Validation is added with annotations. So copy the `use` statement from the code block,
+find `Genus` and paste it on top.
 
 ## The Giant List of Constraints
 
@@ -21,7 +21,7 @@ Check out this menu of validation rules: `NotBlank`, `NotNull`, `Email`, `Length
 `Regex`... so many things! Pretty much anything you can dream up is inside of this
 list.
 
-Let's start with an easy one. above the `name` property, add `@Assert\NotBlank`.
+Let's start with an easy one: above the `name` property, add `@Assert\NotBlank`.
 
 Without doing anything else, refresh. Boom! Validation error. And, it looks nice.
 
@@ -37,7 +37,7 @@ Ok cool: just like the form field types, you can pass options to the constraints
 The `Range` constraint has several: `min`, `max`, `minMessage` and `maxMessage`.
 Add `@Assert\Range` with `min=0` and `minMessage="Negative species, come on!"`.
 
-Ok, let's finish up. It's ok if `funFact` is null - so don't add anything there.
+Ok, let's finish up. It's ok if `funFact` is empty - so don't add anything there.
 The same is true for `isPublished`: we *could* add a constraint to make sure this
 is a boolean, but the sanity validation on the form already takes care of that.
 

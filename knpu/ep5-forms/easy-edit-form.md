@@ -20,13 +20,13 @@ SensioFrameworkExtraBundle, this will automatically query for `Genus` by using t
 
 ## Passing in Default Data
 
-This form should be pre-filled with all of the data from the database. So again,
+This form needs to be pre-filled with all of the data from the database. So again,
 how can I pass default data to a form? It's as simple as this: the second argument
 to `createForm` is the default data. Pass it the entire `$genus` object.
 
 Why the entire object? Because remember: our form is bound to the `Genus` class.
-That means its input should be a `Genus` object and its output will also be a `Genus`
-object.
+That means that its output will be a `Genus` object, but its input should *also*
+be a `Genus` object.
 
 Behind the scenes, it will use the getter functions on `Genus` to pre-fill the form:
 like `getName`. And everything else is exactly the same. Well, I'll tweak the flash
@@ -35,10 +35,10 @@ message but you get the idea.
 ## Rendering the Edit Form
 
 Update the template to `edit.html.twig`. I'm still feeling lazy, so I'll completely
-duplicaet the new template and update the `h1` to say "Edit Genus". Don't worry,
+duplicate the new template and update the `h1` to say "Edit Genus". Don't worry,
 this duplication is temporary.
 
-Finall, in the admin list template, I already have a spot ready for the edit link.
+Finally, in the admin list template, I already have a spot ready for the edit link.
 Fill that in with `path('admin_genus_edit')` and pass it the single wildcard value:
 `id: genus.id`.
 
@@ -54,17 +54,17 @@ or the Code->Generate menu to add it.
 
 Alright. Let's try it again. Refresh. No errors!
 
-Edit the first genus. Check that out: it completely prefilled the form for us.
+Edit the first genus. Check that out: it completely pre-filled the form for us.
 In fact, check out this weird "TEST" text inside of `funFact`. That is left over from
-an earlier tutorial. I hacked in this TEST string temporarily in `getFunFAct()` so
+an earlier tutorial. I hacked in this TEST string temporarily in `getFunFact()` so
 we could play with markdown. This *proves* that the form is using the getter functions
 to pre-fill things.
 
 So, that's really interesting but let's take it out. Refresh. Change the Fun Fact
 to be even more exciting, hit enter, and there it is: Genus updated.
 
-Edit that Genus again: there is the new fun fact. This is a *really* cool thing
+Edit that Genus again: there's the new fun fact. This is a *really* cool thing
 about the form framework: the new and edit endpoints are *identical*. The only difference
-is that one is passed some default data. 
+is that one is passed default data. 
 
 So this is great! Except for the template duplication. That's not great still.
