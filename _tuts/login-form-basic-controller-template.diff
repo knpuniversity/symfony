@@ -27,15 +27,16 @@ index 0000000..a2f5574
 +{% endblock %}
 diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
 new file mode 100644
-index 0000000..aa90602
+index 0000000..301daac
 --- /dev/null
 +++ b/src/AppBundle/Controller/SecurityController.php
-@@ -0,0 +1,34 @@
+@@ -0,0 +1,36 @@
 +<?php
 +
 +namespace AppBundle\Controller;
 +
 +use AppBundle\Form\LoginForm;
++use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 +use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 +use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 +
@@ -43,6 +44,7 @@ index 0000000..aa90602
 +{
 +    /**
 +     * @Route("/login", name="security_login")
++     * @Method("POST")
 +     */
 +    public function loginAction()
 +    {
@@ -67,10 +69,10 @@ index 0000000..aa90602
 +}
 \ No newline at end of file
 diff --git a/src/AppBundle/Form/LoginForm.php b/src/AppBundle/Form/LoginForm.php
-index 1abfa32..47f3fa6 100644
+index 1abfa32..612b54f 100644
 --- a/src/AppBundle/Form/LoginForm.php
 +++ b/src/AppBundle/Form/LoginForm.php
-@@ -11,10 +11,18 @@ class LoginForm extends AbstractType
+@@ -11,10 +11,13 @@ class LoginForm extends AbstractType
  {
      public function buildForm(FormBuilderInterface $builder, array $options)
      {
@@ -82,10 +84,6 @@ index 1abfa32..47f3fa6 100644
  
      public function configureOptions(OptionsResolver $resolver)
      {
-+    }
- 
-+    public function getBlockPrefix()
-+    {
-+        return '';
+-
      }
  }

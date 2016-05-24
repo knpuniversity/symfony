@@ -624,7 +624,17 @@
             "id": "login-form-basic-controller-template",
             "name": "Login Form: Basic controller\/template",
             "description": null
+        },
+        {
+            "id": "login-form-blank-authenticator",
+            "name": "Login Form: Blank authenticator",
+            "description": null
+        },
+        {
+            "id": "login-form-getcredentials-authenticator",
+            "name": "Login Form: getCredentials Authenticator",
+            "description": null
         }
     ],
-    "sha": "cfd1ac635fbd7aac3c69387118954587b8d1d27b"
+    "sha": "f4877c650729d2dc6b90e04dbc280f4ff45ff5af"
 }
