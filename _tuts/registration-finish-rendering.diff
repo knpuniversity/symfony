@@ -1,0 +1,98 @@
+diff --git a/app/Resources/views/security/login.html.twig b/app/Resources/views/security/login.html.twig
+index 525ee7c..9d082fd 100644
+--- a/app/Resources/views/security/login.html.twig
++++ b/app/Resources/views/security/login.html.twig
+@@ -16,6 +16,8 @@
+                 {{ form_row(form._username) }}
+                 {{ form_row(form._password) }}
+                 <button type="submit" class="btn btn-success">Login <span class="fa fa-lock"></span></button>
++                &nbsp;
++                <a href="{{ path('user_register') }}">I already have an account</a>
+             {{ form_end(form) }}
+         </div>
+     </div>
+diff --git a/app/Resources/views/user/register.html.twig b/app/Resources/views/user/register.html.twig
+new file mode 100644
+index 0000000..db1c1a8
+--- /dev/null
++++ b/app/Resources/views/user/register.html.twig
+@@ -0,0 +1,19 @@
++{% extends 'base.html.twig' %}
++
++{% block body %}
++    <div class="container">
++        <div class="row">
++            <div class="col-xs-12">
++                <h1>Register!</h1>
++
++                {{ form_start(form) }}
++                    {{ form_row(form.email) }}
++                    {{ form_row(form.plainPassword.first) }}
++                    {{ form_row(form.plainPassword.second) }}
++
++                    <button type="submit" class="btn btn-primary" formnovalidate>Register</button>
++                {{ form_end(form) }}
++            </div>
++        </div>
++    </div>
++{% endblock %}
+\ No newline at end of file
+diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
+index 0a902f7..e56dafe 100644
+--- a/src/AppBundle/Controller/UserController.php
++++ b/src/AppBundle/Controller/UserController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Controller;
+ 
++use AppBundle\Form\UserRegistrationForm;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Symfony\Component\HttpFoundation\Request;
+@@ -13,6 +14,10 @@ class UserController extends Controller
+      */
+     public function registerAction(Request $request)
+     {
++        $form = $this->createForm(UserRegistrationForm::class);
+ 
++        return $this->render('user/register.html.twig', [
++            'form' => $form->createView()
++        ]);
+     }
+ }
+diff --git a/src/AppBundle/Form/UserRegistrationForm.php b/src/AppBundle/Form/UserRegistrationForm.php
+index 285dd46..c707963 100644
+--- a/src/AppBundle/Form/UserRegistrationForm.php
++++ b/src/AppBundle/Form/UserRegistrationForm.php
+@@ -2,7 +2,11 @@
+ 
+ namespace AppBundle\Form;
+ 
++use AppBundle\Entity\User;
+ use Symfony\Component\Form\AbstractType;
++use Symfony\Component\Form\Extension\Core\Type\EmailType;
++use Symfony\Component\Form\Extension\Core\Type\PasswordType;
++use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+ use Symfony\Component\Form\FormBuilderInterface;
+ use Symfony\Component\OptionsResolver\OptionsResolver;
+ 
+@@ -10,11 +14,17 @@ class UserRegistrationForm extends AbstractType
+ {
+     public function buildForm(FormBuilderInterface $builder, array $options)
+     {
+-
++        $builder
++            ->add('email', EmailType::class)
++            ->add('plainPassword', RepeatedType::class, [
++                'type' => PasswordType::class
++            ]);
+     }
+ 
+     public function configureOptions(OptionsResolver $resolver)
+     {
+-
++        $resolver->setDefaults([
++            'data_class' => User::class
++        ]);
+     }
+ }

@@ -1,0 +1,27 @@
+diff --git a/app/config/security.yml b/app/config/security.yml
+index a5cf583..deef85a 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -4,6 +4,9 @@ security:
+     encoders:
+         AppBundle\Entity\User: bcrypt
+ 
++    role_hierarchy:
++        ROLE_ADMIN: [ROLE_MANAGE_GENUS]
++
+     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+     providers:
+         our_users:
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 2a1c376..2de840d 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Symfony\Component\HttpFoundation\Request;
+ 
+ /**
+- * @Security("is_granted('ROLE_ADMIN')")
++ * @Security("is_granted('ROLE_MANAGE_GENUS')")
+  * @Route("/admin")
+  */
+ class GenusAdminController extends Controller

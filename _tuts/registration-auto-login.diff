@@ -1,0 +1,19 @@
+diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
+index 55fdadd..7b8a18c 100644
+--- a/src/AppBundle/Controller/UserController.php
++++ b/src/AppBundle/Controller/UserController.php
+@@ -27,7 +27,13 @@ class UserController extends Controller
+ 
+             $this->addFlash('success', 'Welcome '.$user->getEmail());
+ 
+-            return $this->redirectToRoute('homepage');
++            return $this->get('security.authentication.guard_handler')
++                ->authenticateUserAndHandleSuccess(
++                    $user,
++                    $request,
++                    $this->get('app.security.login_form_authenticator'),
++                    'main'
++                );
+         }
+ 
+         return $this->render('user/register.html.twig', [

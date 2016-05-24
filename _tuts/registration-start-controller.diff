@@ -1,0 +1,24 @@
+diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
+new file mode 100644
+index 0000000..0a902f7
+--- /dev/null
++++ b/src/AppBundle/Controller/UserController.php
+@@ -0,0 +1,18 @@
++<?php
++
++namespace AppBundle\Controller;
++
++use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
++use Symfony\Bundle\FrameworkBundle\Controller\Controller;
++use Symfony\Component\HttpFoundation\Request;
++
++class UserController extends Controller
++{
++    /**
++     * @Route("/register", name="user_register")
++     */
++    public function registerAction(Request $request)
++    {
++
++    }
++}

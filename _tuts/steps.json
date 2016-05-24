@@ -734,7 +734,107 @@
             "id": "password-checking-in-authenticator",
             "name": "Password: Checking in authenticator",
             "description": null
+        },
+        {
+            "id": "authorization-simple-access-control",
+            "name": "Authorization: simple access_control",
+            "description": null
+        },
+        {
+            "id": "authorization-see-access-denied",
+            "name": "Authorization: see access denied",
+            "description": null
+        },
+        {
+            "id": "authorization-long-check-in-controller",
+            "name": "Authorization: Long check in controller",
+            "description": null
+        },
+        {
+            "id": "authorization-denyaccessunlessgranted",
+            "name": "Authorization: denyAccessUnlessGranted",
+            "description": null
+        },
+        {
+            "id": "authorization-with-security",
+            "name": "Authorization: With @Security",
+            "description": null
+        },
+        {
+            "id": "authorization-security-on-class",
+            "name": "Authorization: @Security on class",
+            "description": null
+        },
+        {
+            "id": "roles-dynamic-roles-property",
+            "name": "Roles: Dynamic roles property",
+            "description": null
+        },
+        {
+            "id": "user-fetch-user-in-controller",
+            "name": "User: Fetch user in controller",
+            "description": null
+        },
+        {
+            "id": "user-fetch-in-template",
+            "name": "User: Fetch in template",
+            "description": null
+        },
+        {
+            "id": "role-hierarchy-basic-setup",
+            "name": "Role Hierarchy: Basic setup",
+            "description": null
+        },
+        {
+            "id": "switch-user-do-it",
+            "name": "Switch User: do it!",
+            "description": null
+        },
+        {
+            "id": "registration-start-controller",
+            "name": "Registration: Start controller",
+            "description": null
+        },
+        {
+            "id": "registration-start-form",
+            "name": "Registration: Start form",
+            "description": null
+        },
+        {
+            "id": "registration-finish-rendering",
+            "name": "Registration: Finish rendering",
+            "description": null
+        },
+        {
+            "id": "registration-customize-password-labels",
+            "name": "Registration: Customize password labels",
+            "description": null
+        },
+        {
+            "id": "registration-save-user",
+            "name": "Registration: Save user",
+            "description": null
+        },
+        {
+            "id": "registration-basic-validation",
+            "name": "Registration: Basic validation",
+            "description": null
+        },
+        {
+            "id": "registration-uniqueentity",
+            "name": "Registration: UniqueEntity",
+            "description": null
+        },
+        {
+            "id": "registration-validation-groups",
+            "name": "Registration: validation groups",
+            "description": null
+        },
+        {
+            "id": "registration-auto-login",
+            "name": "Registration: Auto-login",
+            "description": null
         }
     ],
-    "sha": "d7ace1af784bb7d57adc8400060072323ae54025"
+    "sha": "6607f52000cfb0d3bcf655fdcf58e9e03c999233"
 }

@@ -1,0 +1,25 @@
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 9cf3d38..8226fa5 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
+ use AppBundle\Entity\Genus;
+ use AppBundle\Form\GenusFormType;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
++use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Symfony\Component\HttpFoundation\Request;
+ 
+@@ -15,11 +16,10 @@ class GenusAdminController extends Controller
+ {
+     /**
+      * @Route("/genus", name="admin_genus_list")
++     * @Security("is_granted('ROLE_ADMIN')")
+      */
+     public function indexAction()
+     {
+-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+-
+         $genuses = $this->getDoctrine()
+             ->getRepository('AppBundle:Genus')
+             ->findAll();

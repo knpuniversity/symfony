@@ -1,0 +1,19 @@
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 8226fa5..9f79f63 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -10,13 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Symfony\Component\HttpFoundation\Request;
+ 
+ /**
++ * @Security("is_granted('ROLE_ADMIN')")
+  * @Route("/admin")
+  */
+ class GenusAdminController extends Controller
+ {
+     /**
+      * @Route("/genus", name="admin_genus_list")
+-     * @Security("is_granted('ROLE_ADMIN')")
+      */
+     public function indexAction()
+     {

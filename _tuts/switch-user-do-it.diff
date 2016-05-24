@@ -1,0 +1,21 @@
+diff --git a/app/config/security.yml b/app/config/security.yml
+index deef85a..b03a7bd 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -5,7 +5,7 @@ security:
+         AppBundle\Entity\User: bcrypt
+ 
+     role_hierarchy:
+-        ROLE_ADMIN: [ROLE_MANAGE_GENUS]
++        ROLE_ADMIN: [ROLE_MANAGE_GENUS, ROLE_ALLOWED_TO_SWITCH]
+ 
+     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+     providers:
+@@ -26,6 +26,7 @@ security:
+ 
+             logout:
+                 path: /logout
++            switch_user: ~
+             # activate different ways to authenticate
+ 
+             # http_basic: ~

@@ -1,0 +1,86 @@
+diff --git a/app/DoctrineMigrations/Version20160524141318.php b/app/DoctrineMigrations/Version20160524141318.php
+new file mode 100644
+index 0000000..cb4100c
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20160524141318.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20160524141318 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE user ADD roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json_array)\'');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE user DROP roles');
++    }
++}
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index 21f9dec..a5444e5 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -24,3 +24,4 @@ AppBundle\Entity\User:
+     user_{1..10}:
+         email: weaverryan+<current()>@gmail.com
+         plainPassword: iliketurtles
++        roles: ['ROLE_ADMIN']
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 25c56da..6b2b75c 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -38,6 +38,11 @@ class User implements UserInterface
+      */
+     private $plainPassword;
+ 
++    /**
++     * @ORM\Column(type="json_array")
++     */
++    private $roles = [];
++
+     // needed by the security system
+     public function getUsername()
+     {
+@@ -46,7 +51,19 @@ class User implements UserInterface
+ 
+     public function getRoles()
+     {
+-        return ['ROLE_USER'];
++        $roles = $this->roles;
++
++        // give everyone ROLE_USER!
++        if (!in_array('ROLE_USER', $roles)) {
++            $roles[] = 'ROLE_USER';
++        }
++
++        return $roles;
++    }
++
++    public function setRoles(array $roles)
++    {
++        $this->roles = $roles;
+     }
+ 
+     public function getPassword()

@@ -1,0 +1,20 @@
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 8dc398c..6f10991 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Entity;
+ 
++use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+ use Symfony\Component\Security\Core\Role\Role;
+ use Symfony\Component\Security\Core\User\UserInterface;
+ use Doctrine\ORM\Mapping as ORM;
+@@ -10,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
+ /**
+  * @ORM\Entity
+  * @ORM\Table(name="user")
++ * @UniqueEntity(fields={"email"}, message="It looks like your already have an account!")
+  */
+ class User implements UserInterface
+ {

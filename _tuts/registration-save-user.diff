@@ -1,0 +1,32 @@
+diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
+index e56dafe..55fdadd 100644
+--- a/src/AppBundle/Controller/UserController.php
++++ b/src/AppBundle/Controller/UserController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Controller;
+ 
++use AppBundle\Entity\User;
+ use AppBundle\Form\UserRegistrationForm;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+@@ -16,6 +17,19 @@ class UserController extends Controller
+     {
+         $form = $this->createForm(UserRegistrationForm::class);
+ 
++        $form->handleRequest($request);
++        if ($form->isValid()) {
++            /** @var User $user */
++            $user = $form->getData();
++            $em = $this->getDoctrine()->getManager();
++            $em->persist($user);
++            $em->flush();
++
++            $this->addFlash('success', 'Welcome '.$user->getEmail());
++
++            return $this->redirectToRoute('homepage');
++        }
++
+         return $this->render('user/register.html.twig', [
+             'form' => $form->createView()
+         ]);

@@ -1,0 +1,26 @@
+diff --git a/app/config/security.yml b/app/config/security.yml
+index 1fb0655..a5cf583 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -32,4 +32,4 @@ security:
+             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+ 
+     access_control:
+-        - { path: ^/admin, roles: ROLE_ADMIN }
+\ No newline at end of file
++        # - { path: ^/admin, roles: ROLE_ADMIN }
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 3d3f1dc..748f41d 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -18,6 +18,10 @@ class GenusAdminController extends Controller
+      */
+     public function indexAction()
+     {
++        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
++            throw $this->createAccessDeniedException('GET OUT!');
++        }
++
+         $genuses = $this->getDoctrine()
+             ->getRepository('AppBundle:Genus')
+             ->findAll();

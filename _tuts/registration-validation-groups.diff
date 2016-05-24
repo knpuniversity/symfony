@@ -1,0 +1,27 @@
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 6f10991..593cce0 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -38,7 +38,7 @@ class User implements UserInterface
+ 
+     /**
+      * A non-persisted field that's used to create the encoded password.
+-     * @Assert\NotBlank()
++     * @Assert\NotBlank(groups={"Registration"})
+      *
+      * @var string
+      */
+diff --git a/src/AppBundle/Form/UserRegistrationForm.php b/src/AppBundle/Form/UserRegistrationForm.php
+index c707963..1c7577d 100644
+--- a/src/AppBundle/Form/UserRegistrationForm.php
++++ b/src/AppBundle/Form/UserRegistrationForm.php
+@@ -24,7 +24,8 @@ class UserRegistrationForm extends AbstractType
+     public function configureOptions(OptionsResolver $resolver)
+     {
+         $resolver->setDefaults([
+-            'data_class' => User::class
++            'data_class' => User::class,
++            'validation_groups' => ['Default', 'Registration']
+         ]);
+     }
+ }

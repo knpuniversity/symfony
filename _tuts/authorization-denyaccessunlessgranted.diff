@@ -1,0 +1,15 @@
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 748f41d..9cf3d38 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -18,9 +18,7 @@ class GenusAdminController extends Controller
+      */
+     public function indexAction()
+     {
+-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+-            throw $this->createAccessDeniedException('GET OUT!');
+-        }
++        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+ 
+         $genuses = $this->getDoctrine()
+             ->getRepository('AppBundle:Genus')

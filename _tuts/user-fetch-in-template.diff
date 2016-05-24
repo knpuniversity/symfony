@@ -1,0 +1,14 @@
+diff --git a/app/Resources/views/main/homepage.html.twig b/app/Resources/views/main/homepage.html.twig
+index 56b5060..5cc67b2 100644
+--- a/app/Resources/views/main/homepage.html.twig
++++ b/app/Resources/views/main/homepage.html.twig
+@@ -1,5 +1,8 @@
+ {% extends 'base.html.twig' %}
+ 
+ {% block body %}
+-    <h1 class="page-header text-center">Welcome Aquanauts!</h1>
++    <h1 class="page-header text-center">
++        Welcome
++        {{ app.user ? app.user.email : 'Aquanauts' }}!
++    </h1>
+ {% endblock %}
