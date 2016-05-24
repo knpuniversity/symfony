@@ -25,9 +25,10 @@ summary: |
     * IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_REMEMBERED
     * Checking access with roles! ROLE_USER
     * Denying access in a controller
-    * Introduction to voters
+    * What are voters?
     * Role hierarchies
-    * Impersonation (`switch_user`) & Remember me
+    * Impersonation (`switch_user`)
+    * Registration Form
     * Manual authentication
 
     ... and how to create a back door into your site. Just kidding!
