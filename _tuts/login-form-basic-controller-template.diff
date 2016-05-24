@@ -83,17 +83,27 @@ index 3c6f8a7..da9292a 100644
 +}
 \ No newline at end of file
 diff --git a/src/AppBundle/Form/LoginForm.php b/src/AppBundle/Form/LoginForm.php
-index 1abfa32..ce070d8 100644
---- a/src/AppBundle/Form/LoginForm.php
+new file mode 100644
+index 0000000..e7f478a
+--- /dev/null
 +++ b/src/AppBundle/Form/LoginForm.php
-@@ -11,6 +11,10 @@ class LoginForm extends AbstractType
- {
-     public function buildForm(FormBuilderInterface $builder, array $options)
-     {
+@@ -0,0 +1,19 @@
++<?php
++
++namespace AppBundle\Form;
++
++use Symfony\Component\Form\AbstractType;
++use Symfony\Component\Form\Extension\Core\Type\PasswordType;
++use Symfony\Component\Form\FormBuilderInterface;
++use Symfony\Component\OptionsResolver\OptionsResolver;
++
++class LoginForm extends AbstractType
++{
++    public function buildForm(FormBuilderInterface $builder, array $options)
++    {
 +        $builder
 +            ->add('_username')
 +            ->add('_password', PasswordType::class)
 +        ;
-     }
- 
-     public function configureOptions(OptionsResolver $resolver)
++    }
++}

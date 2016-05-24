@@ -1,0 +1,49 @@
+diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
+index 6d82347..a25efce 100644
+--- a/app/Resources/views/base.html.twig
++++ b/app/Resources/views/base.html.twig
+@@ -22,7 +22,11 @@
+             <h1 class="logo">AquaNote</h1>
+             <ul class="navi">
+                 <li class="search"><a href="#" class="js-header-search-toggle"><i class="fa fa-search"></i></a></li>
+-                <li><a href="{{ path('security_login') }}">Login</a></li>
++                {% if is_granted('ROLE_USER') %}
++                    <li><a href="{{ path('security_logout') }}">Logout</a></li>
++                {% else %}
++                    <li><a href="{{ path('security_login') }}">Login</a></li>
++                {% endif %}
+             </ul>
+         </header>
+ 
+diff --git a/app/config/security.yml b/app/config/security.yml
+index f4aaea7..e3d26f0 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -18,6 +18,9 @@ security:
+             guard:
+                 authenticators:
+                     - app.security.login_form_authenticator
++
++            logout:
++                path: /logout
+             # activate different ways to authenticate
+ 
+             # http_basic: ~
+diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
+index da9292a..1094901 100644
+--- a/src/AppBundle/Controller/SecurityController.php
++++ b/src/AppBundle/Controller/SecurityController.php
+@@ -33,4 +33,12 @@ class SecurityController extends Controller
+             )
+         );
+     }
++
++    /**
++     * @Route("/logout", name="security_logout")
++     */
++    public function logoutAction()
++    {
++        throw new \Exception('this should not be reached!');
++    }
+ }
+\ No newline at end of file

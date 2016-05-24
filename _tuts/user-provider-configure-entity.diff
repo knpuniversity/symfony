@@ -1,0 +1,28 @@
+diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
+index a567be6..09dc7b3 100644
+--- a/app/config/config_dev.yml
++++ b/app/config/config_dev.yml
+@@ -12,7 +12,7 @@ framework:
+ 
+ web_profiler:
+     toolbar: true
+-    intercept_redirects: true
++    intercept_redirects: false
+ 
+ monolog:
+     handlers:
+diff --git a/app/config/security.yml b/app/config/security.yml
+index 737ea35..f4aaea7 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -4,8 +4,8 @@ security:
+ 
+     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+     providers:
+-        in_memory:
+-            memory: ~
++        our_users:
++            entity: { class: AppBundle\Entity\User, property: email }
+ 
+     firewalls:
+         # disables authentication for assets and the profiler, adapt it according to your needs

@@ -1,0 +1,23 @@
+diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
+index ffa7c90..ddd44d0 100644
+--- a/src/AppBundle/Security/LoginFormAuthenticator.php
++++ b/src/AppBundle/Security/LoginFormAuthenticator.php
+@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
+ use Symfony\Component\Form\FormFactoryInterface;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\Routing\RouterInterface;
++use Symfony\Component\Security\Core\Security;
+ use Symfony\Component\Security\Core\User\UserInterface;
+ use Symfony\Component\Security\Core\User\UserProviderInterface;
+ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+@@ -36,6 +37,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+         $form->handleRequest($request);
+ 
+         $data = $form->getData();
++        $request->getSession()->set(
++            Security::LAST_USERNAME,
++            $data['_username']
++        );
+ 
+         return $data;
+     }

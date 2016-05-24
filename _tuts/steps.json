@@ -664,7 +664,77 @@
             "id": "login-form-finish-authenticator",
             "name": "Login Form: Finish authenticator",
             "description": null
+        },
+        {
+            "id": "userprovider-show-with-intercept-redirects",
+            "name": "UserProvider: Show with intercept_redirects",
+            "description": null
+        },
+        {
+            "id": "user-provider-configure-entity",
+            "name": "User Provider: configure entity",
+            "description": null
+        },
+        {
+            "id": "guard-set-last-username",
+            "name": "Guard: Set last username",
+            "description": null
+        },
+        {
+            "id": "logout-add-logout",
+            "name": "Logout: Add logout",
+            "description": null
+        },
+        {
+            "id": "password-add-password-field",
+            "name": "Password: Add password field",
+            "description": null
+        },
+        {
+            "id": "password-adding-plainpassword",
+            "name": "Password: Adding plainPassword",
+            "description": null
+        },
+        {
+            "id": "password-force-dirty-mark",
+            "name": "Password: force dirty mark",
+            "description": null
+        },
+        {
+            "id": "password-erasecredentials",
+            "name": "Password: eraseCredentials",
+            "description": null
+        },
+        {
+            "id": "password-start-doctrine-listener",
+            "name": "Password: Start Doctrine listener",
+            "description": null
+        },
+        {
+            "id": "password-complete-prepersist",
+            "name": "Password: Complete prePersist",
+            "description": null
+        },
+        {
+            "id": "password-adding-preupdate",
+            "name": "Password: Adding preUpdate",
+            "description": null
+        },
+        {
+            "id": "password-register-listener",
+            "name": "Password: Register listener",
+            "description": null
+        },
+        {
+            "id": "password-encoders-in-security-yml",
+            "name": "Password: encoders in security.yml",
+            "description": null
+        },
+        {
+            "id": "password-checking-in-authenticator",
+            "name": "Password: Checking in authenticator",
+            "description": null
         }
     ],
-    "sha": "82ab95abee9f7bc818af481ffddd5b6132805603"
+    "sha": "d7ace1af784bb7d57adc8400060072323ae54025"
 }

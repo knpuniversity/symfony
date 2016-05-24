@@ -25,7 +25,7 @@ index bf948d1..11d2cd1 100644
 +        class: AppBundle\Security\LoginFormAuthenticator
 +        autowire: true
 diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
-index 52b49ad..2c8cce3 100644
+index de82b23..ffa7c90 100644
 --- a/src/AppBundle/Security/LoginFormAuthenticator.php
 +++ b/src/AppBundle/Security/LoginFormAuthenticator.php
 @@ -6,6 +6,7 @@ use AppBundle\Form\LoginForm;
@@ -51,7 +51,7 @@ index 52b49ad..2c8cce3 100644
      }
  
      public function getCredentials(Request $request)
-@@ -56,9 +59,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+@@ -58,9 +61,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
  
      protected function getLoginUrl()
      {

@@ -1,0 +1,13 @@
+diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
+index 09dc7b3..a567be6 100644
+--- a/app/config/config_dev.yml
++++ b/app/config/config_dev.yml
+@@ -12,7 +12,7 @@ framework:
+ 
+ web_profiler:
+     toolbar: true
+-    intercept_redirects: false
++    intercept_redirects: true
+ 
+ monolog:
+     handlers:
