@@ -1,78 +1,92 @@
+diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
+index d05245a..6d82347 100644
+--- a/app/Resources/views/base.html.twig
++++ b/app/Resources/views/base.html.twig
+@@ -22,7 +22,7 @@
+             <h1 class="logo">AquaNote</h1>
+             <ul class="navi">
+                 <li class="search"><a href="#" class="js-header-search-toggle"><i class="fa fa-search"></i></a></li>
+-                <li><a href="#">Login</a></li>
++                <li><a href="{{ path('security_login') }}">Login</a></li>
+             </ul>
+         </header>
+ 
 diff --git a/app/Resources/views/security/login.html.twig b/app/Resources/views/security/login.html.twig
-new file mode 100644
-index 0000000..a2f5574
---- /dev/null
+index 4c1a4fa..525ee7c 100644
+--- a/app/Resources/views/security/login.html.twig
 +++ b/app/Resources/views/security/login.html.twig
-@@ -0,0 +1,21 @@
-+{% extends 'base.html.twig' %}
-+
-+{% block body %}
-+    <div class="container">
-+        <div class="row">
-+            <div class="col-xs-12">
-+                <h1>Login!</h1>
-+
-+                {% if error %}
-+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-+                {% endif %}
-+
-+                {{ form_start(form) }}
-+                    {{ form_row(form._username) }}
-+                    {{ form_row(form._password) }}
-+                    <button type="submit" class="btn btn-success">Login <span class="fa fa-lock"></span></button>
-+                {{ form_end(form) }}
-+            </div>
-+        </div>
-+    </div>
-+{% endblock %}
+@@ -7,24 +7,16 @@
+             <h1>Login!</h1>
+ 
+             {% if error %}
+-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
++                <div class="alert alert-danger">
++                    {{ error.messageKey|trans(error.messageData, 'security') }}
++                </div>
+             {% endif %}
+ 
+-            <form action="{{ path('security_login') }}" method="post">
+-                <label for="username">Username:</label>
+-                <input type="text" id="username" name="_username" value="{{ last_username }}" />
+-
+-                <label for="password">Password:</label>
+-                <input type="password" id="password" name="_password" />
+-
+-                {#
+-                    If you want to control the URL the user
+-                    is redirected to on success (more details below)
+-                    <input type="hidden" name="_target_path" value="/account" />
+-                #}
+-
+-                <button type="submit">login</button>
+-            </form>
++            {{ form_start(form) }}
++                {{ form_row(form._username) }}
++                {{ form_row(form._password) }}
++                <button type="submit" class="btn btn-success">Login <span class="fa fa-lock"></span></button>
++            {{ form_end(form) }}
+         </div>
+     </div>
+ </div>
 diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
-new file mode 100644
-index 0000000..301daac
---- /dev/null
+index 3c6f8a7..da9292a 100644
+--- a/src/AppBundle/Controller/SecurityController.php
 +++ b/src/AppBundle/Controller/SecurityController.php
-@@ -0,0 +1,36 @@
-+<?php
-+
-+namespace AppBundle\Controller;
-+
+@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
+ 
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 +use AppBundle\Form\LoginForm;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-+
-+class SecurityController extends Controller
-+{
-+    /**
-+     * @Route("/login", name="security_login")
-+     * @Method("POST")
-+     */
-+    public function loginAction()
-+    {
-+        $authenticationUtils = $this->get('security.authentication_utils');
-+
-+        $error = $authenticationUtils->getLastAuthenticationError();
-+        $lastUsername = $authenticationUtils->getLastUsername();
-+
+ 
+ class SecurityController extends Controller
+ {
+@@ -20,13 +21,16 @@ class SecurityController extends Controller
+         // last username entered by the user
+         $lastUsername = $authenticationUtils->getLastUsername();
+ 
 +        $form = $this->createForm(LoginForm::class, [
 +            '_username' => $lastUsername,
 +        ]);
 +    
-+        return $this->render(
-+            'security/login.html.twig',
-+            array(
-+                // last username entered by the user
+         return $this->render(
+             'security/login.html.twig',
+             array(
+-                // last username entered by the user
+-                'last_username' => $lastUsername,
+-                'error'         => $error,
 +                'form' => $form->createView(),
 +                'error' => $error,
-+            )
-+        );
-+    }
+             )
+         );
+     }
+-}
 +}
 \ No newline at end of file
 diff --git a/src/AppBundle/Form/LoginForm.php b/src/AppBundle/Form/LoginForm.php
-index 1abfa32..612b54f 100644
+index 1abfa32..ce070d8 100644
 --- a/src/AppBundle/Form/LoginForm.php
 +++ b/src/AppBundle/Form/LoginForm.php
-@@ -11,10 +11,13 @@ class LoginForm extends AbstractType
+@@ -11,6 +11,10 @@ class LoginForm extends AbstractType
  {
      public function buildForm(FormBuilderInterface $builder, array $options)
      {
@@ -83,7 +97,3 @@ index 1abfa32..612b54f 100644
      }
  
      public function configureOptions(OptionsResolver $resolver)
-     {
--
-     }
- }

@@ -1,0 +1,81 @@
+diff --git a/app/DoctrineMigrations/Version20160524105319.php b/app/DoctrineMigrations/Version20160524105319.php
+new file mode 100644
+index 0000000..2e9dd5c
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20160524105319.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20160524105319 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('DROP TABLE user');
++    }
++}
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index 92cd1d7..a035a98 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -19,3 +19,7 @@ AppBundle\Entity\SubFamily:
+     subfamily_{1..10}:
+         # use some fake data for this
+         name: <lastName()>
++
++AppBundle\Entity\User:
++    user_{1..10}:
++        email: weaverryan+<current()>@gmail.com
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 2ddaa69..196cf3d 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -4,9 +4,24 @@ namespace AppBundle\Entity;
+ 
+ use Symfony\Component\Security\Core\Role\Role;
+ use Symfony\Component\Security\Core\User\UserInterface;
++use Doctrine\ORM\Mapping as ORM;
+ 
++/**
++ * @ORM\Entity
++ * @ORM\Table(name="user")
++ */
+ class User implements UserInterface
+ {
++    /**
++     * @ORM\Id
++     * @ORM\GeneratedValue(strategy="AUTO")
++     * @ORM\Column(type="integer")
++     */
++    private $id;
++
++    /**
++     * @ORM\Column(type="string", unique=true)
++     */
+     private $email;
+ 
+     // needed by the security system

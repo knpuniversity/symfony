@@ -1,0 +1,37 @@
+diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
+index 68191b6..3f71953 100644
+--- a/src/AppBundle/Security/LoginFormAuthenticator.php
++++ b/src/AppBundle/Security/LoginFormAuthenticator.php
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Security;
+ 
+ use AppBundle\Form\LoginForm;
++use Doctrine\ORM\EntityManager;
+ use Symfony\Component\Form\FormFactoryInterface;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\Security\Core\User\UserInterface;
+@@ -12,10 +13,12 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
+ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+ {
+     private $formFactory;
++    private $em;
+ 
+-    public function __construct(FormFactoryInterface $formFactory)
++    public function __construct(FormFactoryInterface $formFactory, EntityManager $em)
+     {
+         $this->formFactory = $formFactory;
++        $this->em = $em;
+     }
+ 
+     public function getCredentials(Request $request)
+@@ -34,6 +37,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+ 
+     public function getUser($credentials, UserProviderInterface $userProvider)
+     {
++        $username = $credentials['_username'];
++
++        return $this->em->getRepository('AppBundle:User')
++            ->findOneBy(['email' => $username]);
+     }
+ 
+     public function checkCredentials($credentials, UserInterface $user)

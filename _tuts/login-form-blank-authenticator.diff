@@ -1,21 +1,19 @@
 diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
 new file mode 100644
-index 0000000..a1c0062
+index 0000000..b70a5ac
 --- /dev/null
 +++ b/src/AppBundle/Security/LoginFormAuthenticator.php
-@@ -0,0 +1,41 @@
+@@ -0,0 +1,31 @@
 +<?php
 +
 +namespace AppBundle\Security;
 +
 +use Symfony\Component\HttpFoundation\Request;
-+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 +use Symfony\Component\Security\Core\User\UserInterface;
 +use Symfony\Component\Security\Core\User\UserProviderInterface;
-+use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
++use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 +
-+class LoginFormAuthenticator extends AbstractGuardAuthenticator
++class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 +{
 +    public function getCredentials(Request $request)
 +    {
@@ -29,19 +27,11 @@ index 0000000..a1c0062
 +    {
 +    }
 +
-+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
++    protected function getLoginUrl()
 +    {
 +    }
 +
-+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-+    {
-+    }
-+
-+    public function supportsRememberMe()
-+    {
-+    }
-+
-+    public function start(Request $request, AuthenticationException $authException = null)
++    protected function getDefaultSuccessRedirectUrl()
 +    {
 +    }
 +}

@@ -1,0 +1,22 @@
+diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
+new file mode 100644
+index 0000000..d912c10
+--- /dev/null
++++ b/src/AppBundle/Controller/SecurityController.php
+@@ -0,0 +1,16 @@
++<?php
++
++namespace AppBundle\Controller;
++
++use Symfony\Bundle\FrameworkBundle\Controller\Controller;
++use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
++
++class SecurityController extends Controller
++{
++    /**
++     * @Route("/login", name="security_login")
++     */
++    public function loginAction()
++    {
++    }
++}

@@ -1,0 +1,65 @@
+diff --git a/app/config/security.yml b/app/config/security.yml
+index 8072372..737ea35 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -15,6 +15,9 @@ security:
+ 
+         main:
+             anonymous: ~
++            guard:
++                authenticators:
++                    - app.security.login_form_authenticator
+             # activate different ways to authenticate
+ 
+             # http_basic: ~
+diff --git a/app/config/services.yml b/app/config/services.yml
+index bf948d1..11d2cd1 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -14,3 +14,7 @@ services:
+             - { name: twig.extension }
+         #arguments: ['@app.markdown_transformer']
+         autowire: true
++
++    app.security.login_form_authenticator:
++        class: AppBundle\Security\LoginFormAuthenticator
++        autowire: true
+diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
+index 52b49ad..2c8cce3 100644
+--- a/src/AppBundle/Security/LoginFormAuthenticator.php
++++ b/src/AppBundle/Security/LoginFormAuthenticator.php
+@@ -6,6 +6,7 @@ use AppBundle\Form\LoginForm;
+ use Doctrine\ORM\EntityManager;
+ use Symfony\Component\Form\FormFactoryInterface;
+ use Symfony\Component\HttpFoundation\Request;
++use Symfony\Component\Routing\RouterInterface;
+ use Symfony\Component\Security\Core\User\UserInterface;
+ use Symfony\Component\Security\Core\User\UserProviderInterface;
+ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+@@ -14,11 +15,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+ {
+     private $formFactory;
+     private $em;
++    private $router;
+ 
+-    public function __construct(FormFactoryInterface $formFactory, EntityManager $em)
++    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router)
+     {
+         $this->formFactory = $formFactory;
+         $this->em = $em;
++        $this->router = $router;
+     }
+ 
+     public function getCredentials(Request $request)
+@@ -56,9 +59,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+ 
+     protected function getLoginUrl()
+     {
++        return $this->router->generate('security_login');
+     }
+ 
+     protected function getDefaultSuccessRedirectUrl()
+     {
++        return $this->router->generate('homepage');
+     }
+ }

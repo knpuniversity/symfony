@@ -1,0 +1,63 @@
+diff --git a/app/Resources/views/security/login.html.twig b/app/Resources/views/security/login.html.twig
+new file mode 100644
+index 0000000..4c1a4fa
+--- /dev/null
++++ b/app/Resources/views/security/login.html.twig
+@@ -0,0 +1,31 @@
++{% extends 'base.html.twig' %}
++
++{% block body %}
++<div class="container">
++    <div class="row">
++        <div class="col-xs-12">
++            <h1>Login!</h1>
++
++            {% if error %}
++                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
++            {% endif %}
++
++            <form action="{{ path('security_login') }}" method="post">
++                <label for="username">Username:</label>
++                <input type="text" id="username" name="_username" value="{{ last_username }}" />
++
++                <label for="password">Password:</label>
++                <input type="password" id="password" name="_password" />
++
++                {#
++                    If you want to control the URL the user
++                    is redirected to on success (more details below)
++                    <input type="hidden" name="_target_path" value="/account" />
++                #}
++
++                <button type="submit">login</button>
++            </form>
++        </div>
++    </div>
++</div>
++{% endblock %}
+diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
+index d912c10..3c6f8a7 100644
+--- a/src/AppBundle/Controller/SecurityController.php
++++ b/src/AppBundle/Controller/SecurityController.php
+@@ -12,5 +12,21 @@ class SecurityController extends Controller
+      */
+     public function loginAction()
+     {
++        $authenticationUtils = $this->get('security.authentication_utils');
++
++        // get the login error if there is one
++        $error = $authenticationUtils->getLastAuthenticationError();
++
++        // last username entered by the user
++        $lastUsername = $authenticationUtils->getLastUsername();
++
++        return $this->render(
++            'security/login.html.twig',
++            array(
++                // last username entered by the user
++                'last_username' => $lastUsername,
++                'error'         => $error,
++            )
++        );
+     }
+ }

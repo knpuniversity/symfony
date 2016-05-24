@@ -616,8 +616,23 @@
             "description": null
         },
         {
+            "id": "user-make-an-entity",
+            "name": "User: Make an entity",
+            "description": null
+        },
+        {
             "id": "login-start-loginform",
             "name": "Login: Start LoginForm",
+            "description": null
+        },
+        {
+            "id": "login-form-start-controller",
+            "name": "Login Form: Start controller",
+            "description": null
+        },
+        {
+            "id": "login-form-copy-from-docs",
+            "name": "Login Form: Copy from docs",
             "description": null
         },
         {
@@ -634,7 +649,22 @@
             "id": "login-form-getcredentials-authenticator",
             "name": "Login Form: getCredentials Authenticator",
             "description": null
+        },
+        {
+            "id": "login-form-getuser-authenticator",
+            "name": "Login Form: getUser Authenticator",
+            "description": null
+        },
+        {
+            "id": "login-form-checkcredentials-authenticator",
+            "name": "Login Form: checkCredentials authenticator",
+            "description": null
+        },
+        {
+            "id": "login-form-finish-authenticator",
+            "name": "Login Form: Finish authenticator",
+            "description": null
         }
     ],
-    "sha": "f4877c650729d2dc6b90e04dbc280f4ff45ff5af"
+    "sha": "82ab95abee9f7bc818af481ffddd5b6132805603"
 }

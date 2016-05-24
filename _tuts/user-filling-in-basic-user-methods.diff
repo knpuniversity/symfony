@@ -1,16 +1,17 @@
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 3dc96c9..89c8e69 100644
+index 3dc96c9..2ddaa69 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
-@@ -7,23 +7,35 @@ use Symfony\Component\Security\Core\User\UserInterface;
+@@ -7,23 +7,41 @@ use Symfony\Component\Security\Core\User\UserInterface;
  
  class User implements UserInterface
  {
-+    private $username;
++    private $email;
 +
++    // needed by the security system
      public function getUsername()
      {
-+        return $this->username;
++        return $this->email;
      }
  
      public function getRoles()
@@ -33,8 +34,13 @@ index 3dc96c9..89c8e69 100644
 +        // leaving blank - I don't need/have a password!
 +    }
 +
-+    public function setUsername($username)
++    public function getEmail()
 +    {
-+        $this->username = $username;
++        return $this->email;
++    }
++
++    public function setEmail($email)
++    {
++        $this->email = $email;
      }
  }
