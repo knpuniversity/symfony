@@ -38,14 +38,11 @@ tuts_hero:
 
 chapters:
     the-form-type-class:
-        video_key:~
-        is_finished: false
+        video_key: 168703880
     render-form-bootstrap:
-        video_key:~
-        is_finished: false
+        video_key: 168704822
     process-that-form:
-        video_key:~
-        is_finished: false
+        video_key: 168704292
     data-class-type-guessing:
         video_key:~
         is_finished: false
