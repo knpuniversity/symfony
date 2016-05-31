@@ -32,9 +32,8 @@ summary: |
 illustration: sf-ep5.png
 
 tuts_hero:
-# todo - fill in the steps properly
-#    start_step: start
-    finish_step: start
+    start_step: updates-starting-admin-section
+    finish_step: edit-use-shared-layout
 
 chapters:
     the-form-type-class:
