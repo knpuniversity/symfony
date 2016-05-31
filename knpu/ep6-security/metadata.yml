@@ -41,4 +41,40 @@ tuts_hero:
 #    start_step: start
     finish_step: start
 
-chapters: []
+chapters:
+    user-class:
+        video_key:~
+        is_finished: false
+    rendering-login-form:
+        video_key:~
+        is_finished: false
+    login-form-authenticator:
+        video_key:~
+        is_finished: false
+    user-provider:
+        video_key:~
+        is_finished: false
+    logout-and-last-username:
+        video_key:~
+        is_finished: false
+    encoding-user-password:
+        video_key:~
+        is_finished: false
+    authorization-roles:
+        video_key:~
+        is_finished: false
+    the-user-object:
+        video_key:~
+        is_finished: false
+    role-hierarchy-impersonation:
+        video_key:~
+        is_finished: false
+    registration-form:
+        video_key:~
+        is_finished: false
+    registration-validation-groups:
+        video_key:~
+        is_finished: false
+    automatic-login-handling:
+        video_key:~
+        is_finished: false
