@@ -55,20 +55,15 @@ chapters:
     date-format-sanity-validation:
         video_key: 168987213
     form-rendering-and-variables:
-        video_key: ~
-        is_finished: false
+        video_key: 169009133
     disable-html5-validation:
-        video_key: ~
-        is_finished: false
+        video_key: 169008268
     beautiful-form-validation:
-        video_key: ~
-        is_finished: false
+        video_key: 169009026
     changing-validation-messages:
-        video_key: ~
-        is_finished: false
+        video_key: 169010294
     easy-edit-form:
-        video_key: ~
-        is_finished: false
+        video_key: 169011242
     form-template-include:
         video_key: ~
         is_finished: false
