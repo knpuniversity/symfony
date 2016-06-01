@@ -37,7 +37,7 @@ But, if you want to customize this message, copy it. And, notice, the domain is
 what we do next.
 
 We don't have any translation files yet, so create a new directory called `translations`
-in `app/Resources`. Inside, add a new file: `validators.yml`. This is `validators`
+in `app/Resources`. Inside, add a new file: `validators.en.yml`. This is `validators`
 because the message is being translated in that domain.
 
 Inside, paste the string and set it to 
