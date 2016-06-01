@@ -43,23 +43,17 @@ chapters:
     process-that-form:
         video_key: 168704292
     data-class-type-guessing:
-        video_key: ~
-        is_finished: false
+        video_key: 168984252
     save-redirect-set-flash:
-        video_key: ~
-        is_finished: false
+        video_key: 168984420
     field-types-and-options:
-        video_key: ~
-        is_finished: false
+        video_key: 168984748
     custom-entity-type-query:
-        video_key: ~
-        is_finished: false
+        video_key: 168986055
     date-picker-field:
-        video_key: ~
-        is_finished: false
+        video_key: 168987006
     date-format-sanity-validation:
-        video_key: ~
-        is_finished: false
+        video_key: 168987213
     form-rendering-and-variables:
         video_key: ~
         is_finished: false
