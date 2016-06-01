@@ -1,15 +1,67 @@
-# Logout and Last Username
+# Logging out & Pre-filling the Email on Failure
 
-Check this out. Let's fail authentication with a bad password right now. Alright. Two things I notice. One, we have an error. Great. Two, we do not have the user name that I just filled in. Behind the scenes, the authenticator communicates to your security controller by storing things in the session. That's what this authentication [utils 00:00:32] does. If you click, for example, get last authentication error, there's a bunch of code here, but ultimately it's just going out and reading a special key off of this session for the authentication error.
+Check this out: let's fail authentication with a bad password.
 
-the same thing is true, actually, for get last user name. It just goes on to the session and reads a key off of that session. Now the login for authenticator is already setting the authentication error to the session, but it's not setting the last user name to the session because the base abstract guard form login authenticator doesn't know where you're storing your user name, so all we need to do to get this to work is say, "Request error get session error set." We just need to set that key on the session, and it's stores, and the key is actually stores under a little session, it's the security class, colon, colon, last user name, and of course, our user name is data, underscore, username.
+Ok: I noticed two thing. First, we have an error. Great! But two, the form is *not*
+pre-filled with the `email` address I just used. Hmm.
 
-Again, everything has same username but it could be email, it could be anything else. So now, if we try that again ... Good to go. Pre-filled with the [fail 00:01:49] password. Cool. That's done. While we're here. Let's also have one other small, but super important thing, the ability to logout.
+Behind the scenes, the authenticator communicates to your `SecurityController` by
+storing things in the session. That's what the `security.authentication_utils` helps
+us do. Hold command and open `getLastAuthenticationError()`. Ultimately, this reads
+some `Security::AUTHENTICATION_ERROR` key from the session.
 
-Start like normal. In your security controller, let's create a logout action. Here's a handy shortcut I have. We'll say logout action, make this be slash logout and we'll call it security underscore logout. Now, here's the fun part. Don't do anything in here. In fact, throw a new exception that says, this should not be reached. Much like login itself, there's going to be an invisble layer that actually handles logging out. The way that you activate it is, [inaudible 00:02:55], onto your firewall, have a new key called logout. Below that, it's optional, but you can add a path or slash logout.
+And the same is true for fetching the last username, or email in our case: it reads
+a key from the session.
 
-What this does is it says if the user goes to slash logout, symphony will magically take care of logging them out, which is really cool. Why did we bother creating a controller and a route if Symphony was going to automatically log them out? Because if you don't have a route that responds to slash logout, you'll get a 404, so you still actually need a route. It's just do it a little quirk in Symphony security system, even though the route isn't going to get hit.
+Here's the deal: the login form is automatically setting the authentication error
+to the session for us. But, it is *not* setting the last username on the session...
+because it doesn't really know where to look for it.
 
-The same thing is true for our login route. It's handled by an authenticator, we need to have a route that responds to that URL. It should just work, but let's be friendly and add a logout link. [inaudible 00:03:55] base [inaudible 00:03:55] login link, so let's add a logout link if the user's already logged in. How do we know if the user's logged in? We're going to talk about this more in a second, but you can do an IF statement, for is underscore granted role underscore user. What you may remember is the role we return from the get roles function of user. More on roles later. If they don't have that, then we need to show the login link. if they do have that, let's show them a logout link. Security underscore logout. Perfect.
+No worries, fix this with `$request->getSession()->set()` and pass it the constant -
+`Security::LAST_USERNAME` - and `$data['_username']`.
 
-Let's go back to the homepage. We are anonymous right now. Let's login. ... Cool. It changes to a logout link. Hit logout, back to anonymous. Awesome. Alright. Now, our user probably needs to have a real password.
+Now, try it again. Good-to-go!
+
+## Can I Logout?
+
+Next challenge! Can we logout? Um... right now? Nope! So let's fix that.
+
+Start like normal: In `SecurityController`, create a `logoutAction`, set its route
+to `/logout` and call the route `security_logout`. 
+
+Now, here's the fun part. Don't put *any* code in the method. In fact, throw a
+`new \Exception` that says, "this should not be reached".
+
+## Adding the logout Key
+
+Whaaaat? Yep, our controller will do nothing. Instead, Symfony will intercept any
+requests to `/logout` and take care of it for us. To active it, open `security.yml`
+and add a new key under your firewall: `logout`. Below that, add `path: /logout`.
+
+Now, if the user goes to `/logout`, Symfony will automatically take care of logging
+them out. That's super magical, almost creepy - but it works pretty darn well.
+
+So, why did I make you create a route and controller if Symfony wasn't going to use
+it? Am I trying to drive you crazy!
+
+Hey, no! I'm looking out for you! It turns out, if you don't have a route that matches
+`/logout`, then the 404 page will be triggered *before* Symfony has a chance to log
+the user out.
+
+It should work already, but let's add a friendly logout link. In `base.html.twig`,
+how can we figure out if the user is logged in? We're *about* to talk about that...
+but what the heck - let's get a preview. Use `{% if is_granted('ROLE_USER') %}`.
+Remember this role? We returned it from `getRoles()` in User - *everyone* has this.
+
+If they don't have this, show the login link. But if they do, show the logout link:
+`path('security_logout')`.
+
+Perfect!
+
+Try the *whole* thing out: head to the homepage. We're anonymous right now.. so let's
+login! Cool! And there's the logout link. Click it! Ok, back to anonymous. If you
+need to control what happens after logging out, check the official docs on the logout
+stuff.
+
+Alright. Now, as much as I like turtles, we should *probably* give our users a real
+password.

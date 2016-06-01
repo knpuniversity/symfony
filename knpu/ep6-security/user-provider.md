@@ -1,9 +1,45 @@
-# User Provider
+# The Mysterious "User Provider"
 
-Let's see that error again. We'll change intercept redirects back to false. Refresh, re-post the form, and there it is. There is no user provider for @bundle entity users. What the heck is a user provider and why do we need one? A user provider is one of the most misunderstood parts of Symphony's security system. It's an object that does just a few small jobs for you. One of them is that your user provider is responsible for reading the user object out of the session. Of course, when we use form login we need to store the user in the session. The user provider fetches the user out of the session and makes sure it's up to date. When you're using Doctrine, re-queries for a fresh user to make sure all the data is up do date.
+Let's see that error again: change `intercept_redirects` back to false.
 
-It also does a few other small things. Like, it helps with remember me functionality, if you have a remember me check box on your login form. Another really cool feature we'll talk later called switch user, which actually allows you to impersonate other users in the system. Long story short is, you need a user provider but it's not actually that important. If you're using Doctrine it's really really easy to set up.
+Refresh and re-post the form. Oof, there it is again:
 
-In security.ymail you already have a provider section here. This is actually how you configure your user providers. Delete the in-memory stuff, replace it with our_users, that could be anything and you'll almost never care about it. Below that say entity and set that to class@bundle/entity/user, property email. Now, the property part is not something we care about right now, but it will be used later when we talk about the switch user or impersonation functionality. That should actually fix our issue. If I just go back to the slash login page, notice I am not logged in because it couldn't reload my user from the session. We can try logging in again, and there it is. [inaudible 00:02:56]plus1@gmail.com and we can finally surf around the site and stay logged in. Cool.
+> There is no user provider for AppBundle\Entity\User
 
-If you are not loading your users from the database, then what you will need to do is create your own custom user provider, which is very simple. It's just a class. It implements user provider interface and then you just have a few simple methods in it, which do things like help refresh the user from the session. You'll register that as a service and then there's a little bit of configuration to point at your service instead of using the built in entity provider. If you have questions on that, let me know. It is covered in the documentation.
+What the heck is a user provider and why do we need one?
+
+## What is a User Provider?
+
+A user provider is one of the most misunderstood parts of Symfony's security. It's
+an object that does just a *few* small jobs for you. For example, the user provider
+is responsible for loading the `User` from the session and making sure that it's
+up to date. In Doctrine, we'll want it to re-query for a fresh `User` object to make
+sure all the data is still up-to-date.
+
+The user provider is also responsible for a few other minor things, like handling
+"remember me" functionality and a really cool feature we'll talk about later called
+"impersonation".
+
+Long story short: you need a user provider, but it's not all that important. And
+if you're using Doctrine, it's super easy to setup.
+
+## Setting up the Entity User Provider
+
+In `security.yml`, you already have a `providers` section - as in "user providers".
+Delete the `in_memory` stuff and replace it with `our_users`: that's a totally meaningless
+machine name - it could be anything. But below that, say `entity` and set it to
+`{ class: AppBundle\Entity\User, property: email }`.
+
+The `property` part is *not* something we care about right now, but we will use
+and talk about it later.
+
+But yea, that's it! Go back to `/login`. Right now, I am *not* logged in. But try
+logging in again.
+
+It's alive!!! We can finally surf around the site and stay logged in. Cool.
+
+## Custom User Provider
+
+In your app, if you're *not* loading users from the database, then you'll need to
+create a custom user provider class that implements `UserProviderInterface`. Check
+out the official docs in this case. But if you have any questions, let me know.

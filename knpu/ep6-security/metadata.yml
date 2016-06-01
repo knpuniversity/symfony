@@ -45,16 +45,28 @@ chapters:
     user-class:
         video_key:~
         is_finished: false
+    user-interface-methods:
+        video_key:~
+        is_finished: false
     rendering-login-form:
         video_key:~
         is_finished: false
+    all-about-firewalls:
+        video_key:~
+        is_finished: false
     login-form-authenticator:
+        video_key:~
+        is_finished: false
+    authenticator-get-user-check-credentials:
         video_key:~
         is_finished: false
     user-provider:
         video_key:~
         is_finished: false
     logout-and-last-username:
+        video_key:~
+        is_finished: false
+    user-plain-password:
         video_key:~
         is_finished: false
     encoding-user-password:

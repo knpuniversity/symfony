@@ -1,28 +1,73 @@
-# User Class
+# The All-Important User Class
 
-Hey, guys. You finally made it to the security course, which sounds kind of scary, but actually, security these days is super fun. I mean, come on, you've got normal log in forms, you've got Facebook authentication, Twitter authentication. YOu've got API's, using json web tokens. When you're doing something with security, these days it's actually pretty darn fun, and we're going to give you the tools to implement whatever crazy, insane security system that you have.
+Yo guys! You finally made it to the security course:you brave, brave souls. Whatever,
+these days, security isn't scary - it's super fun! You've got traditional login forms,
+Facebook authentication, GitHub authentication, API authentication with JSON web
+tokens. When you're doing something with security these days, it's usually pretty
+darn fun. And we're going to give you the tools to implement whatever crazy, insane
+security system you want.
 
-Now, as always, I strongly recommend that you code along with me to really get the hang of this stuff. Download the course code and unzip, and you'll fins a start directory, which has the same code that I have here. Follow the readme inside of that for a few other instructions, and when you're ready, finally open up a new tab and run [inaudible 00:01:17] server [inaudible 00:01:17] run, just on our web server at localhost:8000.
+But, the only way to secure your new security skills it to feel secure in my recommendation
+that you *code along with me*. You guys know the drilll: download the course code
+unzip it and look for the `start/` directory. That'll have the same code that I have
+here. Open up the README file to find all the setup instructions. At the end, you'll
+open up a new tab and run:
 
-Beautiful. When you talk about security, there are going to be two pieces. The first is authentication. This is all about who are you. We're going to spend the first half of the tutorial talking about that. It's actually the much more complicated part. The second part is authorization, and this doesn't care about who you are, but whether or not you have permission to take an action, and we'll talk all about authorization as well.
+```bash
+bin/console server:run
+```
 
-Now, when you talk about authentication, od course we're talking about logging in. In some ways, we're also talking about registration and reset password, and all those features. There is a really popular bundle in the symphony world called FOS user bundle. I want to mention this because it may be something that you want to use. FOS user bundle is going to give you a lot of the features that we're about to build, with less effort, but I don't want to confuse things. FOS user bundle is not a security system. What FOS user bundle gives you primarily is a bunch of routes and controllers, pre-set up for things like your login form, you r registration page, your reset password, so if you're going to need all of those things, then you might want to use FOS user bundle, but I would still go through this tutorial. This is going to teach you a lot about how things actually work behind the scenes.
+to start the built-in web server.
 
-We will do a separate tutorial about FOS user bundle. Authentication, this is all about somehow allowing the user to tell us who they are. The first thing you're going to need inside of of your project is a user class, so in your NC directory, create a new class called user, and the only thing that your user class must do is implement a user interface, so I'll do that. I'll do command n or code generate, and I'll go down to implement methods, and I'll select all of these methods here. Actually, I'll move get username up top, because it's the most important one.
+## Authentication vs Authorization (Fight!)
 
-Now, notice I have put my user class inside of my [inaudible 00:03:49] directory. Our goal is to create a normal login form, where you type in your email and your password, and it loads users from the database. Now, that being said, you do not need to store your users in a local database, and when we hook up our authentication system, you'll be able to see how you could easily load users from somewhere else, like perhaps you have a single sign on system, and you need to actually call out to it to load your user information, so we will still store users in the database, but that's not required.
+Beautiful. To talk about security, we need to talk about the two big parts of it.
+The first is *authentication* - this is all about *who you are* - and the first half
+of the tutorial is all about this. Authentication is the tough stuff, and there's
+*a lot* of variation here - login forms, social media auth, API stuff - you get it.
 
-When you implement user interface, it required you to have 5 methods, but watch this. I'm only going to implement 2, so get username. This is used to print out who is logged into the system. In our system, I don't actually need a username. We're going to have our users log in via their email address instead, so watch this. Open a private email field, and I'm going to return this arrow email. Turns out the get username method, you must have it, but it's not used anywhere in the core symphony system, except on the web debug toolbar, to show you who's logged in, so you can return anything you want from get username as long as it's something that's unique to your user. Since we have an email field, I'm going to generate a setter for that, so we can eventually set that.
+The second big piece is *authorization*, and this doesn't care about who you are,
+just whether or not you have permission to take an action. Authorization comes later.
 
-Cool, so get username. Second, get roles. When we talk about authorization later, you're going to see how roles are used. These are basically the permissions I have, and for now, I want you to return an array, with just one role called role user, and that's it. Keep get password, get [inaudible 00:05:55], and erase credentials, blank. Why? Because at first, our login form is not going to require us to type in a password. We're going to add the password functionality later. If your user ... If your symphony application is not responsible for actually checking the password of the user, you don't need to fill in these values. This is very common, again, with a set where there's another server that checks the password, and then you just need to load the user information, so feel okay leaving these blank.
+## What about FOSUserBundle?
 
-Now, since in our application, we are going to store this in database, let's set this up with doctrine, so I'll copy the use statement from [inaudible 00:06:45], then I'll put my cursor inside the class, go to command, and select [inaudible 00:06:49] class, and then create a private ID field. Do command N one more time, and select ORM annotation, and select both fields, and while we're here, let's add a unique equals true for an email field, so perfect, this is a fully functional user class. All it has on it is ID and email, but that's fine.
+But before we get there, let's talk first about a bundle that you've probably heard
+of before or even used: FOSUserBundle. Should we use this? What does it do? Where
+did I leave my phone?
 
-Since we just added a new [inaudible 00:07:21], let's generate a migration for it. Bin console, doctor migrations, [inaudible 00:07:29]. I'll copy that, open it up quickly, and just make sure it looks right. Yep, create user, so that's awesome.
+First, we will *not* use this bundle, but it *is* great - it gives you a lot of
+features that we will build for free, out-of-the-box. But FOSUserBundle does *not*
+give you any special "security" system - it's much less interesting than that, in
+a good way! This bundles gives you just *two* things: (A) a User entity in case you
+need to store users in the database and (B) a bunch of routes and controllers for
+things like your login form, registration and reset password. Those are *all* things
+you can easily build yourself... but if you need them, why not use the bundle?
 
-Next, let's load a couple users in our database, so open fixtures.yml. I'll copy the cell family section, just change the class to user. I'll give these keys user._1-10, for 10 of these, and then the only field is email, and let's make these weaver ryan plus open bracket, current, close bracket, at gmail.com.
+Anyways, we *won't* use it, and that'll be the best path to learn how the security
+system works. But when you finish, you might save yourself some time using FOSUserBundle.
 
-If you didn't know, with gmail, this is a little trick. If you do weaver ryan plus anything at gmail.com, it will all get delivered to you weaverryan@gmail.com, so it's a fun way to have fake email addresses. Current just refers to the number, so that would be somewhere between 1 and 10. Try that out, run bin console, doctrine, fixtures, load. Try this out by first actually running the migration, then running the doctrine fixtures, load. Perfect.
+## Create that User Class
 
-You've got users in the database, so let's log in.
+Now, back to authentication. Here's our first goal: create a login form where the
+user can signin with their email and password. In this app, we'll load that info
+from a database.
 
+Now, no matter *how* your users will authenticate, the first step is always the same:
+create a `User` class that can work with the security system.
+
+In your `Entity` directory - create a new class called `User`. The *only* rule is
+that this must implement a `UserInterface`. Add that.
+
+I'll use Command+N - or use the Code->Generate menu - and select "implement methods".
+Select all of these methods. Oh, and let's move `getUsername()` to the top: it makes
+more sense up there.
+
+### Is User an Entity?
+
+Now, notice I *did* put my `User` class inside of the `Entity` directory because
+eventually we *will* store users in the database. But, that's not required - sometimes
+user details are stored somewhere else - like a central authentication server. In
+those cases, you *will* still have a `User` class, you just won't store it with Doctrine.
+More on that soon.
+
+We've got the empty user class: let's fill it in!
