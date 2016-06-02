@@ -49,7 +49,7 @@ because we will *not* handle the form submit in the normal way. Because of that,
 most people simply build the form by hand: you can do it either way.
 
 But... our form is *ugly*. And *I* know from our forms course, that the form system
-is already setup to render using Bootstrap-friendly markup. so if we *did* use a
+is already setup to render using Bootstrap-friendly markup. So if we *did* use a
 real form... this would instantly be less ugly.
 
 ## Ok, Ok: Let's add a Form Class

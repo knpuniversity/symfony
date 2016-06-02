@@ -13,8 +13,8 @@ What the heck is a user provider and why do we need one?
 A user provider is one of the most misunderstood parts of Symfony's security. It's
 an object that does just a *few* small jobs for you. For example, the user provider
 is responsible for loading the `User` from the session and making sure that it's
-up to date. In Doctrine, we'll want it to re-query for a fresh `User` object to make
-sure all the data is still up-to-date.
+up to date. In Doctrine, we'll want our's to re-query for a fresh `User` object to
+make sure all the data is still up-to-date.
 
 The user provider is also responsible for a few other minor things, like handling
 "remember me" functionality and a really cool feature we'll talk about later called

@@ -52,7 +52,7 @@ Since we just added a new entity, let's generate a migration:
 ./bin/console doctrine:migrations:diff
 ```
 
-I'll copy the class and open it up quickly, just make sure it looks right.
+I'll copy the class and open it up quickly, just to make sure it looks right.
 
 Looks great!
 
