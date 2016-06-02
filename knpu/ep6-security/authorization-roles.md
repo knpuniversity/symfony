@@ -1,24 +1,69 @@
-# Authorization Roles
+# Authorization: access_control and Roles
 
-Up until now, everything has been about authentication. Building our system so that we can identify which user is logging in. We've done that with our cool login form authenticator. I hope that you can see that you can make these authenticators do whatever you want, and you could even create multiple authenticators. That's something that we'll do with social authentication in a future screencast. We also created a really cool JSON web token authenticator in our Symfony REST series, so you can check that out.
+Authentication is *done*. So how about we tackle the second half of security: authorization.
+This is all about figuring out whether or not the user has access to do something.
+For example, right now we have a fancy admin section, but probably not *everyone*
+should have access to it.
 
-Now I want to turn to authorization which is all about figuring out whether or not the user has access to do something. For example, right now we have an admin section, which probably not everyone should have access to. There's a number of different ways to deny access, and the easiest one is right inside security.yml, it's called access control. Go in 4 spaces, so this is on the same level as firewalls, not below it. Add access control. Go out 4 spaces- { and then you're going to do a regular expression path: so ^/Admin meaning anything starting with /admin we're going to require role_user.}
+## Denying with access_control
 
-Let's just try that out first. I'm going to log out, go to /admin/genus and there it goes. It bounces to the Login page and I can log in, and it bounces me back to this page and I do have access because my user has role user. If you hover down on the web developer tool bar, and click, you will see roles, role user. That's awesome. Remember, that's happening because in our user class, we're just hard coding right now and saying every single user in the system gets a single role called role user.
+There are 2 main ways to deny access to something, and the simplest is right inside
+of `security.yml`. It's called "access control". Move in 4 spaces - so that you're
+at the same level as the `firewalls` key, but not inside of it. Add `access_control`,
+new line, then go out 4 spaces and add `- { path: ^/admin, roles: ROLE_USER }`.
 
-At first, that's as complex as Symfony's authorization system goes. Give users roles, and then you check and see if they have those roles. The second will make the roles dynamic, so that different users can have different roles. This access control is really interesting down here because you can have many access controls. You can create another line below this and secure a different section of your site, like ^/checkout requires some different roles. The key thing to know is that these access controls and match like routing. They match from top to bottom, and you only ever match one access control at a time. It will match the first one that it finds from top to bottom. This means you can do some cool stuff with access control. If you have a site where pretty much every page is secured, but then only a few of them are open, you can actually use access controls to lock down every page and then white list the few pages that shouldn't be authenticated.
+That path is a regular expression. So, if anyone goes to a URL that starts with
+`/admin`, the system will kick them out *unless* they have `ROLE_USER`.
 
-If we change this to role admin, which the role I don't have, go back and refresh. Now we get the access denied page. A few important things here. First, roles can be anything. I don't have to preregister this role, admin. I just made that up on the spot. My user doesn't have that, so I'm denied access. The only rule about roles is that they must start with role_ . There's a reason for that I'll mention later. Second, notice this shows the access denied screen, 403, forbidden. Obviously this is not what your user is going to see, but you have he opportunity to customize your error pages to customize them on a status by status code basis. You can have a different 403 error page than 404 error page.
+Let me show you how it works.  First, make sure you're logged out. Now, go to
+`/admin/genus`. Boom! That was it! Anonymous users don't have *any* roles, so the
+system kicked us to the login page.
 
-The great thing about access control is it's just really simple to secure entire areas of your site. However, it's not very flexible . I do use access controls to lock down big sections of my site, but I also really handle my authorization inside of my controller, where I can find greater controls. I'm gong to comment about this access control, and I'm going to show you how to do it in your controller. Go to genus admin controller. For all the complexity of the security system, everything you're going to do for the security is just two services. If you want to check whether or not the user has access, it's as simple as this. If not this error, get, we're gong to be at series called Security.authorizationchecker. It has exactly one method on it which is called, is granted. We'll pass it, role_admin. If we do not have this role, then we're going to throw this arrow, create access denied exception. You can give it any message there. That's only going to be shown to us developers.
+***TIP
+Our `FormLoginAuthenticator` is actually responsible for sending us to `/login`.
+You can customize and override this behavior if you need to. If you use a built-in
+authentication system, like `form_login`, then *it* may be responsible for this.
+This functionality is called an "entry point".
+***
 
-If you go back now and refresh this page, there it is. A couple of key things here. The security authorization checker is the way you check security. If you need to check security outside of the controller in the future, now you know how to do it. The second thing is, this great access denied exception if I hold command and click into it, it just literally throws a class called access denied exception. If you ever needed the denied access anywhere in your system, you can just throw that exception and it simply will take care of everything else. You don't need to worry about whether or not the user is logged in or not. If the user is not logged in, it will redirect them to the login page instead of showing them that 403 page.
+Now, login. It redirected us back to `/admin/genus` and we *do* have access. Our
+user *does* have `ROLE_USER` - you can see that if you click the security icon in
+the web debug toolbar. Remember, that's happening because - in our `User` class -
+we've hardcoded the roles: *every* user has a role that I made up: `ROLE_USER`.
 
-In reality, you won't type those 3 lines because you're going to be lazy and you just type deny access unless granted role_admin and that does the exact same thing. Or if you like annotations, you can get a little fancier than this. Up above your controller, you can say at security and then you can type in an expression. Is_granted is one of the most important functions you have inside of expression. Role_at admin. That will work the exact same way. You just re-message name changes here.
+## Many access_control
 
-Of course the problem here is that we really want our entire controller locked down, and right now we can still go to /admin and /genus/new so we need to repeat this annotation or that line in the controller on every single controller inside of here. You now the situation. Direct what I'm doing. If you like the annotations is just putting above your class. As soon as you do that, it locks down everything inside of that controller.
+And at first, that's as complex as Symfony's authorization system gets: you give
+each user some roles, then check to see if they have them. In a minute, we'll make
+it so each user an have different roles.
 
-This is great, but we still have a user class which just still has a single, hard coded role in it. If you're security system is that simple, that's fine. Just make sure your user has at least one role at all times, but other than that, it doesn't matter. Let's say in our system we're going to give different users different roles. How do we do that? Very simple. Just create a private roles property. We're going to persist this to doctrines, give it @RM/com and we're going to have a JSON ready type. It's going to allow us to actually store an array on this and it will turn into a JSON string database. We'll never know that happens because doctrines will always make sure we are just dealing with an array here. When I give roles, say roles equals this arrow roles. Remember I said just make sure your user always has at least one role. If you have a user with zero roles, weird thing s happen. I recommend always making sure you have the role user. If not, in array, role_user, roles then pop that on there. Return. Roles. Of course, we'll also need set roles function.
+But we're not *quite* done yet with `access_control`. We only have one rule, but
+you can have *many*: just create another line below this and secure a different section
+of your site. For example, maybe `^/checkout` requires `ROLE_ALLOWED_TO_BUY`.
 
-Lets generate the migration for this. Command console, doctrine, migration diff, doctrines migration migrate. You can double check migration first before running it if you want to. Finally we can update our fixtures with roles. Right now we'll just give everyone the same role, role admin. Reload the fixtures. It will log us out because we just deleted the user. Now we log back in. It bounces us back to that URL and we have access because we have both roles.
+There's on gotcha: Symfony looks for a matching `access_control` from top to bottom,
+and stops as soon as it finds the *first* match. We won't talk about it here, but
+you can use that fact to lock down *every* page with an `access_control`, and then
+white-list the public pages with `access_control` entries *above* that.
 
+You can also do a few other cool things, like force the user to visit a part of your
+site via `https`.
+
+## When you Don't Have Access :(
+
+Change the role to something we don't have, how about `ROLE_ADMIN`. Head back and refresh!
+
+Access denied! Ok, two important things.
+
+First, roles can be anything: I didn't have to configure `ROLE_ADMIN` before using
+it - I just made that up. The only rule about roles is that they must start with
+`ROLE_`. There's a reason for that, and I'll mention it later.
+
+Second, notice this is an access denied screen: 403, forbidden. *We* see this because
+we're in development mode. But your users will see a different error page, which
+you can customize. In fact, you can have different a different error page for 403
+errors, 404 errors and 500 errors. It's easy to setup - so just check the docs.
+
+Access controls are *super* easy to setup... but they're a bit inflexible, unless
+you love writing really complex, unreadable regular expressions. Next, let's look
+at a more precise way to control access: in your controller.
