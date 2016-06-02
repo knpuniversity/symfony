@@ -7,17 +7,17 @@ should have access to it.
 
 ## Denying with access_control
 
-There are 2 main ways to deny access to something, and the simplest is right inside
-of `security.yml`. It's called "access control". Move in 4 spaces - so that you're
+There are 2 main ways to deny access, and the simplest is right inside of `security.yml`.
+It's called "access control". Move in 4 spaces - so that you're
 at the same level as the `firewalls` key, but not inside of it. Add `access_control`,
-new line, then go out 4 spaces and add `- { path: ^/admin, roles: ROLE_USER }`.
+new line, go out 4 more spaces and add `- { path: ^/admin, roles: ROLE_USER }`.
 
 That path is a regular expression. So, if anyone goes to a URL that starts with
 `/admin`, the system will kick them out *unless* they have `ROLE_USER`.
 
-Let me show you how it works.  First, make sure you're logged out. Now, go to
-`/admin/genus`. Boom! That was it! Anonymous users don't have *any* roles, so the
-system kicked us to the login page.
+Let see it in action.  First, make sure you're logged out. Now, go to `/admin/genus`.
+Boom! That was it! Anonymous users don't have *any* roles, so the system kicked us
+to the login page.
 
 ***TIP
 Our `FormLoginAuthenticator` is actually responsible for sending us to `/login`.
@@ -26,7 +26,7 @@ authentication system, like `form_login`, then *it* may be responsible for this.
 This functionality is called an "entry point".
 ***
 
-Now, login. It redirected us back to `/admin/genus` and we *do* have access. Our
+Now, login. It redirects us back to `/admin/genus` and we *do* have access. Our
 user *does* have `ROLE_USER` - you can see that if you click the security icon in
 the web debug toolbar. Remember, that's happening because - in our `User` class -
 we've hardcoded the roles: *every* user has a role that I made up: `ROLE_USER`.
@@ -34,24 +34,25 @@ we've hardcoded the roles: *every* user has a role that I made up: `ROLE_USER`.
 ## Many access_control
 
 And at first, that's as complex as Symfony's authorization system gets: you give
-each user some roles, then check to see if they have them. In a minute, we'll make
-it so each user an have different roles.
+each user some roles, then check to see if they have those roles. In a minute, we'll
+make it so each user can have different roles.
 
 But we're not *quite* done yet with `access_control`. We only have one rule, but
 you can have *many*: just create another line below this and secure a different section
 of your site. For example, maybe `^/checkout` requires `ROLE_ALLOWED_TO_BUY`.
 
-There's on gotcha: Symfony looks for a matching `access_control` from top to bottom,
+There is one gotcha: Symfony looks for a matching `access_control` from top to bottom,
 and stops as soon as it finds the *first* match. We won't talk about it here, but
 you can use that fact to lock down *every* page with an `access_control`, and then
-white-list the public pages with `access_control` entries *above* that.
+white-list the few public pages with `access_control` entries *above* that.
 
 You can also do a few other cool things, like force the user to visit a part of your
-site via `https`.
+site via `https`. If they come via `http`, they'll be redirected to `https`.
 
 ## When you Don't Have Access :(
 
-Change the role to something we don't have, how about `ROLE_ADMIN`. Head back and refresh!
+Change the role to something we don't have, how about `ROLE_ADMIN`. Head back and
+refresh!
 
 Access denied! Ok, two important things.
 
@@ -61,9 +62,9 @@ it - I just made that up. The only rule about roles is that they must start with
 
 Second, notice this is an access denied screen: 403, forbidden. *We* see this because
 we're in development mode. But your users will see a different error page, which
-you can customize. In fact, you can have different a different error page for 403
-errors, 404 errors and 500 errors. It's easy to setup - so just check the docs.
+you can customize. In fact, you can have a different error page for 403 errors, 404
+errors and 500 errors. It's easy to setup - so just check the docs.
 
-Access controls are *super* easy to setup... but they're a bit inflexible, unless
+Access controls are *super* easy to use... but they're a bit inflexible, unless
 you love writing really complex, unreadable regular expressions. Next, let's look
 at a more precise way to control access: in your controller.

@@ -2,7 +2,7 @@
 
 Check this out: let's fail authentication with a bad password.
 
-Ok: I noticed two thing. First, we have an error. Great! But second, the form is *not*
+Ok: I noticed two things. First, we have an error. Great! But second, the form is *not*
 pre-filled with the `email` address I just used. Hmm.
 
 Behind the scenes, the authenticator communicates to your `SecurityController` by

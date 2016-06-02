@@ -20,7 +20,7 @@ Now, it's real simple: return `$this->em->getRepository('AppBundle:User')->findO
 with `email => $email`.
 
 Easy. If this returns `null`, guard authentication will fail and the user will see
-an error. But if we *do* return a `User` object, then on we marcg! Guard calls
+an error. But if we *do* return a `User` object, then on we march! Guard calls
 `checkCredentials()`.
 
 ## Enter checkCredentials()

@@ -1,54 +1,57 @@
 # Doctrine Listener: Encode the User's Password
 
-In `AppBundle`, create a new directory called `Doctrine` and a new class there called
+In `AppBundle`, create a new directory called `Doctrine` and a new class called
 `HashPasswordListener`. If this is your first Doctrine listener, welcome! They're
 pretty friendly. Here's the idea: we'll create a function that Doctrine will call
-whenever *any* entity is inserted or updated. That'll allow us to do some work before
+whenever *any* entity is inserted or updated. That'll let us to do some work before
 that happens.
 
 Implement an `EventSubscriber` interface and then use Command+N or the Code->Generate
 menu, select "Implement Methods" and choose the one method: `getSubscribedEvents()`.
 
 In here, return an array with `prePersist` and `preUpdate`: these are two event names
-that are available with Symfony. `prePersist` is called right before an entity is
+that Doctrine makes available. `prePersist` is called right before an entity is
 originally *inserted*. `preUpdate` is called right before an entity is updated.
 
-Next, add `public function prePersist`. When Doctrine calls this, it will pass you
+Next, add `public function prePersist()`. When Doctrine calls this, it will pass you
 an object called `LifecycleEventArgs`, from the ORM namespace.
 
 This method will be called before *any* entity is inserted. How do we know *what*
-entity is being saved? Wit h`$entity = $args->getEntity()`. Now, if this is *not*
+entity is being saved? With `$entity = $args->getEntity()`. Now, if this is *not*
 and `instanceof User`, just return and do nothing.
 
 ## Encoding the Password
 
+Now, on to encoding that password.
+
 Symfony comes with a built-in service that's really good at encoding passwords. It's
-called `security.password_encoder` and if you look it up on `debug:container`, its
+called `security.password_encoder` and if you looked it up on `debug:container`, its
 class is `UserPasswordEncoder`. We'll need that, so add an `__construct()` function
 and type-hint a single argument with `UserPasswordEncoder $passwordEncoder`. I'll hit
-option+enter and select "Initialize Fields" to save me a little time. In a second,
-we'll worry about registering this as a service.
-
+option+enter and select "Initialize Fields" to save me some time. In a minute, we'll
+register this as a service.
 
 Down below, add `$encoded = $this->passwordEncoder->encodePassword()` and pass it
-the User - which is `$entity` - and the plain pass word: `$entity->getPlainPassword()`.
+the User - which is `$entity` - and the plain-text password: `$entity->getPlainPassword()`.
 
-Finish it with `$entity->setPassowrd($encoded)`.
+Finish it with `$entity->setPassword($encoded)`.
 
-That's it: we're encoded!
+That's it: we are encoded!
 
 ## Encoding on Update
 
-Hey, let's also handle update! The two lines that actually do the encoding can be
-re-used, so let's refactor those into a private method. To shortcut that, highlight
-them, press Command+T - or go to the "Refactor->Refactor this" menu - and select
-"Method". Call it `encodePassword()` with one argument that's a `User` object.
+So now also handle update, in case a User's password is changed! The two lines that
+actually do the encoding can be re-used, so let's refactor those into a private method.
+To shortcut that, highlight them, press Command+T - or go to the "Refactor->Refactor this"
+menu - and select "Method". Call it `encodePassword()` with one argument that's a
+`User` object.
 
 Super nice!
 
 Now that we have that, copy `prePersist`, paste it, and call it `preUpdate`. You
 might *think* that these methods would be identical... but not quite. Due to a quirk
-in Doctrine, you have to tell it about your updated field for things to work here.
+in Doctrine, you have to tell it that you just updated the password field, or it
+won't save.
 
 The way you do this is a little nuts, and not that important: so I'll paste it in.
 
@@ -69,7 +72,7 @@ Finally, to tell Doctrine about our event subscriber, we'll add a tag. This is s
 we talked about in our services course: it's a way to tell the system that your service
 should be used for some special purpose. Set the tag to `doctrine.event_subscriber`.
 
-The system is complete. Before creating or updating eny entities, Doctrine will
+The system is complete. Before creating or updating any entities, Doctrine will
 call our listener.
 
 Let's update our fixtures to try it.

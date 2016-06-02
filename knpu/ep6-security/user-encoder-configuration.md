@@ -1,6 +1,6 @@
 # Configuring the Encoder in security.yml
 
-Let's set some plain passwords! Where? In our fixtures! Open up `fixures.yml` and
+Let's set some plain passwords! Where? In our fixtures! Open up `fixtures.yml` and
 scroll down. In theory, *all* we need to do is set the `plainPassword` property.
 The rest should happen auto-magically.
 
@@ -28,7 +28,7 @@ actually configuring that anywhere? Nope! We need to do that.
 Open `security.yml`. Add an `encoder` key, then `AppBundle\Entity\User: bcrypt`.
 If you want, you can configure a few other options, but this is good enough.
 
-*Now* Symfony knows how to encrypt our passwords. Try this fixtures again:
+*Now* Symfony knows how to encrypt our passwords. Try the fixtures again:
 
 ```bash
 bin/console doctrine:fixtures:load
@@ -42,7 +42,8 @@ In `LoginFormAuthenticator`, we can *finally* add some real password checking!
 How? By using that same `UserPasswordEncoder` object.
 
 Head back up to `__construct` and add a new `UserPasswordEncoder` argument. I'll
-use my option+enter shortcut to setup that property for me.
+use my option+enter shortcut to setup that property for me. And because we're using
+autowiring for this service, we don't need to change anything in `services.yml`.
 
 Now, in `checkCredentials()`, replace the `if` statement with
 `if ($this->passwordEncoder->isPasswordValid())` and pass that the `User` object
