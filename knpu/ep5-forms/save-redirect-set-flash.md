@@ -37,8 +37,10 @@ where that key is used in a minute - then `Genus created - you are amazing!`:
 
 It's good to encourage users.
 
-But let's be curious and see what this does behind the scenes. Hold command and click
-into the `addFlash()` method.
+But let's be curious and see what this does behind the scenes. Hold `command` and click
+into the `addFlash()` method:
+
+[[[ code('fe49ad40e6') ]]]
 
 Okay, cool: it uses the `session` service, fetches something called a "flash bag"
 and adds our message to it. So the flash bag is a special part of this session where
