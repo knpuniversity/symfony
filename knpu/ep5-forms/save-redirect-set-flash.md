@@ -4,7 +4,9 @@ We already have the finished `Genus` object. So what do we do now? Whatever we w
 
 Probably... we want to save this to the database. Add `$genus = $form->getData()`.
 Get the entity manager with `$em = this->getDoctrine()->getManager()`. Then, the
-classic `$em->persist($genus)` and `$em->flush()`.
+classic `$em->persist($genus)` and `$em->flush()`:
+
+[[[ code('f0e450be8c') ]]]
 
 ## Always Redirect!
 
@@ -13,7 +15,11 @@ that the user can't just refresh and re-post that data. That'd be lame.
 
 To do that, `return $this->redirectToRoute()`. Hmm, generate a URL to the
 `admin_genus_list` route - that's the main admin page I created before the
-course. Because `redirectToRoute` returns a `RedirectResponse`, we're done!
+course:
+
+[[[ code('e60d343473') ]]]
+
+Because `redirectToRoute()` returns a `RedirectResponse`, we're done!
 
 Time to try it out. I'll be lazy and refresh the POST. We *should* get a brand
 new "Sea Monster" genus. There it is! Awesome!
@@ -24,9 +30,12 @@ Now, it worked... but it lack some spirit! There was no "Success! You're amazing
 created a new genus!" message.
 
 And I want to build a friendly site, so let's add that message. Back in `newAction()`,
-add some code *right* before the redirect:
-`$this->addFlash('success')` - you'll see where that key is used in a minute - then
-`Genus created. You are amazing.`. It's good to encourage users.
+add some code *right* before the redirect: `$this->addFlash('success')` - you'll see
+where that key is used in a minute - then `Genus created - you are amazing!`:
+
+[[[ code('6dbd2f4191') ]]]
+
+It's good to encourage users.
 
 But let's be curious and see what this does behind the scenes. Hold command and click
 into the `addFlash()` method.
@@ -51,13 +60,21 @@ in your base template. Because then, you can set a flash message, redirect to *a
 other page, and it'll always show up.
 
 Right above the `body` block, add `for msg in app.session` - the shortcut to get
-the `session` service - `.flashbag.get()` and then the `success` key. Add the `endfor`.
+the `session` service - `.flashbag.get()` and then the `success` key. Add the `endfor`:
+
+[[[ code('e3e3c3395a') ]]]
 
 Why `success`? Because that's what we used in the controller - but this string is
-arbitrary. Usually I have one for `success` that I style green and happy, and one
-called `error` that style to be red and scary.
+arbitrary:
 
-I'll make this happy with the `alert-success` from bootstrap and then render `msg`.
+[[[ code('cb4ea1d8b5') ]]]
+
+Usually I have one for `success` that I style green and happy, and on called `error`
+that style to be red and scary.
+
+I'll make this happy with the `alert-success` from bootstrap and then render `msg`:
+
+[[[ code('850ec2f541') ]]]
 
 Cool! Go back and create `Sea Monster2`. Change its subfamily, give it a species
 count and save that sea creature! Ocean conservation has never been so easy.
