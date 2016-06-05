@@ -29,11 +29,16 @@ So here's what I do: I disable HTML5 validation and rely purely on server-side v
 If you *do* want some fancy client-side validation, I recommend adding it with a
 JavaScript library. These give you more features and control than HTML5 validation.
 
-There's even a bundle - [JsFormValidatorBundle](https://github.com/formapro/JsFormValidatorBundle) - 
-that can dump your server-side rules into JavaScript.
+There's even a bundle - [JsFormValidatorBundle][1] - that can dump your server-side
+rules into JavaScript.
 
 So how do we disable HTML5 validation? Very simple: find the submit button and add
-`formnovalidate`.
+`formnovalidate`:
+
+[[[ code('f773dd7355') ]]]
 
 That's it. Refresh the page now and submit. No more HTML5 validation. But of course
 now, we need server-side validation!
+
+
+[1]: https://github.com/formapro/JsFormValidatorBundle
