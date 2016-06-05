@@ -12,22 +12,28 @@ be able to control the labels or anything else that we're going to talk about.
 
 So, in reality, I don't use `form_widget` to render all my fields at once.
 Replace this with a different function: `form_row` and pass it `genusForm.` and
-then the name of one of the fields - like `name`.
+then the name of one of the fields - like `name`:
+
+[[[ code('8b9aed8702') ]]]
 
 Since this form has 1, 2, 3, 4, 5, 6 fields, I'll copy that and paste it six times.
 Now, fill in all the field names: `subFamily`, `speciesCount`, `funFact`, `isPublished`
-and `firstDiscoveredAt`.
+and `firstDiscoveredAt`:
+
+[[[ code('3066070153') ]]]
 
 Refresh! OMG - it's the *exact* same thing as before!!! This is what `form_widget`
 was doing behind the scenes: looping over the fields and calling `form_row`.
 
 ## All the Form Rendering Functions
 
-So, at this point, you're probably asking: "What else can I do? What other functions
-are there? What options can I pass to these functions?"
+So, at this point, you're probably asking:
+
+> What else can I do? What other functions are there? What options can I pass
+  to these functions?
 
 Look, I don't know! But I bet Google does: search for "form functions twig" to find
-another reference section called [Form Function and Variable Reference](http://symfony.com/doc/current/reference/forms/twig_reference.html).
+another reference section called [Form Function and Variable Reference][1].
 
 Ah hah! This is our cheatsheet!
 
@@ -49,13 +55,15 @@ By passing different values, you can override almost *every* part of how a field
 is rendered.
 
 So what *can* you pass here? Scroll down near the bottom to find a big beautiful
-table called [Form Variables Reference](http://symfony.com/doc/current/reference/forms/twig_reference.html#form-variables-reference).
+table called [Form Variables Reference][2].
 
 This gives you a big list of all the variables that you can override when rendering
-a field, including label, attr, label_attr, and other stuff.
+a field, including `label`, `attr`, `label_attr`, and other stuff.
 
 To show this off, find the `speciesCount` field and add a second argument set to
-`{}` - the Twig array syntax. Override the `label` variable: set it to `Number of Species`.
+`{}` - the Twig array syntax. Override the `label` variable: set it to `Number of Species`:
+
+[[[ code('bde0cb0d1b') ]]]
 
 Refresh! It's just that easy.
 
@@ -84,3 +92,7 @@ Oh, and check out this `_token` field. Do you remember adding this?
 Hopefully not - because we never did! This is a CSRF token that's automatically added
 to the form. It's rendered *for* us when we call `form_end` and validated behind the
 scenes along with all the other fields. It's free CSRF protection.
+
+
+[1]: http://symfony.com/doc/current/reference/forms/twig_reference.html
+[2]: http://symfony.com/doc/current/reference/forms/twig_reference.html#form-variables-reference
