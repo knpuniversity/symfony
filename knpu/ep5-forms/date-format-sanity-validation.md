@@ -31,9 +31,12 @@ that a *sane* value is submitted by the user. If an *insane* value is sent, it b
 the way and shows a message.
 
 For example, the `speciesCount` is using Symfony's `NumberType`, which renders as
-an HTML5 field with up and down arrows on some browsers. If we tried to type a word
-here and submit, the `NumberType` would throw a validation error thanks to sanity
-validation.
+an HTML5 field with up and down arrows on some browsers:
+
+[[[ code('53f2ddc1ed') ]]]
+
+If we tried to type a word here and submit, the `NumberType` would throw a validation
+error thanks to sanity validation.
 
 Our drop-down fields *also* have sanity validation. If a jerk user tries to hack
 the system by adding an option that we did *not* originally include, the field will
@@ -44,7 +47,7 @@ Just know, Symfony has your back.
 
 But how do we fix the date field? We just need to make Symfony's expected format match
 the format used by the datepicker. In fact, the `format` itself is an option on the
-`DateType`. I'll hold Command and click into `DateType`. When you use the `single_text`
+`DateType`. I'll hold `command` and click into `DateType`. When you use the `single_text`
 widget, it expects this `HTML5_FORMAT`: so year-month-day.
 
 Let's update the JavaScript widget to match this.
@@ -54,9 +57,11 @@ How? On its docs, you'll see that it *also* has a `format` option. Cool!
 Now, unfortunately, the format string used by the DateType and the format string
 used by the datepicker widget are not *exactly* the same format - each has its own
 system, unfortunately. So, you may need to do some digging or trial and error.
-It turns out, the correct format is `yyyy-mm-dd`.
+It turns out, the correct format is `yyyy-mm-dd`:
 
-Ok, go back and refresh that page. Fill out the top fields... and then select a
+[[[ code('fac9529909') ]]]
+
+OK, go back and refresh that page. Fill out the top fields... and then select a
 date. Moment of truth. Got it!
 
 ## Data Transformers
@@ -67,11 +72,14 @@ is rendered. But that's only *half* of it. Behind the scenes, many fields have a
 
 Basically, the job of a data transformer is to transform the data that's inside of
 your PHP code to a format that's visible to your user. For example, the `firstDiscoveredAt`
-value on `Genus` is actually a `DateTime` object. The data transformer internally
-changes that into the string that's printed in the box.
+value on `Genus` is actually a `DateTime` object:
+
+[[[ code('06515373da') ]]]
+
+The data transformer internally changes that into the string that's printed in the box.
 
 Then, when a date string is submitted, that same data transformer does its work in
-reverse: changing the string back into a DateTime object.
+reverse: changing the string back into a `DateTime` object.
 
 The data transformer is also kicking butt on the `subFamily` field. The `id` of the
 selected `SubFamily` is submitted. Then, the data transformer uses that to query
