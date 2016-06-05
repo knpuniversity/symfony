@@ -40,7 +40,7 @@ via a Doctrine listener when it saves.
 
 To do that, add a new property on `User` called `plainPassword`. But wait! *Don't*
 persist this with Doctrine: we will of course *never* store plain-text passwords.
-This is just a temporary-storage place during a single a request.
+This is just a temporary-storage place during a single request.
 
 Next, at the bottom, use Command+N or the Code->Generate menu to generate the getters
 and setters for `plainPassword`.

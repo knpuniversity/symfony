@@ -4,8 +4,13 @@ I *do* use access controls to lock down big sections of my site, but I handle mo
 of my authorization inside my controllers.
 
 Comment out the `access_control`, and open up `GenusAdminController` so we can play
-with things. When you need to check if current user has a role, it's as simple as
-this: `if (!$this->get('')`, we're gong to be at series called
+with things. When you need to check if current user has a role, you'll use a trusty
+
+it's as simple as
+this: `if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')`,
+
+
+ we're gong to be at series called
 Security.authorizationchecker. It has exactly one method on it which is called,
 is granted. We'll pass it, role_admin. If we do not have this role, then we're
 going to throw this arrow, create access denied exception. You can give it any

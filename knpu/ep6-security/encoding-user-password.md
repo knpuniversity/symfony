@@ -26,7 +26,7 @@ Now, on to encoding that password.
 
 Symfony comes with a built-in service that's really good at encoding passwords. It's
 called `security.password_encoder` and if you looked it up on `debug:container`, its
-class is `UserPasswordEncoder`. We'll need that, so add an `__construct()` function
+class is `UserPasswordEncoder`. We'll need that, so add a `__construct()` function
 and type-hint a single argument with `UserPasswordEncoder $passwordEncoder`. I'll hit
 option+enter and select "Initialize Fields" to save me some time. In a minute, we'll
 register this as a service.
