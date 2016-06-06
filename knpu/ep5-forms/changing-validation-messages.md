@@ -47,7 +47,7 @@ This is `validators` because the message is being translated in that domain.
 
 Inside, paste the string and set it to "Hi! Please enter something for this field.":
 
-[[[ code('6d8ffd5559') ]]]
+[[[ code('fd6c050434') ]]]
 
 And that's it! Go back and refresh! Oh no, it didn't work! Well, I kind of expected
 that. Find your terminal, open a new tab, and run:
