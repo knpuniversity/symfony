@@ -19,7 +19,9 @@ take advantage of that to customize this message, even in English.
 
 First, in case you don't already have it enabled, open up `app/config/config.yml`.
 Activate the `translator` service by uncommenting out the `translator` key under
-`framework`.
+`framework`:
+
+[[[ code('0b3292c5a7') ]]]
 
 Refresh this page and watch the web debug toolbar. Suddenly, there's an extra icon
 that's coming from the translator. It's reporting that there are ten missing messages.
@@ -37,18 +39,21 @@ But, if you want to customize this message, copy it. And, notice, the domain is
 what we do next.
 
 We don't have any translation files yet, so create a new directory called `translations`
-in `app/Resources`. Inside, add a new file: `validators.en.yml`. This is `validators`
-because the message is being translated in that domain.
+in `app/Resources`. Inside, add a new file: `validators.en.yml`:
 
-Inside, paste the string and set it to 
+[[[ code('6d8ffd5559') ]]]
 
-> Hi. Please enter something for this field.
+This is `validators` because the message is being translated in that domain.
+
+Inside, paste the string and set it to "Hi! Please enter something for this field.":
+
+[[[ code('6d8ffd5559') ]]]
 
 And that's it! Go back and refresh! Oh no, it didn't work! Well, I kind of expected
 that. Find your terminal, open a new tab, and run:
 
 ```bahs
-bin/console cache:clear
+./bin/console cache:clear
 ```
 
 You almost *never* need to worry about clearing your cache while developing but
