@@ -81,10 +81,13 @@ chapters:
     deny-access-inside-controller:
         video_key:~
         is_finished: false
+    dynamic-roles:
+        video_key:~
+        is_finished: false
     the-user-object:
         video_key:~
         is_finished: false
-    role-hierarchy-impersonation:
+    role-hierarchy:
         video_key:~
         is_finished: false
     registration-form:

@@ -66,5 +66,5 @@ you can customize. In fact, you can have a different error page for 403 errors, 
 errors and 500 errors. It's easy to setup - so just check the docs.
 
 Access controls are *super* easy to use... but they're a bit inflexible, unless
-you love writing really complex, unreadable regular expressions. Next, let's look
+you *love* writing complex, unreadable regular expressions. Next, let's look
 at a more precise way to control access: in your controller.

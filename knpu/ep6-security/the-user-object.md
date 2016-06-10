@@ -1,9 +1,55 @@
-# The User Object
+# Fetch me a User Object!
 
-Now in addition to checking whether or not a user has a specific role, we'd also figure out who is logged in. What I'm talking about is what user object is logged in so we can actually ask Symphony to return to us the entire user object that's logged in. Then we can use whatever data that we've chosen to store on a user object. It's done a new action just to prove we can do this, let's update our flash methods to include the email address of who just created that Genus. We'll change them as to Genus created you and are amazing and we'll hack in the email address and we'll say this arrow get user. That's it, this returns our user entity object and then we can call get email on that or whatever other methods we have now. Let's actually make sure we have a get email method on our user objects and actually we don't.
+There's really only 2 things you can do with security: deny access and find out
+*who* is currently logged in. 
 
-I don't have a get a yet for our email property. Let's go down to the bottom and add one, perfect. I'll head back, create another sea monster, save and there it is. That's really easy, I do want you to know what's really happening behind the scenes. You'll hold the command and click get user. The important thing here is that the user comes from a service called security.tokenstorage. This actually returns a token object and from there you call user equals token arrow get user. Now there is one very important quack which you don't have to worry about in many cases but you may eventually and that's this. When you're logged in anonymously and you ... When you want to get the user directly from this service, what you might need to do in a service some day, you will say token equals token storage arrow get token.
+To show that off, find `newAction`. Let's update the flash message to include the
+email address of whoever just created the `Genus`.
 
-Then you'll say user equals token get user. If you are anonymous, if you're not logged in, the user in that case will actually be a string, A-N-O-N, not null. That means when you, if you do get your user object directly from the service this way, you're going to want to check to make sure that user is an object. That's the only way that you can know for sure that this is actually your user object and not that silly string. Now in Twig you can also get the user object. In fact let's talk about security in general in Twig. First, open up your base template. Earlier on in this course we actually already showed how to do authorization inside of your template. It's the is_granted function and that's the exact same thing that we just used in our controller. Boom, there it is, super easy. Second, how do we get the user object? Well let's go to the homepage. We're in this nice welcome aquanauts here, let's replace that with the email address of the user if we know what it is.
+Surround the string with `sprintf` and add a `%s` placeholder right in the middle.
+How do you find out who's logged in? Yep, it's `$this->getUser()`. And *that* returns -
+wait for it - our `User` object. Which allows us to use *any* methods on it, like
+`getEmail()`.
 
-Welcome and we'll say app that user? We'll say app that user and that will give you the user object so the app variables are global variables and this has a couple of things on it and it gives you the user object. We want to use that in an IF statement and say app.user.email otherwise let's prompt in aquanauts. I'm coding carefully here because the user might not be logged in on this page so I need to be careful. Another way I could have done this is with an if is granted call for a world user and then I would know whether or not they were logged in or not. Head to the home page, there it is.
+But wait! Do we have a `getEmail()` method on `User` - I didn't see auto-completion?!
+Check it out. Whoops - we don't!
+
+My bad - head to the bottom and add it!
+
+Nice! Let's go and create a sea monster. Fill out all the fields... and... Eureka!
+
+## The Secret Behind getUser()
+
+But you know I hate secrets: I want to know what that `getUser()` method *really*
+does. So hold command and click to see that method.
+
+The important piece is that the user comes from a service called `security.token_storage`.
+So if you ever need the `User` object in a service, this is how to get it.
+
+But, it takes a couple of steps: `getToken()` gives you a pretty unimportant object,
+except for the fact that you can call `getUser()` on it.
+
+### The Creepy anon.
+
+The *only* trick is that if you are anonymous, `getUser()` does *not* return `null`,
+as you might expect: it returns a string: `anon.`. I know - it's a weird thing. So,
+if you ever *do* fetch the user object directly via this service, check to make
+sure `getUser()` returns an object. If it doesn't, the user isn't logged in.
+
+## Getting the User in Twig
+
+The *one* other place you'll need the User is in Twig. In fact, let's talk about
+security in general in TWig. Open up `base.html.twig`.
+
+Earlier, we already showed how to do check for a role in Twig: it's via the `is_granted()`
+function. It's easy: it works exactly the same as in the controller.
+
+So, how do we get the user object? To find out - open up the homepage template. If
+the User is logged in, let's welcome them by name. 
+
+Open the print tag and say `app.user ? app.user.email : 'Aquanauts'`. That `app`
+variable is the *one* global variable you get in Symfony. And one of its super-powers
+is to give you the current `User` object if there is one, or `null` otherwise.
+
+Head to the home page and... celebrate.
+
