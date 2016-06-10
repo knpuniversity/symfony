@@ -4,11 +4,19 @@ Adding edit was quick! But the *entire* template is now duplicated. This include
 the code to render the form *and* the other blocks that include the needed CSS
 and JS files.
 
-First, copy the form rendering code and move that into a new file: `_form.html.twig`.
+First, copy the form rendering code and move that into a new file: `_form.html.twig`:
+
+[[[ code('c79ca5156a') ]]]
+
 Paste it here.
 
-In edit, just include that template: `include('admin/genus/_form.html.twig')`. Copy
-that, open `new.html.twig`, and paste it there.
+In edit, just include that template: `include('admin/genus/_form.html.twig')`:
+
+[[[ code('5460e8d5d0') ]]]
+
+Copy that, open `new.html.twig`, and paste it there:
+
+[[[ code('1de49cef81') ]]]
 
 Ok, I'm feeling better. Refresh now: everything still looks good.
 
@@ -24,12 +32,24 @@ To solve this, we'll need a shared layout between these two templates. Create a 
 file called `formLayout.html.twig`. This will *just* be used by these two templates.
 
 Copy the `extends` code all the way through the `javascripts` block and delete it
-from `edit.html.twig`. Paste it in `formLayout`.
+from `edit.html.twig`:
+
+[[[ code('6f8f969fd9') ]]]
+
+Paste it in `formLayout.html.twig`:
+
+[[[ code('5846589678') ]]]
 
 So this template *itself* will extend `base.html.twig`, but not before adding some
 stylesheets and some JavaScripts. In edit, re-add the `extends` to use this template:
-`admin/genus/formLayout.html.twig`. Copy that, open `new.html.twig` and repeat: delete
-the `javascripts` and `stylesheets` and paste in the new extends.
+`admin/genus/formLayout.html.twig`:
+
+[[[ code('379db3bfb3') ]]]
+
+Copy that, open `new.html.twig` and repeat: delete the `javascripts` and `stylesheets`
+and paste in the new extends:
+
+[[[ code('2ca068cdb0') ]]]
 
 Try it! Cool! We're using our Twig tools to get rid of duplication!
 

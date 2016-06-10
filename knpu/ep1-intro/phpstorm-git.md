@@ -18,8 +18,8 @@ In Preferences, search for Symfony and click the plugins option. From here, clic
 one with over 1.3 *million* downloads.
 
 ***TIP
-You should *also* install the [PHP Annotations](https://plugins.jetbrains.com/plugin/7320).
-Search for "PHP Annotations" and install it the same way.
+You should *also* find and install the [PHP Annotations][2] plugin. That will give you
+the awesome annotations auto-completion that you'll see in the video.
 ***
 
 I already have it installed, but if you don't, you'll see an `Install Plugin` button.
@@ -56,3 +56,4 @@ git commit
 
 
 [1]: http://knpuniversity.com/screencast/phpstorm
+[2]: https://plugins.jetbrains.com/plugin/7320
