@@ -12,7 +12,7 @@ Give it the `@ORM\Column` annotation and set its type to `json_array`.
 This is *really* cool because the `$roles` property will hold an *array* of roles,
 but when we save, Doctrine will automatically `json_encode` that array and store
 it in a *single* field. When we query, it'll `json_decode` that back to the array.
-Waht this means is that we can store an array inside a single column, without ever
+What this means is that we can store an array inside a single column, without ever
 worrying about the JSON encode stuff.
 
 ## Returning the Dynamic Roles
@@ -55,7 +55,7 @@ back in.
 
 So nice - it sends us *back* to the original URL, we have *two* roles and we have
 access. Oh, and in a few minutes - we'll talk about another tool to really make
-your system flexible: role hiearchy.
+your system flexible: role hierarchy.
 
 
 ## So, how do I Set the Roles?

@@ -42,11 +42,11 @@ in.
 The *one* other place where you'll need to fetch the User is inside Twig. In fact,
 let's talk about security in general in Twig. Open up `base.html.twig`.
 
-Earlier, we already showed how to do check for a role in Twig: it's via the `is_granted()`
+Earlier, we already showed how to check for a role in Twig: it's via the `is_granted()`
 function. It's easy: it works exactly the same as in the controller.
 
 So, how do we get the user object? To find out - open up the homepage template. If
-the User is logged in, let's welcome them by name. 
+the User is logged in, let's welcome them by email.
 
 Open the print tag and say `app.user ? app.user.email : 'Aquanauts'`. That `app`
 variable is the *one* global variable you get in Symfony. And one of its super-powers

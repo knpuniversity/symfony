@@ -38,7 +38,7 @@ This has the *exact* same effect - it just shows us a different message.
 
 But no matter how easy we make it, what we *really* want to do is lock down this
 *entire* controller. Right now, we could still go to `/admin/genus/new` and have
-access. We *could* repeat the security check in every controler... or we could do
+access. We *could* repeat the security check in every controller... or we could do
 something cooler.
 
 Add the annotation *above* the class itself. As soon as you do that, all of these
