@@ -90,6 +90,9 @@ chapters:
     role-hierarchy:
         video_key:~
         is_finished: false
+    impersonation-switch-user:
+        video_key:~
+        is_finished: false
     registration-form:
         video_key:~
         is_finished: false

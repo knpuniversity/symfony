@@ -1,4 +1,4 @@
-# Role Hierarchy & Impersonation
+# Role Hierarchy
 
 Our site will eventually have many different sections that will need to be accessed
 by many different *types* of aquanaut users.
