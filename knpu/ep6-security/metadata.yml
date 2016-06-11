@@ -93,12 +93,15 @@ chapters:
     impersonation-switch-user:
         video_key:~
         is_finished: false
-    registration-form:
+    user-registration-form:
         video_key:~
         is_finished: false
-    registration-validation-groups:
+    validation-unique-entity:
         video_key:~
         is_finished: false
+    conditional-validation-groups:
+        video_key:~
+        is_finished: false  
     automatic-login-handling:
         video_key:~
         is_finished: false

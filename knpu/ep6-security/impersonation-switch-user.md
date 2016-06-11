@@ -39,6 +39,6 @@ space in URLs. Change that to the url-encoded plus sign: `%2B`.
 
 Boom! Now we're surfing as `weaverryan+5@gmail.com`. Pretty awesome. Once you're
 done, go back by adding `?_switch_user=_exit` to any URL. That's it! We're back
-as our original users.
+as our original user.
 
 Switching users... yea, it's my favorite.

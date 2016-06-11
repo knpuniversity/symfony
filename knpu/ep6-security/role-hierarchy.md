@@ -47,5 +47,5 @@ able to give most users just *one* role in the database.
 Of course, don't bother doing anything of this if your app is simple and will have
 just one or two different types of users.
 
-Ok, now that we know how give each user the *exact* access they need, let's find
-out howe to *impersonate* them.
+Ok, now that we know how to give each user the *exact* access they need, let's find
+out how to *impersonate* them.
