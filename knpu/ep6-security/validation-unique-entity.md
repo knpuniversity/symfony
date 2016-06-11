@@ -22,7 +22,7 @@ checking this, the request goes through and the INSERT query explodes! I at leas
 remembered to make this a unique column in the database. But, a 500 error is no bueno.
 
 How can we add a validation rule to prevent that? By using a special validation constraint
-made *just* for this occcasion. 
+made *just* for this occasion.
 
 ### The UniqueEntity Constraint
 
@@ -38,7 +38,7 @@ The options we need are `fields` - which tell it which field needs to be unique
 in the database - and `message` so we can say something awesome when it happens.
 
 So add `fields={"email"}`. This is called *fields* because you *could* make this
-validation be unique across several columns. The add
+validation be unique across several columns. Then add
 `message="Looks like you already have an account"`.
 
 Cool! Go back and hit register again. Validation errors are so much prettier

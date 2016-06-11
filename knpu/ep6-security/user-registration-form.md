@@ -5,7 +5,7 @@ really sure why I'm still recording.
 
 Oh yea, I remember: let's create a registration form! Actually, this has nothing
 to do with security: registration is all about creating and saving a User entity.
-But, thereare a few interesting things - call it a bonus round.
+But, there are a few interesting things - call it a bonus round.
 
 ## Controller, Form, Check!
 
@@ -51,13 +51,13 @@ I'll give us just a little bit of markup to get things rolling.
 
 Rendering the form is exactly how it always is: `form_start(form)`, `form_end(form)`,
 and inside, `form_row(form.email)`. Then `form_row(form.plainPassword)` - but because
-we're used the `RepeatedType`, this will render as *two* fields - so use `form.plainPassword.first`
+we used the `RepeatedType`, this will render as *two* fields - so use `form.plainPassword.first`
 and `form_row(form.plainPassword.second)`.
 
 Cool, right?
 
 Finally show off your styling skills by adding a `<button type="submit">` with some
-fancy Bootstrap classes. Don't forget the `formnovalidate` to disable validation.
+fancy Bootstrap classes. Don't forget the `formnovalidate` to disable HTML5 validation.
 And finally say, register.
 
 That oughta do it! Finish things by adding a link to this from the login page.
@@ -84,7 +84,7 @@ but you technically don't need that: `isValid()` checks that internally.
 
 Inside the `isValid()`, set `$user = $form->getData()`. We know this will be a `User`
 object, so I'll plan ahead and add some inline PHP documentation so I get auto-completion
-later.Add the `$em = $this->getDoctrine()->getManager()`, `$em->persist($user)`,
+later. Add the `$em = $this->getDoctrine()->getManager()`, `$em->persist($user)`,
 `$em->flush()`.
 
 Now, what do we *always* do after a successful form submit? We set a flash:
