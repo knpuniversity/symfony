@@ -1,0 +1,27 @@
+title: Getting Crazy with Form Themes
+
+summary: |
+    We already learned *all* the [form basics](http://knpuniversity.com/screencast/symfony-forms).
+    But, controlling how you *render* your forms? That's a *huge* and
+    super-fun topic all on its own. So let's go!
+    
+    * Creating your own form theme
+    * Controller form variables
+    * Using form variables in your theme
+    * Rendering a field 100% by hand
+    * Controller variables in your form type
+    * Adding a "help" text system that renders for all fields
+    * Leveraging a FormTypeExtension to tweak *any* field in your system
+    * Customizing how a *single* field renders
+
+    This stuff is black magic: learn these fundamentals, and you'll
+    be unstoppable!
+
+illustration: sf-extra-form-theming.png
+
+tuts_hero:
+# todo - fill in the steps properly
+#    start_step: start
+    finish_step: start
+
+chapters: []
