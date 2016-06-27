@@ -43,17 +43,13 @@ tuts_hero:
 
 chapters:
     user-class:
-        video_key:~
-        is_finished: false
+        video_key: 172481222
     user-interface-methods:
-        video_key:~
-        is_finished: false
+        video_key: 172482158
     rendering-login-form:
-        video_key:~
-        is_finished: false
+        video_key: 172485553
     all-about-firewalls:
-        video_key:~
-        is_finished: false
+        video_key: 172484709
     login-form-authenticator:
         video_key:~
         is_finished: false
