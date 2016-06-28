@@ -57,44 +57,44 @@ chapters:
     user-provider:
         video_key: 172563705
     logout-and-last-username:
-        video_key:~
+        video_key: ~
         is_finished: false
     user-plain-password:
-        video_key:~
+        video_key: ~
         is_finished: false
     encoding-user-password:
-        video_key:~
+        video_key: ~
         is_finished: false
     user-encoder-configuration:
-        video_key:~
+        video_key: ~
         is_finished: false
     authorization-roles:
-        video_key:~
+        video_key: ~
         is_finished: false
     deny-access-inside-controller:
-        video_key:~
+        video_key: ~
         is_finished: false
     dynamic-roles:
-        video_key:~
+        video_key: ~
         is_finished: false
     the-user-object:
-        video_key:~
+        video_key: ~
         is_finished: false
     role-hierarchy:
-        video_key:~
+        video_key: ~
         is_finished: false
     impersonation-switch-user:
-        video_key:~
+        video_key: ~
         is_finished: false
     user-registration-form:
-        video_key:~
+        video_key: ~
         is_finished: false
     validation-unique-entity:
-        video_key:~
+        video_key: ~
         is_finished: false
     conditional-validation-groups:
-        video_key:~
+        video_key: ~
         is_finished: false  
     automatic-login-handling:
-        video_key:~
+        video_key: ~
         is_finished: false
