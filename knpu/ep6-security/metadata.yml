@@ -51,14 +51,11 @@ chapters:
     all-about-firewalls:
         video_key: 172484709
     login-form-authenticator:
-        video_key:~
-        is_finished: false
+        video_key: 172509810
     authenticator-get-user-check-credentials:
-        video_key:~
-        is_finished: false
+        video_key: 172510355
     user-provider:
-        video_key:~
-        is_finished: false
+        video_key: 172563705
     logout-and-last-username:
         video_key:~
         is_finished: false
