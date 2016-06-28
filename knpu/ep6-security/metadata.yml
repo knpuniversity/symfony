@@ -37,9 +37,8 @@ summary: |
 illustration: sf-ep6.png
 
 tuts_hero:
-# todo - fill in the steps properly
-#    start_step: start
-    finish_step: start
+    start_step: edit-use-shared-layout
+    finish_step: registration-auto-login
 
 chapters:
     user-class:
