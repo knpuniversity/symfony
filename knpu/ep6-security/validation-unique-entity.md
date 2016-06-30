@@ -18,8 +18,7 @@ Ok, go back, keep the form blank, and submit. Nice validation errors.
 
 But check this out: type `weaverryan+1@gmail.com`. That email is already taken, so
 I should *not* be able to do this. But since there aren't any validation rules
-checking this, the request goes through and the INSERT query explodes! I at least
-remembered to make this a unique column in the database. But, a 500 error is no bueno.
+checking this, the request goes through and the email looks totally valid.
 
 How can we add a validation rule to prevent that? By using a special validation constraint
 made *just* for this occasion.
