@@ -14,7 +14,7 @@ here. Open up the README file to find all the setup details. At the end, you'll
 open up a new tab and run:
 
 ```bash
-bin/console server:run
+./bin/console server:run
 ```
 
 to start the built-in web server.
@@ -33,22 +33,25 @@ take an action. Authorization comes later.
 
 ## What about FOSUserBundle?
 
-Before swim there, let's talk about a super-famous bundle: FOSUserBundle.
+Before swim there, let's talk about a super-famous bundle: `FOSUserBundle`.
 You might be wondering, should I use this? What does it do? Or, did I turn the
 oven off?
 
 First, we will *not* use this bundle, but it *is* great and you *did* turn the oven
 off... probably.
 
-It gives you a lot of free features that we will build by hand. But FOSUserBundle
+It gives you a lot of free features that we will build by hand. But `FOSUserBundle`
 does *not* give you any special "security" system - it's much less interesting than
-that, in a good way! The bundle gives you just *two* things: (A) a User entity in
-case you need to store users in the database and (B) a bunch of routes and controllers
+that, in a good way! The bundle gives you just *two* things:
+
+1. A User entity in case you need to store users in the database
+2. A bunch of routes and controllers
+
 for things like your login form, registration and reset password. Those are all
 things you can easily build yourself... but if you need them, why not use the bundle?
 
 Anyways, we *won't* use it, and that'll be the best path to learn how the security
-system works. But when you finish, you might save yourself some time using FOSUserBundle.
+system works. But when you finish, you might save yourself some time using `FOSUserBundle`.
 
 ## Create that User Class
 
@@ -60,11 +63,16 @@ No matter *how* your users will authenticate, the first step is always the same:
 create a `User` class.
 
 In your `Entity` directory - create a new class called `User`. The *only* rule is
-that this must implement a `UserInterface`. Add that.
+that this must implement a `UserInterface`. Add that:
 
-I'll use Command+N - or the Code->Generate menu - and select "Implement Methods".
-Select all the new methods. Oh, and let's move `getUsername()` to the top: it makes
-more sense up there.
+[[[ code('3ce11f9af8') ]]]
+
+I'll use `Command`+`N` - or the "Code"->"Generate" menu - and select "Implement Methods".
+Select all the new methods:
+
+[[[ code('d4e07ca471') ]]]
+
+Oh, and let's move `getUsername()` to the top: it makes more sense up there.
 
 ### Is User an Entity?
 
