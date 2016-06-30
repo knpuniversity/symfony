@@ -33,7 +33,7 @@ they'll end up *back* on the checkout form after registration. Then they can
 keep buying your cool stuff.
 
 Of course, we see the access denied page because this user only has `ROLE_USER` and
-the section requires `ROLE_ADMIN`.
+the section requires `ROLE_MANAGE_GENUS`.
 
 ## Signing Off
 
