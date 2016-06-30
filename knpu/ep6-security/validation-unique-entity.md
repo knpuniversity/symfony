@@ -40,7 +40,6 @@ So add `fields={"email"}`. This is called *fields* because you *could* make this
 validation be unique across several columns. Then add
 `message="Looks like you already have an account"`.
 
-Cool! Go back and hit register again. Validation errors are so much prettier
-than database errors.
+Cool! Go back and hit register again. This just makes me happy!
 
 We're good, right? Well, almost. There's one last gotcha with validation and registration.
