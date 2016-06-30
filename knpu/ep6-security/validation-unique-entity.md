@@ -1,4 +1,4 @@
-# Validation with the UniqueEntity Validation
+# Validation with the UniqueEntity Constraint
 
 Registration is working, but it's missing validation.
 
