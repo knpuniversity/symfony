@@ -25,7 +25,7 @@ This is basically Symfony's way of saying:
 Remember how I kept saying we would encrpyt the passwords with bcrypt? Do you remember
 actually configuring that anywhere? Nope! We need to do that.
 
-Open `security.yml`. Add an `encoder` key, then `AppBundle\Entity\User: bcrypt`.
+Open `security.yml`. Add an `encoders` key, then `AppBundle\Entity\User: bcrypt`.
 If you want, you can configure a few other options, but this is good enough.
 
 *Now* Symfony knows how to encrypt our passwords. Try the fixtures again:

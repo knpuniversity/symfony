@@ -1,10 +1,12 @@
 # The Mysterious "User Provider"
 
-Let's see that error again: change `intercept_redirects` back to false.
+Let's see that error again: change `intercept_redirects` back to `false`:
+
+[[[ code('4aeecb0c07') ]]]
 
 Refresh and re-post the form. Oof, there it is again:
 
-> There is no user provider for AppBundle\Entity\User
+> There is no user provider for user `AppBundle\Entity\User`.
 
 What the heck is a user provider and why do we need one?
 
@@ -28,7 +30,9 @@ if you're using Doctrine, it's super easy to setup.
 In `security.yml`, you already have a `providers` section - as in "user providers".
 Delete the `in_memory` stuff and replace it with `our_users`: that's a totally meaningless
 machine name - it could be anything. But below that, say `entity` and set it to
-`{ class: AppBundle\Entity\User, property: email }`.
+`{ class: AppBundle\Entity\User, property: email }`:
+
+[[[ code('1c9f908790') ]]]
 
 The `property` part is *not* something we care about right now, but we will use
 and talk about it later.
@@ -42,4 +46,7 @@ It's alive!!! We can finally surf around the site and stay logged in. Cool.
 
 In your app, if you're *not* loading users from the database, then you'll need to
 create a custom user provider class that implements `UserProviderInterface`. Check
-out the official docs in this case. But if you have any questions, let me know.
+out the [official docs][1] in this case. But if you have any questions, let me know.
+
+
+[1]: http://symfony.com/doc/current/cookbook/security/custom_provider.html

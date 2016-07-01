@@ -2,20 +2,28 @@
 
 Open up `app/config/security.yml`. Security - especially *authentication* - is all
 configured here. We'll look at this piece-by-piece, but there's one section that's
-more important than all the rest: `firewalls`.
+more important than all the rest: `firewalls`:
+
+[[[ code('f5e7d95e88') ]]]
 
 ## All About Firewalls
 
 Your firewall *is* your authentication system: it's like the security desk you pass
 when going into a building. Now, there's always only *one* firewall that's active
 on any request. You see, if you go to a URL that starts with `/_profiler`, `/_wdt`
-or `/css`, you hit the `dev` firewall *only*. This basically turns security off:
-it's like sneaking through the side door of a building that has no security desk.
-This is here to prevent us from getting over-excited with security and accidentally
-securing our debugging tools.
+or `/css`, you hit the `dev` firewall *only*:
 
-In reality, every *real* request will activate the `main` firewall. Because it has
-no `pattern` key, it matches *all* URLs. Oh, and these keys - `main` and `dev`,
+[[[ code('ab7ff7ed4b') ]]]
+
+This basically turns security off: it's like sneaking through the side door of a building
+that has no security desk. This is here to prevent us from getting over-excited
+with security and accidentally securing our debugging tools.
+
+In reality, every *real* request will activate the `main` firewall:
+
+[[[ code('469b8b4dd4') ]]]
+
+Because it has no `pattern` key, it matches *all* URLs. Oh, and these keys - `main` and `dev`,
 are meaningless.
 
 Our job is to activate different ways to authenticate under this *one* firewall. We

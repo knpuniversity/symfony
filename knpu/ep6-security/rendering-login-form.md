@@ -4,22 +4,31 @@ Time to build a login form. And guess what? This page is *no* different than eve
 other page: we'll create a route, a controller and render a template.
 
 For organization, create a new class called `SecurityController`. Extend the normal
-Symfony base `Controller` and add a `public function loginAction`. Setup the URL
-to be `/login` and call the route `security_login`. Make sure to auto-complete
-the `@Route` annotation so you get the `use` statement up top.
+Symfony base `Controller` and add a `public function loginAction()`:
+
+[[[ code('a091638d7f') ]]]
+
+Setup the URL to be `/login` and call the route `security_login`:
+
+[[[ code('2f26944902') ]]]
+
+Make sure to auto-complete the `@Route` annotation so you get the `use` statement
+up top.
 
 Cool!
 
 Every login form looks about the same, so let's go steal some code. Google for
-"Symfony security form login" and Find a page called
-[How to Build a Traditional Login Form](http://symfony.com/doc/current/cookbook/security/form_login_setup.html).
+"Symfony security form login" and Find a page called [How to Build a Traditional Login Form][1].
 
 ## Adding the Login Controller
 
-Find their `loginAction`, copy its code and paste it into ours. Notice, one thing
-is immediately weird: there's no form processing code inside of here. Welcome to
-the strangest part of Symfony's security. We will build the login form here, but
-some *other* magic layer will actually handle the form submit. We'll build that
+Find their `loginAction()`, copy its code and paste it into ours:
+
+[[[ code('87f5f32f32') ]]]
+
+Notice, one thing is immediately weird: there's no form processing code inside of here.
+Welcome to the strangest part of Symfony's security. We will build the login form here,
+but some *other* magic layer will actually handle the form submit. We'll build that
 layer next.
 
 But thanks to this handy `security.authentication_utils` service, we can at least
@@ -33,10 +42,14 @@ To create the template, hit Option+enter on a Mac and select the option to creat
 the template. Or you can go create this by hand.
 
 You guys know what to do: add `{% extends 'base.html.twig' %}`. Then, override
-`{% block body %}` and add `{% endblock %}`. I'll setup some markup to get us started.
+`{% block body %}` and add `{% endblock %}`. I'll setup some markup to get us started:
+
+[[[ code('1ac1697258') ]]]
 
 Great! This template *also* has a bunch of boilerplate code, so copy that from the
-docs too. Paste it here. Update the form action route to `security_login`.
+docs too. Paste it here. Update the form action route to `security_login`:
+
+[[[ code('7266da2c9a') ]]]
 
 Well, it ain't fancy, but let's try it out: go to `/login`. There it is, in all its
 ugly glory.
@@ -55,8 +68,11 @@ real form... this would instantly be less ugly.
 ## Ok, Ok: Let's add a Form Class
 
 So let's do that: in the `Form` directory, create a new form class called `LoginForm`.
-Remove `getName()` - that's not needed in Symfony 3 - and `configureOptions()`. This
-is a rare time when I *won't* bother binding my form to a class.
+Remove `getName()` - that's not needed in Symfony 3 - and `configureOptions()`:
+
+[[[ code('98d8776033') ]]]
+
+This is a rare time when I *won't* bother binding my form to a class.
 
 ***TIP
 If you're building a login form that will be used with Symfony's native `form_login`
@@ -65,36 +81,57 @@ put the POST data in the proper place so the `form_login` system can find it.
 ***
 
 In `buildForm()`, let's add two things, `_username` and `_password`, which should be
-a `PasswordType`. You can name these fields anything, but `_username` and `_password`
-are common in the Symfony world. Again, we're calling this `_username`, but for us,
-it's an email.
+a `PasswordType`:
 
-Next, open `SecurityController` and add `$form = $this->createForm(LoginForm::class)`.
+[[[ code('607b040363') ]]]
+
+You can name these fields anything, but `_username` and `_password` are common in the
+Symfony world. Again, we're calling this `_username`, but for us, it's an email.
+
+Next, open `SecurityController` and add `$form = $this->createForm(LoginForm::class)`:
+
+[[[ code('2e2e9faac1') ]]]
+
 *And*, if the user *just* failed login, we need to pre-populate their `_username`
 field. To pass the form default data, add a second argument: an array with `_username`
-set to `$lastUsername`.
+set to `$lastUsername`:
+
+[[[ code('864ed1f10e') ]]]
 
 Finally, skip the form processing: that will live somewhere else. Pass the form
-into the template, replacing `$lastUsername` with `'form' => $form->createView()`.
+into the template, replacing `$lastUsername` with `'form' => $form->createView()`:
+
+[[[ code('9225366783') ]]]
 
 ## Rendering the Form in the Template
 
 Open up the template, Before we get to rendering, make sure our eventual error message
-looks nice. Add `alert alert-danger`.
+looks nice. Add `alert alert-danger`:
+
+[[[ code('7dc9135257') ]]]
 
 Now, kill the *entire* form and replace it with our normal form stuff: `form_start(form)`,
-`from_end(form)`, `form_row(form._username)` and `form_row(form._password)`.
+`from_end(form)`, `form_row(form._username)` and `form_row(form._password)`:
+
+[[[ code('da88499f4c') ]]]
 
 Don't forget your button! `type="submit"`, add a few classes, say `Login` and get
-fancy with a lock icon.
+fancy with a lock icon:
+
+[[[ code('8ecb8ae734') ]]]
 
 We did this *purely* so that Ryan could get his form looking less ugly. Let's see
 if it worked. So much better!
 
 Oh, while we're here, let's hook up the `Login` button on the upper right. This lives
-in `base.html.twig`. The login form is just a normal route, so add `path('security_login')`.
+in `base.html.twig`. The login form is just a normal route, so add `path('security_login')`:
+
+[[[ code('06f3464e68') ]]]
 
 Refresh, click that link, and here we are.
 
 Login form complete. It's finally time for the *meat* of authentication: it's time
 to build an *authenticator*.
+
+
+[1]: http://symfony.com/doc/current/cookbook/security/form_login_setup.html
