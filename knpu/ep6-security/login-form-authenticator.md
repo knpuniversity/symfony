@@ -2,7 +2,7 @@
 
 To use Guard - no matter *what* crazy authentication system you have - the first
 step is always to create an authenticator class. Create a new directory called `Security`
-and inside, a new class: how about `FormLoginAuthenticator`:
+and inside, a new class: how about `LoginFormAuthenticator`:
 
 [[[ code('9efe721a03') ]]]
 
