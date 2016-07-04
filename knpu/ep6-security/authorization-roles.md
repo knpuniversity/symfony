@@ -9,8 +9,10 @@ should have access to it.
 
 There are 2 main ways to deny access, and the simplest is right inside of `security.yml`.
 It's called "access control". Move in 4 spaces - so that you're
-at the same level as the `firewalls` key, but not inside of it. Add `access_control`,
-new line, go out 4 more spaces and add `- { path: ^/admin, roles: ROLE_USER }`.
+at the same level as the `firewalls` key, but not inside of it. Add `access_control:`,
+new line, go out 4 more spaces and add `- { path: ^/admin, roles: ROLE_USER }`:
+
+[[[ code('5b41b9003b') ]]]
 
 That path is a regular expression. So, if anyone goes to a URL that starts with
 `/admin`, the system will kick them out *unless* they have `ROLE_USER`.
@@ -29,7 +31,9 @@ This functionality is called an "entry point".
 Now, login. It redirects us back to `/admin/genus` and we *do* have access. Our
 user *does* have `ROLE_USER` - you can see that if you click the security icon in
 the web debug toolbar. Remember, that's happening because - in our `User` class -
-we've hardcoded the roles: *every* user has a role that I made up: `ROLE_USER`.
+we've hardcoded the roles: *every* user has a role that I made up: `ROLE_USER`:
+
+[[[ code('5da098712c') ]]]
 
 ## Many access_control
 
@@ -51,8 +55,11 @@ site via `https`. If they come via `http`, they'll be redirected to `https`.
 
 ## When you Don't Have Access :(
 
-Change the role to something we don't have, how about `ROLE_ADMIN`. Head back and
-refresh!
+Change the role to something we don't have, how about `ROLE_ADMIN`:
+
+[[[ code('4e1e41870d') ]]]
+
+Head back and refresh!
 
 Access denied! Ok, two important things.
 
