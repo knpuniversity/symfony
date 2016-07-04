@@ -67,6 +67,12 @@ menu - and select "Method". Call it `encodePassword()` with one argument that's 
 
 [[[ code('6e4f0a49d4') ]]]
 
+***TIP
+I didn't mention it, but you also need to prevent the user's password from being
+encoded if plainPassword is blank. This would mean that the User is being updated,
+but their password isn't being changed.
+***
+
 Super nice!
 
 Now that we have that, copy `prePersist`, paste it, and call it `preUpdate`. You
@@ -77,12 +83,6 @@ won't save.
 The way you do this is a little nuts, and not that important: so I'll paste it in:
 
 [[[ code('b73e87cf82') ]]]
-
-***TIP
-I didn't mention it, but you also need to prevent the user's password from being
-encoded if plainPassword is blank. This would mean that the User is being updated,
-but their password isn't being changed.
-***
 
 ## Registering the Subscriber as a Service
 
