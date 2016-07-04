@@ -11,7 +11,9 @@ let's face it - we always give ourselves access.
 What's the best way to organize this? When you protect a section, instead of checking
 for something like `ROLE_ADMIN` or `ROLE_MANAGEMENT` - which describes the *type*
 of person that will have access, you might instead use a role that describes *what*
-is being accessed. In this case, we could use something like `ROLE_MANAGE_GENUS`.
+is being accessed. In this case, we could use something like `ROLE_MANAGE_GENUS`:
+
+[[[ code('6d29504080') ]]]
 
 Why? The advantage is that you can very quickly give this role to *any* user in the
 database in order to allow them access to *this* section, but no others. If you plan
@@ -31,9 +33,13 @@ that's usually overkill. And, there's a simpler way.
 
 In `security.yml`, let's take advantage of something called role hierarchies. It's
 simple, it's awesome!. Add a new key called `role_hierarchy` and, below that, set
-`ROLE_ADMIN: [ROLE_MANAGE_GENUS]`. In other words, if anybody has `ROLE_ADMIN`, automatically
-give them `ROLE_MANAGE_GENUS`. Later, when you launch the new Octopus photo admin
-area, just add `ROLE_OCTOPUS_PHOTO_MANAGE` here and be done with it.
+`ROLE_ADMIN: [ROLE_MANAGE_GENUS]`:
+
+[[[ code('69ecb01064') ]]]
+
+In other words, if anybody has `ROLE_ADMIN`, automatically give them `ROLE_MANAGE_GENUS`.
+Later, when you launch the new Octopus photo admin area, just add `ROLE_OCTOPUS_PHOTO_MANAGE`
+here and be done with it.
 
 To see it in action, comment it out temporarily. Now, head to `/admin/genus`. Access
 denied! No surprise. Uncomment the role hierarchy and try it again. Access granted!
