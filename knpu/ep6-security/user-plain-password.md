@@ -6,26 +6,36 @@ I just found out that giving everyone the same password - `iliketurtles` - is ap
 Skip this if it doesn't apply to you.
 
 In `User`, add a `private $password` that will eventually store the encoded password.
-Give it the `@ORM\Column` annotation.
+Give it the `@ORM\Column` annotation:
 
-Now, remember the three methods from `UserInterface` that we left blank? It's finally
-their time to shine. In `getPassword()`, return `$this->password`.
+[[[ code('78cc46b9bd') ]]]
 
-But keep `getSalt()` blank: we're going to use the bcrypt algorithm, which has a
+Now, remember the three methods from `UserInterface` that we left blank?
+
+[[[ code('0759675b10') ]]]
+
+It's finally their time to shine. In `getPassword()`, return `$this->password`:
+
+[[[ code('c4ef1e6a0d') ]]]
+
+But keep `getSalt()` blank: we're going to use the `bcrypt` algorithm, which has a
 built-in mechanism to salt passwords.
 
-Use the Code->Generate menu to generate the setter for `password`. And next, go make
-that migration:
+Use the "Code"->"Generate" menu to generate the setter for `password`:
+
+[[[ code('b618cb438b') ]]]
+
+And next, go make that migration:
 
 ```bash
-bin/console doctrine:migrations:diff
+./bin/console doctrine:migrations:diff
 ```
 
 I *should* check that file, but let's go for it:
 
 
 ```bash
-bin/console doctrine:migrations:migrate
+./bin/console doctrine:migrations:migrate
 ```
 
 Perfect.
@@ -33,21 +43,28 @@ Perfect.
 ## Handling the Plain Password
 
 Here's the plan: we'll start with a plain text password, encrypt it through the
-bcrypt algorithm and store that on the `password` property.
+`bcrypt` algorithm and store that on the `password` property.
 
 How? The best way is to set the plain-text password on the User and encode it automatically
 via a Doctrine listener when it saves.
 
 To do that, add a new property on `User` called `plainPassword`. But wait! *Don't*
-persist this with Doctrine: we will of course *never* store plain-text passwords.
+persist this with Doctrine: we will of course *never* store plain-text passwords:
+
+[[[ code('9ab3a502fb') ]]]
+
 This is just a temporary-storage place during a single request.
 
-Next, at the bottom, use Command+N or the Code->Generate menu to generate the getters
-and setters for `plainPassword`.
+Next, at the bottom, use `Command`+`N` or the "Code"->"Generate" menu to generate the getters
+and setters for `plainPassword`:
+
+[[[ code('5cda385805') ]]]
 
 ## Forcing User to look Dirty?
 
-Inside `setPlainPassword()`, do one more thing: `$this->password = null`.
+Inside `setPlainPassword()`, do one more thing: `$this->password = null`:
+
+[[[ code('a9d7a12702') ]]]
 
 What?! Yep, this is important. Soon, we'll use a Doctrine listener to read the
 `plainPassword` property, encode it, and update `password`. That means that `password`
@@ -65,8 +82,11 @@ and life will go on like normal.
 
 Anyways, it's a necessary little evil.
 
-Finally, in `eraseCredentials()`, add `$this->plainPassword = null`. Symfony calls
-this after logging in, and it's just a minor security measure to prevent the plain-text
-password from being accidentally saved anywhere.
+Finally, in `eraseCredentials()`, add `$this->plainPassword = null`:
+
+[[[ code('0a88029943') ]]]
+
+Symfony calls this after logging in, and it's just a minor security measure to prevent
+the plain-text password from being accidentally saved anywhere.
 
 The `User` object is perfect. Let's add the listener.
