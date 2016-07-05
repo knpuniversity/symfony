@@ -7,15 +7,33 @@ This is *always* pretty easy, but it's *especially* easy because we're using
 Guard authentication. Inside of `UserController`, instead of redirecting to the
 home page: do this: `return $this->get()` to find a service called
 `security.authentication.guard_handler`. It has a method on it called
-`authenticUserAndHandleSuccess`. I'll clear the arguments and use multiple lines.
+`authenticateUserAndHandleSuccess()`. I'll clear the arguments and use multiple lines:
 
-The first argument is the `$user` and the second is `$request`. The third argument is
-the authenticator whose success behavior we want to mimic. Open up `service.yml`
-and copy the service name for our authenticator. In the controller, use
-`$this->get()` and paste the service id. Finally, the last argument is something
-called a "provider key". You'll see that occasionally - it's a fancy term for the
-name of your firewall. This name is almost *never* important, but it actually is
-in this case. We'll say `main` and we're done!
+[[[ code('535f000503') ]]]
+
+The first argument is the `$user` and the second is `$request`:
+
+[[[ code('0f40e4c137') ]]]
+
+The third argument is the authenticator whose success behavior we want to mimic.
+Open up `service.yml` and copy the service name for our authenticator:
+
+[[[ code('a104f6beb8') ]]]
+
+In the controller, use `$this->get()` and paste the service ID:
+
+[[[ code('d428025e16') ]]]
+
+Finally, the last argument is something called a "provider key". You'll see that
+occasionally - it's a fancy term for the name of your firewall:
+
+[[[ code('4f09d903a7') ]]]
+
+This name is almost *never* important, but it actually is in this case. We'll say `main`:
+
+[[[ code('1ed9f7d909') ]]]
+
+And we're done!
 
 ## The Bonus Superpower
 
@@ -40,9 +58,12 @@ the section requires `ROLE_MANAGE_GENUS`.
 Ok guys, that's it. Yes, you *can* get more complicated with security, especially
 authentication. And if you need to check permissions that are *object* specific - like
 I can edit only genuses that I created - then check out Symfony's awesome voter system.
-Hey, we have a course on it!
+Hey, we have a [course][1] on it!
 
 But for the most part, you guys have the tools to do really incredible things. So
 go out there, build something awesome and tell me about it.
 
 Seeya next time!
+
+
+[1]: https://knpuniversity.com/screencast/symfony-voters
