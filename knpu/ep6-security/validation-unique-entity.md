@@ -7,10 +7,16 @@ should live. First, you need the `use` statement for the annotations. We added v
 earlier in `Genus`. So, you can either copy this `use` statement, grab it from the
 documentation, or do what I do: cheat by saying `use`, auto-completing an annotation
 I know exists - like `NotBlank`, deleting the last part, and adding the normal
-`as Assert` alias.
+`as Assert` alias:
+
+[[[ code('395fc2df09') ]]]
 
 We obviously want email to be `NotBlank`. We also want email to be a valid email
-address. For `plainPassword`, that should also not be blank. Pretty simple.
+address. For `plainPassword`, that should also not be blank:
+
+[[[ code('94d0552ca8') ]]]
+
+Pretty simple.
 
 Ok, go back, keep the form blank, and submit. Nice validation errors.
 
@@ -38,7 +44,9 @@ in the database - and `message` so we can say something awesome when it happens.
 
 So add `fields={"email"}`. This is called *fields* because you *could* make this
 validation be unique across several columns. Then add
-`message="Looks like you already have an account"`.
+`message="It looks like you already have an account!"`:
+
+[[[ code('a276e26fca') ]]]
 
 Cool! Go back and hit register again. This just makes me happy!
 
