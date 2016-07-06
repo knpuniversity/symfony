@@ -26,7 +26,7 @@ away. Here's what's happening: by default, all constraints live in a group calle
 To use this annotation *only* on the registration form, we need to make that
 form validate everything in the `Default` group *and* the `Registration` group.
 Open up `UserRegistrationForm` and add a second option to `setDefaults()`: `validation_groups`
-set to `Defaults` - with a capital `D` and then `Registration`:
+set to `Default` - with a capital `D` and then `Registration`:
 
 [[[ code('90a69517dd') ]]]
 
