@@ -19,7 +19,7 @@ This "Registration" is a string I just invented: there's no significance to it.
 
 Without doing anything else, go back, hit register, and check it out! The error went
 away. Here's what's happening: by default, all constraints live in a group called
-`Default`. And when you form is validated, it validates all constraints in this
+`Default`. And when your form is validated, it validates all constraints in this
 `Default` group. So now that we've put this into a different group called
 `Registration`, when the form validates, it doesn't validate using this constraint.
 
