@@ -48,7 +48,7 @@ access. Above the controller, add `@Security()` then type a little expression:
 
 This has the *exact* same effect - it just shows us a different message.
 
-## Locking down and Entire Controller
+## Locking down an Entire Controller
 
 But no matter how easy we make it, what we *really* want to do is lock down this
 *entire* controller. Right now, we could still go to `/admin/genus/new` and have
