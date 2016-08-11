@@ -10,7 +10,9 @@ switch to that user's account: we need to impersonate them.
 ## Activating switch_user
 
 Setting up impersonation is super easy. In `security.yml`, under your firewall,
-add a new key called `switch_user` set to `~` to activate the system.
+add a new key called `switch_user` set to `~` to activate the system:
+
+[[[ code('ef968c2778') ]]]
 
 ## Back to the User Provider
 
@@ -30,7 +32,9 @@ That makes sense - we can't just let *anybody* do this impersonation trick. Inte
 this feature checks for a very specific role called `ROLE_ALLOWED_TO_SWITCH`. But,
 we don't have that.
 
-Hey, no problem! Let's give this role to `ROLE_ADMIN` under `role_hierarchy`.
+Hey, no problem! Let's give this role to `ROLE_ADMIN` under `role_hierarchy`:
+
+[[[ code('40b3baed24') ]]]
 
 Cool! Try it out. It works! I mean, it doesn't work! Hmm, but it's *not* that security
 error anymore - it just can't find the user: `weaverryan 5@gmail.com` You know what?

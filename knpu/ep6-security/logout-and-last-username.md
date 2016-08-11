@@ -2,12 +2,19 @@
 
 Check this out: let's fail authentication with a bad password.
 
-Ok: I noticed two things. First, we have an error. Great! But second, the form is *not*
-pre-filled with the `email` address I just used. Hmm.
+Ok: I noticed two things. First, we have an error:
+
+> Invalid credentials.
+
+Great! But second, the form is *not* pre-filled with the `email` address I just used. Hmm.
 
 Behind the scenes, the authenticator communicates to your `SecurityController` by
 storing things in the session. That's what the `security.authentication_utils` helps
-us with. Hold command and open `getLastAuthenticationError()`. Ultimately, this reads
+us with:
+
+[[[ code('f828c69a87') ]]]
+
+Hold command and open `getLastAuthenticationError()`. Ultimately, this reads
 a `Security::AUTHENTICATION_ERROR` string key from the session.
 
 And the same is true for fetching the last username, or email in our case: it reads
@@ -18,7 +25,9 @@ to the session for us. But, it is *not* setting the last username on the session
 because it doesn't really know where to look for it.
 
 No worries, fix this with `$request->getSession()->set()` and pass it the constant -
-`Security::LAST_USERNAME` - and `$data['_username']`.
+`Security::LAST_USERNAME` - and `$data['_username']`:
+
+[[[ code('2623ea1d3e') ]]]
 
 Now, try it again. Good-to-go!
 
@@ -28,16 +37,22 @@ Next challenge! Can we logout? Um... right now? Nope! But that seems important! 
 let's do it.
 
 Start like normal: In `SecurityController`, create a `logoutAction`, set its route
-to `/logout` and call the route `security_logout`. 
+to `/logout` and call the route `security_logout`:
+
+[[[ code('e0446d99e5') ]]]
 
 Now, here's the fun part. Don't put *any* code in the method. In fact, throw a
-`new \Exception` that says, "this should not be reached".
+`new \Exception` that says, "this should not be reached":
+
+[[[ code('663fce90a6') ]]]
 
 ## Adding the logout Key
 
 Whaaaat? Yep, our controller will do nothing. Instead, Symfony will intercept any
 requests to `/logout` and take care of everything for us. To activate it, open `security.yml`
-and add a new key under your firewall: `logout`. Below that, add `path: /logout`.
+and add a new key under your firewall: `logout`. Below that, add `path: /logout`:
+
+[[[ code('19d679570c') ]]]
 
 Now, if the user goes to `/logout`, Symfony will automatically take care of logging
 them out. That's super magical, almost creepy - but it works pretty darn well.
@@ -51,12 +66,17 @@ the user out. That's why you need this.
 
 It should work already, but let's add a friendly logout link. In `base.html.twig`,
 how can we figure out if the user is logged in? We're *about* to talk about that...
-but what the heck - let's get a preview. Use `{% if is_granted('ROLE_USER') %}`.
+but what the heck - let's get a preview. Use `{% if is_granted('ROLE_USER') %}`:
+
+[[[ code('4706662222') ]]]
+
 Remember this role? We returned it from `getRoles()` in User - so *all* authenticated
 users have this.
 
 If they don't have this, show the login link. But if they do, show the logout link:
-`path('security_logout')`.
+`path('security_logout')`:
+
+[[[ code('5502285d8e') ]]]
 
 Perfect!
 

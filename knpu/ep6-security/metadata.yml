@@ -78,11 +78,8 @@ chapters:
     user-registration-form:
         video_key: 172945109
     validation-unique-entity:
-        video_key: ~
-        is_finished: false
+        video_key: 173089378
     conditional-validation-groups:
-        video_key: ~
-        is_finished: false  
+        video_key: 173089653
     automatic-login-handling:
-        video_key: ~
-        is_finished: false
+        video_key: 173096142
