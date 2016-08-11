@@ -13,7 +13,7 @@ index 5c76fc5..b87fef4 100644
 +        class: AppBundle\Service\MarkdownTransformer
 +        arguments: ['@markdown.parser']
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 2b3b9de..a26c782 100644
+index fdfeb63..d4af068 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -67,9 +67,7 @@ class GenusController extends Controller

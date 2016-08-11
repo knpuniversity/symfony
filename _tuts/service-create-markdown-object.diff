@@ -12,7 +12,7 @@ index 4b72686..e8cc92c 100644
                  <dd>{{ recentNoteCount }}</dd>
              </dl>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index c0b4a9f..9804569 100644
+index 8f2c0e6..a806d0e 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -4,6 +4,7 @@ namespace AppBundle\Controller;

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 111e66c..0852e01 100644
+index 111e66c..3d1381a 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -3,6 +3,7 @@
@@ -14,16 +14,16 @@ index 111e66c..0852e01 100644
          $genus->setSubFamily('Octopodinae');
          $genus->setSpeciesCount(rand(100, 99999));
  
-+        $note = new GenusNote();
-+        $note->setUsername('AquaWeaver');
-+        $note->setUserAvatarFilename('ryan.jpeg');
-+        $note->setNote('I counted 8 legs... as they wrapped around me');
-+        $note->setCreatedAt(new \DateTime('-1 month'));
-+        $note->setGenus($genus);
++        $genusNote = new GenusNote();
++        $genusNote->setUsername('AquaWeaver');
++        $genusNote->setUserAvatarFilename('ryan.jpeg');
++        $genusNote->setNote('I counted 8 legs... as they wrapped around me');
++        $genusNote->setCreatedAt(new \DateTime('-1 month'));
++        $genusNote->setGenus($genus);
 +
          $em = $this->getDoctrine()->getManager();
          $em->persist($genus);
-+        $em->persist($note);
++        $em->persist($genusNote);
          $em->flush();
  
          return new Response('<html><body>Genus created!</body></html>');
