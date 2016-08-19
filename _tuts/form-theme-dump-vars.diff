@@ -1,0 +1,10 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+index 97cbf07..7c7d421 100644
+--- a/app/Resources/views/_formTheme.html.twig
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -1,4 +1,5 @@
+ {% block form_row -%}
++    {{ dump() }}
+     <div class="form-group cool-class{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+         {{- form_label(form) -}}
+         {{- form_widget(form) -}}

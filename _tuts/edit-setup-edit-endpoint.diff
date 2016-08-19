@@ -106,7 +106,7 @@ index 7a84ec0..3d3f1dc 100644
  }
 \ No newline at end of file
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 6f28598..a1cf141 100644
+index fa5b972..d92aafc 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -66,6 +66,11 @@ class Genus

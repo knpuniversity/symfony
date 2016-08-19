@@ -1,0 +1,18 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+index 7c7d421..49eff51 100644
+--- a/app/Resources/views/_formTheme.html.twig
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -1,8 +1,11 @@
+ {% block form_row -%}
+-    {{ dump() }}
+-    <div class="form-group cool-class{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
++    {% set showErrorIcon = (not compound or force_error|default(false)) and not valid %}
++    <div class="form-group {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}{{ showErrorIcon ? ' has-feedback' : '' }}">
+         {{- form_label(form) -}}
+         {{- form_widget(form) -}}
++        {% if showErrorIcon %}
++            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
++        {% endif %}
+         {{- form_errors(form) -}}
+     </div>
+ {%- endblock form_row %}

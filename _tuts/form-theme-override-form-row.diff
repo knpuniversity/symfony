@@ -1,0 +1,38 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+new file mode 100644
+index 0000000..97cbf07
+--- /dev/null
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -0,0 +1,7 @@
++{% block form_row -%}
++    <div class="form-group cool-class{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
++        {{- form_label(form) -}}
++        {{- form_widget(form) -}}
++        {{- form_errors(form) -}}
++    </div>
++{%- endblock form_row %}
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index 3fd6548..f87a511 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -3,8 +3,6 @@
+ 
+     {{ form_row(genusForm.name) }}
+ 
+-    {{ dump(genusForm.subFamily.vars) }}
+-
+     {{ form_row(genusForm.subFamily, {
+         'label': 'Taxonomic Subfamily',
+         'attr': {
+diff --git a/app/config/config.yml b/app/config/config.yml
+index e57496a..d00efc3 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -42,6 +42,7 @@ twig:
+         thousands_separator: ','
+     form_themes:
+         - bootstrap_3_layout.html.twig
++        - _formTheme.html.twig
+ 
+ # Doctrine Configuration
+ doctrine:

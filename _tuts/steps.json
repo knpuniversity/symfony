@@ -884,7 +884,22 @@
             "id": "form-vars-dump-vars",
             "name": "Form Vars: dump vars",
             "description": null
+        },
+        {
+            "id": "form-theme-override-form-row",
+            "name": "Form Theme: Override form_row",
+            "description": null
+        },
+        {
+            "id": "form-theme-dump-vars",
+            "name": "Form Theme: dump() vars",
+            "description": null
+        },
+        {
+            "id": "form-theme-set-error-icon",
+            "name": "Form Theme: set error icon",
+            "description": null
         }
     ],
-    "sha": "529493927480e24e6b0a1352907f32f53787bbf7"
+    "sha": "6dabfe6ef8f304cb52775cbda93f3d036a5429df"
 }
