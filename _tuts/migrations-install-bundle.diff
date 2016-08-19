@@ -11,10 +11,10 @@ index 3bbadf8..778fb62 100644
              new AppBundle\AppBundle(),
          );
 diff --git a/composer.json b/composer.json
-index fbb223d..458fcc6 100644
+index 4965d4d..592bf07 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -26,7 +26,8 @@
+@@ -25,7 +25,8 @@
          "sensio/distribution-bundle": "^5.0",
          "sensio/framework-extra-bundle": "^3.0.2",
          "incenteev/composer-parameter-handler": "^2.0",
@@ -25,7 +25,7 @@ index fbb223d..458fcc6 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 9b04aac..92a11b1 100644
+index c00f53a..ba25471 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,8 @@
@@ -39,8 +39,8 @@ index 9b04aac..92a11b1 100644
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -521,6 +521,64 @@
-             "time": "2015-11-27 04:59:07"
+@@ -525,6 +525,64 @@
+             "time": "2016-01-26 17:28:51"
          },
          {
 +            "name": "doctrine/doctrine-migrations-bundle",
@@ -104,7 +104,7 @@ index 9b04aac..92a11b1 100644
              "name": "doctrine/inflector",
              "version": "v1.1.0",
              "source": {
-@@ -696,6 +754,75 @@
+@@ -700,6 +758,75 @@
              "time": "2014-09-09 13:34:57"
          },
          {
@@ -178,10 +178,10 @@ index 9b04aac..92a11b1 100644
 +        },
 +        {
              "name": "doctrine/orm",
-             "version": "v2.5.2",
+             "version": "v2.5.4",
              "source": {
-@@ -1063,6 +1190,69 @@
-             "time": "2015-10-14 12:51:02"
+@@ -1067,6 +1194,69 @@
+             "time": "2016-07-29 03:23:52"
          },
          {
 +            "name": "ocramius/proxy-manager",
@@ -248,12 +248,12 @@ index 9b04aac..92a11b1 100644
 +        },
 +        {
              "name": "paragonie/random_compat",
-             "version": "1.1.0",
+             "version": "v2.0.2",
              "source": {
-@@ -1936,6 +2126,112 @@
+@@ -2059,6 +2249,112 @@
                  "templating"
              ],
-             "time": "2015-11-05 12:49:06"
+             "time": "2016-05-30 09:11:59"
 +        },
 +        {
 +            "name": "zendframework/zend-code",

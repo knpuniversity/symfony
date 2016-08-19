@@ -11,22 +11,22 @@ index 778fb62..d6fac03 100644
  
          return $bundles;
 diff --git a/composer.json b/composer.json
-index 458fcc6..eecf5ed 100644
+index 592bf07..251233d 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -31,7 +31,9 @@
+@@ -30,7 +30,9 @@
      },
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
--        "symfony/phpunit-bridge": "^2.7"
-+        "symfony/phpunit-bridge": "^2.7",
+-        "symfony/phpunit-bridge": "^3.0"
++        "symfony/phpunit-bridge": "^3.0",
 +        "nelmio/alice": "^2.1",
 +        "doctrine/doctrine-fixtures-bundle": "^2.3"
      },
      "scripts": {
          "post-install-cmd": [
 diff --git a/composer.lock b/composer.lock
-index 92a11b1..c5510e9 100644
+index ba25471..983ff82 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,8 @@
@@ -40,7 +40,7 @@ index 92a11b1..c5510e9 100644
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -2236,6 +2236,230 @@
+@@ -2359,6 +2359,230 @@
      ],
      "packages-dev": [
          {
@@ -269,5 +269,5 @@ index 92a11b1..c5510e9 100644
 +        },
 +        {
              "name": "sensio/generator-bundle",
-             "version": "v3.0.0",
+             "version": "v3.0.7",
              "source": {

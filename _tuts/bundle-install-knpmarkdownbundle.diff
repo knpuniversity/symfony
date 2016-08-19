@@ -13,11 +13,11 @@ index ff6d5d2..f04accd 100644
          );
  
 diff --git a/composer.json b/composer.json
-index c0d6136..fbb223d 100644
+index 4fe28cc..4965d4d 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -25,7 +25,8 @@
-         "symfony/monolog-bundle": "^2.8",
+@@ -24,7 +24,8 @@
+         "symfony/polyfill-apcu": "^1.0",
          "sensio/distribution-bundle": "^5.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 -        "incenteev/composer-parameter-handler": "^2.0"
@@ -27,21 +27,21 @@ index c0d6136..fbb223d 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 6844b9c..9b04aac 100644
+index 542c0fd..c00f53a 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,8 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "hash": "977ce43a6cea9500ca09cf7b54f0a46f",
--    "content-hash": "145b762e43525a9b0d54f49c3c990183",
+-    "hash": "4df693adfb1f99095c466dff66085656",
+-    "content-hash": "d780e5e953712680199ad469e5cd6214",
 +    "hash": "9f3f8c3f80d6d7c72706e479193018e3",
 +    "content-hash": "465678b671ace9387f2ebf848800e499",
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -874,6 +874,118 @@
+@@ -877,6 +877,118 @@
              "time": "2014-01-12 16:20:24"
          },
          {
@@ -158,5 +158,5 @@ index 6844b9c..9b04aac 100644
 +        },
 +        {
              "name": "monolog/monolog",
-             "version": "1.17.2",
+             "version": "1.21.0",
              "source": {
