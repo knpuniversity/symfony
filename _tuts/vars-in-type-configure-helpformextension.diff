@@ -1,0 +1,39 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 2587e60..d2f27ed 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -24,3 +24,9 @@ services:
+         autowire: true
+         tags:
+             - { name: doctrine.event_subscriber }
++
++    app.form.help_form_extenion:
++        class: AppBundle\Form\TypeExtension\HelpFormExtension
++        autowire: true
++        tags:
++            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+diff --git a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
+index a0c88a8..3e5e3c7 100644
+--- a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
++++ b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
+@@ -3,11 +3,19 @@
+ namespace AppBundle\Form\TypeExtension;
+ 
+ use Symfony\Component\Form\AbstractTypeExtension;
++use Symfony\Component\Form\Extension\Core\Type\FormType;
++use Symfony\Component\Form\FormInterface;
++use Symfony\Component\Form\FormView;
+ 
+ class HelpFormExtension extends AbstractTypeExtension
+ {
++    public function buildView(FormView $view, FormInterface $form, array $options)
++    {
++        $view->vars['help'] = 'TURTLES!';
++    }
++
+     public function getExtendedType()
+     {
+-        // TODO: Implement getExtendedType() method.
++        return FormType::class;
+     }
+ }

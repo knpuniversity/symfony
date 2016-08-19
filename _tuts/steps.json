@@ -919,7 +919,52 @@
             "id": "form-theme-properly-show-error-icon",
             "name": "Form Theme: Properly show error icon",
             "description": null
+        },
+        {
+            "id": "form-help-passing-and-dumping-help-var",
+            "name": "Form Help: Passing and dumping help var",
+            "description": null
+        },
+        {
+            "id": "form-help-printing-help-var",
+            "name": "Form Help: Printing help var",
+            "description": null
+        },
+        {
+            "id": "form-help-default-help-var",
+            "name": "Form Help: Default help var",
+            "description": null
+        },
+        {
+            "id": "form-help-set-area-describedby-attr",
+            "name": "Form Help: Set area-describedby attr",
+            "description": null
+        },
+        {
+            "id": "form-help-pass-in-attr-manually",
+            "name": "Form Help: Pass in attr manually",
+            "description": null
+        },
+        {
+            "id": "vars-in-type-using-finishview",
+            "name": "Vars in Type: Using finishView",
+            "description": null
+        },
+        {
+            "id": "vars-in-type-bootstrap-helpformextension",
+            "name": "Vars in Type: Bootstrap HelpFormExtension",
+            "description": null
+        },
+        {
+            "id": "vars-in-type-configure-helpformextension",
+            "name": "Vars in Type: Configure HelpFormExtension",
+            "description": null
+        },
+        {
+            "id": "vars-in-type-add-help-option-conver-to-var",
+            "name": "Vars in Type: Add help option, conver to var",
+            "description": null
         }
     ],
-    "sha": "a1ae00aff860da5f72c6761e1df04a6bcc3bbdc6"
+    "sha": "e587de24c3e82c09b03b180c7254c1086ef713c8"
 }

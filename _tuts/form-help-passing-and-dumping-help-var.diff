@@ -1,0 +1,27 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+index 36abf17..d155797 100644
+--- a/app/Resources/views/_formTheme.html.twig
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -5,6 +5,7 @@
+     <div class="form-group {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}{{ showErrorIcon ? ' has-feedback' : '' }}">
+         {{- form_label(form) -}}
+         {{- form_widget(form) -}}
++        {{ dump() }}
+         {{- form_errors(form) -}}
+     </div>
+ {%- endblock form_row %}
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index f87a511..158df54 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -14,7 +14,9 @@
+         'label': 'Number of Species'
+     }) }}
+     {{ form_row(genusForm.funFact) }}
+-    {{ form_row(genusForm.isPublished) }}
++    {{ form_row(genusForm.isPublished, {
++        help: 'Should this genus be shown on the site?'
++    }) }}
+     {{ form_row(genusForm.firstDiscoveredAt) }}
+ 
+     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>

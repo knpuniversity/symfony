@@ -1,0 +1,19 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+index 469eb19..406b577 100644
+--- a/app/Resources/views/_formTheme.html.twig
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -4,9 +4,13 @@
+     {% set showErrorIcon = (not compound or force_error|default(false)) and not valid %}
+     <div class="form-group {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}{{ showErrorIcon ? ' has-feedback' : '' }}">
+         {{- form_label(form) -}}
++        {% if help|default %}
++            {# set the aria-describedby attribute #}
++            {%- set attr = attr|merge({'aria-describedby': 'help-block-'~id }) -%}
++        {% endif %}
+         {{- form_widget(form) -}}
+         {% if help|default %}
+-            <span class="help-block">{{ help }}</span>
++            <span class="help-block" id="help-block-{{ id }}">{{ help }}</span>
+         {% endif %}
+         {{- form_errors(form) -}}
+     </div>
