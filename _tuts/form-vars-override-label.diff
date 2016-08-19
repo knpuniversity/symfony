@@ -1,0 +1,15 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index be28466..d50dea4 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -3,7 +3,9 @@
+ 
+     {{ form_row(genusForm.name) }}
+ 
+-    {{ form_row(genusForm.subFamily) }}
++    {{ form_row(genusForm.subFamily, {
++        'label': 'Taxonomic Subfamily'
++    }) }}
+     {{ form_row(genusForm.speciesCount, {
+         'label': 'Number of Species'
+     }) }}

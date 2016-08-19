@@ -1,0 +1,20 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index 1fd0f43..0e789bc 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -1,7 +1,14 @@
+ {{ form_start(genusForm) }}
+     {{ form_errors(genusForm) }}
+ 
+-    {{ form_widget(genusForm) }}
++    {{ form_row(genusForm.name) }}
++    {{ form_row(genusForm.subFamily) }}
++    {{ form_row(genusForm.speciesCount, {
++        'label': 'Number of Species'
++    }) }}
++    {{ form_row(genusForm.funFact) }}
++    {{ form_row(genusForm.isPublished) }}
++    {{ form_row(genusForm.firstDiscoveredAt) }}
+ 
+     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+ {{ form_end(genusForm) }}

@@ -834,7 +834,57 @@
             "id": "registration-auto-login",
             "name": "Registration: Auto-login",
             "description": null
+        },
+        {
+            "id": "form-rendering-form",
+            "name": "Form Rendering: form()",
+            "description": null
+        },
+        {
+            "id": "form-rendering-form-widget",
+            "name": "Form Rendering: form_widget",
+            "description": null
+        },
+        {
+            "id": "form-rendering-back-to-form-row",
+            "name": "Form Rendering: Back to form_row()",
+            "description": null
+        },
+        {
+            "id": "form-rendering-use-3-functions",
+            "name": "Form Rendering: Use 3 functions",
+            "description": null
+        },
+        {
+            "id": "form-rendering-back-again-to-form-row",
+            "name": "Form Rendering: Back again to form_row()",
+            "description": null
+        },
+        {
+            "id": "form-vars-override-label",
+            "name": "Form Vars: Override label",
+            "description": null
+        },
+        {
+            "id": "form-vars-override-attr",
+            "name": "Form Vars: Override attr",
+            "description": null
+        },
+        {
+            "id": "form-vars-set-disabled-variable",
+            "name": "Form Vars: Set disabled variable",
+            "description": null
+        },
+        {
+            "id": "form-vars-override-placeholder-var",
+            "name": "Form Vars: Override placeholder var",
+            "description": null
+        },
+        {
+            "id": "form-vars-dump-vars",
+            "name": "Form Vars: dump vars",
+            "description": null
         }
     ],
-    "sha": "4af6ee43f6994ce78143abdeb68f20eafca0216f"
+    "sha": "6f7ee7273246a94007919cb6100c3bd30797996f"
 }

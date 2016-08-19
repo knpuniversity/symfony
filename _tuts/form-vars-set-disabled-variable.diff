@@ -1,0 +1,17 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index edc0b4c..01e3227 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -6,9 +6,9 @@
+     {{ form_row(genusForm.subFamily, {
+         'label': 'Taxonomic Subfamily',
+         'attr': {
+-            'class': 'foo',
+-            'disabled': 'disabled'
+-        }
++            'class': 'foo'
++        },
++        'disabled': 'disabled',
+     }) }}
+     {{ form_row(genusForm.speciesCount, {
+         'label': 'Number of Species'
