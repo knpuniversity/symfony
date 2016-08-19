@@ -1,0 +1,39 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index 9866bd1..5732a80 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -18,18 +18,6 @@
+         help: 'Should this genus be shown on the site?'
+     }) }}
+ 
+-    {{ form_label(genusForm.firstDiscoveredAt.year) }}
+-    <select id="{{ genusForm.firstDiscoveredAt.year.vars.id }}"
+-            name="{{ genusForm.firstDiscoveredAt.year.vars.full_name }}">
+-        {% for choice in genusForm.firstDiscoveredAt.year.vars.choices %}
+-            <option value="{{ choice.value }}" {{ choice.value == genusForm.firstDiscoveredAt.year.vars.data }}>{{ choice.label }}</option>
+-        {% endfor %}
+-    </select>
+-    {{ form_errors(genusForm.firstDiscoveredAt.year) }}
+-    {% do genusForm.firstDiscoveredAt.year.setRendered() %}
+-
+-    {{ form_row(genusForm.firstDiscoveredAt.month) }}
+-    {{ form_row(genusForm.firstDiscoveredAt.day) }}
+-
++    {{ form_row(genusForm.firstDiscoveredAt) }}
+     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+ {{ form_end(genusForm) }}
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 712eb68..cdb51ce 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -37,8 +37,8 @@ class GenusFormType extends AbstractType
+                 ]
+             ])
+             ->add('firstDiscoveredAt', DateType::class, [
+-                //'widget' => 'single_text',
+-                //'attr' => ['class' => 'js-datepicker'],
++                'widget' => 'single_text',
++                'attr' => ['class' => 'js-datepicker'],
+                 'html5' => false,
+             ])
+         ;

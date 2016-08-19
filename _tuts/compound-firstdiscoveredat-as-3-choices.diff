@@ -1,0 +1,31 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index 158df54..f52ff75 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -17,7 +17,10 @@
+     {{ form_row(genusForm.isPublished, {
+         help: 'Should this genus be shown on the site?'
+     }) }}
+-    {{ form_row(genusForm.firstDiscoveredAt) }}
++
++    {{ form_row(genusForm.firstDiscoveredAt.year) }}
++    {{ form_row(genusForm.firstDiscoveredAt.month) }}
++    {{ form_row(genusForm.firstDiscoveredAt.day) }}
+ 
+     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+ {{ form_end(genusForm) }}
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index cdb51ce..712eb68 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -37,8 +37,8 @@ class GenusFormType extends AbstractType
+                 ]
+             ])
+             ->add('firstDiscoveredAt', DateType::class, [
+-                'widget' => 'single_text',
+-                'attr' => ['class' => 'js-datepicker'],
++                //'widget' => 'single_text',
++                //'attr' => ['class' => 'js-datepicker'],
+                 'html5' => false,
+             ])
+         ;

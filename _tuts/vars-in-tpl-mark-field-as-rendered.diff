@@ -1,0 +1,12 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index fb80089..9866bd1 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -26,6 +26,7 @@
+         {% endfor %}
+     </select>
+     {{ form_errors(genusForm.firstDiscoveredAt.year) }}
++    {% do genusForm.firstDiscoveredAt.year.setRendered() %}
+ 
+     {{ form_row(genusForm.firstDiscoveredAt.month) }}
+     {{ form_row(genusForm.firstDiscoveredAt.day) }}

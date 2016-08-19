@@ -964,7 +964,27 @@
             "id": "vars-in-type-add-help-option-conver-to-var",
             "name": "Vars in Type: Add help option, conver to var",
             "description": null
+        },
+        {
+            "id": "compound-firstdiscoveredat-as-3-choices",
+            "name": "Compound: firstDiscoveredAt as 3 choices",
+            "description": null
+        },
+        {
+            "id": "vars-in-tpl-render-year-by-hand",
+            "name": "Vars in tpl: Render year by hand",
+            "description": null
+        },
+        {
+            "id": "vars-in-tpl-mark-field-as-rendered",
+            "name": "Vars in tpl: Mark field as rendered",
+            "description": null
+        },
+        {
+            "id": "cleanup-going-back-to-nice-date-field",
+            "name": "Cleanup: Going back to nice date field",
+            "description": null
         }
     ],
-    "sha": "e587de24c3e82c09b03b180c7254c1086ef713c8"
+    "sha": "ecfa1de7f2e09616e8d568b24722c743d55ef4f7"
 }
