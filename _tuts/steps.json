@@ -899,7 +899,27 @@
             "id": "form-theme-set-error-icon",
             "name": "Form Theme: set error icon",
             "description": null
+        },
+        {
+            "id": "form-theme-override-form-widget-simple",
+            "name": "Form Theme: override form_widget_simple",
+            "description": null
+        },
+        {
+            "id": "form-theme-use-bootstrap3-as-parent",
+            "name": "Form Theme: use bootstrap3 as parent",
+            "description": null
+        },
+        {
+            "id": "form-theme-remove-duplicated-parent-logic",
+            "name": "Form Theme: Remove duplicated parent logic",
+            "description": null
+        },
+        {
+            "id": "form-theme-properly-show-error-icon",
+            "name": "Form Theme: Properly show error icon",
+            "description": null
         }
     ],
-    "sha": "6dabfe6ef8f304cb52775cbda93f3d036a5429df"
+    "sha": "a1ae00aff860da5f72c6761e1df04a6bcc3bbdc6"
 }

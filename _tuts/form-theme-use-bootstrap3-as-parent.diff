@@ -1,0 +1,10 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+index f8c2b68..c648d18 100644
+--- a/app/Resources/views/_formTheme.html.twig
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -1,3 +1,5 @@
++{% use "bootstrap_3_layout.html.twig" %}
++
+ {% block form_row -%}
+     {% set showErrorIcon = (not compound or force_error|default(false)) and not valid %}
+     <div class="form-group {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}{{ showErrorIcon ? ' has-feedback' : '' }}">

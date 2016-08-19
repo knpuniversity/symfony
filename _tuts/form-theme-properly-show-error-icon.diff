@@ -1,0 +1,27 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+index f4b16f8..36abf17 100644
+--- a/app/Resources/views/_formTheme.html.twig
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -5,16 +5,18 @@
+     <div class="form-group {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}{{ showErrorIcon ? ' has-feedback' : '' }}">
+         {{- form_label(form) -}}
+         {{- form_widget(form) -}}
+-        {% if showErrorIcon %}
+-            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+-        {% endif %}
+         {{- form_errors(form) -}}
+     </div>
+ {%- endblock form_row %}
+ 
+ {% block form_widget_simple -%}
++    {% set showErrorIcon = false %}
+     {% if type is not defined or type not in ['file', 'hidden'] %}
+-
++        {# show error icon for these types #}
++        {% set showErrorIcon = (not compound or force_error|default(false)) and not valid %}
+     {% endif %}
+     {{- parent() -}}
++    {% if showErrorIcon %}
++        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
++    {% endif %}
+ {%- endblock form_widget_simple %}

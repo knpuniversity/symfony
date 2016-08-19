@@ -1,0 +1,15 @@
+diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
+index 49eff51..f8c2b68 100644
+--- a/app/Resources/views/_formTheme.html.twig
++++ b/app/Resources/views/_formTheme.html.twig
+@@ -9,3 +9,10 @@
+         {{- form_errors(form) -}}
+     </div>
+ {%- endblock form_row %}
++
++{% block form_widget_simple -%}
++    {% if type is not defined or type not in ['file', 'hidden'] %}
++        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) -%}
++    {% endif %}
++    {{- parent() -}}
++{%- endblock form_widget_simple %}
