@@ -4,7 +4,7 @@ summary: |
     We already learned *all* the [form basics](http://knpuniversity.com/screencast/symfony-forms).
     But, controlling how you *render* your forms? That's a *huge* and
     super-fun topic all on its own. So let's go!
-    
+
     * Creating your own form theme
     * Controller form variables
     * Using form variables in your theme
@@ -24,4 +24,32 @@ tuts_hero:
 #    start_step: start
     finish_step: start
 
-chapters: []
+chapters:
+
+    form-rendering-functions:
+        is_finished: false
+        video_key: ~
+    form-variables:
+        is_finished: false
+        video_key: ~
+    pro-form-theming:
+        is_finished: false
+        video_key: ~
+    complex-blocks-parent-function:
+        is_finished: false
+        video_key: ~
+    form-help-feature:
+        is_finished: false
+        video_key: ~
+    form-options-variables-finishview:
+        is_finished: false
+        video_key: ~
+    form-type-extension-magic:
+        is_finished: false
+        video_key: ~
+    compound-embedded-forms:
+        is_finished: false
+        video_key: ~
+    rendering-fields-manually:
+        is_finished: false
+        video_key: ~
