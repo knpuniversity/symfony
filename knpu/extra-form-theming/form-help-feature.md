@@ -4,7 +4,7 @@ Okay. Let's add a totally new feature. I want to be able to render a little bit 
 
 Bootstrap already has something built in for this. It should be pretty easy, we just need to add a little class sub help - block below it. Awesome.
 
-Right now, in Symphony, there is no way to do this. What I mean is, what I want to do is pass in a variable called help, set in some [inaudible 00:00:34]. By doing that, I want this help message to automatically show up. As you'll see, that doesn't happen right now. It's up to us to build in this feature. Here's the cool part. Even though, up until now there's never been a variable called help, as soon as I pass one in, it's available inside of my form theme. If I go into form_row, recall, dump, and refresh, check this out. Search for help, there is our help variable right after our "is published" field.
+Right now, in Symfony, there is no way to do this. What I mean is, what I want to do is pass in a variable called help, set in some [inaudible 00:00:34]. By doing that, I want this help message to automatically show up. As you'll see, that doesn't happen right now. It's up to us to build in this feature. Here's the cool part. Even though, up until now there's never been a variable called help, as soon as I pass one in, it's available inside of my form theme. If I go into form_row, recall, dump, and refresh, check this out. Search for help, there is our help variable right after our "is published" field.
 
 You can freely pass in whatever variables you want, and that makes us really dangerous, because now adding that help message is as simple as if help, and if, we'll pass in a span with a class of help-block, and we'll call {{help}}. Pretty simple. Try that out.
 
