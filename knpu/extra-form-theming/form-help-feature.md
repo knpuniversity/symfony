@@ -1,0 +1,27 @@
+# Form Help Feature
+
+Okay. Let's add a totally new feature. I want to be able to render a little bit of help text here on the bottom, something that gives the user a little bit more information about how to fill in that field.
+
+Bootstrap already has something built in for this. It should be pretty easy, we just need to add a little class sub help - block below it. Awesome.
+
+Right now, in Symfony, there is no way to do this. What I mean is, what I want to do is pass in a variable called help, set in some [inaudible 00:00:34]. By doing that, I want this help message to automatically show up. As you'll see, that doesn't happen right now. It's up to us to build in this feature. Here's the cool part. Even though, up until now there's never been a variable called help, as soon as I pass one in, it's available inside of my form theme. If I go into form_row, recall, dump, and refresh, check this out. Search for help, there is our help variable right after our "is published" field.
+
+You can freely pass in whatever variables you want, and that makes us really dangerous, because now adding that help message is as simple as if help, and if, we'll pass in a span with a class of help-block, and we'll call {{help}}. Pretty simple. Try that out.
+
+And it doesn't work. Of course. Variable help does not exist, because this help variable only exists for the fields where I actually passed it in. That's pretty simple, and you'll see this a lot. Just pipe the help variable to default, and that's it. What this says is, if the help variable doesn't exist, don't throw a big error, just default it to null. It's defaulting to null because I'm not passing an argument to default like you see above. Anyways, if help isn't defined, then it's not going to hit the if statement. And now the feature works perfectly.
+
+One other challenge, though. If you look at Bootstrap, if you want to be nice to screen helpers, then you should add an attribute also to the info field that is an ID that matches the ID on your help text below. That way, we can let screen readers focus that text box, it will actually read that help text to them, which is pretty rad, and turns out to be kind of a challenging thing to do.
+
+Effectively, when form widget is called, we want the ATTR variable to have a new area described by value. We've actually seen stuff like this before. For example, in the form widget simple in the Bootstrap layout, what it does is it actually takes the ATTR and then actually modifies the ATTR before it calls the apparent block, so when the apparent block runs, the ATTR is modified. It's brilliant.
+
+Let's do the same thing here. We'll say if help|default, then set ATTR = ATTR|merge filter that's part of core twig, and then we'll merge in area-described by=, and then we need to pass it some ID on this help block down here. There is no ID yet. That's okay; let's add one. Down here, say ID equals ... let's call it help-block, and then we'll use one of the variables that we have available for every single field, {{ID}}. This is normally the ID attribute of the input field, so we'll just reuse it here to make the help-block-id element. Up here on the ATTR, this will be help-block, and then use tilde id. Tilde is the not-very-often used [catenation 00:04:56] in twig. This will catenate the two together. Make sure you have help-block-, and then the ID.
+
+We set an ATTR here, so that when we call form widget, the ATTR is modified, and hopefully this new attribute shows up. Let's give it a try. Refresh. Of course, we can't actually see it. Let's go down here and inspect the element. Check this out. It is not here. There is no attribute. What the heck is going on here?
+
+It turns out there's a very subtle but important thing that's going on here. Let me show you. I'm actually going to click back into the parent form dev layout, that HTML twig that renders everything. Now, I'm going to show you an example. When you render a number field, so something that's going to ... which, actually the species count is a number type, that's what it defaults to. This will render as an input type=number. If we look inside the twig template, we can actually find number_widget. Check what it does. It actually sets a type variable, and then calls the block form_widget_simple, so that when form_widget_simple executes, it uses the type right here, and now the type is number instead of defaulting to text.
+
+Why does that work, but not ours? Why can we set a variable here and call this block, but not in our form theme, set a variable and then call this? Well, it turns out the difference is that inside the form dev layout, you're setting the variable and then calling the block function, and when you call the block function, all variables flow through to that next block. Instead of our form theme, we're setting the variable, and then we're actually calling form_widget. That's a form rendering function. In fact it's the same form rendering function that we're using inside of our normal template. In this case, it resets the variables to the original set that they had. It's a really easy fix. That is actually just to pass it directly, the variable, ATTR set to ATTR. That will make sure that we override the variables when we call form_widget.
+
+So now, refresh. Let's inspect that field, or rather, the correct field. This time, area-described by.
+
+Not only are you a form-thieving pro, but you're quickly becoming a twig template pro.

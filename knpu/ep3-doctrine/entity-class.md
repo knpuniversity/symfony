@@ -19,6 +19,11 @@ built-in sever with:
 ./bin/console server:run
 ```
 
+***TIP
+You may also need to run `composer install` and a few other tasks. Check the README
+in the download for those details.
+***
+
 Perfect!
 
 ## Doctrine is an ORM
