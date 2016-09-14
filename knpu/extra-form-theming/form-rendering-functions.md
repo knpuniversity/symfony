@@ -1,25 +1,72 @@
 # Form Rendering Functions
 
-Yo peeps. Today we're talking about form themeing. This is when we are going to bend how our forms render in symfony to our will. Symfony does a lot of rendering out of the box, but there's going to come situations when you need to do some really crazy stuff. By the end of this tutorial you will be able to render any field in any weird way that you want to.
+I want to render this form, but be as *lazy* as humanly possible.
 
-To get started download the code to code along with me. When you unzip it there will be a start directory. If you move into that start directory you'll have the same code that I have here. Check out the read me file for the full details on how to get the project up and running. The last step of that process is to open your terminal, move into your project, my directory is called aqua_note and run bin/console server:run. That gets a server running on local host:8000. Pull that up to find our awesome aquanote project.
+## The Lazy Way: form()
 
-The project is not that important for this tutorial, other than the most important thing to know is that we have a big database of genus. Which are a collection of sea animals. If you login with Weaverryanplusone@gmail.com password iliketurtles, then you should have access to an admin section. /admin/genus if you click to edit the genus you have this nice screen that we were working on in previous screen casts. This is the screen that we're going to focus on and we're going to change how this thing renders.
+Copy the existing code - we'll put it back in a second. Then, use our first form
+rendering function: `form()` and pass it the `genusForm` variable.
 
-First, whenever you build a form you're going to start with your genus form type. Here are all the forms that we built. We're not going to talk about this. Second of course, at some point you have a controller that actually builds that form and then passes it into your template. For us the important thing to know is that we have a template and we're passing a genus form variable into that template. In fact our template is called new.htmltwigg the real work is done here in this _form.htmltwigg. Here is our form template as it looks now.
+That's it! Refresh! This prints all the fields... but dang! What happened to my submit
+button!? The `form()` function renders *everything* in your form... but nothing else.
+If you like this function, you'll actually need to add a submit button as a field
+to your form. That's totally supported, but I like rendering my submit buttons by
+hand. So I like being lazy, but not this lazy.
 
-Once you've passed a form off into a template to render we have a bunch of built in functions, you see a lot of them here at form start and form row. Let's get a list of all of those functions by going to Symfony.com, documentation, and clicking into the reference section. There's a really important page here called twig template function and variable reference. This is going to give you a list of all the form rendering functions and the arguments that you can pass to them.
+## A Little Less Lazy
 
-Let's start as simple and lazy as possible, I'm going to copy this code because we're going to put this back in a second. The laziest way to render a form is by using the form function, and passing it your genus form variable. If you do that you're going to get all of your fields printed out. The only problem with this is notice I don't have a submit button anymore, you can configure a submit button in your form, but I don't really like doing that because I like rendering my submit button myself. That's why I don't use the form function.
+If you're feeling just *one* level less lazy, try this: start with `form_start(genusForm)`
+`form_end(genusForm)` and a submit button. Then, render all the fields with
+`form_errors(genusForm)` and `form_widget(genusForm)`.
 
-Next, if you're going to be a little bit less lazy, you can use the form_start genusform form_end genusform. To render all of the fields you just need form_errors genusform and form_widget genusform. Form_start builds the start tag obviously, and form_end builds the end form tag plus it also renders any fields that you didn't render. So if you forgot to render a field or if you had a hidden field and you were being lazy that will take care of that for you. Form_errors doesn't render the validation errors for your form exactly it renders any errors that aren't attached to a specific field. Usually when you have a validation error, the error will be on the specific field, but occasionally you might have some really custom error or you might have something mis-configured so instead of the error being attached to a specific field it's global to your whole form and that would show up here with form_errors.
+`form_start()` adds the starting form tag, but *with* the all-important
+`enctype="multipart/form-data"` attribute if your form has a file field. The
+`form_end()` function prints the closing form tag *plus* any fields that you forgot
+to render. That's handy for automatically printing out hidden fields.
 
-Finally when you call form_widget and pass it your entire form that just loops over all of your fields and renders them. This give us basically the same thing as we had before. If you look at the form reference this is basically all of the fields that we're going through right now.
+Next, this `form_errors()` is a little strange. Usually, when you have a validation
+error, it's for one specific field - like "Name is required". But occasionally, you
+might have an error that doesn't really belong to *one* field, but the form as a
+whole. This line prints out those rare, but possible, global form errors.
 
-The way that I like to render my forms is just the way that I had it originally. Which is with form_start, form_end and then every field rendered individually with form_row. Actually we should still have a form_errors genusform here which I had forgotten originally. Shame on me.
+Finally, if you call `form_widget()` and pass it your *entire* form, it loops over
+and prints each one.
 
-Every field like the name field or the subfamily field is actually three different parts. You have a label, a widget which is the actual element, and then validation errors if there are any. If left name blank for example, I'd get the validation error. Form_row renders all three of those parts at the same time and wraps it in whatever markup we want. Because we are using the bootstrap form theme which we'll talk about in a little while we get the nice error rendering when we render form_row. If you want to get more specific instead of rendering form_row you can just render form_label, form_widget and form_errors.
+If you look at the reference now, we've already covered *most* of the form functions.
 
-We're going to get basically the same thing, but notice the error styling is gone. Form_row used to wrap everything in a div and it got a special class when that field had an error, now you are just getting the three individual parts. Again I'm going to go back to form_row because when you use form_row for every field every field gets rendered in a really consistent way. By form themeing we can actually control how the form row is rendered. If we want form row to render in some different way we can actually make that change globally so that all of our form rows change instead of just making it in this one specific spot.
+## The Nice Middle ground: form_row
 
-Those are the basic form rendering functions and all of them are listed here and they are fairly simple. Now what's really interesting is that notice that all of these functions have an argument called view, which is actually form object that we are passing them and variables. Variables here, form row variables, and so on. Turns out when you want to get custom with rendering your form fields, turns out that these variables are the key.
+Now, I like to render my forms a bit different. Let me undo my changes. Between the
+form start and end tags, I usually render each field individually with `form_row`.
+Oh, and we *should* still have the global form errors line: `form_errors(genusForm)`.
+It's so rarely needed, I actually forgot to include it before. So... shame on me.
+
+In reality, each field - like `name` or `subFamily` - consists of *three* parts:
+the label, the widget - like an input field, textarea or select element, and the
+validation errors, if there are any. If you leave "Name" blank and submit, bam!
+Validation error.
+
+The `form_row()` function renders all three parts at the same time, *and* wraps them
+up in some markup that we can control. We'll talk soon about *how* to do that.
+
+## Getting Specific
+
+But, if you already need more control, you can skip `form_row()` and render the three
+pieces individually: `form_label()`, `form_widget()` and `form_errors()` - passing
+each the `genusForm.name` field.
+
+Refresh that! It's *almost* the same: the three parts are there, but the red error
+styling is gone. That makes sense: `form_row()` prints the three parts, but also
+surrounds them in some markup, which until now, was giving us some fancy error styling
+thanks to Bootstrap CSS.
+
+So let's switch *back* to using `form_row()` so that *every* field is rendered in
+a consistent way, *unless* you actually need to do something custom.
+
+So those are your brave and valiant form rendering functions. Each function's first
+argument is something called "view" - that's just the field - like `genusForm.name`.
+We call it a view, and you'll find out why later.
+
+But check *this* out! Most of these functions *also* have an argument called `variables`.
+I know, that's a *really* generic-sounding argument. But it turns out that when it
+comes to doing kicking butt with form rendering, these *variables* are the key.

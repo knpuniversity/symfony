@@ -25,11 +25,13 @@ tuts_hero:
     finish_step: start
 
 chapters:
-
+    render-functions-reference:
+        is_finished: false
+        video_key: ~
     form-rendering-functions:
         is_finished: false
         video_key: ~
-    form-variables:
+    i-heart-form-variables:
         is_finished: false
         video_key: ~
     pro-form-theming:
