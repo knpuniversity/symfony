@@ -69,4 +69,4 @@ We call it a view, and you'll find out why later.
 
 But check *this* out! Most of these functions *also* have an argument called `variables`.
 I know, that's a *really* generic-sounding argument. But it turns out that when it
-comes to doing kicking butt with form rendering, these *variables* are the key.
+comes to kicking butt with form rendering, these *variables* are the key.

@@ -1,21 +1,84 @@
-# Complex Blocks Parent Function
+# Complex Blocks & the parent() Function
 
-Right now, we're adding this glyph icon to every single field that has an error, but we just found out that we only really want to add this to input fields. I know that this is a text type, so maybe what we want to do is instead of having this logic here, we want to override the text_widget. We can add this there so it only affects text fields.
+We've just added an X glyphicon to *every* field that has an error... and then found
+out that we *really* only want to add this to input fields.
 
-Let's go into our form_[inaudible 00:00:39] for layout and let's look for text_widget. Guess what? We don't actually find it in here. That must mean that instead of text_widget it looks for form_widget. In fact, that block does exist.
+How can we do that? I know that this is a *text* type. So maybe, instead of adding
+the icon to `form_row`, we could override the `text_widget` block and add it there.
+That would *only* affect text fields.
 
-Now, check this out. Remember that compound variable we talked about where some fields are just single fields and some fields are actually apparent fields consisting of many sub-fields? In our form, all of our fields right now are simple. They're not compound. In other words, for a normal text field it gets down this else, this actually just says, "Go render this other block called form widget simple." It turns out if we want to override the text field, in fact, if we want to override any input fields because you can see this is the input tab, we use form widget simple.
+Go into `form_div_layout.html.twig` and look for `text_widget`. Woh! It's not here!
+That means Symfony must be using `form_widget`. This block *does* exist.
 
-Let's override this, but wait. First, I want to actually see if this was overwritten inside boot chapter layout. In fact, it was overwritten. This is the one that we want to copy and then paste and do our form theme template. Now inside these form theme templates you're going to see some of the craziest twig code that you'll see anywhere. If you look at this logic, it actually says, "If type is not defined, or file does not equal type then effectively add a new class attribute called form-control."
+Remember that `compound` variable I refused to explain. Here it is again! We normally
+think of a field as just, well, a field: like a text box, or a select element. But
+sometimes, a field is actually a collection of *sub-fields*. An easy example is Symfony's
+`DateType`, which by default renders as 3 select elements. In the case, the `DateType`
+is said to be *compound*: it's just a wrapper for its three child fields.
 
-The way it does that is it actually takes the existing ATTR array and then calls array merge on it and merges in this new class but then adds a space form control if there already is a class. Phew! It's a lot of heavy lifting sometimes to get a little bit of work done inside of these twig templates.
+In our form, all of our fields right are simple: so, *not* compound. This block
+function says:
 
-Without making any changes though, let's actually go over and refresh. It surprisingly doesn't work. Calling parent on a template that does not extend or use another template is forbidden. This is coming from down here on this parent thing. We understand that in normal twig templates, you can override blocks and then call the parent function which checks this out. This does not extend another twig template and we don't want it to. These two templates are a little bit different, but effectively what we do want to do is kind of call the form widget simple block from this parent template.
+> Hi! Go render this other block called `form_widget_simple`.
 
-This work before in the bootstrap template because of this use template. What this says is, don't actually extend this other template, but if I call parent, allow me to use the blocks inside that template. Again, these templates are just weird. This is what we want to do inside of our form theme.
+After following this, it turns out that if we want to override the text widget, you
+need to override `form_widget_simple`. In fact, *all* input fields - like the number
+field, search field or URL field - use this same block.
 
-Up top, we're going to say, "Use bootstrap 3_layout@html@twig. As soon as we do that, life is good. In fact, we don't have to have this logic anymore because we're calling the parent function, that's already going to be done inside of the parent block. After refresh that still looks good and still has the class.
+Ok, let's override it! But wait - check to see if it's in the Bootstrap layout first.
+It is! Copy this version, and paste into `_formTheme.html.twig`.
 
-Finally, we can move our logic. First of all, keep the show error icon because we do need to keep the haz feedback class on this outer element. I'm going to copy that variable and actually move it down here inside the if statements. It turns out that we probably also don't want to show the error icon on the file upload field, so we will actually set the show error icon=false and then if it's a file, not a file, then we will actually send it down here. I can do that all in one line but it would be super long and super ugly.
+## The Craziness of Twig in Form Themes
 
-Then we'll actually copy the if statement for the span and move it down here right after the parent call and that should do it. You see the error icon here, we don't see the error icon dropdown below it. Phew! Form demi is all about finding the correct format to override and then leveraging your variables and actually even modifying some variables.
+Now, check out this logic: form theme templates will have some of the *craziest*
+Twig code you'll ever see! In normal words, this says:
+
+> If type is not defined or file does not equal type, add a new `form-control` class.
+
+To make this happen, it uses the `attr` variable that we were playing with before
+and *merges* in the new class, adding a space in case there was already a class.
+
+## Stealing Parent Blocks with use
+
+Before *we* make any changes, go back and refresh. Woh! It doesn't work - that's
+surprising. The problem is this `parent()` call.
+
+We understand that in normal Twig templates, you can override blocks and use the
+`parent()` function. But check this out: our template does *not* extend any Twig
+template... and we don't want it to! For reasons that honestly aren't very important,
+a form theme template should never extends anything.
+
+But wait, then, how did this code work in the Bootstrap template? Go check it out:
+at the top, it has a `use` for `form_div_layout.html.twig`. This says:
+
+> I don't *actually* want to extend this other template. But, please allow me
+> to call the parent() function as *if* I were extending it.
+
+The `use` statement is an awesome Twig feature that allows you to just, grab and
+use random blocks from a different template. It's advanced, but now it's in your
+toolkit! Yeehaw!
+
+At the top of our template, `use 'bootstrap_3_layout.html.twig'`. And as soon as
+we do that, life is good.
+
+And actually, we don't need this logic anymore: that's done in the parent() block.
+If you refresh, everything still looks fine.
+
+## The Error Icon in the Widget
+
+Finally, we can move the icon to this block. First, keep that `showErrorIcon` variable:
+we need that to add the `has-feedback` class. But copy it and move it down into
+`form_widget_simple`, inside the `if` statement... because, it turns out, we probably
+also don't want to show the error icon if this is a file upload field. Above, set
+`showErrorIcon` to `false` by default.
+
+Finally. copy the span icon code, remove it, and paste it right *after* the parent
+call, to put this *after* the widget.
+
+That should do it! Resubmit the form! Got it! One fancy error icon on the name text
+field, and zero fancy error icons on the select field.
+
+In a nutshell, form theming means: (A) finding the right block to override and then
+(B) leveraging your variables to do cool things.
+
+Next, we'll add a missing feature to Symfony: field help text.

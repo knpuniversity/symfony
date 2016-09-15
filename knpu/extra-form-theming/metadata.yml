@@ -37,6 +37,9 @@ chapters:
     pro-form-theming:
         is_finished: false
         video_key: ~
+    form-theme-validation-icon:
+        is_finished: false
+        video_key: ~
     complex-blocks-parent-function:
         is_finished: false
         video_key: ~

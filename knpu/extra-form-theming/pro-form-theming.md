@@ -1,23 +1,75 @@
 # Pro Form Theming
 
-Remove that dump. Let's refresh to look at our nice, normal form. Here's my question. In our template all we have to do is call some nice form_row functions and magically we get a lot of markup. Where is this markup coming from? I mean somewhere in the core of symfony there must be some HTML that says what an input must look like or what a form row looks like or a form start looks like. The answer is in a file way deep dark in the corner of symfony called form_div_layout.html.twig.
+Remove the dump, then refresh to look at our nice, normal form. In the template,
+all we need to do is call `form_row()` and then - magically - a lot of markup is
+printed onto the page. So here's the million dollar question: where the heck is
+that markup coming from? I mean, *somewhere* deep in the core of Symfony, there must
+be a file that decides what the HTML for an `input` field is, or what markup to use
+when printing errors? So, where is that?
 
-Now this is one of the weirdest twig templates you'll ever see. It defines a bunch of blocks and if you look through these blocks you'll eventually find every little bit of markup that's ever used. What happens is when your form is rendered, it actually opens up this template and looks for very specific blocks and uses that content to render different parts. Whenever we're rendering a text area widget it looks for a block called textarea_widget and executes this code here to fill in that part of your form. It's a very nontraditional twig template. The whole thing isn't rendered. It's almost like a list of small functions each which render just a small part of the form. Now in reality not all of our markup's coming from here. In an earlier tutorial in config.yml under the twig key, we entered a form theme key here that said to also load markup from this file bootstrap_3_layout.html.twig. This also lives deep dark in the core heart of symfony.
+## The King of Form Markup: form_div_layout.html.twig
 
-The idea is that it actually overrides certain blocks. There's a form widget simple and apparent one but inside the bootstrap three layout it's overridden to add some extra classes to it. Between these two templates one hundred percent of our markup is for the form. Now here's the key. The names of the blocks end up being very, very important because remember there are three parts to every field. There is the label, the widget and the error. Every field has a type. For example we have the entity type, the choice type, and the name field is the text type. Here's how symfony's form works. When you are rendering a text type like the name, and you are rendering the widget then symfony looks for the block called text_widget. That's why inside of form div layout we find one called textarea_widget. Makes perfect sense.
+The answer: a *single* file that - indeed - lives in the deepest, darkest corners
+of Symfony. I'll use the Navigate->File shortcut to look for `form_div_layout.html.twig`.
 
-What about renaming label of a text area? Well you'd expect that to be textarea_label. Let's search name for textarea_label but there isn't one. It turns out that there's a bit of a hierarchy inside of these blocks. First symfony looks for textarea_label. If it finds that, it will use it. Otherwise, it'll look for form_label and use that. Form is actually the parent type for all different types, so ends up being the fall back. That makes sense because the label for a text area is not different from a label for any other field so in fact all labels are rendered in this block right here.
+Now, this is probably the *weirdest* Twig template you'll ever see. It defines a
+bunch of blocks that, together, define *every* little bit or markup that's used for
+*any* part of rendering a form.
 
-Another way to see that fall back mechanism is actually once again inside of your web profiler. Click the name property and go to the view variables. Every single one is going to have something called a block prefix. In fact this shows you that first it's going to look for text_widget or text_label or text_errors and if it doesn't find that it's going to fall back to form_label, form_widget, form_errors. In fact we won't talk about it but this one here overrides both of them. There is actually a way to override a single field in your form by using it's very specific name. In this case genus_form_name, but I don't do that very often.
+Here's how it works: when you render a part of your form, Symfony opens this template
+looks for a specific block, which varies depending on *what* you're rendering, and
+then renders that block to get that *one* little part of your form.
 
-Okay, with all that in mind, here's our goal. Look at bootstrap's forms area, under the validation section, they have a cool extra feature, that says when you have validation error, you can actually add a cute little icon. The way you do that is by adding a has feedback class to the entire div that surrounds the field and then you actually need to render the icon right down here with a form control feedback class. That's our goal.
+For example, when Symfony needs to render the *widget* for a `TextareaType` field,
+it looks for a block called `textarea_widget` and executes *just* its code. Symfony
+never renders this *whole* template at once, just each block, as it needs it. It's
+almost like a list of small functions, where each function, or block, renders just
+a small part of the form.
 
-To do that, we're going to need to override the block that renders our entire row because we're going to need to add the has feedback to the div that's around everything. Right now, that just has a form dash group on it, now it's going to need the has feedback if there's an error. Because we're rendering the row for all fields, we know it's going to be called form_row and there's the div right there. In reality this is actually overridden in our other template right here. All right, so how do we override this? Very simple. Copy it, then go into your templates directory and create a new template called _formTheme.html.twig. The name of that isn't important at all. Just to see if this is working let's add a class, cool class.
+## The Bootstramp Theme
 
-Now in order for symfony to see this, we need to go into config.yml and down here after bootstrap, we'll say _formTheme.html.twig, so because we put this after any blocks that we have in this template will override the ones in the bootstrap three template and the div layout template. Go back, refresh. Let's inspect the element and there is our cool class element right there. Very, very easy.
+But in reality, not all of *our* markup is coming from this one file. In an
+[earlier tutorial](http://knpuniversity.com/screencast/symfony-forms/render-form-bootstrap),
+we started using the Bootstrap form *theme*. Open `app/config/config.yml` and find
+the `twig.form_themes` key. By adding `bootstrap_3_layout.html.twig`, we told Symfony
+to *also* look at this template, which again, lives deep dark in the core, black
+heart of Symfony. I'm kidding - the core is cool.
 
-Here's where things get really interesting. We need to add a class but only if this field has a validation error. Well check this out. This block is using a couple variables like compound, force error invalid, so where are those coming from? Well it turns out that those are the same form variables that we had access to, that we are overriding inside of our child template. Inside of a form theme, these become local variables. I'm going to show you an example. If you just call dump with no arguments, that will dump all local variables. If you go back and refresh, now you have a big dump before every single field showing you all of the variables as local variables you have access to inside of your blocks. No matter which block you're overriding, you always have access to the same big array of variables. We can use this to only show our error icon when there's a validation error. Flush way our dump function and do that.
+This template *overrides* some blocks from `form_div_layout.html.twig`. This
+`form_widget_simple` block *overrides* the one from `form_div_layout.html.twig`,
+and adds an extra `form-control` class. 
 
-I'll set a new variable called show error icon and let's actually copy all of this logic right here. Now, most important thing here is that there is a variable called valid. If that's true, that's false, then there is a validation error. This compound thing, that is something we're going to talk about later. Actually we normally think of fields as just a single field, but sometimes a field as actually consists of multiple sub-fields and I'll show you that towards the end of the tutorial. Now over here, I'll use an inline if statement to say if show error icon then we'll add space has feedback, otherwise we'll do nothing. Down below right after the form widget, we'll do if show error icon then we'll add our glyph icon. Perfect. Let's go back. Refresh. You're not seeing it now because there's no validation errors. Let's take off the name field, submit, and that's beautiful.
+## Decrypting the Block Names
 
-You can totally delete this part. Now set the sub-family [inaudible 00:12:02] string. That shows up too and actually it highlights part of the problem. Over here because of this drop down icon, that looks a little funny and in fact if you read the bootstrap documentation, it basically tells you that this should only be added to text elements not everything. In fact we need to do a little bit more work so this doesn't show up everywhere. In fact it will start looking really, really funny with check boxes and other things. Let's do that next.
+But, there's a trick to these block names. There are three parts to every field:
+the label, the widget and the error. And, every field has a type, like the entity
+type, the choice type or - for the name field - a text type.
+
+To render the *widget* for a *text* type, Symfony looks for a block called `text_widget`.
+Or, to render the widget for a textarea type, Symfony uses `textarea_widget`, which
+looks exactly like we'd expect!
+
+What about rendering the *label* of a *textarea*? We'd expect this to be `textarea_label`.
+Let's find that. Ah, it's not in here! This is because the field types follow a
+*hierarchy*. First, Symfony looks for `textarea_label`. But if that's not there,
+it'll fallback to its parent type: text. So, `text_label`. And if *that* doesn't
+exist, it'll finally look for - and find - `form_label`. Form is the parent type
+for all fields.
+
+And this makes sense! The label for a textarea is not different from a label for
+any other field. So, *all* labels are rendered via this block.
+
+Another way to see this fallback mechanism is back in the web profiler. Click the
+`name` field and then find the "View Variables". Every field will have a variable
+called `block_prefixes`. *This* shows us the options: after trying `text_label`,
+`text_widget` or `text_errors` - depending on which part of the field we're rendering,
+it'll fallback to `form_label`, `form_widget` or `form_errors`.
+
+And actually, there's *also* a way to override the block for just *one* field in
+your *one* form, by giving it a very specific name. In this case, if you had an
+`label_genus_form_name` block, that would override the label for *only* the name
+field in this form. Pretty cool.
+
+With *all* this new fun in mind, let's extend this by creating our *own* form them.
+The goal: when a field has a validation error, add a cute icon before the message.
+Let's do it!
