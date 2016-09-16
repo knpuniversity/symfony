@@ -46,7 +46,13 @@ chapters:
     form-help-feature:
         is_finished: false
         video_key: ~
-    form-options-variables-finishview:
+    vars-merge-form-functions:
+        is_finished: false
+        video_key: ~
+    form-options-variables:
+        is_finished: false
+        video_key: ~
+    controlling-vars-with-finish-view:
         is_finished: false
         video_key: ~
     form-type-extension-magic:
