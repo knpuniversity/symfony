@@ -10,7 +10,7 @@ That would *only* affect text fields.
 Go into `form_div_layout.html.twig` and look for `text_widget`. Woh! It's not here!
 That means Symfony must be using `form_widget`. That block *does* exist.
 
-Remember that `compound` variable I refused to explain before. Well, gere it is again!
+Remember that `compound` variable I refused to explain before. Well, here it is again!
 We normally think of a field as just, well, a field: like a text box, or a select
 element. But sometimes, a field is actually a collection of *sub-fields*. An easy
 example is Symfony's `DateType`, which by default renders as 3 select elements for

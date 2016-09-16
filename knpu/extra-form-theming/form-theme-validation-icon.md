@@ -40,17 +40,17 @@ It turns out that these are the *same* form variables that we can override from
 the main, `_form.html.twig` template. Once you're inside of a form theme block, these
 become *local* variables.
 
-To see this in action, call `dump()` with no arguments, to print *all* the variables
-we can use.
+To see this in action, call `dump()` with no arguments. This will print *all* the
+variables we can use.
 
-Refresh thes page. Ah, now we have a big dump before *every* single field: revealing
+Refresh the page. Ah, now we have a big dump before *every* single field: revealing
 all of the variables we have access to. And it doesn't matter *which* block you're
 overriding: you always have access to this same, big group of variables. We can use
 these to only add that `has-feedback` class *if* there is an error.
 
 Remove the dump. Then, set a new variable called `showErrorIcon`. Copy *all* of the
 logic from the if statement below that controls whether or not the `has-error` class
-is added and paste it here. The most important variable is `valid`: if this is true,
+is added and paste it here. The most important variable is `valid`: if this is false,
 the field failed validation. Don't worry about the `compound` variable - we'll talk
 about that soon.
 
@@ -60,7 +60,7 @@ statement *after* printing the widget. Add a span with the necessary classes to 
 this an icon.
 
 Ok, time to try it. Refresh! There's nothing yet, but there also aren't any validation
-errors. Empty the name field and submit. Our Beautiful X!
+errors. Empty the name field and submit. Our beautiful X!
 
 But now, set the Subfamily field to "Select a Subfamily" and submit. Ok, the drop-down
 looks a little funny - the X is on top of the arrow. In fact, the Bootstrap docs

@@ -36,13 +36,13 @@ to *also* look at this template, which again, lives deep dark in the core, black
 heart of Symfony. I'm kidding - the core is cool.
 
 This template overrides some blocks from `form_div_layout.html.twig`. For example,
-`form_widget_simple` in the bootstrap templates *overrides* the other one. It and
+`form_widget_simple` in the bootstrap templates *overrides* the other one. It
 adds an extra `form-control` class.
 
 ## Decrypting the Block Names
 
 You see, there's a trick to these block names. There are three parts to every field:
-the label, the widget and the error. Well, *four* part if you also count the "row".
+the label, the widget and the error. Well, *four* parts if you also count the "row".
 
 And, every field has a type, like the entity type, the choice type or - for the name
 field - the text type.
@@ -57,7 +57,7 @@ First, Symfony looks for `textarea_label`. But if that's not there, it'll fallba
 to its parent type: text. So, `text_label`. And if *that* doesn't exist, it'll finally
 look for - and find - `form_label`. Form is the parent type for all fields.
 
-And this system makes sense! The label for a textarea is not different from a label
+And this system makes sense! The label for a textarea is no different from a label
 for any other field. So, *all* labels are rendered via this block.
 
 Another way to see this fallback mechanism is back in the web profiler. Click the
@@ -67,10 +67,10 @@ called `block_prefixes`. *This* shows us the options: after trying `text_label`,
 it'll fallback to `form_label`, `form_widget` or `form_errors`.
 
 And actually, there's *also* a way to override the block for just *one* field in
-your *one* form, by giving it a very specific name. In this case, if you had am
+your *one* form, by giving it a very specific name. In this case, if you had an
 `_genus_form_name_label` block, that would override the label for *only* the name
 field in this form. Pretty cool.
 
 With *all* this new fun stuff in mind, let's extend this by creating our *own* form
-them. The goal: when a field has a validation error, add a cute X icon inside the
+theme. The goal: when a field has a validation error, add a cute X icon inside the
 text field. Let's do it!
