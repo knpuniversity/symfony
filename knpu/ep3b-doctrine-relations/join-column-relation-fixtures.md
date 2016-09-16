@@ -54,6 +54,11 @@ database completely, re-create it, and re-migrate from the beginning:
 
 Phew! Now it works great.
 
+***TIP
+If you *still* get an error while running the migration, it's because
+of a MySQL change! Find the details here: http://bit.ly/migrations-tweak
+***
+
 ## Relations in Fixtures
 
 Last step! Our fixtures are broken: we need to associate each `GenusNote` with a
