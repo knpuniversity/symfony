@@ -1,7 +1,46 @@
-# Compound Embedded Forms
+# Compound & Embedded Forms
 
-Right now, this is a pretty simple field. We have our top level form, and then each field below it is its own "Form" object. We now know that when you pass this into the template, all of those "Form" objects become "FormView" objects, but it's still just 2 levels, the "FormView" object on top, and the children "FormView" objects for each field; but it can get more complicated than that. To show you, go into the "GenusFormType," and down on the "firstDiscoveredAt," comment out the "widget" and "attr" options. Now, without the "widget" option, when you refresh, the date comes as 3 different drop-down fields, which I know is ugly, but it's really good for showing of a point. Now, if you click into the [profiler 00:00:51] for the form, you see something even more interesting: "firstDiscoveredAt" has a "+" field.
+Right now, this is a pretty simple form. We have our top level form, and then
+each field below it is its own `Form` object. And we now know that when you pass
+this into the template, all of those `Form` objects become `FormView` objects.
 
-You see, "firstDiscoveredAt" is no longer a simple field, it's actually a field that consists of 3 subfields, "year," "month," and "day." Each of them is their own choice type. If you click on "firstDiscoveredAt," you'll also notice, under the "View Variables," that for the first time, a compound variable is set to "true." Now, we've seen that in a few places, but this is when "compound" is set to "true," when one field is actually not really its own field, it's just a holder, a parent, for subfields. In our template, when we call "form_row" on "genusForm.firstDiscoveredAt," what this actually does is it tries to render the parent field, sees that it consists of some subfields, and so, that calls "form_row" on each of those 3 subfields; and you end up with the whole nice structure.
+But this will still just be *2* levels: the `FormView` object on top, and the children
+`FormView` object for each field. But, it can get a lot more complicated than that.
 
-If you want to, now, you can actually call "form_row" on each of those 3 individual fields, so ".year," ".month," and ".day;" but you might still want to call form ... "form_label" on "genusForm.firstDiscoveredAt," then you should probably keep calling "form_errors;" because when there's a validation error on the "firstDiscoveredAt" field, it's actually attached to that node of the field, as you can see there; so you want to make sure that you render its errors. If you go back now and refresh, you see basically the same thing, so the styling is lost because we're taking a little more control over what we're doing, but this is totally valid.
+To show you, go into `GenusFormType`. For now, change the `firstDiscoveredAt` options:
+comment out `widget` and `attr`.
+
+Refresh this immediately. Ok, the `widget` option defaults to `choice`, which means
+that this renders as three select fields. I know, it's horribly ugly, hard to look
+at... but it's a perfect example! Click into the profiler for this form to see
+something *really* interesting. The `firstDiscoveredAt` has a "+" next to it...
+and three fields below it!
+
+## Compound Fields!
+
+You see, `firstDiscoveredAt` is no longer a "simple" field: it's now a field that
+consists of 3 sub-fields: `year`, `month`, and `day`. Each of these is their own
+`ChoiceType` field. Oh, and if you select `firstDiscoveredAt`, under "View Variables",
+for the first time, the `compound` variable is set to `true`.
+
+We saw this `compound` variable in a few places earlier. And now we know what it
+means! A field is `compound` if it's not really its own field, but is instead just
+a container for sub-fields.
+
+In the `_form.html.twig` template, when we call `form_row()` on
+`genusForm.firstDiscoveredAt`, Symfony tries to render the parent field, notices
+that it's `compound` and so, calls `form_row()` on each of its three sub-fields.
+The result is the nice output we're already seeing.
+
+## Rendering Sub-Fields
+
+To get more control, you could instead call `form_row` on each individual field:
+for `year`, `month` and `day`.
+
+But notice that if this field fails validation, the error is attached to the *parent*
+field. So you might want to keep rendering `form_label(genusForm.firstDiscoveredAt)`
+and you definitely want to keep rendering `form_errors(genusForm.firstDiscoveredAt)`,
+so that the error shows up.
+
+If you go back and refresh, you basically see the same thing as before. It's
+ugly, but you just learned how to take control of *any* level of a complex form tree.

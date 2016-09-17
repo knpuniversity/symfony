@@ -1,17 +1,86 @@
 # Rendering Fields Manually
 
-Finally, let me show you the Swiss Army knife of form rendering. That is to take 100 percent complete control over how you render your forms. For example, let's not render the year drop-down via any of the form functions in more. Let's just render this entirely by hand. We'll still render the label and we'll still render the errors, for the widget, let's just do that ourselves. What I literally mean is, let's make a select tag. Let's give it an ID.
+Finally, let's look at the Swiss Army knife of form rendering: instead of using the
+form-rendering functions, we'll build the field entirely by hand.
 
-This is where we're going to leverage our form variables. If you click down in the profilor again and you look at year, we have a lot of variables that we can use to render that field. In fact there's one called ID and there's another one called full_name, which would be the name attribute. We can literally say, select ID="{{ genusform.FirstDiscoveredAt.years.vars.ID "}} We'll do the same thing for name. Name="{{ genusform.FirstDiscoveredAt.years.vars.Full_Name "}}>
+For example, suppose we need to do something *crazy* with the "year" drop-down
+field. That's fine! We'll still render the label and errors normally, but let's
+handle the widget ourselves. Yep, I literally mean: create a `select` tag and
+start filling in the details.
 
-Now, what about the options that should be inside of there? These year drop downs are pretty silly but let's assume we want to actually print out the year drop downs that we pre-configured. Inside the profilor under year, those are also view variables. You can see that there is a view variable called choices, and that each choice is actually a choice view object. Which if you open inside of your editor, that's deep inside of symfony. You can see that choice view's just a very simple object that has a public label property, a public value property that we can use to print those out.
+The first detail is the `id` attribute. Every field has a unique id, which ties
+that field to its label. And this is where form variables help us out *big*.
 
-Let's say {\ for choice ingenusform.FirstDiscoveredAt.years.vars.choices \} In here we'll have an option whose value equals "{{choice which is that choice view. <option Value= "{{Choice.value}}" We also need to have a selected attribute, but only if this is the option that's currently selected. The way that we can figure that out is by comparing choice.value to the data key on the genusform year type. In other words we can do an inline If statement that says "{{ Choice.value == genusform.FirstDiscoveredAt.years.vars.data ? ' selected ' : }}" If that's true we will add a selected property, other wise we won't. Finally in the option we can use {{Choice.label}}
+## Referencing Field Variables Directly
 
-That is it. It's kind of crazy, and you shouldn't do it very often but if you get into a weird spot, leverage those form variables. This is probably one of the hardest examples. If you merge now you'll get an error because I wasn't being very careful. Not years but year. You can see down here it's not styled as well because we've taken control of it, but you can see the error and our drop down with the correct options. Cool?
+Go back into the Form tab of the web profiler and click the `year` field. There
+are a lot of variables, but there are a few that are *especially* important, like
+`id` and `full_name`, which normally becomes the `name` attribute.
 
-Perfect, except for this random property down here. That field is suddenly rendered after the button. What the heck is going on there? The last thing we call in our form is Form_End in Genusform and it renders the form closing tag. First it renders any field that we have not rendered. The main purpose of this is to render any hidden field we haven't rendered, because we don't really care about taking the time to render hidden fields. The problem is that since we went around the form framework, it looks like the widget for Genusform.FirstDiscoveredAt.year was never rendered. How do we tell it that it was rendered? By doing a very weird thing using a Twig tag called Do. Which simply calls a function and then say Genusforn.FirstDiscoveredAt.year.SetRendered and that's it.
+In your template, reference the `id` variable with:
+`genusForm.firstDiscoveredAt.year.vars.id`. Repeat that for the `name` attribute
+set to `genusForm.firstDiscoveredAt.year.vars.full_name`.
 
-Remember every form object on here is an instance of form view. If you look at that class, in addition to having a public Vars property which we're using, it also has a method called {{Set Rendered}} by calling it. We can basically say "Hey, we rendered this already." If we refresh now, it explodes, but that is because I am doing something. It's only because of my bad variable there. Now it works perfectly, no extra field down there. That's a lot of craziness, which since we didn't need it for this project. I'm going to delete and ultimately go back to just rendering the Genusfor.FirstDiscoveredAt field. Inside my Genusform type I'm going to make that a single text widget once again.
+Now that we understand the `FormView` tree and how variables are stored, this actually
+makes sense.
 
-Make sure you remove all of the extra stuff. Just because we have all the power to make things look crazy, doesn't mean we need to. This was the most beautiful way to render this field. If there is something that you can think of that you still don't know how to do, let me know. I hope you guys are feeling really, really powerful with form theming. There is nothing that can stop you. If you have any questions, let me know in the comments. All right guys, see you next time.
+## Printing the Options
+
+Next, what about the options that should go inside the `select` tag? Head back to
+the web profiler to see which variable might help us. Ah, here's one called
+`choices`, and each item is a `ChoiceView` object. Use the Shift+Shift shortcut
+to open *that* file from Symfony.
+
+Cool! Each `ChoiceView` is a simple object, with a public `label` property and a
+public `value` property. That's exactly what we need.
+
+Add a loop: `for choice in genusForm.firstDiscoveredAt.year.vars.choices`. Inside,
+add `<option value="">` then print `choice.value`.
+    
+We also need to know if this option should be currently selected. We can do that
+by comparing the value to the `data` variable that's attached to the `year` field.
+Why not do this in one big giant line: `choice.value == genusForm.firstDiscoveredAt.year.vars.data`.
+Wow. Then, `? ' selected'` or empty quotes.
+
+Finally, for the option text, use `choice.label`.
+
+That's it! Go back to your browser, then refresh. Ah, error!
+
+That's me being careless: the sub-field is called `year`, not `years`. Refresh again.
+
+It works! It's not styled because we've taken complete control or rendering it. But
+you *can* see the errors, and the options look correct. Cool!
+
+## Marking Fields as Rendered
+
+So, we're done! Wait... except for this random field at the bottom of my form. What
+the heck!? That's my year field! What's going on?
+
+See that `form_end()` at the bottom of our form? Remember how it renders *any* field
+that we forgot to render? Well, now it thinks that *we* forgot to render the `year`
+field. The nerve!
+
+So, could we just *tell* it that the field *was* actually rendered? Yep, and the
+code is both simple and strange. Use a rare *do* tag from Twig and say
+`genusForm.firstDiscoveredAt.year.setRendered()`.
+
+Whaaaat? Well, every field is a `FormView` object. And if you option that class,
+it has a `setRendered()` method! And by calling it, we're saying:
+
+> Yo, we rendered this already. So, you know, don't try to render it again.
+
+Refresh now! Whoops! Another Ryan mistake - make sure your variable is `genusForm`,
+not `genus`. *Now* that extra field is gone.
+
+## Wrap it Up!
+
+Congrats team: you have the power to render your forms in whatever crazy, insane,
+creative way you want! But with power, comes great responsibility. I'll delete all
+the code we just added and go back to simply rendering `genusForm.firstDiscoveredAt`.
+Don't use your new skills unless you actually need to.
+
+Ok guys, that's it! If you still have some questions, or want to tell me about
+something really cool you did, or share vacation photos, whatever, you can do it
+in the comments - it's always great to hear from you.
+
+All right guys, see you next time.

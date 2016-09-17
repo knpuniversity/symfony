@@ -38,7 +38,7 @@ Yep, that's it. This says:
 When you use `default`, you can either pass it a default value - like we did above -
 or let it use `null`, which is cool for us.
 
-Try this! Suhweet
+Try this! Suhweet!
 
 Next, we'll do a bit more work to make our forms friendly for screen readers. Pulling
 this off gets *really* interesting.

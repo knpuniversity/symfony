@@ -43,7 +43,7 @@ help you find the right value.
 
 ## The label Option versus Variable
 
-Let's do an example. In the form, we add a `subFamily` field. Then, in the template,
+Let's see an example. In the form, we add a `subFamily` field. Then, in the template,
 we override the `label` variable. But, according to `BaseType`, this field, well
 *any* field, also has a `label` *option*.
 
@@ -60,7 +60,7 @@ themselves are *also* `Form` objects. When you call `createView()`, all of the `
 objects are transformed into `FormView` objects. 
 
 To do that, the `buildView()` method is called on each individual field. And one
-of the arguments to `buildView()` is an array of the finaly*options* passed to
+of the arguments to `buildView()` is an array of the final *options* passed to
 this field. For example, for `subFamily`, we're passing three options. We could
 also pass a `label` option here.
 
