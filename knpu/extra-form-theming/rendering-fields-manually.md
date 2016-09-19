@@ -48,7 +48,7 @@ That's it! Go back to your browser, then refresh. Ah, error!
 
 That's me being careless: the sub-field is called `year`, not `years`. Refresh again.
 
-It works! It's not styled because we've taken complete control or rendering it. But
+It works! It's not styled because we've taken complete control of rendering it. But
 you *can* see the errors, and the options look correct. Cool!
 
 ## Marking Fields as Rendered
@@ -64,7 +64,7 @@ So, could we just *tell* it that the field *was* actually rendered? Yep, and the
 code is both simple and strange. Use a rare *do* tag from Twig and say
 `genusForm.firstDiscoveredAt.year.setRendered()`.
 
-Whaaaat? Well, every field is a `FormView` object. And if you option that class,
+Whaaaat? Well, every field is a `FormView` object. And if you open that class,
 it has a `setRendered()` method! And by calling it, we're saying:
 
 > Yo, we rendered this already. So, you know, don't try to render it again.

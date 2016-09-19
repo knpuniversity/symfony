@@ -48,8 +48,8 @@ select `buildView()`. When we're done setting things up, whenever *any* field is
 transformed into a `FormView` object, this method will be called and *we* will be
 able to add variables to anything!
 
-Try it: add `$view` - which represents whatever one field is being setup - `$view->vars`
-set to `TURTLES`!
+Try it: add `$view` - which represents whatever one field is being setup -
+`$view->vars['help']` set to `TURTLES`!
 
 That's a ridiculous, and yet, fully-functional type extension.
 
