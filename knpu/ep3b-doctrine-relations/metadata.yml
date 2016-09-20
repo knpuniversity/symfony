@@ -34,7 +34,7 @@ chapters:
     save-relation:
         video_key: 160164728
     join-column-relation-fixtures:
-        video_key: 160163887        
+        video_key: 183414496        
     param-conversion:
         video_key: 160164929
     one-to-many:
