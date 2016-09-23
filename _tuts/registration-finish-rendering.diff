@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/security/login.html.twig b/app/Resources/views/security/login.html.twig
-index 525ee7c..9d082fd 100644
+index 525ee7c..f38dea1 100644
 --- a/app/Resources/views/security/login.html.twig
 +++ b/app/Resources/views/security/login.html.twig
 @@ -16,6 +16,8 @@
@@ -7,7 +7,7 @@ index 525ee7c..9d082fd 100644
                  {{ form_row(form._password) }}
                  <button type="submit" class="btn btn-success">Login <span class="fa fa-lock"></span></button>
 +                &nbsp;
-+                <a href="{{ path('user_register') }}">I already have an account</a>
++                <a href="{{ path('user_register') }}">Register</a>
              {{ form_end(form) }}
          </div>
      </div>
