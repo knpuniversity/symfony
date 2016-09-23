@@ -1,0 +1,54 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 0c54c55..1067689 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -17,6 +17,21 @@
+                 <dd>{{ genus.funFact|markdownify }}</dd>
+                 <dt>Recent Notes</dt>
+                 <dd>{{ recentNoteCount }}</dd>
++
++                <dt>Lead Scientists</dt>
++                <dd>
++                    <ul class="list-group">
++                        {% for scientistUser in genus.scientistUsers %}
++                            <li class="list-group-item">
++                                <a href="{{ path('user_show', {
++                                    'id': scientistUser.id
++                                }) }}">
++                                    {{ scientistUser.fullName }}
++                                </a>
++                            </li>
++                        {% endfor %}
++                    </ul>
++                </dd>
+             </dl>
+         </div>
+     </div>
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 019d522..5bb1e59 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -162,4 +162,9 @@ class Genus
+ 
+         $this->scientistUsers[] = $user;
+     }
++
++    public function getScientistUsers()
++    {
++        return $this->scientistUsers;
++    }
+ }
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 0f557c3..74dce4e 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -194,4 +194,9 @@ class User implements UserInterface
+     {
+         $this->universityName = $universityName;
+     }
++
++    public function getFullName()
++    {
++        return trim($this->getFirstName().' '.$this->getLastName());
++    }
+ }

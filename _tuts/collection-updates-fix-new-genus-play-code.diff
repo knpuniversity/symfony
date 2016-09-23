@@ -1,0 +1,73 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index e836d34..8aa9436 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -18,10 +18,16 @@ class GenusController extends Controller
+      */
+     public function newAction()
+     {
++        $em = $this->getDoctrine()->getManager();
++
++        $subFamily = $em->getRepository('AppBundle:SubFamily')
++            ->findAny();
++
+         $genus = new Genus();
+-        $genus->setName('Octopus'.rand(1, 100));
+-        $genus->setSubFamily('Octopodinae');
++        $genus->setName('Octopus'.rand(1, 10000));
++        $genus->setSubFamily($subFamily);
+         $genus->setSpeciesCount(rand(100, 99999));
++        $genus->setFirstDiscoveredAt(new \DateTime('50 years'));
+ 
+         $genusNote = new GenusNote();
+         $genusNote->setUsername('AquaWeaver');
+@@ -30,12 +36,15 @@ class GenusController extends Controller
+         $genusNote->setCreatedAt(new \DateTime('-1 month'));
+         $genusNote->setGenus($genus);
+ 
+-        $em = $this->getDoctrine()->getManager();
+         $em->persist($genus);
+         $em->persist($genusNote);
+         $em->flush();
+ 
+-        return new Response('<html><body>Genus created!</body></html>');
++        return new Response(sprintf(
++            '<html><body>Genus created! <a href="%s">%s</a></body></html>',
++            $this->generateUrl('genus_show', ['genusName' => $genus->getName()]),
++            $genus->getName()
++        ));
+     }
+ 
+     /**
+diff --git a/src/AppBundle/Repository/SubFamilyRepository.php b/src/AppBundle/Repository/SubFamilyRepository.php
+index f805ef7..de614c4 100644
+--- a/src/AppBundle/Repository/SubFamilyRepository.php
++++ b/src/AppBundle/Repository/SubFamilyRepository.php
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Repository;
+ 
+ use AppBundle\Entity\Genus;
++use AppBundle\Entity\SubFamily;
+ use Doctrine\ORM\EntityRepository;
+ 
+ class SubFamilyRepository extends EntityRepository
+@@ -12,4 +13,19 @@ class SubFamilyRepository extends EntityRepository
+         return $this->createQueryBuilder('sub_family')
+             ->orderBy('sub_family.name', 'ASC');
+     }
++
++    /**
++     * Helper method to return ANY SubFamily.
++     *
++     * This is mostly useful when playing and testing things.
++     *
++     * @return SubFamily
++     */
++    public function findAny()
++    {
++        return $this->createQueryBuilder('sub_family')
++            ->setMaxResults(1)
++            ->getQuery()
++            ->getOneOrNullResult();
++    }
+ }

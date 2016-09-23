@@ -1,0 +1,46 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 1067689..c4cbcb3 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -28,6 +28,11 @@
+                                 }) }}">
+                                     {{ scientistUser.fullName }}
+                                 </a>
++
++                                <a href="#"
++                                   class="btn btn-link btn-xs pull-right js-remove-scientist-user">
++                                    <span class="fa fa-close"></span>
++                                </a>
+                             </li>
+                         {% endfor %}
+                     </ul>
+@@ -53,4 +58,12 @@
+           document.getElementById('js-notes-wrapper')
+         );
+     </script>
++
++    <script>
++        jQuery(document).ready(function() {
++            $('.js-remove-scientist-user').on('click', function(e) {
++                e.preventDefault();
++            });
++        });
++    </script>
+ {% endblock %}
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index c22e7c8..50f3643 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -121,4 +121,12 @@ class GenusController extends Controller
+ 
+         return new JsonResponse($data);
+     }
++
++    /**
++     * @Route("/genus/{genusName}/scientists/{scientistId}", name="genus_scientists_remove")
++     * @Method("DELETE")
++     */
++    public function removeScientistUserAction($genusName, $scientistId)
++    {
++    }
+ }

@@ -1,0 +1,60 @@
+diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
+new file mode 100644
+index 0000000..a6644ca
+--- /dev/null
++++ b/app/Resources/views/user/show.html.twig
+@@ -0,0 +1,34 @@
++{% extends 'base.html.twig' %}
++
++{% block body %}
++    <div class="container">
++        <div class="row">
++            <div class="col-xs-8">
++                <h1>
++                    {% if user.fullName %}
++                        {{ user.fullName }}
++                    {% else %}
++                        {{ user.email }}
++                    {% endif %}
++                </h1>
++
++                <table class="table">
++                    <tbody>
++                    <tr>
++                        <th>Name</th>
++                        <td>{{ user.fullName|default('-') }}</td>
++                    </tr>
++                    <tr>
++                        <th>Email</th>
++                        <td>{{ user.email }}</td>
++                    </tr>
++                    <tr>
++                        <th>University</th>
++                        <td>{{ user.universityName|default('-') }}</td>
++                    </tr>
++                    </tbody>
++                </table>
++            </div>
++        </div>
++    </div>
++{% endblock %}
+diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
+index 7b8a18c..e3d8ecf 100644
+--- a/src/AppBundle/Controller/UserController.php
++++ b/src/AppBundle/Controller/UserController.php
+@@ -40,4 +40,15 @@ class UserController extends Controller
+             'form' => $form->createView()
+         ]);
+     }
++
++    /**
++     * @Route("/users/{id}", name="user_show")
++     */
++    public function showAction(User $user)
++    {
++        return $this->render('user/show.html.twig', array(
++            'user' => $user
++        ));
++
++    }
+ }

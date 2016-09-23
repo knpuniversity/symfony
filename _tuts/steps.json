@@ -984,7 +984,72 @@
             "id": "cleanup-going-back-to-nice-date-field",
             "name": "Cleanup: Going back to nice date field",
             "description": null
+        },
+        {
+            "id": "collection-updates-add-more-user-fields",
+            "name": "Collection Updates: Add more User Fields",
+            "description": null
+        },
+        {
+            "id": "collection-updates-add-user-show-page",
+            "name": "Collection Updates: Add user show page",
+            "description": null
+        },
+        {
+            "id": "collection-updates-fix-new-genus-play-code",
+            "name": "Collection Updates: Fix new genus play code",
+            "description": null
+        },
+        {
+            "id": "manytomany-create-from-genus-to-user",
+            "name": "ManyToMany: Create from Genus to User",
+            "description": null
+        },
+        {
+            "id": "manytomany-add-jointable",
+            "name": "ManyToMany: Add JoinTable",
+            "description": null
+        },
+        {
+            "id": "manytomany-manually-add-user-to-relation",
+            "name": "ManyToMany: Manually add User to relation",
+            "description": null
+        },
+        {
+            "id": "manytomany-optional-jointable",
+            "name": "ManyToMany: Optional JoinTable",
+            "description": null
+        },
+        {
+            "id": "manytomany-prevent-duplicates",
+            "name": "ManyToMany: Prevent duplicates",
+            "description": null
+        },
+        {
+            "id": "manytomany-use-collection-to-print",
+            "name": "ManyToMany: Use collection to print",
+            "description": null
+        },
+        {
+            "id": "manytomany-add-phpdoc-on-getter",
+            "name": "ManyToMany: Add phpdoc on getter",
+            "description": null
+        },
+        {
+            "id": "manytomany-setup-inverse-side",
+            "name": "ManyToMany: Setup inverse side",
+            "description": null
+        },
+        {
+            "id": "remove-add-link-to-remove-user-from-genus",
+            "name": "Remove: Add link to remove User from Genus",
+            "description": null
+        },
+        {
+            "id": "remove-execute-removal",
+            "name": "Remove: Execute removal",
+            "description": null
         }
     ],
-    "sha": "ecfa1de7f2e09616e8d568b24722c743d55ef4f7"
+    "sha": "daecb966236cc294a510b0ec2067e37790d63af2"
 }
