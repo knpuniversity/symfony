@@ -21,7 +21,7 @@ to match property names inside of your class:
 
 [[[ code('15f835e4fb') ]]]
 
-Actually, that's *kind of* lie. These properties are private, so the form component
+Actually, that's *kind of* a lie. These properties are private, so the form component
 *can't* set them directly. In reality, it guesses a setter function for each field and
 call that: `setName()`, `setSpeciesCount()` and `setFunFact()`:
 
