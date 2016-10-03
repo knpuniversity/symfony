@@ -48,7 +48,7 @@ object-oriented strategies that exist anywhere... in any language! And it's this
 you should take chunks of code that do things and move them into an outside function
 in an outside class. That's it.
 
-Oh, and guess what? `MarkdownTransform` is a *service*. Because remember, a service
+Oh, and guess what? `MarkdownTransformer` is a *service*. Because remember, a service
 is just a class that does work for us. And when you isolate a *lot* of your code
 into these service classes, you start to build what's called a "service-oriented architecture".
 OooOOoooOOOo. That basically means that instead of having *all* of your code in big
