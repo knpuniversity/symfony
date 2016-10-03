@@ -65,5 +65,5 @@ Try it out!
 
 It's alive! Twig is escaping the `<p>` tag - but that proves that markdown parsing
 *is* happening. The process we just did is dependency injection. It basically says:
-if an object needs something, you should pass it to that object. It's really programming
-101. But if it still feels weird, you'll see a lot more of it.
+if an object needs something, you should pass it to that object. It's really programming 101.
+But if it still feels weird, you'll see a lot more of it.
