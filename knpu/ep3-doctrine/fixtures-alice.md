@@ -22,7 +22,7 @@ name with `1..10`:
 With this syntax, Alice will loop over and create *10* Genus objects for free. Boom!
 
 To finish things, set values on each of the Genus properties: `name: <name()>`. You
-could just put any value here, but when use `<>`, you're calling a built-in *Faker*
+could just put any value here, but when using `<>`, you're calling a built-in *Faker*
 function. Next, use `subFamily: <text(20)>` to generate 20 characters of random text,
 `speciesCount: <numberBetween(100, 100000)>` and `funFact: <sentence()>`:
 
