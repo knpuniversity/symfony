@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 8dc398c..6f10991 100644
+index 8dc398c..2e4ee54 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -2,6 +2,7 @@
@@ -14,7 +14,7 @@ index 8dc398c..6f10991 100644
  /**
   * @ORM\Entity
   * @ORM\Table(name="user")
-+ * @UniqueEntity(fields={"email"}, message="It looks like your already have an account!")
++ * @UniqueEntity(fields={"email"}, message="It looks like you already have an account!")
   */
  class User implements UserInterface
  {

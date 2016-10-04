@@ -56,7 +56,7 @@ index a5444e5..fdebb95 100644
 +        universityName: <company()> University
 +        avatarUri: <imageUrl(100, 100, 'abstract')>
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 593cce0..0f557c3 100644
+index 0c4138b..1b53142 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -49,6 +49,36 @@ class User implements UserInterface
