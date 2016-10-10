@@ -1,6 +1,8 @@
-"name": "symfony/knpUniversity",
-"license": "MIT",
-"type": "project",
-"description": "The \"Symfony Standard Edition\" distribution"
+{
+    "name": "symfony/knpUniversity",
+    "license": "MIT",
+    "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution"
+}
 
     
