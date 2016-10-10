@@ -26,14 +26,11 @@ tuts_hero:
 
 chapters:
     render-functions-reference:
-        is_finished: false
-        video_key: ~
+        video_key: 186309990
     form-rendering-functions:
-        is_finished: false
-        video_key: ~
+        video_key: 186311658
     i-heart-form-variables:
-        is_finished: false
-        video_key: ~
+        video_key: 186312597
     pro-form-theming:
         is_finished: false
         video_key: ~
