@@ -91,8 +91,11 @@ for a field: dump them!
 
 When we write `genusForm.subFamily`, this is actually an instance of an object
 called `FormView`. A `FormView` object doesn't really have much information on it,
-*except* for a public `vars` property that holds all of its variables. Print them
-with `dump(genusForm.subFamily.vars)`:
+*except* for a public `$vars` property that holds all of its variables:
+
+[[[ code('49dd8d327a') ]]]
+
+Print them with `dump(genusForm.subFamily.vars)`:
 
 [[[ code('d7009bf568') ]]]
 
