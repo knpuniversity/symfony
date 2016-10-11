@@ -26,10 +26,13 @@ tuts_hero:
 chapters:
     render-functions-reference:
         video_key: 186309990
+        is_free: true
     form-rendering-functions:
         video_key: 186311658
+        is_free: true
     i-heart-form-variables:
         video_key: 186312597
+        is_free: true
     pro-form-theming:
         is_finished: false
         video_key: ~
