@@ -20,9 +20,8 @@ summary: |
 illustration: symfony-extra-form-theming.png
 
 tuts_hero:
-# todo - fill in the steps properly
-#    start_step: start
-    finish_step: start
+    start_step: 'Registration: Auto-login'
+    finish_step: 'Remove: Execute removal'
 
 chapters:
     render-functions-reference:
