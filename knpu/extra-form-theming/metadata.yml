@@ -34,11 +34,9 @@ chapters:
         video_key: 186312597
         is_free: true
     pro-form-theming:
-        is_finished: false
-        video_key: ~
+        video_key: 187066610
     form-theme-validation-icon:
-        is_finished: false
-        video_key: ~
+        video_key: 187066631
     complex-blocks-parent-function:
         is_finished: false
         video_key: ~
