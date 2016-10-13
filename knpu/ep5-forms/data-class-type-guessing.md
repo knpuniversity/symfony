@@ -7,6 +7,16 @@ Pass that an array with a single key called `data_class` set to `AppBundle\Entit
 
 Do *nothing* else: refresh to re-submit the form.
 
+***TIP
+You can also use a newer syntax in PHP for this:
+
+```php
+'data_class' => Genus::class
+```
+
+Most editors will auto-complete this for you!
+***
+
 Boom! Now we have a brand-new `Genus` object that's just waiting to be saved. Thanks
 to the `data_class` option, the form creates a new `Genus` object behind the scenes.
 And then it sets the data on it.
