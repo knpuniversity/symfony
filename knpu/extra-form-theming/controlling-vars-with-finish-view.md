@@ -1,4 +1,4 @@
-# Controller Variables with finishView
+# Controlling Vars with finishView
 
 Question: can we control form *view* variables directly from inside `GenusFormType`?
 Of course! Use the Code->Generate menu, or Command+N on a Mac, click "Override Methods"
