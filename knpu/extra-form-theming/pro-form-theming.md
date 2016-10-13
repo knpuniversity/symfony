@@ -94,4 +94,4 @@ theme. The goal: when a field has a validation error, add a cute "X" icon inside
 text field. Let's do it!
 
 
-[symfony_forms]: [http://knpuniversity.com/screencast/symfony-forms/render-form-bootstrap]
+[symfony_forms]: http://knpuniversity.com/screencast/symfony-forms/render-form-bootstrap
