@@ -16,7 +16,7 @@ details there. The last step will be open a terminal, move into the project dire
 mine is called `aqua_note` - and then start the built-in PHP web server with:
 
 ```bash
-php bin/console server:run
+bin/console server:run
 ```
 
 Find a browser and pull up the address - `http://localhost:8000` - to find our awesome
@@ -32,12 +32,23 @@ form!
 
 ## Form Type Basics
 
-And so far, our form has all the parts you'd expect: a form class: `GenusFormType`
-and a controller that builds the form and passes it into the template. This gives
-us a `genusForm` variable inside of `new.html.twig`.
+And so far, our form has all the parts you'd expect: a form class: `GenusFormType`:
 
-But the real work is done via an included template: `_form.html.twig`. Let's start
-there.
+[[[ code('59e84c0f6d') ]]]
+
+And a controller that builds the form and passes it into the template:
+
+[[[[ code('0636f11419') ]]]]
+
+This gives us a `genusForm` variable inside of `new.html.twig`:
+
+[[[ code('bd0137bb0e') ]]]
+
+But the real work is done via an included template: `_form.html.twig`:
+
+[[[ code('86744e6ab7') ]]]
+
+Let's start there.
 
 ## The Form Rendering Functions
 
@@ -45,7 +56,10 @@ The `genusForm` variable is an *object*, but you can't just print it. Instead, S
 gives us a bunch of form *functions*: each renders a different part of the form.
 
 To get all the deets, head to Symfony.com. Click into the Documentation and then
-find the Reference section. This holds a *wonderful* page called
-[Twig Template Function and Variable Reference](http://symfony.com/doc/current/reference/forms/twig_reference.html).
-This lists all the functions we'll be using *and* their arguments. Let's dive into
-these... and then, extend the heck out of them.
+find the Reference section. This holds a *wonderful* page called [Twig Template
+Function and Variable Reference][twig_reference]. This lists all the functions
+we'll be using *and* their arguments. Let's dive into these... and then, extend
+the heck out of them.
+
+
+[twig_reference]: http://symfony.com/doc/current/reference/forms/twig_reference.html

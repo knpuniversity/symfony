@@ -10,7 +10,9 @@ Apparently, it's an array, and one variable you can pass is called `label`. So i
 you want to override a field's label, one way is with variables.
 
 Give that a try with the `subFamily` field: add a second argument - a Twig array
-or hash - and say `label` set to `Taxonomic Subfamily`.
+or hash - and say `label` set to `Taxonomic Subfamily`:
+
+[[[ code('ccc9b494b7') ]]]
 
 Try that - refresh! Okay, that's cool.
 
@@ -20,7 +22,9 @@ So what *else* can we do with these variables? It also turns out that every fiel
 has a variable called `attr`, which is itself, an array. These are attributes that
 you want set on the widget, meaning the actual field itself.
 
-So, you can give your field a class `foo`, or set `disabled` to `disabled`.
+So, you can give your field a class `foo`, or set `disabled` to `disabled`:
+
+[[[ code('cdcba1f991') ]]]
 
 Try that out. Perfect! The field is disabled and if you dig a little, there's the
 `foo` class.
@@ -43,7 +47,9 @@ This gives you access to the `id` attribute, the `name` attribute, the `label` w
 just overrode and even a way to add an attribute to your label element! Heck there's
 even a variable called `disabled`: we can just use that instead of setting the attribute.
 
-Remove the `disabled` attribute, and then set `disabled` to `true`.
+Remove the `disabled` attribute, and then set `disabled` to `true`:
+
+[[[ code('1dd197650e') ]]]
 
 That'll have the same effect: the field is still disabled.
 
@@ -55,9 +61,14 @@ Then, refresh. There it is! The `placeholder` is the option that appears at the
 *top* of the `select` element.
 
 Why is this set to "Choose a Sub Family"? Because that's what *we* passed as the
-`placeholder` *option* when we configured the field.
+`placeholder` *option* when we configured the field:
 
-Back in the template, override the variable, set `placeholder` to `Select a Subfamily`.
+[[[ code('773850a5b0') ]]]
+
+Back in the template, override the variable, set `placeholder` to `Select a Subfamily`:
+
+[[[ code('ad285f74f6') ]]]
+
 So, which will win? The `placeholder` option, or the `placeholder` variable? Let's
 find out! Refresh!
 
@@ -80,8 +91,13 @@ for a field: dump them!
 
 When we write `genusForm.subFamily`, this is actually an instance of an object
 called `FormView`. A `FormView` object doesn't really have much information on it,
-*except* for a public `vars` property that holds all of its variables. Print them
-with `dump(genusForm.subFamily.vars)`.
+*except* for a public `$vars` property that holds all of its variables:
+
+[[[ code('49dd8d327a') ]]]
+
+Print them with `dump(genusForm.subFamily.vars)`:
+
+[[[ code('d7009bf568') ]]]
 
 Head back, refresh, and boom! Check out this beautiful list. This will become even
 more important later. Ok, let's talk about form theming.
