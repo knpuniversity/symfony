@@ -7,7 +7,7 @@ index 7c7d421..49eff51 100644
 -    {{ dump() }}
 -    <div class="form-group cool-class{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
 +    {% set showErrorIcon = (not compound or force_error|default(false)) and not valid %}
-+    <div class="form-group {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}{{ showErrorIcon ? ' has-feedback' : '' }}">
++    <div class="form-group {{ showErrorIcon ? ' has-error has-feedback' }}">
          {{- form_label(form) -}}
          {{- form_widget(form) -}}
 +        {% if showErrorIcon %}
