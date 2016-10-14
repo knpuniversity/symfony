@@ -42,17 +42,13 @@ chapters:
     form-help-feature:
         video_key: 187262930
     vars-merge-form-functions:
-        is_finished: false
-        video_key: ~
+        video_key: 187369306
     form-options-variables:
-        is_finished: false
-        video_key: ~
+        video_key: 187369306
     controlling-vars-with-finish-view:
-        is_finished: false
-        video_key: ~
+        video_key: 187368669
     form-type-extension-magic:
-        is_finished: false
-        video_key: ~
+        video_key: 187371076
     compound-embedded-forms:
         is_finished: false
         video_key: ~
