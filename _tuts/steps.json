@@ -1016,11 +1016,6 @@
             "description": null
         },
         {
-            "id": "manytomany-optional-jointable",
-            "name": "ManyToMany: Optional JoinTable",
-            "description": null
-        },
-        {
             "id": "manytomany-prevent-duplicates",
             "name": "ManyToMany: Prevent duplicates",
             "description": null
