@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 8aa9436..0e53ab9 100644
+index 8aa9436..08b458f 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -36,6 +36,10 @@ class GenusController extends Controller
@@ -8,13 +8,13 @@ index 8aa9436..0e53ab9 100644
  
 +        $user = $em->getRepository('AppBundle:User')
 +            ->findOneBy(['email' => 'aquanaut1@example.org']);
-+        $genus->addScientistUser($user);
++        $genus->addGenusScientist($user);
 +
          $em->persist($genus);
          $em->persist($genusNote);
          $em->flush();
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index bab0776..7d13945 100644
+index 51cabe8..5568fe7 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -153,4 +153,9 @@ class Genus
@@ -22,8 +22,8 @@ index bab0776..7d13945 100644
          $this->firstDiscoveredAt = $firstDiscoveredAt;
      }
 +
-+    public function addScientistUser(User $user)
++    public function addGenusScientist(User $user)
 +    {
-+        $this->scientistUsers[] = $user;
++        $this->genusScientists[] = $user;
 +    }
  }

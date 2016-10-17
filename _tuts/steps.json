@@ -1119,7 +1119,12 @@
             "id": "inverse-form-fixing-infinite-loop",
             "name": "Inverse Form: Fixing infinite loop",
             "description": null
+        },
+        {
+            "id": "join-entity-add-genusscientist",
+            "name": "Join Entity: Add GenusScientist",
+            "description": null
         }
     ],
-    "sha": "71ba9ebde5bfa9e2333a8492e894212fb22f6cce"
+    "sha": "0c8b706cee7d0b93c0fb8121315e009efcbadfef"
 }

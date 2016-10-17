@@ -1,17 +1,17 @@
 diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
-index 5732a80..6077edf 100644
+index 5732a80..c88b8cd 100644
 --- a/app/Resources/views/admin/genus/_form.html.twig
 +++ b/app/Resources/views/admin/genus/_form.html.twig
 @@ -19,5 +19,7 @@
      }) }}
  
      {{ form_row(genusForm.firstDiscoveredAt) }}
-+    {{ form_row(genusForm.scientistUsers) }}
++    {{ form_row(genusForm.genusScientists) }}
 +
      <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
  {{ form_end(genusForm) }}
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index cdb51ce..8925716 100644
+index cdb51ce..3625682 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
 @@ -3,6 +3,7 @@
@@ -26,7 +26,7 @@ index cdb51ce..8925716 100644
                  'attr' => ['class' => 'js-datepicker'],
                  'html5' => false,
              ])
-+            ->add('scientistUsers', EntityType::class, [
++            ->add('genusScientists', EntityType::class, [
 +                'class' => User::class,
 +                'multiple' => true,
 +                'expanded' => true,

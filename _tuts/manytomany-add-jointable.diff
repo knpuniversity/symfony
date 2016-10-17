@@ -41,7 +41,7 @@ index 0000000..b709b6c
 +    }
 +}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 1eb2498..bab0776 100644
+index d587c6e..51cabe8 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -63,6 +63,7 @@ class Genus
@@ -50,5 +50,5 @@ index 1eb2498..bab0776 100644
       * @ORM\ManyToMany(targetEntity="User")
 +     * @ORM\JoinTable(name="genus_scientist")
       */
-     private $scientistUsers;
+     private $genusScientists;
  

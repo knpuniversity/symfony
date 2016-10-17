@@ -1,11 +1,11 @@
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 1ee3487..6549a4d 100644
+index a40e075..6547e5f 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -77,6 +77,7 @@ class User implements UserInterface
  
      /**
-      * @ORM\ManyToMany(targetEntity="Genus", mappedBy="scientistUsers")
+      * @ORM\ManyToMany(targetEntity="Genus", mappedBy="genusScientists")
 +     * @ORM\OrderBy({"name" = "ASC"})
       */
      private $studiedGenuses;

@@ -1,10 +1,10 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 1067689..d3ab28b 100644
+index 3b3a682..4a5b705 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -28,6 +28,12 @@
                                  }) }}">
-                                     {{ scientistUser.fullName }}
+                                     {{ genusScientist.fullName }}
                                  </a>
 +
 +                                <a href="#"
@@ -29,7 +29,7 @@ index 1067689..d3ab28b 100644
 +    </script>
  {% endblock %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index c22e7c8..7b8ffa0 100644
+index ac002db..c21a2e0 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -121,4 +121,12 @@ class GenusController extends Controller
@@ -41,7 +41,7 @@ index c22e7c8..7b8ffa0 100644
 +     * @Route("/genus/{genusId}/scientists/{userId}", name="genus_scientists_remove")
 +     * @Method("DELETE")
 +     */
-+    public function removeScientistUserAction($genusId, $userId)
++    public function removeGenusScientistAction($genusId, $userId)
 +    {
 +    }
  }

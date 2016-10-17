@@ -25,7 +25,7 @@ index 5a0984f..a4bd79d 100644
      </div>
  {% endblock %}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 64efa07..2accd07 100644
+index ec7d9f8..2435d07 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -62,7 +62,7 @@ class Genus
@@ -36,9 +36,9 @@ index 64efa07..2accd07 100644
 +     * @ORM\ManyToMany(targetEntity="User", inversedBy="studiedGenuses")
       * @ORM\JoinTable(name="genus_scientist")
       */
-     private $scientistUsers;
+     private $genusScientists;
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 54f2ade..1ee3487 100644
+index 54f2ade..a40e075 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -2,6 +2,7 @@
@@ -54,7 +54,7 @@ index 54f2ade..1ee3487 100644
      private $universityName;
  
 +    /**
-+     * @ORM\ManyToMany(targetEntity="Genus", mappedBy="scientistUsers")
++     * @ORM\ManyToMany(targetEntity="Genus", mappedBy="genusScientists")
 +     */
 +    private $studiedGenuses;
 +

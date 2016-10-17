@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 376fbde..d6fb5fa 100644
+index e5fa954..857f56b 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -62,7 +62,7 @@ class Genus
@@ -10,4 +10,4 @@ index 376fbde..d6fb5fa 100644
 +     * @ORM\ManyToMany(targetEntity="User", inversedBy="studiedGenuses", fetch="EXTRA_LAZY")
       * @ORM\JoinTable(name="genus_scientist")
       */
-     private $scientistUsers;
+     private $genusScientists;

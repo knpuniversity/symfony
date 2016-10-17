@@ -1,27 +1,105 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 0e53ab9..c22e7c8 100644
+index 08b458f..ac002db 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -39,6 +39,7 @@ class GenusController extends Controller
          $user = $em->getRepository('AppBundle:User')
              ->findOneBy(['email' => 'aquanaut1@example.org']);
-         $genus->addScientistUser($user);
-+        $genus->addScientistUser($user); // duplicate is ignored!
+         $genus->addGenusScientist($user);
++        $genus->addGenusScientist($user); // duplicate is ignored!
  
          $em->persist($genus);
          $em->persist($genusNote);
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 7d13945..019d522 100644
+index 5568fe7..8b4a1aa 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -156,6 +156,10 @@ class Genus
  
-     public function addScientistUser(User $user)
+     public function addGenusScientist(User $user)
      {
-+        if ($this->scientistUsers->contains($user)) {
++        if ($this->genusScientists->contains($user)) {
 +            return;
 +        }
 +
-         $this->scientistUsers[] = $user;
+         $this->genusScientists[] = $user;
      }
  }
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
+deleted file mode 100644
+index 172415c..0000000
+--- a/src/AppBundle/Entity/GenusScientist.php
++++ /dev/null
+@@ -1,71 +0,0 @@
+-<?php
+-
+-namespace AppBundle\Entity;
+-
+-use Doctrine\ORM\Mapping as ORM;
+-
+-/**
+- * @ORM\Entity
+- * @ORM\Table(name="genus_scientist")
+- */
+-class GenusScientist
+-{
+-    /**
+-     * @ORM\Id
+-     * @ORM\GeneratedValue(strategy="AUTO")
+-     * @ORM\Column(type="integer")
+-     */
+-    private $id;
+-
+-    /**
+-     * @ORM\ManyToOne(targetEntity="Genus")
+-     * @ORM\JoinColumn(nullable=false)
+-     */
+-    private $genus;
+-
+-    /**
+-     * @ORM\ManyToOne(targetEntity="User")
+-     * @ORM\JoinColumn(nullable=false)
+-     */
+-    private $user;
+-
+-    /**
+-     * @ORM\Column(type="string")
+-     */
+-    private $yearsStudied;
+-
+-    public function getId()
+-    {
+-        return $this->id;
+-    }
+-
+-    public function getGenus()
+-    {
+-        return $this->genus;
+-    }
+-
+-    public function setGenus($genus)
+-    {
+-        $this->genus = $genus;
+-    }
+-
+-    public function getUser()
+-    {
+-        return $this->user;
+-    }
+-
+-    public function setUser($user)
+-    {
+-        $this->user = $user;
+-    }
+-
+-    public function getYearsStudied()
+-    {
+-        return $this->yearsStudied;
+-    }
+-
+-    public function setYearsStudied($yearsStudied)
+-    {
+-        $this->yearsStudied = $yearsStudied;
+-    }
+-}
+\ No newline at end of file

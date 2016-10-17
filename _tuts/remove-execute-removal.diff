@@ -1,15 +1,15 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index d3ab28b..1b8ef72 100644
+index 4a5b705..c2f7269 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -22,7 +22,7 @@
                  <dd>
                      <ul class="list-group">
-                         {% for scientistUser in genus.scientistUsers %}
+                         {% for genusScientist in genus.genusScientists %}
 -                            <li class="list-group-item">
 +                            <li class="list-group-item js-scientist-item">
                                  <a href="{{ path('user_show', {
-                                     'id': scientistUser.id
+                                     'id': genusScientist.id
                                  }) }}">
 @@ -31,6 +31,10 @@
  
@@ -17,7 +17,7 @@ index d3ab28b..1b8ef72 100644
                                     class="btn btn-link btn-xs pull-right js-remove-scientist-user"
 +                                   data-url="{{ path('genus_scientists_remove', {
 +                                       genusId: genus.id,
-+                                       userId: scientistUser.id
++                                       userId: genusScientist.id
 +                                   }) }}"
                                  >
                                      <span class="fa fa-close"></span>
@@ -46,12 +46,12 @@ index d3ab28b..1b8ef72 100644
          });
      </script>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 7b8ffa0..7b298be 100644
+index c21a2e0..44c27fb 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -128,5 +128,27 @@ class GenusController extends Controller
       */
-     public function removeScientistUserAction($genusId, $userId)
+     public function removeGenusScientistAction($genusId, $userId)
      {
 +        $em = $this->getDoctrine()->getManager();
 +
@@ -63,14 +63,14 @@ index 7b8ffa0..7b298be 100644
 +            throw $this->createNotFoundException('genus not found');
 +        }
 +
-+        $scientistUser = $em->getRepository('AppBundle:User')
++        $genusScientist = $em->getRepository('AppBundle:User')
 +            ->find($userId);
 +
-+        if (!$scientistUser) {
++        if (!$genusScientist) {
 +            throw $this->createNotFoundException('scientist not found');
 +        }
 +
-+        $genus->removeScientistUser($scientistUser);
++        $genus->removeGenusScientist($genusScientist);
 +        $em->persist($genus);
 +        $em->flush();
 +
@@ -78,16 +78,16 @@ index 7b8ffa0..7b298be 100644
      }
  }
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 2accd07..376fbde 100644
+index 2435d07..e5fa954 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -163,6 +163,11 @@ class Genus
-         $this->scientistUsers[] = $user;
+         $this->genusScientists[] = $user;
      }
  
-+    public function removeScientistUser(User $user)
++    public function removeGenusScientist(User $user)
 +    {
-+        $this->scientistUsers->removeElement($user);
++        $this->genusScientists->removeElement($user);
 +    }
 +
      /**
