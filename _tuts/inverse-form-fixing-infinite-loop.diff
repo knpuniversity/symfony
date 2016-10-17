@@ -1,0 +1,30 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index fe477e6..2db8941 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -167,6 +167,10 @@ class Genus
+ 
+     public function removeScientistUser(User $user)
+     {
++        if (!$this->scientistUsers->contains($user)) {
++            return;
++        }
++
+         $this->scientistUsers->removeElement($user);
+         // not needed for persistence, just keeping both sides in sync
+         $user->removeStudiedGenus($this);
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index b636e52..ef3ce6f 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -233,6 +233,10 @@ class User implements UserInterface
+ 
+     public function removeStudiedGenus(Genus $genus)
+     {
++        if (!$this->studiedGenuses->contains($genus)) {
++            return;
++        }
++
+         $this->studiedGenuses->removeElement($genus);
+         $genus->removeScientistUser($this);
+     }

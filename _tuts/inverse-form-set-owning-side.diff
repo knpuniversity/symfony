@@ -1,0 +1,17 @@
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 1a15ccf..b636e52 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -228,10 +228,12 @@ class User implements UserInterface
+         }
+ 
+         $this->studiedGenuses[] = $genus;
++        $genus->addScientistUser($this);
+     }
+ 
+     public function removeStudiedGenus(Genus $genus)
+     {
+         $this->studiedGenuses->removeElement($genus);
++        $genus->removeScientistUser($this);
+     }
+ }

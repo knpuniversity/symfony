@@ -1,0 +1,20 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index d6fb5fa..fe477e6 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -161,11 +161,15 @@ class Genus
+         }
+ 
+         $this->scientistUsers[] = $user;
++        // not needed for persistence, just keeping both sides in sync
++        $user->addStudiedGenus($this);
+     }
+ 
+     public function removeScientistUser(User $user)
+     {
+         $this->scientistUsers->removeElement($user);
++        // not needed for persistence, just keeping both sides in sync
++        $user->removeStudiedGenus($this);
+     }
+ 
+     /**

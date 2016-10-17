@@ -1104,7 +1104,22 @@
             "id": "inverse-form-use-by-reference",
             "name": "Inverse Form: Use by_reference",
             "description": null
+        },
+        {
+            "id": "inverse-form-set-owning-side",
+            "name": "Inverse Form: Set owning side",
+            "description": null
+        },
+        {
+            "id": "inverse-form-sync-inverse-side",
+            "name": "Inverse Form: Sync inverse side",
+            "description": null
+        },
+        {
+            "id": "inverse-form-fixing-infinite-loop",
+            "name": "Inverse Form: Fixing infinite loop",
+            "description": null
         }
     ],
-    "sha": "b200bc922f0585a829aef2ba19f49deb3032144e"
+    "sha": "71ba9ebde5bfa9e2333a8492e894212fb22f6cce"
 }
