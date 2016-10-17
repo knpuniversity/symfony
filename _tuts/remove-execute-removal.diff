@@ -78,7 +78,7 @@ index 7b8ffa0..7b298be 100644
      }
  }
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 80b8146..b5bb33e 100644
+index 2accd07..376fbde 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -163,6 +163,11 @@ class Genus

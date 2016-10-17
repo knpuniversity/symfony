@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index e451377..4feaa52 100644
+index 1ee3487..6549a4d 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -77,6 +77,7 @@ class User implements UserInterface
@@ -8,5 +8,5 @@ index e451377..4feaa52 100644
       * @ORM\ManyToMany(targetEntity="Genus", mappedBy="scientistUsers")
 +     * @ORM\OrderBy({"name" = "ASC"})
       */
-     private $genusesStudied;
+     private $studiedGenuses;
  

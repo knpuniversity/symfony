@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
-index 5a0984f..c56809d 100644
+index 5a0984f..a4bd79d 100644
 --- a/app/Resources/views/user/show.html.twig
 +++ b/app/Resources/views/user/show.html.twig
 @@ -35,6 +35,21 @@
@@ -10,7 +10,7 @@ index 5a0984f..c56809d 100644
 +            <div class="col-xs-4">
 +                <h3>Genus Studied</h3>
 +                <ul class="list-group">
-+                    {% for genusStudied in user.genusesStudied %}
++                    {% for genusStudied in user.studiedGenuses %}
 +                        <li class="list-group-item">
 +                            <a href="{{ path('genus_show', {
 +                                'genusName': genusStudied.name
@@ -25,7 +25,7 @@ index 5a0984f..c56809d 100644
      </div>
  {% endblock %}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 64efa07..80b8146 100644
+index 64efa07..2accd07 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -62,7 +62,7 @@ class Genus
@@ -33,12 +33,12 @@ index 64efa07..80b8146 100644
  
      /**
 -     * @ORM\ManyToMany(targetEntity="User")
-+     * @ORM\ManyToMany(targetEntity="User", inversedBy="genusesStudied")
++     * @ORM\ManyToMany(targetEntity="User", inversedBy="studiedGenuses")
       * @ORM\JoinTable(name="genus_scientist")
       */
      private $scientistUsers;
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 54f2ade..e451377 100644
+index 54f2ade..1ee3487 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -2,6 +2,7 @@
@@ -56,11 +56,11 @@ index 54f2ade..e451377 100644
 +    /**
 +     * @ORM\ManyToMany(targetEntity="Genus", mappedBy="scientistUsers")
 +     */
-+    private $genusesStudied;
++    private $studiedGenuses;
 +
 +    public function __construct()
 +    {
-+        $this->genusesStudied = new ArrayCollection();
++        $this->studiedGenuses = new ArrayCollection();
 +    }
 +
 +
@@ -75,8 +75,8 @@ index 54f2ade..e451377 100644
 +    /**
 +     * @return ArrayCollection|Genus[]
 +     */
-+    public function getGenusesStudied()
++    public function getStudiedGenuses()
 +    {
-+        return $this->genusesStudied;
++        return $this->studiedGenuses;
 +    }
  }

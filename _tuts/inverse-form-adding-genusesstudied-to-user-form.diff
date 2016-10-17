@@ -1,17 +1,17 @@
 diff --git a/app/Resources/views/user/edit.html.twig b/app/Resources/views/user/edit.html.twig
-index 5b39c82..951094d 100644
+index 5b39c82..71bc247 100644
 --- a/app/Resources/views/user/edit.html.twig
 +++ b/app/Resources/views/user/edit.html.twig
 @@ -14,6 +14,7 @@
                      {{ form_row(userForm.firstName) }}
                      {{ form_row(userForm.lastName) }}
                      {{ form_row(userForm.universityName) }}
-+                    {{ form_row(userForm.genusesStudied) }}
++                    {{ form_row(userForm.studiedGenuses) }}
  
                      <button type="submit" class="btn btn-primary">Update</button>
                  {{ form_end(userForm) }}
 diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php
-index 6c9c0bb..7c8e28b 100644
+index 6c9c0bb..b40216e 100644
 --- a/src/AppBundle/Form/UserEditForm.php
 +++ b/src/AppBundle/Form/UserEditForm.php
 @@ -2,7 +2,9 @@
@@ -28,7 +28,7 @@ index 6c9c0bb..7c8e28b 100644
              ->add('firstName')
              ->add('lastName')
              ->add('universityName')
-+            ->add('genusesStudied', EntityType::class, [
++            ->add('studiedGenuses', EntityType::class, [
 +                'class' => Genus::class,
 +                'multiple' => true,
 +                'expanded' => true,
