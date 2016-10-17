@@ -56,9 +56,18 @@ index a5444e5..fdebb95 100644
 +        universityName: <company()> University
 +        avatarUri: <imageUrl(100, 100, 'abstract')>
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 0c4138b..1b53142 100644
+index 0c4138b..54f2ade 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
+@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
+ use Symfony\Component\Validator\Constraints as Assert;
+ 
+ /**
+- * @ORM\Entity
++ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+  * @ORM\Table(name="user")
+  * @UniqueEntity(fields={"email"}, message="It looks like you already have an account!")
+  */
 @@ -49,6 +49,36 @@ class User implements UserInterface
       */
      private $roles = [];
@@ -96,12 +105,12 @@ index 0c4138b..1b53142 100644
      // needed by the security system
      public function getUsername()
      {
-@@ -114,4 +144,54 @@ class User implements UserInterface
+@@ -114,4 +144,59 @@ class User implements UserInterface
          // Doctrine *not* saving this entity, if only plainPassword changes
          $this->password = null;
      }
 +
-+    public function isAquanaut()
++    public function isScientist()
 +    {
 +        return $this->isScientist;
 +    }
@@ -150,4 +159,25 @@ index 0c4138b..1b53142 100644
 +    {
 +        $this->universityName = $universityName;
 +    }
++
++    public function getFullName()
++    {
++        return trim($this->getFirstName().' '.$this->getLastName());
++    }
  }
+diff --git a/src/AppBundle/Repository/UserRepository.php b/src/AppBundle/Repository/UserRepository.php
+new file mode 100644
+index 0000000..8614256
+--- /dev/null
++++ b/src/AppBundle/Repository/UserRepository.php
+@@ -0,0 +1,10 @@
++<?php
++
++namespace AppBundle\Repository;
++
++use Doctrine\ORM\EntityRepository;
++
++class UserRepository extends EntityRepository
++{
++
++}

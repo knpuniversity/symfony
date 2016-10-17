@@ -1,0 +1,12 @@
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index fdebb95..29e8151 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -6,6 +6,7 @@ AppBundle\Entity\Genus:
+         funFact: <sentence()>
+         isPublished: <boolean(75)>
+         firstDiscoveredAt: <dateTimeBetween('-200 years', 'now')>
++        scientistUsers: ['@user.aquanaut_1', '@user.aquanaut_5']
+ 
+ AppBundle\Entity\GenusNote:
+     genus.note_{1..100}:

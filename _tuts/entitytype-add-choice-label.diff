@@ -1,0 +1,12 @@
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 8925716..bd31bc2 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -46,6 +46,7 @@ class GenusFormType extends AbstractType
+                 'class' => User::class,
+                 'multiple' => true,
+                 'expanded' => true,
++                'choice_label' => 'email',
+             ])
+         ;
+     }

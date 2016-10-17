@@ -1,0 +1,15 @@
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 2de840d..ac92b2a 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -76,7 +76,9 @@ class GenusAdminController extends Controller
+ 
+             $this->addFlash('success', 'Genus updated!');
+ 
+-            return $this->redirectToRoute('admin_genus_list');
++            return $this->redirectToRoute('admin_genus_edit', [
++                'id' => $genus->getId()
++            ]);
+         }
+ 
+         return $this->render('admin/genus/edit.html.twig', [

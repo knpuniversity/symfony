@@ -1,0 +1,36 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index 5732a80..6077edf 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -19,5 +19,7 @@
+     }) }}
+ 
+     {{ form_row(genusForm.firstDiscoveredAt) }}
++    {{ form_row(genusForm.scientistUsers) }}
++
+     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+ {{ form_end(genusForm) }}
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index cdb51ce..8925716 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Form;
+ 
+ use AppBundle\Entity\SubFamily;
++use AppBundle\Entity\User;
+ use AppBundle\Repository\SubFamilyRepository;
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+@@ -41,6 +42,11 @@ class GenusFormType extends AbstractType
+                 'attr' => ['class' => 'js-datepicker'],
+                 'html5' => false,
+             ])
++            ->add('scientistUsers', EntityType::class, [
++                'class' => User::class,
++                'multiple' => true,
++                'expanded' => true,
++            ])
+         ;
+     }
+ 

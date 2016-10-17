@@ -1,0 +1,39 @@
+diff --git a/app/Resources/views/user/edit.html.twig b/app/Resources/views/user/edit.html.twig
+index 5b39c82..951094d 100644
+--- a/app/Resources/views/user/edit.html.twig
++++ b/app/Resources/views/user/edit.html.twig
+@@ -14,6 +14,7 @@
+                     {{ form_row(userForm.firstName) }}
+                     {{ form_row(userForm.lastName) }}
+                     {{ form_row(userForm.universityName) }}
++                    {{ form_row(userForm.genusesStudied) }}
+ 
+                     <button type="submit" class="btn btn-primary">Update</button>
+                 {{ form_end(userForm) }}
+diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php
+index 6c9c0bb..7c8e28b 100644
+--- a/src/AppBundle/Form/UserEditForm.php
++++ b/src/AppBundle/Form/UserEditForm.php
+@@ -2,7 +2,9 @@
+ 
+ namespace AppBundle\Form;
+ 
++use AppBundle\Entity\Genus;
+ use AppBundle\Entity\User;
++use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\EmailType;
+ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+@@ -20,6 +22,12 @@ class UserEditForm extends AbstractType
+             ->add('firstName')
+             ->add('lastName')
+             ->add('universityName')
++            ->add('genusesStudied', EntityType::class, [
++                'class' => Genus::class,
++                'multiple' => true,
++                'expanded' => true,
++                'choice_label' => 'name',
++            ])
+         ;
+     }
+ 

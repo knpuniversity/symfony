@@ -1,8 +1,8 @@
 diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
-index a6644ca..d1ea5a9 100644
+index 5a0984f..c56809d 100644
 --- a/app/Resources/views/user/show.html.twig
 +++ b/app/Resources/views/user/show.html.twig
-@@ -29,6 +29,21 @@
+@@ -35,6 +35,21 @@
                      </tbody>
                  </table>
              </div>
@@ -38,7 +38,7 @@ index 64efa07..80b8146 100644
       */
      private $scientistUsers;
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 4ed607c..01dc019 100644
+index 54f2ade..e451377 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -2,6 +2,7 @@

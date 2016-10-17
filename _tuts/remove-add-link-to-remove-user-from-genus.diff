@@ -1,20 +1,21 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 1067689..c4cbcb3 100644
+index 1067689..d3ab28b 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
-@@ -28,6 +28,11 @@
+@@ -28,6 +28,12 @@
                                  }) }}">
                                      {{ scientistUser.fullName }}
                                  </a>
 +
 +                                <a href="#"
-+                                   class="btn btn-link btn-xs pull-right js-remove-scientist-user">
++                                   class="btn btn-link btn-xs pull-right js-remove-scientist-user"
++                                >
 +                                    <span class="fa fa-close"></span>
 +                                </a>
                              </li>
                          {% endfor %}
                      </ul>
-@@ -53,4 +58,12 @@
+@@ -53,4 +59,12 @@
            document.getElementById('js-notes-wrapper')
          );
      </script>
@@ -28,7 +29,7 @@ index 1067689..c4cbcb3 100644
 +    </script>
  {% endblock %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index c22e7c8..50f3643 100644
+index c22e7c8..7b8ffa0 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -121,4 +121,12 @@ class GenusController extends Controller
@@ -37,10 +38,10 @@ index c22e7c8..50f3643 100644
      }
 +
 +    /**
-+     * @Route("/genus/{genusName}/scientists/{scientistId}", name="genus_scientists_remove")
++     * @Route("/genus/{genusId}/scientists/{userId}", name="genus_scientists_remove")
 +     * @Method("DELETE")
 +     */
-+    public function removeScientistUserAction($genusName, $scientistId)
++    public function removeScientistUserAction($genusId, $userId)
 +    {
 +    }
  }

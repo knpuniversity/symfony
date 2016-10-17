@@ -1,0 +1,20 @@
+diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
+index eb8b2c8..e200acf 100644
+--- a/app/Resources/views/genus/list.html.twig
++++ b/app/Resources/views/genus/list.html.twig
+@@ -6,6 +6,7 @@
+             <tr>
+                 <th>Genus</th>
+                 <th># of species</th>
++                <th># of scientists</th>
+                 <th>Last updated</th>
+             </tr>
+         </thead>
+@@ -18,6 +19,7 @@
+                         </a>
+                     </td>
+                     <td>{{ genus.speciesCount }}</td>
++                    <td>{{ genus.scientistUsers|length }}</td>
+                     <td>{{ genus.updatedAt|date('Y-m-d') }}</td>
+                 </tr>
+             {% endfor %}

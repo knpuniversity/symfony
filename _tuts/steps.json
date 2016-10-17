@@ -1001,6 +1001,11 @@
             "description": null
         },
         {
+            "id": "collection-updates-redirect-to-edit-on-save",
+            "name": "Collection Updates: Redirect to edit on save",
+            "description": null
+        },
+        {
             "id": "manytomany-create-from-genus-to-user",
             "name": "ManyToMany: Create from Genus to User",
             "description": null
@@ -1036,6 +1041,11 @@
             "description": null
         },
         {
+            "id": "manytomany-using-orderby",
+            "name": "ManyToMany: Using OrderBy",
+            "description": null
+        },
+        {
             "id": "remove-add-link-to-remove-user-from-genus",
             "name": "Remove: Add link to remove User from Genus",
             "description": null
@@ -1044,7 +1054,57 @@
             "id": "remove-execute-removal",
             "name": "Remove: Execute removal",
             "description": null
+        },
+        {
+            "id": "fixtures-setup-collection-in-fixtures",
+            "name": "Fixtures: Setup collection in fixtures",
+            "description": null
+        },
+        {
+            "id": "fixtures-random-references",
+            "name": "Fixtures: Random references",
+            "description": null
+        },
+        {
+            "id": "counting-print-scientsts-count",
+            "name": "Counting: Print scientsts count",
+            "description": null
+        },
+        {
+            "id": "counting-using-extra-lazy",
+            "name": "Counting: Using EXTRA_LAZY",
+            "description": null
+        },
+        {
+            "id": "counting-join-over-relation",
+            "name": "Counting: Join over relation",
+            "description": null
+        },
+        {
+            "id": "entitytype-add-scientistusers-field",
+            "name": "EntityType: Add scientistUsers field",
+            "description": null
+        },
+        {
+            "id": "entitytype-add-choice-label",
+            "name": "EntityType: Add choice_label",
+            "description": null
+        },
+        {
+            "id": "entitytype-filtering-query-to-scientists",
+            "name": "EntityType: Filtering query to scientists",
+            "description": null
+        },
+        {
+            "id": "inverse-form-adding-genusesstudied-to-user-form",
+            "name": "Inverse Form: Adding genusesStudied to User form",
+            "description": null
+        },
+        {
+            "id": "inverse-form-use-by-reference",
+            "name": "Inverse Form: Use by_reference",
+            "description": null
         }
     ],
-    "sha": "fe59e6f274ff25c905aeaa7b286f4815d239e876"
+    "sha": "dbe6bf28bcc8af938324da7cf6e22cbb2a3cd95a"
 }

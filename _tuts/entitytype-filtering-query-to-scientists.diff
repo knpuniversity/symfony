@@ -1,0 +1,38 @@
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index bd31bc2..fbb9d9b 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -5,6 +5,7 @@ namespace AppBundle\Form;
+ use AppBundle\Entity\SubFamily;
+ use AppBundle\Entity\User;
+ use AppBundle\Repository\SubFamilyRepository;
++use AppBundle\Repository\UserRepository;
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+@@ -47,6 +48,9 @@ class GenusFormType extends AbstractType
+                 'multiple' => true,
+                 'expanded' => true,
+                 'choice_label' => 'email',
++                'query_builder' => function(UserRepository $repo) {
++                    return $repo->createIsScientistQueryBuilder();
++                }
+             ])
+         ;
+     }
+diff --git a/src/AppBundle/Repository/UserRepository.php b/src/AppBundle/Repository/UserRepository.php
+index 8614256..3338ef2 100644
+--- a/src/AppBundle/Repository/UserRepository.php
++++ b/src/AppBundle/Repository/UserRepository.php
+@@ -6,5 +6,10 @@ use Doctrine\ORM\EntityRepository;
+ 
+ class UserRepository extends EntityRepository
+ {
+-
++    public function createIsScientistQueryBuilder()
++    {
++        return $this->createQueryBuilder('user')
++            ->andWhere('user.isScientist = :isScientist')
++            ->setParameter('isScientist', true);
++    }
+ }

@@ -1,0 +1,12 @@
+diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php
+index 7c8e28b..3c39d5a 100644
+--- a/src/AppBundle/Form/UserEditForm.php
++++ b/src/AppBundle/Form/UserEditForm.php
+@@ -27,6 +27,7 @@ class UserEditForm extends AbstractType
+                 'multiple' => true,
+                 'expanded' => true,
+                 'choice_label' => 'name',
++                'by_reference' => false,
+             ])
+         ;
+     }
