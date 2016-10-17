@@ -50,8 +50,6 @@ chapters:
     form-type-extension-magic:
         video_key: 187371076
     compound-embedded-forms:
-        is_finished: false
-        video_key: ~
+        video_key: 187725894
     rendering-fields-manually:
-        is_finished: false
-        video_key: ~
+        video_key: 187729694
