@@ -1,10 +1,13 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index c2f7269..980b12d 100644
+index c2f7269..7d02b66 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
-@@ -26,7 +26,8 @@
+@@ -24,9 +24,10 @@
+                         {% for genusScientist in genus.genusScientists %}
+                             <li class="list-group-item js-scientist-item">
                                  <a href="{{ path('user_show', {
-                                     'id': genusScientist.id
+-                                    'id': genusScientist.id
++                                    'id': genusScientist.user.id
                                  }) }}">
 -                                    {{ genusScientist.fullName }}
 +                                    {{ genusScientist.user.fullName }}

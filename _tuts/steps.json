@@ -1211,6 +1211,11 @@
             "description": null
         },
         {
+            "id": "form-adding-cleanup-user-class-form",
+            "name": "Form Adding: Cleanup User class+form",
+            "description": null
+        },
+        {
             "id": "validation-adding-notblank-to-yearsstudied",
             "name": "Validation: Adding NotBlank to yearsStudied",
             "description": null
@@ -1239,7 +1244,32 @@
             "id": "form-event-readonly-user-on-edit",
             "name": "Form Event: Readonly user on edit",
             "description": null
+        },
+        {
+            "id": "criteria-remove-leftjoin",
+            "name": "Criteria: Remove leftJoin",
+            "description": null
+        },
+        {
+            "id": "criteria-use-inefficient-filter",
+            "name": "Criteria: Use inefficient filter",
+            "description": null
+        },
+        {
+            "id": "criteria-refactoring-to-criteria",
+            "name": "Criteria: Refactoring to Criteria",
+            "description": null
+        },
+        {
+            "id": "criteria-refactor-to-repository",
+            "name": "Criteria: Refactor to repository",
+            "description": null
+        },
+        {
+            "id": "criteria-use-in-query-builder",
+            "name": "Criteria: Use in query builder",
+            "description": null
         }
     ],
-    "sha": "8d9d3177be6cef06007d155207ab751633a63d37"
+    "sha": "01f663a1074b6959722e03f2ff88ff928ef6c246"
 }

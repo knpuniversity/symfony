@@ -1,0 +1,50 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 37aa097..2049e39 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -2,6 +2,7 @@
+ 
+ namespace AppBundle\Entity;
+ 
++use AppBundle\Repository\GenusRepository;
+ use Doctrine\Common\Collections\ArrayCollection;
+ use Doctrine\Common\Collections\Criteria;
+ use Doctrine\ORM\Mapping as ORM;
+@@ -196,10 +197,8 @@ class Genus
+      */
+     public function getExpertScientists()
+     {
+-        $criteria = Criteria::create()
+-            ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
+-            ->orderBy(['yearsStudied', 'DESC']);
+-
+-        return $this->getGenusScientists()->matching($criteria);
++        return $this->getGenusScientists()->matching(
++            GenusRepository::createExpertCriteria()
++        );
+     }
+ }
+diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
+index 3753d1e..0a0a3e9 100644
+--- a/src/AppBundle/Repository/GenusRepository.php
++++ b/src/AppBundle/Repository/GenusRepository.php
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Repository;
+ 
+ use AppBundle\Entity\Genus;
++use Doctrine\Common\Collections\Criteria;
+ use Doctrine\ORM\EntityRepository;
+ 
+ class GenusRepository extends EntityRepository
+@@ -22,4 +23,11 @@ class GenusRepository extends EntityRepository
+             ->getQuery()
+             ->execute();
+     }
++
++    static public function createExpertCriteria()
++    {
++        return Criteria::create()
++            ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
++            ->orderBy(['yearsStudied', 'DESC']);
++    }
+ }

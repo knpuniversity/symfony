@@ -1,0 +1,35 @@
+diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
+index ce27753..627987f 100644
+--- a/app/Resources/views/genus/list.html.twig
++++ b/app/Resources/views/genus/list.html.twig
+@@ -19,7 +19,10 @@
+                         </a>
+                     </td>
+                     <td>{{ genus.speciesCount }}</td>
+-                    <td>{{ genus.genusScientists|length }}</td>
++                    <td>
++                        {{ genus.genusScientists|length }}
++                        ({{ genus.expertScientists|length }} experts)
++                    </td>
+                     <td>{{ genus.updatedAt|date('Y-m-d') }}</td>
+                 </tr>
+             {% endfor %}
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 3f85bc8..e14c356 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -189,4 +189,14 @@ class Genus
+     {
+         return $this->genusScientists;
+     }
++
++    /**
++     * @return \Doctrine\Common\Collections\Collection|GenusScientist[]
++     */
++    public function getExpertScientists()
++    {
++        return $this->getGenusScientists()->filter(function(GenusScientist $genusScientist) {
++            return $genusScientist->getYearsStudied() > 20;
++        });
++    }
+ }

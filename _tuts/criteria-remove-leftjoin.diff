@@ -1,0 +1,15 @@
+diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
+index 3037e0c..3753d1e 100644
+--- a/src/AppBundle/Repository/GenusRepository.php
++++ b/src/AppBundle/Repository/GenusRepository.php
+@@ -17,8 +17,8 @@ class GenusRepository extends EntityRepository
+             ->setParameter('isPublished', true)
+             ->leftJoin('genus.notes', 'genus_note')
+             ->orderBy('genus_note.createdAt', 'DESC')
+-            ->leftJoin('genus.genusScientists', 'genusScientist')
+-            ->addSelect('genusScientist')
++//            ->leftJoin('genus.genusScientists', 'genusScientist')
++//            ->addSelect('genusScientist')
+             ->getQuery()
+             ->execute();
+     }

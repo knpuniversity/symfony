@@ -1,0 +1,26 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index e14c356..37aa097 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Entity;
+ 
+ use Doctrine\Common\Collections\ArrayCollection;
++use Doctrine\Common\Collections\Criteria;
+ use Doctrine\ORM\Mapping as ORM;
+ use Symfony\Component\Validator\Constraints as Assert;
+ 
+@@ -195,8 +196,10 @@ class Genus
+      */
+     public function getExpertScientists()
+     {
+-        return $this->getGenusScientists()->filter(function(GenusScientist $genusScientist) {
+-            return $genusScientist->getYearsStudied() > 20;
+-        });
++        $criteria = Criteria::create()
++            ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
++            ->orderBy(['yearsStudied', 'DESC']);
++
++        return $this->getGenusScientists()->matching($criteria);
+     }
+ }
