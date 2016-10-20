@@ -1,0 +1,18 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 40d8337..cde37e9 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -62,7 +62,12 @@ class Genus
+     private $notes;
+ 
+     /**
+-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GenusScientist", mappedBy="genus", fetch="EXTRA_LAZY")
++     * @ORM\OneToMany(
++     *     targetEntity="AppBundle\Entity\GenusScientist",
++     *     mappedBy="genus",
++     *     fetch="EXTRA_LAZY",
++     *     orphanRemoval=true
++     * )
+      */
+     private $genusScientists;
+ 

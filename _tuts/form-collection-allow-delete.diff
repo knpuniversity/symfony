@@ -1,0 +1,14 @@
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 2e53d5a..3f7a96e 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -45,7 +45,8 @@ class GenusFormType extends AbstractType
+                 'html5' => false,
+             ])
+             ->add('genusScientists', CollectionType::class, [
+-                'entry_type' => GenusScientistEmbeddedForm::class
++                'entry_type' => GenusScientistEmbeddedForm::class,
++                'allow_delete' => true,
+             ])
+         ;
+     }

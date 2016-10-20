@@ -1,0 +1,73 @@
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index dec6be3..2e53d5a 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -9,6 +9,7 @@ use AppBundle\Repository\UserRepository;
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
++use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+ use Symfony\Component\Form\Extension\Core\Type\DateType;
+ use Symfony\Component\Form\FormBuilderInterface;
+ use Symfony\Component\Form\FormInterface;
+@@ -43,14 +44,8 @@ class GenusFormType extends AbstractType
+                 'attr' => ['class' => 'js-datepicker'],
+                 'html5' => false,
+             ])
+-            ->add('genusScientists', EntityType::class, [
+-                'class' => User::class,
+-                'multiple' => true,
+-                'expanded' => true,
+-                'choice_label' => 'email',
+-                'query_builder' => function(UserRepository $repo) {
+-                    return $repo->createIsScientistQueryBuilder();
+-                }
++            ->add('genusScientists', CollectionType::class, [
++                'entry_type' => GenusScientistEmbeddedForm::class
+             ])
+         ;
+     }
+diff --git a/src/AppBundle/Form/GenusScientistEmbeddedForm.php b/src/AppBundle/Form/GenusScientistEmbeddedForm.php
+new file mode 100644
+index 0000000..9f4fe6b
+--- /dev/null
++++ b/src/AppBundle/Form/GenusScientistEmbeddedForm.php
+@@ -0,0 +1,37 @@
++<?php
++
++namespace AppBundle\Form;
++
++use AppBundle\Entity\GenusScientist;
++use AppBundle\Entity\User;
++use AppBundle\Repository\UserRepository;
++use Symfony\Bridge\Doctrine\Form\Type\EntityType;
++use Symfony\Component\Form\AbstractType;
++use Symfony\Component\Form\FormBuilderInterface;
++use Symfony\Component\OptionsResolver\OptionsResolver;
++
++class GenusScientistEmbeddedForm extends AbstractType
++{
++    public function buildForm(FormBuilderInterface $builder, array $options)
++    {
++        $builder
++            ->add('user', EntityType::class, [
++                'class' => User::class,
++                'choice_label' => 'email',
++                'query_builder' => function(UserRepository $repo) {
++                    return $repo->createIsScientistQueryBuilder();
++                }
++            ])
++            ->add('yearsStudied')
++        ;
++    }
++
++    public function configureOptions(OptionsResolver $resolver)
++    {
++        $resolver->setDefaults([
++            'data_class' => GenusScientist::class
++        ]);
++    }
++
++
++}
+\ No newline at end of file

@@ -1,0 +1,48 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 12f762d..651f42d 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -62,8 +62,7 @@ class Genus
+     private $notes;
+ 
+     /**
+-     * @ORM\ManyToMany(targetEntity="User", inversedBy="studiedGenuses", fetch="EXTRA_LAZY")
+-     * @ORM\JoinTable(name="genus_scientist")
++     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GenusScientist", mappedBy="genus", fetch="EXTRA_LAZY")
+      */
+     private $genusScientists;
+ 
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
+index 172415c..b366b41 100644
+--- a/src/AppBundle/Entity/GenusScientist.php
++++ b/src/AppBundle/Entity/GenusScientist.php
+@@ -18,13 +18,13 @@ class GenusScientist
+     private $id;
+ 
+     /**
+-     * @ORM\ManyToOne(targetEntity="Genus")
++     * @ORM\ManyToOne(targetEntity="Genus", inversedBy="genusScientists")
+      * @ORM\JoinColumn(nullable=false)
+      */
+     private $genus;
+ 
+     /**
+-     * @ORM\ManyToOne(targetEntity="User")
++     * @ORM\ManyToOne(targetEntity="User", inversedBy="studiedGenuses")
+      * @ORM\JoinColumn(nullable=false)
+      */
+     private $user;
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index b05cf68..2ea3f42 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -76,8 +76,7 @@ class User implements UserInterface
+     private $universityName;
+ 
+     /**
+-     * @ORM\ManyToMany(targetEntity="Genus", mappedBy="genusScientists")
+-     * @ORM\OrderBy({"name" = "ASC"})
++     * @ORM\OneToMany(targetEntity="GenusScientist", mappedBy="user")
+      */
+     private $studiedGenuses;
+ 

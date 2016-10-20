@@ -1,0 +1,37 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 45327ad..40d8337 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -164,15 +164,15 @@ class Genus
+         $user->addStudiedGenus($this);
+     }
+ 
+-    public function removeGenusScientist(User $user)
++    public function removeGenusScientist(GenusScientist $genusScientist)
+     {
+-        if (!$this->genusScientists->contains($user)) {
++        if (!$this->genusScientists->contains($genusScientist)) {
+             return;
+         }
+ 
+-        $this->genusScientists->removeElement($user);
+-        // not needed for persistence, just keeping both sides in sync
+-        $user->removeStudiedGenus($this);
++        $this->genusScientists->removeElement($genusScientist);
++        // needed to update the owning side of the relationship!
++        $genusScientist->setGenus(null);
+     }
+ 
+     /**
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 3f7a96e..8119e12 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -47,6 +47,7 @@ class GenusFormType extends AbstractType
+             ->add('genusScientists', CollectionType::class, [
+                 'entry_type' => GenusScientistEmbeddedForm::class,
+                 'allow_delete' => true,
++                'by_reference' => false,
+             ])
+         ;
+     }

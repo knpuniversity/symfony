@@ -1,8 +1,8 @@
-diff --git a/src/AppBundle/Entity/StudiedGenus.php b/src/AppBundle/Entity/StudiedGenus.php
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
 new file mode 100644
-index 0000000..44de510
+index 0000000..172415c
 --- /dev/null
-+++ b/src/AppBundle/Entity/StudiedGenus.php
++++ b/src/AppBundle/Entity/GenusScientist.php
 @@ -0,0 +1,71 @@
 +<?php
 +
@@ -12,9 +12,9 @@ index 0000000..44de510
 +
 +/**
 + * @ORM\Entity
-+ * @ORM\Table(name="studied_genus")
++ * @ORM\Table(name="genus_scientist")
 + */
-+class StudiedGenus
++class GenusScientist
 +{
 +    /**
 +     * @ORM\Id

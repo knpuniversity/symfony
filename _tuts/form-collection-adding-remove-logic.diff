@@ -1,0 +1,47 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index 8f575de..45d2207 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -21,9 +21,12 @@
+     {{ form_row(genusForm.firstDiscoveredAt) }}
+ 
+     <h3>Scientists</h3>
+-    <div class="row">
++    <div class="row js-genus-scientist-wrapper">
+     {% for genusScientistForm in genusForm.genusScientists %}
+-        <div class="col-xs-4">
++        <div class="col-xs-4 js-genus-scientist-item">
++            <a href="#" class="js-remove-scientist pull-right">
++                <span class="fa fa-close"></span>
++            </a>
+             {{ form_errors(genusScientistForm) }}
+             {{ form_row(genusScientistForm.user) }}
+             {{ form_row(genusScientistForm.yearsStudied) }}
+diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
+index e769bc7..870f5c0 100644
+--- a/app/Resources/views/admin/genus/edit.html.twig
++++ b/app/Resources/views/admin/genus/edit.html.twig
+@@ -1,5 +1,23 @@
+ {% extends 'admin/genus/formLayout.html.twig' %}
+ 
++{% block javascripts %}
++    {{ parent() }}
++
++    <script>
++        jQuery(document).ready(function() {
++            var $wrapper = $('.js-genus-scientist-wrapper');
++
++            $wrapper.on('click', '.js-remove-scientist', function(e) {
++                e.preventDefault();
++
++                $(this).closest('.js-genus-scientist-item')
++                    .fadeOut()
++                    .remove();
++            });
++        });
++    </script>
++{% endblock %}
++
+ {% block body %}
+     <div class="container">
+         <div class="row">

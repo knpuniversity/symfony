@@ -1124,7 +1124,122 @@
             "id": "join-entity-add-genusscientist",
             "name": "Join Entity: Add GenusScientist",
             "description": null
+        },
+        {
+            "id": "join-entity-update-inverse-relations",
+            "name": "Join Entity: Update inverse relations",
+            "description": null
+        },
+        {
+            "id": "join-entity-generate-migration",
+            "name": "Join Entity: Generate Migration",
+            "description": null
+        },
+        {
+            "id": "join-entity-fix-migration",
+            "name": "Join Entity: Fix migration",
+            "description": null
+        },
+        {
+            "id": "join-entity-unique-index",
+            "name": "Join Entity: Unique index",
+            "description": null
+        },
+        {
+            "id": "join-entity-fixing-show-pages",
+            "name": "Join Entity: Fixing show pages",
+            "description": null
+        },
+        {
+            "id": "join-entity-fix-remove-genusscientist",
+            "name": "Join Entity: Fix remove genusScientist",
+            "description": null
+        },
+        {
+            "id": "join-entity-update-fixtures",
+            "name": "Join Entity: Update Fixtures",
+            "description": null
+        },
+        {
+            "id": "form-collection-simple-embedded-genusscientistform",
+            "name": "Form Collection: Simple embedded GenusScientistForm",
+            "description": null
+        },
+        {
+            "id": "form-collection-render-a-little-better",
+            "name": "Form Collection: Render a little better",
+            "description": null
+        },
+        {
+            "id": "form-collection-render-fields-invidually",
+            "name": "Form Collection: Render fields invidually",
+            "description": null
+        },
+        {
+            "id": "form-collection-adding-remove-logic",
+            "name": "Form Collection: Adding remove logic",
+            "description": null
+        },
+        {
+            "id": "form-collection-allow-delete",
+            "name": "Form Collection: allow_delete",
+            "description": null
+        },
+        {
+            "id": "form-collection-by-reference-remover",
+            "name": "Form Collection: by_reference & remover",
+            "description": null
+        },
+        {
+            "id": "form-collection-orphanremoval",
+            "name": "Form Collection: orphanRemoval",
+            "description": null
+        },
+        {
+            "id": "form-adding-basic-adding-setup",
+            "name": "Form Adding: Basic adding setup",
+            "description": null
+        },
+        {
+            "id": "form-adding-cascade-persist-partial-adder",
+            "name": "Form Adding: cascade=persist & partial adder",
+            "description": null
+        },
+        {
+            "id": "form-adding-adder-set-owning-side",
+            "name": "Form Adding: adder set owning side",
+            "description": null
+        },
+        {
+            "id": "validation-adding-notblank-to-yearsstudied",
+            "name": "Validation: Adding NotBlank to yearsStudied",
+            "description": null
+        },
+        {
+            "id": "validation-uniqueentity-on-genus-user",
+            "name": "Validation: UniqueEntity on Genus+User",
+            "description": null
+        },
+        {
+            "id": "form-customizing-prototype",
+            "name": "Form: Customizing prototype",
+            "description": null
+        },
+        {
+            "id": "cleanup-organize-into-js-file",
+            "name": "Cleanup: Organize into .js file",
+            "description": null
+        },
+        {
+            "id": "cleanup-prevent-extra-collection-label",
+            "name": "Cleanup: Prevent extra collection label",
+            "description": null
+        },
+        {
+            "id": "form-event-readonly-user-on-edit",
+            "name": "Form Event: Readonly user on edit",
+            "description": null
         }
     ],
-    "sha": "0c8b706cee7d0b93c0fb8121315e009efcbadfef"
+    "sha": "8d9d3177be6cef06007d155207ab751633a63d37"
 }

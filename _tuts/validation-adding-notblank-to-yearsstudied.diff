@@ -1,0 +1,32 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 9b6635d..3f85bc8 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -69,6 +69,7 @@ class Genus
+      *     orphanRemoval=true,
+      *     cascade={"persist"}
+      * )
++     * @Assert\Valid()
+      */
+     private $genusScientists;
+ 
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
+index b366b41..5982b39 100644
+--- a/src/AppBundle/Entity/GenusScientist.php
++++ b/src/AppBundle/Entity/GenusScientist.php
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Entity;
+ 
+ use Doctrine\ORM\Mapping as ORM;
++use Symfony\Component\Validator\Constraints as Assert;
+ 
+ /**
+  * @ORM\Entity
+@@ -31,6 +32,7 @@ class GenusScientist
+ 
+     /**
+      * @ORM\Column(type="string")
++     * @Assert\NotBlank()
+      */
+     private $yearsStudied;
+ 

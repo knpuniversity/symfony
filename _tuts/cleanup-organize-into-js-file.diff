@@ -1,0 +1,100 @@
+diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
+index ffb27ec..220b9d7 100644
+--- a/app/Resources/views/admin/genus/edit.html.twig
++++ b/app/Resources/views/admin/genus/edit.html.twig
+@@ -3,39 +3,7 @@
+ {% block javascripts %}
+     {{ parent() }}
+ 
+-    <script>
+-        jQuery(document).ready(function() {
+-            var $wrapper = $('.js-genus-scientist-wrapper');
+-
+-            $wrapper.on('click', '.js-remove-scientist', function(e) {
+-                e.preventDefault();
+-
+-                $(this).closest('.js-genus-scientist-item')
+-                    .fadeOut()
+-                    .remove();
+-            });
+-
+-            $wrapper.on('click', '.js-genus-scientist-add', function(e) {
+-                e.preventDefault();
+-
+-                // Get the data-prototype explained earlier
+-                var prototype = $wrapper.data('prototype');
+-
+-                // get the new index
+-                var index = $wrapper.data('index');
+-
+-                // Replace '__name__' in the prototype's HTML to
+-                // instead be a number based on how many items we have
+-                var newForm = prototype.replace(/__name__/g, index);
+-
+-                // increase the index with one for the next item
+-                $wrapper.data('index', index + 1);
+-
+-                // Display the form in the page before the "new" link
+-                $(this).before(newForm);
+-            });
+-        });
+-    </script>
++    <script src="{{ asset('js/GenusAdminForm.js') }}"></script>
+ {% endblock %}
+ 
+ {% block body %}
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
+index 1d5ac0c..c381793 100644
+--- a/app/Resources/views/admin/genus/new.html.twig
++++ b/app/Resources/views/admin/genus/new.html.twig
+@@ -1,5 +1,11 @@
+ {% extends 'admin/genus/formLayout.html.twig' %}
+ 
++{% block javascripts %}
++    {{ parent() }}
++
++    <script src="{{ asset('js/GenusAdminForm.js') }}"></script>
++{% endblock %}
++
+ {% block body %}
+     <div class="container">
+         <div class="row">
+diff --git a/web/js/GenusAdminForm.js b/web/js/GenusAdminForm.js
+new file mode 100644
+index 0000000..f83c968
+--- /dev/null
++++ b/web/js/GenusAdminForm.js
+@@ -0,0 +1,33 @@
++(function ($) {
++    jQuery(document).ready(function() {
++        var $wrapper = $('.js-genus-scientist-wrapper');
++
++        $wrapper.on('click', '.js-remove-scientist', function(e) {
++            e.preventDefault();
++
++            $(this).closest('.js-genus-scientist-item')
++                .fadeOut()
++                .remove();
++        });
++
++        $wrapper.on('click', '.js-genus-scientist-add', function(e) {
++            e.preventDefault();
++
++            // Get the data-prototype explained earlier
++            var prototype = $wrapper.data('prototype');
++
++            // get the new index
++            var index = $wrapper.data('index');
++
++            // Replace '__name__' in the prototype's HTML to
++            // instead be a number based on how many items we have
++            var newForm = prototype.replace(/__name__/g, index);
++
++            // increase the index with one for the next item
++            $wrapper.data('index', index + 1);
++
++            // Display the form in the page before the "new" link
++            $(this).before(newForm);
++        });
++    });
++})(jQuery);

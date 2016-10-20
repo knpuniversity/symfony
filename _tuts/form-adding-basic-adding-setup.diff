@@ -1,0 +1,70 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index 45d2207..472ab76 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -21,7 +21,10 @@
+     {{ form_row(genusForm.firstDiscoveredAt) }}
+ 
+     <h3>Scientists</h3>
+-    <div class="row js-genus-scientist-wrapper">
++    <div class="row js-genus-scientist-wrapper"
++         data-prototype="{{ form_widget(genusForm.genusScientists.vars.prototype)|e('html_attr') }}"
++         data-index="{{ genusForm.genusScientists|length }}"
++    >
+     {% for genusScientistForm in genusForm.genusScientists %}
+         <div class="col-xs-4 js-genus-scientist-item">
+             <a href="#" class="js-remove-scientist pull-right">
+@@ -32,6 +35,10 @@
+             {{ form_row(genusScientistForm.yearsStudied) }}
+         </div>
+     {% endfor %}
++        <a href="#" class="js-genus-scientist-add">
++            <span class="fa fa-plus-circle"></span>
++            Add Another Scientist
++        </a>
+     </div>
+ 
+     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
+index 870f5c0..ffb27ec 100644
+--- a/app/Resources/views/admin/genus/edit.html.twig
++++ b/app/Resources/views/admin/genus/edit.html.twig
+@@ -14,6 +14,26 @@
+                     .fadeOut()
+                     .remove();
+             });
++
++            $wrapper.on('click', '.js-genus-scientist-add', function(e) {
++                e.preventDefault();
++
++                // Get the data-prototype explained earlier
++                var prototype = $wrapper.data('prototype');
++
++                // get the new index
++                var index = $wrapper.data('index');
++
++                // Replace '__name__' in the prototype's HTML to
++                // instead be a number based on how many items we have
++                var newForm = prototype.replace(/__name__/g, index);
++
++                // increase the index with one for the next item
++                $wrapper.data('index', index + 1);
++
++                // Display the form in the page before the "new" link
++                $(this).before(newForm);
++            });
+         });
+     </script>
+ {% endblock %}
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
+index 8119e12..b27928a 100644
+--- a/src/AppBundle/Form/GenusFormType.php
++++ b/src/AppBundle/Form/GenusFormType.php
+@@ -47,6 +47,7 @@ class GenusFormType extends AbstractType
+             ->add('genusScientists', CollectionType::class, [
+                 'entry_type' => GenusScientistEmbeddedForm::class,
+                 'allow_delete' => true,
++                'allow_add' => true,
+                 'by_reference' => false,
+             ])
+         ;

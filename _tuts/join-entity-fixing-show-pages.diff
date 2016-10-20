@@ -1,0 +1,100 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index c2f7269..980b12d 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -26,7 +26,8 @@
+                                 <a href="{{ path('user_show', {
+                                     'id': genusScientist.id
+                                 }) }}">
+-                                    {{ genusScientist.fullName }}
++                                    {{ genusScientist.user.fullName }}
++                                    ({{ genusScientist.yearsStudied }} years)
+                                 </a>
+ 
+                                 <a href="#"
+diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
+index a4bd79d..02c27cc 100644
+--- a/app/Resources/views/user/show.html.twig
++++ b/app/Resources/views/user/show.html.twig
+@@ -39,12 +39,12 @@
+             <div class="col-xs-4">
+                 <h3>Genus Studied</h3>
+                 <ul class="list-group">
+-                    {% for genusStudied in user.studiedGenuses %}
++                    {% for genusScientist in user.studiedGenuses %}
+                         <li class="list-group-item">
+                             <a href="{{ path('genus_show', {
+-                                'genusName': genusStudied.name
++                                'genusName': genusScientist.genus.name
+                             }) }}">
+-                                {{ genusStudied.name }}
++                                {{ genusScientist.genus.name }}
+                             </a>
+                         </li>
+                     {% endfor %}
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 44c27fb..186df59 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
+ 
+ use AppBundle\Entity\Genus;
+ use AppBundle\Entity\GenusNote;
++use AppBundle\Entity\GenusScientist;
+ use AppBundle\Service\MarkdownTransformer;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+@@ -38,8 +39,12 @@ class GenusController extends Controller
+ 
+         $user = $em->getRepository('AppBundle:User')
+             ->findOneBy(['email' => 'aquanaut1@example.org']);
+-        $genus->addGenusScientist($user);
+-        $genus->addGenusScientist($user); // duplicate is ignored!
++
++        $genusScientist = new GenusScientist();
++        $genusScientist->setGenus($genus);
++        $genusScientist->setUser($user);
++        $genusScientist->setYearsStudied(10);
++        $em->persist($genusScientist);
+ 
+         $em->persist($genus);
+         $em->persist($genusNote);
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index d7b9890..22f9f40 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -6,7 +6,7 @@ AppBundle\Entity\Genus:
+         funFact: <sentence()>
+         isPublished: <boolean(75)>
+         firstDiscoveredAt: <dateTimeBetween('-200 years', 'now')>
+-        genusScientists: '3x @user.aquanaut_*'
++        # genusScientists: '3x @user.aquanaut_*'
+ 
+ AppBundle\Entity\GenusNote:
+     genus.note_{1..100}:
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 651f42d..45327ad 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -176,7 +176,7 @@ class Genus
+     }
+ 
+     /**
+-     * @return ArrayCollection|User[]
++     * @return ArrayCollection|GenusScientist[]
+      */
+     public function getGenusScientists()
+     {
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 2ea3f42..fdbda99 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -213,7 +213,7 @@ class User implements UserInterface
+     }
+ 
+     /**
+-     * @return ArrayCollection|Genus[]
++     * @return ArrayCollection|GenusScientist[]
+      */
+     public function getStudiedGenuses()
+     {

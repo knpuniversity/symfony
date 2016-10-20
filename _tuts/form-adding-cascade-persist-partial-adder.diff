@@ -1,0 +1,33 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index cde37e9..8783af5 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -66,7 +66,8 @@ class Genus
+      *     targetEntity="AppBundle\Entity\GenusScientist",
+      *     mappedBy="genus",
+      *     fetch="EXTRA_LAZY",
+-     *     orphanRemoval=true
++     *     orphanRemoval=true,
++     *     cascade={"persist"}
+      * )
+      */
+     private $genusScientists;
+@@ -158,15 +159,13 @@ class Genus
+         $this->firstDiscoveredAt = $firstDiscoveredAt;
+     }
+ 
+-    public function addGenusScientist(User $user)
++    public function addGenusScientist(GenusScientist $genusScientist)
+     {
+-        if ($this->genusScientists->contains($user)) {
++        if ($this->genusScientists->contains($genusScientist)) {
+             return;
+         }
+ 
+-        $this->genusScientists[] = $user;
+-        // not needed for persistence, just keeping both sides in sync
+-        $user->addStudiedGenus($this);
++        $this->genusScientists[] = $genusScientist;
+     }
+ 
+     public function removeGenusScientist(GenusScientist $genusScientist)

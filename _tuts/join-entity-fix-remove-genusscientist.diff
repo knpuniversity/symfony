@@ -1,0 +1,47 @@
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 980b12d..1e46a2c 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -34,7 +34,7 @@
+                                    class="btn btn-link btn-xs pull-right js-remove-scientist-user"
+                                    data-url="{{ path('genus_scientists_remove', {
+                                        genusId: genus.id,
+-                                       userId: genusScientist.id
++                                       userId: genusScientist.user.id
+                                    }) }}"
+                                 >
+                                     <span class="fa fa-close"></span>
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 186df59..dd1b573 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -135,23 +135,13 @@ class GenusController extends Controller
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        /** @var Genus $genus */
+-        $genus = $em->getRepository('AppBundle:Genus')
+-            ->find($genusId);
+-
+-        if (!$genus) {
+-            throw $this->createNotFoundException('genus not found');
+-        }
++        $genusScientist = $em->getRepository('AppBundle:GenusScientist')
++            ->findOneBy([
++                'user' => $userId,
++                'genus' => $genusId
++            ]);
+ 
+-        $genusScientist = $em->getRepository('AppBundle:User')
+-            ->find($userId);
+-
+-        if (!$genusScientist) {
+-            throw $this->createNotFoundException('scientist not found');
+-        }
+-
+-        $genus->removeGenusScientist($genusScientist);
+-        $em->persist($genus);
++        $em->remove($genusScientist);
+         $em->flush();
+ 
+         return new Response(null, 204);

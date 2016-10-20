@@ -1,0 +1,20 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index c88b8cd..6155603 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -19,7 +19,14 @@
+     }) }}
+ 
+     {{ form_row(genusForm.firstDiscoveredAt) }}
+-    {{ form_row(genusForm.genusScientists) }}
++
++    <div class="row">
++    {% for genusScientistForm in genusForm.genusScientists %}
++        <div class="col-xs-4">
++            {{ form_row(genusScientistForm) }}
++        </div>
++    {% endfor %}
++    </div>
+ 
+     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+ {{ form_end(genusForm) }}

@@ -1,0 +1,52 @@
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
+index ec262f9..0005795 100644
+--- a/app/Resources/views/admin/genus/_form.html.twig
++++ b/app/Resources/views/admin/genus/_form.html.twig
+@@ -6,7 +6,11 @@
+             <span class="fa fa-close"></span>
+         </a>
+         {{ form_errors(genusScientistForm) }}
+-        {{ form_row(genusScientistForm.user) }}
++        {% if genusScientistForm.user is defined %}
++            {{ form_row(genusScientistForm.user) }}
++        {% else %}
++            <strong>{{ genusScientistForm.vars.data.user.email }}</strong>
++        {% endif %}
+         {{ form_row(genusScientistForm.yearsStudied) }}
+     </div>
+ {% endmacro %}
+diff --git a/src/AppBundle/Form/GenusScientistEmbeddedForm.php b/src/AppBundle/Form/GenusScientistEmbeddedForm.php
+index 9f4fe6b..f6232dd 100644
+--- a/src/AppBundle/Form/GenusScientistEmbeddedForm.php
++++ b/src/AppBundle/Form/GenusScientistEmbeddedForm.php
+@@ -8,6 +8,8 @@ use AppBundle\Repository\UserRepository;
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\FormBuilderInterface;
++use Symfony\Component\Form\FormEvent;
++use Symfony\Component\Form\FormEvents;
+ use Symfony\Component\OptionsResolver\OptionsResolver;
+ 
+ class GenusScientistEmbeddedForm extends AbstractType
+@@ -23,9 +25,21 @@ class GenusScientistEmbeddedForm extends AbstractType
+                 }
+             ])
+             ->add('yearsStudied')
++            ->addEventListener(
++                FormEvents::POST_SET_DATA,
++                array($this, 'onPostSetData')
++            )
+         ;
+     }
+ 
++    public function onPostSetData(FormEvent $event)
++    {
++        if ($event->getData() && $event->getData()->getId()) {
++            $form = $event->getForm();
++            unset($form['user']);
++        }
++    }
++
+     public function configureOptions(OptionsResolver $resolver)
+     {
+         $resolver->setDefaults([

@@ -1,0 +1,14 @@
+diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+index 22f9f40..12c2484 100644
+--- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
++++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
+@@ -35,3 +35,9 @@ AppBundle\Entity\User:
+         lastName: <lastName()>
+         universityName: <company()> University
+         avatarUri: <imageUrl(100, 100, 'abstract')>
++
++AppBundle\Entity\GenusScientist:
++    genus.scientist_{1..50}:
++        user: '@user.aquanaut_*'
++        genus: '@genus_*'
++        yearsStudied: <numberBetween(1, 30)>
