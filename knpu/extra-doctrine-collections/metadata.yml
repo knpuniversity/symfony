@@ -20,7 +20,7 @@ summary: |
     Doctrine relationships take a little bit more work to get setup. So let's
     master this stuff, setup our relationships to win, and get back to work.
 
-# illustration: symfony-extra-form-theming.png
+# illustration: symfony-collections.png
 
 tuts_hero:
 # todo - fill in the steps properly
