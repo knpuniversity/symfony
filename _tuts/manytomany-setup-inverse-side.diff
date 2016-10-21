@@ -25,10 +25,10 @@ index 5a0984f..a4bd79d 100644
      </div>
  {% endblock %}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index ec7d9f8..2435d07 100644
+index efb13d5..4155d05 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -62,7 +62,7 @@ class Genus
+@@ -70,7 +70,7 @@ class Genus
      private $notes;
  
      /**

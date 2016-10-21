@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index e14c356..37aa097 100644
+index b22ae6a..c80898d 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -3,6 +3,7 @@
@@ -9,8 +9,8 @@ index e14c356..37aa097 100644
 +use Doctrine\Common\Collections\Criteria;
  use Doctrine\ORM\Mapping as ORM;
  use Symfony\Component\Validator\Constraints as Assert;
- 
-@@ -195,8 +196,10 @@ class Genus
+ use Gedmo\Mapping\Annotation as Gedmo;
+@@ -213,8 +214,10 @@ class Genus
       */
      public function getExpertScientists()
      {

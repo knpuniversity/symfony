@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index c2f7269..7d02b66 100644
+index 0055569..6ec1869 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -24,9 +24,10 @@
@@ -36,7 +36,7 @@ index a4bd79d..02c27cc 100644
                          </li>
                      {% endfor %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 44c27fb..186df59 100644
+index fe1ca68..c5e5b94 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -4,6 +4,7 @@ namespace AppBundle\Controller;
@@ -76,10 +76,10 @@ index d7b9890..22f9f40 100644
  AppBundle\Entity\GenusNote:
      genus.note_{1..100}:
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 651f42d..45327ad 100644
+index b2e41ea..4322079 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -176,7 +176,7 @@ class Genus
+@@ -194,7 +194,7 @@ class Genus
      }
  
      /**

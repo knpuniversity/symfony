@@ -1011,6 +1011,21 @@
             "description": null
         },
         {
+            "id": "sluggable-add-slug-field",
+            "name": "Sluggable: Add slug field",
+            "description": null
+        },
+        {
+            "id": "sluggable-add-stofdoctrineextensions-sluggable",
+            "name": "Sluggable: Add StofDoctrineExtensions+Sluggable",
+            "description": null
+        },
+        {
+            "id": "sluggable-update-routes",
+            "name": "Sluggable: Update routes",
+            "description": null
+        },
+        {
             "id": "manytomany-create-from-genus-to-user",
             "name": "ManyToMany: Create from Genus to User",
             "description": null
@@ -1276,5 +1291,5 @@
             "description": null
         }
     ],
-    "sha": "a8a3a304104368a27557f88e8af908ececb2f56e"
+    "sha": "2106c964ce0ba44ecc1db8244caa89367fd86ad9"
 }

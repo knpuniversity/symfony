@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 3b3a682..4a5b705 100644
+index 217353e..6cdcbfd 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -28,6 +28,12 @@
@@ -29,10 +29,10 @@ index 3b3a682..4a5b705 100644
 +    </script>
  {% endblock %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index ac002db..c21a2e0 100644
+index 9c743b2..22eb8e9 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
-@@ -121,4 +121,12 @@ class GenusController extends Controller
+@@ -114,4 +114,12 @@ class GenusController extends Controller
  
          return new JsonResponse($data);
      }

@@ -376,10 +376,10 @@ index 0000000..3e9f133
 +{%- endblock form_errors %}
 diff --git a/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig b/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig
 new file mode 100644
-index 0000000..63104de
+index 0000000..993abb7
 --- /dev/null
 +++ b/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig
-@@ -0,0 +1,371 @@
+@@ -0,0 +1,370 @@
 +{# Widgets #}
 +
 +{%- block form_widget -%}
@@ -461,8 +461,7 @@ index 0000000..63104de
 +                {{- block('choice_widget_options') -}}
 +            </optgroup>
 +        {%- else -%}
-+            {% set attr = choice.attr %}
-+            <option value="{{ choice.value }}" {{ block('attributes') }}{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}</option>
++            <option value="{{ choice.value }}"{% if choice.attr %} {% set attr = choice.attr %}{{ block('attributes') }}{% endif %}{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}</option>
 +        {%- endif -%}
 +    {% endfor %}
 +{%- endblock choice_widget_options -%}

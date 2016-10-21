@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 0c54c55..3b3a682 100644
+index ce74d08..217353e 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -17,6 +17,21 @@
@@ -25,10 +25,10 @@ index 0c54c55..3b3a682 100644
          </div>
      </div>
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 8b4a1aa..d34141e 100644
+index 51e5689..615c81b 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -162,4 +162,9 @@ class Genus
+@@ -180,4 +180,9 @@ class Genus
  
          $this->genusScientists[] = $user;
      }

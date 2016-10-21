@@ -1,0 +1,76 @@
+diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
+index eb8b2c8..26db6d0 100644
+--- a/app/Resources/views/genus/list.html.twig
++++ b/app/Resources/views/genus/list.html.twig
+@@ -13,7 +13,7 @@
+             {% for genus in genuses %}
+                 <tr>
+                     <td>
+-                        <a href="{{ path('genus_show', {'genusName': genus.name}) }}">
++                        <a href="{{ path('genus_show', {'slug': genus.slug}) }}">
+                             {{ genus.name }}
+                         </a>
+                     </td>
+diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
+index 0c54c55..ce74d08 100644
+--- a/app/Resources/views/genus/show.html.twig
++++ b/app/Resources/views/genus/show.html.twig
+@@ -31,7 +31,7 @@
+ 
+     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
+     <script type="text/babel">
+-        var notesUrl = '{{ path('genus_show_notes', {'name': genus.name}) }}';
++        var notesUrl = '{{ path('genus_show_notes', {'slug': genus.slug}) }}';
+ 
+         ReactDOM.render(
+           <NoteSection url={notesUrl} />,
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 8aa9436..ace2f64 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -42,7 +42,7 @@ class GenusController extends Controller
+ 
+         return new Response(sprintf(
+             '<html><body>Genus created! <a href="%s">%s</a></body></html>',
+-            $this->generateUrl('genus_show', ['genusName' => $genus->getName()]),
++            $this->generateUrl('genus_show', ['slug' => $genus->getSlug()]),
+             $genus->getName()
+         ));
+     }
+@@ -63,24 +63,17 @@ class GenusController extends Controller
+     }
+ 
+     /**
+-     * @Route("/genus/{genusName}", name="genus_show")
++     * @Route("/genus/{slug}", name="genus_show")
+      */
+-    public function showAction($genusName)
++    public function showAction(Genus $genus)
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        $genus = $em->getRepository('AppBundle:Genus')
+-            ->findOneBy(['name' => $genusName]);
+-
+-        if (!$genus) {
+-            throw $this->createNotFoundException('genus not found');
+-        }
+-
+         $markdownTransformer = $this->get('app.markdown_transformer');
+         $funFact = $markdownTransformer->parse($genus->getFunFact());
+ 
+         $this->get('logger')
+-            ->info('Showing genus: '.$genusName);
++            ->info('Showing genus: '.$genus->getName());
+ 
+         $recentNotes = $em->getRepository('AppBundle:GenusNote')
+             ->findAllRecentNotesForGenus($genus);
+@@ -93,7 +86,7 @@ class GenusController extends Controller
+     }
+ 
+     /**
+-     * @Route("/genus/{name}/notes", name="genus_show_notes")
++     * @Route("/genus/{slug}/notes", name="genus_show_notes")
+      * @Method("GET")
+      */
+     public function getNotesAction(Genus $genus)

@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/list.html.twig b/app/Resources/views/genus/list.html.twig
-index ce27753..627987f 100644
+index e4a2433..16a9d9c 100644
 --- a/app/Resources/views/genus/list.html.twig
 +++ b/app/Resources/views/genus/list.html.twig
 @@ -19,7 +19,10 @@
@@ -15,10 +15,10 @@ index ce27753..627987f 100644
                  </tr>
              {% endfor %}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 3f85bc8..e14c356 100644
+index c8bc977..b22ae6a 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -189,4 +189,14 @@ class Genus
+@@ -207,4 +207,14 @@ class Genus
      {
          return $this->genusScientists;
      }

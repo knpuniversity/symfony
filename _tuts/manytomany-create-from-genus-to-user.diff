@@ -1,8 +1,8 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index d92aafc..d587c6e 100644
+index 0f42d6c..886a445 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -61,9 +61,15 @@ class Genus
+@@ -69,9 +69,15 @@ class Genus
       */
      private $notes;
  

@@ -1,0 +1,73 @@
+diff --git a/app/DoctrineMigrations/Version20160921253370.php b/app/DoctrineMigrations/Version20160921253370.php
+new file mode 100644
+index 0000000..59642a9
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20160921253370.php
+@@ -0,0 +1,36 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20160921253370 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus ADD slug VARCHAR(255) NOT NULL');
++        $this->addSql('CREATE UNIQUE INDEX UNIQ_38C5106E989D9B62 ON genus (slug)');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('DROP INDEX UNIQ_38C5106E989D9B62 ON genus');
++        $this->addSql('ALTER TABLE genus DROP slug');
++    }
++}
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index d92aafc..8743820 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -26,6 +26,11 @@ class Genus
+     private $name;
+ 
+     /**
++     * @ORM\Column(type="string", unique=true)
++     */
++    private $slug;
++
++    /**
+      * @Assert\NotBlank()
+      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubFamily")
+      * @ORM\JoinColumn(nullable=false)
+@@ -146,4 +151,14 @@ class Genus
+     {
+         $this->firstDiscoveredAt = $firstDiscoveredAt;
+     }
++
++    public function getSlug()
++    {
++        return $this->slug;
++    }
++
++    public function setSlug($slug)
++    {
++        $this->slug = $slug;
++    }
+ }

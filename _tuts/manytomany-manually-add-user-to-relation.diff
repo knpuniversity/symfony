@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 8aa9436..08b458f 100644
+index ace2f64..c99e925 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -36,6 +36,10 @@ class GenusController extends Controller
@@ -14,12 +14,12 @@ index 8aa9436..08b458f 100644
          $em->persist($genusNote);
          $em->flush();
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 51cabe8..5568fe7 100644
+index 0e06a2c..07e1c25 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -153,4 +153,9 @@ class Genus
+@@ -171,4 +171,9 @@ class Genus
      {
-         $this->firstDiscoveredAt = $firstDiscoveredAt;
+         $this->slug = $slug;
      }
 +
 +    public function addGenusScientist(User $user)

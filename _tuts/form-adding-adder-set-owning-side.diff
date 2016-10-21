@@ -1,8 +1,8 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 8783af5..9b6635d 100644
+index b9222c3..f4a2bf0 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -166,6 +166,8 @@ class Genus
+@@ -184,6 +184,8 @@ class Genus
          }
  
          $this->genusScientists[] = $genusScientist;

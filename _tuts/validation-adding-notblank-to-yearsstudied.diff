@@ -1,8 +1,8 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 9b6635d..3f85bc8 100644
+index f4a2bf0..c8bc977 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -69,6 +69,7 @@ class Genus
+@@ -77,6 +77,7 @@ class Genus
       *     orphanRemoval=true,
       *     cascade={"persist"}
       * )

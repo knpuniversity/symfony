@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 7d02b66..7608201 100644
+index 6ec1869..a476631 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -34,7 +34,7 @@
@@ -12,26 +12,26 @@ index 7d02b66..7608201 100644
                                  >
                                      <span class="fa fa-close"></span>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 186df59..dd1b573 100644
+index c5e5b94..302a262 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
-@@ -135,23 +135,13 @@ class GenusController extends Controller
+@@ -128,23 +128,13 @@ class GenusController extends Controller
      {
          $em = $this->getDoctrine()->getManager();
  
 -        /** @var Genus $genus */
 -        $genus = $em->getRepository('AppBundle:Genus')
 -            ->find($genusId);
--
--        if (!$genus) {
--            throw $this->createNotFoundException('genus not found');
--        }
 +        $genusScientist = $em->getRepository('AppBundle:GenusScientist')
 +            ->findOneBy([
 +                'user' => $userId,
 +                'genus' => $genusId
 +            ]);
  
+-        if (!$genus) {
+-            throw $this->createNotFoundException('genus not found');
+-        }
+-
 -        $genusScientist = $em->getRepository('AppBundle:User')
 -            ->find($userId);
 -

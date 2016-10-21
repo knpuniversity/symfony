@@ -41,10 +41,10 @@ index 0000000..b709b6c
 +    }
 +}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index d587c6e..51cabe8 100644
+index 886a445..0e06a2c 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -63,6 +63,7 @@ class Genus
+@@ -71,6 +71,7 @@ class Genus
  
      /**
       * @ORM\ManyToMany(targetEntity="User")
