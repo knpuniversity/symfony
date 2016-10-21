@@ -986,6 +986,11 @@
             "description": null
         },
         {
+            "id": "collection-updates-upgrade-symfony",
+            "name": "Collection Updates: Upgrade Symfony",
+            "description": null
+        },
+        {
             "id": "collection-updates-add-more-user-fields",
             "name": "Collection Updates: Add more User Fields",
             "description": null
@@ -1271,5 +1276,5 @@
             "description": null
         }
     ],
-    "sha": "01f663a1074b6959722e03f2ff88ff928ef6c246"
+    "sha": "a8a3a304104368a27557f88e8af908ececb2f56e"
 }

@@ -809,10 +809,10 @@ index 0000000..4fe28cc
 +}
 diff --git a/composer.lock b/composer.lock
 new file mode 100644
-index 0000000..542c0fd
+index 0000000..3089c0e
 --- /dev/null
 +++ b/composer.lock
-@@ -0,0 +1,2070 @@
+@@ -0,0 +1,2074 @@
 +{
 +    "_readme": [
 +        "This file locks the dependencies of your project to a known state",
@@ -2568,16 +2568,16 @@ index 0000000..542c0fd
 +        },
 +        {
 +            "name": "symfony/symfony",
-+            "version": "v3.1.3",
++            "version": "v3.1.4",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/symfony.git",
-+                "reference": "4478f047409028dc6e3ab320590f1247fec7a850"
++                "reference": "65ca9e4fbdb34f6d463ef77898ca583b101a4162"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/symfony/zipball/4478f047409028dc6e3ab320590f1247fec7a850",
-+                "reference": "4478f047409028dc6e3ab320590f1247fec7a850",
++                "url": "https://api.github.com/repos/symfony/symfony/zipball/65ca9e4fbdb34f6d463ef77898ca583b101a4162",
++                "reference": "65ca9e4fbdb34f6d463ef77898ca583b101a4162",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -2595,6 +2595,9 @@ index 0000000..542c0fd
 +            "conflict": {
 +                "phpdocumentor/reflection-docblock": "<3.0",
 +                "phpdocumentor/type-resolver": "<0.2.0"
++            },
++            "provide": {
++                "psr/cache-implementation": "1.0"
 +            },
 +            "replace": {
 +                "symfony/asset": "self.version",
@@ -2617,6 +2620,7 @@ index 0000000..542c0fd
 +                "symfony/framework-bundle": "self.version",
 +                "symfony/http-foundation": "self.version",
 +                "symfony/http-kernel": "self.version",
++                "symfony/inflector": "self.version",
 +                "symfony/intl": "self.version",
 +                "symfony/ldap": "self.version",
 +                "symfony/monolog-bridge": "self.version",
@@ -2700,7 +2704,7 @@ index 0000000..542c0fd
 +            "keywords": [
 +                "framework"
 +            ],
-+            "time": "2016-07-30 09:31:00"
++            "time": "2016-09-03 15:28:43"
 +        },
 +        {
 +            "name": "twig/twig",
