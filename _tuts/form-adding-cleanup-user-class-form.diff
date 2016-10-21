@@ -11,7 +11,7 @@ index 71bc247..5b39c82 100644
                      <button type="submit" class="btn btn-primary">Update</button>
                  {{ form_end(userForm) }}
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index fdbda99..19d053a 100644
+index 8043dbf..19d053a 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -219,24 +219,4 @@ class User implements UserInterface
@@ -36,7 +36,7 @@ index fdbda99..19d053a 100644
 -        }
 -
 -        $this->studiedGenuses->removeElement($genus);
--        $genus->addGenusScientist($this);
+-        $genus->removeGenusScientist($this);
 -    }
  }
 diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 259f24a..b2e41ea 100644
+index 259f24a..bb07471 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -70,8 +70,7 @@ class Genus
@@ -8,7 +8,7 @@ index 259f24a..b2e41ea 100644
      /**
 -     * @ORM\ManyToMany(targetEntity="User", inversedBy="studiedGenuses", fetch="EXTRA_LAZY")
 -     * @ORM\JoinTable(name="genus_scientist")
-+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GenusScientist", mappedBy="genus", fetch="EXTRA_LAZY")
++     * @ORM\OneToMany(targetEntity="GenusScientist", mappedBy="genus", fetch="EXTRA_LAZY")
       */
      private $genusScientists;
  
@@ -33,7 +33,7 @@ index 172415c..b366b41 100644
       */
      private $user;
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index b05cf68..2ea3f42 100644
+index 85f5458..1f00eb0 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -76,8 +76,7 @@ class User implements UserInterface

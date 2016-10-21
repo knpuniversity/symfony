@@ -14,7 +14,7 @@ index 7ca89ab..259f24a 100644
          // not needed for persistence, just keeping both sides in sync
          $user->removeStudiedGenus($this);
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 698b396..b05cf68 100644
+index 50c2c9a..85f5458 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -233,6 +233,10 @@ class User implements UserInterface
@@ -26,5 +26,5 @@ index 698b396..b05cf68 100644
 +        }
 +
          $this->studiedGenuses->removeElement($genus);
-         $genus->addGenusScientist($this);
+         $genus->removeGenusScientist($this);
      }

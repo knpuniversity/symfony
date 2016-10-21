@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
-index 5a0984f..a4bd79d 100644
+index 5a0984f..21382a1 100644
 --- a/app/Resources/views/user/show.html.twig
 +++ b/app/Resources/views/user/show.html.twig
 @@ -35,6 +35,21 @@
@@ -13,7 +13,7 @@ index 5a0984f..a4bd79d 100644
 +                    {% for genusStudied in user.studiedGenuses %}
 +                        <li class="list-group-item">
 +                            <a href="{{ path('genus_show', {
-+                                'genusName': genusStudied.name
++                                'slug': genusStudied.slug
 +                            }) }}">
 +                                {{ genusStudied.name }}
 +                            </a>

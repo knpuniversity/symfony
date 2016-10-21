@@ -16,7 +16,7 @@ index 0055569..6ec1869 100644
  
                                  <a href="#"
 diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
-index a4bd79d..02c27cc 100644
+index 21382a1..1668c2f 100644
 --- a/app/Resources/views/user/show.html.twig
 +++ b/app/Resources/views/user/show.html.twig
 @@ -39,12 +39,12 @@
@@ -27,8 +27,8 @@ index a4bd79d..02c27cc 100644
 +                    {% for genusScientist in user.studiedGenuses %}
                          <li class="list-group-item">
                              <a href="{{ path('genus_show', {
--                                'genusName': genusStudied.name
-+                                'genusName': genusScientist.genus.name
+-                                'slug': genusStudied.slug
++                                'slug': genusScientist.genus.slug
                              }) }}">
 -                                {{ genusStudied.name }}
 +                                {{ genusScientist.genus.name }}
@@ -76,7 +76,7 @@ index d7b9890..22f9f40 100644
  AppBundle\Entity\GenusNote:
      genus.note_{1..100}:
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index b2e41ea..4322079 100644
+index bb07471..ba5c87d 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -194,7 +194,7 @@ class Genus
@@ -89,7 +89,7 @@ index b2e41ea..4322079 100644
      public function getGenusScientists()
      {
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 2ea3f42..fdbda99 100644
+index 1f00eb0..8043dbf 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -213,7 +213,7 @@ class User implements UserInterface

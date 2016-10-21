@@ -15,7 +15,7 @@ index e4a2433..16a9d9c 100644
                  </tr>
              {% endfor %}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index c8bc977..b22ae6a 100644
+index 4a55ac0..54f15f0 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -207,4 +207,14 @@ class Genus

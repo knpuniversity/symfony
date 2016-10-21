@@ -1,9 +1,9 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 59f6a05..b9222c3 100644
+index 97978c0..19f74ee 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -74,7 +74,8 @@ class Genus
-      *     targetEntity="AppBundle\Entity\GenusScientist",
+      *     targetEntity="GenusScientist",
       *     mappedBy="genus",
       *     fetch="EXTRA_LAZY",
 -     *     orphanRemoval=true
