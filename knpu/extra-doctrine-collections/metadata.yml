@@ -27,4 +27,40 @@ tuts_hero:
 #    start_step: start
     finish_step: start
 
-chapters: []
+chapters:
+    clean-url-slugs:
+        is_finished: false
+        video_key: ~
+    many-to-many-setup:
+        is_finished: false
+        video_key: ~
+    insert-many-to-many:
+        is_finished: false
+        video_key: ~
+    fetch-collection-items:
+        is_finished: false
+        video_key: ~
+    removing-items:
+        is_finished: false
+        video_key: ~
+    many-to-many-fixtures:
+        is_finished: false
+        video_key: ~
+    joins-and-extra-lazy-fetch:
+        is_finished: false
+        video_key: ~
+    entity-type-checkboxes:
+        is_finished: false
+        video_key: ~
+    saving-inverse-side-collection:
+        is_finished: false
+        video_key: ~
+    many-to-many-extra-fields:
+        is_finished: false
+        video_key: ~
+    join-entity-refactoring:
+        is_finished: false
+        video_key: ~
+    embedded-form-collection:
+        is_finished: false
+        video_key: ~
