@@ -61,12 +61,12 @@ index 1d5ac0c..c381793 100644
          <div class="row">
 diff --git a/web/js/GenusAdminForm.js b/web/js/GenusAdminForm.js
 new file mode 100644
-index 0000000..f83c968
+index 0000000..7590923
 --- /dev/null
 +++ b/web/js/GenusAdminForm.js
 @@ -0,0 +1,33 @@
 +(function ($) {
-+    jQuery(document).ready(function() {
++    $(document).ready(function() {
 +        var $wrapper = $('.js-genus-scientist-wrapper');
 +
 +        $wrapper.on('click', '.js-remove-scientist', function(e) {

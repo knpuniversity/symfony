@@ -1,13 +1,14 @@
 diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
-index c88b8cd..6155603 100644
+index c88b8cd..13f8d8e 100644
 --- a/app/Resources/views/admin/genus/_form.html.twig
 +++ b/app/Resources/views/admin/genus/_form.html.twig
-@@ -19,7 +19,14 @@
+@@ -19,7 +19,15 @@
      }) }}
  
      {{ form_row(genusForm.firstDiscoveredAt) }}
 -    {{ form_row(genusForm.genusScientists) }}
 +
++    <h3>Scientists</h3>
 +    <div class="row">
 +    {% for genusScientistForm in genusForm.genusScientists %}
 +        <div class="col-xs-4">

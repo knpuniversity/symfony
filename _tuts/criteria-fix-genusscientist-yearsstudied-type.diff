@@ -1,0 +1,53 @@
+diff --git a/app/DoctrineMigrations/Version20161024154711.php b/app/DoctrineMigrations/Version20161024154711.php
+new file mode 100644
+index 0000000..d2793ef
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20161024154711.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20161024154711 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus_scientist CHANGE years_studied years_studied INT NOT NULL');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE genus_scientist CHANGE years_studied years_studied VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci');
++    }
++}
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
+index 9b2aad4..d392492 100644
+--- a/src/AppBundle/Entity/GenusScientist.php
++++ b/src/AppBundle/Entity/GenusScientist.php
+@@ -37,7 +37,7 @@ class GenusScientist
+     private $user;
+ 
+     /**
+-     * @ORM\Column(type="string")
++     * @ORM\Column(type="integer")
+      * @Assert\NotBlank()
+      */
+     private $yearsStudied;

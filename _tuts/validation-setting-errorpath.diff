@@ -1,0 +1,14 @@
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
+index 7214b0d..9b2aad4 100644
+--- a/src/AppBundle/Entity/GenusScientist.php
++++ b/src/AppBundle/Entity/GenusScientist.php
+@@ -11,7 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
+  * @ORM\Table(name="genus_scientist")
+  * @UniqueEntity(
+  *     fields={"genus", "user"},
+- *     message="This user is already studying this genus"
++ *     message="This user is already studying this genus",
++ *     errorPath="user"
+  * )
+  */
+ class GenusScientist
