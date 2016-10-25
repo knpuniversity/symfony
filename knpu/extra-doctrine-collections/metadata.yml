@@ -64,3 +64,21 @@ chapters:
     embedded-form-collection:
         is_finished: false
         video_key: ~
+    collection-delete-orphan-removal:
+        is_finished: false
+        video_key: ~
+    add-new-collection-prototype:
+        is_finished: false
+        video_key: ~
+    embedded-validation:
+        is_finished: false
+        video_key: ~
+    customizing-prototype:
+        is_finished: false
+        video_key: ~
+    form-events-readonly-embedded-field:
+        is_finished: false
+        video_key: ~
+    criteria-collection-filtering:
+        is_finished: false
+        video_key: ~
