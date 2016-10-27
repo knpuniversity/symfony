@@ -12,9 +12,13 @@ must be *some* connection between options and variables. So what is it?!
 ## Form Type Classes & Options
 
 First, behind every field type is a class. Obviously, for the `subFamily` field,
-the class behind this is `EntityType`. `name` is a *text* type, so the class behind
-it, is, well, `TextType`. I'll use the Shift+Shift shortcut in my editor to open
-the `TextType` file, from the Symfony Form component.
+the class behind this is `EntityType`:
+
+[[[ code('1e23498bb7') ]]]
+
+`name` is a *text* type, so the class behind it, is, well, `TextType`. I'll use
+the `Shift`+`Shift` shortcut in my editor to open the `TextType` file, from the Symfony
+Form component.
 
 Now, unlike variables, there is a specific *set* of valid options for a field. If
 you pass an option that doesn't exist, Symfony will scream at you. The *valid*
@@ -43,9 +47,15 @@ help you find the right value.
 
 ## The label Option versus Variable
 
-Let's see an example. In the form, we add a `subFamily` field. Then, in the template,
-we override the `label` variable. But, according to `BaseType`, this field, well
-*any* field, also has a `label` *option*.
+Let's see an example. In the form, we add a `subFamily` field:
+
+[[[ code('474124550a') ]]]
+
+Then, in the template, we override the `label` variable:
+
+[[[ code('b100ce3640') ]]]
+
+But, according to `BaseType`, this field, well *any* field, also has a `label` *option*.
 
 ### The Form to FormView Transition
 
