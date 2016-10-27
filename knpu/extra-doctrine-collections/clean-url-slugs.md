@@ -1,41 +1,106 @@
-# Clean URL Slugs
+# Give me Clean URL Strings (slugs!)
 
-Welcome guys. Okay, in this tutorial, we're talking about the ugliest parts of doctrine and symphony. Doctrine collections, specifically many to many, but also some more complex relations, and for forms embedded collection forms, but you guys are in for a serious treat. These are probably the most confusing parts of doctrine and symphony. As we go through them with this tutorial, we're going to find out that there's not really much to this.
+Yes! Collections! Ladies and gentleman, this course is going to take us somewhere
+special: to the center of *two* topics that each, single-handedly, have the power
+to make you hate Doctrine and hate Symfony forms. Seriously, Doctrine and the form
+system are probably the two most *powerful* things included in the Symfony Framework...
+and yet... they're also the two parts that drive people insane! How can that be!?
 
-There's just a lot of confusing information out there. When you actually go, and build out these really complex situations the solutions are really simple. As always, you guys should definitely quote along with me by downloading the course code from this page, unzipping it, and then finding the start directory. That start directory will be the exact code that you see here. If you follow along with the readme.md it will get you all set up on your system.
+The answer: collections. Like, when you have a database relationship where one
+Category is related to a collection of Products. And for forms, it's how you build
+a form where you can edit that category and add, remove or edit the related products
+all from one screen. If I may, it's a collection of chaos.
 
-The last step is going to be to open a terminal, move in to the directory, and start the built in web server with bin console server:run. With that we can pull up our application which is AquaNote. Specifically we'll be working on this page which is a list of all the genuses, which is a type of animal classification, in the system. Now, before we get into the collection stuff there's one little bit of homework that I want to do right now. That honestly we should have done in an earlier screen cast
+But! But, but but! I have good news: if we can understand just a *few* important
+concepts, Doctrine collections are going to fall into place beautifully. So let's
+take this collection of chaos and turn it into a collection of.. um... something awesome...
+like, a collection of chocolate, or ice cream. Let's do it!
 
-Right now thanks to our fixtures we have a lot of fake genuses. When you click them you'll notice that in the url we actually use the name as the identifier for that genus. The problem with that is, well first it's a little ugly, because it's uppercase. If a genus had a space in it there would actually be a space in the url, so these url strings are ugly. The second problem is if you have 2 genuses with the same name, which at least happens while we're developing, notice they're going to have the exact same url, which is a problem. It means that I can't actually view this second one, because if I click Aurelia it's actually going to load the first one from the database.
+## Code and Setup!
 
-What we really need is a clean unique version of the name in the url. That's what we're going to add now. This is typically called a slug. Slug just means a url safe unique string, so how do we add it? It's pretty simple, first I'll put up the genus entity, and under name we're just going to add a new field called slug. This is going to be a normal string column. The only difference is we are going to make this unique. We do not want 2 genuses in the system to have the same slug.
+You should *definitely* code along with me by downloading the course code from this
+page, unzipping it, and then finding the `start/` directory. And don't forget to
+also pour yourself a fresh cup of coffee or tea: you deserve it.
 
-Next I'll go to the bottom. I use the code to generate menu, or command N on a Mac and generate the getter, and setter for slug. Then next as always we need to generate a migration. I'll open up a new tab, and we'll run bin console doctrine migrations diff to generate that new migration. If we go over, and check that migration file we should see that it just adds a slug column, and it adds a unique index for us. That's perfect.
+That `start/` directory will have the exact code that you see here. Follow the instructions
+in the `README.md` file: it will get your project setup.
 
-Let's go back, and run bin console doctrine migrations migrate. Check this out. This will actually fail. The reason is, because we already have a bunch of genus in the data base. When we add this new column which is supposed to be unique they all have an empty string for it. If this were a data base that we already had on production we would need to work on our migration a little bit more to actually calculate that slug right now for each of those names, and make them unique.
+The last step will be to open a terminal, move into the directory, and start the
+built-in PHP web server with:
 
-Fortunately we don't need to worry about this. We haven't deployed this to the data base yet. What I'm actually going to do is empty the data base. Bin console doctorate database drop -- force, and create. Then we can rerun all of the data migrations from the beginning. This time it looks just fine. The next question is now that we have this slug field how do we actually populate that slug field. Obviously it's just a normal field, so we could if we wanted to open our data fixtures file, and add slug field manually here.
+```bash
+bin/console server:run
+```
 
-There's a much better way. I'd rather have it, so that when we set the name field when the genus is saved doctrine automatically changes that name field, and generates a slug from it. To do that we're going to use a library called Stof doctrine extensions bundle. You can find Stof docrintation on symphony.com, so first thing let's get this bundle installed as composer. This composer requires Stof/doctrine-extension-bundle. Step 2 is to plug the bundle into App Kernel. Copy the U statement for that, open up your app kernel, and paste it in there.
+Now, head to your browser and go to `http://localhost:8000` to pull up our app:
+Aquanote! Head to `/genus`: this lists all of the *genuses* in the system, which
+is a type of animal classification.
 
-Then finally we need to add a little bit of configuration. The readme for this bundle is a little bit confusing. It gives you a lot of details that you probably don't need. Down near the bottom it finally gives us some configuration that we'll want to add to our config.yml file. In app config config.yml you'll want to make sure that you have the Stof doctrine extensions key. Then under the default key we're going to say slugable true.
+***TIP
+The plural form of genus is actually *genera*. But irregular plural words like
+this can make your code a bit harder to read, and don't work well with some of
+the tools we'll be using. Hence, we use the simpler, genuses.
+***
 
-What this library does is it adds a lot of different magic behaviors to doctrine. Slugable is just one of them. For each magic behavior that you want to enable you're going to enable under here under the default key. It doesn't enable all the magic behavior by default. Each magic behavior adds a little bit of overhead to your application. Once you've done that we're actually done with this docrintation, and we're going to click to see the official doctrine extensions documentation.
+## Clean, Unique URLs
 
-You see the Stof doctrine extensions bundle is actually just a small wrapper around this doctrine extensions library. This is the one that has all of the meat in it. this is the one that's going to show all the documentation. We want to add this slugable behavior, so I'll click to look at the slugable docrintation. In figuring this ends up being really easy. First you just need a new U statement above our entity, so I'll copy the [gedmo 00:08:08] U statement, go into genus, and paste it there.
+Before we dive into collection stuff, I *need* to show you something else first.
+Don't worry, it's cool. Click one of the genuses. Now, check out the URL: we're
+using the *name* in the URL to identify this genus. But this has two problems. First,
+well, it's kind of ugly: I don't really like upper case URLs, and if a genus had
+a *space* in it, this would look *really* ugly - nobody likes looking at `%20`. Second,
+the name might not be unique! At least while we're developing, we might have two
+genuses with the same name - like `Aurelia`. If you click the second one... well,
+this is actually showing me the *first*: our query *always* finds only the first
+Genus matching this name.
 
-Second above your slug field we'll need to add this new [gedmo 00:08:26]/slug annotation, except change the fields to just the name. This says whenever this genus is saved use the name fields to generate a unique slug value. We don't ever need to worry about setting the slug ourselves. That's it. If you go back you can see if you scroll up the library did install correctly. It failed down here, because I think we were in the middle of configuring a library right when the cache ended up being cleared. If you want to compose and install again everything works just fine. You probably didn't see that error, but you might have depending on the timing of things.
+How could I let this happen!? Honestly, it was a shortcut: I wanted to focus on more
+important things before. But now, it's time to right this wrong.
 
-Now, because our fixtures file is set in the name property we should just be able to [relet 00:09:24] our fixtures with bin console doctrine fixtures load. With any luck they will automatically set the slug values. We can check that by running a query with bin console doctrine query sql, and say select start from genus. Awesome check this out. The name is by Balenal, and the slug is the lower cased version of that. This is working perfectly.
+What we really need is a clean, unique version of the name in the url. This is commonly
+called a slug. No, no, not the slimy animal - it's just a unique name.
 
-At the bottom you'll actually see that one of the slugs is trichechus-1. What happened here is there's actually 2 called trichechus, because of the way our fixtures set up that's possible. The slugable library made sure that they didn't have duplicate slugs. It just adds a -1, a -2, a -3 in the end to make sure those are unique. That's all the hard work there. Now that we have a unique slug field we're going to want to update our application to use that instead of using the name up here.
+## Create the slug Field
 
-I'll close a few files, and then open up the genus controller. The first place that we use the name is actually in the show actions. We have genus name up here. Let's change that to just the slug. When we do that, because slug is a valid property on the genus entity we don't actually need to manually query for it anymore. We can just type in genus as an argument, and symphony will automatically query it for that genus based on that slug. That means we can get rid of all this code here. Then just update this genus name variable below to genus arrow get name.
+How can we create a slug? First, open the `Genus` entity and add a new property
+called `slug`. We *will* store this in the database like any other field. The only
+difference is that we'll force it to be unique in the database.
 
-Now when we make the change to the route that means anywhere we generate a link to this route is going to be broken. There's actually 2 places that happens. You could see that by going back to your browser, and I do this all the time, and saying get git grap genus_show. We can see we have 1 link in list.html.twig, and we also generate a url inside genus controller itself. It's really simple.
+Next, go to the bottom and use the `Code->Generate` menu, or `Command+N` on a
+Mac, to generate the getter and setter for `slug`. Finally, as always, generate a
+migration. I'll open a new terminal tab, and run:
 
-Search for that instead of genus controller. It's up here inside of our fake new action. Let's change this to slug genus arrow git slug. The next place was an app resources views genus list.html.twig. We'll change this genus show to slug genus.slug. Simple enough. The one other place that we use a name the url is actually back in genus controller. It's our notes action. This is the age-x end point that returns [jason 00:12:43] of all of the notes for a specific genus.
+```bash
+bin/console doctrine:migrations:diff
+```
 
-We'll just change this to slug. We're already using the nice short cut here where it automatically query's for the genus. If we copy the route name we can go back. We're on the gif grap paste that, and we can see this is used in just one place. Show.html.twig. Open that, and we'll change that to B slug genus.slug. That's it. Let's go back now to just/genus refresh. Here are all of our published genuses. Click on octopus, check this out. Lower case o octopus.
+Open that file to make sure it looks right. Perfect! It adds a column, and gives it
+a unique index. Run it:
 
-Everything still works fine. The fact that the notes are showing up here means that, that age-x endpoint also is showing up just fine. This is the proper way to do clean urls. We just used the name earlier as a little bit of shortcut. This makes it really, really easy. All right, so let's dive in now to what we actually want to talk about. Which is complex many to many collections, and doctrines.
+```bash
+bin/console doctrine:migrations:migrate
+```
+
+## Ah, Migration Failed!
+
+Oh no! It failed! Why!? Since we *already* have genuses in the database, when we try
+to add this new column... which should be unique... every genus is given the same,
+blank string. If we had already deployed this app to production, we would need to
+do a bit more work, like make the slug field *not* unique at first, write a migration
+to generate all of the slugs, and *then* make it unique.
+
+Fortunately we haven't deployed this yet, so let's take the easy road. Drop the
+database:
+
+```bash
+bin/console doctrine:database:drop --force
+```
+
+Then recreate it, and run all of the migrations from the beginning:
+
+```bash
+bin/console doctrine:database:create
+bin/console doctrine:migrations:migrate
+```
+
+Much better. So.... how do we actually set the `slug` field for each `Genus`?

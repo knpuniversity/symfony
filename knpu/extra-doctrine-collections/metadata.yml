@@ -9,11 +9,13 @@ summary: |
     * Creating ManyToMany associations
     * Querying on ManyToMany relations
     * Mapping the inverse (collection) side of a relation
+    * (bonus) Using DoctrineExtension for clean URL slugs
     * Keeping the owning & inverse sides in-sync
-    * Using orphan removal to delete items in a collection
+    * Using `orphanRemoval` to delete items in a collection
+    * Using `cascade` to save items in a collection
+    * Counting collections in the `EXTRA_LAZY` way
     * Rendering relationship data from both sides
-    * Filtering collections efficiently with Criteria
-    * Cascading onto relatied Entities
+    * Filtering collections efficiently with Criteria (mind will be blown)
     * Dealing with complex collection forms
     * Adding "extra" data to the "join table"
 
@@ -23,12 +25,17 @@ summary: |
 illustration: symfony-collections.png
 
 tuts_hero:
-# todo - fill in the steps properly
-#    start_step: start
-    finish_step: start
+    start_step: 'Collection Updates: Redirect to edit on save'
+    finish_step: 'Criteria: Use in query builder'
 
 chapters:
     clean-url-slugs:
+        is_finished: false
+        video_key: ~
+    doctrine-extensions-sluggable:
+        is_finished: false
+        video_key: ~
+    refactoring-carefully:
         is_finished: false
         video_key: ~
     many-to-many-setup:

@@ -1,13 +1,81 @@
-# Many to Many Setup
+# ManyToMany Relationship
 
-I want to look at 2 [entities 00:00:02] in particular. First is genus and the second is user. Now, before this tutorial I updated our fixtures file so that, of course, we have genuses and we have users but actually we have 2 types of users now. Some are normal users but others have this is scientist flag set to true. Which means that sometimes we have normal users in our system but some of our users are actually scientists themselves. This is nothing more than a simple Boolean field.
+Let's talk about the famous, ManyToMany relationship. We already have a `Genus` entity
+and also a `User` entity. Before this tutorial, I updates the fixtures file.
+It still loads genuses, but it now loads *two* groups of users. The first group consists
+of normal users, but the second group has an `isScientist` boolean field set to true.
+In other words, our site will have many users, and some of those users happen to
+be scientists.
 
-Now that we know that our system is going to be used by scientists we want to join user and genus. When a user is a scientist they probably study several different genuses and each genus is probably studied by many different users. If we want to be able to make a map in our database that records which users are studying which genuses than we can't do this with the normal many to one collection. This has to be a many to many collection. Many users study many genuses and many genuses are studied by many users.
+That's not really important for the relationship we're about to setup, the point is
+just that many users are scientists. And on the site, we want to keep track of which
+genuses are being studied by which scientists, or really, users. So, each `User`
+may study *many* genuses. And each `Genus`, may be studied by *many* Users. 
 
-The way this is done in a relational database is with a joined table. You have the genus table and you have the user table and when you want to relate them you actually have a new middle table. As a genus ID, [foreign 00:02:01] key back to genus, and a user ID foreign key back to user. No matter what framework or what language you're using this is always how a many to many language is stored in the database. How do we this in doctrine? It's a lot simpler than you would think.
+This is a ManyToMany relationship. In a database, to link the `genus` table and
+`user` table, we'll need to add a new, *middle*, or *join* table, with `genus_id`
+and `user_id` foreign keys. That isn't a Doctrine thing, that's just how it's done.
 
-First, start with either of your 2 genuses. I'll show you why you would choose one versus the other later. Then just add a new property. Private genus scientists. Which is just the name I'm giving for the collection of users that study this genus. Above that we're going to add an annotation for many to many with target entity equals user and because this is going to be an array of genus scientists, anytime you have that with doctrine in the construct method you want to set that to a new array collection. That is actually it.
+## Mapping a ManyToMany in Doctrine
 
-This is a little bit confusing because up until now every table has an entity class but many to many relationships are special. Doctrine says, you know what, you don't need to create an entity for that joined table. Just map a many to many relationship and we will create that table for you. In fact, just by doing this if we go to our terminal and run bin console doctrine schema update--dump-sql this will show us the sql that it wants to generate after that. It is create table genus user which has a genus ID and a user ID foreign key columns. Pretty cool.
+So how do we setup this relationship in Doctrine? It's really nice! First, choose
+either entity: `Genus` or `User`, I don't care. I'll tell you soon why you might
+choose one over the other, but for now, it doesn't matter. Let's open `Genus`. Then,
+add a new private property: let's call it `genusScientists`. This could also be called
+`users` or anything else. The important thing is that it will hold the array of `User`
+objects that are linked to this `Genus`.
 
-Now before we actually generate a migration for this, if you want to you can control that table name. Instead of genus user, since we're calling these genus scientists which is just a term that makes sense to us, we're going to add at join table. There's a number of different options that you can put here and these are all about how you control how the database looks. It doesn't effect your application at all. We're going to say name equals genus_scientist. With that, I'll head back to the terminal. Run bin console doctrine migrations dif. Then, we'll look here at our doctrine's migration directory. Check that new one out. It does exactly what we thought. [Altered 00:05:00] create table genus scientist but it's adding those 2 foreign key columns. Execute that with doctrine migrations. Migrate. With about 5 lines of code we have our many to many setup in the database. Next question is how do we add stuff to this? Afterwards, how do we read things out of this table? Let's do that next.
+Above, add the annotation: `@ORM\ManyToMany` with `targetEntity="User"`.
+
+Finally, whenever you have a Doctrine relationship where your property is an *array*
+of items, so, `ManyToMany` and `OneToMany`, you need to initialize that property
+in the `__construct()` method. Set `$this->genusScientists` to a `new ArrayCollection()`.
+
+## Creating the Join Table
+
+Next... do nothing! Or maybe, high-five a stranger in celebration... because that
+is *all* you need. This is enough for Doctrine to create that middle, join table
+and start inserting and removing records for you.
+
+It *can* be a bit confusing, because until now, *every* table in the database has
+needed a corresponding entity class. But the ManyToMany relationships is special.
+Doctrine says:
+
+> You know what? I'm not going to require you to create an entity for that join table.
+> Just map a ManyToMany relationship and I will create and manage that table for you.
+
+That's freaking awesome! To prove it, go to your terminal, and run:
+
+```bash
+bin/console doctrine:schema:update --dump-sql
+```
+
+Boom! Thanks to that *one* little `ManyToMany` annotation, Doctrine now wants to
+create a `genus_user` table with `genus_id` and `user_id` foreign keys. Pretty dang
+cool.
+
+## JoinTable to control the... join table
+
+But before we generate the migration for this, you can also control the name of
+that join table. Instead of `genus_user`, let's call ours `genus_scientists` - it's
+a bit more descriptive. To do that, add another annotation: `@ORM\JoinTable`. This
+optional annotation has just one job: to let you control how things are named in
+the database for this relationship. The most important is `name="genus_scientist"`.
+
+With that, find your terminal again and run:
+
+```bash
+bin/console doctrine:migrations:diff
+```
+
+Ok, go find and open that file! Woohoo!
+
+*Now* it creates a `genus_scientist` table with those foreign keys. Execute the
+migration:
+
+```bash
+bin/console doctrine:migrations:migrate
+```
+
+Guys: with about 5 lines of code, we just setup a `ManyToMany` relationship. Next
+question: how do we add stuff to it? Or, read from it?
