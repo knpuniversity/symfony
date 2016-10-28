@@ -30,10 +30,16 @@ makes sense.
 Next, what about the options that should go inside the `select` tag? Head back to
 the web profiler to see which variable might help us. Ah, here's one called
 `choices`, and each item is a `ChoiceView` object. Use the `Shift`+`Shift` shortcut
-to open *that* file from Symfony.
+to open *that* file from Symfony:
+
+[[[ code('908ecaa2d4') ]]]
 
 Cool! Each `ChoiceView` is a simple object, with a public `label` property and a
-public `value` property. That's exactly what we need.
+public `value` property:
+
+[[[ code('f9c5690272') ]]]
+
+That's exactly what we need.
 
 Add a loop: `for choice in genusForm.firstDiscoveredAt.year.vars.choices`:
 
