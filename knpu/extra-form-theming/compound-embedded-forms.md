@@ -8,7 +8,9 @@ But this will still just be *2* levels: the `FormView` object on top, and the ch
 `FormView` object for each field. But, it can get a lot more complicated than that.
 
 To show you, go into `GenusFormType`. For now, change the `firstDiscoveredAt` options:
-comment out `widget` and `attr`.
+comment out `widget` and `attr`:
+
+[[[ code('a02a230eb6') ]]]
 
 Refresh this immediately. Ok, the `widget` option defaults to `choice`, which means
 that this renders as three select fields. I know, it's horribly ugly, hard to look
@@ -29,13 +31,18 @@ a container for sub-fields.
 
 In the `_form.html.twig` template, when we call `form_row()` on
 `genusForm.firstDiscoveredAt`, Symfony tries to render the parent field, notices
-that it's `compound` and so, calls `form_row()` on each of its three sub-fields.
+that it's `compound` and so, calls `form_row()` on each of its three sub-fields:
+
+[[[ code('2fe6391e3a') ]]]
+
 The result is the nice output we're already seeing.
 
 ## Rendering Sub-Fields
 
 To get more control, you could instead call `form_row` on each individual field:
-for `year`, `month` and `day`.
+for `year`, `month` and `day`:
+
+[[[ code('40cb4083f3') ]]]
 
 But notice that if this field fails validation, the error is attached to the *parent*
 field. So you might want to keep rendering `form_label(genusForm.firstDiscoveredAt)`
