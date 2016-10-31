@@ -55,7 +55,7 @@ about setting this field ourselves. Nice.
 
 ## Reload the Fixtures
 
-Head back to your terminal. Woh! My `compoare require` blew up! But look closely:
+Head back to your terminal. Woh! My `composer require` blew up! But look closely:
 the library *did* install, but then it errored out when it tried to clear the cache.
 This is no big deal, and was just bad luck: I was *right* in the middle of adding
 the `config.yml` code when the cache cleared. If I run `composer install`, everything

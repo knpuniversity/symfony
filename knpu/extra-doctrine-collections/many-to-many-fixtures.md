@@ -1,11 +1,57 @@
-# Many to Many Fixtures
+# ManyToMany & Fixtures
 
-Let's go back to slash genus. These are all the genus that are coming from our fixtures, but none of them have any scientists yet. That makes sense, because our fixtures aren't creating this relationship ever. In fixtures.yml we have genus, we have users, but there's nothing to join them together. That's annoying, so I want to fix that. The question is, how do we do this? Well remember, the fixtures file is a very simple idea. You just put properties here and then when you run the fixtures, it sets the value on that property. It even has this super power where you can use the @ syntax to reference another object and it will actually take that object and set it on that property.
+Head back to `/genus`. These genuses are coming from our fixtures, but, sadly, the
+fixtures don't relate any scientists to them... yet. Let's fix that!
 
-In this case, it's no different. We want to take our genus object and set an array of user objects on the genus scientist property. In other words, just add a key here called genus scientists, colon, and then left square bracket which is the array syntax in YAML. Then we can just say something like @user_aquanaut_1 which is coming from the bottom of this file where we have ... Oh, user.aquanaut_1. Let me change that to user.aquanaut_1 and then let's add a second one. @user.aquanaut_5. It's not very random but let's go over and run [inaudible 00:01:50]. Background fixtures load. Let's see how that looks.
+The `fixtures.yml` creates some `Genus` objects and some `User` objects, but nothing
+links them together. How can we do that? Well, remember, the fixtures system is very
+simple: it simply sets each value on the give property. It also has a super power
+where you can use the `@` syntax to reference another object. In that case, that
+other *object* is set on the property.
 
-I'll go back to the genus page, refresh. Now every genus is related to the same two users. Cool, a step in the right direction. It's basically as simple as that. The only other thing I want to show you with ... Now it's interesting is, how exactly did that work? What happens in reality when you use the fixtures is that when you say fun fact here, the fixtures library calls set fun fact on your object. It does that because the fun fact property, along with all of our other properties, is private. It uses the setter to access it. You'll notice we have genus scientists here. We do not have a set genus scientist method. All we have is an add genus scientist method.
+Setting data on our `ManyToMany` is no different: we need to take a `Genus` object
+and set an *array* of `User` objects on the `genusScientist` property. In other words,
+add a key called `genusScientists` set to `[]` - the array syntax in YAML. Inside,
+use `@user.aquanaut_1`. That refers to one of our `User` objects below. And whoops,
+make sure that's `@user.aquanaut_1`. Let's add another: `@user.aquanaut_5`.
 
-Well cool thing is, the fixtures library is smart enough to realize that; because it doesn't see a set genus scientist, but instead sees an add genus scientist, it just calls the add genus scientist method and passes two times: once for each of these two user objects. The fixtures library is doing some fun things behind the scenes. The only way this could be better is if it was a little bit more random so I'll so you a trick to do that. Clear out the array and instead, in quotes, say 3x@user.aquanaut_* and that's it. This is a special syntax for the Alice Fixtures Library that says I want you to call this three times and put it into an array. That will give every genus three random aquanaut users.
+It's not very random... but let's try it! Find your terminal and run:
 
-Let's try it. Go back. Refresh the fixtures. Then head back and refresh. Now we have three random ones for each genus. Pretty cool way to do that.
+```bash
+php bin/console doctrine:fixtures:load
+```
+
+Ok, check out the `/genus` page. Now *every* genus is related to the same two users.
+
+## Smart Fixtures: Using the Adder!
+
+## Randomizing the Users
+
+But wait... that should *not* have worked. The `genusScientists` property - like
+*all* of these properties is *private*. To set them, the fixtures library uses
+the setter methods. But, um, we don't have a `setGenusScientist` method, we only
+have `addGenusScientist()`.
+
+So that's just another reason why the Alice fixtures library *rocks*: it figured
+this out automatically:
+
+> Hey! I see an `addGenusScientist()` method! I'll just call that twice instead of
+> looking for a setter.
+
+## Randomizing the Users
+
+The only way this could be more hipster is if we could make these users random. Ah,
+but Alice has a trick for that too! Clear out the array syntax and instead, in quotes,
+say `3x@user.aquanaut_*`.
+
+Check out that wonderful Alice syntax! It says: I want you to go find *three* random
+users, put them into an array, and *then* try to set them.
+
+Refresh those fixtures!
+
+```bash
+php bin/console doctrine:fixtures:load
+```
+
+Then head over to your browser and refresh. Yep, three random scientists for each
+Genus. Pretty classy Alice, pretty classy.

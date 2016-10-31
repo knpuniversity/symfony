@@ -47,7 +47,13 @@ chapters:
     fetch-collection-items:
         is_finished: false
         video_key: ~
+    many-to-many-inverse:
+        is_finished: false
+        video_key: ~
     removing-items:
+        is_finished: false
+        video_key: ~
+    hooking-up-remove-scientist-js:
         is_finished: false
         video_key: ~
     many-to-many-fixtures:

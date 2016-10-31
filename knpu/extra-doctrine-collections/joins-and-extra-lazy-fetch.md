@@ -1,33 +1,77 @@
-# Joins and Extra Lazy Fetch
+# Joining Across a ManyToMany + EXTRA_LAZY Fetch
 
-Back on the genus page here I want to add a new column that says number of scientist. It will just tell us whether or not this genus has two scientists or ten scientists. Which at this point is so simple.
+On the genus list page, I want to add a new column that prints the *number* of scientists
+each `Genus` has. That should be simple!
 
-Let's open the genus/list at [inaudible 00:00:16] templates. Add a new TH for number of scientists. Then down below we'll just say TD{{genus.genusscietistspipelink}}. In other words go out and get my array of genus scientists and count them.
+Open the `genus/list.html.twig` template. Add the new `th` for number of scientists.
+Then down below, add the `td`, then say `{{ genus.genusScientists|length }}`. In other
+words: go out and get my array of genus scientists and count them!
 
-When you refresh it works. Every genus has exactly three genus scientists because of our fixtures. You can even delete one of the genus scientists if you want, go back and refresh and now it says two. Great!
+And, it even works! Each genus has three scientists. Until we delete them, then
+only *two* scientists! Yes!
 
-Click the profiler, [inaudible 00:00:54] toolbar at the bottom, to look at what the queries look like for this. This is really interesting. You can say we have a number of almost duplicated queries here that are selecting all of the fields from user inter-joined over to genus scientist where genus said to equals 29 then 25 then 26 and then 27.
+## The Lazy Collection Queries
 
-See what's happening is when we print every single row, when we print every single genus the moment that we try to count the scientists, doctor needs to make a query to go over and fetch all of the scientists for that specific genus just so he can count them.
+But now click the Doctrine icon down in the web debug toolbar to see how the queries
+look on this page. This is really interesting: we have one query that's repeated
+many times: it selects *all* of the fields from `user` and then INNER JOINs over to
+`genus_scientist` WHERE `genus_id` equals 29, then, 25, 26 and 27.
 
-Now you shouldn't go into your application looking for ways to worry about performance when you're developing an application, but this is a potential cause for concern. That's a lot of wasted effort. It would be better if we could just make a simple count query instead of fetching all of these user data for each of the genuses.
+When we query for the `Genus`, it does *not* automatically *also* go fetch all the
+related Users. Instead, as *soon* as we access the `genusScientists`, Doctrine fetches
+all of the `User` data for that `Genus`. We're seeing that query for each row in
+the table.
 
-There's a really incredibly awesome way to do this. Go to genus find your genus scientist property, and at the end of the many-to-many add fetch=extralazy. That's it.
+## Fetching EXTRA_LAZY
 
-If you go back and refresh we have the same number of queries, but now check them out. Every time it renders a row all it needs to do now is do a count query for that specific genus to figure out how many there are. That is awesome.
+Technically, that's a lot of extra queries... which *could* impact performance.
+But please, don't hunt own *potential* performance problems too early - there are
+far too many good tools - like NewRelic and Blackfire - that are far better at identifying
+*real* performance issues later.
 
-It knows to do that because it realizes that all you are doing is counting the scientist. If we were to actually loop over the scientists and start printing them out, like we do on each individual genus page, then it would go and make the full query for all of the user data. So doctors really smart and figures out which one to do.
+But, for the sake of learning... I want to do better, and there are a few possibilities!
+First, instead of querying for *all* the user data *just* so we can count the users,
+wouldn't it be better to make a super-fast COUNT query?
 
-Now the only other potential problem is that this still making a lot of extra queries. It has to account for every single row, which is probably not a problem, but technically we could do this whole thing in just one query. What I mean is when we originally queried for the genus what if we joined over to the genus scientist table and over to the user table right there and just fetched all of the data at once.
+Yep! And there's an awesome way to do this. Open `Genus` and find the `genusScientist`
+property. At the end of the `ManyToMany`, add `fetch="EXTRA_LAZY"`.
 
-It actually might be slower because we'll be fetching more data, but I want to show you how to join across a many-to-many relationship. In genus controller scroll to the top and find our list action. Right now this page gets all the genuses by calling this find all publish ordered by recently active function. That lives in our genus repository.
+That's it. Now go back, refresh, and click to checko ut the queries. We still have
+the same *number* of queries, but each row's query is now just a simple count.
 
-Inside of here we're going to pretend that we want to avoid those extra queries. How can we do it? And that means that we basically want to join to the middle genus scientist table and over to the user table and select all of that data. Now remember when you work with many-to-many relationships you need to pretend that like that middle join table doesn't exist at all.
+That's freaking awesome! Doctrine knows to do this because it realizes that all we're
+doing is *counting* the scientists. But, if we were to actually loop over the scientists
+and start accessing data on each `User` - like we do on the genus show page - then
+it would make a full query for all the `User` data. Doctrine is really smart.
 
-What I mean is when you do your left join here you actually left join from genus on genus.genusscientists now alias that is genus scientist. You just reference the genus scientist property on genus. Doctrine will take care of joining across the middle table and over to the user table automatically.
+## Joining for Less Queries
 
-Then to select that data you can say add select genus scientist. Again, depending on what you want to do this may or may not be better for performance.
+Another way to optimize this would be to try *minimize* the number of queries. Instead
+or running a query for every row, couldn't we grab *all* of this data at once? When
+we originally query for the genuses, what if we joined over to the `user` table
+*then*, and fetched all of the users immediately?
 
-if you go back and refresh now, check that out. One query. In that query it is left joining across genus scientists and left joining across the user. So you just joined directly over to user, it takes care of all that middle table stuff.
+That's totally possible, and while it might actually be *slower* in this case, let's
+find out how to do join across a `ManyToMany` relationship. Open `GenusController`
+and find `listAction`. Right now, this controller calls a
+`findAllPublishOrderedByRecentlyActive()` method from `GenusRepository` to make the
+query.
 
-If you want to know more about doing joins and avoiding queries like this, check out our doctrine queries tutorial.
+Go find that method! Here's the goal: modify this query to join to the middle
+`genus_scientist` table and then join again to the `user` table so we can select
+all of the user data. But wait! What's the number one rule about `ManyToMany` relationships?
+That's right: you need to pretend like the middle join table doesn't exist at all.
+
+Instead, `leftJoin()` on `genus.genusScientists`. Alias that to `genus_scientist`.
+When you JOIN in Doctrine, you always join on a relation property, like `genusScientists`.
+Doctrine will automatically take care of joining across the middle table and then
+over to the `user` table.
+
+To select the user data, add `select('genus_scientist')`.
+
+Ok, go back and refresh again! Woh, *one* query! And that query contains a `LEFT JOIN`
+to `genus_scientist` and another to `user`. Because we're fetching *all* the user
+data in this query, Doctrine avoids making the COUNT query later.
+
+If Doctrine JOINS are still a bit new to you, give yourself a head start with our
+[Doctrine Queries Tutorial](https://knpuniversity.com/screencast/doctrine-queries).

@@ -1,7 +1,7 @@
 # ManyToMany Relationship
 
 Let's talk about the famous, ManyToMany relationship. We already have a `Genus` entity
-and also a `User` entity. Before this tutorial, I updates the fixtures file.
+and also a `User` entity. Before this tutorial, I updated the fixtures file.
 It still loads genuses, but it now loads *two* groups of users. The first group consists
 of normal users, but the second group has an `isScientist` boolean field set to true.
 In other words, our site will have many users, and some of those users happen to
@@ -38,7 +38,7 @@ is *all* you need. This is enough for Doctrine to create that middle, join table
 and start inserting and removing records for you.
 
 It *can* be a bit confusing, because until now, *every* table in the database has
-needed a corresponding entity class. But the ManyToMany relationships is special.
+needed a corresponding entity class. But the ManyToMany relationship is special.
 Doctrine says:
 
 > You know what? I'm not going to require you to create an entity for that join table.

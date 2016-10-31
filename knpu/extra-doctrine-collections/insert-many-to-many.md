@@ -1,60 +1,81 @@
-# Adding to a ManyToMany
+# Inserting into a ManyToMany
 
-The question now is: how do we add things to this join table? How do we actually
-join a `Genus` and a user together? The complicated thing about doctrine
-in this type of a relationship is, you need to basically forget that there's a
-join table. Your only job is to set the user objects onto this genus
-scientist's property, and save. If we do that, then doctrine will handle adding
-and deleting rows from that join table automatically without us worrying about
-it.
+The *big* question is: who is the best superhero of all time? Um, I mean, how
+can we *insert* things into this join table? How can we join a `Genus` and a `User`
+together?
 
-Let's see how. Open up your genus controller. You guys remember this new action
-here? This isn't a real page. This is just a page where we're messing around
-adding some entities and saving them, just so we can see what happens when we
-do that. Right now we have a genus. This genus is not related to any users, so
-let's relate it to a user. We'll do it by saying, by first querying for a user
-object, with user=emgetrepsitory@bundleuser then find one by e-mail set to
-aquanaut1@example.org. This is just dummy code and that works because in our
-fixtures file, you'll notice at the bottom all these scientists are aquanauts
-then 1-10 @example.org.
+Doctrine makes this *easy*... and yet... at the same time... kind of confusing!
+First, you need to completely forget that a join table exists. Stop thinking about
+the database! Stop it! Instead, your *only* job is to get a `Genus` object, put
+one or more `User` objects onto its `genusScientists` property and then save. Doctrine
+will handle the rest.
 
-That should find a user and then the question is: how do we set that user on
-that genus? Right now the genus scientist, we didn't add a get or a setter for
-it, so there's not way to set this externally, so let's add a way. I'm going to
-add a public function: add genus scientist. This is going to accept a user
-argument and very simply, we're going to use that genus scientist property like
-an array and add the user to it and that's it. Then in our controller, we can
-say: genus arrow add genus scientist [in pass 00:02:06] at user and we are
-done. We don't need to persist anything else because we are already persisting
-the genus down here.
+## Setting Items on the Collection
 
-Let's try it. You were on this page as /genus/new. Hit that. It says genus
-created, octopus15. I'll head over to my terminal. Run [inaudible 00:02:41]
-console doctrine query.sql just so I can run some queries against my database.
-You can do this however you want using phpMyAdmin or MySQL directly. Say select
-star from genus scientist, that join table. Just like that, we have a genus
-joined to a user. The genus of ID 11, which is the octopus15 that was just
-added and the user ID by pure chance, is also ID 11. If we search of that, it
-is in fact, aquanaut1@example.org. That's it guys. If you want to add something
-to that middle table, you don't need to worry about creating or inserting
-anything. You just need to make sure you set the user on that genus.
+Let's see this in action! Open up `GenusController`. Remember `newAction`? This isn't
+a real page - it's just a route where *we* can play around and test out some code.
+And hey, it *already* creates and saves a `Genus`. Cool! Let's associate a user
+with it!
 
-Check this out. What if I did this? What if I duplicated this so I tried to
-have one genus, one new genus, but I tried to add the same user to it twice? In
-theory that shouldn't be allowed because a genus and a user should only be able
-to be related once. That joined table should be unique. Refresh this now. You
-actually see this does get kicked out from the database. Insert into genus
-scientist, duplicate entry 12-11. What it's saying is, Hey, you can't insert
-two rows into this table at the same genus and the same user. To avoid that in
-case we make mistakes like this, in our add genus scientist method, we'll just
-prevent this. It's really easy, you can say: if this arrow genus arrow
-scientist arrow contains ... Remember, the genus scientist is actually an array
-collection object so it has really cool methods on it like contains. We can
-pass at user. If it already has user, just return.
+First, find a user with `$user = $em->getRepository('AppBundle:User')` then `findOneBy()`
+with `email` set to `aquanaut1@example.org`. That'll work thanks to our handy-dandy
+fixtures file! We have scientists with emails `aquanaut`, `1-10@example.org`.
 
-Now when we go back and refresh, no problems. It just created that one joined
-table entry. If you go back and query genus scientist now, you'll see the first
-one we created and the second one that we just created. Inserting is done, so
-next let's look into how we can actually set up, how we can read this
-information, and also how we can set up the very, sometimes confusing, inverse
-side of this relationship.
+We've got a `User`, we've got a `Genus`... so how can we smash them together? Well,
+in `Genus`, the `genusScientists` property is private. Add a new function so we can
+put stuff into it: `public function: addGenusScientist()` with a `User` argument.
+Very simply, add that `User` to the `genusScientists` property. Technically, that
+property is an `ArrayCollection` object, but we can treat it like an array.
+
+Then back in the controller, call that: `$genus->addGenusScientist()` and pass it
+`$user`.
+
+We're done! We don't even need to persist anything new, because we're already persisting
+the `$genus` down here.
+
+Try it out! Manually go to `/genus/new`. Ok, genus Octopus15 created. Next, head to
+your terminal to query the join table. I'll use:
+
+```bash
+php bin/console doctrine:query:sql "SELECT * FROM genus_scientist"
+```
+
+Oh yeah! The genus id 11 is now joined - by pure coincidence - to a user who is also
+id 11. This successfully joined the Octopus15 genus to the `aquanaut1@example.org`
+user.
+
+If adding new items to a ManyToMany relationship is confusing... it's because Doctrine
+does all the work for you: add a User to your Genus, and just save. Don't over-think
+it!
+
+## Avoiding Duplicates
+
+Let's do some experimenting! What if I duplicated the `addGenusScientist()` line?
+Could this *one* new `Genus` be related two the same `User` *two* times? Let's find
+out!
+
+Refresh the new page again. Alright! I love errors!
+
+> Duplicate entry '12-11' for key PRIMARY
+
+So this is saying:
+
+> Yo! You can't insert *two* rows into the `genus_scientist` table for the same
+> genus and user.
+
+And this is *totally* by design - it doesn't make sense to relate the same `Genus`
+and `User` multiple times. So that's great... but I *would* like to avoid this error
+in case this happens accidentally in the future.
+
+To do that, we need to make our `addGenusScientist()` method a *little* bit smarter.
+Add if `$this->genusScientist->contains()` ... remember, the `genusScientist`
+property is actually an `ArrayCollection` object, so it has some trendy methods on
+it, like `contains`. Then pass `$user`. If `genusScientists` already has this `User`,
+just return.
+
+Now when we go back and refresh, no problems. The `genus_scientist` table now holds
+the original entry we created and this *one* new entry: no duplicates for us.
+
+Next mission: if I have a `Genus`, how can I get and print of all of its related
+Users? AND, what if I have a `User`, how can I get its related Genuses? This will
+take us down the magical - but dangerous - road of *inverse* relationships.
