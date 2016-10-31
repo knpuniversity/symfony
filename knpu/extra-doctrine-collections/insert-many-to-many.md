@@ -51,7 +51,7 @@ it!
 ## Avoiding Duplicates
 
 Let's do some experimenting! What if I duplicated the `addGenusScientist()` line?
-Could this *one* new `Genus` be related two the same `User` *two* times? Let's find
+Could this *one* new `Genus` be related to the same `User` *two* times? Let's find
 out!
 
 Refresh the new page again. Alright! I love errors!
@@ -68,7 +68,7 @@ and `User` multiple times. So that's great... but I *would* like to avoid this e
 in case this happens accidentally in the future.
 
 To do that, we need to make our `addGenusScientist()` method a *little* bit smarter.
-Add if `$this->genusScientist->contains()` ... remember, the `genusScientist`
+Add if `$this->genusScientista->contains()` ... remember, the `genusScientista`
 property is actually an `ArrayCollection` object, so it has some trendy methods on
 it, like `contains`. Then pass `$user`. If `genusScientists` already has this `User`,
 just return.
