@@ -14,6 +14,10 @@ Give it the `@ORM\Column` annotation and set its type to `json_array`:
 
 [[[ code('11cb890ee2') ]]]
 
+***TIP
+`json_array` type is deprecated since Doctrine 2.6, you should use `json` instead.
+***
+
 This is *really* cool because the `$roles` property will hold an *array* of roles,
 but when we save, Doctrine will automatically `json_encode` that array and store
 it in a *single* field. When we query, it'll `json_decode` that back to the array.
