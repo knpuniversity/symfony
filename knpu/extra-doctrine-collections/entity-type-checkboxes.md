@@ -5,7 +5,7 @@ and via the fixtures. But what about via Symfony's form system? Yea, that's wher
 things get interesting.
 
 Go to `/admin/genus` and login with a user from the fixtures: `weaverryan+1@gmail.com`
-and password `iliketurtles`. click to edit one of the genuses.
+and password `iliketurtles`. Click to edit one of the genuses.
 
 ## Planning Out the Form
 
@@ -18,7 +18,7 @@ users would start checked.
 
 This will be *perfect*... as long as you don't have a *ton* of users in your system.
 In that case, creating 10,000 checkboxes won't scale and we'll need a different
-solution. But, I'll save that for another day.
+solution. But, I'll save that for another day, and it's not really that different.
 
 ## EntityType Field Configuration
 
@@ -51,13 +51,13 @@ Wah, wah. Our form is *trying* to build a checkbox for each `User` in the system
 but it doesn't know what field in `User` it should use as the display value. So, it
 tries - and fails *epicly* - to cast the object to a string.
 
-There's two ways to fix this, but I likes to add a `choice_label` option. Set
+There's two ways to fix this, but I like to add a `choice_label` option. Set
 it to `email` to use that property as the visible text.
 
 Try it again. Nice!
 
-As expected, three of the users are pre-selected. So, does it save? Uncheck AquaNote 3,
-check AquaNote 2 and hit save. It does! Behind the scenes, Doctrine just deleted
+As expected, three of the users are pre-selected. So, does it save? Uncheck Aquanaut3,
+check Aquanaut2 and hit save. It does! Behind the scenes, Doctrine just deleted
 one row from the join table and inserted another.
 
 ## EntityType: Customizing the Query

@@ -1,10 +1,10 @@
 # Using the new OneToMany Collections
 
 Open up the `genus/show.html.twig` template. Actually, let's start in the `Genus`
-class itself. Find `getGenusScientist()`. This method is lying! It doesn't return
+class itself. Find `getGenusScientists()`. This method is lying! It does not return
 an array of `User` objects, it returns an array of `GenusScientist` objects!
 
-In the template, when we loop over `genus.genusScientist`, `genusScientist` is *not*
+In the template, when we loop over `genus.genusScientists`, `genusScientist` is *not*
 a `User` anymore. Update to `genusScientist.user.fullName`, and above, for the `user_show`
 route, change this to `genusScientist.user.id`. 
 
@@ -12,18 +12,18 @@ Then, in the link, let's show off our new `yearsStudied` field:
 `{{ genusScientist.yearStudied }}` then years. We still need to fix the remove link,
 but let's see how it looks so far!
 
-Refresh! Ok, no more errors. Well, until you click to view the user!
+Refresh! It's way less broken!. Well, until you click to view the user!
 
 ## Updating the User Template
 
-Start by opening `User` and finding `getStudyGenuses()`. Change the PHPDoc to advertise
-that this *now* returns an array of `GenusScientist` objects.
+To fix this, start by opening `User` and finding `getStudiedGenuses()`. Change the
+PHPDoc to advertise that this *now* returns an array of `GenusScientist` objects.
 
-Now let's go fix the template: `user/show.html.twig`. Hmm, let's rename this variable
+Next, go fix the template: `user/show.html.twig`. Hmm, let's rename this variable
 to be a bit more clear: `genusScientist`, to match the type of object it is. Now,
 update `slug` to be `genusScientist.genus.slug`. And print `genusScientist.genus.name`.
 
-Try it! Page back to life!
+Try it! Page is alive!
 
 ## Updating the Delete Link
 
@@ -42,7 +42,7 @@ Then, instead of removing this link from `Genus`, we simply delete the entity:
 Go try it! Quick, delete that scientist! It disappears in dramatic fashion, *and*,
 when we refresh, it's *definitely* gone.
 
-Phew! We're almost done. By the way, you can see that this is a good amount of work.
+Phew! We're almost done. By the way, you can see that this refactoring takes some work.
 If you know that your join table will probably need extra fields on it, you can save
 yourself this work by setting up the join entity from the very beginning and avoiding
 `ManyToMany`. But, if you definitely won't have extra fields, `ManyToMany` is way
@@ -53,12 +53,12 @@ nicer.
 The *last* thing to fix is the fixtures. We won't set the `genusScientists` property
 up here anymore. Instead, scroll down and add a new `AppBundle\Entity\GenusScientist`
 section. It's simple: we'll just build new `GenusScientist` objects ourselves, just
-like we did in `newAction()` in PHP code a minute ago. Add `genus.scientist_{1..50}`
+like we did via `newAction()` in PHP code earlier. Add `genus.scientist_{1..50}`
 to create 50 links. Then, assign `user` to a random `@user.aquanaut_*` and `genus`
 to a random `@genus_*`. And hey, set `yearsStudied` to something random too:
-`<numberBetween(1, 30>`.
+`<numberBetween(1, 30)>`.
 
-Yes! Go find your terminal and reload!
+Nice! Go find your terminal and reload!
 
 ```bash
 php bin/console doctrine:fixtures:load
@@ -68,6 +68,7 @@ Ok, go back to `/genus`... and click one of them. We have scientists!
 
 So our app is fixed, right? Well, not so fast. Go to `/admin/genus`: you might need
 to log back in - password `iliketurtles`. Our genus form is still *totally* broken.
-Ok, not error: but it doesn't even make sense anymore: our relationships is now more
-complex than checkboxes can handle. How would I set the `yearsStudied`? Time to take
-this form up a level.
+Ok, no error: but it doesn't even make sense anymore: our relationship is now more
+complex than checkboxes can handle. For example, how would I set the `yearsStudied`?
+
+Time to take this form up a level.

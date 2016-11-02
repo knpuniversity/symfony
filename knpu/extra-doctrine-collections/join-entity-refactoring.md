@@ -1,26 +1,26 @@
 # Join Entity App Refactoring
 
 In some ways, not much just changed. Before, we had a `genus_scientist` table
-with a `genus_id` and a `user_id` columns. And... we still have that, with two
+with `genus_id` and `user_id` columns. And... we still have that, just with two
 new columns.
 
 But, in our app, a ton just changed. That's my nice way of saying: we just broke
-a bunch of stuff!
+everything!
 
 ## Collection of GenusScientists, not Users
 
-For example, before, `genusScientist` was a collection of `User` objects, but now
+For example, before, `genusScientists` was a collection of `User` objects, but now
 it's a collection of `GenusScientist` objects. The same thing is true on `User`:
 wherever our code was using the `studiedGenuses` property - to get the collection
 or change it - well, that code is done broke.
 
-Let's clean things up! And see some really interesting things along the way.
+Let's clean things up! And see some cool stuff along the way.
 
 ## Creating new Join Entity Links
 
 First, because we just emptied our database, we have no data. Open the fixtures
-file and temporarily comment-out the `genusScientist` property. We can't simply set
-a `User` object on `genusScientist` anymore: this *now* needs `GenusScientist`
+file and temporarily comment-out the `genusScientists` property. We can't simply set
+a `User` object on `genusScientista` anymore: this *now* accepts `GenusScientist`
 objects. We'll fix that in a second.
 
 But, run the fixtures:
@@ -30,7 +30,7 @@ php bin/console doctrine:fixtures:load
 ```
 
 While that's working, go find `GenusController` and `newAction()`. Let's once again
-use this method to hack together some more interesting data.
+use this method to hack together and save some interesting data.
 
 First, remove the two `addGenusScientist` lines. These don't make any sense anymore!
 How can we add a new row to our join table? Just create a new entity:

@@ -61,7 +61,7 @@ once for the box we unchecked.
 
 Ok, hit update! Hmm, it *looked* successful... but it still didn't actually work.
 And that's expected! We just setup a cool little system where the form component calls
-our adder and remover methods to update the `studiedGenuses`. But... this hasn't
+our adder and remover methods to update the `studiedGenuses` property. But... this hasn't
 really changed anything: we're still not setting the *owning* side of the relationship.
 
 But, we're just *one* small step from doing that.
