@@ -1,31 +1,84 @@
-# Entity Type Check Boxes
+# EntityType Check Boxes with ManyToMany
 
-Now that we've seen how to add items to our many-to-many relationship in fixtures and in PHP, I want to look at how to do it through Symphony's form system. This is where things get really interesting. Go to genus/admin/genus we have a little genus admin section here. Just logon with weaverrun+1@gmail.com, password iliketurtles to check it out.
+Guys, we are *really* good at adding items to our `ManyToMany` relationship in PHP
+and via the fixtures. But what about via Symfony's form system? Yea, that's where
+things get interesting.
 
-We'll just edit one of the genuses. Right now there's no way from this form to actually select new users that are studying this genus and that's what we want to change.
+Go to `/admin/genus` and login with a user from the fixtures: `weaverryan+1@gmail.com`
+and password `iliketurtles`. click to edit one of the genuses.
 
-Let's think about it. With the many-to-many relationship, how would this be shown in a form? Well it would probably be shown with check boxes. You would have check boxes for all of the users in the system and then you just check those boxes, hit save, and that would create the relationship inside of the system. If you had a ton of users in the system that would scale, but I'm going to let that be for another topic.
+## Planning Out the Form
 
-The controller behind this pages is called genus admin controller and it uses a form called genus form type, which is in our form directory. Step one we just need to add a new field down here and since we're updating the genus scientist property on genus that's what we're going to call it here. Genus scientists. The type will be an entity type, which should be used anytime you're dealing with a relationship.
+Right now, we don't have the ability to change which users are studying this genus
+from the form.
 
-You can see earlier we used it with subfamily. There's only one subfamily for each genus but this is a many-to-one relationship so we use the entity type there as well. The only different down here we will have a class set to user::class and then the only difference is we're going to set multiple to true so that this entity type expects an array. And also set expanded to true. What that will do is it'll list all the users as check boxes.
+If we wanted that, how would it look? It would probably be a list of checkboxes:
+one checkbox for every user in the system. When the form loads, the already-related
+users would start checked.
 
-Next, I'm under app resources views, admin genus_form template for this page and then at the bottom we'll just call it form_row genus form.genus scientists. Let's check it out.
+This will be *perfect*... as long as you don't have a *ton* of users in your system.
+In that case, creating 10,000 checkboxes won't scale and we'll need a different
+solution. But, I'll save that for another day.
 
-Refresh the page and oh, error, catchable fatal error object of class entity could not be converted to string. So what's happened here, and the error tells you a little bit of information, is it's trying to build those check boxes for each user class but it doesn't know what field in user class it should use for the display name.
+## EntityType Field Configuration
 
-There's a few ways to fix this but the way that I like to do it is by adding a choice label option to my form and I'll say email. So it says use the email property on the user class in the check boxes.
+The controller behind this page is called `GenusAdminController` and the form is
+called `GenusFormType`. Go find it! Step one: add a new field. Since we ultimately
+want to change the `genusScientists` property, that's what we should call the field.
+The type will be `EntityType`.
 
-This time, there we go.
+This is your go-to field type whenever you're working on a field that is mapped as
+*any* of the Doctrine relations. We used it earlier with `subfamily`. In that case,
+each `Genus` has only *one* `SubFamily`, so we configured the field as a select
+*dropdown*.
 
-It's that easy. It already has the first three checked that's our relevance. I can uncheck AquaNote 3, check AquaNote 2, hit save and it makes those changes in the database deleting one of the records in the joint table and inserting a new record for AquaNote 2.
+Back on `genusScientists`, start with the same setup: set class to `User::class`.
+Then, because this field holds an *array* of `User` objects, set `multiple` to `true`.
+Oh, and set `expanded` also to `true`: that changes this to render as checkboxes.
 
-Now another feature in our system is that we actually have two types of users. Some users are just plain users and other users are scientists that have this is scientist [inaudible 00:04:24] property set to true. Technically we only really need to list those users here because these other users aren't really meant to be able to set as genus scientists.
+That's everything! Head to the template: `app/Resources/views/admin/genus/_form.html.twig`.
+Head to the bottom and simply add the normal `form_row(genusForm.genusScientists)`.
 
-In other words we want to filter this query down to just show some users in the system. The way to do this is pretty simple. I'm going to open up the user repository and we're going to create a new public function. Create is scientist query builder. Very simply this will return this arrow create [creo 00:05:30] builder, user and where user.is scientist = to :is scientist and then set parameter is scientist set to true. That doesn't make the query it just returns the query builder.
+Guys, let's go check it out.
 
-Then in genus form type we can set a query builder option set to a function. This will be passed the user repository object and we can return repo arrow create is scientist query builder.
+## Choosing the Choice Label
 
-Now if you refresh we should just have that subset. Again, this is really simple because the entity type is smart enough you can query for entity objects and set them on our genus and that's all we need.
+Refresh! And... explosion!
 
-Now in a second we're going to do this in the other direction. Meaning we're going to go to a user form and try to add genuses to it. That's where things are going to go a little bit crazy.
+> Catchable fatal error: object of class User could not be converted to string
+
+Wah, wah. Our form is *trying* to build a checkbox for each `User` in the system...
+but it doesn't know what field in `User` it should use as the display value. So, it
+tries - and fails *epicly* - to cast the object to a string.
+
+There's two ways to fix this, but I likes to add a `choice_label` option. Set
+it to `email` to use that property as the visible text.
+
+Try it again. Nice!
+
+As expected, three of the users are pre-selected. So, does it save? Uncheck AquaNote 3,
+check AquaNote 2 and hit save. It does! Behind the scenes, Doctrine just deleted
+one row from the join table and inserted another.
+
+## EntityType: Customizing the Query
+
+Our system really has *two* types of users: plain users and *scientists*. Well, they're
+really not any different, except that some have `isScientist` set to true. Now technically,
+I really want these checkboxes to *only* list users that are scientists: normal users
+shouldn't be allowed to study Genuses.
+
+How can we filter this list? Simple! Start by opening `UserRepository`: create
+a new public function called `createIsScientistQueryBuilder()`. Very simple: return
+`$this->createQueryBuilder('user')`, `andWhere('user.isScientist = :isScientist')`
+and finally, `setParameter('isScientist', true)`. This doesn't make the query: it
+just returns the query builder.
+
+Over in `GenusFormType`, hook this up: add a `query_builder` option set to an anonymous
+function. The field will pass us the `UserRepository` object. That's so thoughtful!
+That means we can celebrate with `return $repo->createIsScientistQueryBuilder()`.
+
+Refresh that bad boy! Bam! User list filtered.
+
+Thanks to our `ManyToMany` relationship, hooking up this field was easy: it just
+*works*. But now, let's go the *other* direction: find a user form, and add a list
+of genus checkboxes. That's where things are going to go a bit crazy.

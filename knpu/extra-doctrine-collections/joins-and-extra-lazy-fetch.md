@@ -47,7 +47,7 @@ it would make a full query for all the `User` data. Doctrine is really smart.
 ## Joining for Less Queries
 
 Another way to optimize this would be to try to *minimize* the number of queries.
-Instead or running a query for every row, couldn't we grab *all* of this data at
+Instead of running a query for every row, couldn't we grab *all* of this data at
 once? When we originally query for the genuses, what if we joined over to the `user`
 table *then*, and fetched all of the users immediately?
 

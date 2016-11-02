@@ -68,10 +68,19 @@ chapters:
     saving-inverse-side-collection:
         is_finished: false
         video_key: ~
+    by-reference-adder-remover:
+        is_finished: false
+        video_key: ~
+    synchronizing-mapping-inverse:
+        is_finished: false
+        video_key: ~
     many-to-many-extra-fields:
         is_finished: false
         video_key: ~
     join-entity-refactoring:
+        is_finished: false
+        video_key: ~
+    refactoring-for-new-collections:
         is_finished: false
         video_key: ~
     embedded-form-collection:

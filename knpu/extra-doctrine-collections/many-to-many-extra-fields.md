@@ -1,31 +1,129 @@
-# Many to Many Extra Fields
+# ManyToMany with Extra Fields
 
-...I back slashed 'genus.' And click into any of our genuses. So right now, we can link genuses to users. So I know that 'Eta Pharel' here is a user that studies this genus. But, now I want to store a little extra data on that relationship. I want to know that, not only does this user study this genus, but for how many years. I want to know that 'Eta Pharel' has studied this genus for maybe...ten years. And 'Marietta Shoeless' has studied for only five years.
+Head back to `/genus` and click into any of our genuses. Thanks to our hard work,
+we can link genuses and users. So I know that Eda Farrell is a `User` that studies
+this `Genus`.
 
-In other words, what we want is... we want that joined table. The genus-scientist joined table that's automatically created for us to have three fields on it. Genus ID, User ID, but also Years Studied. So how can we add extra data to our joined table...with a many to many relationship?
+But, hmm, what if I want to store a little extra data on that relationship, like
+the number of *years* that each `user` has studied the `Genus`. Maybe Eda has studied
+this `Genus` for 10 years, but Marietta Schulist has studied it for only 5 years.
 
-Well, the answer's really simple...you can't. That's right. It's not possible. Many to many relationships...only work when you have no extra fields in that relationship. But don't worry. That's totally by design. As soon as you need their joined table to have even one extra field of data on it, you need to build an entity for that table, just like you would do for any other table on your database.
+In the database, this means that we need our join table to have *three* fields
+now: `genus_id`, `user_id`, but also `years_studied`. How can we add that extra
+field to the join table?
 
-So that's what we're going to do. In your entity directory, create a new class called 'Genus- Scientist'. Inside of here...we're going to do the normal things...I'll go to the genus class. And at the top, we'll steal the normal use statement, Thou art we are as half the doctrine adaptations. And paste that here. Then we'll just add some properties. Now that this is it's own genus, I am going to give this an ID property. It's a Genus property, and User property, and also a Years Studied property.
+The answer is simply, you can't! It's not possible. Whaaaaat? 
 
-I use the code generate menu, or command N, to go down to ORM Class...to generate my annotations for me...and notice, it gave this....table a name of Genus_Scientist, which is what I want. I want this to have the same table name as what already exists in our database. We're going to migrate that table over to this new structure.
+`ManyToMany` relationships only work when you have *no* extra fields on the relationship.
+But don't worry! That's by design! As soon as your join table need to have even
+*one* extra field on it, you need to build an entity class for it.
 
-Then I'll go back to code generate, and go to ORM annotation, and we'll generate the annotations for ID and Years Studied. Perfect. Now for Genus and User, think about it. These are very simply...classic many to one relationships. Every Genus-Scientist row should have a Genus ID column and a User ID column. So, above Genus, we'll say many-to-one. [inaudible 00:04:06] equals Genus.
+## Creating the GenusScientist Join Entity
 
-And below that, we'll make this required by saying @joined column...nullible equals false. I'll copy that, and put the same thing above User, changing the target entity to User. And that's it. Finish this class up by going back to the code generate menu, or command N, going to Getters, 'Why'd I get ID?' Method. And doing that same thing again and selecting Getters and Setters, and editing Getters and Setters for all the other properties. So this is a nice looking, normal entity.
+Let's see it in action, In your `Entity` directory, create a new class: `GenusScientist`.
+Open `Genus` and steal the ORM `use` statement on top. Paste it here.
 
-Now that we've done this, we need to update our Genus and our User entities, because the relationship has completely changed. In Genus, you find Genus-Scientists. This is no longer a many to many, this is now a one to many. In other words, this is the inverse side of the many to one relationship inside of Genus- Scientist. So instead of inverse by, we actually are going to now have mapped by equals Genus. Genus, and target entity of course, Genus-Scientist.
+Next, add some properties: `id` - we could technically avoid this, but I like to
+give every entity an `id`, `genus`, `user`, and `yearsStudied`.
 
-And you can still keep the fetch equals extra lazy, because that works for many to one relationship, or one to many. And now that this is the inverse side of the relationship, there's no more joined table or joined column. Now there are more stuff that we need to fix at the bottom of this class with our adder and remover functions, but we'll worry about that later. In Genus- Scientist, we'll add inverse by, and we'll point it to that Genus-Scientist property. Then open up User, and do the exact same thing inside of here.
+Use the `Code->Generate` menu, or `Command+N` on a Mac, and select `ORM Class` to
+generate the class annotations. Oh, and notice! This generated a table name of
+`genus_scientist`: that's perfect! I want that to match our existing join table:
+we're going to migrate it to this new structure.
 
-For Studied Genuses, this is now going to be Genus-Scientist, relationship is one to many, and it's mapped by the User property inside of Genus-Scientist, and the order by doesn't work anymore. Well, technically it does, but now we would need to choose a field on Genus-Scientist, we can't order by the user table, because we're not joining directly over to the User table anymore, so I'll remove that for now.
+Go back to `Code->Generate` and select `ORM Annotation`. Generate the annotations
+for `id` and `yearsStudied`. Perfect!
 
-Cool. So stopping back here, you realize that a many to many relationship is really just two many to one relationships in disguise. We always could have mapped it by creating our own entity, but if you don't have any extra fields on your joined table, it's just simpler to do a many to many. But as soon as you do, you need an entity class, and you need two many to one relationships.
+How should we map the `genus` and `user` properties? Well, think about it: each
+is now a classic `ManyToOne` relationship. Every `genus_scientist` row should have
+a `genus_id` column and a `user_id` column. So, above `genus`, say `ManyToOne` with
+`targetEntity` set to `Genus` Below that, add the optional `@JoinColumn` with
+`nullabl=false`.
 
-So let's go back now and run VIN console doctrine migrations diff to generate the migration for this. And then open the app doctrine migrations directory and check that out. So look at this, because we already had the Genus-Scientist joined table, we're not creating any new tables, we're just modifying it. It drops a couple of the foreign keys, it adds the ID and the Year Studied, and then it re-adds the foreign keys over to those tables. So really, the only thing that's changed of importance is that we now have an ID primary key, and a Years Studied property. But basically, the table is still there, just the way it always was.
+Copy that and put the same thing above `user`, changing the `targetEntity` to `user`.
 
-Now if you try to actually execute this...it will blow up on you. With some weird errors saying 'incorrect table definition' that can only be one auto-column, and it must be defined as a key. This, it turns out, is a small bug in doctrine that only affects when you change from a many to many relationship like this to a relationship where you actually have an entity on your joined table.
+And... that's it! Finish the class by going back to the `Code->Generate menu`, or
+`Command+N`, selecting Getters and choosing `id`. Do the same again for
+`Getters and Setters`: select the rest of the properties.
 
-This kind of thing in doctrine honestly doesn't happen very often, but the fix for it is pretty easy. Take this last line here with 'add primary key ID', copy it, remove that line, and then after the ID is added in the previous query, just paste it there and add a comma. My SQL needs this to happen all on one statement, doctrine doesn't quite generate that properly for us. So since our migrations are in a really weird state right now, because this one partially ran...we're just going to...drop our database fully...create our database...and then make sure all of our migrations run from scratch. And this time, they do.
+Entity, done!
 
-So now that we have a different type of relationship set up, we need to start fixing our application, because things aren't quite the way they were a second ago. And then we'll see how this affects our forms.
+## Updating the Existing Relationships
+
+Now that the join table has an entity, we need to update our `Genus` and `User`
+entities to point to it. In `Genus`, find the `genusScientists` property. Guess
+what? This is *not* a `ManyToMany` to `User` anymore: it's now a `OneToMany` to
+`GenusScientist`. Yep, it's now the *inverse* side of the `ManyToOne` relationship
+we just added to our new entity. That means we need to change `inversedBy` to
+`mappedBy` set to `genus`. And of course, `targetEntity` is `GenusScientist`.
+
+You *can* still keep the `fetch="EXTRA_LAZY"`: that works for any relationship
+that holds an array of items. But, we *do* need to remove the `JoinTable`: annotation:
+both `JoinTable` and `JoinColumn` can only live on the *owning* side of a relationship.
+
+There are more methods in this class - like `addGenusScientist()` that we still
+need to fix, but we'll do that later. In `GenusScientist`, add `inversedBy` set
+to the `genusScientists` property on `Genus`.
+
+Finally, open `User`: we need to make the exact same changes here.
+
+For `studiedGenuses`, the `targetEntity` is now `genusScientist`, the relationship
+is `OneToMany`, and it's `mappedBy` the `user` property inside of `GenusScientist`.
+The `OrderBy` doesn't work anymore. Well, technically it *does*, but we can only
+order by a field on `GenusScientist`, not on `User`. Remove that for now.
+
+## The Truth About ManyToMany
+
+Woh! Ok! Step back for a second. Our `ManyToMany` relationship is now *entirely*
+gone: replaced by 3 entities and 2 classic `ManyToOne` relationships. If you think
+about, you'll realize that a `ManyToMany` relationship is nothing more than two
+`ManyToOne` relationships in disguise. All along, we could have mapped our original
+setup by creating a "join" `GenusScientist` entity with only `genus` and `user`
+`ManyToOne` fields. A `ManyToMany` relationship is just a convenience layer when
+that join table doesn't need any extra fields. But as soon as you *do* need extra,
+you'll need this setup.
+
+## Generating (and Fixing) the Migration
+
+Last step: generate our migration:
+
+```bash
+php bin/console doctrine:migrations:diff
+```
+
+Look in the `app/DoctrineMigrations` directory and open that migration.
+
+So cool! Because we already have the `genus_scientist` join table, the migration
+does *not* create any new tables. Nope, it simply modifies it: drops a couple of
+foreign keys, adds the `id` and `years_studied` columns, and then re-adds the foreign
+keys.Really, the only thing that changed of importance is that we now have an `id`
+primary key, and a `years_studied` column. But otherwise, the table is still there,
+just the way it always was.
+
+If you try to run this migration...it will blow up, with some rude error:
+
+> Incorrect table definition; there can be only one auto column...
+
+It turns out, Doctrine has a bug! Gasp! The horror! Yep, a bug in its MySQL
+code generation that affects this *exact* situation: converting a `ManyToMany` to
+a join entity. No worries: it's easy to fix... and I can't think of *any* other
+bug like this in Doctrine... and I use Doctrine *a lot*.
+
+Take this last line: with `ADD PRIMARY KEY id`, copy it, remove that line, and
+then - after the `id` is added in the previous query - paste it and add a comma.
+MySQL needs this to happen all in one statement.
+
+But now, our migrations are in a *really* weird state, because this one *partially*
+ran. So let's start from scratch: drop the database fully, create the database,
+and then make sure all of our migrations can run from scratch:
+
+```bash
+php bin/console doctrine:database:drop --force
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+```
+
+Yes! Success!
+
+Now that we have a different type of relationship, we need to start fixing our app
+and updating our forms to use the `CollectionType`.
