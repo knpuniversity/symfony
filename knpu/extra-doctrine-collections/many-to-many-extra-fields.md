@@ -83,7 +83,7 @@ You should also add the `inversedBy="studiedGenuses"` to the `user` property in
 
 Woh! Ok! Step back for a second. Our `ManyToMany` relationship is now *entirely*
 gone: replaced by 3 entities and 2 classic `ManyToOne` relationships. And if you think
-about, you'll realize that a `ManyToMany` relationship is nothing more than two
+about it, you'll realize that a `ManyToMany` relationship is nothing more than two
 `ManyToOne` relationships in disguise. All along, we could have mapped our original
 setup by creating a "join" `GenusScientist` entity with only `genus` and `user`
 `ManyToOne` fields. A `ManyToMany` relationship is just a convenience layer when

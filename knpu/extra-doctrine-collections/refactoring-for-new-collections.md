@@ -9,7 +9,7 @@ a `User` anymore. Update to `genusScientist.user.fullName`, and above, for the `
 route, change this to `genusScientist.user.id`. 
 
 Then, in the link, let's show off our new `yearsStudied` field:
-`{{ genusScientist.yearStudied }}` then years. We still need to fix the remove link,
+`{{ genusScientist.yearsStudied }}` then years. We still need to fix the remove link,
 but let's see how it looks so far!
 
 Refresh! It's way less broken!. Well, until you click to view the user!

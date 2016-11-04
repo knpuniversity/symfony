@@ -86,10 +86,16 @@ chapters:
     embedded-form-collection:
         is_finished: false
         video_key: ~
+    collection-allow-delete:
+        is_finished: false
+        video_key: ~
     collection-delete-orphan-removal:
         is_finished: false
         video_key: ~
     add-new-collection-prototype:
+        is_finished: false
+        video_key: ~
+    add-new-collection-cascade-persist:
         is_finished: false
         video_key: ~
     embedded-validation:
@@ -99,6 +105,9 @@ chapters:
         is_finished: false
         video_key: ~
     form-events-readonly-embedded-field:
+        is_finished: false
+        video_key: ~
+    easy-collection-filtering:
         is_finished: false
         video_key: ~
     criteria-collection-filtering:

@@ -1,24 +1,91 @@
-# Collection Delete Orphan Removal
+# Deleting an Item from a Collection: orphanRemoval
 
- This genus has four genus scientists and we can update those genus scientists but we can't add new ones and we can't delete scientists from those genus. That's what we need to work on now. Let's start with deleting them. Let's start with the UI for this because what I want to be able to do is just click a little x icon and then when we hit save, it will actually delete that genus scientist from the database. Inside of your form ... I'll add a new class to the column: js-genus-scientist-item that we'll use in JavaScript in a second. Below that, we'll add a little link with it's own js-remove-scientist class and a little x icon inside. Perfect.
+When we delete one of the `GenusScientist` forms and submit, the `CollectionType`
+is now smart enough to *remove* that `GenusScientist` from the `genusScientists`
+array on `Genus`. So, why doesn't that make any difference to the database?
 
- Now, to hook this up with JavaScript, I'm not going to put the JavaScript in this template because this template is actually included from both edit and at new.html.twig. We actually need to put the JavaScript in this top level template. For now we're going to ignore the new template and just put the JavaScript straight into edit.html.twig by overriding the blocked JavaScripts, calling the parent function to include the JavaScript that's in our base layout ... Then I'm just going to make a simple document.ready block and inside ...
+The problem is that the `genusScientists` property is now the *inverse* side of
+this relationship. In other words, if we remove or add a `GenusScientist` from this
+array, it doesn't make any difference! Doctrine ignores changes to the inverse side.
 
- Back in form, before we write more JavaScript, add one more class to the row that's around the entire thing called js-genus-scientist-wrapper. That's going to allow us to add and remove elements inside of there. Then back in edit, say [inaudible 00:03:10] wrapper equals, then use jQuery to select that element, then we'll attach a listener on that. On click of .js-genus, js-removescientist, which is the class that we have on the anchor tag so when that anchor is clicked ... Then we'll, of course, say e.preventdefault and then just for now, just to get the user interface working, we'll say this.closest.js-genusscientistitem.
+## Setting the Owning Side: by_reference
 
- We'll take the anchor length and go up until it finds the Li tag that is the div that is around everything. Then we'll say .fadeout.remove. Cool. It's just that. If we refresh, we're going to x, and it goes away. Obviously this is only talking about the user interface at this point. If we submit, we actually get a strange error. It says,  Update genus scientist set year studied equals null and null  so our server is not expecting any of these genus scientists to disappear. By hitting x here, it actually submits that sub form blank and Symphony thinks that we're trying to set that genus scientist to null. What we want to do is actually delete that genus scientist from the database.
+How to fix it? We already know how! We did it back with our `ManyToMany` relationship!
+It's a two step process.
 
- How can we do that? Well, a couple of steps. First, in genus form type, under the genus scientist field, add a new flag called allow delete, set to true. This tells the collection type, which holds an array of submitted genus scientists, that it's okay if one of those genus scientists is actually not resubmitted. In fact, it's okay if we delete one and when we do delete one, we don't want to set that genus scientists data to null, we actually want to remove it from the array. With this, when we delete a genus scientist and submit, the final array will have three genus scientists in it, instead of four.
+First, in `GenusFormType`, set the `by_reference` option to false. Remember this?
+Without this, the form component never calls `setGenusScientists()`. In fact, there
+*is* no `setGenusScientists` method in `Genus`. Instead, the form calls `getGenusScientists()`
+and then modifies that `ArrayCollection` object by reference.
 
- If we try it out now it doesn't give us an error, but it still doesn't work. The question is: why? Well let's think about this. When we submit after deleting one of the genus scientists, the form component sets the remaining three genus scientist objects onto the genus scientist's property of the genus object. Then we save the genus. The problem is that this is now the inverse side of the relationship, meaning if we remove or add a genus scientist from this array, it doesn't make any difference. Doctrine doesn't delete or add those because this is the inverse side of the relationship.
+But by setting it to false, it's going to give us the flexibility we need to
+set the owning side of the relationship.
 
- The way we fix that is actually the same way that we fixed this problem earlier when we were dealing with the many to many relationship with user. It's a two step process. First, in genus form type, we're also going to set by reference to false. I remind you, with collections like this, by default the form component doesn't call set genus scientists. In fact, there is no set genus scientists method in our genus. It simply calls get genus scientists and then modifies that array collection by reference. We don't want that to happen now. By setting it to false, it's going to give us the flexibility we need to set the inverse side of the relationship.
+## Setting the Owning Side: Adder & Remover
 
- Just like we did before with the user object, if we submit right now, you notice we get an error. If you scroll down the error is being caused when it calls remove genus scientist. As soon as we set that by reference to false in the form type, it means that it's actually going to take advantage of the add genus scientist and the remove genus scientist methods in our genus. If we delete a genus scientist from the form, it calls remove genus scientist. That's perfect, it's just that these methods are totally outdated back before we created the genus scientist entity. We just need to update them. Genus scientist and then change user to genus scientist.
+With *just* that change, submit the form. Error! But look at it closely: the error
+happens when the form system calls `removeGenusScientist()`. That's perfect! Well,
+not the error, but when we set `by_reference` to false, the form started using our
+adder and remover methods. *Now*, when we delete a `GenusScientist` form, it calls
+`removeGenusScientis()`.
 
- For the last line, it will actually be genus scientist set genus and we'll actually set it to null. I'm going to update the note to say the opposite. Needed to update the owning side of the relationship. Now when we submit the form after removing one of our genus scientists, it should actually remove it from this array but also take that genus scientist and set its genus to null. That doesn't mean we're quite done because if you save now, you'll notice you get a similar error as before: update genus scientist set genus ID to null, which makes perfect sense. We have a genus scientist entity and right now, we're setting its genus to null, so that's how it updates.
+The only problem is that those methods are *totally* outdated: they're still written
+for our old `ManyToMany` setup.
 
- That's not what we want, right? We want to say,  No no. If the genus scientist is no longer set on this genus, it should be deleted entirely from the database . Fortunately, if that's what you need, it's very easy to set that up. In genus, find your genus scientist property. I'm going to move the one to many onto multiple lines so we can read it. Then we're going to add orphan removal equals true, and that's it. It says that if any of these genus scientists suddenly have their genus set to null, or actually even if their genus is changed to a different genus, just delete them entirely.
+In `removeGenusScientist()`, change the argument to accept a `GenusScientist` object.
+Then update `$user` to `$genusScientist` in one spot, and then the other. For the
+last line, use `$genusScientist->setGenus(null)`. Let's update the note to say the
+*opposite*:
 
- Let's go back. I'll refresh the form to make sure it's fresh. We have four genus scientists, delete one, we hit save, and now we only have three. That fourth genus scientist was just deleted from the database. This has got a lot of complexity to it, but in the end you just need to make sure that you have allow delete true by reference false, that you have your nice remove genus scientist method that sets the mapping side, and that you also have orphan removal equals true so it finally deletes those extra ones. Delete, check. Next thing we need to do is allow us to add new genus scientists to this genus.
- 
+> Needed to update the owning side of the relationship
+
+Now, when we remove one of the embedded `GenusScientist` forms and submit, it will
+call `removeGenusScientist()` and that will set the owning side:
+`$genusScientist->setGenus(null)`.
+
+If you're a bit confused how this will ultimately *delete* that `GenusScientist`,
+hold on! Because you're right! But, submit the form again.
+
+## The Missing Link: orphanRemoval
+
+Yay! Another error!
+
+> UPDATE genus_scientist SET genus_id = NULL
+
+Huh... that makes *perfect* sense. Our code is not *deleting* that `GenusEntity`.
+Nope, it's simply setting its `genus` property to null. This update query makes
+sense!
+
+But... it's *not* what we want! We want to say:
+
+> No no no. If the `GenusScientist` is no longer set to this `Genus`,
+> it should be deleted entirely from the database.
+
+And Doctrine has an option for *exactly* that. In `Genus`, find your `genusScientists`
+property. Let's reorganize the `OneToMany` annotation onto multiple lines: it's getting
+a bit long. Then, add one magical option: `orphanRemoval = true`.
+
+That's the key. It says: if one of these `GenusScientist` objects suddenly has their
+`genus` set to `null`, just delete it entirely.
+
+***TIP
+If the `GenusScientist.genus` property is set to a *different* `Genus`,
+instead of `null`, it will *still* be deleted. Use `orphanRemoval` only
+when that's not going to happen.
+***
+
+Give it a try! Refresh the form to start over. We have four genus scientists.
+Remove one and hit save. 
+
+Woohoo! That *fourth* `GenusScientist` was just deleted from the database.
+
+I know this was a bit tricky, but we didn't do a lot of code to get here. There are
+just two things to remember.
+
+First, if you're ever modifying the *inverse* side of a relationship in a form, set
+`by_reference` to false, create adder and remover methods, and set the *owning*
+side in each. And second, for a `OneToMany` relationship like this, use `orphanRemoval`
+to delete that related entity for you.
+
+This was a *big* success! Next: we need to be able to add *new* genus scientists
+in the form.

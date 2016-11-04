@@ -20,7 +20,7 @@ Let's clean things up! And see some cool stuff along the way.
 
 First, because we just emptied our database, we have no data. Open the fixtures
 file and temporarily comment-out the `genusScientists` property. We can't simply set
-a `User` object on `genusScientista` anymore: this *now* accepts `GenusScientist`
+a `User` object on `genusScientists` anymore: this *now* accepts `GenusScientist`
 objects. We'll fix that in a second.
 
 But, run the fixtures:

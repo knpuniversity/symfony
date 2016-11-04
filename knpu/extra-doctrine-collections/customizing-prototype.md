@@ -1,23 +1,87 @@
-# Customizing Prototype
+# Customizing the Collection Form Prototype
 
- Just a few last details we need to clean up with this form collection stuff. In particular, when we click  add another scientist  it looks wrong. This should have the exact same styling that we have here. The reason that looks like this, is that this prototype value here is basically a blank genus scientist form and we're calling it form widget on it, so we get the default symphony styling of that embedded form. Instead we would like a data dash prototype to equal this markup down here as if we passed the prototype down here instead of an existing genus scientist form. We want to reuse the markup that's inside the for statement. There are a few different ways to do this but I find that a really easy way to do this is to add a macro to your template.
+There's one *glaring* problem with our form that I promised we would fix: when we
+click "Add Another Scientist"... well, it doesn't look right!. The new form should
+have the exact same styling as the existing ones.
 
- Let's add a macro, called print genus scientist row with a genus scientist form argument. Now if you haven't seen a macro before in twig, it's just a function. It's a function that you can create right in your template and then call from write in your template. It's really handy when you have some markup that you don't want to repeat over and over again. With this we can go down and copy everything inside the for statement, delete it and paste it up here.
+## Customizing the Prototype!
 
- Now in order to call that macro you actually need to import it even though it's already inside this template. We can do that with current based percent, import which is the way that you import macros from a template. We'll end up importing them from underscore self which is a special keyword that points to this template.
+Why does it look different, anyways? Remember the `data-prototype` attribute? By
+calling `form_widget`, this renders a blank `genusScientist` form... by using the
+*default* Symfony styling. But when we render the *existing* embedded forms, we
+wrap them in all kinds of cool markup. What we *really* want is to somehow make the
+`data-prototype` attribute use the markup that's inside the `for` statement.
 
- We'll say as form macros which is a little alias that we'll give to our functions to any macros we have in this file. Thanks to this, inside the for loop we can now call form macros dot print genus scientist row and pass it genus scientist row. That will do the exact same thing as before and it allows us to now say, on the data prototype, the same thing. Form macros dot print genus scientist row and we'll pass that genus form dot genus scientist dot vars dot prototype. We'll still escape it through the html attributes version.
+How? Well, there are at least two ways of doing it. I'm going to show you the less-official
+and - in my opinion - easier way!
 
- So hit that, go back, refresh, add another scientist and now it works out perfectly. Obviously we need a little styling help here with our rows but you guys get the idea.
+Head to the top of the file and add a *macro* called `printGenusScientistRow` that
+accepts a `genusScientistForm` argument. If you haven't seen a macro before in Twig,
+it's basically a function that you can create right inside Twig. It's really handy
+when you have some markup that you don't want to repeat over and over again.
 
- The next problem we have to clean up, is if you go back to slash admin slash genus, and you click  add  ... well the java script doesn't work here. That makes sense because we put all the java script into our edit template not our new template. This is nothing special, we just need to move all this java script out into its own file. I'm not going to do anything fancy with this because this isn't a java script tutorial. I'll just go into web slash js directory, create a new file, call it genus admin form dot js.
+Next, scroll down to the scientists area and copy everything inside the `for` statement.
+Delete it, and then paste it up in the macro.
 
- Then just to be a little fancy, I will do a self executing block here. A little function that calls itself and then passes j query again. Then I'll steal all the code from here, paste it over into this function. It doesn't really matter but I'll use dollar sign everywhere for j query to be consistent.
+## Use that Macro!
 
- Now from edit we can simply include a proper script tag, src equals passes genus admin form. I'll copy the entire java scripts block and then we'll go into the admin slash genus slash new template, past that down there. It should do the same thing. Let's refresh this new form and now we are in good shape.
+In order to call that macro, you actually need to import it... even though it already
+lives inside this template. Whatever: you can do that with `{% import _self as formMacros %}`.
+The `_self` part would normally be a *different* template name whose macros you want
+to use, but `_self` is a magic way of saying, no, *this* template. 
 
- Now the last little weird thing we need to fix up is something that's special only to the new template, and it's this. Check out this random label down here, genus scientist after the save. Well, the reason this is happening is a little subtle but effectively because there are no genus scientist on this form, symphony sort of thinks that this genus form dot genus scientist field was never rendered. It tries to render it and in form underscore end, and this causes an extra label to pop out. It's a silly thing but it's easy to fix just by calling, after we print everything. Form underscore widget genus form dot genus scientists, and I'll add a note up above to say why that's there.
+The `formMacros` is an alias I just invented, and it is how we will *call* the macro.
+For example, inside the `for` loop, render `formMacros.printGenusScientistRow()` and
+pass it `genusScientistRow`.
 
- So, in the new template, this will print the widget for genus scientist, which includes nothing because it's blank, but that will be enough so that in form end it doesn't try to print the field again, which will include the label. Now in a template where there are genus scientists, then they will already have rendered up here in the for tag, so that by the time we get down to this spots, symphony's form framework is smart enough not to re-render them a second time. I know it's weird but if you refresh now, that extra label is gone. If you go back and edit one of your templates and you don't get these fields a second time or anything, everything looks just fine.
+But *now* we can do the same thing on the `data-prototype` attribute:
+`formMacros.printGenusScientistRow()` and pass that `genusForm.genusScientist.vars.prototype`.
+Continue to escape that that into HTML entities.
 
- Now, let's do one last challenge with our embedded forms.
+Oh man, that was pretty simple! Go back, refresh, and click to add another scientist.
+Much, much better! Obviously, we need a little styling help here with our rows but
+you guys get the idea.
+
+## Centralizing our JavaScript
+
+The *last* problem deals with our JavaScript. Go to `/admin/genus` and click "Add".
+Well... our fancy JavaScript doesn't work here. Wah wah.
+
+But that makes sense: we put all the JavaScript into our edit template. The fix for
+this is super old-fashioned... and yet perfect: we need to move all that JavaScript
+into its own file. Let's keep things simple since this isn't a JavaScript tutorial:
+in `web/js`, create a new file: `GenusAdminForm.js`.
+
+Ok, let's be a *little* fancy: add a self-executing block: a little function that
+calls itself and passes jQuery inside. Then, steal the code from `edit.html.twig`
+and paste it here. It doesn't *really* matter, but I'll use `$` everywhere instead
+of `jQuery` to be consistent.
+
+Back in the edit template, include a proper script tag: `src=""` and pass it the
+`GenusAdminForm.js` path.
+
+Copy the *entire* `javascripts` block and then go into `new.html.twig`. Paste!
+And now, we should be happy: refresh the new form. Way better!
+
+## Avoiding the Weird New Label
+
+But what's this random label down here: "Genus scientists" after the submit button!
+What the crazy!?
+
+Ok, so the reason this is happening is a little subtle. Effectively, because there
+are no genus scientists on this form, Symfony sort of thinks that this `genusForm.genusScientists`
+field was never rendered. So, like all unrendered fields, it tries to render it in
+`form_end()`. And this causes an extra label to pop out.
+
+It's silly, but easy to fix: after we print everything, add `form_widget(genusForm.genusScientists)`.
+And ya know what? Let's add a note above to explain this - otherwise it looks a little
+crazy.
+
+And don't worry, this will never actually print anything. Since all of the children
+fields are rendered above, Symfony knows not to *re-render* those fields. This just
+prevents that weird label.
+
+Refresh! Extra label gone. And if you go back and edit one of the genuses, things
+look cool there too.
+
+Now, I have *one* last challenge for us with our embedded forms.

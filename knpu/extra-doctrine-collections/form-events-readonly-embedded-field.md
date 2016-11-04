@@ -1,26 +1,65 @@
-# Form Events Readonly Embedded Field
+# Form Events: A readonly Embedded Field
 
- All right. I've got one last little form challenge for us, and that's this. All four of these genus scientists are already saved to the database. It's kind of cool that I can just change this from one user to another user, but it's also a little bit weird if I needed ... Why would I ever change a specific scientist view from one user to another user? If this user weren't studying this genus anymore, I might delete them and I could add a new user to it. I'll be able to change it, it's just a little odd.
+Ready for the last challenge? All four of these genus scientists are already saved
+to the database. And while I guess it's kind of cool that I can change this scientist
+from one `User` to another, it's also a little bit weird: When would I ever change a
+specific scientist from one `User` to another? If this `User` weren't studying this
+`Genus` anymore, I should delete them. And if a *new* `User` were studying this `Genus`,
+we should probably just add a *new* `GenusScientist`.
 
- I want to update the interface, so that when I hit add new, I have drop down for user, but for existing ones that have been saved to the database, instead of a field we just print the user's email. Effectively, what I want to do is, I want to remove the user field if this genus scientist behind it is already saved to the database. To do that, open up the genus scientist embedded form. We're going to use a feature that I don't have to use often in Syfony, and that is Symfony Form Events.
+So I want to update the interface: when I hit "Add Another Scientist", I *do* want
+the `User` select, just like now. But for *existing* `GenusScientist` - the ones
+that are already saved to the database - I want to simply print the user's email
+in place of the drop-down.
 
- You see, as you go through the life cycle of a form, from the form being created, data being set on the form, the form being submitted, you can actually hook into that process. Data reform ...
+In Symfony language, this means that I want to remove the `user` field from the
+embedded form if the `GenusScientist` behind it is already saved.
 
- Did you actually commit the ...
+## About Form Events
 
- [inaudible 00:01:44] Push. Push right now. Yep.
+To do that, open the `GenusScientistEmbeddedForm`. Guess what? We get to try a feature
+that I don't get to use very often: Symfony Form Events.
 
- Hit add event listener and then use a class called formevents:: and use post set data. After that, say array this comma on post set data. This post set data is a constant for an event called form.postsetdata. As the documentation says, this is dispatched at the end of form::setdata, which is a fancy way of saying once the actual data behind this form is added to it ... In other words, once the genus scientist is added to the form when the form is being set up, it will call the on post set data function which is one that we're going to create right inside this class. Public function on post set data and this will receive a form event object which we'll call event.
+Here's the idea: every form has a life cycle: the form is created, initial data is
+set onto the form and then the form is submitted. And we can hook into this process!
 
- Hey Leanna? Hey Leanna? I had a question on the master branch.
+## Form Event Setup!
 
- [inaudible 00:03:37]
+To do this, write `addEventListener()` and then pass a constant `FormEvents::POST_SET_DATA`.
+After that, say `array($this, 'onPostSetData')`.
 
- [inaudible 00:03:41]
+Let's break that down: the `POST_SET_DATA` is a constant for an event called
+`form.post_set_data`. This is called after the data behind the form is added to it:
+in other words, after the `GenusScientist` is bound to each embedded form.
 
- Inside of here, you can say if event get data. This form is always bound to a genus scientist object. That would return the genus scientist object behind this form or if this is a new form, then actually it won't have anything bound to it and that will be null. That's why we'll say if event arrow get data, and and event arrow get data arrow get ID. As long as there is a genus scientist bound to this form and it's been saved to the database, in other words it has an ID, let's unset the user field from this form. We can do that by saying form=eventgetform and then unsetform[user. This form is a form object, but you can treat it like an array and that means you can actually unset that field from it. Cool.
+When that happens, the form system will call an `onPostSetData` function, which we
+are about to create: `public function onPostSetData`. this will receive a `FormEvent`
+object.
 
- The last thing we need to do is conditionally render this field. If we refresh right now, we're going to get a huge error that there's no user field inside of our template at line nine, which is the line where we print out the user property. Now we can wrap that in an if statement that says if genus scientistform.user is defined, then we'll print it [inaudible 00:05:33]. Just use a strong tag and print the user's e-mail address with genusscientistform.vars, which is something we've talked about in our form theme tutorial, .data which will be the genus scientist object, .user .email.
+Now we're close! Inside, add an if statement: if `$event->getData()`. This form is
+always bound to a `GenusScientist` object. So this will return the `GenusScientist`
+object bound to this form, *or* - if this is a new form - then actually it will return
+null. That's why we'll say if `$event->getData() && $event->getData->getId()`. In
+human-speak: as long as there is a `GenusScientist` bound to this form and it's been
+saved to the database - aka it has an id value - then let's unset the `user` field
+from this form.
 
- In other words, find the genus scientist object behind this form, call and get user on it, and then call get email on it. Now if we refresh, it looks perfect. If I add a new one, it has the actual proper field. Awesome.
- 
+To do that, fetch the form with `$form = $event->getForm()`. Then, literally, `unset($form['user'])`.
+This `$form` variable is a `Form` object, but you can treat it like an array, including
+unsetting fields.
+
+That's it for the form! The last step is to conditionally render the `user` field.
+Because if we refresh right now, the form system yells at us: there's no `user` field
+inside of our template at line nine.
+
+Wrap that in an if statement: `if genusScientistForm.user is defined`, then print
+it. Else, use a strong tag and print the user's e-mail address with `genusScientistForm.vars` -
+which is something we mastered in our [Form Theming tutorial](http://knpuniversity.com/screencast/symfony-form-theming/i-heart-form-variables) -
+`.data` - which will be a `GenusScientist` object - `.user.email`.
+
+This says: find the `GenusScientist` object behind this form, call `getUser()` on
+it, and tehn call `getEmail()` on that.
+
+I think it's time to celebrate! Refresh the form. It looks *exactly* like I wanted
+it. It's like my birthday! And when we add a new one, it *still* has this field.
+You guys are the best!
