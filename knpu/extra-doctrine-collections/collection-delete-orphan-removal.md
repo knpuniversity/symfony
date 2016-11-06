@@ -27,7 +27,7 @@ With *just* that change, submit the form. Error! But look at it closely: the err
 happens when the form system calls `removeGenusScientist()`. That's perfect! Well,
 not the error, but when we set `by_reference` to false, the form started using our
 adder and remover methods. *Now*, when we delete a `GenusScientist` form, it calls
-`removeGenusScientis()`.
+`removeGenusScientist()`.
 
 The only problem is that those methods are *totally* outdated: they're still written
 for our old `ManyToMany` setup.
@@ -79,7 +79,7 @@ Remove one and hit save.
 
 Woohoo! That *fourth* `GenusScientist` was just deleted from the database.
 
-I know this was a bit tricky, but we didn't do a lot of code to get here. There are
+I know this was a bit tricky, but we didn't write a lot of code to get here. There are
 just two things to remember.
 
 First, if you're ever modifying the *inverse* side of a relationship in a form, set

@@ -8,7 +8,7 @@ specific scientist from one `User` to another? If this `User` weren't studying t
 we should probably just add a *new* `GenusScientist`.
 
 So I want to update the interface: when I hit "Add Another Scientist", I *do* want
-the `User` select, just like now. But for *existing* `GenusScientist` - the ones
+the `User` select, just like now. But for *existing* genus scientists - the ones
 that are already saved to the database - I want to simply print the user's email
 in place of the drop-down.
 
@@ -25,7 +25,7 @@ set onto the form and then the form is submitted. And we can hook into this proc
 
 ## Form Event Setup!
 
-To do this, write `addEventListener()` and then pass a constant `FormEvents::POST_SET_DATA`.
+To do it, write `addEventListener()` and then pass a constant `FormEvents::POST_SET_DATA`.
 After that, say `array($this, 'onPostSetData')`.
 
 Let's break that down: the `POST_SET_DATA` is a constant for an event called
@@ -33,16 +33,16 @@ Let's break that down: the `POST_SET_DATA` is a constant for an event called
 in other words, after the `GenusScientist` is bound to each embedded form.
 
 When that happens, the form system will call an `onPostSetData` function, which we
-are about to create: `public function onPostSetData`. this will receive a `FormEvent`
+are about to create: `public function onPostSetData`. This will receive a `FormEvent`
 object.
 
 Now we're close! Inside, add an if statement: if `$event->getData()`. This form is
 always bound to a `GenusScientist` object. So this will return the `GenusScientist`
-object bound to this form, *or* - if this is a new form - then actually it will return
-null. That's why we'll say if `$event->getData() && $event->getData->getId()`. In
+object bound to this form, *or* - if this is a new form - then it may return `null`.
+That's why we'll say if `$event->getData() && $event->getData->getId()`. In
 human-speak: as long as there is a `GenusScientist` bound to this form and it's been
-saved to the database - aka it has an id value - then let's unset the `user` field
-from this form.
+saved to the database - i.e. it has an id value - then let's unset the `user` field
+from the form.
 
 To do that, fetch the form with `$form = $event->getForm()`. Then, literally, `unset($form['user'])`.
 This `$form` variable is a `Form` object, but you can treat it like an array, including
@@ -58,8 +58,8 @@ which is something we mastered in our [Form Theming tutorial](http://knpuniversi
 `.data` - which will be a `GenusScientist` object - `.user.email`.
 
 This says: find the `GenusScientist` object behind this form, call `getUser()` on
-it, and tehn call `getEmail()` on that.
+it, and then call `getEmail()` on that.
 
-I think it's time to celebrate! Refresh the form. It looks *exactly* like I wanted
-it. It's like my birthday! And when we add a new one, it *still* has this field.
+I think it's time to celebrate! Refresh the form. It looks *exactly* like I wanted.
+It's like my birthday! And when we add a new one, it *still* has the drop-down.
 You guys are the best!

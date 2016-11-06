@@ -1,23 +1,23 @@
 # Customizing the Collection Form Prototype
 
-There's one *glaring* problem with our form that I promised we would fix: when we
-click "Add Another Scientist"... well, it doesn't look right!. The new form should
+There's still one *ugly* problem with our form, and I promised we would fix: when we
+click "Add Another Scientist"... well, it don't look right!. The new form should
 have the exact same styling as the existing ones.
 
 ## Customizing the Prototype!
 
 Why does it look different, anyways? Remember the `data-prototype` attribute? By
-calling `form_widget`, this renders a blank `genusScientist` form... by using the
+calling `form_widget`, this renders a blank `GenusScientist` form... by using the
 *default* Symfony styling. But when we render the *existing* embedded forms, we
 wrap them in all kinds of cool markup. What we *really* want is to somehow make the
-`data-prototype` attribute use the markup that's inside the `for` statement.
+`data-prototype` attribute use the markup that we wrote inside the `for` statement.
 
-How? Well, there are at least two ways of doing it. I'm going to show you the less-official
-and - in my opinion - easier way!
+How? Well, there are at least two ways of doing it, and I'm going to show you the
+less-official and - in my opinion - easier way!
 
 Head to the top of the file and add a *macro* called `printGenusScientistRow` that
 accepts a `genusScientistForm` argument. If you haven't seen a macro before in Twig,
-it's basically a function that you can create right inside Twig. It's really handy
+it's basically a function that you create right inside Twig. It's really handy
 when you have some markup that you don't want to repeat over and over again.
 
 Next, scroll down to the scientists area and copy everything inside the `for` statement.
@@ -25,31 +25,31 @@ Delete it, and then paste it up in the macro.
 
 ## Use that Macro!
 
-In order to call that macro, you actually need to import it... even though it already
+To call that macro, you actually need to import it... even though it already
 lives inside this template. Whatever: you can do that with `{% import _self as formMacros %}`.
-The `_self` part would normally be a *different* template name whose macros you want
-to use, but `_self` is a magic way of saying, no, *this* template. 
+The `_self` part would normally be the name of a *different* template whose macros
+you want to call, but `_self` is a magic way of saying, no, *this* template. 
 
-The `formMacros` is an alias I just invented, and it is how we will *call* the macro.
+The `formMacros` is an alias I just invented, and it's how we will *call* the macro.
 For example, inside the `for` loop, render `formMacros.printGenusScientistRow()` and
-pass it `genusScientistRow`.
+pass it `genusScientistForm`.
 
-But *now* we can do the same thing on the `data-prototype` attribute:
-`formMacros.printGenusScientistRow()` and pass that `genusForm.genusScientist.vars.prototype`.
+And *now* we can do the same thing on the `data-prototype` attribute:
+`formMacros.printGenusScientistRow()` and pass that `genusForm.genusScientists.vars.prototype`.
 Continue to escape that that into HTML entities.
 
-Oh man, that was pretty simple! Go back, refresh, and click to add another scientist.
+I love when things are this simple! Go back, refresh, and click to add another scientist.
 Much, much better! Obviously, we need a little styling help here with our rows but
 you guys get the idea.
 
 ## Centralizing our JavaScript
 
-The *last* problem deals with our JavaScript. Go to `/admin/genus` and click "Add".
-Well... our fancy JavaScript doesn't work here. Wah wah.
+The *last* problem with our form deals with JavaScript. Go to `/admin/genus` and
+click "Add". Well... our fancy JavaScript doesn't work here. Wah wah.
 
-But that makes sense: we put all the JavaScript into our edit template. The fix for
+But that makes sense: we put all the JavaScript into the edit template. The fix for
 this is super old-fashioned... and yet perfect: we need to move all that JavaScript
-into its own file. Let's keep things simple since this isn't a JavaScript tutorial:
+into its own file. Since this isn't a JavaScript tutorial, let's keep things simple:
 in `web/js`, create a new file: `GenusAdminForm.js`.
 
 Ok, let's be a *little* fancy: add a self-executing block: a little function that
@@ -57,7 +57,7 @@ calls itself and passes jQuery inside. Then, steal the code from `edit.html.twig
 and paste it here. It doesn't *really* matter, but I'll use `$` everywhere instead
 of `jQuery` to be consistent.
 
-Back in the edit template, include a proper script tag: `src=""` and pass it the
+Back in the edit template, include a proper script tag: `src=""` and pass in the
 `GenusAdminForm.js` path.
 
 Copy the *entire* `javascripts` block and then go into `new.html.twig`. Paste!
@@ -65,7 +65,7 @@ And now, we should be happy: refresh the new form. Way better!
 
 ## Avoiding the Weird New Label
 
-But what's this random label down here: "Genus scientists" after the submit button!
+But... what's with that random label - "Genus scientists" - after the submit button!
 What the crazy!?
 
 Ok, so the reason this is happening is a little subtle. Effectively, because there
@@ -82,6 +82,6 @@ fields are rendered above, Symfony knows not to *re-render* those fields. This j
 prevents that weird label.
 
 Refresh! Extra label gone. And if you go back and edit one of the genuses, things
-look cool there too.
+look cool here too.
 
 Now, I have *one* last challenge for us with our embedded forms.

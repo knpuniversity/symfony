@@ -36,9 +36,9 @@ Simple! Refresh the page, click that x, and be amazed.
 
 ## Missing Fields: The allow_delete Option
 
-But this is superficial: it delete anything from the database nor can we submit
+But this is superficial: it didn't delete anything from the database nor can we submit
 the form and expect something to magically delete this `GenusScientist`, *just* because
-we removed it from the form. Or can we?
+we removed it from the page. Or can we?
 
 Submit! Well, I guess not. Huge error from the database!
 
@@ -50,14 +50,14 @@ to set that Genus Scientist's `yearsStudied` and `user` fields to null! No! I wa
 to *delete* that entire object from the database!
 
 How can we do that? First, in `GenusFormType`, we need to tell the `genusScientists`
-field that it's *ok* if one of the embedded forms is missing from the submit. Set
-a new `allow_delete` option to `true`.
+field that it's *ok* if one of the embedded form's fields is missing from the submit.
+Set a new `allow_delete` option to `true`.
 
 This tells the `CollectionType` that it's *ok* if one of the `GenusScientist` forms
 is missing when we submit. *And*, if a `GenusScientist` form is missing, it should
 remove that `GenusScientist` from the `genusScientists` array property. In other
 words, when we remove a `GenusScientist` form and submit, the final array will have
-*three* `GenusScientists` objects in it, instead of four.
+*three* `GenusScientist` objects in it, instead of four.
 
 Ready? Submit!
 

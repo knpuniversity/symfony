@@ -5,7 +5,7 @@ sure that checkboxes make sense anymore. I mean, if I want to show that a `User`
 studies a `Genus`, I need to select a `User`, but I also need to tell the
 system how many *years* they have studied. How *should* this form look now?
 
-Here's on idea, and one that works really well the form system: embed a collection
+Here's an idea, and one that works really well the form system: embed a collection
 of `GenusScientist` *subforms* at the bottom, one for each user that studies this
 `Genus`. Each subform will have a `User` drop-down and a "Years Studied" text box.
 We'll even add the ability to add or delete subforms via JavaScript, so that we can
@@ -58,7 +58,7 @@ But let's clean this up - because the form looks *awful*... even by my standards
 
 Open the template: `app/Resources/views/admin/genus/_form.html.twig`. This `genusScientists`
 field is *not* and actual field anymore: it's an *array* of fields. In fact, each
-of *those* field is *itself* composed of more sub-fields. What we have sis a fairly
+of *those* field is *itself* composed of more sub-fields. What we have is a fairly
 complex form tree, which is something we talked about in our
 [Form Theming Tutorial](http://knpuniversity.com/screencast/symfony-form-theming/compound-embedded-forms).
 
@@ -79,7 +79,7 @@ four. That's not helpful!
 
 Instead, print each field by hand. Start with `form_errors(genusScientistForm)`, just
 in case there are any validation errors that are attached at this form level. It's
-no common, but possible. Then, simply print `form_row(genusScientistForm.user)` and
+not common, but possible. Then, simply print `form_row(genusScientistForm.user)` and
 `form_row(genusScientistForm.yearsStudied)`.
 
 Try it! Much better!

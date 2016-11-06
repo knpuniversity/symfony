@@ -1,14 +1,14 @@
 # Embedded Form Validation with @Valid
 
 We've got more work to do! So head back to `/admin/genus`. Leave the "Years Studied"
-field empty for one of the `GenusScientist` forms.
+field empty for one of the `GenusScientist` forms and submit.
 
 Explosion!
 
 > UPDATE genus_scientist SET years_studied = NULL
 
-Except that this field is not allowed to be null in the database. That's on purpose...
-but we're missing validation! Lame!
+This field is not allowed to be null in the database. That's on purpose... but we're
+missing validation! Lame!
 
 But no problem, right? We'll just go into the `Genus` class, copy the `as Assert`
 use statement, paste it into `GenusScientist` and then - above `yearsStudied` - add
@@ -19,18 +19,18 @@ It still doesn't work!?
 
 ## @Valid for a Good Time
 
-It's as if Symfony doesn't see the new validation constraint I just added! Why?
-Here's the deal: our form is bound to a `Genus` object: that's the top-level object
-that we're modifying. And by default, Symfony reads all of the validation annotations
-from the top-level class... only. When it sees an embedded object, or an array of
-embedded objects, like the `genusScientists` property, it does *not* go deeper and
-read the annotations from the `GenusScientist` class. In other words, Symfony *only*
-validates the top-level object.
+It's as if Symfony doesn't see the new validation constraint! Why? Here's the deal:
+our form is bound to a `Genus` object: that's the top-level object that we're modifying.
+And by default, Symfony reads all of the validation annotations from the top-level
+class... only. When it sees an embedded object, or an array of embedded objects, like
+the `genusScientists` property, it does *not* go deeper and read the annotations
+from the `GenusScientist` class. In other words, Symfony *only* validates the top-level
+object.
 
 Double-lame! What the heck Symfony?
 
 No no, it's cool, it's on purpose. You can easily *activate* embedded validation
-by adding a unique annotation: `@Assert\Valid`.
+by adding a unique annotation above that property: `@Assert\Valid`.
 
 That's it! Now refresh. Validation achieved!
 
@@ -44,7 +44,7 @@ this!
 
 No problem! In `GenusScientist` add a new annotation above the *class*: yep, a rare
 constraint that goes above the class instead of a property: `@UniqueEntity`. Make
-sure to auto-complete that to get a special `use` statement for this one.
+sure to auto-complete that to get a special `use` statement for this.
 
 This takes a few options, like `fields={"genus", "user"}`. This says:
 
@@ -53,19 +53,20 @@ This takes a few options, like `fields={"genus", "user"}`. This says:
 
 Add a nice message, like:
 
- >This user is already studying this genus.
+> This user is already studying this genus.
 
 Great!
 
 Ok, try this bad boy! We already have duplicates, so just hit save. Validation error
 achieved! But... huh... there are *two* errors and they're listed at the *top* of
-the form, instead of at the bottom.
+the form, instead of next to the offending fields.
 
 First, ignore the *two* messages - that's simply because we allowed our app to get
-into an invalid state and *then* added validation. You'll normally only see one message.
+into an invalid state and *then* added validation. That confused Symfony. Sorry!
+You'll normally only see one message.
 
 But, having the error message way up on top... that sucks! The reason why this happens
-is honestly a little bit complicated: it has to do with the `CollectionType` and
+is honestly a little bit complex: it has to do with the `CollectionType` and
 something called `error_bubbling`. The more important thing is the fix: after the
 `message` option, add another called `errorPath` set to `user`.
 
@@ -75,6 +76,7 @@ when you add this option, it says:
 
 > Yo! When this error occurs, I want you to attach it to the user field.
 
-So refresh this form! Error is in place! And actually, let me get us *out* of the
+So refresh! Error is in place! And actually, let me get us *out* of the
 invalid state: I want to reset my database to *not* have any duplicates to start.
-*Now* if we change one back to a duplicate, it looks great!
+*Now* if we change one back to a duplicate, it looks great... and we don't have
+*two* errors anymore.
