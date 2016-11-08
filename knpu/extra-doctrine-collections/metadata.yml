@@ -30,20 +30,20 @@ tuts_hero:
 
 chapters:
     clean-url-slugs:
-        is_finished: false
-        video_key: ~
+        is_free: true
+        video_key: 190653124
     doctrine-extensions-sluggable:
-        is_finished: false
-        video_key: ~
+        is_free: true
+        video_key: 190642243
     refactoring-carefully:
-        is_finished: false
-        video_key: ~
+        is_free: true
+        video_key: 190641813
     many-to-many-setup:
-        is_finished: false
-        video_key: ~
+        is_free: true
+        video_key: 190648181
     insert-many-to-many:
-        is_finished: false
-        video_key: ~
+        is_free: true
+        video_key: 190653483
     fetch-collection-items:
         is_finished: false
         video_key: ~
