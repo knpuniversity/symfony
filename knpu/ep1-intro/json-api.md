@@ -21,7 +21,7 @@ So how *do* you create API endpoints in Symfony? Ok, do you remember what a cont
 that holds HTML, JSON, or a CSV of octopus research data. So actually, this turns
 out to be really easy.
 
-Create a new controller: I'll call it `getNotesAction()`. This will return notes
+Create a new function in the controller: I'll call it `getNotesAction()`. This will return notes
 for a specific genus. Use `@Route("/genus/{genusName}/notes")`. We really only want
 this endpoint to be used for `GET` requests to this URL. Add `@Method("GET")`:
 
@@ -51,14 +51,14 @@ php bin/console debug:router
 
 Hey! There's the new route at the bottom, with its method set to GET.
 
-## The JSON Controller
+## The Controller JSON Response
 
-Remove the `$notes` from the other controller: we won't pass that to the template
+Remove the `$notes` from the showAction function: we won't pass that to the template
 anymore:
 
 [[[ code('cfb58bd6e8') ]]]
 
-In the new controller, I'll paste a new `$notes` variable set to some beautiful
+In the new function, I'll paste a new `$notes` variable set to some beautiful
 data:
 
 [[[ code('62b22cdc9e') ]]]
