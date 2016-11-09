@@ -29,7 +29,7 @@ The last step will be to open a terminal, move into the directory, and start the
 built-in PHP web server with:
 
 ```bash
-bin/console server:run
+./bin/console server:run
 ```
 
 Now, head to your browser and go to `http://localhost:8000` to pull up our app:
@@ -58,27 +58,37 @@ How could I let this happen!? Honestly, it was a shortcut: I wanted to focus on 
 important things before. But now, it's time to right this wrong.
 
 What we really need is a clean, unique version of the name in the url. This is commonly
-called a slug. No, no, not the slimy animal - it's just a unique name.
+called a *slug*. No, no, not the slimy animal - it's just a unique name.
 
 ## Create the slug Field
 
 How can we create a slug? First, open the `Genus` entity and add a new property
-called `slug`. We *will* store this in the database like any other field. The only
-difference is that we'll force it to be unique in the database.
+called `slug`:
 
-Next, go to the bottom and use the `Code->Generate` menu, or `Command+N` on a
-Mac, to generate the getter and setter for `slug`. Finally, as always, generate a
-migration. I'll open a new terminal tab, and run:
+[[[ code('ec1cb901c0') ]]]
+
+We *will* store this in the database like any other field. The only difference is
+that we'll force it to be unique in the database.
+
+Next, go to the bottom and use the "Code"->"Generate" menu, or `Command`+`N` on a
+Mac, to generate the getter and setter for `slug`:
+
+[[[ code('c92046358e') ]]]
+
+Finally, as always, generate a migration. I'll open a new terminal tab, and run:
 
 ```bash
-bin/console doctrine:migrations:diff
+./bin/console doctrine:migrations:diff
 ```
 
-Open that file to make sure it looks right. Perfect! It adds a column, and gives it
-a unique index. Run it:
+Open that file to make sure it looks right:
+
+[[[ code('b20aa65e82') ]]]
+
+Perfect! It adds a column, and gives it a unique index. Run it:
 
 ```bash
-bin/console doctrine:migrations:migrate
+./bin/console doctrine:migrations:migrate
 ```
 
 ## Ah, Migration Failed!
@@ -93,14 +103,14 @@ Fortunately we haven't deployed this yet, so let's take the easy road. Drop the
 database:
 
 ```bash
-bin/console doctrine:database:drop --force
+./bin/console doctrine:database:drop --force
 ```
 
 Then recreate it, and run all of the migrations from the beginning:
 
 ```bash
-bin/console doctrine:database:create
-bin/console doctrine:migrations:migrate
+./bin/console doctrine:database:create
+./bin/console doctrine:migrations:migrate
 ```
 
 Much better. So.... how do we actually set the `slug` field for each `Genus`?

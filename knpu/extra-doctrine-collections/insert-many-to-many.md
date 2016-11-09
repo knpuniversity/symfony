@@ -12,23 +12,36 @@ will handle the rest.
 
 ## Setting Items on the Collection
 
-Let's see this in action! Open up `GenusController`. Remember `newAction`? This isn't
+Let's see this in action! Open up `GenusController`. Remember `newAction()`? This isn't
 a real page - it's just a route where *we* can play around and test out some code.
 And hey, it *already* creates and saves a `Genus`. Cool! Let's associate a user
 with it!
 
 First, find a user with `$user = $em->getRepository('AppBundle:User')` then `findOneBy()`
-with `email` set to `aquanaut1@example.org`. That'll work thanks to our handy-dandy
-fixtures file! We have scientists with emails `aquanaut`, `1-10@example.org`.
+with `email` set to `aquanaut1@example.org`:
+
+[[[ code('7b78b1fd98') ]]]
+
+That'll work thanks to our handy-dandy fixtures file! We have scientists with
+emails `aquanaut`, `1-10@example.org`:
+
+[[[ code('1038f343fd') ]]]
 
 We've got a `User`, we've got a `Genus`... so how can we smash them together? Well,
 in `Genus`, the `genusScientists` property is private. Add a new function so we can
-put stuff into it: `public function: addGenusScientist()` with a `User` argument.
-Very simply, add that `User` to the `genusScientists` property. Technically, that
-property is an `ArrayCollection` object, but we can treat it like an array.
+put stuff into it: `public function: addGenusScientist()` with a `User` argument:
+
+[[[ code('fafe248ed0') ]]]
+
+Very simply, add that `User` to the `$genusScientists` property. Technically, that
+property is an `ArrayCollection` object, but we can treat it like an array:
+
+[[[ code('7744353a87') ]]]
 
 Then back in the controller, call that: `$genus->addGenusScientist()` and pass it
-`$user`.
+`$user`:
+
+[[[ code('938feb471a') ]]]
 
 We're done! We don't even need to persist anything new, because we're already persisting
 the `$genus` down here.
@@ -37,7 +50,7 @@ Try it out! Manually go to `/genus/new`. Ok, genus Octopus15 created. Next, head
 your terminal to query the join table. I'll use:
 
 ```bash
-php bin/console doctrine:query:sql "SELECT * FROM genus_scientist"
+./bin/console doctrine:query:sql "SELECT * FROM genus_scientist"
 ```
 
 Oh yeah! The genus id 11 is now joined - by pure coincidence - to a user who is also
@@ -51,12 +64,15 @@ it!
 ## Avoiding Duplicates
 
 Let's do some experimenting! What if I duplicated the `addGenusScientist()` line?
+
+[[[ code('b598a827e6') ]]]
+
 Could this *one* new `Genus` be related to the same `User` *two* times? Let's find
 out!
 
 Refresh the new page again. Alright! I love errors!
 
-> Duplicate entry '12-11' for key PRIMARY
+> Duplicate entry '12-11' for key 'PRIMARY'
 
 So this is saying:
 
@@ -68,10 +84,12 @@ and `User` multiple times. So that's great... but I *would* like to avoid this e
 in case this happens accidentally in the future.
 
 To do that, we need to make our `addGenusScientist()` method a *little* bit smarter.
-Add if `$this->genusScientista->contains()` ... remember, the `genusScientista`
+Add if `$this->genusScientista->contains()`... remember, the `$genusScientists`
 property is actually an `ArrayCollection` object, so it has some trendy methods on
 it, like `contains`. Then pass `$user`. If `genusScientists` already has this `User`,
-just return.
+just return:
+
+[[[ code('fe6d7c7c15') ]]]
 
 Now when we go back and refresh, no problems. The `genus_scientist` table now holds
 the original entry we created and this *one* new entry: no duplicates for us.
