@@ -45,20 +45,15 @@ chapters:
         is_free: true
         video_key: 190653483
     fetch-collection-items:
-        is_finished: false
-        video_key: ~
+        video_key: 191026902
     many-to-many-inverse:
-        is_finished: false
-        video_key: ~
+        video_key: 191027242
     removing-items:
-        is_finished: false
-        video_key: ~
+        video_key: 191024506
     hooking-up-remove-scientist-js:
-        is_finished: false
-        video_key: ~
+        video_key: 191023698
     many-to-many-fixtures:
-        is_finished: false
-        video_key: ~
+        video_key: 191024079
     joins-and-extra-lazy-fetch:
         is_finished: false
         video_key: ~
