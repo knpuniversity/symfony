@@ -87,9 +87,12 @@ called `removeGenusScientist()` with a `User` argument:
 
 [[[ code('33c30c9918') ]]]
 
-Inside, it's *so* simple: `$this->genusScientists->removeElement($user)`. In other
-words, just remove the `User` from the array... by using a fancy convenience method
-on the collection. That doesn't touch the database yet: it just modifies the array.
+Inside, it's *so* simple: `$this->genusScientists->removeElement($user)`:
+
+[[[ code('1554876da6') ]]]
+
+In other words, just remove the `User` from the array... by using a fancy convenience
+method on the collection. That doesn't touch the database yet: it just modifies the array.
 
 Back in the controller, call `$genus->removeGenusScientist()` and pass that the
 user: `$genusScientist`:
