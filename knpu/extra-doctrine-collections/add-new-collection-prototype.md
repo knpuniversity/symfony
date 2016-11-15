@@ -68,7 +68,7 @@ we can read this in JavaScript when the user clicks "Add New Scientist".
 
 Oh, but check out this `__name__` string: it shows up in a bunch of places inside
 the prototype. Scroll down a little to the embedded `GenusScientist` forms. If
-you look closely, you'll see that the fields in each of these forms has a different
+you look closely, you'll see that the fields in each of these forms have a different
 index *number*. The first is index zero, and it appears in a few places, like the
 `name` and `id` attributes. The next set of fields use one and then two.
 

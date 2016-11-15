@@ -86,7 +86,7 @@ Why? Well, as soon as we loop over `genusScientists`, Doctrine realizes that it
 needs to go and query for all of the genus scientists for this `Genus`. Then, we
 happily loop over them to see which ones have more than 20 `yearsStudied`.
 
-This may or may or may not be a huge performance problem. If every `Genus` always
+This may or may not be a huge performance problem. If every `Genus` always
 has just a few scientists, no big deal! But if a `Genus` has hundreds of scientists,
 this page will grind to a halt while it queries for and hydrates all of those
 extra `GenusScientist` objects.

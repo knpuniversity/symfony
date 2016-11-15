@@ -24,7 +24,7 @@ this is an interesting one:
 
 Umm, what? Here's what's going on: when we persist the `Genus`, Doctrine sees the
 new `GenusScientist` on the `genusScientists` array... and notices that we have
-not called persist on *it*. This is error basically says:
+not called persist on *it*. This error basically says:
 
 > Yo! You told me that you want to save this `Genus`, but it's related to a
 > `GenusScientist` that you have *not* told me to save. You never called persist
@@ -82,4 +82,4 @@ Oh, and also, remember that this entire *side* of the relationship is *optional*
 *owning* side of the relationship is in `GenusScientist`. So unless you need to be
 able to easily fetch the `GenusScientist` instances for a `User` - in other words,
 `$user->getStudiedGenuses()` -  don't even bother mapping this side. *We* are using
-that functionality on the user show page, so we'll leave it.
+that functionality on the user show page, so I'll leave it.
