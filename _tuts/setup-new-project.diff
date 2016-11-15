@@ -21,7 +21,7 @@ index 0000000..93821ad
 +/vendor/
 +/web/bundles/
 diff --git a/README.md b/README.md
-index 122d0af..4ce3108 100644
+index 122d0af..afbdb22 100644
 --- a/README.md
 +++ b/README.md
 @@ -3,6 +3,46 @@
@@ -30,7 +30,7 @@ index 122d0af..4ce3108 100644
  
 +## Setup
 +
-+If you've just download the code, congratulations!
++If you've just downloaded the code, congratulations!
 +
 +To get it working, follow these steps:
 +

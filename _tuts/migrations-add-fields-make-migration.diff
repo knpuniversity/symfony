@@ -1,5 +1,5 @@
 diff --git a/README.md b/README.md
-index 4ce3108..dcbf020 100644
+index afbdb22..ce594da 100644
 --- a/README.md
 +++ b/README.md
 @@ -30,6 +30,21 @@ composer install
