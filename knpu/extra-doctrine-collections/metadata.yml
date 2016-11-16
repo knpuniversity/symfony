@@ -55,14 +55,11 @@ chapters:
     many-to-many-fixtures:
         video_key: 191024079
     joins-and-extra-lazy-fetch:
-        is_finished: false
-        video_key: ~
+        video_key: 191867812
     entity-type-checkboxes:
-        is_finished: false
-        video_key: ~
+        video_key: 191867854
     saving-inverse-side-collection:
-        is_finished: false
-        video_key: ~
+        video_key: 191867270
     by-reference-adder-remover:
         is_finished: false
         video_key: ~
