@@ -61,23 +61,17 @@ chapters:
     saving-inverse-side-collection:
         video_key: 191867270
     by-reference-adder-remover:
-        is_finished: false
-        video_key: ~
+        video_key: 192800331
     synchronizing-mapping-inverse:
-        is_finished: false
-        video_key: ~
+        video_key: 192800586
     many-to-many-extra-fields:
-        is_finished: false
-        video_key: ~
+        video_key: 192803108
     join-entity-refactoring:
-        is_finished: false
-        video_key: ~
+        video_key: 192801278
     refactoring-for-new-collections:
-        is_finished: false
-        video_key: ~
+        video_key: 192803522
     embedded-form-collection:
-        is_finished: false
-        video_key: ~
+        video_key: 192804134
     collection-allow-delete:
         is_finished: false
         video_key: ~
