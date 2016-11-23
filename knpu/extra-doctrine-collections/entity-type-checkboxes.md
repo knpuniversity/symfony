@@ -1,4 +1,4 @@
-# EntityType Check Boxes with ManyToMany
+# EntityType Checkboxes with ManyToMany
 
 Guys, we are *really* good at adding items to our `ManyToMany` relationship in PHP
 and via the fixtures. But what about via Symfony's form system? Yea, that's where

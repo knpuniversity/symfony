@@ -1,4 +1,4 @@
-# Embedded Form Collections
+# Embedded Form: CollectionType
 
 Now that we've added the `yearsStudied` field to each `GenusScientist`, I'm not too
 sure that checkboxes make sense anymore. I mean, if I want to show that a `User`

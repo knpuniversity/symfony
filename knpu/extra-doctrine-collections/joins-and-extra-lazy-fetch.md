@@ -62,12 +62,12 @@ Go find that method! Here's the goal: modify this query to join to the middle
 all of the user data. But wait! What's the number one rule about `ManyToMany` relationships?
 That's right: you need to pretend like the middle join table doesn't exist.
 
-Instead, `leftJoin()` directly to `genus.genusScientists`. Alias that to `genus_scientist`.
+Instead, `leftJoin()` directly to `genus.genusScientists`. Alias that to `genusScientist`.
 When you JOIN in Doctrine, you always join on a relation property, like `genusScientists`.
 Doctrine will automatically take care of joining across the middle table and then
 over to the `user` table.
 
-To select the user data, add `select('genus_scientist')`.
+To select the user data, add `select('genusScientist')`.
 
 Ok, go back and refresh again! Woh, *one* query! And that query contains a `LEFT JOIN`
 to `genus_scientist` and another to `user`. Because we're fetching *all* the user
