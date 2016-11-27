@@ -21,18 +21,27 @@ to have even *one* extra field on it, you need to build an entity class for it.
 ## Creating the GenusScientist Join Entity
 
 In your `Entity` directory, create a new class: `GenusScientist`. Open `Genus` and
-steal the ORM `use` statement on top, and paste it here.
+steal the ORM `use` statement on top, and paste it here:
+
+[[[ code('993b85317c') ]]]
 
 Next, add some properties: `id` - we could technically avoid this, but I like to
-give every entity an `id` - `genus`, `user`, and `yearsStudied`.
+give every entity an `id` - `genus`, `user`, and `yearsStudied`:
 
-Use the `Code->Generate` menu, or `Command+N` on a Mac, and select `ORM Class` to
-generate the class annotations. Oh, and notice! This generated a table name of
-`genus_scientist`: that's perfect! I want that to match our existing join table:
-we're going to migrate it to this new structure.
+[[[ code('6bd48a931b') ]]]
 
-Go back to `Code->Generate` and this time select `ORM Annotation`. Generate the annotations
-for `id` and `yearsStudied`.
+Use the "Code"->"Generate" menu, or `Command`+`N` on a Mac, and select "ORM Class" to
+generate the class annotations:
+
+[[[ code('94b12b0f58') ]]]
+
+Oh, and notice! This generated a table name of `genus_scientist`: that's perfect!
+I want that to match our existing join table: we're going to migrate it to this new structure.
+
+Go back to "Code"->"Generate" and this time select "ORM Annotation". Generate the annotations
+for `id` and `yearsStudied`:
+
+[[[ code('3da7ec4bbd') ]]]
 
 Perfect!
 
@@ -40,13 +49,22 @@ So how should we map the `genus` and `user` properties? Well, think about it: ea
 is now a classic `ManyToOne` relationship. Every `genus_scientist` row should have
 a `genus_id` column and a `user_id` column. So, above `genus`, say `ManyToOne` with
 `targetEntity` set to `Genus` Below that, add the optional `@JoinColumn` with
-`nullable=false`.
+`nullable=false`:
 
-Copy that and put the same thing above `user`, changing the `targetEntity` to `User`.
+[[[ code('c3910e1f72') ]]]
 
-And... that's it! Finish the class by going back to the `Code->Generate` menu, or
-`Command+N` on a Mac, selecting Getters and choosing `id`. Do the same again for
-`Getters and Setters`: choose the rest of the properties.
+Copy that and put the same thing above `user`, changing the `targetEntity` to `User`:
+
+[[[ code('b342f5e9a8') ]]]
+
+And... that's it! Finish the class by going back to the "Code"->"Generate" menu, or
+`Command`+`N` on a Mac, selecting Getters and choosing `id`:
+
+[[[ code('eee82c282d') ]]]
+
+Do the same again for `Getters and Setters`: choose the rest of the properties:
+
+[[[ code('089d0ebe6e') ]]]
 
 Entity, done!
 
@@ -57,7 +75,9 @@ and `User` to point to it. In `Genus`, find the `genusScientists` property. Gues
 what? This is *not* a `ManyToMany` to `User` anymore: it's now a `OneToMany` to
 `GenusScientist`. Yep, it's now the *inverse* side of the `ManyToOne` relationship
 we just added. That means we need to change `inversedBy` to `mappedBy` set to `genus`.
-And of course, `targetEntity` is `GenusScientist`.
+And of course, `targetEntity` is `GenusScientist`:
+
+[[[ code('ba3f6b8402') ]]]
 
 You *can* still keep the `fetch="EXTRA_LAZY"`: that works for any relationship
 that holds an array of items. But, we *do* need to remove the `JoinTable`: annotation:
@@ -65,18 +85,27 @@ both `JoinTable` and `JoinColumn` can only live on the *owning* side of a relati
 
 There are more methods in this class - like `addGenusScientist()` that are now totally
 broken. But we'll fix them later. In `GenusScientist`, add `inversedBy` set to the
-`genusScientists` property on `Genus`.
+`genusScientists` property on `Genus`:
+
+[[[ code('4af5e7cd6f') ]]]
 
 Finally, open `User`: we need to make the exact same changes here.
 
 For `studiedGenuses`, the `targetEntity` is now `GenusScientist`, the relationship
-is `OneToMany`, and it's `mappedBy` the `user` property inside of `GenusScientist`.
+is `OneToMany`, and it's `mappedBy` the `user` property inside of `GenusScientist`:
+
+[[[ code('37aa170934') ]]]
+
 The `OrderBy` doesn't work anymore. Well, technically it *does*, but we can only
 order by a field on `GenusScientist`, not on `User`. Remove that for now.
 
 ***TIP
 You should also add the `inversedBy="studiedGenuses"` to the `user` property in
-`GenusScientist`. It didn't hurt anything, but I forgot that!
+`GenusScientist`:
+
+[[[ code('fcbff085c6') ]]]
+
+It didn't hurt anything, but I forgot that!
 ***
 
 ## The Truth About ManyToMany
@@ -95,10 +124,12 @@ you'll need this setup.
 Last step: generate the migration:
 
 ```bash
-php bin/console doctrine:migrations:diff
+./bin/console doctrine:migrations:diff
 ```
 
-Look in the `app/DoctrineMigrations` directory and open that migration.
+Look in the `app/DoctrineMigrations` directory and open that migration:
+
+[[[ code('72ff5578d4') ]]]
 
 So freakin' cool! Because we already have the `genus_scientist` join table, the migration
 does *not* create any new tables. Nope, it simply modifies it: drops a couple of
@@ -117,7 +148,10 @@ a join entity. No worries: it's easy to fix... and I can't think of *any* other
 bug like this in Doctrine... and I use Doctrine *a lot*.
 
 Take this last line: with `ADD PRIMARY KEY id`, copy it, remove that line, and
-then - after the `id` is added in the previous query - paste it and add a comma.
+then - after the `id` is added in the previous query - paste it and add a comma:
+
+[[[ code('afd3aae231') ]]]
+
 MySQL needs this to happen all in one statement.
 
 But now, our migrations are in a *crazy* weird state, because this one *partially*
@@ -125,9 +159,9 @@ ran. So let's start from scratch: drop the database fully, create the database,
 and then make sure all of our migrations can run from scratch:
 
 ```bash
-php bin/console doctrine:database:drop --force
-php bin/console doctrine:database:create
-php bin/console doctrine:migrations:migrate
+./bin/console doctrine:database:drop --force
+./bin/console doctrine:database:create
+./bin/console doctrine:migrations:migrate
 ```
 
 Success!
