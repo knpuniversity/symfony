@@ -38,7 +38,7 @@ We can't simply set a `User` object on `genusScientists` anymore: this *now* acc
 But, run the fixtures:
 
 ```bash
-php bin/console doctrine:fixtures:load
+./bin/console doctrine:fixtures:load
 ```
 
 While that's working, go find `GenusController` and `newAction()`. Let's once again
