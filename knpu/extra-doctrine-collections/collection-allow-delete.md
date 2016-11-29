@@ -9,30 +9,46 @@ Let's plan out the UI first: I want to be able click a little x icon next to eac
 embedded form to make it disappear from the page. Then, when we submit, it should
 fully delete that `GenusScientist` record from the database. Cool?
 
-Inside the embedded form, add a new class to the column: `js-genus-scientist-item`.
+Inside the embedded form, add a new class to the column: `js-genus-scientist-item`:
+
+[[[ code('bd88691ca1') ]]]
+
 We'll use that in JavaScript in a second. Below that, add a little link with its
-own `js-remove-scientist` class... and put the cute little x icon inside.
+own `js-remove-scientist` class... and put the cute little "x" icon inside:
+
+[[[ code('045a29e41b') ]]]
 
 Brilliant!
 
 Time to hook up some JavaScript! Since this template is included by `edit.html.twig`
 and `new.html.twig`, I can't override the `javascripts` block from here. Instead,
-open `edit.html.twig` and override the block `javascripts` there. We'll worry about
-adding JS to the new template later.
+open `edit.html.twig` and override the block `javascripts` there:
 
-Start with the always-exciting `document.ready` function.
+[[[ code('3e57548df8') ]]]
+
+We'll worry about adding JS to the new template later.
+
+Start with the always-exciting `document.ready` function:
+
+[[[ code('b006ed8de1') ]]]
 
 Oh, but back in `_form.html.twig`, add one more class to the row that's around the
-entire section called `js-genus-scientist-wrapper`.
+entire section called `js-genus-scientist-wrapper`:
+
+[[[ code('e3a9b7c92c') ]]]
 
 Ok, back to the JavaScript! Add `var $wrapper = ` then use `jQuery` to select that
 wrapper element. Register a listener on `click` for any `.js-remove-scientist`
-element - that's the delete link. Start that function with my favorite `e.preventDefault()`.
+element - that's the delete link. Start that function with my favorite `e.preventDefault()`:
+
+[[[ code('01ba512661') ]]]
 
 Then... what next? Well, forget about Symfony and the database: just find the
 `.js-genus-scientist-item` li element that's around this link and... remove it!
 
-Simple! Refresh the page, click that x, and be amazed.
+[[[ code('bc3b8dc949') ]]]
+
+Simple! Refresh the page, click that "x", and be amazed.
 
 ## Missing Fields: The allow_delete Option
 
@@ -51,7 +67,9 @@ to *delete* that entire object from the database!
 
 How can we do that? First, in `GenusFormType`, we need to tell the `genusScientists`
 field that it's *ok* if one of the embedded form's fields is missing from the submit.
-Set a new `allow_delete` option to `true`.
+Set a new `allow_delete` option to `true`:
+
+[[[ code('bbc07c21f5') ]]]
 
 This tells the `CollectionType` that it's *ok* if one of the `GenusScientist` forms
 is missing when we submit. *And*, if a `GenusScientist` form is missing, it should
