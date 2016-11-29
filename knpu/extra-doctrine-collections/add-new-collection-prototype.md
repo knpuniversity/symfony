@@ -76,7 +76,7 @@ it three times. Oh, and fix the icon class too - get it together Ryan!
 
 Refresh again. Much better!
 
-## Checking out the prototype: __name__
+## Checking out the prototype: \_\_name\_\_
 
 View the HTML source and search for wrapper to find our `js-genus-scientist-wrapper`
 element. That big mess of characters is the *prototype*. Yep, it looks *crazy*.
