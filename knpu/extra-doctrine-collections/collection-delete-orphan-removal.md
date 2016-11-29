@@ -17,7 +17,7 @@ make any difference! Doctrine ignores changes to the inverse side.
 How to fix it? We already know how! We did it back with our `ManyToMany` relationship!
 It's a two step process.
 
-First, in `GenusFormType`, set the `by_reference` option to false:
+First, in `GenusFormType`, set the `by_reference` option to `false`:
 
 [[[ code('0b8596fa18') ]]]
 
