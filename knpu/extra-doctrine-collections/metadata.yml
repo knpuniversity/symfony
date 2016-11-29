@@ -73,17 +73,13 @@ chapters:
     embedded-form-collection:
         video_key: 192804134
     collection-allow-delete:
-        is_finished: false
-        video_key: ~
+        video_key: 193476336
     collection-delete-orphan-removal:
-        is_finished: false
-        video_key: ~
+        video_key: 193476070
     add-new-collection-prototype:
-        is_finished: false
-        video_key: ~
+        video_key: 193476808
     add-new-collection-cascade-persist:
-        is_finished: false
-        video_key: ~
+        video_key: 193475426
     embedded-validation:
         is_finished: false
         video_key: ~
