@@ -81,17 +81,12 @@ chapters:
     add-new-collection-cascade-persist:
         video_key: 193475426
     embedded-validation:
-        is_finished: false
-        video_key: ~
+        video_key: 193886082
     customizing-prototype:
-        is_finished: false
-        video_key: ~
+        video_key: 193886759
     form-events-readonly-embedded-field:
-        is_finished: false
-        video_key: ~
+        video_key: 193891390
     easy-collection-filtering:
-        is_finished: false
-        video_key: ~
+        video_key: 193892395
     criteria-collection-filtering:
-        is_finished: false
-        video_key: ~
+        video_key: 193892988
