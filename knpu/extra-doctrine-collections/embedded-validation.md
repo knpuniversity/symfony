@@ -12,7 +12,11 @@ missing validation! Lame!
 
 But no problem, right? We'll just go into the `Genus` class, copy the `as Assert`
 use statement, paste it into `GenusScientist` and then - above `yearsStudied` - add
-`@Assert\NotBlank`. Cool! Now, the `yearsStudied` field will be required.
+`@Assert\NotBlank`:
+
+[[[ code('28bb2c1493') ]]]
+
+Cool! Now, the `yearsStudied` field will be required.
 
 Go try it out: refresh the page, empty out the field again, submit and... What!?
 It still doesn't work!?
@@ -20,17 +24,22 @@ It still doesn't work!?
 ## @Valid for a Good Time
 
 It's as if Symfony doesn't see the new validation constraint! Why? Here's the deal:
-our form is bound to a `Genus` object: that's the top-level object that we're modifying.
-And by default, Symfony reads all of the validation annotations from the top-level
-class... only. When it sees an embedded object, or an array of embedded objects, like
-the `genusScientists` property, it does *not* go deeper and read the annotations
-from the `GenusScientist` class. In other words, Symfony *only* validates the top-level
-object.
+our form is bound to a `Genus` object:
+
+[[[ code('b59517f0e6') ]]]
+
+That's the top-level object that we're modifying. And by default, Symfony reads all
+of the validation annotations from the top-level class... only. When it sees an
+embedded object, or an array of embedded objects, like the `genusScientists` property,
+it does *not* go deeper and read the annotations from the `GenusScientist` class.
+In other words, Symfony *only* validates the top-level object.
 
 Double-lame! What the heck Symfony?
 
 No no, it's cool, it's on purpose. You can easily *activate* embedded validation
-by adding a unique annotation above that property: `@Assert\Valid`.
+by adding a unique annotation above that property: `@Assert\Valid`:
+
+[[[ code('7b15a302e2') ]]]
 
 That's it! Now refresh. Validation achieved!
 
@@ -44,9 +53,15 @@ this!
 
 No problem! In `GenusScientist` add a new annotation above the *class*: yep, a rare
 constraint that goes above the class instead of a property: `@UniqueEntity`. Make
-sure to auto-complete that to get a special `use` statement for this.
+sure to auto-complete that to get a special `use` statement for this:
 
-This takes a few options, like `fields={"genus", "user"}`. This says:
+[[[ code('a156fc50bd') ]]]
+
+This takes a few options, like `fields={"genus", "user"}`:
+
+[[[ code('31b270a30a') ]]]
+
+This says:
 
 > Don't allow there to be two records in the database that have the same genus
 > and user.
@@ -54,6 +69,8 @@ This takes a few options, like `fields={"genus", "user"}`. This says:
 Add a nice message, like:
 
 > This user is already studying this genus.
+
+[[[ code('10eb5362bf') ]]]
 
 Great!
 
@@ -68,7 +85,9 @@ You'll normally only see one message.
 But, having the error message way up on top... that sucks! The reason why this happens
 is honestly a little bit complex: it has to do with the `CollectionType` and
 something called `error_bubbling`. The more important thing is the fix: after the
-`message` option, add another called `errorPath` set to `user`.
+`message` option, add another called `errorPath` set to `user`:
+
+[[[ code('8899761dbc') ]]]
 
 In a *non* embedded form, the validation error message from `UniqueEntity` normally
 shows at the top of the form... which makes a lot of sense in that situation. But
