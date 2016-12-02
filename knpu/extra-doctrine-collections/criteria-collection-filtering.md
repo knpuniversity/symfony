@@ -7,15 +7,28 @@ it's likely to slow down your page big.
 Ready for a better way?! Introducing, Doctrine's Criteria system: a part of Doctrine
 that's *so* useful... and yet... I don't think anyone knows it exists!
 
-Here's how it looks: create a `$criteria` variable set to `Criteria::create()`. Next,
-we'll chain off of this and build something that looks *somewhat* similar to a Doctrine
-query builder. Say, `andWhere()`, then `Criteria::expr()->gt()` for a greater than
-comparison. There are a ton of other methods for equals, less than and any other
-operator you can dream up. Inside `gt`, pass it `'yearsStudied', 20`. And hey! Let's
-show off: add an `orderBy()` passing it an array with `yearsStudied` set to `DESC`.
+Here's how it looks: create a `$criteria` variable set to `Criteria::create()`:
+
+[[[ code('0f7e2cd5f6') ]]]
+
+Next, we'll chain off of this and build something that looks *somewhat* similar
+to a Doctrine query builder. Say, `andWhere()`, then `Criteria::expr()->gt()`
+for a greater than comparison. There are a ton of other methods for equals, less than
+and any other operator you can dream up. Inside `gt`, pass it `'yearsStudied', 20`:
+
+[[[ code('505fefc56b') ]]]
+
+And hey! Let's show off: add an `orderBy()` passing it an array with `yearsStudied`
+set to `DESC`:
+
+[[[ code('c87c2d5d0a') ]]]
 
 This Criteria describes *how* we want to filter. To use it, return
-`$this->getGenusScientists()->matching()` and pass that `$criteria`. That is it!
+`$this->getGenusScientists()->matching()` and pass that `$criteria`:
+
+[[[ code('ebde980bd5') ]]]
+
+That is it!
 
 Now check this out: when we go back and refresh, we get all the same results. But
 the queries are *totally* different. It still counts all the scientists for the first
@@ -36,10 +49,14 @@ from *anywhere*, but do it efficiently. Congrats to Doctrine on this feature.
 
 But, to keep my code organized, I prefer to have all of my query logic inside of
 repository classes, including Criteria. No worries! Open `GenusRepository` and create
-a new `static public function`, `createExpertCriteria()`.
+a new `static public function createExpertCriteria()`:
+
+[[[ code('33ea28f5c2') ]]]
 
 Copy the criteria line from genus, paste it here and return it. Oh, and be sure you
-type the "a" on `Criteria` and hit tab so that PhpStorm autocompletes the `use` statement.
+type the "a" on `Criteria` and hit tab so that PhpStorm autocompletes the `use` statement:
+
+[[[ code('8c8285a797') ]]]
 
 But wait, gasp! A static method! Why!? Well, it's because I need to be able to access
 it from my `Genus` class... and that's only possible if it's static. And also, I
@@ -47,7 +64,9 @@ think it's fine: this method doesn't make a query, it simply returns a small, de
 static value object: the `Criteria`.
 
 Back inside `Genus`, we can simplify things
-`$this->getGenusScientists()->matching(GenusRepository::createExpertCriteria())`.
+`$this->getGenusScientists()->matching(GenusRepository::createExpertCriteria())`:
+
+[[[ code('ea20f3d06c') ]]]
 
 Refresh that! Sweet! It works just like before.
 
@@ -56,12 +75,20 @@ Refresh that! Sweet! It works just like before.
 Another advantage of building the `Criteria` inside of your repository is that you
 can use it in a query builder. Imagine that we needed to query for *all* of the
 experts in the entire system. To do that we could create a new public function -
-`findAllExperts()`. But, I want to *avoid* duplicating the query logic that we
-already have in the Criteria!
+`findAllExperts()`:
+
+[[[ code('b4b1466f23') ]]]
+
+But, I want to *avoid* duplicating the query logic that we already have in the Criteria!
 
 No worries! Just return `$this->createQueryBuilder('genus')` then,
-`addCriteria(self::createExpertCriteria())`. Finish with the normal `getQuery()`
-and `execute()`.
+`addCriteria(self::createExpertCriteria())`:
+
+[[[ code('f798456c7e') ]]]
+
+Finish with the normal `getQuery()` and `execute()`:
+
+[[[ code('34358350e2') ]]]
 
 How cool is that!?
 
