@@ -3,9 +3,17 @@
 On the genus list page, I want to add a new column that prints the *number* of scientists
 each `Genus` has. That should be simple!
 
-Open the `genus/list.html.twig` template. Add the new `th` for number of scientists.
-Then down below, add the `td`, then say `{{ genus.genusScientists|length }}`. In other
-words: go out and get my array of genus scientists and count them!
+Open the `genus/list.html.twig` template. Add the new `th` for number of scientists:
+
+[[[ code('af6b9a6195') ]]]
+
+Then down below, add the `td`, then say `{{ genus.genusScientists|length }}`:
+
+[[[ code('cfb27739a6') ]]]
+
+In other words: 
+
+> Go out and get my array of genus scientists and count them!
 
 And, it even works! Each genus has three scientists. Until we delete one, then
 only *two* scientists! Yes!
@@ -33,8 +41,10 @@ But, for the sake of learning... I want to do better, and there are a few possib
 First, instead of querying for *all* the user data *just* so we can count the users,
 wouldn't it be better to make a super-fast COUNT query?
 
-Yep! And there's an awesome way to do this. Open `Genus` and find the `genusScientists`
-property. At the end of the `ManyToMany`, add `fetch="EXTRA_LAZY"`.
+Yep! And there's an awesome way to do this. Open `Genus` and find the `$genusScientists`
+property. At the end of the `ManyToMany`, add `fetch="EXTRA_LAZY"`:
+
+[[[ code('3f88104321') ]]]
 
 That's it. Now go back, refresh, and click to check out the queries. We still have
 the same *number* of queries, but each row's query is now just a simple count.
@@ -53,25 +63,35 @@ table *then*, and fetched all of the users immediately?
 
 That's totally possible, and while it might actually be *slower* in this case, let's
 find out how to do join across a `ManyToMany` relationship. Open `GenusController`
-and find `listAction`. Right now, this controller calls a
+and find `listAction()`. Right now, this controller calls a
 `findAllPublishOrderedByRecentlyActive()` method on `GenusRepository` to make the
-query.
+query:
+
+[[[ code('ff410eb8f5') ]]]
 
 Go find that method! Here's the goal: modify this query to join to the middle
 `genus_scientist` table and then join again to the `user` table so we can select
 all of the user data. But wait! What's the number one rule about `ManyToMany` relationships?
 That's right: you need to pretend like the middle join table doesn't exist.
 
-Instead, `leftJoin()` directly to `genus.genusScientists`. Alias that to `genusScientist`.
-When you JOIN in Doctrine, you always join on a relation property, like `genusScientists`.
+Instead, `leftJoin()` directly to `genus.genusScientists`. Alias that to `genusScientist`:
+
+[[[ code('ee55dd414d') ]]]
+
+When you JOIN in Doctrine, you always join on a relation property, like `$genusScientists`.
 Doctrine will automatically take care of joining across the middle table and then
 over to the `user` table.
 
-To select the user data, add `select('genusScientist')`.
+To select the user data: `addSelect('genusScientist')`:
+
+[[[ code('5b22ff9f7a') ]]]
 
 Ok, go back and refresh again! Woh, *one* query! And that query contains a `LEFT JOIN`
 to `genus_scientist` and another to `user`. Because we're fetching *all* the user
 data in this query, Doctrine avoids making the COUNT queries later.
 
 If Doctrine JOINS are still a bit new to you, give yourself a head start with our
-[Doctrine Queries Tutorial](https://knpuniversity.com/screencast/doctrine-queries).
+[Doctrine Queries Tutorial][doctrine_queries].
+
+
+[doctrine_queries]: https://knpuniversity.com/screencast/doctrine-queries

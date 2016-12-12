@@ -5,18 +5,29 @@ is now smart enough to *remove* that `GenusScientist` from the `genusScientists`
 array on `Genus`. So, why doesn't that make any difference to the database?
 
 The problem is that the `genusScientists` property is now the *inverse* side of
-this relationship. In other words, if we remove or add a `GenusScientist` from this
-array, it doesn't make any difference! Doctrine ignores changes to the inverse side.
+this relationship:
+
+[[[ code('d2e7be441c') ]]]
+
+In other words, if we remove or add a `GenusScientist` from this array, it doesn't
+make any difference! Doctrine ignores changes to the inverse side.
 
 ## Setting the Owning Side: by_reference
 
 How to fix it? We already know how! We did it back with our `ManyToMany` relationship!
 It's a two step process.
 
-First, in `GenusFormType`, set the `by_reference` option to false. Remember this?
+First, in `GenusFormType`, set the `by_reference` option to `false`:
+
+[[[ code('0b8596fa18') ]]]
+
+Remember this?
+
 Without this, the form component never calls `setGenusScientists()`. In fact, there
 *is* no `setGenusScientists` method in `Genus`. Instead, the form calls `getGenusScientists()`
-and then modifies that `ArrayCollection` object by reference.
+and then modifies that `ArrayCollection` object by reference:
+
+[[[ code('fef83f705f') ]]]
 
 But by setting it to false, it's going to give us the flexibility we need to
 set the owning side of the relationship.
@@ -27,17 +38,24 @@ With *just* that change, submit the form. Error! But look at it closely: the err
 happens when the form system calls `removeGenusScientist()`. That's perfect! Well,
 not the error, but when we set `by_reference` to false, the form started using our
 adder and remover methods. *Now*, when we delete a `GenusScientist` form, it calls
-`removeGenusScientist()`.
+`removeGenusScientist()`:
+
+[[[ code('cdb3aaf26f') ]]]
 
 The only problem is that those methods are *totally* outdated: they're still written
 for our old `ManyToMany` setup.
 
 In `removeGenusScientist()`, change the argument to accept a `GenusScientist` object.
-Then update `$user` to `$genusScientist` in one spot, and then the other. For the
-last line, use `$genusScientist->setGenus(null)`. Let's update the note to say the
-*opposite*:
+Then update `$user` to `$genusScientist` in one spot, and then the other:
 
-> Needed to update the owning side of the relationship
+[[[ code('16c5b9c7a1') ]]]
+
+For the last line, use `$genusScientist->setGenus(null)`. Let's update the note to say
+the *opposite*:
+
+> Needed to update the owning side of the relationship!
+
+[[[ code('c0dd522482') ]]]
 
 Now, when we remove one of the embedded `GenusScientist` forms and submit, it will
 call `removeGenusScientist()` and that will set the owning side:
@@ -53,7 +71,7 @@ Yay! Another error!
 > UPDATE genus_scientist SET genus_id = NULL
 
 Huh... that makes *perfect* sense. Our code is not *deleting* that `GenusEntity`.
-Nope, it's simply setting its `genus` property to null. This update query makes
+Nope, it's simply setting its `genus` property to `null`. This update query makes
 sense!
 
 But... it's *not* what we want! We want to say:
@@ -63,10 +81,14 @@ But... it's *not* what we want! We want to say:
 
 And Doctrine has an option for *exactly* that. In `Genus`, find your `genusScientists`
 property. Let's reorganize the `OneToMany` annotation onto multiple lines: it's getting
-a bit long. Then, add one magical option: `orphanRemoval = true`.
+a bit long. Then, add one magical option: `orphanRemoval = true`:
 
-That's the key. It says: if one of these `GenusScientist` objects suddenly has their
-`genus` set to `null`, just delete it entirely.
+[[[ code('1c816438b6') ]]]
+
+That's the key. It says:
+
+> If one of these `GenusScientist` objects suddenly has their `genus` set to `null`,
+> just delete it entirely.
 
 ***TIP
 If the `GenusScientist.genus` property is set to a *different* `Genus`,

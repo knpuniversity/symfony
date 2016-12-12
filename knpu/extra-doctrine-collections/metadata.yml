@@ -55,56 +55,38 @@ chapters:
     many-to-many-fixtures:
         video_key: 191024079
     joins-and-extra-lazy-fetch:
-        is_finished: false
-        video_key: ~
+        video_key: 191867812
     entity-type-checkboxes:
-        is_finished: false
-        video_key: ~
+        video_key: 191867854
     saving-inverse-side-collection:
-        is_finished: false
-        video_key: ~
+        video_key: 191867270
     by-reference-adder-remover:
-        is_finished: false
-        video_key: ~
+        video_key: 192800331
     synchronizing-mapping-inverse:
-        is_finished: false
-        video_key: ~
+        video_key: 192800586
     many-to-many-extra-fields:
-        is_finished: false
-        video_key: ~
+        video_key: 192803108
     join-entity-refactoring:
-        is_finished: false
-        video_key: ~
+        video_key: 192801278
     refactoring-for-new-collections:
-        is_finished: false
-        video_key: ~
+        video_key: 192803522
     embedded-form-collection:
-        is_finished: false
-        video_key: ~
+        video_key: 192804134
     collection-allow-delete:
-        is_finished: false
-        video_key: ~
+        video_key: 193476336
     collection-delete-orphan-removal:
-        is_finished: false
-        video_key: ~
+        video_key: 193476070
     add-new-collection-prototype:
-        is_finished: false
-        video_key: ~
+        video_key: 193476808
     add-new-collection-cascade-persist:
-        is_finished: false
-        video_key: ~
+        video_key: 193475426
     embedded-validation:
-        is_finished: false
-        video_key: ~
+        video_key: 193886082
     customizing-prototype:
-        is_finished: false
-        video_key: ~
+        video_key: 193886759
     form-events-readonly-embedded-field:
-        is_finished: false
-        video_key: ~
+        video_key: 193891390
     easy-collection-filtering:
-        is_finished: false
-        video_key: ~
+        video_key: 193892395
     criteria-collection-filtering:
-        is_finished: false
-        video_key: ~
+        video_key: 193892988
