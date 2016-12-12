@@ -30,7 +30,7 @@ wrapper element. Register a listener on `click` for any `.js-remove-scientist`
 element - that's the delete link. Start that function with my favorite `e.preventDefault()`.
 
 Then... what next? Well, forget about Symfony and the database: just find the
-`.js-genus-scientist-item` li element that's around this link and... remove it!
+`.js-genus-scientist-item` element that's around this link and... remove it!
 
 Simple! Refresh the page, click that x, and be amazed.
 

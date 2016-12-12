@@ -38,6 +38,11 @@ But, to keep my code organized, I prefer to have all of my query logic inside of
 repository classes, including Criteria. No worries! Open `GenusRepository` and create
 a new `static public function`, `createExpertCriteria()`.
 
+***TIP
+Whoops! It would be better to put this method in `GenusScientistRepository`, since
+it operates on that entity.
+***
+
 Copy the criteria line from genus, paste it here and return it. Oh, and be sure you
 type the "a" on `Criteria` and hit tab so that PhpStorm autocompletes the `use` statement.
 
@@ -56,8 +61,14 @@ Refresh that! Sweet! It works just like before.
 Another advantage of building the `Criteria` inside of your repository is that you
 can use it in a query builder. Imagine that we needed to query for *all* of the
 experts in the entire system. To do that we could create a new public function -
-`findAllExperts()`. But, I want to *avoid* duplicating the query logic that we
-already have in the Criteria!
+`findAllExperts()`.
+
+***TIP
+Once again, this method should *actually* live in `GenusScientistRepository`, but
+the idea is exactly the same :).
+***
+
+But, I want to *avoid* duplicating the query logic that we already have in the Criteria!
 
 No worries! Just return `$this->createQueryBuilder('genus')` then,
 `addCriteria(self::createExpertCriteria())`. Finish with the normal `getQuery()`
