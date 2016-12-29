@@ -84,7 +84,7 @@ and `User` multiple times. So that's great... but I *would* like to avoid this e
 in case this happens accidentally in the future.
 
 To do that, we need to make our `addGenusScientist()` method a *little* bit smarter.
-Add if `$this->genusScientista->contains()`... remember, the `$genusScientists`
+Add if `$this->genusScientists->contains()`... remember, the `$genusScientists`
 property is actually an `ArrayCollection` object, so it has some trendy methods on
 it, like `contains`. Then pass `$user`. If `genusScientists` already has this `User`,
 just return:
