@@ -2,7 +2,7 @@
 
 New mission! On the genus show page, I want to list all of the users that are studying
 this `Genus`. If you think about the database - which I told you *NOT* to do, but
-ignore more for a second - then we want to query for all users that appear in the
+ignore me for a second - then we want to query for all users that appear in the
 `genus_scientist` join table for this `Genus`.
 
 Well, it turns out this query happens automagically, and the matching users are
