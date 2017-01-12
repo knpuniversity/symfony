@@ -127,6 +127,30 @@ Last step: generate the migration:
 ./bin/console doctrine:migrations:diff
 ```
 
+***TIP
+If you get a
+
+> There is no column with name `id` on table `genus_scientist`
+
+error, this is due to a bug in doctrine/dbal 2.5.5. It's no big deal, as it just
+affects the *generation* of the migration file. There are 2 possible solutions
+until the bug is fixed:
+
+1) Downgrade to doctrine/dbal 2.5.4. This would mean adding the following line to your composer.json file:
+
+```json
+"doctrine/dbal": "2.5.4"
+```
+
+Then run `composer update`
+
+2) Manually rename genus_scientist to something else (e.g. genus_scientist_old)
+and then generate the migration. Then, rename the table back. The generated migration
+will be *incorrect*, because it will think that you need to create a `genus_scientist`
+table, but we do not. So, you'll need to manually update the migration code by hand
+and test it.
+***
+
 Look in the `app/DoctrineMigrations` directory and open that migration:
 
 [[[ code('72ff5578d4') ]]]
