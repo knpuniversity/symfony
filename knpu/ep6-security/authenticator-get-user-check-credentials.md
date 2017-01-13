@@ -6,7 +6,7 @@ skipped. But if you return *anything* else, Symfony calls `getUser()`:
 [[[ code('7a88463a56') ]]]
 
 And see that `$credentials` argument? That's equal to what we return in `getCredentials()`.
-In other words, add `$username = $credentials['_username]`:
+In other words, add `$username = $credentials['_username']`:
 
 [[[ code('1bfa030e8e') ]]]
 
