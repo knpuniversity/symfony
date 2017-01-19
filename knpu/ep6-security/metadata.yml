@@ -43,10 +43,13 @@ tuts_hero:
 chapters:
     user-class:
         video_key: 172481222
+        is_free: true
     user-interface-methods:
         video_key: 172482158
+        is_free: true
     rendering-login-form:
         video_key: 172485553
+        is_free: true
     all-about-firewalls:
         video_key: 172484709
     login-form-authenticator:
