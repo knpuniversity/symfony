@@ -1251,6 +1251,11 @@
             "description": null
         },
         {
+            "id": "validation-fixing-collection-index-issue",
+            "name": "Validation: Fixing collection index issue",
+            "description": null
+        },
+        {
             "id": "form-customizing-prototype",
             "name": "Form: Customizing prototype",
             "description": null
@@ -1301,5 +1306,5 @@
             "description": null
         }
     ],
-    "sha": "7d28227a16674de081ff2133036a39d19d02ebfe"
+    "sha": "2db22bc14b7fac9c26d6769285c0344e39c68168"
 }
