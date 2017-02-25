@@ -38,7 +38,7 @@ And so far, our form has all the parts you'd expect: a form class: `GenusFormTyp
 
 And a controller that builds the form and passes it into the template:
 
-[[[[ code('0636f11419') ]]]]
+[[[ code('0636f11419') ]]]
 
 This gives us a `genusForm` variable inside of `new.html.twig`:
 
