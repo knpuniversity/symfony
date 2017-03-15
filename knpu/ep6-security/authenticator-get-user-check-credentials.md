@@ -81,7 +81,14 @@ Down in `getLoginUrl()`, return `$this->router->generate('security_login')`:
 
 [[[ code('84b2e9d15e') ]]]
 
-## When Authentication is Successful? 
+## When Authentication is Successful?
+
+***TIP
+Due to a change in Symfony 3.1, you *can* still fill in `getDefaultSuccessRedirectUrl()`
+like we do here, but it's deprecated. Instead, you'll add a different
+method - `onAuthenticationSuccess()` - we have the code in a comment:
+[http://bit.ly/guard-success-change][guard_success_change]
+***
 
 So what happens when authentication is successful? It's awesome: the user is automatically
 redirected back to the last page they tried to visit before being forced to login.
@@ -99,7 +106,7 @@ Send them to the homepage: `return $this->router->generate('homepage')`:
 [[[ code('d2aff79dcb') ]]]
 
 The authenticator is *done*. If you need even more control over what happens on error
-or success, there are a few other methods you can override. Or check out our [Guard][1]
+or success, there are a few other methods you can override. Or check out our [Guard][guard_screencast]
 tutorial. Let's finally hook this thing up.
 
 ## Registering the Service
@@ -149,4 +156,5 @@ So authentication works, but there's some issue with storing our User in the ses
 Fortunately, that's going to be really easy to fix.
 
 
-[1]: https://knpuniversity.com/screencast/guard
+[guard_screencast]: https://knpuniversity.com/screencast/guard
+[guard_success_change]: http://bit.ly/guard-success-change

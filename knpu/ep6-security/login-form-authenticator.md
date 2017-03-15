@@ -20,6 +20,11 @@ Then, do it again, and choose the other two:
 
 [[[ code('f4a4483a89') ]]]
 
+***TIP
+Starting in Symfony 3.1, you won't see `getDefaultSuccessRedirectUrl()` in this list anymore.
+Don't worry! We'll tell you how to handle this later.
+***
+
 That was just my way to get these methods in the order I want, but it doesn't matter.
 
 ## How Authenticators Work
