@@ -25,7 +25,7 @@ Doctrine doesn't know about this new repository class yet, so go tell it! In
 [[[ code('3b336175eb') ]]]
 
 Finally, use the new method in `GenusController` -
-`$recentNotes = $em->getRepository('AppBundle:Genus')->findAllRecentNotesForGenus()`
+`$recentNotes = $em->getRepository('AppBundle:GenusNote')->findAllRecentNotesForGenus()`
 and pass it the `$genus` object from above:
 
 [[[ code('52aa8cd4be') ]]]
