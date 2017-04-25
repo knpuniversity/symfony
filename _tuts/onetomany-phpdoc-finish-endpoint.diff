@@ -36,10 +36,10 @@ index 264b39a..7bafd19 100644
      {
          return $this->notes;
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index 8dc6ff9..c024352 100644
+index 8f35521..acf59ab 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
-@@ -92,4 +92,9 @@ class GenusNote
+@@ -97,4 +97,9 @@ class GenusNote
      {
          $this->genus = $genus;
      }

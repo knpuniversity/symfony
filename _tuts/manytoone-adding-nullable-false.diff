@@ -42,7 +42,7 @@ index 0000000..9e3f6b9
 +    }
 +}
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index 795cd4e..22f4bf1 100644
+index 69dffbf..84b4774 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
 @@ -39,6 +39,7 @@ class GenusNote

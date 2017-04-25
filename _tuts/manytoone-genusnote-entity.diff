@@ -34,10 +34,10 @@ index 0000000..b59c035
 +}
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
 new file mode 100644
-index 0000000..e0bb42a
+index 0000000..4434903
 --- /dev/null
 +++ b/src/AppBundle/Entity/GenusNote.php
-@@ -0,0 +1,79 @@
+@@ -0,0 +1,84 @@
 +<?php
 +
 +namespace AppBundle\Entity;
@@ -76,6 +76,11 @@ index 0000000..e0bb42a
 +     * @ORM\Column(type="datetime")
 +     */
 +    private $createdAt;
++
++    public function getId()
++    {
++        return $this->id;
++    }
 +
 +    public function getUsername()
 +    {
