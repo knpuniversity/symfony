@@ -1,6 +1,6 @@
 diff --git a/.gitignore b/.gitignore
 new file mode 100644
-index 0000000..93821ad
+index 00000000..93821ad1
 --- /dev/null
 +++ b/.gitignore
 @@ -0,0 +1,16 @@
@@ -21,7 +21,7 @@ index 0000000..93821ad
 +/vendor/
 +/web/bundles/
 diff --git a/README.md b/README.md
-index 122d0af..afbdb22 100644
+index 122d0afd..afbdb225 100644
 --- a/README.md
 +++ b/README.md
 @@ -3,6 +3,46 @@
@@ -73,7 +73,7 @@ index 122d0af..afbdb22 100644
  And as always, thanks so much for your support and letting us do what
 diff --git a/app/.htaccess b/app/.htaccess
 new file mode 100644
-index 0000000..fb1de45
+index 00000000..fb1de45b
 --- /dev/null
 +++ b/app/.htaccess
 @@ -0,0 +1,7 @@
@@ -86,7 +86,7 @@ index 0000000..fb1de45
 +</IfModule>
 diff --git a/app/AppCache.php b/app/AppCache.php
 new file mode 100644
-index 0000000..639ec2c
+index 00000000..639ec2cd
 --- /dev/null
 +++ b/app/AppCache.php
 @@ -0,0 +1,7 @@
@@ -99,7 +99,7 @@ index 0000000..639ec2c
 +}
 diff --git a/app/AppKernel.php b/app/AppKernel.php
 new file mode 100644
-index 0000000..ff6d5d2
+index 00000000..ff6d5d20
 --- /dev/null
 +++ b/app/AppKernel.php
 @@ -0,0 +1,50 @@
@@ -155,7 +155,7 @@ index 0000000..ff6d5d2
 +}
 diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
 new file mode 100644
-index 0000000..bafd28d
+index 00000000..bafd28d3
 --- /dev/null
 +++ b/app/Resources/views/base.html.twig
 @@ -0,0 +1,13 @@
@@ -174,7 +174,7 @@ index 0000000..bafd28d
 +</html>
 diff --git a/app/Resources/views/default/index.html.twig b/app/Resources/views/default/index.html.twig
 new file mode 100644
-index 0000000..75842eb
+index 00000000..75842ebe
 --- /dev/null
 +++ b/app/Resources/views/default/index.html.twig
 @@ -0,0 +1,76 @@
@@ -256,7 +256,7 @@ index 0000000..75842eb
 +{% endblock %}
 diff --git a/app/autoload.php b/app/autoload.php
 new file mode 100644
-index 0000000..b32da0f
+index 00000000..b32da0f3
 --- /dev/null
 +++ b/app/autoload.php
 @@ -0,0 +1,15 @@
@@ -277,7 +277,7 @@ index 0000000..b32da0f
 +return $loader;
 diff --git a/app/config/config.yml b/app/config/config.yml
 new file mode 100644
-index 0000000..4c44687
+index 00000000..4c446878
 --- /dev/null
 +++ b/app/config/config.yml
 @@ -0,0 +1,69 @@
@@ -352,7 +352,7 @@ index 0000000..4c44687
 +    spool:     { type: memory }
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
 new file mode 100644
-index 0000000..2988f4f
+index 00000000..2988f4f8
 --- /dev/null
 +++ b/app/config/config_dev.yml
 @@ -0,0 +1,45 @@
@@ -403,7 +403,7 @@ index 0000000..2988f4f
 +#    delivery_address: me@example.com
 diff --git a/app/config/config_prod.yml b/app/config/config_prod.yml
 new file mode 100644
-index 0000000..5e5f0bc
+index 00000000..5e5f0bcb
 --- /dev/null
 +++ b/app/config/config_prod.yml
 @@ -0,0 +1,27 @@
@@ -436,7 +436,7 @@ index 0000000..5e5f0bc
 +            type:  console
 diff --git a/app/config/config_test.yml b/app/config/config_test.yml
 new file mode 100644
-index 0000000..2f6d925
+index 00000000..2f6d9250
 --- /dev/null
 +++ b/app/config/config_test.yml
 @@ -0,0 +1,16 @@
@@ -458,7 +458,7 @@ index 0000000..2f6d925
 +    disable_delivery: true
 diff --git a/app/config/parameters.yml.dist b/app/config/parameters.yml.dist
 new file mode 100644
-index 0000000..886c92b
+index 00000000..886c92bb
 --- /dev/null
 +++ b/app/config/parameters.yml.dist
 @@ -0,0 +1,19 @@
@@ -483,7 +483,7 @@ index 0000000..886c92b
 +    secret:            ThisTokenIsNotSoSecretChangeIt
 diff --git a/app/config/routing.yml b/app/config/routing.yml
 new file mode 100644
-index 0000000..8eadc31
+index 00000000..8eadc31a
 --- /dev/null
 +++ b/app/config/routing.yml
 @@ -0,0 +1,3 @@
@@ -492,7 +492,7 @@ index 0000000..8eadc31
 +    type:     annotation
 diff --git a/app/config/routing_dev.yml b/app/config/routing_dev.yml
 new file mode 100644
-index 0000000..404f6a3
+index 00000000..404f6a3b
 --- /dev/null
 +++ b/app/config/routing_dev.yml
 @@ -0,0 +1,14 @@
@@ -512,7 +512,7 @@ index 0000000..404f6a3
 +    resource: routing.yml
 diff --git a/app/config/security.yml b/app/config/security.yml
 new file mode 100644
-index 0000000..8072372
+index 00000000..8072372c
 --- /dev/null
 +++ b/app/config/security.yml
 @@ -0,0 +1,24 @@
@@ -542,7 +542,7 @@ index 0000000..8072372
 +            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
 diff --git a/app/config/services.yml b/app/config/services.yml
 new file mode 100644
-index 0000000..5c76fc5
+index 00000000..5c76fc59
 --- /dev/null
 +++ b/app/config/services.yml
 @@ -0,0 +1,9 @@
@@ -557,7 +557,7 @@ index 0000000..5c76fc5
 +#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 diff --git a/bin/console b/bin/console
 new file mode 100755
-index 0000000..ca74e93
+index 00000000..ca74e936
 --- /dev/null
 +++ b/bin/console
 @@ -0,0 +1,29 @@
@@ -592,7 +592,7 @@ index 0000000..ca74e93
 +$application->run($input);
 diff --git a/bin/symfony_requirements b/bin/symfony_requirements
 new file mode 100755
-index 0000000..8825a96
+index 00000000..8825a964
 --- /dev/null
 +++ b/bin/symfony_requirements
 @@ -0,0 +1,143 @@
@@ -741,7 +741,7 @@ index 0000000..8825a96
 +}
 diff --git a/composer.json b/composer.json
 new file mode 100644
-index 0000000..4fe28cc
+index 00000000..4fe28ccd
 --- /dev/null
 +++ b/composer.json
 @@ -0,0 +1,62 @@
@@ -809,7 +809,7 @@ index 0000000..4fe28cc
 +}
 diff --git a/composer.lock b/composer.lock
 new file mode 100644
-index 0000000..3089c0e
+index 00000000..3089c0e3
 --- /dev/null
 +++ b/composer.lock
 @@ -0,0 +1,2074 @@
@@ -2889,7 +2889,7 @@ index 0000000..3089c0e
 +}
 diff --git a/phpunit.xml.dist b/phpunit.xml.dist
 new file mode 100644
-index 0000000..a2a0910
+index 00000000..a2a09107
 --- /dev/null
 +++ b/phpunit.xml.dist
 @@ -0,0 +1,34 @@
@@ -2929,7 +2929,7 @@ index 0000000..a2a0910
 +</phpunit>
 diff --git a/src/.htaccess b/src/.htaccess
 new file mode 100644
-index 0000000..fb1de45
+index 00000000..fb1de45b
 --- /dev/null
 +++ b/src/.htaccess
 @@ -0,0 +1,7 @@
@@ -2942,7 +2942,7 @@ index 0000000..fb1de45
 +</IfModule>
 diff --git a/src/AppBundle/AppBundle.php b/src/AppBundle/AppBundle.php
 new file mode 100644
-index 0000000..05123b6
+index 00000000..05123b67
 --- /dev/null
 +++ b/src/AppBundle/AppBundle.php
 @@ -0,0 +1,9 @@
@@ -2957,7 +2957,7 @@ index 0000000..05123b6
 +}
 diff --git a/src/AppBundle/Controller/DefaultController.php b/src/AppBundle/Controller/DefaultController.php
 new file mode 100644
-index 0000000..3bd7675
+index 00000000..3bd76756
 --- /dev/null
 +++ b/src/AppBundle/Controller/DefaultController.php
 @@ -0,0 +1,21 @@
@@ -2984,7 +2984,7 @@ index 0000000..3bd7675
 +}
 diff --git a/tests/AppBundle/Controller/DefaultControllerTest.php b/tests/AppBundle/Controller/DefaultControllerTest.php
 new file mode 100644
-index 0000000..594803c
+index 00000000..594803cc
 --- /dev/null
 +++ b/tests/AppBundle/Controller/DefaultControllerTest.php
 @@ -0,0 +1,18 @@
@@ -3008,7 +3008,7 @@ index 0000000..594803c
 +}
 diff --git a/var/SymfonyRequirements.php b/var/SymfonyRequirements.php
 new file mode 100644
-index 0000000..0a5de54
+index 00000000..0a5de546
 --- /dev/null
 +++ b/var/SymfonyRequirements.php
 @@ -0,0 +1,781 @@
@@ -3795,15 +3795,15 @@ index 0000000..0a5de54
 +}
 diff --git a/var/cache/.gitkeep b/var/cache/.gitkeep
 new file mode 100644
-index 0000000..e69de29
+index 00000000..e69de29b
 diff --git a/var/logs/.gitkeep b/var/logs/.gitkeep
 new file mode 100644
-index 0000000..e69de29
+index 00000000..e69de29b
 diff --git a/var/sessions/.gitkeep b/var/sessions/.gitkeep
 new file mode 100644
-index 0000000..e69de29
+index 00000000..e69de29b
 diff --git a/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php b/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php
-index 01bf726..db436a0 100644
+index 01bf726c..db436a03 100644
 --- a/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php
 +++ b/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php
 @@ -13,7 +13,7 @@ namespace Symfony\Bundle\FrameworkBundle\Controller;
@@ -3884,7 +3884,7 @@ index 01bf726..db436a0 100644
       */
 diff --git a/web/.htaccess b/web/.htaccess
 new file mode 100644
-index 0000000..4dc7251
+index 00000000..4dc72516
 --- /dev/null
 +++ b/web/.htaccess
 @@ -0,0 +1,68 @@
@@ -3958,7 +3958,7 @@ index 0000000..4dc7251
 +</IfModule>
 diff --git a/web/app.php b/web/app.php
 new file mode 100644
-index 0000000..20fa4f2
+index 00000000..20fa4f2e
 --- /dev/null
 +++ b/web/app.php
 @@ -0,0 +1,32 @@
@@ -3996,7 +3996,7 @@ index 0000000..20fa4f2
 +$kernel->terminate($request, $response);
 diff --git a/web/app_dev.php b/web/app_dev.php
 new file mode 100644
-index 0000000..635bf7a
+index 00000000..635bf7ac
 --- /dev/null
 +++ b/web/app_dev.php
 @@ -0,0 +1,32 @@
@@ -4250,7 +4250,7 @@ HcmV?d00001
 
 diff --git a/web/config.php b/web/config.php
 new file mode 100644
-index 0000000..5e36d79
+index 00000000..5e36d79e
 --- /dev/null
 +++ b/web/config.php
 @@ -0,0 +1,213 @@
@@ -4522,7 +4522,7 @@ HcmV?d00001
 
 diff --git a/web/robots.txt b/web/robots.txt
 new file mode 100644
-index 0000000..214e411
+index 00000000..214e4119
 --- /dev/null
 +++ b/web/robots.txt
 @@ -0,0 +1,4 @@

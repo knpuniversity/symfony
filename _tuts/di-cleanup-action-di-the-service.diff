@@ -1,0 +1,27 @@
+diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
+index 7230c4e5..f050f521 100644
+--- a/app/config/legacy_aliases.yml
++++ b/app/config/legacy_aliases.yml
+@@ -1,5 +1,4 @@
+ services:
+-    app.markdown_transformer: '@AppBundle\Service\MarkdownTransformer'
+     app.markdown_extension: '@AppBundle\Twig\MarkdownExtension'
+     app.security.login_form_authenticator: '@AppBundle\Security\LoginFormAuthenticator'
+     app.doctrine.hash_password_listener: '@AppBundle\Doctrine\HashPasswordListener'
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 302a2620..3f6b6a09 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -75,11 +75,10 @@ class GenusController extends Controller
+     /**
+      * @Route("/genus/{slug}", name="genus_show")
+      */
+-    public function showAction(Genus $genus)
++    public function showAction(Genus $genus, MarkdownTransformer $markdownTransformer)
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        $markdownTransformer = $this->get('app.markdown_transformer');
+         $funFact = $markdownTransformer->parse($genus->getFunFact());
+ 
+         $this->get('logger')

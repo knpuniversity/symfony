@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index a542876..149e667 100644
+index a5428765..149e6675 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -74,3 +74,4 @@ doctrine_cache:

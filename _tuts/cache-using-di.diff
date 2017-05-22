@@ -1,5 +1,5 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index b87fef4..e94e1d0 100644
+index b87fef44..e94e1d01 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -6,4 +6,4 @@ parameters:
@@ -9,7 +9,7 @@ index b87fef4..e94e1d0 100644
 -        arguments: ['@markdown.parser']
 +        arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
 diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
-index ab0c2cb..bb9baae 100644
+index ab0c2cbc..bb9baae0 100644
 --- a/src/AppBundle/Service/MarkdownTransformer.php
 +++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -2,20 +2,23 @@

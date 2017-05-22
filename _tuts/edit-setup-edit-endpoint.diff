@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
 new file mode 100644
-index 0000000..550c3c5
+index 00000000..550c3c54
 --- /dev/null
 +++ b/app/Resources/views/admin/genus/edit.html.twig
 @@ -0,0 +1,44 @@
@@ -49,7 +49,7 @@ index 0000000..550c3c5
 +    </div>
 +{% endblock %}
 diff --git a/app/Resources/views/admin/genus/list.html.twig b/app/Resources/views/admin/genus/list.html.twig
-index d9b8157..f624469 100644
+index d9b8157b..f624469d 100644
 --- a/app/Resources/views/admin/genus/list.html.twig
 +++ b/app/Resources/views/admin/genus/list.html.twig
 @@ -22,7 +22,7 @@
@@ -62,7 +62,7 @@ index d9b8157..f624469 100644
                          </tr>
                      {% endfor %}
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index 7a84ec0..3d3f1dc 100644
+index 7a84ec08..3d3f1dc9 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -2,6 +2,7 @@
@@ -106,7 +106,7 @@ index 7a84ec0..3d3f1dc 100644
  }
 \ No newline at end of file
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index fa5b972..d92aafc 100644
+index fa5b9720..d92aafce 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -66,6 +66,11 @@ class Genus

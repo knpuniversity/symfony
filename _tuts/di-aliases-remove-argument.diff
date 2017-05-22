@@ -1,0 +1,13 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 7e73d05b..8d88c88b 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -33,7 +33,7 @@ services:
+                 id: app.discouraging_message_generator
+ 
+     AppBundle\Service\MarkdownTransformer:
+-        arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
++        arguments: ['', '@doctrine_cache.providers.my_markdown_cache']
+ 
+     AppBundle\Doctrine\HashPasswordListener:
+         tags: [doctrine.event_subscriber]

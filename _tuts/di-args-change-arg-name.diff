@@ -1,0 +1,30 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 50f965b1..6913c7f0 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -37,7 +37,7 @@ services:
+ 
+     AppBundle\Service\MarkdownTransformer:
+         arguments:
+-            $cache: '@doctrine_cache.providers.my_markdown_cache'
++            $cacheDriver: '@doctrine_cache.providers.my_markdown_cache'
+ 
+     AppBundle\Doctrine\HashPasswordListener:
+         tags: [doctrine.event_subscriber]
+diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
+index bb9baae0..0f6f29fc 100644
+--- a/src/AppBundle/Service/MarkdownTransformer.php
++++ b/src/AppBundle/Service/MarkdownTransformer.php
+@@ -10,10 +10,10 @@ class MarkdownTransformer
+     private $markdownParser;
+     private $cache;
+ 
+-    public function __construct(MarkdownParserInterface $markdownParser, Cache $cache)
++    public function __construct(MarkdownParserInterface $markdownParser, Cache $cacheDriver)
+     {
+         $this->markdownParser = $markdownParser;
+-        $this->cache = $cache;
++        $this->cache = $cacheDriver;
+     }
+ 
+     public function parse($str)

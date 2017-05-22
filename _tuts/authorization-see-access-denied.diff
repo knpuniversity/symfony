@@ -1,5 +1,5 @@
 diff --git a/app/config/security.yml b/app/config/security.yml
-index 8a45cce..1fb0655 100644
+index 8a45ccee..1fb06551 100644
 --- a/app/config/security.yml
 +++ b/app/config/security.yml
 @@ -32,4 +32,4 @@ security:

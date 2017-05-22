@@ -1,0 +1,16 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index e7580ce7..db9fce78 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -30,11 +30,6 @@ services:
+     AppBundle\Service\MarkdownTransformer:
+         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+ 
+-    AppBundle\Twig\MarkdownExtension:
+-        #arguments: ['@app.markdown_transformer']
+-
+-    AppBundle\Security\LoginFormAuthenticator: ~
+-
+     AppBundle\Doctrine\HashPasswordListener:
+         tags:
+             - { name: doctrine.event_subscriber }

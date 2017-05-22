@@ -1,0 +1,19 @@
+diff --git a/app/AppKernel.php b/app/AppKernel.php
+index 16436405..c8e61306 100644
+--- a/app/AppKernel.php
++++ b/app/AppKernel.php
+@@ -1,5 +1,6 @@
+ <?php
+ 
++use Symfony\Bundle\WebServerBundle\WebServerBundle;
+ use Symfony\Component\HttpKernel\Kernel;
+ use Symfony\Component\Config\Loader\LoaderInterface;
+ 
+@@ -30,6 +31,7 @@ class AppKernel extends Kernel
+             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
++            $bundles[] = new WebServerBundle();
+         }
+ 
+         return $bundles;

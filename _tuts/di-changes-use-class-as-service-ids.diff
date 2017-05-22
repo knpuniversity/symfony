@@ -1,0 +1,55 @@
+diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
+new file mode 100644
+index 00000000..7230c4e5
+--- /dev/null
++++ b/app/config/legacy_aliases.yml
+@@ -0,0 +1,6 @@
++services:
++    app.markdown_transformer: '@AppBundle\Service\MarkdownTransformer'
++    app.markdown_extension: '@AppBundle\Twig\MarkdownExtension'
++    app.security.login_form_authenticator: '@AppBundle\Security\LoginFormAuthenticator'
++    app.doctrine.hash_password_listener: '@AppBundle\Doctrine\HashPasswordListener'
++    app.form.help_form_extenion: '@AppBundle\Form\TypeExtension\HelpFormExtension'
+diff --git a/app/config/services.yml b/app/config/services.yml
+index d0208666..7f6f9359 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -1,5 +1,8 @@
+ # Learn more about services, parameters and containers at
+ # http://symfony.com/doc/current/book/service_container.html
++imports:
++    - { resource: legacy_aliases.yml }
++
+ parameters:
+ #    parameter_name: value
+ 
+@@ -8,24 +11,19 @@ services:
+         autowire: true
+         autoconfigure: true
+ 
+-    app.markdown_transformer:
+-        class: AppBundle\Service\MarkdownTransformer
++    AppBundle\Service\MarkdownTransformer:
+         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+ 
+-    app.markdown_extension:
+-        class: AppBundle\Twig\MarkdownExtension
++    AppBundle\Twig\MarkdownExtension:
+         #arguments: ['@app.markdown_transformer']
+ 
+-    app.security.login_form_authenticator:
+-        class: AppBundle\Security\LoginFormAuthenticator
++    AppBundle\Security\LoginFormAuthenticator: ~
+ 
+-    app.doctrine.hash_password_listener:
+-        class: AppBundle\Doctrine\HashPasswordListener
++    AppBundle\Doctrine\HashPasswordListener:
+         tags:
+             - { name: doctrine.event_subscriber }
+ 
+-    app.form.help_form_extenion:
+-        class: AppBundle\Form\TypeExtension\HelpFormExtension
++    AppBundle\Form\TypeExtension\HelpFormExtension:
+         tags:
+             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+ 

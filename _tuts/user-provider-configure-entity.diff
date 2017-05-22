@@ -1,5 +1,5 @@
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
-index a567be6..09dc7b3 100644
+index a567be62..09dc7b3f 100644
 --- a/app/config/config_dev.yml
 +++ b/app/config/config_dev.yml
 @@ -12,7 +12,7 @@ framework:
@@ -12,7 +12,7 @@ index a567be6..09dc7b3 100644
  monolog:
      handlers:
 diff --git a/app/config/security.yml b/app/config/security.yml
-index 737ea35..f4aaea7 100644
+index 737ea351..f4aaea7e 100644
 --- a/app/config/security.yml
 +++ b/app/config/security.yml
 @@ -4,8 +4,8 @@ security:

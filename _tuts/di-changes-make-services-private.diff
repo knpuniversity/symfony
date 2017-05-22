@@ -1,0 +1,23 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 7f6f9359..8dc0029a 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -10,6 +10,7 @@ services:
+     _defaults:
+         autowire: true
+         autoconfigure: true
++        public: false
+ 
+     AppBundle\Service\MarkdownTransformer:
+         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+@@ -31,8 +32,10 @@ services:
+         class: AppBundle\Service\MessageGenerator
+         arguments:
+             - ['You can do it!', 'Dude, sweet!', 'Woot!']
++        public: true
+ 
+     app.discouraging_message_generator:
+         class: AppBundle\Service\MessageGenerator
+         arguments:
+             - ['We are *never* going to figure this out', 'Why even try again?', 'Facepalm']
++        public: true

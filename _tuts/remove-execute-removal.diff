@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 6cdcbfd..0055569 100644
+index 6cdcbfd1..00555693 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -22,7 +22,7 @@
@@ -46,7 +46,7 @@ index 6cdcbfd..0055569 100644
          });
      </script>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 22eb8e9..fe1ca68 100644
+index 22eb8e96..fe1ca681 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -121,5 +121,27 @@ class GenusController extends Controller
@@ -78,7 +78,7 @@ index 22eb8e9..fe1ca68 100644
      }
  }
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 4155d05..746fc45 100644
+index 4155d052..746fc450 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -181,6 +181,11 @@ class Genus

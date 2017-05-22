@@ -1,0 +1,113 @@
+diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
+index a25efce6..865e2f30 100644
+--- a/app/Resources/views/base.html.twig
++++ b/app/Resources/views/base.html.twig
+@@ -36,6 +36,11 @@
+                     {{ msg }}
+                 </div>
+             {% endfor %}
++            {% for msg in app.session.flashBag.get('error') %}
++                <div class="alert alert-danger">
++                    {{ msg }}
++                </div>
++            {% endfor %}
+ 
+             {% block body %}{% endblock %}
+         </div>
+diff --git a/app/config/services.yml b/app/config/services.yml
+index d2f27edb..d0208666 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -4,29 +4,37 @@ parameters:
+ #    parameter_name: value
+ 
+ services:
++    _defaults:
++        autowire: true
++        autoconfigure: true
++
+     app.markdown_transformer:
+         class: AppBundle\Service\MarkdownTransformer
+         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+ 
+     app.markdown_extension:
+         class: AppBundle\Twig\MarkdownExtension
+-        tags:
+-            - { name: twig.extension }
+         #arguments: ['@app.markdown_transformer']
+-        autowire: true
+ 
+     app.security.login_form_authenticator:
+         class: AppBundle\Security\LoginFormAuthenticator
+-        autowire: true
+ 
+     app.doctrine.hash_password_listener:
+         class: AppBundle\Doctrine\HashPasswordListener
+-        autowire: true
+         tags:
+             - { name: doctrine.event_subscriber }
+ 
+     app.form.help_form_extenion:
+         class: AppBundle\Form\TypeExtension\HelpFormExtension
+-        autowire: true
+         tags:
+             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
++
++    app.encouraging_message_generator:
++        class: AppBundle\Service\MessageGenerator
++        arguments:
++            - ['You can do it!', 'Dude, sweet!', 'Woot!']
++
++    app.discouraging_message_generator:
++        class: AppBundle\Service\MessageGenerator
++        arguments:
++            - ['We are *never* going to figure this out', 'Why even try again?', 'Facepalm']
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index ac92b2a8..180567af 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -74,11 +74,19 @@ class GenusAdminController extends Controller
+             $em->persist($genus);
+             $em->flush();
+ 
+-            $this->addFlash('success', 'Genus updated!');
++            $this->addFlash(
++                'success',
++                $this->get('app.encouraging_message_generator')->getMessage()
++            );
+ 
+             return $this->redirectToRoute('admin_genus_edit', [
+                 'id' => $genus->getId()
+             ]);
++        }  elseif ($form->isSubmitted()) {
++            $this->addFlash(
++                'error',
++                $this->get('app.discouraging_message_generator')->getMessage()
++            );
+         }
+ 
+         return $this->render('admin/genus/edit.html.twig', [
+diff --git a/src/AppBundle/Service/MessageGenerator.php b/src/AppBundle/Service/MessageGenerator.php
+new file mode 100644
+index 00000000..4fa27c50
+--- /dev/null
++++ b/src/AppBundle/Service/MessageGenerator.php
+@@ -0,0 +1,18 @@
++<?php
++
++namespace AppBundle\Service;
++
++class MessageGenerator
++{
++    private $messages;
++
++    public function __construct(array $messages)
++    {
++        $this->messages = $messages;
++    }
++
++    public function getMessage()
++    {
++        return $this->messages[array_rand($this->messages)];
++    }
++}

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 6547e5f..f45c1af 100644
+index 6547e5f7..f45c1afc 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -220,4 +220,18 @@ class User implements UserInterface
@@ -22,7 +22,7 @@ index 6547e5f..f45c1af 100644
 +    }
  }
 diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php
-index b40216e..b8f01eb 100644
+index b40216e9..b8f01eb4 100644
 --- a/src/AppBundle/Form/UserEditForm.php
 +++ b/src/AppBundle/Form/UserEditForm.php
 @@ -27,6 +27,7 @@ class UserEditForm extends AbstractType

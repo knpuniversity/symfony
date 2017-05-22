@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 3dc96c9..2ddaa69 100644
+index 3dc96c9e..2ddaa695 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -7,23 +7,41 @@ use Symfony\Component\Security\Core\User\UserInterface;

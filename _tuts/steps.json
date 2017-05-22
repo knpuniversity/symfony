@@ -1304,7 +1304,117 @@
             "id": "criteria-use-in-query-builder",
             "name": "Criteria: Use in query builder",
             "description": null
+        },
+        {
+            "id": "upgrade-add-class-with-multiple-services",
+            "name": "Upgrade: Add class with multiple services",
+            "description": null
+        },
+        {
+            "id": "upgrade-upgrade-to-symfony-3-3",
+            "name": "Upgrade: Upgrade to Symfony 3.3",
+            "description": null
+        },
+        {
+            "id": "upgrade-removing-trusted-proxies",
+            "name": "Upgrade: Removing trusted_proxies",
+            "description": null
+        },
+        {
+            "id": "upgrade-enable-webserverbundle",
+            "name": "Upgrade: Enable WebServerBundle",
+            "description": null
+        },
+        {
+            "id": "di-changes-add-defaults",
+            "name": "DI Changes: Add _defaults",
+            "description": null
+        },
+        {
+            "id": "di-changes-use-class-as-service-ids",
+            "name": "DI Changes: Use class as service ids",
+            "description": null
+        },
+        {
+            "id": "di-changes-make-services-private",
+            "name": "DI Changes: Make services private",
+            "description": null
+        },
+        {
+            "id": "di-changes-register-src-appbundle-services",
+            "name": "DI Changes: Register src\/AppBundle services",
+            "description": null
+        },
+        {
+            "id": "di-cleanup-remove-blank-services",
+            "name": "DI Cleanup: Remove blank services",
+            "description": null
+        },
+        {
+            "id": "di-cleanup-try-to-fetch-private-id",
+            "name": "DI Cleanup: Try to fetch private id",
+            "description": null
+        },
+        {
+            "id": "di-cleanup-action-di-the-service",
+            "name": "DI Cleanup: Action DI the service",
+            "description": null
+        },
+        {
+            "id": "di-cleanup-removing-legacy-aliases",
+            "name": "DI Cleanup: Removing legacy aliases",
+            "description": null
+        },
+        {
+            "id": "di-cleanup-adding-alias-to-multi-services",
+            "name": "DI Cleanup: Adding alias to multi-services",
+            "description": null
+        },
+        {
+            "id": "di-cleanup-wire-in-bad-message-arg",
+            "name": "DI Cleanup: Wire in bad message arg",
+            "description": null
+        },
+        {
+            "id": "di-cleanup-short-tags-syntax",
+            "name": "DI Cleanup: Short tags syntax",
+            "description": null
+        },
+        {
+            "id": "di-aliases-remove-argument",
+            "name": "DI Aliases: Remove argument",
+            "description": null
+        },
+        {
+            "id": "di-aliases-add-markdownparserinterface",
+            "name": "DI Aliases: Add MarkdownParserInterface",
+            "description": null
+        },
+        {
+            "id": "di-args-use-named-argument",
+            "name": "DI Args: Use named argument",
+            "description": null
+        },
+        {
+            "id": "di-args-change-arg-name",
+            "name": "DI Args: Change arg name",
+            "description": null
+        },
+        {
+            "id": "using-di-add-event-subscriber",
+            "name": "Using DI: Add event subscriber",
+            "description": null
+        },
+        {
+            "id": "using-di-injecting-loggerinterface",
+            "name": "Using DI: Injecting LoggerInterface",
+            "description": null
+        },
+        {
+            "id": "using-di-injecting-messagegenerator",
+            "name": "Using DI: Injecting MessageGenerator",
+            "description": null
         }
     ],
-    "sha": "2db22bc14b7fac9c26d6769285c0344e39c68168"
+    "sha": "1d28fdca4d64726f6691ebd81145041adad72f0c"
 }

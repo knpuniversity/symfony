@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index 402e0aa..cdb51ce 100644
+index 402e0aad..cdb51cee 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
 @@ -27,7 +27,9 @@ class GenusFormType extends AbstractType
@@ -26,7 +26,7 @@ index 402e0aa..cdb51ce 100644
      {
          $resolver->setDefaults([
 diff --git a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
-index 3e5e3c7..c4d7291 100644
+index 3e5e3c71..c4d72914 100644
 --- a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 +++ b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 @@ -6,12 +6,20 @@ use Symfony\Component\Form\AbstractTypeExtension;

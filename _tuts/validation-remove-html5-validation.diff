@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
-index 6faf5c8..2f8467b 100644
+index 6faf5c8a..2f8467be 100644
 --- a/app/Resources/views/admin/genus/new.html.twig
 +++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -36,7 +36,7 @@

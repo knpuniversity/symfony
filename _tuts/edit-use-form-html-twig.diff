@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
 new file mode 100644
-index 0000000..7f49e54
+index 00000000..7f49e54b
 --- /dev/null
 +++ b/app/Resources/views/admin/genus/_form.html.twig
 @@ -0,0 +1,12 @@
@@ -17,7 +17,7 @@ index 0000000..7f49e54
 +    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
 +{{ form_end(genusForm) }}
 diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
-index 550c3c5..80c9ff1 100644
+index 550c3c54..80c9ff19 100644
 --- a/app/Resources/views/admin/genus/edit.html.twig
 +++ b/app/Resources/views/admin/genus/edit.html.twig
 @@ -26,18 +26,7 @@
@@ -41,7 +41,7 @@ index 550c3c5..80c9ff1 100644
          </div>
      </div>
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
-index 2f8467b..c770ab0 100644
+index 2f8467be..c770ab08 100644
 --- a/app/Resources/views/admin/genus/new.html.twig
 +++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -26,18 +26,7 @@

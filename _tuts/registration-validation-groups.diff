@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 2e4ee54..0c4138b 100644
+index 2e4ee541..0c4138bd 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -38,7 +38,7 @@ class User implements UserInterface
@@ -12,7 +12,7 @@ index 2e4ee54..0c4138b 100644
       * @var string
       */
 diff --git a/src/AppBundle/Form/UserRegistrationForm.php b/src/AppBundle/Form/UserRegistrationForm.php
-index c707963..1c7577d 100644
+index c707963c..1c7577d7 100644
 --- a/src/AppBundle/Form/UserRegistrationForm.php
 +++ b/src/AppBundle/Form/UserRegistrationForm.php
 @@ -24,7 +24,8 @@ class UserRegistrationForm extends AbstractType

@@ -1,5 +1,5 @@
 diff --git a/app/AppKernel.php b/app/AppKernel.php
-index 56a39b9..3bbadf8 100644
+index 56a39b9f..3bbadf81 100644
 --- a/app/AppKernel.php
 +++ b/app/AppKernel.php
 @@ -12,7 +12,7 @@ class AppKernel extends Kernel
@@ -12,7 +12,7 @@ index 56a39b9..3bbadf8 100644
              new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
  
 diff --git a/app/config/config.yml b/app/config/config.yml
-index e4cec87..198a7fe 100644
+index e4cec87e..198a7feb 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -63,14 +63,6 @@ doctrine:
@@ -31,7 +31,7 @@ index e4cec87..198a7fe 100644
      providers:
          my_markdown_cache:
 diff --git a/app/config/parameters.yml.dist b/app/config/parameters.yml.dist
-index 886c92b..156580c 100644
+index 886c92bb..156580ca 100644
 --- a/app/config/parameters.yml.dist
 +++ b/app/config/parameters.yml.dist
 @@ -10,10 +10,5 @@ parameters:
