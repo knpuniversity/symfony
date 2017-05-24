@@ -1,0 +1,39 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 853a8bb1..d0208666 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -4,30 +4,28 @@ parameters:
+ #    parameter_name: value
+ 
+ services:
++    _defaults:
++        autowire: true
++        autoconfigure: true
++
+     app.markdown_transformer:
+         class: AppBundle\Service\MarkdownTransformer
+         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+ 
+     app.markdown_extension:
+         class: AppBundle\Twig\MarkdownExtension
+-        tags:
+-            - { name: twig.extension }
+         #arguments: ['@app.markdown_transformer']
+-        autowire: true
+ 
+     app.security.login_form_authenticator:
+         class: AppBundle\Security\LoginFormAuthenticator
+-        autowire: true
+ 
+     app.doctrine.hash_password_listener:
+         class: AppBundle\Doctrine\HashPasswordListener
+-        autowire: true
+         tags:
+             - { name: doctrine.event_subscriber }
+ 
+     app.form.help_form_extenion:
+         class: AppBundle\Form\TypeExtension\HelpFormExtension
+-        autowire: true
+         tags:
+             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+ 

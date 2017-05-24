@@ -15,41 +15,11 @@ index a25efce6..865e2f30 100644
              {% block body %}{% endblock %}
          </div>
 diff --git a/app/config/services.yml b/app/config/services.yml
-index d2f27edb..d0208666 100644
+index d2f27edb..853a8bb1 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -4,29 +4,37 @@ parameters:
- #    parameter_name: value
- 
- services:
-+    _defaults:
-+        autowire: true
-+        autoconfigure: true
-+
-     app.markdown_transformer:
-         class: AppBundle\Service\MarkdownTransformer
-         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
- 
-     app.markdown_extension:
-         class: AppBundle\Twig\MarkdownExtension
--        tags:
--            - { name: twig.extension }
-         #arguments: ['@app.markdown_transformer']
--        autowire: true
- 
-     app.security.login_form_authenticator:
-         class: AppBundle\Security\LoginFormAuthenticator
--        autowire: true
- 
-     app.doctrine.hash_password_listener:
-         class: AppBundle\Doctrine\HashPasswordListener
--        autowire: true
-         tags:
-             - { name: doctrine.event_subscriber }
- 
-     app.form.help_form_extenion:
-         class: AppBundle\Form\TypeExtension\HelpFormExtension
--        autowire: true
+@@ -30,3 +30,13 @@ services:
+         autowire: true
          tags:
              - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 +
