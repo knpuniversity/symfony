@@ -1,10 +1,10 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 8d88c88b..a49b2bef 100644
+index 577191e6..ff64b007 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -32,6 +32,9 @@ services:
-                 argument: badMessages
-                 id: app.discouraging_message_generator
+@@ -24,6 +24,9 @@ services:
+         public: true
+         tags: ['controller.service_arguments']
  
 +    # alias to allow this type to be autowired
 +    Knp\Bundle\MarkdownBundle\MarkdownParserInterface: '@markdown.parser'

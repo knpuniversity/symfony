@@ -1,0 +1,35 @@
+diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
+index 7230c4e5..b22db645 100644
+--- a/app/config/legacy_aliases.yml
++++ b/app/config/legacy_aliases.yml
+@@ -4,3 +4,4 @@ services:
+     app.security.login_form_authenticator: '@AppBundle\Security\LoginFormAuthenticator'
+     app.doctrine.hash_password_listener: '@AppBundle\Doctrine\HashPasswordListener'
+     app.form.help_form_extenion: '@AppBundle\Form\TypeExtension\HelpFormExtension'
++    app.encouraging_message_generator: '@AppBundle\Service\MessageGenerator'
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 977caa1e..96bdb651 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -18,7 +18,7 @@ services:
+         resource: '../../src/AppBundle/*'
+         # you can exclude directories or files
+         # but if a service is unused, it's removed anyway
+-        exclude: '../../src/AppBundle/{Entity,Repository,Service/MessageGenerator.php}'
++        exclude: '../../src/AppBundle/{Entity,Repository}'
+ 
+     # controllers are imported separately to make sure they're public
+     # and have a tag that allows actions to type-hint services
+@@ -38,11 +38,9 @@ services:
+         tags:
+             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+ 
+-    app.encouraging_message_generator:
+-        class: AppBundle\Service\MessageGenerator
++    AppBundle\Service\MessageGenerator:
+         arguments:
+             - ['You can do it!', 'Dude, sweet!', 'Woot!']
+-        public: true
+ 
+     app.discouraging_message_generator:
+         class: AppBundle\Service\MessageGenerator

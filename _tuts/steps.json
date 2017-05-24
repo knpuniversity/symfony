@@ -1351,6 +1351,16 @@
             "description": null
         },
         {
+            "id": "di-multi-instance-remove-auto-reg-ed-service",
+            "name": "DI Multi Instance: Remove auto-reg'ed service",
+            "description": null
+        },
+        {
+            "id": "di-multi-instance-alias-to-one-service",
+            "name": "DI Multi Instance: alias to one service",
+            "description": null
+        },
+        {
             "id": "di-cleanup-try-to-fetch-private-id",
             "name": "DI Cleanup: Try to fetch private id",
             "description": null
@@ -1416,5 +1426,5 @@
             "description": null
         }
     ],
-    "sha": "1d28fdca4d64726f6691ebd81145041adad72f0c"
+    "sha": "497c03b2b3fd93a436d9e83e510a8958fb44037a"
 }

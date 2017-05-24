@@ -1,5 +1,5 @@
 diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
-index 7230c4e5..f050f521 100644
+index b22db645..da7bb0d5 100644
 --- a/app/config/legacy_aliases.yml
 +++ b/app/config/legacy_aliases.yml
 @@ -1,5 +1,4 @@

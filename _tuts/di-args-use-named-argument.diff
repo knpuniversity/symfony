@@ -1,8 +1,8 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index a49b2bef..50f965b1 100644
+index ff64b007..6a6c0e34 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -36,7 +36,8 @@ services:
+@@ -28,7 +28,8 @@ services:
      Knp\Bundle\MarkdownBundle\MarkdownParserInterface: '@markdown.parser'
  
      AppBundle\Service\MarkdownTransformer:

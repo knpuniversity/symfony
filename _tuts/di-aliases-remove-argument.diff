@@ -1,9 +1,9 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 7e73d05b..8d88c88b 100644
+index 13a4d331..577191e6 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -33,7 +33,7 @@ services:
-                 id: app.discouraging_message_generator
+@@ -25,7 +25,7 @@ services:
+         tags: ['controller.service_arguments']
  
      AppBundle\Service\MarkdownTransformer:
 -        arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']

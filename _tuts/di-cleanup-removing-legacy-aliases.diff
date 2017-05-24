@@ -1,14 +1,15 @@
 diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
 deleted file mode 100644
-index f050f521..00000000
+index da7bb0d5..00000000
 --- a/app/config/legacy_aliases.yml
 +++ /dev/null
-@@ -1,5 +0,0 @@
+@@ -1,6 +0,0 @@
 -services:
 -    app.markdown_extension: '@AppBundle\Twig\MarkdownExtension'
 -    app.security.login_form_authenticator: '@AppBundle\Security\LoginFormAuthenticator'
 -    app.doctrine.hash_password_listener: '@AppBundle\Doctrine\HashPasswordListener'
 -    app.form.help_form_extenion: '@AppBundle\Form\TypeExtension\HelpFormExtension'
+-    app.encouraging_message_generator: '@AppBundle\Service\MessageGenerator'
 diff --git a/app/config/security.yml b/app/config/security.yml
 index b03a7bd4..011f26f4 100644
 --- a/app/config/security.yml
@@ -23,7 +24,7 @@ index b03a7bd4..011f26f4 100644
              logout:
                  path: /logout
 diff --git a/app/config/services.yml b/app/config/services.yml
-index db9fce78..1e00cc7b 100644
+index 96bdb651..4842b671 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -1,8 +1,5 @@
@@ -35,6 +36,36 @@ index db9fce78..1e00cc7b 100644
  parameters:
  #    parameter_name: value
  
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
+index 180567af..ef974133 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
++++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
+@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
+ 
+ use AppBundle\Entity\Genus;
+ use AppBundle\Form\GenusFormType;
++use AppBundle\Service\MessageGenerator;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+@@ -61,7 +62,7 @@ class GenusAdminController extends Controller
+     /**
+      * @Route("/genus/{id}/edit", name="admin_genus_edit")
+      */
+-    public function editAction(Request $request, Genus $genus)
++    public function editAction(Request $request, Genus $genus, MessageGenerator $encourageMessages)
+     {
+         $form = $this->createForm(GenusFormType::class, $genus);
+ 
+@@ -76,7 +77,7 @@ class GenusAdminController extends Controller
+ 
+             $this->addFlash(
+                 'success',
+-                $this->get('app.encouraging_message_generator')->getMessage()
++                $encourageMessages->getMessage()
+             );
+ 
+             return $this->redirectToRoute('admin_genus_edit', [
 diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
 index da61629e..33758c93 100644
 --- a/src/AppBundle/Controller/UserController.php
