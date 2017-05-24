@@ -1376,16 +1376,6 @@
             "description": null
         },
         {
-            "id": "di-cleanup-adding-alias-to-multi-services",
-            "name": "DI Cleanup: Adding alias to multi-services",
-            "description": null
-        },
-        {
-            "id": "di-cleanup-wire-in-bad-message-arg",
-            "name": "DI Cleanup: Wire in bad message arg",
-            "description": null
-        },
-        {
             "id": "di-cleanup-short-tags-syntax",
             "name": "DI Cleanup: Short tags syntax",
             "description": null
