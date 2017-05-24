@@ -1,3 +1,143 @@
+diff --git a/composer.json b/composer.json
+index f0366657..e6177490 100644
+--- a/composer.json
++++ b/composer.json
+@@ -20,7 +20,7 @@
+         "doctrine/doctrine-bundle": "^1.6",
+         "doctrine/doctrine-cache-bundle": "^1.2",
+         "symfony/swiftmailer-bundle": "^2.3",
+-        "symfony/monolog-bundle": "^2.8",
++        "symfony/monolog-bundle": "^3.1",
+         "symfony/polyfill-apcu": "^1.0",
+         "sensio/distribution-bundle": "^5.0",
+         "sensio/framework-extra-bundle": "^3.0.2",
+diff --git a/composer.lock b/composer.lock
+index 85d0d45e..1b0276a8 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "4ccfe7e10760cb5a2cbe75a99f57d7a4",
++    "content-hash": "14dc38cef6560ab2fbfa812c9e2d89e9",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -456,37 +456,37 @@
+         },
+         {
+             "name": "doctrine/doctrine-bundle",
+-            "version": "1.6.7",
++            "version": "1.6.8",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/doctrine/DoctrineBundle.git",
+-                "reference": "a01d99bc6c9a6c8a8ace0012690099dd957ce9b9"
++                "reference": "6e96577cbbdbb5b6dcca2ff203d665976b51beb0"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/a01d99bc6c9a6c8a8ace0012690099dd957ce9b9",
+-                "reference": "a01d99bc6c9a6c8a8ace0012690099dd957ce9b9",
++                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/6e96577cbbdbb5b6dcca2ff203d665976b51beb0",
++                "reference": "6e96577cbbdbb5b6dcca2ff203d665976b51beb0",
+                 "shasum": ""
+             },
+             "require": {
+                 "doctrine/dbal": "~2.3",
+-                "doctrine/doctrine-cache-bundle": "~1.0",
++                "doctrine/doctrine-cache-bundle": "~1.2",
+                 "jdorn/sql-formatter": "~1.1",
+                 "php": ">=5.5.9",
+-                "symfony/console": "~2.7|~3.0",
+-                "symfony/dependency-injection": "~2.7|~3.0",
+-                "symfony/doctrine-bridge": "~2.7|~3.0",
+-                "symfony/framework-bundle": "~2.7|~3.0"
++                "symfony/console": "~2.7|~3.0|~4.0",
++                "symfony/dependency-injection": "~2.7|~3.0|~4.0",
++                "symfony/doctrine-bridge": "~2.7|~3.0|~4.0",
++                "symfony/framework-bundle": "~2.7|~3.0|~4.0"
+             },
+             "require-dev": {
+                 "doctrine/orm": "~2.3",
+                 "phpunit/phpunit": "~4",
+                 "satooshi/php-coveralls": "^1.0",
+-                "symfony/phpunit-bridge": "~2.7|~3.0",
+-                "symfony/property-info": "~2.8|~3.0",
+-                "symfony/validator": "~2.7|~3.0",
+-                "symfony/yaml": "~2.7|~3.0",
+-                "twig/twig": "~1.10|~2.0"
++                "symfony/phpunit-bridge": "~2.7|~3.0|~4.0",
++                "symfony/property-info": "~2.8|~3.0|~4.0",
++                "symfony/validator": "~2.7|~3.0|~4.0",
++                "symfony/yaml": "~2.7|~3.0|~4.0",
++                "twig/twig": "~1.12|~2.0"
+             },
+             "suggest": {
+                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle.",
+@@ -533,7 +533,7 @@
+                 "orm",
+                 "persistence"
+             ],
+-            "time": "2017-01-16T12:01:26+00:00"
++            "time": "2017-05-18T08:15:18+00:00"
+         },
+         {
+             "name": "doctrine/doctrine-cache-bundle",
+@@ -2121,25 +2121,25 @@
+         },
+         {
+             "name": "symfony/monolog-bundle",
+-            "version": "v2.12.1",
++            "version": "v3.1.0",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/symfony/monolog-bundle.git",
+-                "reference": "b0146bdca7ba2a65f3bbe7010423c7393b29ec3f"
++                "reference": "6f96c7dbb6b2ef70b307a1a6f897153cbca3da47"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/b0146bdca7ba2a65f3bbe7010423c7393b29ec3f",
+-                "reference": "b0146bdca7ba2a65f3bbe7010423c7393b29ec3f",
++                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/6f96c7dbb6b2ef70b307a1a6f897153cbca3da47",
++                "reference": "6f96c7dbb6b2ef70b307a1a6f897153cbca3da47",
+                 "shasum": ""
+             },
+             "require": {
+-                "monolog/monolog": "~1.18",
++                "monolog/monolog": "~1.22",
+                 "php": ">=5.3.2",
+-                "symfony/config": "~2.3|~3.0",
+-                "symfony/dependency-injection": "~2.3|~3.0",
+-                "symfony/http-kernel": "~2.3|~3.0",
+-                "symfony/monolog-bridge": "~2.3|~3.0"
++                "symfony/config": "~2.7|~3.0",
++                "symfony/dependency-injection": "~2.7|~3.0",
++                "symfony/http-kernel": "~2.7|~3.0",
++                "symfony/monolog-bridge": "~2.7|~3.0"
+             },
+             "require-dev": {
+                 "phpunit/phpunit": "^4.8",
+@@ -2149,7 +2149,7 @@
+             "type": "symfony-bundle",
+             "extra": {
+                 "branch-alias": {
+-                    "dev-master": "2.x-dev"
++                    "dev-master": "3.x-dev"
+                 }
+             },
+             "autoload": {
+@@ -2177,7 +2177,7 @@
+                 "log",
+                 "logging"
+             ],
+-            "time": "2017-01-02T19:04:26+00:00"
++            "time": "2017-03-26T11:55:59+00:00"
+         },
+         {
+             "name": "symfony/polyfill-apcu",
 diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 index f8365110..7e73d514 100644
 --- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
