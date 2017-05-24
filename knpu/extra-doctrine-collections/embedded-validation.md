@@ -99,3 +99,14 @@ So refresh! Error is in place! And actually, let me get us *out* of the
 invalid state: I want to reset my database to *not* have any duplicates to start.
 *Now* if we change one back to a duplicate, it looks great... and we don't have
 *two* errors anymore.
+
+## Fixing CollectionType Validation Bug
+
+There is one small bug left with our validation! And it's tricky! To see it:
+add 2 new scientists, immediately remove the first, leave the `yearsStudied`
+field blank, and then submit. We *should* see a validation error appearing below
+the `yearsStudied` field. Instead, it appears no the top of the form! This is
+actually caused by a bug in Symfony, but we can fix it easily! The following
+code block shows the fix and has more details:
+
+[[[ code('7d7da810eb') ]]]

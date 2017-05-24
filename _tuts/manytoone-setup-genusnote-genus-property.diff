@@ -11,10 +11,10 @@ index e0bb42a7..455b7fe8 100644
 +     */
 +    private $genus;
 +
-     public function getUsername()
+     public function getId()
      {
-         return $this->username;
-@@ -76,4 +81,14 @@ class GenusNote
+         return $this->id;
+@@ -81,4 +86,14 @@ class GenusNote
      {
          $this->createdAt = $createdAt;
      }

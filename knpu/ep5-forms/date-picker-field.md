@@ -33,6 +33,11 @@ Check it out.
 Boom! It looks great. In fact, check this out: it *already* has some widget coolness:
 with a drop-down and a nice calendar.
 
+***TIP
+If you don't see a fancy widget, don't worry! Not all browsers support this, which
+is why we'll use a true JavaScript widget soon!
+***
+
 This is *not* coming from Symfony: it's coming from my browser. Because as soon as
 we made this a `single_text` widget, Symfony rendered it as an `<input type="date">`
 HTML5 field. Most browsers see this and add their own little date widget functionality.

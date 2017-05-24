@@ -37,7 +37,7 @@ new file mode 100644
 index 00000000..e0bb42a7
 --- /dev/null
 +++ b/src/AppBundle/Entity/GenusNote.php
-@@ -0,0 +1,79 @@
+@@ -0,0 +1,84 @@
 +<?php
 +
 +namespace AppBundle\Entity;
@@ -76,6 +76,11 @@ index 00000000..e0bb42a7
 +     * @ORM\Column(type="datetime")
 +     */
 +    private $createdAt;
++
++    public function getId()
++    {
++        return $this->id;
++    }
 +
 +    public function getUsername()
 +    {

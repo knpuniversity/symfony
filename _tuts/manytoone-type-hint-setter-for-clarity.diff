@@ -2,7 +2,7 @@ diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote
 index 455b7fe8..795cd4ed 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
-@@ -87,7 +87,7 @@ class GenusNote
+@@ -92,7 +92,7 @@ class GenusNote
          return $this->genus;
      }
  
