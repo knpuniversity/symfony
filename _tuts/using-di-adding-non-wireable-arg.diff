@@ -1,0 +1,41 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index fa45c13f..788f40e2 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -43,3 +43,7 @@ services:
+         arguments:
+             - ['You can do it!', 'Dude, sweet!', 'Woot!']
+             - ['We are *never* going to figure this out', 'Why even try again?', 'Facepalm']
++
++    AppBundle\EventSubscriber\AddNiceHeaderEventSubscriber:
++        arguments:
++            $showDiscouragingMessage: true
+diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
+index a0d393d4..fe742653 100644
+--- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
++++ b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
+@@ -12,18 +12,22 @@ class AddNiceHeaderEventSubscriber implements EventSubscriberInterface
+ {
+     private $logger;
+     private $messageManager;
++    private $showDiscouragingMessage;
+ 
+-    public function __construct(LoggerInterface $logger, MessageManager $messageManager)
++    public function __construct(LoggerInterface $logger, MessageManager $messageManager, $showDiscouragingMessage)
+     {
+         $this->logger = $logger;
+         $this->messageManager = $messageManager;
++        $this->showDiscouragingMessage = $showDiscouragingMessage;
+     }
+ 
+     public function onKernelResponse(FilterResponseEvent $event)
+     {
+         $this->logger->info('Adding a nice header!');
+ 
+-        $message = $this->messageManager->getEncouragingMessage();
++        $message = $this->showDiscouragingMessage
++            ? $this->messageManager->getDiscouragingMessage()
++            : $this->messageManager->getEncouragingMessage();
+ 
+         $event->getResponse()
+             ->headers->set('X-NICE-MESSAGE', $message);

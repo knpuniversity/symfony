@@ -1,8 +1,8 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 6a6c0e34..271040b9 100644
+index 84cef3bd..fa45c13f 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -29,7 +29,7 @@ services:
+@@ -30,7 +30,7 @@ services:
  
      AppBundle\Service\MarkdownTransformer:
          arguments:

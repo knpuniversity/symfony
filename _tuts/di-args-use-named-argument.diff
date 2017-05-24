@@ -1,9 +1,9 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index ff64b007..6a6c0e34 100644
+index 7608383b..84cef3bd 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -28,7 +28,8 @@ services:
-     Knp\Bundle\MarkdownBundle\MarkdownParserInterface: '@markdown.parser'
+@@ -29,7 +29,8 @@ services:
+     Doctrine\ORM\EntityManager: '@doctrine.orm.default_entity_manager'
  
      AppBundle\Service\MarkdownTransformer:
 -        arguments: ['', '@doctrine_cache.providers.my_markdown_cache']

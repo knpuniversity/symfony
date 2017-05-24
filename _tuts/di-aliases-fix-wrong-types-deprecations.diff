@@ -1,0 +1,54 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 737b5e3d..7608383b 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -26,6 +26,7 @@ services:
+ 
+     # alias to allow this type to be autowired
+     Knp\Bundle\MarkdownBundle\MarkdownParserInterface: '@markdown.parser'
++    Doctrine\ORM\EntityManager: '@doctrine.orm.default_entity_manager'
+ 
+     AppBundle\Service\MarkdownTransformer:
+         arguments: ['', '@doctrine_cache.providers.my_markdown_cache']
+diff --git a/src/AppBundle/Doctrine/HashPasswordListener.php b/src/AppBundle/Doctrine/HashPasswordListener.php
+index b67f96f7..a0facaea 100644
+--- a/src/AppBundle/Doctrine/HashPasswordListener.php
++++ b/src/AppBundle/Doctrine/HashPasswordListener.php
+@@ -5,13 +5,13 @@ namespace AppBundle\Doctrine;
+ use AppBundle\Entity\User;
+ use Doctrine\Common\EventSubscriber;
+ use Doctrine\ORM\Event\LifecycleEventArgs;
+-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
++use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+ 
+ class HashPasswordListener implements EventSubscriber
+ {
+     private $passwordEncoder;
+ 
+-    public function __construct(UserPasswordEncoder $passwordEncoder)
++    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+     {
+         $this->passwordEncoder = $passwordEncoder;
+     }
+diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
+index b982f89f..e1e7926f 100644
+--- a/src/AppBundle/Security/LoginFormAuthenticator.php
++++ b/src/AppBundle/Security/LoginFormAuthenticator.php
+@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormFactoryInterface;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\Routing\RouterInterface;
+ use Symfony\Component\Security\Core\Security;
+-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
++use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+ use Symfony\Component\Security\Core\User\UserInterface;
+ use Symfony\Component\Security\Core\User\UserProviderInterface;
+ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+@@ -20,7 +20,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+     private $router;
+     private $passwordEncoder;
+ 
+-    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router, UserPasswordEncoder $passwordEncoder)
++    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router, UserPasswordEncoderInterface $passwordEncoder)
+     {
+         $this->formFactory = $formFactory;
+         $this->em = $em;

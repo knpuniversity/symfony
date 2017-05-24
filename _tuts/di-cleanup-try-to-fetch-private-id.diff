@@ -1,0 +1,13 @@
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index 302a2620..a43c467f 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -79,7 +79,7 @@ class GenusController extends Controller
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        $markdownTransformer = $this->get('app.markdown_transformer');
++        $markdownTransformer = $this->get(MarkdownTransformer::class);
+         $funFact = $markdownTransformer->parse($genus->getFunFact());
+ 
+         $this->get('logger')

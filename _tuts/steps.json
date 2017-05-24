@@ -1361,6 +1361,11 @@
             "description": null
         },
         {
+            "id": "di-multi-instance-refactor-to-single-service",
+            "name": "DI Multi Instance: Refactor to single service",
+            "description": null
+        },
+        {
             "id": "di-cleanup-try-to-fetch-private-id",
             "name": "DI Cleanup: Try to fetch private id",
             "description": null
@@ -1391,6 +1396,11 @@
             "description": null
         },
         {
+            "id": "di-aliases-fix-wrong-types-deprecations",
+            "name": "DI Aliases: Fix wrong types deprecations",
+            "description": null
+        },
+        {
             "id": "di-args-use-named-argument",
             "name": "DI Args: Use named argument",
             "description": null
@@ -1411,10 +1421,15 @@
             "description": null
         },
         {
-            "id": "using-di-injecting-messagegenerator",
-            "name": "Using DI: Injecting MessageGenerator",
+            "id": "using-di-injecting-messagemanager",
+            "name": "Using DI: Injecting MessageManager",
+            "description": null
+        },
+        {
+            "id": "using-di-adding-non-wireable-arg",
+            "name": "Using DI: Adding non-wireable arg",
             "description": null
         }
     ],
-    "sha": "497c03b2b3fd93a436d9e83e510a8958fb44037a"
+    "sha": "4e2a0c5eccfee865c22412ccaf3f6f3b7f2cc263"
 }

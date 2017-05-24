@@ -1,35 +1,37 @@
 diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
-index 7e73d514..59a55f9f 100644
+index 7e73d514..a0d393d4 100644
 --- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 +++ b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 @@ -2,6 +2,7 @@
  
  namespace AppBundle\EventSubscriber;
  
-+use AppBundle\Service\MessageGenerator;
++use AppBundle\Service\MessageManager;
  use Psr\Log\LoggerInterface;
  use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-@@ -10,10 +11,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
+@@ -10,18 +11,22 @@ use Symfony\Component\HttpKernel\KernelEvents;
  class AddNiceHeaderEventSubscriber implements EventSubscriberInterface
  {
      private $logger;
-+    private $messageGenerator;
++    private $messageManager;
  
 -    public function __construct(LoggerInterface $logger)
-+    public function __construct(LoggerInterface $logger, MessageGenerator $messageGenerator)
++    public function __construct(LoggerInterface $logger, MessageManager $messageManager)
      {
          $this->logger = $logger;
-+        $this->messageGenerator = $messageGenerator;
++        $this->messageManager = $messageManager;
      }
  
      public function onKernelResponse(FilterResponseEvent $event)
-@@ -21,7 +24,7 @@ class AddNiceHeaderEventSubscriber implements EventSubscriberInterface
+     {
          $this->logger->info('Adding a nice header!');
  
++        $message = $this->messageManager->getEncouragingMessage();
++
          $event->getResponse()
 -            ->headers->set('X-NICE-MESSAGE', 'That was a great request!');
-+            ->headers->set('X-NICE-MESSAGE', $this->messageGenerator->getMessage());
++            ->headers->set('X-NICE-MESSAGE', $message);
      }
  
      public static function getSubscribedEvents()
