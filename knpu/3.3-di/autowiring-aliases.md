@@ -1,22 +1,65 @@
-# Autowiring Aliases
+# Aliases & When Autowiring Fails
 
-So, let's talk more about what happens when autowiring goes wrong. Right now with this Markdown transformer class, and it's actually typed in it with two things, Markdown Parser interface, and cash from Doctrine. Well, we're not really using autowire, we're explicitly specifying both services.
+Let's talk more about what happens when autowiring goes wrong. Right now, the
+`MarkdownTransformer` class has two arguments, type-hinted with `MarkdownParserInterface`
+and `Cache` from Doctrine. But, these are *not* being autowired: we're explicitly
+specifying each argument.
 
-Now if I were creating this service today, I actually wouldn't specify any configuration and I would let Symfony's container tell me if it had any problems autowiring things. For now, I'm just going to show you one of the problems. In this case I'm actually going to remove the first argument and just leave it as single quotes. With autowiring, if you have an argument as single quotes it means that you still want Symfony to autowire it. So I want Symfony to autowire the first argument, but I'm going to specify the second argument explicitly. In a second I'm going to show you a much cleaner way to do that, but this works. Now it's going to try to autowire the Markdown Parser interface. Alright, so lets see if it works.
+## Letting Symfony tell you about Autowiring Failures
 
-Refresh this page, or any page, and explosion. Cannot autowire a service Markdown Transformer, argument, Markdown Parser. It's very clearly telling me there is a problem with this argument. It says, "It references the Markdown Parser interface but no such service exists," because it's looking for a service with exactly that ID. Now this service actually comes downs from the KNP markdown bundle, so in theory that bundle would ship with a service with this ID or an alias, but it doesn't. Actually, check this out. It says, "You should maybe alias this interface to one of these existing services." It lists one, two, three, four, five services in the container that implement Markdown Parser interface. So it's trying to be very helpful. It's not guessing, but it's telling us what we need to do.
+If I were creating this service today, I actually wouldn't specify *any* configuration
+at first. Nope, I'd just create the class, add the type-hints, and let Symfony
+tell me if it had any problems autowiring my arguments.
 
-Actually before we were using a class called markdown.parser, and if you go to your terminal on Vim console, debug container, and paste that in, you'll see that this is actually an alias to markdown.parser.max. That's just how that bundle works. The service we actually want is markdown.parser.max. That's also why you didn't see markdown.parser in that list of things it recommend. So we can of course explicitly wire it like this one or, as the advice says, we can create an alias. I'm going to alias this long interface to markdown.parser. Now we have explicitly told Symfony what to wire when it sees the Markdown Parser, and everything still works.
+To show off one of the ways autowiring can fail, I'm going to remove the first argument
+and set it to an empty string. When you do this, it means that you *do* want Symfony
+to try to autowire it. Symfony will try to autowire the first argument, but not
+the second. Actually, if this looks ugly to you, I agree! In a few minutes, I'll
+show you a cleaner way of explicitly wiring only *some* arguments.
 
-Aliases are a very, very powerful way for you to choose what service gets wired for which type hint. Now down at the bottom, you see a little yellow thing here that says 10 deprecation warnings. I'm actually going to click that then go to deprecations. These are all the ways in which my code is using deprecated functionality, and things I need to fix before I upgrade it to the Symfony 4.0. There's a couple of these that are really important to us, specifically this one here, "Autowiring services based on the types they implement is deprecated since Symfony 3.3 and won't be supported in version 4.0. You should rename or alias security.user_password_encoder.generic to long class UserPasswordEncoder instead." Woah, so what is that saying?
+Anyways, let's see if the `MarkdownParserInterface` type-hint can be autowired. Refresh
+the page... or *any* page.
 
-It's saying that somewhere we are type hinting user_password_encoder, and there's no service that exists inside of the container with that exact ID. So autowiring looked across all of the services in the container and found one service, this one right here, that has that class name and it wired that one for us. That is deprecated, that's a little more magic than we wanted in Symfony, so we've removed it. So it says, "Fine, that's great. You can use the UserPasswordEndcoder type hint going forward, but we want you to alias it explicitly to this service instead of relying on this magic."
+Explosion!
 
-So this case you can do that or the other thing we can do, is we can actually change this to the proper type hint. Here's what I mean, you're already familiar with Vim console, debug container, which shows you all the public services inside of the container and it shows you their service IDs. But guess what, service IDs are much less important in Symfony 3.3 because we are always autowiring things by their type. We introduce a new option called --types and this gives you a list of all of the valid type hints that you can use in the system to autowire things. This is awesome. If you search for encoder, you'll actually find there's one called UserPasswordEncoderInterface. So we are apparently type writing user_password_encoder if we just change that to UserPasswordEncoderInterface, we are good.
+> Cannot autowire `AppBundle\Service\MarkdownTransformer`: argument `$markdownParser`.
 
-So I'm going to git grep for UserPasswordEncoder and you can see that it's used in two places, HashPasswordListener and LoginFormAuthenticator. So here I'll change this to interface, and down here change that to interface, and I will do the same things inside security, LoginFormAuthenticator. I'll add the interface at the end of the use statement, and on the argument. Just by doing that, you see there's 10 deprecations. If we refresh right now we go down to eight deprecations.
+It's very clearly saying that there is a problem with *this* specific argument.
 
-Now there's still one in here that's interesting to me. It's the same thing, it says, "Autowiring services based on the types the implement has deprecated," because somewhere we are typing hinting EntityManager and apparently that is not the right type hint to use. Let's check it out. Let's go back to our debug:container::types, tab, --types. I'll search this for EntityManager. There it is, it's actually EntityManagerInterface, this is no accident. Symfony's core is trying to encourage you to type entity interface. So again we have two options here. We can find everywhere in our code that type hints entity manager and change those to entity manager interface, or we can say, "You know what it's fine, I want entity manager to automatically map to this service so let's just add that as an alias," and that's what we're going to do.
+The error continues:
 
-So I'm going to copy the class name here, flip over to our services.yml and we're just going to add that as an alias and I'll copy the doctrine.orm.default_entity_manager service and we'll paste that. And now it is legal to type hint with EntityManager, and when we refresh, that eight goes down to seven.
+> ... it references interface `MarkdownParserInterface` but no such service exists.
 
+This is because it's looking for a service with *exactly* this id. But, none was
+found! So, it tries to help out:
+
+> You should maybe alias this interface to one of these existing services.
+
+and it lists one, two, three, four, *five* services in the container that implement
+`MarkdownParserInterface`. This is autowiring the Symfony way: there's no guess
+work.
+
+## Using Aliases to add Valid Autowiring Types
+
+Previously, we were using a service called `markdown.parser`. Find your terminal
+and get some information about this service:
+
+```terminal
+php bin/console debug:container markdown.parser
+```
+
+Interesting! this is actually an alias to `markdown.parser.max`. This service comes
+from `KnpMarkdownBundle`, and it ships with a few different markdown parsers. It
+then creates an alias from `markdown.parser` to whatever parser we configured as
+the default.
+
+So to fix the error, we have two options. First, we could of course explicitly specify
+the argument, just like we were doing before. Or, as the error suggests, we can
+create an *alias*. Let's do that: alias `Knp\Bundle\MarkdownBundle\MarkdownParserInterface`
+to `@markdown.parser`.
+
+We just told Symfony *exactly* what service to autowire when it sees the `MarkdownParserInterface`
+type-hint. In theory, KnpMarkdownBundle would come with this alias already, and
+it probably will in the future.
+
+Try the page! It works!

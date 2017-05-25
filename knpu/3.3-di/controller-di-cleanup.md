@@ -1,18 +1,88 @@
-# Controller DI Cleanup
+# Autowiring Controller Arguments
 
-Now fully upgraded our application to the new configuration format. It's been a lot of work. We're factoring the old application to a new one, just means a lot of work without actually enjoying any changes. Trust me, going forward this is going to feel really nice. In a few minutes, I'm going to shoot you an example where we create some new services and see how fluid the process is as you go.
+Our app is now *fully* using the new config features. It's time to start enjoying
+it a little!
 
-What I'm going to do first is actually clean some things up. Legacy alias dot YML. Remember, we kept this because these are the old IDs and we might still be referencing them. We're just going to remove these piece by piece. First, I'm going to copy that first ID, type [inaudible 00:00:51] and you can see this is used inside of a genius controller. All right perfect. Genius controller, and yep there it is right there. No problem because we know that this is an alias to mark down transformer, so we replace this with mark down transformer, colon, colon, class. Awesome.
+Let's start by cleaning up `legacy_aliases.yml`. Remember, we created this because
+these old service ids might still be used in our app. Let's eliminate these one-by-one.
 
-Now over here I'm going to go to slash genius, and then we just made that change to the show page, so then I'll click on one of our geniuses here and whoa, explosion. You have requested a non-existent app on a slash service slash mark down transformer, but we know that's a service. In fact, it's even explicitly specified right here. What's going on? Remember, these services are all private, which means they are not available at run time. This is actually one of the huge motivations behind all of this auto wiring auto configuration changes. We don't want you to fetch things out of the container at run time anymore. We want you to use dependency injection. Not only is it a better practice, but you're actually going to get better errors in your application. If you try to, for example, reference a service that doesn't exist, you're going to get a compile time error, meaning you're getting an error when you try to refresh any page across your entire site. Where as before, if you tried to reference fetch a service that didn't exist from the container, you weren't going to see that error until you actually hit that one page.
+Copy the first id and go see where it's used:
 
-The new set up is actually more predictable than the old one. To fix things then, we need to use classic dependency injection. Which means there's two possible ways to do that in the controller. We could of course, go to the top of our controller, make a construct function, type in the mark down transformer, so that it's auto wired. Set it on a property and use it down here. That's where you should do every where except a controller. In a controller, because it's kind of tedious to do, we've added a short cut to do it. That is this. You can take that type [inaudible 00:03:11] and add it as an argument. We'll say a mark down transformer mark down transformer. Then we can remove this line down here. That's a special way of doing dependency injection that only works in controllers.
+```terminal
+git grep app.markdown_transformer
+```
 
-When you do this, it fixes things. Now, we can remove this first alias. Real quick, let's fix the other ones as well. We'll do a get grab on each of them, mark down extensions not actually referenced anywhere, so we can just remove that. The security that log in form authenticator is used in two places. Secure dot YML and also user controller. First, in secure dot YML, actually copy the service ID right here. It's being used in reference as an authenticator. That's fine. The new service ID is that.
+## Private Services and $container->get()
 
-Then in user controller, I'll search for authenticator. We're fetching it out of the container, so we have a new way of doing that is just to type in, log in form authenticator and I'll just say authenticator. Down here, we'll use that. That takes care of the log in form authenticator. Hash password listener, is actually not used anywhere. We'll remove that and the help form extension is also not used anywhere so we can remove that one as well. In fact, we can remove our entire legacy file. I'm going to go to the top. I'm going to get rid of our import. This is reason to celebrate. Then I'm going to delete our legacy aliases. No more legacy aliases. In fact, all our services are now private. We're using proper dependency injection on everything, except for our message manager, our last public service.
+Ok! This is used in `GenusController`. Open that up - there it is! Easy fix! Let's
+change this to use the new service id: `MarkdownTransformer::class`.
 
-We'll get grab for that and this is of course, used just where we used it a second ago inside of genius admin controller. I'll open up genius admin controller and we know, very easy fix when you type in for message manager. Message manager, I'll copy that new variable name and we can use that below. I love it. Back in services dot YML, we can remove that last public service. Private services are good. It means that you're not referencing any of your services at run time, via container arial get. That means you will get very clear exceptions if you mess something up.
+Awesome! Let's try it: navigate to `/genus`. That code was on the show page, so click
+any of the genuses and... explosion!
 
-Next, let's talk about aliases.
+> You have requested a non-existent service `App\Service\MarkdownTransformer`.
 
+But... we *know* that's a service: it's even *explicitly* configured. What's going
+on!?
+
+Remember, *all* of these services are *private*... which means that we *cannot*
+fetch them via `$container->get()`. This is actually one of the *big* motivations
+behind all of these autowiring and auto-registration changes: we do not want you
+to fetch things out of the container directly anymore. Nope, we want you to use
+dependency injection.
+
+Not only is dependency injection a better practice than calling `$container->get()`,
+using it will actually give you better *errors*!
+
+For example, if you use `$container->get()` and accidentally fetch a service that
+doesn't exist, you'll only get an error if you visit a page that runs that code.
+But if you use dependency injection and reference a service that doesn't exist, you'll
+get a huge error when you access *any* page or try to do *anything* in your app.
+If you make all services private, the new config system is actually more stable than
+the old one.
+
+## Controller Action Injection
+
+To fix our error, we need to use classic dependency injection. And actually, there
+are *two* ways to do this in a controller. First, we could of course, go to the top
+of our class, add a `__construct` function, type-hint a `MarkdownTransformer` argument
+set that on a property, and use it below. Thanks to autowiring, we wouldn't
+need to touch any config files.
+
+But, because this is a bit tedious and so common to do in a controller, we've added
+a shortcut. In controllers *only*, you can autowire a service into an argument of
+your action method. We'll add `MarkdownTransformer $markdownTransformer`. Now, remove
+the `$this->get()` line... which is a shortcut for `$container->get()`.
+
+This fixes things... because we've eliminated the `$container->get()` call that
+does *not* work with private services.
+
+Celebrate by removing the first alias! The rest are easy! The `app.markdown_extension`
+id isn't referenced anywhere, so remove that. `app.security.login_form_authenticator`
+is used in *two* places: `security.yml` and also `UserController`.
+
+Copy the new service id - the class name. In `security.yml`, just replace the old
+with the new.
+
+Next, in `UserController`, I'll search for "authenticator". Ah, we're fetching it
+out of the container directly! We know the fix: type-hint a new argument with
+`LoginFormAuthenticator $authenticator` and use that below.
+
+Almost done! The `app.doctrine.hash_password_listener` service isn't being used anywhere,
+and neither is `app.form.help_form_extension`.
+
+And... that's it! At the top of `services.yml`, remove the import. Then, delete
+`legacy_aliases.yml`.
+
+Our *last* public service is `MessageManager`. Now we know how to fix this. In `GenusAdminController`,
+find `editAction()` and add an argument: `MessageManager $messageManager`. Use that
+below in both places.
+
+Back in `services.yml`, make that service private.
+
+This is reason to celebrate! *All* our services are now private! We're using proper
+dependency injection on everything! Thanks to this, the container will optimize itself
+for performance *and* give us clear errors if we make a mistake... anywhere.
+
+Next, we need to talk more about aliases: the key to unlocking the full potential of
+autowiring.

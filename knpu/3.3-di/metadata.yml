@@ -9,5 +9,6 @@ chapters:
     - problematic-multiservice-classes
     - controller-di-cleanup
     - autowiring-aliases
+    - deprecated-autowiring
     - named-arguments
     - building-rad
