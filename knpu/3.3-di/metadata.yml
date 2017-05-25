@@ -1,1 +1,10 @@
-chapters: []
+chapters:
+    - upgrade-3-3
+    - defaults-autowire-autoconfigure
+    - class-ids-private
+    - auto-register-services
+    - problematic-multiservice-classes
+    - controller-di-cleanup
+    - autowiring-aliases
+    - named-arguments
+    - building-rad
