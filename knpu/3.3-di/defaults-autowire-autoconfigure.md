@@ -1,16 +1,70 @@
-# Defaults Autowire Autoconfigure
+# _defaults, autowire & autoconfigure
 
-If you started a brand new Symfony project in Symfony 3.3, it's service is not YML. It is going to look like this. Very different. Look, check out its defaults. This app on the resource thing is actually a lot going on here. You're seeing a bunch of new Symfony 3.3 features all at once. Now, all of these new features are built on top of the old system. We very explicitly register and configure all of our services. Our application works right now because all these new features are opt in. You can choose to use them or choose not to use them. I hope you will use them because I really like them, and even if you don't, I want you to understand how they work and know that the Symfony documentation has been upgraded to assume you're using these features.
+If you started a brand new Symfony 3.3 project, its `services.yml` file will look
+like [this](https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml).
 
-Let's start with this defaults thing up here. On our project, I'm going to open app config services dot YML where you see the very traditional service configuration. On top or the order doesn't matter, I'm going to add underscore defaults. Then I'm going to add auto wire true and auto configure true. Now, a few things here. Underscore defaults is a new special key word which allows you to set default values for all services in this file. It's as if we added an auto wire and an auto configure key under each of the services in this file only. Of course, we can override those on any of the specific services if we wanted below.
+You're actually seeing at least *four* new features all at once! Wow. All of
+this is built on top of the existing service configuration system and you need to
+"opt in" to any of the new features. That means that the traditional way of configuring
+services that you've been using until now still works and always will. Winning!
 
-Auto wiring is not new. It's something I've talked about before. It's the idea where the arguments to your services are automatically filled in for you. For example, if I look at the mark down extension which has auto wire true, you can see that it's [inaudible 00:02:14] with mark down transformer and so we don't actually have to have that as an argument. We can say we have a comment it out, because Symfony is passing that to us.
+But even if you ultimately chose *not* to use some of these new features, you need
+to understand how they work, because you'll see them a lot. For example, the Symfony
+documentation has already been updated to assume you're using these.
 
-Now, auto wiring has changed in Symfony 3.3 and we are going to talk about it. This auto configure, since we have auto wire on top here, we can actually remove the auto wire key anywhere below because it's now redundant. It does mean that a couple services that weren't auto wired before now are auto wire. For example, app dot markdown transformer. We did not have the auto wire key here before. It's now being auto wired but it actually doesn't matter because it's specifying both of its arguments right here. Even though it has the auto wire key, we're explicitly specifying all its arguments so there for, there's nothing to auto wire, and having auto wire on doesn't effect it.
+First, a word of warning: using the new features is *fun*. But, upgrading an existing
+project to use them... well... it's *less* fun. It takes some work, and when you're
+done... your project works... the same as before. I'm also going to show you the
+ugliest parts of the new system so you can handle them in your project. But stick
+with me! At the end, we'll use the new features to build some new code. And that,
+is a *blast*.
 
-This auto configure is a brand new feature in Symfony 3.3. What it means is, it means that your services will be automatically tagged when possible. It doesn't work for all tags but works for a lot of tags. For example, our mark down extension here, it extends twig extension, which actually implements twig extension interface. That's the important part. Because we have auto configure set to true, any services in this file that implement the twig extension interface, will be automatically tagged with twig dot extension. It's basically Symfony's way of saying, hey you have a service. It implements the twig extension interface, so of course you want that to be a twig extension. It means that we can remove that tag.
+## _defaults: File-side Service Defaults
 
-It doesn't work for the doctor and event subscriber because this tag is a little more complex, nor the form type extension tag because it has an extended type alias. It doesn't work for everything. It's meant to help you out when it can. It doesn't fix everything. If you're not sure, you can keep your tag. It's okay to have the redundant tags. You'll see when you're developing a feature, it'll tell you whether or not you need a tag or whether auto wire just takes care of it for you.
+Let's look at this `_defaults` thing first. Open up your `app/config/services.yml`
+file. At the top of the `services` section - though order isn't important - add
+`_defaults`. Then below that, `autowire: true` and `autoconfigure: true`.
 
-I should also say that all the new auto wiring and auto configure features are a little bit more fun if you start with a fresh project. This point we haven't really made a whole lot of changes. If we refresh, everything still of course works. Now we're using auto wire and auto configure by default.
+Let's unpack this. First, `_defaults` is a new special keyword that allows you to
+set default configuration for all services in *this* file. It's equivalent to adding
+`autowire` and `autoconfigure` keys under every service in this file only. And of
+course, any config from `_defaults` can be overridden by a specific service.
 
+## Autowiring
+
+Autowiring is *not* new: we talk about it in our Symfony series. When a service is
+autowired, it means that its constructor arguments are automatically configured
+when possible by reading type-hints. For example, the `MarkdownExtension` is autowired.
+And its first constructor argument is type-hinted with `MarkdownTransformer`. Thanks
+to that, Symfony determines which service to pass here.
+
+The *way* that autowiring works *has* changed in Symfony 3.3. But more on that later.
+
+Since we have `autowire` under `_defaults`, we can remove it from everywhere else:
+it's redundant. And yes, this *does* mean that some services that were *not* autowired
+before are *now* set to `autowire: true`. For example, `app.markdown_transformer`
+*is* now being autowired. But... that's no problem! Both of its arguments are being
+*explicitly* set... so autowiring simply doesn't do anything. Setting `autowire: true`
+under `_defaults` is safe to add to an existing project.
+
+## Autoconfigure
+
+Next, this `autoconfigure` key *is* a brand new feature. When a service is autoconfigured,
+it means that Symfony will automatically *tag* it when possible. For example, our
+`MarkdownExtension` extends `Twig_Extension`, which implements `Twig_Extension_Interface`.
+That's actually the important part. When a service is autoconfigured and its class
+implements `Twig_Extension_Interface`, the `twig.extension` tag is *automatically*
+added for you. Basically, Symfony is saying:
+
+> Hey! I see you configured a service that implements `Twig_Extension_Interface`.
+> Obviously, that's a Twig extension, so let me configure it for you.
+
+This works for many - but not all tags. It does *not* work for `doctrine.event_subscriber`
+or ``form.type_extension`` because it has an `extended_type` tag option... which
+the system can't guess for you. When you're developing a feature, the docs will tell
+you whether or not you need to add the tag manually. If you *do* add a tag, even
+though you didn't need to, no problem! Your tag takes precedence.
+
+So, all our services are autowired and autoconfigured! But, it doesn't make any difference,
+besides shortening our config *just* a little. And when we refresh, everything
+still works!

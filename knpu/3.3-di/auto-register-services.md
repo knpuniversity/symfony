@@ -1,16 +1,81 @@
-# Auto Register Services
+# Auto-Registering All Services
 
-Let's go back to the simply standard edition. Look at the services I want to know. You'll find a couple of import sections, these are the most fundamental big difference that you'll see in iSymphony 3.3 service configuration. I want you to copy the first import to start. And head over to our service dot y and after default, so it doesn't really matter, I'm gonna paste that. Now, there, this is a super important line. This actually imports all classes from src/AppBundle as services. It automatically registers them. There's a few really important things.
+Go back to the Symfony Standard Edition's [services.yml file for Symfony 3.3](https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml).
+These two sections are the most *fundamental* change to the Symfony 3.3 service
+configuration. Copy the first section, then find our `services.yml` and, after `_defaults`,
+paste. 
 
-First, the service ID for each service is the class name. And second, thanks to our defaults, means that all those new services are auto wired and auto configured. And the cool thing about this, is that it means that, in a lot of cases, you don't need to register your services at all anymore because just by putting a class in src/AppBundle, Symphony will try to auto wire and auto configure it. And if it can't auto wire it, as you'll see, you're gonna get a really clear exception. More in a second, isn't this completely insane? I mean, not all of my classes inside src/AppBundle are supposed to be services. I mean, like my data fixtures, for example. So the answer is, no, in fact you have the same number of services before and after this import line. To prove it, I'm gonna comment out this line, go to terminal, open a new tab, [inaudible 00:02:37] /bin/console debug container type WC-L.
+Woh.
 
-To count the number of lines this returns. Okay, 262. Then I'm gonna uncomment this line, which means I'm importing all classes in src/AppBundle services. The go over and it gets the same number. How's that possible? Remember, all of these services are private. They're public false and that ends up being really important. It means that none of these new services can be referenced at one time via container arrow get. In Symphony's container is so incredible that right before it dumps the cached container, it finds all services that haven't been referenced and removed them from the container. So it means that even though it looks like we're important all classes inside of a src/AppBundle as services, that's not actually true. It's more that all classes in src/AppBundle are available to be used as services. We can reference them as arguments or we can auto wire them. But if you don't reference one of these classes, it's simply removed.
+This auto-registers *each* class in `src/AppBundle` as a service. There are a few
+important things to know. First, the id for each service is the full *class name*,
+just like we've been doing with *our* services. And second, thanks to `_defaults`,
+these new services are autowired and autoconfigured. And that means... in a lot
+of cases, you won't need to manually register your services at all anymore. Nope,
+as soon as you put a class in `src/AppBundle`, Symfony will autowire and autoconfigure
+it. That means you can start using it with *zero* config. And as we'll see soon,
+if the service *can't* be autowired, you'll get a clear error with details on what
+to do.
 
-You'll also notice we've got this exclude key down here. And this actually becomes not that important. You can exclude certain files or directories, if you want to. But most of the time you want need to. Because, as I said, if you don't reference a class then it's just removed from the container anyways. However, if you do have entire directors full of Peachtree files that you know you don't want to be as services, like entity or repository, which you might want your repository register services. But, since they need to be created as factories, you would need to manually wire those anyways.
+## Auto-registering ALL Classes as Services? Are you Insane?
 
-So by excluding these two directories, it means that Symphony, in some cases, Symphony won't try to rebuild the container if you modify these files. Giving you a slight performance boost in the debt environment. But my point, the exclude key is not that important. So, since every service ... has its ID - has its class name as its ID ... So the idea is that all classes are imported as services. And if you do need to further configure them, then you can go down here and repeat the class name and add whatever you need, like a tag. This will actually override the service that's imported, registered up there. But it's still auto wired and auto configured.
+Now... I *bet* I know what you're thinking:
 
-Now the one other import here is for the controller, I'm gonna copy that. And paste that as well. And what this does is it actually overrides the controller services registered in the first import, so that it can make them public true and give them a very special tag. Now, hold on a second, because in Symphony 3.3, your services do need to be public. And we'll talk about what that tag does. Now hold on a second, yes, this actually means that in Symphony 3.3 your controllers are services. And that's so awesome! Because you can still use all of your existing tricks. You can still extend Symphony's base controller. You can use its shortcuts. You can even still fetch things through public services directly from the container. But now, you can also use proper dependence injection if you want to. So, after all these changes, we're gonna actually get on here and remove two of these services. Both of these services are imported or auto registered and they don't need any further configuration so there's no point in having.
+> Ryan, are you completely insane!? You can't auto-register everything in `src/AppBundle`
+> as a service!? Some classes - like DataFixtures! - are simply *not* meant to be
+> services! You've gone mad sir!
 
-If we go back and refresh our app, everything still works fine. So the big change here is that all changes in app/AppBundle, Symphony's aware of all of them and you can use them immediately as services if you want to. And if you do need to add addition configuration then that's when you can configure it below, but it automates a lot of your configuration when you don't need it.
+Ok, this *seems* like a fair argument... but actually, it's not. What if I told you
+that the total number of services in the container before *and after* adding this
+section is the same. Yep! To prove it, comment out this auto-registration code. Then,
+go to your terminal, open a new tab, and run:
 
+```terminal
+php bin/console debug:container | wc -l
+```
+
+This will basically count the number of services returned. Ok - 262! *Uncomment*
+that code. Now, I'm registering *all* classes from `src/AppBundle` as services. Try
+the command again:
+
+```terminal
+php bin/console debug:container | wc -l
+```
+
+It's the same! How is that possible?
+
+Remember, all of these new services are *private*. And that's *very* important. It
+means that none of the services can be referenced via `$container->get()`. And Symfony's
+container is *so* incredible that - right before it dumps the cached container,
+it finds all private services that have not been referenced, and *removes* them
+from the container. This means that even though it *looks* like we're registering
+*every* class inside of `src/AppBundle` as a service, that's actually not true!
+
+A better way to think of it is this: each class in `src/AppBundle` is *available*
+to be used as a service. This means we can reference it as argument in `services.yml`
+or type-hint its class in a constructor so that it's autowired. But if you do *not*
+reference one of these classes, that service is automatically removed.
+
+## Excluding some Paths
+
+You've probably also noticed this `exclude` key. Actually, for the reasons we just
+discussed... this isn't that important. You *can* exclude certain files or directories
+if you want. But most of the time, that's not needed: if you don't reference a class,
+it's removed from the container for you.
+
+However, if you *do* have entire directories that should *not* be auto-registered,
+adding it here is nice. It'll give you a slight performance boost in the `dev`
+environment because Symfony won't need to watch those files for changes. And for
+a subtle technical reason, the `Entity` directory *must* be excluded. We also excluded
+the `Respository` directory. You actually *can* register these as services... but you
+need to configure them manually to use a factory. Basically, auto-registering and
+autowiring doesn't work, so we might as well ignore them.
+
+## Overriding Auto-Registered Services
+
+Phew! So the idea is that we *start* by auto-registering each class as a service
+with these 3 lines. Then, if you *do* need to add some more configuration - like
+a tag, or an argument that can't be autowired, you can do that! Just override the
+auto-registered service below: use the class name as the key, then do whatever you
+need. Symfony automates as much configuration as possible so that you only need to
+fill in the rest.

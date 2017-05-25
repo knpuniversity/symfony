@@ -1,8 +1,11 @@
 chapters:
     - upgrade-3-3
     - defaults-autowire-autoconfigure
-    - class-ids-private
+    - class-ids
+    - private-services
     - auto-register-services
+    - controllers-services
+    - autowiring-logic
     - problematic-multiservice-classes
     - controller-di-cleanup
     - autowiring-aliases
