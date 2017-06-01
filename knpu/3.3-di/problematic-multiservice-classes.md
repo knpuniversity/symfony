@@ -57,7 +57,7 @@ git grep app.discouraging_message_generator
 ```
 
 Ah, this is *only* used in `GenusAdminController`. In fact, both `MessageGenerator`
-services are *only* used there. Let's use the new `MessageGenerator` service - which
+services are *only* used there. Let's use the new `MessageManager` service - which
 I've *purposely* made public for now. In `GenusAdminController`, use that:
 `$this->get(MessageGenerator::class)->getEncouragingMessage()`. Then the same below:
 `$this->get(MessageGenerator::class)->getDiscouragingMessage()`.

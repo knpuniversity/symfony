@@ -26,8 +26,8 @@ to find poetic prose... which doubles as setup instructions.
 ## Upgrading
 
 Time to upgrade! Open up `composer.json`. This is actually a Symfony *3.1* project,
-but that's no problem. I'll change the version to ``3.3.0-RC1`` because Symfony
-3.3 has not been released yet at the time of this recording. You should use ``3.3.*``.
+but that's no problem. I'll change the version to `3.3.0-RC1` because Symfony
+3.3 has not been released yet at the time of this recording. You should use `3.3.*`.
 
 By the way, we *could* update other packages too, but that's optional. Often, I'll
 visit the Symfony Standard Edition, make sure I'm on the correct branch, and see

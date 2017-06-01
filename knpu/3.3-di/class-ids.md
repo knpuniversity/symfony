@@ -56,4 +56,4 @@ We're going to talk more about this situation soon.
 
 And, we're done! We just changed all of the service ids to class names... but thanks
 to `legacy_aliases.yml`, our code won't break. This may not have felt significant,
-but it was actually a big step forward. Now, we can talk about private service.
+but it was actually a big step forward. Now, we can talk about private services.

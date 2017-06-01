@@ -57,7 +57,8 @@ that later. But if exactly *one* service is found, that service is used. However
 
 If autowiring finds *zero* services that have the class, it will auto-register that
 class as a new autowired service. But, this will *never* happen for us... because
-we've auto-registered *all* of our classes as services.
+we've auto-registered *all* of our classes as services. And this magic auto-registration
+is not done for vendor classes.
 
 So basically, autowiring looks for a service whose id exactly matches the type-hint.
 And in Symfony 4, if that service doesn't exist, it will throw a clear exception.

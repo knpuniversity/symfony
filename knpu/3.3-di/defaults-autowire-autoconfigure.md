@@ -8,7 +8,7 @@ this is built on top of the existing service configuration system and you need t
 "opt in" to any of the new features. That means that the traditional way of configuring
 services that you've been using until now still works and always will. Winning!
 
-But even if you ultimately chose *not* to use some of these new features, you need
+But even if you ultimately choose *not* to use some of these new features, you need
 to understand how they work, because you'll see them a lot. For example, the Symfony
 documentation has already been updated to assume you're using these.
 
