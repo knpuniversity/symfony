@@ -1,59 +1,99 @@
 # Autowiring Deprecations
 
-Aliases are a very, very powerful way for you to choose what service gets wired
-for which type hint. Now down at the bottom, you see a little yellow thing here
-that says 10 deprecation warnings. I'm actually going to click that then go to
-deprecations. These are all the ways in which my code is using deprecated
-functionality, and things I need to fix before I upgrade it to the Symfony 4.0.
-There's a couple of these that are really important to us, specifically this
-one here, "Autowiring services based on the types they implement is deprecated
-since Symfony 3.3 and won't be supported in version 4.0. You should rename or
-alias security.user_password_encoder.generic to long class UserPasswordEncoder
-instead." Woah, so what is that saying?
+On the web debug toolbar, I've got a little yellow icon that says 10 deprecation
+warnings. Rude! Let's click that!
 
-It's saying that somewhere we are type hinting user_password_encoder, and
-there's no service that exists inside of the container with that exact ID. So
-autowiring looked across all of the services in the container and found one
-service, this one right here, that has that class name and it wired that one
-for us. That is deprecated, that's a little more magic than we wanted in
-Symfony, so we've removed it. So it says, "Fine, that's great. You can use the
-UserPasswordEndcoder type hint going forward, but we want you to alias it
-explicitly to this service instead of relying on this magic."
+These are all the ways that my code is using old, deprecated functionality. It's
+basically a list of stuff we need to update before upgrading to Symfony 4. And there
+are a few deprecations related to autowiring:
 
-So this case you can do that or the other thing we can do, is we can actually
-change this to the proper type hint. Here's what I mean, you're already
-familiar with Vim console, debug container, which shows you all the public
-services inside of the container and it shows you their service IDs. But guess
-what, service IDs are much less important in Symfony 3.3 because we are always
-autowiring things by their type. We introduce a new option called --types and
-this gives you a list of all of the valid type hints that you can use in the
-system to autowire things. This is awesome. If you search for encoder, you'll
-actually find there's one called UserPasswordEncoderInterface. So we are
-apparently type writing user_password_encoder if we just change that to
-UserPasswordEncoderInterface, we are good.
+> Autowiring services based on the types they implement is deprecated since
+> Symfony 3.3 and won't be supported in version 4.0. You should rename or
+> alias security.user_password_encoder.generic to ... long class name... UserPasswordEncoder
+> instead.
 
-So I'm going to git grep for UserPasswordEncoder and you can see that it's used
-in two places, HashPasswordListener and LoginFormAuthenticator. So here I'll
-change this to interface, and down here change that to interface, and I will do
-the same things inside security, LoginFormAuthenticator. I'll add the interface
-at the end of the use statement, and on the argument. Just by doing that, you
-see there's 10 deprecations. If we refresh right now we go down to eight
-deprecations.
+***TIP
+The text in the deprecation may look slightly different for you: we updated it
+to be a bit more clear in Symfony 3.0.1.
+***
 
-Now there's still one in here that's interesting to me. It's the same thing, it
-says, "Autowiring services based on the types the implement has deprecated,"
-because somewhere we are typing hinting EntityManager and apparently that is
-not the right type hint to use. Let's check it out. Let's go back to our
-debug:container::types, tab, --types. I'll search this for EntityManager. There
-it is, it's actually EntityManagerInterface, this is no accident. Symfony's
-core is trying to encourage you to type entity interface. So again we have two
-options here. We can find everywhere in our code that type hints entity manager
-and change those to entity manager interface, or we can say, "You know what
-it's fine, I want entity manager to automatically map to this service so let's
-just add that as an alias," and that's what we're going to do.
+Um... what?????
 
-So I'm going to copy the class name here, flip over to our services.yml and
-we're just going to add that as an alias and I'll copy the
-doctrine.orm.default_entity_manager service and we'll paste that. And now it is
-legal to type hint with EntityManager, and when we refresh, that eight goes
-down to seven.
+This is saying that *somewhere*, we are type-hinting an argument with
+`Symfony\Component\Security\Core\Encoder\UserPasswordEncoder`... but there is *no*
+service in the container with that exact *id*. So, autowiring got busy: it looked
+at *every* service and found exactly *one* - `security.user_password_encoder.generic` -
+that has this class. It passed *this* service to that argument.
+
+And *that* is the part of autowiring that is deprecated. Looking across every service
+for a matching class or interface was a little more magic than we wanted in Symfony.
+
+How do we fix this? Actually, there are *two* solutions!
+
+## Solution 1) Fixing the Type-Hint
+
+Here's the first question: is there a different type-hint that we should be using
+instead for this service? Let's find out!
+
+Head to your terminal. We already know about with the `debug:container` command:
+
+```terminal
+php bin/console debug:container
+```
+
+This gives us a big list of every *public* service in the container. The blue text
+is the *id* of each service. But guess what? Service id's are *much* less important
+in Symfony 3.3... because we almost always rely on type-hints and autowiring.
+
+Re-run the command again with a new `--types` option:
+
+```terminal
+php bin/console debug:container --types
+```
+
+Voilà! This is a list of all valid type-hints that you can use for autowiring. This
+is *awesome*. If you search for encoder, you'll find one called `UserPasswordEncoderInterface`.
+*This* is the type-hint we should use! Symfony ships with this alias to enable autowiring.
+
+Cool! Let's find out where we're using this:
+
+```terminal
+git grep UserPasswordEncoder
+```
+
+Two places: `HashPasswordListener` and `LoginFormAuthenticator`. Open up `HashPasswordListener`.
+Then, add `Interface` to the end of the `use` statement, and also the type-hint.
+That's it.
+
+Open up `LoginFormAuthenticator` and do the exact same thing: update the `use`...
+and the argument. Ok, go back to the browser! Refresh, and watch those 10 deprecations.
+Bam! 8 deprecations!
+
+If you check the list now, we still have *one* more autowiring deprecation. This
+time, apparently, it's unhappy about an `EntityManager` type-hint.
+
+Same question as before: is there a better type-hint to use? Let's find out:
+
+```terminal
+php bin/console debug:container --types
+```
+
+Search for EntityManager and... boom! There is an `EntityManagerInterface` alias.
+*This* is the officially supported type-hint.
+
+## Solution 2: Adding an Alias
+
+Ok, we know the fix: update our `EntityManager` type hints to `EntityManagerInterface`!
+But... there's another solution! If you want, it is *totally* ok to type-hint `EntityManager`.
+To make this work with autowiring, we can create an *alias*.
+
+Copy the `Doctrine\ORM\EntityManager` class name. Then, find your editor and open
+up `services.yml`. Add the alias: `Doctrine\ORM\EntityManager` aliased to `@`,
+and then copy the target service id: `@doctrine.orm.default_entity_manager`.
+
+We have *full* control over autowiring. With aliases, we can configure *exactly*
+which service we want to use for each type-hint. No magic.
+
+Ok, refresh the page one more time! Got it! 8 deprecations now down to 7. The rest
+of the deprecations are related to other parts of our code. I'll leave those as 
+homework. You're welcome!

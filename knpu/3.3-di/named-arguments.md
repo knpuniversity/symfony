@@ -1,12 +1,38 @@
-# Named Arguments
+# Configuring Specific (Named) Arguments
 
-As you saw, sometimes you only need to pass one argument in and the rest can be auto wired. In this case, I've chosen to pass in the second argument to mark down transformer. Now that's actually because there are multiple instances of the cash object in my container. But I wanted auto wiring to work for the first one. So you can use this empty quotes and text. But the empty quotes and text is just weird. It looks weird. So in Symphony 3.3, there's a better way.
+We saw earlier that sometimes you only *need* to pass *one* argument... and the rest
+can be autowired. For `MarkdownTransformer`, we *only* need to configure the *second*
+argument. To allow the first to be continue to be autowired, we set it to an empty
+string. That works... but it's just weird. So, in Symfony 3.3, there's a better way.
 
-In markdown transforming, you notice the names of our arguments are a marked down [inaudible 00:00:40] and cash. And this is the argument that we want to specify. So what we can do is we can actually instead, I'll copy my service ID, you can have the arguments key and then we'd say dollar sign cash colon and then paste the argument. The dollar sign is the important part here. That's how Symphony knows that we're actually calling this out by its argument name. Cash here must match cash there. And to prove it's working, we'll refresh right now. Everything is still happy.
+In `MarkdownTransformer`, the argument *names* are `$markdownParser` and `$cache`.
+The `$cache` argument is the one we need to configure. Back in `services.yml`, copy
+the cache service id, clear out the arguments, and add `$cache: '@doctrine_cache.providers.my_markdown_cache'`.
 
-Now wait a second, cause this might be setting off some alarms for you. Cause normally, when I'm coding, I should think that's it's safe for me to rename this variable to something else. Cash driver, cash driver, right? That shouldn't make any difference at all. I am perfectly allowed to do that. And it shouldn't affect any thing outside of this class.
+The dollar sign is the important part: it tells Symfony that we're actually configuring
+an argument by its *name*. `$cache` here must match `$cache` here.
 
-But now, check this out. We have a bug in our code. Because we have cash here. So that's a problem, right? Actually, it's not a problem. If you refresh now, you're going to get a huge error. And this is not just happening because we happen to be using a markdown transforming this page. This error would happen if you tried to refresh any page across your entire system. Symphony is going through all of your services and validating their configuration to make sure they make sense. And it saw a problem. It saw an argument called cash when there is no argument called cash. It means that if you accidentally, if you change a name of an argument to something, thinking it won't affect anything, you're not going to get very far. Symphony's going to yell at you. It's going to tell you that you need to change that argument. When you refresh now, it works.
+And it works beautifully - refresh now! Everything is happy!
 
-So it feels like there's a lot of magic going on, but it's been done the Symphony way. It's been done the way where if there's any question about anything, we throw in an exception. And we throw in an exception at compile time, which means no surprises. It's not possible for you to have some weird error on some page that you don't use very often. All of your errors happen immediately.
+## Named Arguments are Validated
 
+But wait! Isn't this dangerous!? I mean, normally, if I were coding in `MarkdownTransformer`,
+I could safely rename this variable to `$cacheDriver`. That change shouldn't make
+any difference to any code outside of this class.
+
+But suddenly now... it *does* make a difference! The `$cache` in `services.yml`
+no longer matches the argument name. Isn't this a huge problem!? Actually, no. Yes,
+you *will* get an error - you can see it when you refresh. But this error will happen
+if you try to refresh *any* page across your entire system. Symfony validates *all*
+of your services and configuration. And as soon as it saw `$cache` in `services.yml`
+with no corresponding argument, it screamed.
+
+So yes, changing the argument in your service class *will* break your app. But the
+error is unignorable: nothing works until you fix it. Update the configuration to
+`$cacheDriver`, and refresh again.
+
+Back working! This is what makes Symfony's autowiring special. If there is *any*
+question or problem wiring the arguments to *any* service, Symfony throws an exception
+at *compile* team... meaning, it throws an exception when you try to refresh *any*
+page. This means no surprises: it's *not* possible to have an autowiring error on
+only *one* page and not notice it.
