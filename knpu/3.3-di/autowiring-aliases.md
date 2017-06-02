@@ -48,7 +48,7 @@ and get some information about this service:
 php bin/console debug:container markdown.parser
 ```
 
-Interesting! this is actually an alias to `markdown.parser.max`. This service comes
+Interesting! This is actually an alias to `markdown.parser.max`. This service comes
 from `KnpMarkdownBundle`, and it ships with a few different markdown parsers. It
 then creates an alias from `markdown.parser` to whatever parser we configured as
 the default.

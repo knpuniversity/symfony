@@ -20,7 +20,7 @@ change this to use the new service id: `MarkdownTransformer::class`.
 Awesome! Let's try it: navigate to `/genus`. That code was on the show page, so click
 any of the genuses and... explosion!
 
-> You have requested a non-existent service `App\Service\MarkdownTransformer`.
+> You have requested a non-existent service `AppBundle\Service\MarkdownTransformer`.
 
 But... we *know* that's a service: it's even *explicitly* configured. What's going
 on!?
@@ -52,7 +52,7 @@ need to touch any config files.
 But, because this is a bit tedious and so common to do in a controller, we've added
 a shortcut. In controllers *only*, you can autowire a service into an argument of
 your action method. We'll add `MarkdownTransformer $markdownTransformer`. Now, remove
-the `$this->get()` line... which is a shortcut for `$container->get()`.
+the `$this->get()` line... which is a shortcut for `$this->container->get()`.
 
 This fixes things... because we've eliminated the `$container->get()` call that
 does *not* work with private services.

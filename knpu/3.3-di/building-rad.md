@@ -134,6 +134,6 @@ meaning, we no longer use `$container->get()` - Symfony will give us more immedi
 errors *and* will automatically optimize itself. Cool!
 
 Your turn to go play! I hope you love this new stuff: faster development without
-a ton of WTF moments! Let me know what you think!
+a ton of WTF moments! And let me know what you think!
 
 All right guys, see you next time.

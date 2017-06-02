@@ -3,7 +3,7 @@
 On the web debug toolbar, I've got a little yellow icon that says 10 deprecation
 warnings. Rude! Let's click that!
 
-These are all the ways that my code is using old, deprecated functionality. It's
+These are all the ways that my code is using old, deprecated, uncool functionality. It's
 basically a list of stuff we need to update before upgrading to Symfony 4. And there
 are a few deprecations related to autowiring:
 
@@ -35,7 +35,7 @@ How do we fix this? Actually, there are *two* solutions!
 Here's the first question: is there a different type-hint that we should be using
 instead for this service? Let's find out!
 
-Head to your terminal. We already know about with the `debug:container` command:
+Head to your terminal. We already know about the `debug:container` command:
 
 ```terminal
 php bin/console debug:container
@@ -96,4 +96,4 @@ which service we want to use for each type-hint. No magic.
 
 Ok, refresh the page one more time! Got it! 8 deprecations now down to 7. The rest
 of the deprecations are related to other parts of our code. I'll leave those as 
-homework. You're welcome!
+homework.
