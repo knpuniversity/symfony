@@ -11,7 +11,7 @@ practices and object oriented goodness that's turning you into a better develope
 
 ## Symfony Components & Framework
 
-So what is Symfony anyways? First, it's a set of components: meaning PHP libraries.
+So what is Symfony? First, it's a set of components: meaning PHP libraries.
 Actually, it's about 30 small libraries. That means that you could use Symfony in
 your non-Symfony project today by using one of its little libraries. One of my favorites
 is called Finder: it's really good at searching deep into directories for files.
