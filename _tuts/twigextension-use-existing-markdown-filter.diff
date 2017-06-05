@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index e8cc92c2..fd864e4b 100644
+index e8cc92c..fd864e4 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -14,7 +14,7 @@
@@ -12,7 +12,7 @@ index e8cc92c2..fd864e4b 100644
                  <dd>{{ recentNoteCount }}</dd>
              </dl>
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index ca2cd9e6..9f939f94 100644
+index ca2cd9e..9f939f9 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -86,7 +86,7 @@ class Genus

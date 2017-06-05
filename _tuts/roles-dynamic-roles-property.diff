@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160524141318.php b/app/DoctrineMigrations/Version20160524141318.php
 new file mode 100644
-index 00000000..cb4100c8
+index 0000000..cb4100c
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160524141318.php
 @@ -0,0 +1,34 @@
@@ -39,7 +39,7 @@ index 00000000..cb4100c8
 +    }
 +}
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
-index 21f9decc..a5444e59 100644
+index 21f9dec..a5444e5 100644
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 @@ -24,3 +24,4 @@ AppBundle\Entity\User:
@@ -48,7 +48,7 @@ index 21f9decc..a5444e59 100644
          plainPassword: iliketurtles
 +        roles: ['ROLE_ADMIN']
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 25c56dac..6b2b75c9 100644
+index 25c56da..6b2b75c 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -38,6 +38,11 @@ class User implements UserInterface

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 70137183..111e66c4 100644
+index 7013718..111e66c 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -35,9 +35,8 @@ class GenusController extends Controller
@@ -14,7 +14,7 @@ index 70137183..111e66c4 100644
          return $this->render('genus/list.html.twig', [
              'genuses' => $genuses
 diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
-index 90719505..e19fe357 100644
+index 9071950..e19fe35 100644
 --- a/src/AppBundle/Repository/GenusRepository.php
 +++ b/src/AppBundle/Repository/GenusRepository.php
 @@ -2,9 +2,21 @@

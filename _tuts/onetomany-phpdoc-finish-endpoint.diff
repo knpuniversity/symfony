@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index db5f705e..3baa5387 100644
+index db5f705..3baa538 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -99,14 +99,13 @@ class GenusController extends Controller
@@ -22,7 +22,7 @@ index db5f705e..3baa5387 100644
              'notes' => $notes
          ];
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 264b39af..7bafd197 100644
+index 264b39a..7bafd19 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -103,6 +103,9 @@ class Genus
@@ -36,10 +36,10 @@ index 264b39af..7bafd197 100644
      {
          return $this->notes;
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index 8dc6ff93..c0243523 100644
+index 8f35521..acf59ab 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
-@@ -92,4 +92,9 @@ class GenusNote
+@@ -97,4 +97,9 @@ class GenusNote
      {
          $this->genus = $genus;
      }

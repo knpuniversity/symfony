@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index e836d349..8aa9436b 100644
+index e836d34..8aa9436 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -18,10 +18,16 @@ class GenusController extends Controller
@@ -40,7 +40,7 @@ index e836d349..8aa9436b 100644
  
      /**
 diff --git a/src/AppBundle/Repository/SubFamilyRepository.php b/src/AppBundle/Repository/SubFamilyRepository.php
-index f805ef7f..de614c48 100644
+index f805ef7..de614c4 100644
 --- a/src/AppBundle/Repository/SubFamilyRepository.php
 +++ b/src/AppBundle/Repository/SubFamilyRepository.php
 @@ -3,6 +3,7 @@

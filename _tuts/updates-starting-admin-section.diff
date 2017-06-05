@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/admin/genus/list.html.twig b/app/Resources/views/admin/genus/list.html.twig
 new file mode 100644
-index 00000000..d9b8157b
+index 0000000..d9b8157
 --- /dev/null
 +++ b/app/Resources/views/admin/genus/list.html.twig
 @@ -0,0 +1,33 @@
@@ -40,7 +40,7 @@ index 00000000..d9b8157b
 \ No newline at end of file
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
 new file mode 100644
-index 00000000..b7dfb7fc
+index 0000000..b7dfb7f
 --- /dev/null
 +++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -0,0 +1,11 @@
@@ -57,7 +57,7 @@ index 00000000..b7dfb7fc
 +{% endblock %}
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
 new file mode 100644
-index 00000000..f534c75b
+index 0000000..f534c75
 --- /dev/null
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -0,0 +1,34 @@
@@ -96,3 +96,17 @@ index 00000000..f534c75b
 +    }
 +}
 \ No newline at end of file
+diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
+index 6149ac8..04387e8 100644
+--- a/src/AppBundle/Entity/GenusNote.php
++++ b/src/AppBundle/Entity/GenusNote.php
+@@ -97,9 +97,4 @@ class GenusNote
+     {
+         $this->genus = $genus;
+     }
+-
+-    public function getId()
+-    {
+-        return $this->id;
+-    }
+ }

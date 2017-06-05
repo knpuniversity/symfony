@@ -1,5 +1,5 @@
 diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
-index 7230c4e5..f050f521 100644
+index 7230c4e..f050f52 100644
 --- a/app/config/legacy_aliases.yml
 +++ b/app/config/legacy_aliases.yml
 @@ -1,5 +1,4 @@
@@ -9,7 +9,7 @@ index 7230c4e5..f050f521 100644
      app.security.login_form_authenticator: '@AppBundle\Security\LoginFormAuthenticator'
      app.doctrine.hash_password_listener: '@AppBundle\Doctrine\HashPasswordListener'
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index a43c467f..3f6b6a09 100644
+index a43c467..3f6b6a0 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -75,11 +75,10 @@ class GenusController extends Controller

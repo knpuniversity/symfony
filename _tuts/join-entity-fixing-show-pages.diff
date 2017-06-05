@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 00555693..6ec18696 100644
+index 0055569..6ec1869 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -24,9 +24,10 @@
@@ -16,7 +16,7 @@ index 00555693..6ec18696 100644
  
                                  <a href="#"
 diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
-index 21382a1e..1668c2f8 100644
+index 21382a1..1668c2f 100644
 --- a/app/Resources/views/user/show.html.twig
 +++ b/app/Resources/views/user/show.html.twig
 @@ -39,12 +39,12 @@
@@ -36,7 +36,7 @@ index 21382a1e..1668c2f8 100644
                          </li>
                      {% endfor %}
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index fe1ca681..c5e5b94f 100644
+index fe1ca68..c5e5b94 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -4,6 +4,7 @@ namespace AppBundle\Controller;
@@ -63,7 +63,7 @@ index fe1ca681..c5e5b94f 100644
          $em->persist($genus);
          $em->persist($genusNote);
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
-index d7b98901..22f9f403 100644
+index d7b9890..22f9f40 100644
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 @@ -6,7 +6,7 @@ AppBundle\Entity\Genus:
@@ -76,7 +76,7 @@ index d7b98901..22f9f403 100644
  AppBundle\Entity\GenusNote:
      genus.note_{1..100}:
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index bb07471a..ba5c87de 100644
+index bb07471..ba5c87d 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -194,7 +194,7 @@ class Genus
@@ -89,7 +89,7 @@ index bb07471a..ba5c87de 100644
      public function getGenusScientists()
      {
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 1f00eb09..8043dbf1 100644
+index 1f00eb0..8043dbf 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -213,7 +213,7 @@ class User implements UserInterface

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index e0bb42a7..455b7fe8 100644
+index 4434903..7dd0505 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
 @@ -37,6 +37,11 @@ class GenusNote

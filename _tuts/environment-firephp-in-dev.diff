@@ -1,5 +1,5 @@
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
-index 2988f4f8..abd84b22 100644
+index 2988f4f..abd84b2 100644
 --- a/app/config/config_dev.yml
 +++ b/app/config/config_dev.yml
 @@ -34,9 +34,9 @@ monolog:
@@ -16,7 +16,7 @@ index 2988f4f8..abd84b22 100644
          #    type:   chromephp
          #    level:  info
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index bc09621d..105613b6 100644
+index bc09621..105613b 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -28,6 +28,9 @@ class GenusController extends Controller

@@ -1,5 +1,5 @@
 diff --git a/app/AppKernel.php b/app/AppKernel.php
-index d6fac03a..16436405 100644
+index d6fac03..1643640 100644
 --- a/app/AppKernel.php
 +++ b/app/AppKernel.php
 @@ -19,6 +19,7 @@ class AppKernel extends Kernel
@@ -11,7 +11,7 @@ index d6fac03a..16436405 100644
              new AppBundle\AppBundle(),
          );
 diff --git a/app/config/config.yml b/app/config/config.yml
-index d00efc31..4948d4fe 100644
+index d00efc3..4948d4f 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -72,3 +72,9 @@ doctrine_cache:
@@ -25,7 +25,7 @@ index d00efc31..4948d4fe 100644
 +        default:
 +            sluggable: true
 diff --git a/composer.json b/composer.json
-index 251233d7..56f7327a 100644
+index 251233d..56f7327 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -26,7 +26,8 @@
@@ -39,7 +39,7 @@ index 251233d7..56f7327a 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index a14481d3..ba8c171d 100644
+index a14481d..ba8c171 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,10 +4,50 @@
@@ -250,7 +250,7 @@ index a14481d3..ba8c171d 100644
              "version": "v5.4.3",
              "source": {
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 87438205..0f42d6c1 100644
+index 8743820..0f42d6c 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -5,6 +5,8 @@ namespace AppBundle\Entity;

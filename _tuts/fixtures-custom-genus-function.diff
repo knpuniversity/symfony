@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
-index ab00e6af..247253c6 100644
+index ab00e6a..247253c 100644
 --- a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 +++ b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 @@ -11,6 +11,36 @@ class LoadFixtures implements FixtureInterface
@@ -42,7 +42,7 @@ index ab00e6af..247253c6 100644
  }
 \ No newline at end of file
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
-index fecb92b3..89ad0e47 100644
+index fecb92b..89ad0e4 100644
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 @@ -1,6 +1,6 @@

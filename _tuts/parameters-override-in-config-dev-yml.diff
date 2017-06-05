@@ -1,5 +1,5 @@
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
-index b1b22be4..09dc7b3f 100644
+index b1b22be..09dc7b3 100644
 --- a/app/config/config_dev.yml
 +++ b/app/config/config_dev.yml
 @@ -1,6 +1,9 @@

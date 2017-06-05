@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
-index 97cbf07d..7c7d4217 100644
+index 97cbf07..7c7d421 100644
 --- a/app/Resources/views/_formTheme.html.twig
 +++ b/app/Resources/views/_formTheme.html.twig
 @@ -1,4 +1,5 @@
