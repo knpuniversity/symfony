@@ -8,8 +8,8 @@ exciting, dinosauric changes to how you configure services. And that's why we ma
 this crazy tutorial in the first place: to take those head on.
 
 If you're not already comfortable with how services work in Symfony, stop, drop and
-roll... and go watch our [Symfony Fundamentals](https://knpuniversity.com/screencast/symfony-fundamentals)
-course. Then come back.
+roll... and go watch our [Symfony Fundamentals][symfony-fundamentals] course.
+Then come back.
 
 ## Symfony's Backwards-Compatibility ~~Awesomeness~~ Promise
 
@@ -25,13 +25,19 @@ to find poetic prose... which doubles as setup instructions.
 
 ## Upgrading
 
-Time to upgrade! Open up `composer.json`. This is actually a Symfony *3.1* project,
-but that's no problem. I'll change the version to `3.3.0-RC1` because Symfony
-3.3 has not been released yet at the time of this recording. You should use `3.3.*`.
+Time to upgrade! Open up `composer.json`:
+
+[[[ code('37fa63c3ff') ]]]
+
+This is actually a Symfony *3.1* project, but that's no problem. I'll change the version
+to `3.3.0-RC1` because Symfony 3.3 has not been released yet at the time of this recording.
+You should use `3.3.*`:
+
+[[[ code('c2ee44c913') ]]]
 
 By the way, we *could* update other packages too, but that's optional. Often, I'll
 visit the Symfony Standard Edition, make sure I'm on the correct branch, and see
-what versions it has in its [composer.json file](https://github.com/symfony/symfony-standard/blob/3.3/composer.json).
+what versions it has in its [composer.json file][composer_json].
 
 For now, we'll *just* change the Symfony version. To upgrade, find your favorite
 terminal, move into the project, and run:
@@ -52,12 +58,15 @@ good reason, Symfony will change something that *will* break your app on upgrade
 but only in a huge, obvious and unavoidable way:
 
 > The "framework.trusted_proxies" configuration key has been removed in Symfony 3.3.
-> Use the `Request::setTrustedProxies(`) method in your front controller.
+> Use the `Request::setTrustedProxies()` method in your front controller instead.
 
 This says that a `framework.trusted_proxies` configuration was removed. Open up
-`app/config/config.yml`: there it is! Just take that out: the option was removed
-for security reasons. If you *did* have a value there, check out the docs to see
-the replacement.
+`app/config/config.yml`: there it is! Just take that out:
+
+[[[ code('b204e46017') ]]]
+
+The option was removed for security reasons. If you *did* have a value there,
+check out the docs to see the replacement.
 
 Ok, *even* though `composer update` exploded, it *did* update our `composer.lock`
 file and download the new version. Just to be sure, I'll run `composer install` to
@@ -83,9 +92,12 @@ Ahhh!
 
 What happened to `server:run`? Well actually, Symfony is becoming more and more decoupled.
 That command now lives in its own bundle. Open `app/AppKernel.php`. And in the `dev`
-environment only, add `$bundles[] = new WebServerBundle()`. That bundle still *comes*
-with the `symfony/symfony` package, but it wasn't enabled in our project. A *new*
-Symfony 3.3 project already has this line.
+environment only, add `$bundles[] = new WebServerBundle()`:
+
+[[[ code('4bb7c38132') ]]]
+
+That bundle still *comes* with the `symfony/symfony` package, but it wasn't enabled
+in our project. A *new* Symfony 3.3 project already has this line.
 
 Flip back to your terminal and try again:
 
@@ -98,3 +110,7 @@ Aquanaut project that we've been working on in this Symfony series.
 
 Okay, we're set up and we are on Symfony 3.3. But we are *not* yet using any of
 the cool, new dependency injection features. Let's fix that!
+
+
+[symfony-fundamentals]: https://knpuniversity.com/screencast/symfony-fundamentals
+[composer_json]: https://github.com/symfony/symfony-standard/blob/3.3/composer.json
