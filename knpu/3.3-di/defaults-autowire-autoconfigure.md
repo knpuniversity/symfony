@@ -53,7 +53,7 @@ it's redundant. And yes, this *does* mean that some services that were *not* aut
 before are *now* set to `autowire: true`. For example, `app.markdown_transformer`
 *is* now being autowired:
 
-[[[ code('a003c472c7') ]]]
+[[[ code('211e989ef5') ]]]
 
 But... that's no problem! Both of its arguments are being *explicitly* set:
 
