@@ -1,9 +1,11 @@
 # Auto-Registering All Services
 
-Go back to the Symfony Standard Edition's [services.yml file for Symfony 3.3](https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml).
+Go back to the Symfony Standard Edition's [services.yml file for Symfony 3.3][services_yml].
 These two sections are the most *fundamental* change to the Symfony 3.3 service
 configuration. Copy the first section, then find our `services.yml` and, after `_defaults`,
-paste. 
+paste:
+
+[[[ code('08cc1bbaab') ]]]
 
 Woh.
 
@@ -58,10 +60,13 @@ reference one of these classes, that service is automatically removed.
 
 ## Excluding some Paths
 
-You've probably also noticed this `exclude` key. Actually, for the reasons we just
-discussed... this isn't that important. You *can* exclude certain files or directories
-if you want. But most of the time, that's not needed: if you don't reference a class,
-it's removed from the container for you.
+You've probably also noticed this `exclude` key:
+
+[[[ code('d8c3009574') ]]]
+
+Actually, for the reasons we just discussed... this isn't that important. You *can*
+exclude certain files or directories if you want. But most of the time, that's
+not needed: if you don't reference a class, it's removed from the container for you.
 
 However, if you *do* have entire directories that should *not* be auto-registered,
 adding it here is nice. It'll give you a slight performance boost in the `dev`
@@ -79,3 +84,6 @@ a tag, or an argument that can't be autowired, you can do that! Just override th
 auto-registered service below: use the class name as the key, then do whatever you
 need. Symfony automates as much configuration as possible so that you only need to
 fill in the rest.
+
+
+[services_yml]: https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml
