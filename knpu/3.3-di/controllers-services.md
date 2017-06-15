@@ -4,10 +4,12 @@ There is one other piece of auto-registration code in the
 [new services.yml file for Symfony 3.3][services_yml] involving the `Controller/`
 directory. Copy that!
 
+Then, paste it in our file:
+
 [[[ code('35d4339eb0') ]]]
 
-Then, paste it in our file. This auto-registers each class in `src/AppBundle/Controller`
-as a service... which was already done above:
+This auto-registers each class in `src/AppBundle/Controller` as a service... which
+was already done above:
 
 [[[ code('70ab80b347') ]]]
 
