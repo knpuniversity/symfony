@@ -1,14 +1,20 @@
 # Controllers as Services
 
 There is one other piece of auto-registration code in the
-[new services.yml file for Symfony 3.3](https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml)
-involving the `Controller/` directory. Copy that!
+[new services.yml file for Symfony 3.3][services_yml] involving the `Controller/`
+directory. Copy that!
+
+[[[ code('35d4339eb0') ]]]
 
 Then, paste it in our file. This auto-registers each class in `src/AppBundle/Controller`
-as a service... which was already done above. This overrides those services to make
-sure that anything in `Controller/` is public and has this very special tag. In
-Symfony 3.3 - controllers are the *one* service that *must* be public. And the tag
-gives us a special controller argument autowiring super power that we'll see soon.
+as a service... which was already done above:
+
+[[[ code('70ab80b347') ]]]
+
+This overrides those services to make sure that anything in `Controller/` is public
+and has this very special tag. In Symfony 3.3 - controllers are the *one* service
+that *must* be public. And the tag gives us a special controller argument autowiring
+super power that we'll see soon.
 
 ## Controllers are Services!?
 
@@ -24,8 +30,15 @@ just works.
 ## Removing Unnecessary Services
 
 Now that we're auto-registering each class as a service, we can *remove* these two
-services. They're *still* being registered, but since we don't need to add any further
-configuration, they're redundant!
+services:
+
+[[[ code('bae65e273f') ]]]
+
+They're *still* being registered, but since we don't need to add any further configuration,
+they're redundant!
 
 Woohoo! And when we refresh our app, everything still works! Controllers as services
 with *four* lines of code!
+
+
+[services_yml]: https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml
