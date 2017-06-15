@@ -5,14 +5,18 @@ can override a service to configure it further, and if there are any problems
 autowiring a service, you get a clear exception when you try to load *any* page.
 
 But, there's one place where it's not as clean: when you have multiple services
-that point to the same class. In other words, when you have services where the id
-*can't* be the class name. Right now, there are *two* services for the `MessageGenerator`
-class, right? Actually, there are *three*.
+that point to the same class:
+
+[[[ code('d0e887ce6d') ]]]
+
+In other words, when you have services where the id *can't* be the class name.
+Right now, there are *two* services for the `MessageGenerator` class, right?
+Actually, there are *three*.
 
 Find your terminal and run:
 
 ```terminal
-php bin/console debug:container --show-private
+php bin/console debug:container --show-private | grep Message
 ```
 
 Surprise! This lists our two services *plus* a third service that was automatically
@@ -26,12 +30,22 @@ First, we need to talk about how autowiring works. It's *super* simple... or at 
 it *will* be simple in Symfony 4.
 
 Let's look at `HashPasswordListener`. As you can see, this is type-hinted with
-`UserPasswordEncoder`. In `services.yml`, this argument is *not* specified: it works
-because the container is autowiring it.
+`UserPasswordEncoder`:
+
+[[[ code('c2bfcce746') ]]]
+
+In `services.yml`, this argument is *not* specified:
+
+[[[ code('42a5b98f74') ]]]
+
+It works because the container is autowiring it.
 
 But how does it know *which* service to pass here? First, autowiring looks for a
 service whose id *exactly* matches the type-hint. In other words, it looks for a
-service whose id is `Symfony\Component\Security\Core\Encoder\UserPasswordEncoder`.
+service whose id is `Symfony\Component\Security\Core\Encoder\UserPasswordEncoder`:
+
+[[[ code('9eefd4aea8') ]]]
+
 If that exists, it's used... always. This is the *main* way that autowiring works.
 It's not magic: you explicitly configure a service or alias for each type-hint.
 
