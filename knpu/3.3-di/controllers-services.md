@@ -1,8 +1,8 @@
 # Controllers as Services
 
 There is one other piece of auto-registration code in the
-[new services.yml file for Symfony 3.3](https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml)
-involving the `Controller/` directory. Copy that!
+[new services.yml file for Symfony 3.3][services_yml] involving the `Controller/`
+directory. Copy that!
 
 Then, paste it in our file. This auto-registers each class in `src/AppBundle/Controller`
 as a service... which was already done above. This overrides those services to make
@@ -29,3 +29,6 @@ configuration, they're redundant!
 
 Woohoo! And when we refresh our app, everything still works! Controllers as services
 with *four* lines of code!
+
+
+[services_yml]: https://github.com/symfony/symfony-standard/blob/3.3/app/config/services.yml
