@@ -9,8 +9,8 @@ are a few deprecations related to autowiring:
 
 > Autowiring services based on the types they implement is deprecated since
 > Symfony 3.3 and won't be supported in version 4.0. You should rename or
-> alias security.user_password_encoder.generic to ... long class name... UserPasswordEncoder
-> instead.
+> alias `security.user_password_encoder.generic` to ... long class name...
+> `UserPasswordEncoder` instead.
 
 ***TIP
 The text in the deprecation may look slightly different for you: we updated it
@@ -52,7 +52,7 @@ php bin/console debug:container --types
 ```
 
 Voilà! This is a list of all valid type-hints that you can use for autowiring. This
-is *awesome*. If you search for encoder, you'll find one called `UserPasswordEncoderInterface`.
+is *awesome*. If you search for "encoder", you'll find one called `UserPasswordEncoderInterface`.
 *This* is the type-hint we should use! Symfony ships with this alias to enable autowiring.
 
 Cool! Let's find out where we're using this:
@@ -62,12 +62,18 @@ git grep UserPasswordEncoder
 ```
 
 Two places: `HashPasswordListener` and `LoginFormAuthenticator`. Open up `HashPasswordListener`.
-Then, add `Interface` to the end of the `use` statement, and also the type-hint.
+Then, add `Interface` to the end of the `use` statement, and also the type-hint:
+
+[[[ code('2a210cdc27') ]]]
+
 That's it.
 
 Open up `LoginFormAuthenticator` and do the exact same thing: update the `use`...
-and the argument. Ok, go back to the browser! Refresh, and watch those 10 deprecations.
-Bam! 8 deprecations!
+and the argument:
+
+[[[ code('5f0a89ed27') ]]]
+
+Ok, go back to the browser! Refresh, and watch those 10 deprecations. Bam! 8 deprecations!
 
 If you check the list now, we still have *one* more autowiring deprecation. This
 time, apparently, it's unhappy about an `EntityManager` type-hint.
@@ -89,7 +95,9 @@ To make this work with autowiring, we can create an *alias*.
 
 Copy the `Doctrine\ORM\EntityManager` class name. Then, find your editor and open
 up `services.yml`. Add the alias: `Doctrine\ORM\EntityManager` aliased to `@`,
-and then copy the target service id: `@doctrine.orm.default_entity_manager`.
+and then copy the target service id: `@doctrine.orm.default_entity_manager`:
+
+[[[ code('f444c2c274') ]]]
 
 We have *full* control over autowiring. With aliases, we can configure *exactly*
 which service we want to use for each type-hint. No magic.
