@@ -14,7 +14,7 @@ are a few deprecations related to autowiring:
 
 ***TIP
 The text in the deprecation may look slightly different for you: we updated it
-to be a bit more clear in Symfony 3.0.1.
+to be a bit more clear in Symfony 3.3.1.
 ***
 
 Um... what?????
