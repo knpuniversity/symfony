@@ -50,6 +50,11 @@ that's the URL - `== '/login' && $request->isMethod('POST')`:
 
 [[[ code('23e75d0cc3') ]]]
 
+***TIP
+Instead of hardcoding the `/login` URL, you could instead check for the current page's route name:
+`if ($request->attributes->get('_route') === 'security_login' && $request->isMethod('POST'))`
+***
+
 If both of those are true, the user has just submitted the login form.
 
 So, `if (!$isLoginSubmit)`, just `return null`:
