@@ -1,4 +1,4 @@
-# Service Class Name as ids
+# Service Class Name as Service id
 
 Traditionally, our service ids looked like this: some underscored, lowercased version
 of the class name:
