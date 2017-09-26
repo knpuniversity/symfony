@@ -17,10 +17,10 @@ not a bundle. And it's going to make our fixtures amazing:
 composer require --dev doctrine/doctrine-fixtures-bundle nelmio/alice:2.1.4
 ```
 
-```tip
+***TIP
 Be sure to install version 2 of Alice, as version 3 has many changes:
-`composer require --dev nelmio/alice:2.1.4`
-```
+`$ composer require --dev nelmio/alice:2.1.4`
+***
 
 ## Conditionally Load Dev Libraries
 
