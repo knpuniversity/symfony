@@ -15,7 +15,7 @@ And tries to automatically find the correct service to pass to you. In this case
 it saw the `MarkdownTransformer` type-hint and knew to use the `app.markdown_transformer`
 service: since that is an instance of this class. You can also type-hint interfaces.
 
-*** TIP
+***TIP
 The autowiring logic has changed in Symfony 3.3 and higher. For more info, we have
 a tutorial! https://knpuniversity.com/screencast/symfony-3.3/autowiring-logic
 ***
