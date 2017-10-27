@@ -9,7 +9,7 @@ with `name="genus_show"`:
 
 That sounds good.
 
-In the list template, and the `a` tag and use the `path()` function to point this
+In the list template, add the `a` tag and use the `path()` function to point this
 to the `genus_show` route. Remember - this route has a `{genusName}` wildcard, so
 we *must* pass a value for that here. Add a set of curly-braces to make an array...
 But this is getting a little long: so break onto multiple lines. Much better. Finish
