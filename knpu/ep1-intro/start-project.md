@@ -82,7 +82,7 @@ php bin/console server:run
 ```
 
 to start the built in PHP web server. Yes, you can also use Nginx or Apache: but this
-is much easier for development. When you're done later, just hit ctrl+c to stop the
+is much easier for development. When you're done later, just hit `Ctrl`+`C` to stop the
 server.
 
 As the comment says here, go to `http://localhost:8000` in your browser. And boom!

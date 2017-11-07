@@ -41,10 +41,11 @@ index 3089c0e..b8a4f92 100644
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -877,6 +877,118 @@
+@@ -876,6 +876,118 @@
+             ],
              "time": "2014-01-12 16:20:24"
          },
-         {
++        {
 +            "name": "knplabs/knp-markdown-bundle",
 +            "version": "1.4.2",
 +            "source": {
@@ -156,7 +157,6 @@ index 3089c0e..b8a4f92 100644
 +            ],
 +            "time": "2015-12-24 01:37:31"
 +        },
-+        {
+         {
              "name": "monolog/monolog",
              "version": "1.21.0",
-             "source": {

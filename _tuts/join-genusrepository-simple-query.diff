@@ -16,7 +16,7 @@ index 0206043..6f22a98 100644
          return $this->render('genus/show.html.twig', array(
              'genus' => $genus,
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index acf59ab..6149ac8 100644
+index 8f35521..04387e8 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
 @@ -5,7 +5,7 @@ namespace AppBundle\Entity;

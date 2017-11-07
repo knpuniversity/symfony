@@ -907,8 +907,8 @@ index ba8c171..85d0d45 100644
 -            "name": "psr/log",
 +            "name": "psr/container",
              "version": "1.0.0",
-             "source": {
-                 "type": "git",
++            "source": {
++                "type": "git",
 +                "url": "https://github.com/php-fig/container.git",
 +                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
 +            },
@@ -1005,8 +1005,8 @@ index ba8c171..85d0d45 100644
 +        {
 +            "name": "psr/log",
 +            "version": "1.0.2",
-+            "source": {
-+                "type": "git",
+             "source": {
+                 "type": "git",
                  "url": "https://github.com/php-fig/log.git",
 -                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
 +                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
@@ -2191,19 +2191,19 @@ index 0a5de54..3b14a40 100644
              $timezones = array();
              foreach (DateTimeZone::listAbbreviations() as $abbreviations) {
                  foreach ($abbreviations as $abbreviation) {
-@@ -620,12 +634,6 @@ class SymfonyRequirements extends RequirementCollection
+@@ -619,12 +633,6 @@ class SymfonyRequirements extends RequirementCollection
+             'Install and enable the <strong>mbstring</strong> extension.'
          );
  
-         $this->addRecommendation(
+-        $this->addRecommendation(
 -            function_exists('iconv'),
 -            'iconv() should be available',
 -            'Install and enable the <strong>iconv</strong> extension.'
 -        );
 -
--        $this->addRecommendation(
+         $this->addRecommendation(
              function_exists('utf8_decode'),
              'utf8_decode() should be available',
-             'Install and enable the <strong>XML</strong> extension.'
 @@ -689,7 +697,7 @@ class SymfonyRequirements extends RequirementCollection
                      $this->addRecommendation(
                          \Symfony\Component\Intl\Intl::getIcuDataVersion() === \Symfony\Component\Intl\Intl::getIcuVersion(),

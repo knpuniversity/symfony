@@ -15,6 +15,12 @@ Open up `app/config/services.yml`:
 
 [[[ code('03cb1a7fbf') ]]]
 
+***TIP
+If you're using Symfony 3.3, your `app/config/services.yml` contains some extra code
+that may break things when following this tutorial! To keep things working - and learn
+about what this code does - see https://knpuniversity.com/symfony-3.3-changes
+***
+
 To add a new service to the container, you basically need to *teach* the container
 *how* to instantiate your object.
 

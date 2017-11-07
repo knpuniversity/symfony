@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
-index f52ff75..fb80089 100644
+index f52ff75..da01a0c 100644
 --- a/app/Resources/views/admin/genus/_form.html.twig
 +++ b/app/Resources/views/admin/genus/_form.html.twig
 @@ -18,7 +18,15 @@
@@ -11,7 +11,7 @@ index f52ff75..fb80089 100644
 +    <select id="{{ genusForm.firstDiscoveredAt.year.vars.id }}"
 +            name="{{ genusForm.firstDiscoveredAt.year.vars.full_name }}">
 +        {% for choice in genusForm.firstDiscoveredAt.year.vars.choices %}
-+            <option value="{{ choice.value }}" {{ choice.value == genusForm.firstDiscoveredAt.year.vars.data }}>{{ choice.label }}</option>
++            <option value="{{ choice.value }}" {{ choice.value == genusForm.firstDiscoveredAt.year.vars.data ? 'selected' : '' }}>{{ choice.label }}</option>
 +        {% endfor %}
 +    </select>
 +    {{ form_errors(genusForm.firstDiscoveredAt.year) }}

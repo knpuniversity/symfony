@@ -40,10 +40,11 @@ index 1e97ee2..a14481d 100644
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -2363,6 +2363,230 @@
+@@ -2362,6 +2362,230 @@
+         }
      ],
      "packages-dev": [
-         {
++        {
 +            "name": "doctrine/data-fixtures",
 +            "version": "v1.1.1",
 +            "source": {
@@ -267,7 +268,6 @@ index 1e97ee2..a14481d 100644
 +            ],
 +            "time": "2016-01-07 14:44:47"
 +        },
-+        {
+         {
              "name": "sensio/generator-bundle",
              "version": "v3.0.7",
-             "source": {

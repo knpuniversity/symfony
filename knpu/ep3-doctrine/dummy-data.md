@@ -14,8 +14,13 @@ want to download something else: `nelmio/alice`. That's just a normal PHP librar
 not a bundle. And it's going to make our fixtures amazing:
 
 ```bash
-composer require --dev doctrine/doctrine-fixtures-bundle nelmio/alice
+composer require --dev doctrine/doctrine-fixtures-bundle nelmio/alice:2.1.4
 ```
+
+***TIP
+Be sure to install version 2 of Alice, as version 3 has many changes:
+`$ composer require --dev nelmio/alice:2.1.4`
+***
 
 ## Conditionally Load Dev Libraries
 

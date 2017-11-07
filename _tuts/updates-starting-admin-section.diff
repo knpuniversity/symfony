@@ -96,17 +96,3 @@ index 0000000..f534c75
 +    }
 +}
 \ No newline at end of file
-diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index 6149ac8..04387e8 100644
---- a/src/AppBundle/Entity/GenusNote.php
-+++ b/src/AppBundle/Entity/GenusNote.php
-@@ -97,9 +97,4 @@ class GenusNote
-     {
-         $this->genus = $genus;
-     }
--
--    public function getId()
--    {
--        return $this->id;
--    }
- }

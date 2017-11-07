@@ -10,10 +10,11 @@ index 105613b..801bc2c 100644
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-@@ -11,6 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
+@@ -10,6 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
+ 
  class GenusController extends Controller
  {
-     /**
++    /**
 +     * @Route("/genus/new")
 +     */
 +    public function newAction()
@@ -21,7 +22,6 @@ index 105613b..801bc2c 100644
 +        $genus = new Genus();
 +    }
 +
-+    /**
+     /**
       * @Route("/genus/{genusName}")
       */
-     public function showAction($genusName)

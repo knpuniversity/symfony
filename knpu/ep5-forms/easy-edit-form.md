@@ -75,7 +75,7 @@ or the "Code"->"Generate" menu to add it:
 
 [[[ code('3b059cef2c') ]]]
 
-Alright. Let's try it again. Refresh. No errors!
+All right. Let's try it again. Refresh. No errors!
 
 Edit the first genus. Check that out: it completely pre-filled the form for us.
 In fact, check out this weird "TEST" text inside of `funFact`. That is left over from

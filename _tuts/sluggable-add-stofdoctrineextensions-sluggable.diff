@@ -42,7 +42,7 @@ diff --git a/composer.lock b/composer.lock
 index a14481d..ba8c171 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,10 +4,50 @@
+@@ -4,9 +4,49 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
@@ -51,7 +51,7 @@ index a14481d..ba8c171 100644
 +    "hash": "994b7a6880d3192c46ca4eae2b5244b0",
 +    "content-hash": "304884647f1fae4d4b96e000e1cb60df",
      "packages": [
-         {
++        {
 +            "name": "behat/transliterator",
 +            "version": "v1.1.0",
 +            "source": {
@@ -91,14 +91,14 @@ index a14481d..ba8c171 100644
 +            ],
 +            "time": "2015-09-28 16:26:35"
 +        },
-+        {
+         {
              "name": "doctrine/annotations",
              "version": "v1.2.7",
-             "source": {
-@@ -903,6 +943,85 @@
+@@ -902,6 +942,85 @@
+             ],
              "time": "2016-01-05 21:34:58"
          },
-         {
++        {
 +            "name": "gedmo/doctrine-extensions",
 +            "version": "v2.4.24",
 +            "source": {
@@ -177,14 +177,14 @@ index a14481d..ba8c171 100644
 +            ],
 +            "time": "2016-10-11 18:03:37"
 +        },
-+        {
+         {
              "name": "incenteev/composer-parameter-handler",
              "version": "v2.1.2",
-             "source": {
-@@ -1547,6 +1666,67 @@
+@@ -1546,6 +1665,67 @@
+             "description": "A security checker for your composer.lock",
              "time": "2015-11-07 08:07:40"
          },
-         {
++        {
 +            "name": "stof/doctrine-extensions-bundle",
 +            "version": "v1.2.2",
 +            "source": {
@@ -245,10 +245,9 @@ index a14481d..ba8c171 100644
 +            ],
 +            "time": "2016-01-26 23:58:32"
 +        },
-+        {
+         {
              "name": "swiftmailer/swiftmailer",
              "version": "v5.4.3",
-             "source": {
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
 index 8743820..0f42d6c 100644
 --- a/src/AppBundle/Entity/Genus.php

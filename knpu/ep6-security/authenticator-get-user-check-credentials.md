@@ -112,8 +112,16 @@ tutorial. Let's finally hook this thing up.
 ## Registering the Service
 
 To do that, open up `app/config/services.yml` and register the authenticator as a
-service. Let's call it `app.security.login_form_authenticator`. Set the class to
-`LoginFormAuthenticator` and because I'm feeling super lazy, autowire the arguments:
+service.
+
+***TIP
+If you're using Symfony 3.3, your `app/config/services.yml` contains some extra code
+that may break things when following this tutorial! To keep things working - and learn
+about what this code does - see https://knpuniversity.com/symfony-3.3-changes
+***
+
+Let's call it `app.security.login_form_authenticator`. Set the class to `LoginFormAuthenticator`
+and because I'm feeling super lazy, autowire the arguments:
 
 [[[ code('b5f8160811') ]]]
 
