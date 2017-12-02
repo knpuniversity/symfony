@@ -1,0 +1,24 @@
+diff --git a/web/app.php b/web/app.php
+index 20fa4f2e..8a4c27d5 100644
+--- a/web/app.php
++++ b/web/app.php
+@@ -21,7 +21,6 @@ $apcLoader->register(true);
+ //require_once __DIR__.'/../app/AppCache.php';
+ 
+ $kernel = new AppKernel('prod', false);
+-$kernel->loadClassCache();
+ //$kernel = new AppCache($kernel);
+ 
+ // When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
+diff --git a/web/app_dev.php b/web/app_dev.php
+index 635bf7ac..9613d18d 100644
+--- a/web/app_dev.php
++++ b/web/app_dev.php
+@@ -25,7 +25,6 @@ $loader = require __DIR__.'/../app/autoload.php';
+ Debug::enable();
+ 
+ $kernel = new AppKernel('dev', true);
+-$kernel->loadClassCache();
+ $request = Request::createFromGlobals();
+ $response = $kernel->handle($request);
+ $response->send();

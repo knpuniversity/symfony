@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/security/login.html.twig b/app/Resources/views/security/login.html.twig
 new file mode 100644
-index 0000000..4c1a4fa
+index 00000000..4c1a4faf
 --- /dev/null
 +++ b/app/Resources/views/security/login.html.twig
 @@ -0,0 +1,31 @@
@@ -36,7 +36,7 @@ index 0000000..4c1a4fa
 +</div>
 +{% endblock %}
 diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
-index d912c10..3c6f8a7 100644
+index d912c108..3c6f8a7e 100644
 --- a/src/AppBundle/Controller/SecurityController.php
 +++ b/src/AppBundle/Controller/SecurityController.php
 @@ -12,5 +12,21 @@ class SecurityController extends Controller

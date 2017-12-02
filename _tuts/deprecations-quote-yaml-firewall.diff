@@ -1,0 +1,28 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index cca22c91..24785bc8 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -68,9 +68,9 @@ doctrine:
+ doctrine_cache:
+     providers:
+         my_markdown_cache:
+-            type: %cache_type%
++            type: '%cache_type%'
+             file_system:
+-                directory: %kernel.cache_dir%/markdown_cache
++                directory: '%kernel.cache_dir%/markdown_cache'
+ 
+ stof_doctrine_extensions:
+     default_locale: en_US
+diff --git a/app/config/security.yml b/app/config/security.yml
+index 011f26f4..831abd65 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -27,6 +27,7 @@ security:
+             logout:
+                 path: /logout
+             switch_user: ~
++            logout_on_user_change: true
+             # activate different ways to authenticate
+ 
+             # http_basic: ~

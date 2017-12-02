@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
-index 5732a80..c88b8cd 100644
+index 5732a807..c88b8cd8 100644
 --- a/app/Resources/views/admin/genus/_form.html.twig
 +++ b/app/Resources/views/admin/genus/_form.html.twig
 @@ -19,5 +19,7 @@
@@ -11,7 +11,7 @@ index 5732a80..c88b8cd 100644
      <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
  {{ form_end(genusForm) }}
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index cdb51ce..3625682 100644
+index cdb51cee..36256820 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
 @@ -3,6 +3,7 @@

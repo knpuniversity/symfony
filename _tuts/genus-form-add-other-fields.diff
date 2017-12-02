@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
-index 6e852c1..576d957 100644
+index 6e852c18..576d9571 100644
 --- a/src/AppBundle/Entity/SubFamily.php
 +++ b/src/AppBundle/Entity/SubFamily.php
 @@ -36,4 +36,9 @@ class SubFamily
@@ -13,7 +13,7 @@ index 6e852c1..576d957 100644
 +    }
  }
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index f939b71..2ab818e 100644
+index f939b71d..2ab818e5 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
 @@ -12,8 +12,11 @@ class GenusFormType extends AbstractType

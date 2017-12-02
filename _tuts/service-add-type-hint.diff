@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
-index 51a7c43..fb3bffb 100644
+index 51a7c430..fb3bffb2 100644
 --- a/src/AppBundle/Service/MarkdownTransformer.php
 +++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -2,11 +2,13 @@
@@ -27,7 +27,7 @@ index 51a7c43..fb3bffb 100644
  }
 diff --git a/vendor/knplabs/knp-markdown-bundle/MarkdownParserInterface.php b/vendor/knplabs/knp-markdown-bundle/MarkdownParserInterface.php
 new file mode 100644
-index 0000000..1cfe2d1
+index 00000000..1cfe2d1e
 --- /dev/null
 +++ b/vendor/knplabs/knp-markdown-bundle/MarkdownParserInterface.php
 @@ -0,0 +1,15 @@
@@ -48,7 +48,7 @@ index 0000000..1cfe2d1
 +}
 diff --git a/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php b/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php
 new file mode 100644
-index 0000000..e24d262
+index 00000000..e24d262e
 --- /dev/null
 +++ b/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php
 @@ -0,0 +1,244 @@
@@ -298,7 +298,7 @@ index 0000000..e24d262
 +}
 diff --git a/vendor/knplabs/knp-markdown-bundle/Parser/Preset/Max.php b/vendor/knplabs/knp-markdown-bundle/Parser/Preset/Max.php
 new file mode 100644
-index 0000000..24ed524
+index 00000000..24ed5241
 --- /dev/null
 +++ b/vendor/knplabs/knp-markdown-bundle/Parser/Preset/Max.php
 @@ -0,0 +1,13 @@

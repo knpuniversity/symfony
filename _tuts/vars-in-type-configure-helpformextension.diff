@@ -1,5 +1,5 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 2587e60..d2f27ed 100644
+index 2587e602..d2f27edb 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -24,3 +24,9 @@ services:
@@ -13,7 +13,7 @@ index 2587e60..d2f27ed 100644
 +        tags:
 +            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 diff --git a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
-index a0c88a8..3e5e3c7 100644
+index a0c88a87..3e5e3c71 100644
 --- a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 +++ b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 @@ -3,11 +3,19 @@

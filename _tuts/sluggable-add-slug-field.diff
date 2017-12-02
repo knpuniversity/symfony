@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160921253370.php b/app/DoctrineMigrations/Version20160921253370.php
 new file mode 100644
-index 0000000..59642a9
+index 00000000..59642a94
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160921253370.php
 @@ -0,0 +1,36 @@
@@ -41,21 +41,21 @@ index 0000000..59642a9
 +    }
 +}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index d92aafc..8743820 100644
+index d92aafce..87438205 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -25,6 +25,11 @@ class Genus
-      */
+@@ -26,6 +26,11 @@ class Genus
      private $name;
  
-+    /**
+     /**
 +     * @ORM\Column(type="string", unique=true)
 +     */
 +    private $slug;
 +
-     /**
++    /**
       * @Assert\NotBlank()
       * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubFamily")
+      * @ORM\JoinColumn(nullable=false)
 @@ -146,4 +151,14 @@ class Genus
      {
          $this->firstDiscoveredAt = $firstDiscoveredAt;

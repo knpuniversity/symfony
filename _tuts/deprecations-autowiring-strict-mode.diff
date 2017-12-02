@@ -1,0 +1,12 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 24785bc8..d15de8c5 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -8,6 +8,7 @@ imports:
+ parameters:
+     locale: en
+     cache_type: file_system
++    container.autowiring.strict_mode: true
+ 
+ framework:
+     #esi:             ~

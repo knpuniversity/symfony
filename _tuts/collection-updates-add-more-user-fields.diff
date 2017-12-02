@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160921131459.php b/app/DoctrineMigrations/Version20160921131459.php
 new file mode 100644
-index 0000000..34f6e91
+index 00000000..34f6e916
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160921131459.php
 @@ -0,0 +1,34 @@
@@ -39,7 +39,7 @@ index 0000000..34f6e91
 +    }
 +}
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
-index a5444e5..fdebb95 100644
+index a5444e59..fdebb950 100644
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 @@ -25,3 +25,12 @@ AppBundle\Entity\User:
@@ -56,7 +56,7 @@ index a5444e5..fdebb95 100644
 +        universityName: <company()> University
 +        avatarUri: <imageUrl(100, 100, 'abstract')>
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 0c4138b..54f2ade 100644
+index 0c4138bd..54f2ade3 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
@@ -167,7 +167,7 @@ index 0c4138b..54f2ade 100644
  }
 diff --git a/src/AppBundle/Repository/UserRepository.php b/src/AppBundle/Repository/UserRepository.php
 new file mode 100644
-index 0000000..8614256
+index 00000000..86142564
 --- /dev/null
 +++ b/src/AppBundle/Repository/UserRepository.php
 @@ -0,0 +1,10 @@

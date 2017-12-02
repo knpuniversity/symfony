@@ -1,6 +1,6 @@
 diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 new file mode 100644
-index 0000000..f836511
+index 00000000..f8365110
 --- /dev/null
 +++ b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 @@ -0,0 +1,23 @@

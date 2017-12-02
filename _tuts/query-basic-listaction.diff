@@ -1,12 +1,11 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 97acf4e..fc4d593 100644
+index 97acf4e5..fc4d5933 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
-@@ -28,6 +28,18 @@ class GenusController extends Controller
-         return new Response('<html><body>Genus created!</body></html>');
+@@ -29,6 +29,18 @@ class GenusController extends Controller
      }
  
-+    /**
+     /**
 +     * @Route("/genus")
 +     */
 +    public function listAction()
@@ -18,6 +17,7 @@ index 97acf4e..fc4d593 100644
 +        dump($genuses);die;
 +    }
 +
-     /**
++    /**
       * @Route("/genus/{genusName}")
       */
+     public function showAction($genusName)

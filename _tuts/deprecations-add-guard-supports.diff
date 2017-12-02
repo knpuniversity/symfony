@@ -1,0 +1,24 @@
+diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
+index e1e7926f..23cac7fc 100644
+--- a/src/AppBundle/Security/LoginFormAuthenticator.php
++++ b/src/AppBundle/Security/LoginFormAuthenticator.php
+@@ -28,14 +28,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+         $this->passwordEncoder = $passwordEncoder;
+     }
+ 
+-    public function getCredentials(Request $request)
++    public function supports(Request $request)
+     {
+-        $isLoginSubmit = $request->getPathInfo() == '/login' && $request->isMethod('POST');
+-        if (!$isLoginSubmit) {
+-            // skip authentication
+-            return;
+-        }
++        return $request->getPathInfo() == '/login' && $request->isMethod('POST');
++    }
+ 
++    public function getCredentials(Request $request)
++    {
+         $form = $this->formFactory->create(LoginForm::class);
+         $form->handleRequest($request);
+ 

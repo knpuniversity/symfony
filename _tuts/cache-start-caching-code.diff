@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index d4af068..e836d34 100644
+index d4af0687..e836d349 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -70,20 +70,6 @@ class GenusController extends Controller
@@ -24,7 +24,7 @@ index d4af068..e836d34 100644
              ->info('Showing genus: '.$genusName);
  
 diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
-index fb3bffb..ab0c2cb 100644
+index fb3bffb2..ab0c2cbc 100644
 --- a/src/AppBundle/Service/MarkdownTransformer.php
 +++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -15,7 +15,17 @@ class MarkdownTransformer
@@ -48,7 +48,7 @@ index fb3bffb..ab0c2cb 100644
  }
 diff --git a/vendor/doctrine/cache/lib/Doctrine/Common/Cache/ArrayCache.php b/vendor/doctrine/cache/lib/Doctrine/Common/Cache/ArrayCache.php
 new file mode 100644
-index 0000000..6610cc2
+index 00000000..6610cc21
 --- /dev/null
 +++ b/vendor/doctrine/cache/lib/Doctrine/Common/Cache/ArrayCache.php
 @@ -0,0 +1,142 @@
@@ -196,7 +196,7 @@ index 0000000..6610cc2
 +}
 diff --git a/vendor/doctrine/cache/lib/Doctrine/Common/Cache/CacheProvider.php b/vendor/doctrine/cache/lib/Doctrine/Common/Cache/CacheProvider.php
 new file mode 100644
-index 0000000..9f57923
+index 00000000..9f579237
 --- /dev/null
 +++ b/vendor/doctrine/cache/lib/Doctrine/Common/Cache/CacheProvider.php
 @@ -0,0 +1,312 @@

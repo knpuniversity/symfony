@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 4b72686..e8cc92c 100644
+index 4b72686d..e8cc92c2 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -14,7 +14,7 @@
@@ -12,7 +12,7 @@ index 4b72686..e8cc92c 100644
                  <dd>{{ recentNoteCount }}</dd>
              </dl>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 8f2c0e6..a806d0e 100644
+index 8f2c0e64..a806d0ea 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -4,6 +4,7 @@ namespace AppBundle\Controller;
@@ -43,7 +43,7 @@ index 8f2c0e6..a806d0e 100644
      }
 diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
 new file mode 100644
-index 0000000..fe572b1
+index 00000000..fe572b10
 --- /dev/null
 +++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -0,0 +1,11 @@

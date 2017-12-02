@@ -1429,7 +1429,57 @@
             "id": "using-di-adding-non-wireable-arg",
             "name": "Using DI: Adding non-wireable arg",
             "description": null
+        },
+        {
+            "id": "upgrade-upgrading-to-3-4",
+            "name": "Upgrade: Upgrading to 3.4",
+            "description": null
+        },
+        {
+            "id": "deprecations-remove-loadclasscache",
+            "name": "Deprecations: Remove loadClassCache",
+            "description": null
+        },
+        {
+            "id": "deprecations-add-guard-supports",
+            "name": "Deprecations: Add Guard supports()",
+            "description": null
+        },
+        {
+            "id": "deprecations-quote-yaml-firewall",
+            "name": "Deprecations: Quote YAML + firewall",
+            "description": null
+        },
+        {
+            "id": "deprecations-autowiring-strict-mode",
+            "name": "Deprecations: Autowiring strict mode",
+            "description": null
+        },
+        {
+            "id": "deprecations-fix-some-container-gets",
+            "name": "Deprecations: fix some container gets",
+            "description": null
+        },
+        {
+            "id": "deprecations-try-to-fix-guard-handler",
+            "name": "Deprecations: Try to fix guard handler",
+            "description": null
+        },
+        {
+            "id": "deprecations-put-handler-in-construct",
+            "name": "Deprecations: Put handler in construct",
+            "description": null
+        },
+        {
+            "id": "deprecations-alias-the-guard-handler",
+            "name": "Deprecations: Alias the guard handler",
+            "description": null
+        },
+        {
+            "id": "deprecations-add-form-issubmitted",
+            "name": "Deprecations: Add $form->isSubmitted()",
+            "description": null
         }
     ],
-    "sha": "ae26ba09c0c73f3774bbebee1017c3a8d7f7a228"
+    "sha": "09612187eee1150e60db2607ff25ad039fcca0ac"
 }

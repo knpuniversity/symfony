@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160412160008.php b/app/DoctrineMigrations/Version20160412160008.php
 new file mode 100644
-index 0000000..bc9bcf7
+index 00000000..bc9bcf79
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160412160008.php
 @@ -0,0 +1,43 @@
@@ -48,7 +48,7 @@ index 0000000..bc9bcf7
 +    }
 +}
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 73c7f23..0c54c55 100644
+index 73c7f230..0c54c55d 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -10,7 +10,7 @@
@@ -61,7 +61,7 @@ index 73c7f23..0c54c55 100644
                  <dd>{{ genus.speciesCount|number_format }}</dd>
                  <dt>Fun Fact:</dt>
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
-index 271735f..c550d3c 100644
+index 271735f5..c550d3c5 100644
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 @@ -1,7 +1,7 @@
@@ -83,7 +83,7 @@ index 271735f..c550d3c 100644
 +        # use some fake data for this
 +        name: <lastName()>
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 9f939f9..d0eaf5d 100644
+index 9f939f94..d0eaf5da 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -24,7 +24,8 @@ class Genus
@@ -115,7 +115,7 @@ index 9f939f9..d0eaf5d 100644
      }
 diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
 new file mode 100644
-index 0000000..6e852c1
+index 00000000..6e852c18
 --- /dev/null
 +++ b/src/AppBundle/Entity/SubFamily.php
 @@ -0,0 +1,39 @@

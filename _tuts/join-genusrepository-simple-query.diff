@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 0206043..6f22a98 100644
+index 02060438..6f22a985 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -83,10 +83,8 @@ class GenusController extends Controller
@@ -16,7 +16,7 @@ index 0206043..6f22a98 100644
          return $this->render('genus/show.html.twig', array(
              'genus' => $genus,
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index 8f35521..04387e8 100644
+index 8f35521a..04387e8e 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
 @@ -5,7 +5,7 @@ namespace AppBundle\Entity;
@@ -30,7 +30,7 @@ index 8f35521..04387e8 100644
  class GenusNote
 diff --git a/src/AppBundle/Repository/GenusNoteRepository.php b/src/AppBundle/Repository/GenusNoteRepository.php
 new file mode 100644
-index 0000000..ae393f6
+index 00000000..ae393f63
 --- /dev/null
 +++ b/src/AppBundle/Repository/GenusNoteRepository.php
 @@ -0,0 +1,21 @@

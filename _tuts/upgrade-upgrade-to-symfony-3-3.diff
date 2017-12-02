@@ -1,5 +1,5 @@
 diff --git a/bin/symfony_requirements b/bin/symfony_requirements
-index 8825a96..a7bf65a 100755
+index 8825a964..a7bf65a1 100755
 --- a/bin/symfony_requirements
 +++ b/bin/symfony_requirements
 @@ -22,7 +22,6 @@ echo '> Checking Symfony requirements:'.PHP_EOL.'  ';
@@ -30,7 +30,7 @@ index 8825a96..a7bf65a 100755
  
  function has_color_support()
 diff --git a/composer.json b/composer.json
-index 56f7327..f036665 100644
+index 56f7327a..f0366657 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -15,7 +15,7 @@
@@ -43,7 +43,7 @@ index 56f7327..f036665 100644
          "doctrine/doctrine-bundle": "^1.6",
          "doctrine/doctrine-cache-bundle": "^1.2",
 diff --git a/composer.lock b/composer.lock
-index ba8c171..85d0d45 100644
+index ba8c171d..85d0d45e 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,7 @@
@@ -907,8 +907,8 @@ index ba8c171..85d0d45 100644
 -            "name": "psr/log",
 +            "name": "psr/container",
              "version": "1.0.0",
-+            "source": {
-+                "type": "git",
+             "source": {
+                 "type": "git",
 +                "url": "https://github.com/php-fig/container.git",
 +                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
 +            },
@@ -1005,8 +1005,8 @@ index ba8c171..85d0d45 100644
 +        {
 +            "name": "psr/log",
 +            "version": "1.0.2",
-             "source": {
-                 "type": "git",
++            "source": {
++                "type": "git",
                  "url": "https://github.com/php-fig/log.git",
 -                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
 +                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
@@ -2080,7 +2080,7 @@ index ba8c171..85d0d45 100644
      "prefer-lowest": false,
      "platform": {
 diff --git a/var/SymfonyRequirements.php b/var/SymfonyRequirements.php
-index 0a5de54..3b14a40 100644
+index 0a5de546..3b14a402 100644
 --- a/var/SymfonyRequirements.php
 +++ b/var/SymfonyRequirements.php
 @@ -168,6 +168,9 @@ class PhpIniRequirement extends Requirement
@@ -2191,19 +2191,19 @@ index 0a5de54..3b14a40 100644
              $timezones = array();
              foreach (DateTimeZone::listAbbreviations() as $abbreviations) {
                  foreach ($abbreviations as $abbreviation) {
-@@ -619,12 +633,6 @@ class SymfonyRequirements extends RequirementCollection
-             'Install and enable the <strong>mbstring</strong> extension.'
+@@ -620,12 +634,6 @@ class SymfonyRequirements extends RequirementCollection
          );
  
--        $this->addRecommendation(
+         $this->addRecommendation(
 -            function_exists('iconv'),
 -            'iconv() should be available',
 -            'Install and enable the <strong>iconv</strong> extension.'
 -        );
 -
-         $this->addRecommendation(
+-        $this->addRecommendation(
              function_exists('utf8_decode'),
              'utf8_decode() should be available',
+             'Install and enable the <strong>XML</strong> extension.'
 @@ -689,7 +697,7 @@ class SymfonyRequirements extends RequirementCollection
                      $this->addRecommendation(
                          \Symfony\Component\Intl\Intl::getIcuDataVersion() === \Symfony\Component\Intl\Intl::getIcuVersion(),
@@ -2269,7 +2269,7 @@ index 0a5de54..3b14a40 100644
 +    }
  }
 diff --git a/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php b/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php
-index e24d262..df369b3 100644
+index e24d262e..df369b33 100644
 --- a/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php
 +++ b/vendor/knplabs/knp-markdown-bundle/Parser/MarkdownParser.php
 @@ -216,6 +216,7 @@ class MarkdownParser extends MarkdownExtra implements MarkdownParserInterface
@@ -2281,7 +2281,7 @@ index e24d262..df369b3 100644
                  }xs',
              array(&$this, '_doAnchors_inline_callback'), $text);
 diff --git a/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/bootstrap_3_layout.html.twig b/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/bootstrap_3_layout.html.twig
-index 3e9f133..f2fe8bf 100644
+index 3e9f133d..f2fe8bf3 100644
 --- a/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/bootstrap_3_layout.html.twig
 +++ b/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/bootstrap_3_layout.html.twig
 @@ -87,6 +87,44 @@
@@ -2330,7 +2330,7 @@ index 3e9f133..f2fe8bf 100644
      {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) %}
      {{- parent() -}}
 diff --git a/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig b/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig
-index 993abb7..82d5270 100644
+index 993abb74..82d52706 100644
 --- a/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig
 +++ b/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig
 @@ -79,7 +79,7 @@
@@ -2442,7 +2442,7 @@ index 993abb7..82d5270 100644
  
  {% block attributes -%}
 diff --git a/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php b/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php
-index db436a0..8709652 100644
+index db436a03..87096520 100644
 --- a/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php
 +++ b/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php
 @@ -13,19 +13,6 @@ namespace Symfony\Bundle\FrameworkBundle\Controller;
@@ -2823,7 +2823,7 @@ index db436a0..8709652 100644
 -    }
  }
 diff --git a/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FormType.php b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FormType.php
-index ff8d0b4..86894f1 100644
+index ff8d0b4f..86894f1a 100644
 --- a/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FormType.php
 +++ b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FormType.php
 @@ -142,6 +142,13 @@ class FormType extends BaseType
@@ -2853,7 +2853,7 @@ index ff8d0b4..86894f1 100644
  
      /**
 diff --git a/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php
-index 4776ebc..0944c38 100644
+index 4776ebc4..0944c38b 100644
 --- a/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php
 +++ b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php
 @@ -59,7 +59,6 @@ class TextType extends AbstractType implements DataTransformerInterface
@@ -2865,7 +2865,7 @@ index 4776ebc..0944c38 100644
      public function reverseTransform($data)
      {
 diff --git a/vendor/symfony/symfony/src/Symfony/Component/Form/FormView.php b/vendor/symfony/symfony/src/Symfony/Component/Form/FormView.php
-index 4992833..c1da5f8 100644
+index 4992833e..c1da5f8f 100644
 --- a/vendor/symfony/symfony/src/Symfony/Component/Form/FormView.php
 +++ b/vendor/symfony/symfony/src/Symfony/Component/Form/FormView.php
 @@ -65,29 +65,23 @@ class FormView implements \ArrayAccess, \IteratorAggregate, \Countable
@@ -2914,7 +2914,7 @@ index 4992833..c1da5f8 100644
      public function offsetGet($name)
      {
 diff --git a/web/config.php b/web/config.php
-index 5e36d79..fd7e17e 100644
+index 5e36d79e..fd7e17e6 100644
 --- a/web/config.php
 +++ b/web/config.php
 @@ -11,7 +11,7 @@
