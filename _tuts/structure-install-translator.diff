@@ -1,0 +1,154 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 2deade27..fa6e5f1e 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -7,9 +7,6 @@ imports:
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ 
+ framework:
+-    #esi:             ~
+-    translator:      { fallbacks: ["%locale%"] }
+-    secret:          "%secret%"
+     router:
+         resource: "%kernel.root_dir%/config/routing.yml"
+         strict_requirements: ~
+diff --git a/composer.json b/composer.json
+index d507e949..f501be05 100644
+--- a/composer.json
++++ b/composer.json
+@@ -31,6 +31,7 @@
+         "symfony/monolog-bundle": "^3.1",
+         "symfony/polyfill-apcu": "^1.0",
+         "symfony/swiftmailer-bundle": "^3.1",
++        "symfony/translation": "^4.0",
+         "symfony/yaml": "^4.0"
+     },
+     "require-dev": {
+diff --git a/composer.lock b/composer.lock
+index 6f591ee1..8f8102bc 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "f0115dcb366d9fd6d1222d77688f2ec5",
++    "content-hash": "d8653657f1833f86ece12058333c64b7",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -3229,6 +3229,74 @@
+             "time": "2017-11-07T14:45:01+00:00"
+         },
+         {
++            "name": "symfony/translation",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/translation.git",
++                "reference": "317c2002180f64292ed127bbe31dcf47594c6ed7"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/translation/zipball/317c2002180f64292ed127bbe31dcf47594c6ed7",
++                "reference": "317c2002180f64292ed127bbe31dcf47594c6ed7",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/polyfill-mbstring": "~1.0"
++            },
++            "conflict": {
++                "symfony/config": "<3.4",
++                "symfony/dependency-injection": "<3.4",
++                "symfony/yaml": "<3.4"
++            },
++            "require-dev": {
++                "psr/log": "~1.0",
++                "symfony/config": "~3.4|~4.0",
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/finder": "~2.8|~3.0|~4.0",
++                "symfony/intl": "~3.4|~4.0",
++                "symfony/yaml": "~3.4|~4.0"
++            },
++            "suggest": {
++                "psr/log": "To use logging capability in translator",
++                "symfony/config": "",
++                "symfony/yaml": ""
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Translation\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Translation Component",
++            "homepage": "https://symfony.com",
++            "time": "2017-11-28T22:05:27+00:00"
++        },
++        {
+             "name": "symfony/yaml",
+             "version": "v4.0.1",
+             "source": {
+diff --git a/config/packages/translation.yaml b/config/packages/translation.yaml
+new file mode 100644
+index 00000000..1edfbe23
+--- /dev/null
++++ b/config/packages/translation.yaml
+@@ -0,0 +1,7 @@
++framework:
++    default_locale: '%locale%'
++    translator:
++        paths:
++            - '%kernel.project_dir%/translations'
++        fallbacks:
++            - '%locale%'
+diff --git a/symfony.lock b/symfony.lock
+index f66ce11e..a18dab51 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -218,6 +218,15 @@
+     "symfony/templating": {
+         "version": "v4.0.1"
+     },
++    "symfony/translation": {
++        "version": "3.3",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "3.3",
++            "ref": "6bcd6c570c017ea6ae5a7a6a027c929fd3542cd8"
++        }
++    },
+     "symfony/yaml": {
+         "version": "v4.0.1"
+     },
+diff --git a/translations/.gitignore b/translations/.gitignore
+new file mode 100644
+index 00000000..e69de29b
+diff --git a/app/Resources/translations/validators.en.yml b/translations/validators.en.yml
+similarity index 100%
+rename from app/Resources/translations/validators.en.yml
+rename to translations/validators.en.yml

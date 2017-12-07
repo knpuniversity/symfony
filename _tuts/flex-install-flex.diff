@@ -1,0 +1,91 @@
+diff --git a/composer.json b/composer.json
+index 63af00d4..7489a83c 100644
+--- a/composer.json
++++ b/composer.json
+@@ -25,7 +25,8 @@
+         "sensio/framework-extra-bundle": "^3.0.2",
+         "knplabs/knp-markdown-bundle": "^1.4",
+         "doctrine/doctrine-migrations-bundle": "^1.1",
+-        "stof/doctrine-extensions-bundle": "dev-sf4"
++        "stof/doctrine-extensions-bundle": "dev-sf4",
++        "symfony/flex": "^1.0"
+     },
+     "require-dev": {
+         "symfony/phpunit-bridge": "^4.0",
+diff --git a/composer.lock b/composer.lock
+index 45fb807b..1308f2e2 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "4e1418e14780068269a5a528e317491a",
++    "content-hash": "464fe2404b8ff2e60f0f89f0b63caa24",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -1939,6 +1939,52 @@
+             "time": "2017-09-30T22:39:41+00:00"
+         },
+         {
++            "name": "symfony/flex",
++            "version": "v1.0.48",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/flex.git",
++                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/73436bc5c0e3b63f5655552d580b48ad0e17543f",
++                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f",
++                "shasum": ""
++            },
++            "require": {
++                "composer-plugin-api": "^1.1",
++                "php": "^7.0"
++            },
++            "require-dev": {
++                "composer/composer": "^1.4",
++                "symfony/phpunit-bridge": "^3.2.8"
++            },
++            "type": "composer-plugin",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "1.0-dev"
++                },
++                "class": "Symfony\\Flex\\Flex"
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Flex\\": "src"
++                }
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien.potencier@gmail.com"
++                }
++            ],
++            "time": "2017-12-07T20:09:46+00:00"
++        },
++        {
+             "name": "symfony/monolog-bundle",
+             "version": "v3.1.2",
+             "source": {
+diff --git a/symfony.lock b/symfony.lock
+new file mode 100644
+index 00000000..a9e01b92
+--- /dev/null
++++ b/symfony.lock
+@@ -0,0 +1,5 @@
++{
++    "symfony/flex": {
++        "version": "v1.0.48"
++    }
++}

@@ -1,0 +1,484 @@
+diff --git a/.gitignore b/.gitignore
+index 93821ad1..6f663e70 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -14,3 +14,8 @@
+ !var/SymfonyRequirements.php
+ /vendor/
+ /web/bundles/
++
++###> symfony/phpunit-bridge ###
++.phpunit
++/phpunit.xml
++###< symfony/phpunit-bridge ###
+diff --git a/bin/phpunit b/bin/phpunit
+new file mode 100755
+index 00000000..75d5be85
+--- /dev/null
++++ b/bin/phpunit
+@@ -0,0 +1,18 @@
++#!/usr/bin/env php
++<?php
++
++if (!file_exists(dirname(__DIR__).'/vendor/symfony/phpunit-bridge/bin/simple-phpunit')) {
++    echo "Unable to find the `simple-phpunit` script in `vendor/symfony/phpunit-bridge/bin/`.\n";
++    exit(1);
++}
++if (false === getenv('SYMFONY_PHPUNIT_REMOVE')) {
++    putenv('SYMFONY_PHPUNIT_REMOVE=symfony/yaml');
++}
++if (false === getenv('SYMFONY_PHPUNIT_VERSION')) {
++    putenv('SYMFONY_PHPUNIT_VERSION=6.5');
++}
++if (false === getenv('SYMFONY_PHPUNIT_DIR')) {
++    putenv('SYMFONY_PHPUNIT_DIR='.__DIR__.'/.phpunit');
++}
++
++require dirname(__DIR__).'/vendor/symfony/phpunit-bridge/bin/simple-phpunit';
+diff --git a/composer.json b/composer.json
+index 7489a83c..3265d116 100644
+--- a/composer.json
++++ b/composer.json
+@@ -59,6 +59,9 @@
+         "symfony-assets-install": "relative",
+         "incenteev-parameters": {
+             "file": "app/config/parameters.yml"
++        },
++        "symfony": {
++            "allow-contrib": true
+         }
+     },
+     "repositories": [
+diff --git a/config/bundles.php b/config/bundles.php
+new file mode 100644
+index 00000000..38619f9e
+--- /dev/null
++++ b/config/bundles.php
+@@ -0,0 +1,13 @@
++<?php
++
++return [
++    Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle::class => ['all' => true],
++    Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
++    Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
++    Knp\Bundle\MarkdownBundle\KnpMarkdownBundle::class => ['all' => true],
++    Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
++    Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
++    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
++    Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
++    Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
++];
+diff --git a/config/packages/dev/monolog.yaml b/config/packages/dev/monolog.yaml
+new file mode 100644
+index 00000000..36625928
+--- /dev/null
++++ b/config/packages/dev/monolog.yaml
+@@ -0,0 +1,19 @@
++monolog:
++    handlers:
++        main:
++            type: stream
++            path: "%kernel.logs_dir%/%kernel.environment%.log"
++            level: debug
++            channels: ["!event"]
++        # uncomment to get logging in your browser
++        # you may have to allow bigger header sizes in your Web server configuration
++        #firephp:
++        #    type: firephp
++        #    level: info
++        #chromephp:
++        #    type: chromephp
++        #    level: info
++        console:
++            type:   console
++            process_psr_3_messages: false
++            channels: ["!event", "!doctrine", "!console"]
+diff --git a/config/packages/dev/swiftmailer.yaml b/config/packages/dev/swiftmailer.yaml
+new file mode 100644
+index 00000000..5c36456a
+--- /dev/null
++++ b/config/packages/dev/swiftmailer.yaml
+@@ -0,0 +1,4 @@
++# See https://symfony.com/doc/current/email/dev_environment.html
++swiftmailer:
++    #  send all emails to a specific address
++    #delivery_addresses: ['me@example.com']
+diff --git a/config/packages/doctrine.yaml b/config/packages/doctrine.yaml
+new file mode 100644
+index 00000000..ee77d618
+--- /dev/null
++++ b/config/packages/doctrine.yaml
+@@ -0,0 +1,27 @@
++parameters:
++    # Adds a fallback DATABASE_URL if the env var is not set.
++    # This allows you to run cache:warmup even if your
++    # environment variables are not available yet.
++    # You should not need to change this value.
++    env(DATABASE_URL): ''
++
++doctrine:
++    dbal:
++        # configure these for your database server
++        driver: 'pdo_mysql'
++        server_version: '5.7'
++        charset: utf8mb4
++
++        # With Symfony 3.3, remove the `resolve:` prefix
++        url: '%env(resolve:DATABASE_URL)%'
++    orm:
++        auto_generate_proxy_classes: '%kernel.debug%'
++        naming_strategy: doctrine.orm.naming_strategy.underscore
++        auto_mapping: true
++        mappings:
++            App:
++                is_bundle: false
++                type: annotation
++                dir: '%kernel.project_dir%/src/Entity'
++                prefix: 'App\Entity'
++                alias: App
+diff --git a/config/packages/doctrine_migrations.yaml b/config/packages/doctrine_migrations.yaml
+new file mode 100644
+index 00000000..3bf0fbca
+--- /dev/null
++++ b/config/packages/doctrine_migrations.yaml
+@@ -0,0 +1,5 @@
++doctrine_migrations:
++    dir_name: '%kernel.project_dir%/src/Migrations'
++    # namespace is arbitrary but should be different from App\Migrations
++    # as migrations classes should NOT be autoloaded
++    namespace: DoctrineMigrations
+diff --git a/config/packages/prod/doctrine.yaml b/config/packages/prod/doctrine.yaml
+new file mode 100644
+index 00000000..2f16f0fd
+--- /dev/null
++++ b/config/packages/prod/doctrine.yaml
+@@ -0,0 +1,31 @@
++doctrine:
++    orm:
++        metadata_cache_driver:
++            type: service
++            id: doctrine.system_cache_provider
++        query_cache_driver:
++            type: service
++            id: doctrine.system_cache_provider
++        result_cache_driver:
++            type: service
++            id: doctrine.result_cache_provider
++
++services:
++    doctrine.result_cache_provider:
++        class: Symfony\Component\Cache\DoctrineProvider
++        public: false
++        arguments:
++            - '@doctrine.result_cache_pool'
++    doctrine.system_cache_provider:
++        class: Symfony\Component\Cache\DoctrineProvider
++        public: false
++        arguments:
++            - '@doctrine.system_cache_pool'
++
++framework:
++    cache:
++        pools:
++            doctrine.result_cache_pool:
++                adapter: cache.app
++            doctrine.system_cache_pool:
++                adapter: cache.system
+diff --git a/config/packages/prod/monolog.yaml b/config/packages/prod/monolog.yaml
+new file mode 100644
+index 00000000..90e1a4c1
+--- /dev/null
++++ b/config/packages/prod/monolog.yaml
+@@ -0,0 +1,17 @@
++monolog:
++    handlers:
++        main:
++            type: fingers_crossed
++            action_level: error
++            handler: nested
++            excluded_404s:
++                # regex: exclude all 404 errors from the logs
++                - ^/
++        nested:
++            type: stream
++            path: "%kernel.logs_dir%/%kernel.environment%.log"
++            level: debug
++        console:
++            type:   console
++            process_psr_3_messages: false
++            channels: ["!event", "!doctrine"]
+diff --git a/config/packages/stof_doctrine_extensions.yaml b/config/packages/stof_doctrine_extensions.yaml
+new file mode 100644
+index 00000000..c83f3b1d
+--- /dev/null
++++ b/config/packages/stof_doctrine_extensions.yaml
+@@ -0,0 +1,4 @@
++# Read the documentation: https://symfony.com/doc/current/bundles/StofDoctrineExtensionsBundle/index.html
++# See the official DoctrineExtensions documentation for more details: https://github.com/Atlantic18/DoctrineExtensions/tree/master/doc/
++stof_doctrine_extensions:
++    default_locale: en_US
+diff --git a/config/packages/swiftmailer.yaml b/config/packages/swiftmailer.yaml
+new file mode 100644
+index 00000000..cae65084
+--- /dev/null
++++ b/config/packages/swiftmailer.yaml
+@@ -0,0 +1,3 @@
++swiftmailer:
++    url: '%env(MAILER_URL)%'
++    spool: { type: 'memory' }
+diff --git a/config/packages/test/swiftmailer.yaml b/config/packages/test/swiftmailer.yaml
+new file mode 100644
+index 00000000..f4380780
+--- /dev/null
++++ b/config/packages/test/swiftmailer.yaml
+@@ -0,0 +1,2 @@
++swiftmailer:
++    disable_delivery: true
+diff --git a/config/routes/annotations.yaml b/config/routes/annotations.yaml
+new file mode 100644
+index 00000000..d49a502a
+--- /dev/null
++++ b/config/routes/annotations.yaml
+@@ -0,0 +1,3 @@
++controllers:
++    resource: ../../src/Controller/
++    type: annotation
+diff --git a/phpunit.xml.dist b/phpunit.xml.dist
+index a2a09107..07d03877 100644
+--- a/phpunit.xml.dist
++++ b/phpunit.xml.dist
+@@ -9,6 +9,20 @@
+ >
+     <php>
+         <ini name="error_reporting" value="-1" />
++
++        <!-- ###+ doctrine/doctrine-bundle ### -->
++        <!-- Format described at http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url -->
++        <!-- For an SQLite database, use: "sqlite:///%kernel.project_dir%/var/data.db" -->
++        <!-- Configure your db driver and server_version in config/packages/doctrine.yaml -->
++        <env name="DATABASE_URL" value="mysql://db_user:db_password@127.0.0.1:3306/db_name"/>
++        <!-- ###- doctrine/doctrine-bundle ### -->
++
++        <!-- ###+ symfony/swiftmailer-bundle ### -->
++        <!-- For Gmail as a transport, use: "gmail://username:password@localhost" -->
++        <!-- For a generic SMTP server, use: "smtp://localhost:25?encryption=&auth_mode=" -->
++        <!-- Delivery is disabled by default via "null://localhost" -->
++        <env name="MAILER_URL" value="null://localhost"/>
++        <!-- ###- symfony/swiftmailer-bundle ### -->
+     </php>
+ 
+     <testsuites>
+@@ -19,6 +33,20 @@
+ 
+     <php>
+         <server name="KERNEL_DIR" value="app/" />
++
++        <!-- ###+ doctrine/doctrine-bundle ### -->
++        <!-- Format described at http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url -->
++        <!-- For an SQLite database, use: "sqlite:///%kernel.project_dir%/var/data.db" -->
++        <!-- Configure your db driver and server_version in config/packages/doctrine.yaml -->
++        <env name="DATABASE_URL" value="mysql://db_user:db_password@127.0.0.1:3306/db_name"/>
++        <!-- ###- doctrine/doctrine-bundle ### -->
++
++        <!-- ###+ symfony/swiftmailer-bundle ### -->
++        <!-- For Gmail as a transport, use: "gmail://username:password@localhost" -->
++        <!-- For a generic SMTP server, use: "smtp://localhost:25?encryption=&auth_mode=" -->
++        <!-- Delivery is disabled by default via "null://localhost" -->
++        <env name="MAILER_URL" value="null://localhost"/>
++        <!-- ###- symfony/swiftmailer-bundle ### -->
+     </php>
+ 
+     <filter>
+diff --git a/src/Entity/.gitignore b/src/Entity/.gitignore
+new file mode 100644
+index 00000000..e69de29b
+diff --git a/src/Migrations/.gitignore b/src/Migrations/.gitignore
+new file mode 100644
+index 00000000..e69de29b
+diff --git a/src/Repository/.gitignore b/src/Repository/.gitignore
+new file mode 100644
+index 00000000..e69de29b
+diff --git a/symfony.lock b/symfony.lock
+index a9e01b92..7264dbbc 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -1,5 +1,176 @@
+ {
++    "behat/transliterator": {
++        "version": "v1.2.0"
++    },
++    "doctrine/annotations": {
++        "version": "1.0",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "1.0",
++            "ref": "cb4152ebcadbe620ea2261da1a1c5a9b8cea7672"
++        }
++    },
++    "doctrine/cache": {
++        "version": "v1.7.1"
++    },
++    "doctrine/collections": {
++        "version": "v1.5.0"
++    },
++    "doctrine/common": {
++        "version": "v2.8.1"
++    },
++    "doctrine/data-fixtures": {
++        "version": "v1.3.0"
++    },
++    "doctrine/dbal": {
++        "version": "v2.6.3"
++    },
++    "doctrine/doctrine-bundle": {
++        "version": "1.6",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "1.6",
++            "ref": "44d3aa7752dd46f77ba11af2297a25e1dedfb4d0"
++        }
++    },
++    "doctrine/doctrine-cache-bundle": {
++        "version": "1.3.2"
++    },
++    "doctrine/doctrine-fixtures-bundle": {
++        "version": "v2.4.1"
++    },
++    "doctrine/doctrine-migrations-bundle": {
++        "version": "1.2",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "1.2",
++            "ref": "c1431086fec31f17fbcfe6d6d7e92059458facc1"
++        }
++    },
++    "doctrine/inflector": {
++        "version": "v1.2.0"
++    },
++    "doctrine/instantiator": {
++        "version": "1.1.0"
++    },
++    "doctrine/lexer": {
++        "version": "v1.0.1"
++    },
++    "doctrine/migrations": {
++        "version": "v1.6.2"
++    },
++    "doctrine/orm": {
++        "version": "v2.5.13"
++    },
++    "egulias/email-validator": {
++        "version": "2.1.3"
++    },
++    "fig/link-util": {
++        "version": "1.0.0"
++    },
++    "gedmo/doctrine-extensions": {
++        "version": "v2.4.31"
++    },
++    "jdorn/sql-formatter": {
++        "version": "v1.2.17"
++    },
++    "knplabs/knp-markdown-bundle": {
++        "version": "1.6.0"
++    },
++    "michelf/php-markdown": {
++        "version": "1.7.0"
++    },
++    "monolog/monolog": {
++        "version": "1.23.0"
++    },
++    "ocramius/proxy-manager": {
++        "version": "2.1.1"
++    },
++    "psr/cache": {
++        "version": "1.0.1"
++    },
++    "psr/container": {
++        "version": "1.0.0"
++    },
++    "psr/link": {
++        "version": "1.0.0"
++    },
++    "psr/log": {
++        "version": "1.0.2"
++    },
++    "psr/simple-cache": {
++        "version": "1.0.0"
++    },
++    "sensio/framework-extra-bundle": {
++        "version": "v3.0.27"
++    },
++    "stof/doctrine-extensions-bundle": {
++        "version": "1.2",
++        "recipe": {
++            "repo": "github.com/symfony/recipes-contrib",
++            "branch": "master",
++            "version": "1.2",
++            "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
++        }
++    },
++    "swiftmailer/swiftmailer": {
++        "version": "v6.0.2"
++    },
+     "symfony/flex": {
+         "version": "v1.0.48"
++    },
++    "symfony/monolog-bundle": {
++        "version": "3.1",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "3.1",
++            "ref": "c24944bd87dacf0bb8fa218dc21e4a70fff56882"
++        }
++    },
++    "symfony/phpunit-bridge": {
++        "version": "3.3",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "3.3",
++            "ref": "1fc8201c507489d500c0538f8b40f6851463aa0d"
++        }
++    },
++    "symfony/polyfill-apcu": {
++        "version": "v1.6.0"
++    },
++    "symfony/polyfill-intl-icu": {
++        "version": "v1.6.0"
++    },
++    "symfony/polyfill-mbstring": {
++        "version": "v1.6.0"
++    },
++    "symfony/polyfill-php72": {
++        "version": "v1.6.0"
++    },
++    "symfony/swiftmailer-bundle": {
++        "version": "2.5",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "2.5",
++            "ref": "8daf8ede72274989fb0dc66b83cb4bc1693afbb9"
++        }
++    },
++    "symfony/symfony": {
++        "version": "v4.0.1"
++    },
++    "twig/twig": {
++        "version": "v2.4.4"
++    },
++    "zendframework/zend-code": {
++        "version": "3.3.0"
++    },
++    "zendframework/zend-eventmanager": {
++        "version": "3.2.0"
+     }
+ }
+diff --git a/tests/.gitignore b/tests/.gitignore
+new file mode 100644
+index 00000000..e69de29b

@@ -1431,6 +1431,11 @@
             "description": null
         },
         {
+            "id": "setup-deleting-tracked-vendor-cache-files",
+            "name": "Setup: Deleting tracked vendor\/cache files",
+            "description": null
+        },
+        {
             "id": "upgrade-upgrading-to-3-4",
             "name": "Upgrade: Upgrading to 3.4",
             "description": null
@@ -1479,7 +1484,72 @@
             "id": "deprecations-add-form-issubmitted",
             "name": "Deprecations: Add $form->isSubmitted()",
             "description": null
+        },
+        {
+            "id": "upgrade-change-deps-to-4-0",
+            "name": "Upgrade: Change deps to 4.0",
+            "description": null
+        },
+        {
+            "id": "upgrade-remove-alice",
+            "name": "Upgrade: Remove alice",
+            "description": null
+        },
+        {
+            "id": "upgrade-remove-generator-parameter-handler",
+            "name": "Upgrade: Remove generator & parameter handler",
+            "description": null
+        },
+        {
+            "id": "upgrade-stofdoctrineextensionsbundle",
+            "name": "Upgrade: StofDoctrineExtensionsBundle",
+            "description": null
+        },
+        {
+            "id": "upgrade-upgrade-swiftmailerbundle",
+            "name": "Upgrade: Upgrade SwiftmailerBundle",
+            "description": null
+        },
+        {
+            "id": "flex-install-flex",
+            "name": "Flex: Install Flex",
+            "description": null
+        },
+        {
+            "id": "flex-install-current-recipes",
+            "name": "Flex: Install current recipes",
+            "description": null
+        },
+        {
+            "id": "flex-sync-with-skeleton-composer-json",
+            "name": "Flex: Sync with skeleton composer.json",
+            "description": null
+        },
+        {
+            "id": "flex-re-run-require-to-sort",
+            "name": "Flex: Re-run require to sort",
+            "description": null
+        },
+        {
+            "id": "flex-copy-console-manually",
+            "name": "Flex: Copy console manually",
+            "description": null
+        },
+        {
+            "id": "flex-don-t-auto-register-appbundle",
+            "name": "Flex: Don't auto-register AppBundle",
+            "description": null
+        },
+        {
+            "id": "structure-move-parameters",
+            "name": "Structure: Move parameters",
+            "description": null
+        },
+        {
+            "id": "structure-install-translator",
+            "name": "Structure: Install translator",
+            "description": null
         }
     ],
-    "sha": "09612187eee1150e60db2607ff25ad039fcca0ac"
+    "sha": "2502d469e5c49003e9d79b6d8c7e500efd6d9640"
 }

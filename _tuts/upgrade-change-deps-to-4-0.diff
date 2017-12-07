@@ -1,0 +1,22 @@
+diff --git a/composer.json b/composer.json
+index 2e8ede15..67e2f591 100644
+--- a/composer.json
++++ b/composer.json
+@@ -15,7 +15,7 @@
+     },
+     "require": {
+         "php": ">=5.5.9",
+-        "symfony/symfony": "^3.4",
++        "symfony/symfony": "^4.0",
+         "doctrine/orm": "^2.5",
+         "doctrine/doctrine-bundle": "^1.6",
+         "doctrine/doctrine-cache-bundle": "^1.2",
+@@ -31,7 +31,7 @@
+     },
+     "require-dev": {
+         "sensio/generator-bundle": "^3.0",
+-        "symfony/phpunit-bridge": "^3.0",
++        "symfony/phpunit-bridge": "^4.0",
+         "nelmio/alice": "^2.1",
+         "doctrine/doctrine-fixtures-bundle": "^2.3"
+     },
