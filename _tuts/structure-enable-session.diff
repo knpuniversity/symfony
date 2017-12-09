@@ -1,0 +1,32 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 079dc83f..e13019b5 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -11,10 +11,6 @@ framework:
+         engines: ['twig']
+         #assets_version: SomeVersionScheme
+     trusted_hosts:   ~
+-    session:
+-        # handler_id set to null will use default session handler from php.ini
+-        handler_id:  ~
+-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+     fragments:       ~
+     http_method_override: true
+     assets: ~
+diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
+index 967f3eb9..1e49a0b6 100644
+--- a/config/packages/framework.yaml
++++ b/config/packages/framework.yaml
+@@ -5,9 +5,9 @@ framework:
+     #http_method_override: true
+ 
+     # uncomment this entire section to enable sessions
+-    #session:
+-    #    # With this config, PHP's native session handling is used
+-    #    handler_id: ~
++    session:
++        # With this config, PHP's native session handling is used
++        handler_id: ~
+ 
+     #esi: ~
+     #fragments: ~

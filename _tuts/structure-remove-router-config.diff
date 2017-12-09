@@ -1,0 +1,14 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index fa6e5f1e..9bf0ec2e 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -7,9 +7,6 @@ imports:
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ 
+ framework:
+-    router:
+-        resource: "%kernel.root_dir%/config/routing.yml"
+-        strict_requirements: ~
+     form:            ~
+     csrf_protection: ~
+     validation:      { enable_annotations: true }

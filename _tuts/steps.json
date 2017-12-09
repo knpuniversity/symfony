@@ -1549,7 +1549,27 @@
             "id": "structure-install-translator",
             "name": "Structure: Install translator",
             "description": null
+        },
+        {
+            "id": "structure-remove-router-config",
+            "name": "Structure: Remove router config",
+            "description": null
+        },
+        {
+            "id": "structure-install-form-validator",
+            "name": "Structure: Install form+validator",
+            "description": null
+        },
+        {
+            "id": "structure-enable-csrf",
+            "name": "Structure: Enable csrf",
+            "description": null
+        },
+        {
+            "id": "structure-enable-session",
+            "name": "Structure: Enable session",
+            "description": null
         }
     ],
-    "sha": "2502d469e5c49003e9d79b6d8c7e500efd6d9640"
+    "sha": "b8ebd018cd50a6f3c0e9e4c3d313d5c32bbb2e9f"
 }

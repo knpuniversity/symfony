@@ -1,0 +1,204 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 7ad718dd..079dc83f 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -7,12 +7,9 @@ imports:
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ 
+ framework:
+-    csrf_protection: ~
+-    #serializer:      { enable_annotations: true }
+     templating:
+         engines: ['twig']
+         #assets_version: SomeVersionScheme
+-    default_locale:  "%locale%"
+     trusted_hosts:   ~
+     session:
+         # handler_id set to null will use default session handler from php.ini
+diff --git a/composer.json b/composer.json
+index aa859220..3b72d668 100644
+--- a/composer.json
++++ b/composer.json
+@@ -31,6 +31,7 @@
+         "symfony/lts": "^4@dev",
+         "symfony/monolog-bundle": "^3.1",
+         "symfony/polyfill-apcu": "^1.0",
++        "symfony/security-csrf": "^4.0",
+         "symfony/swiftmailer-bundle": "^3.1",
+         "symfony/translation": "^4.0",
+         "symfony/validator": "^4.0",
+diff --git a/composer.lock b/composer.lock
+index d4c8e9ec..0e273eaa 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "597dae7b2b5c05c13bb2e0ae6f99010c",
++    "content-hash": "19cba278fc132511f29c146faed09872",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -3503,6 +3503,131 @@
+             "time": "2017-11-24T14:34:08+00:00"
+         },
+         {
++            "name": "symfony/security-core",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/security-core.git",
++                "reference": "5e57bd020b83a5bf7c40f9aa3d28d69013398927"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/security-core/zipball/5e57bd020b83a5bf7c40f9aa3d28d69013398927",
++                "reference": "5e57bd020b83a5bf7c40f9aa3d28d69013398927",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3"
++            },
++            "require-dev": {
++                "psr/container": "^1.0",
++                "psr/log": "~1.0",
++                "symfony/event-dispatcher": "~3.4|~4.0",
++                "symfony/expression-language": "~3.4|~4.0",
++                "symfony/http-foundation": "~3.4|~4.0",
++                "symfony/ldap": "~3.4|~4.0",
++                "symfony/validator": "~3.4|~4.0"
++            },
++            "suggest": {
++                "psr/container": "To instantiate the Security class",
++                "symfony/event-dispatcher": "",
++                "symfony/expression-language": "For using the expression voter",
++                "symfony/http-foundation": "",
++                "symfony/ldap": "For using LDAP integration",
++                "symfony/validator": "For using the user password constraint"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Security\\Core\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Security Component - Core Library",
++            "homepage": "https://symfony.com",
++            "time": "2017-11-09T12:45:29+00:00"
++        },
++        {
++            "name": "symfony/security-csrf",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/security-csrf.git",
++                "reference": "7c9f2ba6cb69222172dec07c9d71addc1aecdff1"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/security-csrf/zipball/7c9f2ba6cb69222172dec07c9d71addc1aecdff1",
++                "reference": "7c9f2ba6cb69222172dec07c9d71addc1aecdff1",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/security-core": "~3.4|~4.0"
++            },
++            "conflict": {
++                "symfony/http-foundation": "<3.4"
++            },
++            "require-dev": {
++                "symfony/http-foundation": "~3.4|~4.0"
++            },
++            "suggest": {
++                "symfony/http-foundation": "For using the class SessionTokenStorage."
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Security\\Csrf\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Security Component - CSRF Library",
++            "homepage": "https://symfony.com",
++            "time": "2017-12-04T12:31:58+00:00"
++        },
++        {
+             "name": "symfony/swiftmailer-bundle",
+             "version": "v3.1.6",
+             "source": {
+diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
+index b32f52d9..967f3eb9 100644
+--- a/config/packages/framework.yaml
++++ b/config/packages/framework.yaml
+@@ -1,7 +1,7 @@
+ framework:
+     secret: '%env(APP_SECRET)%'
+     #default_locale: en
+-    #csrf_protection: ~
++    csrf_protection: ~
+     #http_method_override: true
+ 
+     # uncomment this entire section to enable sessions
+diff --git a/symfony.lock b/symfony.lock
+index b1e3d6a9..32a5c955 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -224,6 +224,12 @@
+             "ref": "a249484db698d1a847a30291c8f732414ac47e25"
+         }
+     },
++    "symfony/security-core": {
++        "version": "v4.0.1"
++    },
++    "symfony/security-csrf": {
++        "version": "v4.0.1"
++    },
+     "symfony/swiftmailer-bundle": {
+         "version": "2.5",
+         "recipe": {
