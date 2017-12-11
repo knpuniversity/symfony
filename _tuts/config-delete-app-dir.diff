@@ -1,0 +1,126 @@
+diff --git a/app/.htaccess b/app/.htaccess
+deleted file mode 100644
+index fb1de45b..00000000
+--- a/app/.htaccess
++++ /dev/null
+@@ -1,7 +0,0 @@
+-<IfModule mod_authz_core.c>
+-    Require all denied
+-</IfModule>
+-<IfModule !mod_authz_core.c>
+-    Order deny,allow
+-    Deny from all
+-</IfModule>
+diff --git a/app/AppCache.php b/app/AppCache.php
+deleted file mode 100644
+index 639ec2cd..00000000
+--- a/app/AppCache.php
++++ /dev/null
+@@ -1,7 +0,0 @@
+-<?php
+-
+-use Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache;
+-
+-class AppCache extends HttpCache
+-{
+-}
+diff --git a/app/AppKernel.php b/app/AppKernel.php
+deleted file mode 100644
+index c8e61306..00000000
+--- a/app/AppKernel.php
++++ /dev/null
+@@ -1,59 +0,0 @@
+-<?php
+-
+-use Symfony\Bundle\WebServerBundle\WebServerBundle;
+-use Symfony\Component\HttpKernel\Kernel;
+-use Symfony\Component\Config\Loader\LoaderInterface;
+-
+-class AppKernel extends Kernel
+-{
+-    public function registerBundles()
+-    {
+-        $bundles = array(
+-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+-            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+-            new Symfony\Bundle\TwigBundle\TwigBundle(),
+-            new Symfony\Bundle\MonologBundle\MonologBundle(),
+-            //new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+-
+-            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+-            new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
+-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+-
+-            new AppBundle\AppBundle(),
+-        );
+-
+-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+-            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
+-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+-            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+-            $bundles[] = new WebServerBundle();
+-        }
+-
+-        return $bundles;
+-    }
+-
+-    public function getRootDir()
+-    {
+-        return __DIR__;
+-    }
+-
+-    public function getCacheDir()
+-    {
+-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+-    }
+-
+-    public function getLogDir()
+-    {
+-        return dirname(__DIR__).'/var/logs';
+-    }
+-
+-    public function registerContainerConfiguration(LoaderInterface $loader)
+-    {
+-        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+-    }
+-}
+diff --git a/app/autoload.php b/app/autoload.php
+deleted file mode 100644
+index b32da0f3..00000000
+--- a/app/autoload.php
++++ /dev/null
+@@ -1,15 +0,0 @@
+-<?php
+-
+-use Doctrine\Common\Annotations\AnnotationRegistry;
+-use Composer\Autoload\ClassLoader;
+-
+-error_reporting(error_reporting() & ~E_USER_DEPRECATED);
+-
+-/**
+- * @var ClassLoader $loader
+- */
+-$loader = require __DIR__.'/../vendor/autoload.php';
+-
+-AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+-
+-return $loader;
+diff --git a/composer.json b/composer.json
+index 1a6aef20..ac0150ef 100644
+--- a/composer.json
++++ b/composer.json
+@@ -6,8 +6,7 @@
+         "psr-4": {
+             "AppBundle\\": "src/AppBundle",
+             "App\\": "src/"
+-        },
+-        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
++        }
+     },
+     "autoload-dev": {
+         "psr-4": {

@@ -1,0 +1,49 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+deleted file mode 100644
+index 0a292950..00000000
+--- a/app/config/config.yml
++++ /dev/null
+@@ -1,20 +0,0 @@
+-imports:
+-    - { resource: parameters.yml }
+-    - { resource: security.yml }
+-    - { resource: services.yml }
+-
+-# Put parameters here that don't need to change on each machine where the app is deployed
+-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+-
+-doctrine_cache:
+-    providers:
+-        my_markdown_cache:
+-            type: '%cache_type%'
+-            file_system:
+-                directory: '%kernel.cache_dir%/markdown_cache'
+-
+-stof_doctrine_extensions:
+-    default_locale: en_US
+-    orm:
+-        default:
+-            sluggable: true
+diff --git a/config/packages/doctrine_cache.yaml b/config/packages/doctrine_cache.yaml
+new file mode 100644
+index 00000000..71161888
+--- /dev/null
++++ b/config/packages/doctrine_cache.yaml
+@@ -0,0 +1,6 @@
++doctrine_cache:
++    providers:
++        my_markdown_cache:
++            type: '%cache_type%'
++            file_system:
++                directory: '%kernel.cache_dir%/markdown_cache'
+diff --git a/config/packages/stof_doctrine_extensions.yaml b/config/packages/stof_doctrine_extensions.yaml
+index c83f3b1d..e7ac8f4a 100644
+--- a/config/packages/stof_doctrine_extensions.yaml
++++ b/config/packages/stof_doctrine_extensions.yaml
+@@ -2,3 +2,6 @@
+ # See the official DoctrineExtensions documentation for more details: https://github.com/Atlantic18/DoctrineExtensions/tree/master/doc/
+ stof_doctrine_extensions:
+     default_locale: en_US
++    orm:
++        default:
++            sluggable: true

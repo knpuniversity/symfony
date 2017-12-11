@@ -16,7 +16,7 @@ index 7ad718dd..079dc83f 100644
      session:
          # handler_id set to null will use default session handler from php.ini
 diff --git a/composer.json b/composer.json
-index aa859220..3b72d668 100644
+index c03c8b60..3615103a 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -31,6 +31,7 @@

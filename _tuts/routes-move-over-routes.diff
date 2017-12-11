@@ -1,0 +1,50 @@
+diff --git a/app/config/routing.yml b/app/config/routing.yml
+deleted file mode 100644
+index e88b48e8..00000000
+--- a/app/config/routing.yml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-app:
+-    resource: "@AppBundle/Controller/"
+-    type:     annotation
+-
+-homepage:
+-    path: /
+-    defaults:
+-        _controller: AppBundle:Main:homepage
+diff --git a/app/config/routing_dev.yml b/app/config/routing_dev.yml
+deleted file mode 100644
+index 404f6a3b..00000000
+--- a/app/config/routing_dev.yml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-_wdt:
+-    resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
+-    prefix:   /_wdt
+-
+-_profiler:
+-    resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
+-    prefix:   /_profiler
+-
+-_errors:
+-    resource: "@TwigBundle/Resources/config/routing/errors.xml"
+-    prefix:   /_error
+-
+-_main:
+-    resource: routing.yml
+diff --git a/config/routes.yaml b/config/routes.yaml
+index 3fab0c64..f7e6ee45 100644
+--- a/config/routes.yaml
++++ b/config/routes.yaml
+@@ -1,3 +1,8 @@
+-#index:
+-#    path: /
+-#    defaults: { _controller: 'App\Controller\DefaultController::index' }
++app:
++    resource: "../src/AppBundle/Controller/"
++    type:     annotation
++
++homepage:
++    path: /
++    defaults:
++        _controller: AppBundle\Controller\MainController::homepageAction

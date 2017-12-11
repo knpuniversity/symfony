@@ -1,0 +1,116 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 70e8d4c8..2ce63a92 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -6,9 +6,6 @@ imports:
+ # Put parameters here that don't need to change on each machine where the app is deployed
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ 
+-framework:
+-    assets: ~
+-
+ # Doctrine Configuration
+ doctrine:
+     dbal:
+diff --git a/composer.json b/composer.json
+index 0c216a4e..390686cb 100644
+--- a/composer.json
++++ b/composer.json
+@@ -24,6 +24,7 @@
+         "knplabs/knp-markdown-bundle": "^1.4",
+         "sensio/framework-extra-bundle": "^3.0.2",
+         "stof/doctrine-extensions-bundle": "dev-sf4",
++        "symfony/asset": "^4.0",
+         "symfony/console": "^4.0",
+         "symfony/flex": "^1.0",
+         "symfony/form": "^4.0",
+diff --git a/composer.lock b/composer.lock
+index e2ffd0c3..c3670ff6 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "beca0ff80f01538331b21c2a25840741",
++    "content-hash": "d6dfdef6ed3a2835a31bde30a9da2c96",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -1836,6 +1836,62 @@
+             "time": "2017-09-30T22:39:41+00:00"
+         },
+         {
++            "name": "symfony/asset",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/asset.git",
++                "reference": "3f5117a59af74dd3cecf3ebc70d1e35478ae2d01"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/asset/zipball/3f5117a59af74dd3cecf3ebc70d1e35478ae2d01",
++                "reference": "3f5117a59af74dd3cecf3ebc70d1e35478ae2d01",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3"
++            },
++            "require-dev": {
++                "symfony/http-foundation": "~3.4|~4.0",
++                "symfony/http-kernel": "~3.4|~4.0"
++            },
++            "suggest": {
++                "symfony/http-foundation": ""
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Asset\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Asset Component",
++            "homepage": "https://symfony.com",
++            "time": "2017-11-07T14:45:01+00:00"
++        },
++        {
+             "name": "symfony/cache",
+             "version": "v4.0.1",
+             "source": {
+diff --git a/symfony.lock b/symfony.lock
+index 26270592..9a4a00da 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -113,6 +113,9 @@
+     "swiftmailer/swiftmailer": {
+         "version": "v6.0.2"
+     },
++    "symfony/asset": {
++        "version": "v4.0.1"
++    },
+     "symfony/cache": {
+         "version": "v4.0.1"
+     },

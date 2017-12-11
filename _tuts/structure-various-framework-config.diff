@@ -1,0 +1,26 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 959a7d3d..70e8d4c8 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -7,9 +7,6 @@ imports:
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ 
+ framework:
+-    trusted_hosts:   ~
+-    fragments:       ~
+-    http_method_override: true
+     assets: ~
+ 
+ # Doctrine Configuration
+diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
+index 1e49a0b6..eeefe2f7 100644
+--- a/config/packages/framework.yaml
++++ b/config/packages/framework.yaml
+@@ -10,6 +10,6 @@ framework:
+         handler_id: ~
+ 
+     #esi: ~
+-    #fragments: ~
++    fragments: ~
+     php_errors:
+         log: true

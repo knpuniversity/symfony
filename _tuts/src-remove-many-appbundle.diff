@@ -1,0 +1,220 @@
+diff --git a/config/packages/security.yaml b/config/packages/security.yaml
+index 831abd65..90bc1ce1 100644
+--- a/config/packages/security.yaml
++++ b/config/packages/security.yaml
+@@ -2,7 +2,7 @@
+ # http://symfony.com/doc/current/book/security.html
+ security:
+     encoders:
+-        AppBundle\Entity\User: bcrypt
++        App\Entity\User: bcrypt
+ 
+     role_hierarchy:
+         ROLE_ADMIN: [ROLE_MANAGE_GENUS, ROLE_ALLOWED_TO_SWITCH]
+@@ -10,7 +10,7 @@ security:
+     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+     providers:
+         our_users:
+-            entity: { class: AppBundle\Entity\User, property: email }
++            entity: { class: App\Entity\User, property: email }
+ 
+     firewalls:
+         # disables authentication for assets and the profiler, adapt it according to your needs
+@@ -22,7 +22,7 @@ security:
+             anonymous: ~
+             guard:
+                 authenticators:
+-                    - AppBundle\Security\LoginFormAuthenticator
++                    - App\Security\LoginFormAuthenticator
+ 
+             logout:
+                 path: /logout
+diff --git a/src/AppBundle.php b/src/AppBundle.php
+deleted file mode 100644
+index 92510953..00000000
+--- a/src/AppBundle.php
++++ /dev/null
+@@ -1,9 +0,0 @@
+-<?php
+-
+-namespace App;
+-
+-use Symfony\Component\HttpKernel\Bundle\Bundle;
+-
+-class AppBundle extends Bundle
+-{
+-}
+diff --git a/src/Controller/Admin/GenusAdminController.php b/src/Controller/Admin/GenusAdminController.php
+index 6365d744..baa13c77 100644
+--- a/src/Controller/Admin/GenusAdminController.php
++++ b/src/Controller/Admin/GenusAdminController.php
+@@ -22,7 +22,7 @@ class GenusAdminController extends Controller
+     public function indexAction()
+     {
+         $genuses = $this->getDoctrine()
+-            ->getRepository('AppBundle:Genus')
++            ->getRepository(Genus::class)
+             ->findAll();
+ 
+         return $this->render('admin/genus/list.html.twig', array(
+diff --git a/src/Controller/GenusController.php b/src/Controller/GenusController.php
+index 4c0a852c..f3b51792 100644
+--- a/src/Controller/GenusController.php
++++ b/src/Controller/GenusController.php
+@@ -5,6 +5,8 @@ namespace App\Controller;
+ use App\Entity\Genus;
+ use App\Entity\GenusNote;
+ use App\Entity\GenusScientist;
++use App\Entity\SubFamily;
++use App\Entity\User;
+ use App\Service\MarkdownTransformer;
+ use Psr\Log\LoggerInterface;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+@@ -22,7 +24,7 @@ class GenusController extends Controller
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        $subFamily = $em->getRepository('AppBundle:SubFamily')
++        $subFamily = $em->getRepository(SubFamily::class)
+             ->findAny();
+ 
+         $genus = new Genus();
+@@ -38,7 +40,7 @@ class GenusController extends Controller
+         $genusNote->setCreatedAt(new \DateTime('-1 month'));
+         $genusNote->setGenus($genus);
+ 
+-        $user = $em->getRepository('AppBundle:User')
++        $user = $em->getRepository(User::class)
+             ->findOneBy(['email' => 'aquanaut1@example.org']);
+ 
+         $genusScientist = new GenusScientist();
+@@ -65,7 +67,7 @@ class GenusController extends Controller
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        $genuses = $em->getRepository('AppBundle:Genus')
++        $genuses = $em->getRepository(Genus::class)
+             ->findAllPublishedOrderedByRecentlyActive();
+ 
+         return $this->render('genus/list.html.twig', [
+@@ -84,7 +86,7 @@ class GenusController extends Controller
+ 
+         $logger->info('Showing genus: '.$genus->getName());
+ 
+-        $recentNotes = $em->getRepository('AppBundle:GenusNote')
++        $recentNotes = $em->getRepository(GenusNote::class)
+             ->findAllRecentNotesForGenus($genus);
+ 
+         return $this->render('genus/show.html.twig', array(
+@@ -127,7 +129,7 @@ class GenusController extends Controller
+     {
+         $em = $this->getDoctrine()->getManager();
+ 
+-        $genusScientist = $em->getRepository('AppBundle:GenusScientist')
++        $genusScientist = $em->getRepository(GenusScientist::class)
+             ->findOneBy([
+                 'user' => $userId,
+                 'genus' => $genusId
+diff --git a/src/Entity/Genus.php b/src/Entity/Genus.php
+index f4f6a062..e691a776 100644
+--- a/src/Entity/Genus.php
++++ b/src/Entity/Genus.php
+@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
+ 
+ 
+ /**
+- * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusRepository")
++ * @ORM\Entity(repositoryClass="App\Repository\GenusRepository")
+  * @ORM\Table(name="genus")
+  */
+ class Genus
+@@ -37,7 +37,7 @@ class Genus
+ 
+     /**
+      * @Assert\NotBlank()
+-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubFamily")
++     * @ORM\ManyToOne(targetEntity="App\Entity\SubFamily")
+      * @ORM\JoinColumn(nullable=false)
+      */
+     private $subFamily;
+diff --git a/src/Entity/GenusNote.php b/src/Entity/GenusNote.php
+index c5d097fc..5644b6bf 100644
+--- a/src/Entity/GenusNote.php
++++ b/src/Entity/GenusNote.php
+@@ -5,7 +5,7 @@ namespace App\Entity;
+ use Doctrine\ORM\Mapping as ORM;
+ 
+ /**
+- * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusNoteRepository")
++ * @ORM\Entity(repositoryClass="App\Repository\GenusNoteRepository")
+  * @ORM\Table(name="genus_note")
+  */
+ class GenusNote
+diff --git a/src/Entity/SubFamily.php b/src/Entity/SubFamily.php
+index 7bcf4e69..3d6ef6cf 100644
+--- a/src/Entity/SubFamily.php
++++ b/src/Entity/SubFamily.php
+@@ -5,7 +5,7 @@ namespace App\Entity;
+ use Doctrine\ORM\Mapping as ORM;
+ 
+ /**
+- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubFamilyRepository")
++ * @ORM\Entity(repositoryClass="App\Repository\SubFamilyRepository")
+  * @ORM\Table(name="sub_family")
+  */
+ class SubFamily
+diff --git a/src/Entity/User.php b/src/Entity/User.php
+index 96b6168d..0de2827c 100644
+--- a/src/Entity/User.php
++++ b/src/Entity/User.php
+@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
+ use Symfony\Component\Validator\Constraints as Assert;
+ 
+ /**
+- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
++ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+  * @ORM\Table(name="user")
+  * @UniqueEntity(fields={"email"}, message="It looks like you already have an account!")
+  */
+diff --git a/src/Form/GenusFormType.php b/src/Form/GenusFormType.php
+index 7ab57f51..1b420307 100644
+--- a/src/Form/GenusFormType.php
++++ b/src/Form/GenusFormType.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Form;
+ 
++use App\Entity\Genus;
+ use App\Entity\SubFamily;
+ use App\Entity\User;
+ use App\Repository\SubFamilyRepository;
+@@ -60,7 +61,7 @@ class GenusFormType extends AbstractType
+     public function configureOptions(OptionsResolver $resolver)
+     {
+         $resolver->setDefaults([
+-            'data_class' => 'AppBundle\Entity\Genus'
++            'data_class' => Genus::class
+         ]);
+     }
+ 
+diff --git a/src/Security/LoginFormAuthenticator.php b/src/Security/LoginFormAuthenticator.php
+index 912c93ed..264507d9 100644
+--- a/src/Security/LoginFormAuthenticator.php
++++ b/src/Security/LoginFormAuthenticator.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Security;
+ 
++use App\Entity\User;
+ use App\Form\LoginForm;
+ use Doctrine\ORM\EntityManager;
+ use Symfony\Component\Form\FormFactoryInterface;
+@@ -57,7 +58,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+     {
+         $username = $credentials['_username'];
+ 
+-        return $this->em->getRepository('AppBundle:User')
++        return $this->em->getRepository(User::class)
+             ->findOneBy(['email' => $username]);
+     }
+ 

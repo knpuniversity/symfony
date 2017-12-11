@@ -1,0 +1,33 @@
+diff --git a/app/config/config_test.yml b/app/config/config_test.yml
+deleted file mode 100644
+index 2f6d9250..00000000
+--- a/app/config/config_test.yml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-imports:
+-    - { resource: config_dev.yml }
+-
+-framework:
+-    test: ~
+-    session:
+-        storage_id: session.storage.mock_file
+-    profiler:
+-        collect: false
+-
+-web_profiler:
+-    toolbar: false
+-    intercept_redirects: false
+-
+-swiftmailer:
+-    disable_delivery: true
+diff --git a/config/packages/test/framework.yaml b/config/packages/test/framework.yaml
+index 9c5dc409..76d7e5e1 100644
+--- a/config/packages/test/framework.yaml
++++ b/config/packages/test/framework.yaml
+@@ -1,4 +1,4 @@
+ framework:
+     test: ~
+-    #session:
+-    #    storage_id: session.storage.mock_file
++    session:
++        storage_id: session.storage.mock_file

@@ -1,0 +1,95 @@
+diff --git a/app/config/security.yml b/app/config/security.yml
+deleted file mode 100644
+index 831abd65..00000000
+--- a/app/config/security.yml
++++ /dev/null
+@@ -1,40 +0,0 @@
+-# To get started with security, check out the documentation:
+-# http://symfony.com/doc/current/book/security.html
+-security:
+-    encoders:
+-        AppBundle\Entity\User: bcrypt
+-
+-    role_hierarchy:
+-        ROLE_ADMIN: [ROLE_MANAGE_GENUS, ROLE_ALLOWED_TO_SWITCH]
+-
+-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+-    providers:
+-        our_users:
+-            entity: { class: AppBundle\Entity\User, property: email }
+-
+-    firewalls:
+-        # disables authentication for assets and the profiler, adapt it according to your needs
+-        dev:
+-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+-            security: false
+-
+-        main:
+-            anonymous: ~
+-            guard:
+-                authenticators:
+-                    - AppBundle\Security\LoginFormAuthenticator
+-
+-            logout:
+-                path: /logout
+-            switch_user: ~
+-            logout_on_user_change: true
+-            # activate different ways to authenticate
+-
+-            # http_basic: ~
+-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+-
+-            # form_login: ~
+-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+-
+-    access_control:
+-        # - { path: ^/admin, roles: ROLE_ADMIN }
+diff --git a/config/packages/security.yaml b/config/packages/security.yaml
+index eea9b2ff..831abd65 100644
+--- a/config/packages/security.yaml
++++ b/config/packages/security.yaml
+@@ -1,18 +1,40 @@
++# To get started with security, check out the documentation:
++# http://symfony.com/doc/current/book/security.html
+ security:
+-    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
++    encoders:
++        AppBundle\Entity\User: bcrypt
++
++    role_hierarchy:
++        ROLE_ADMIN: [ROLE_MANAGE_GENUS, ROLE_ALLOWED_TO_SWITCH]
++
++    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+     providers:
+-        in_memory: { memory: ~ }
++        our_users:
++            entity: { class: AppBundle\Entity\User, property: email }
++
+     firewalls:
++        # disables authentication for assets and the profiler, adapt it according to your needs
+         dev:
+             pattern: ^/(_(profiler|wdt)|css|images|js)/
+             security: false
++
+         main:
+             anonymous: ~
++            guard:
++                authenticators:
++                    - AppBundle\Security\LoginFormAuthenticator
+ 
++            logout:
++                path: /logout
++            switch_user: ~
++            logout_on_user_change: true
+             # activate different ways to authenticate
+ 
+             # http_basic: ~
+-            # https://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
++            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+ 
+             # form_login: ~
+-            # https://symfony.com/doc/current/cookbook/security/form_login_setup.html
++            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
++
++    access_control:
++        # - { path: ^/admin, roles: ROLE_ADMIN }

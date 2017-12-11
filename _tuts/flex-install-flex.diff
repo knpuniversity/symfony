@@ -1,3 +1,13 @@
+diff --git a/.env.dist b/.env.dist
+new file mode 100644
+index 00000000..5c32b0e6
+--- /dev/null
++++ b/.env.dist
+@@ -0,0 +1,4 @@
++# This file is a "template" of which env vars need to be defined for your application
++# Copy this file to .env file for development, create environment variables when deploying to production
++# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
++
 diff --git a/composer.json b/composer.json
 index 63af00d4..7489a83c 100644
 --- a/composer.json

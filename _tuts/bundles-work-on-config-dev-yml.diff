@@ -1,0 +1,438 @@
+diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
+index 09dc7b3f..98912548 100644
+--- a/app/config/config_dev.yml
++++ b/app/config/config_dev.yml
+@@ -1,19 +1,6 @@
+ imports:
+     - { resource: config.yml }
+ 
+-parameters:
+-    cache_type: array
+-
+-framework:
+-    router:
+-        resource: "%kernel.root_dir%/config/routing_dev.yml"
+-        strict_requirements: true
+-    profiler: { only_exceptions: false }
+-
+-web_profiler:
+-    toolbar: true
+-    intercept_redirects: false
+-
+ monolog:
+     handlers:
+         main:
+diff --git a/composer.json b/composer.json
+index 33156ca9..1a6aef20 100644
+--- a/composer.json
++++ b/composer.json
+@@ -32,6 +32,7 @@
+         "symfony/lts": "^4@dev",
+         "symfony/monolog-bundle": "^3.1",
+         "symfony/polyfill-apcu": "^1.0",
++        "symfony/profiler-pack": "^1.0",
+         "symfony/security-bundle": "^4.0",
+         "symfony/security-csrf": "^4.0",
+         "symfony/swiftmailer-bundle": "^3.1",
+diff --git a/composer.lock b/composer.lock
+index fa44211f..eaf13726 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "c43ed9bb9391d2828aa4f84a0ca51a92",
++    "content-hash": "058b489ecf120b8be782c2922d636009",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -3414,6 +3414,89 @@
+             "time": "2017-10-11T12:05:26+00:00"
+         },
+         {
++            "name": "symfony/polyfill-php72",
++            "version": "v1.6.0",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/polyfill-php72.git",
++                "reference": "6de4f4884b97abbbed9f0a84a95ff2ff77254254"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/6de4f4884b97abbbed9f0a84a95ff2ff77254254",
++                "reference": "6de4f4884b97abbbed9f0a84a95ff2ff77254254",
++                "shasum": ""
++            },
++            "require": {
++                "php": ">=5.3.3"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "1.6-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Polyfill\\Php72\\": ""
++                },
++                "files": [
++                    "bootstrap.php"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Nicolas Grekas",
++                    "email": "p@tchwork.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
++            "homepage": "https://symfony.com",
++            "keywords": [
++                "compatibility",
++                "polyfill",
++                "portable",
++                "shim"
++            ],
++            "time": "2017-10-11T12:05:26+00:00"
++        },
++        {
++            "name": "symfony/profiler-pack",
++            "version": "v1.0.2",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/profiler-pack.git",
++                "reference": "ff9e32daca50ce4d98fcfeabdc27c9028cf6747b"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/profiler-pack/zipball/ff9e32daca50ce4d98fcfeabdc27c9028cf6747b",
++                "reference": "ff9e32daca50ce4d98fcfeabdc27c9028cf6747b",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.0",
++                "symfony/stopwatch": "^3.3|^4.0",
++                "symfony/twig-bundle": "^3.3|^4.0",
++                "symfony/web-profiler-bundle": "^3.3|^4.0"
++            },
++            "type": "metapackage",
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "description": "A pack for the Symfony web profiler",
++            "time": "2017-09-27T22:22:21+00:00"
++        },
++        {
+             "name": "symfony/property-access",
+             "version": "v4.0.1",
+             "source": {
+@@ -3716,6 +3799,55 @@
+             "time": "2017-12-04T20:15:30+00:00"
+         },
+         {
++            "name": "symfony/stopwatch",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/stopwatch.git",
++                "reference": "ac0e49150555c703fef6b696d8eaba1db7a3ca03"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/ac0e49150555c703fef6b696d8eaba1db7a3ca03",
++                "reference": "ac0e49150555c703fef6b696d8eaba1db7a3ca03",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Stopwatch\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Stopwatch Component",
++            "homepage": "https://symfony.com",
++            "time": "2017-11-09T12:45:29+00:00"
++        },
++        {
+             "name": "symfony/swiftmailer-bundle",
+             "version": "v3.1.6",
+             "source": {
+@@ -4148,6 +4280,141 @@
+             "time": "2017-12-04T12:31:58+00:00"
+         },
+         {
++            "name": "symfony/var-dumper",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/var-dumper.git",
++                "reference": "1a9d9c2f7229ff8e3d75adba75968b659dd5c0d0"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/1a9d9c2f7229ff8e3d75adba75968b659dd5c0d0",
++                "reference": "1a9d9c2f7229ff8e3d75adba75968b659dd5c0d0",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/polyfill-mbstring": "~1.0",
++                "symfony/polyfill-php72": "~1.5"
++            },
++            "conflict": {
++                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
++            },
++            "require-dev": {
++                "ext-iconv": "*",
++                "twig/twig": "~1.34|~2.4"
++            },
++            "suggest": {
++                "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
++                "ext-intl": "To show region name in time zone dump"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "files": [
++                    "Resources/functions/dump.php"
++                ],
++                "psr-4": {
++                    "Symfony\\Component\\VarDumper\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Nicolas Grekas",
++                    "email": "p@tchwork.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony mechanism for exploring and dumping PHP variables",
++            "homepage": "https://symfony.com",
++            "keywords": [
++                "debug",
++                "dump"
++            ],
++            "time": "2017-11-30T15:11:43+00:00"
++        },
++        {
++            "name": "symfony/web-profiler-bundle",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/web-profiler-bundle.git",
++                "reference": "d8e15763aa549be42f6920939a417f61a06f0fec"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/d8e15763aa549be42f6920939a417f61a06f0fec",
++                "reference": "d8e15763aa549be42f6920939a417f61a06f0fec",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/http-kernel": "~3.4|~4.0",
++                "symfony/routing": "~3.4|~4.0",
++                "symfony/twig-bridge": "~3.4|~4.0",
++                "symfony/var-dumper": "~3.4|~4.0",
++                "twig/twig": "~1.34|~2.4"
++            },
++            "conflict": {
++                "symfony/config": "<3.4",
++                "symfony/dependency-injection": "<3.4",
++                "symfony/event-dispatcher": "<3.4",
++                "symfony/var-dumper": "<3.4"
++            },
++            "require-dev": {
++                "symfony/config": "~3.4|~4.0",
++                "symfony/console": "~3.4|~4.0",
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/stopwatch": "~3.4|~4.0"
++            },
++            "type": "symfony-bundle",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Bundle\\WebProfilerBundle\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony WebProfilerBundle",
++            "homepage": "https://symfony.com",
++            "time": "2017-12-04T19:38:58+00:00"
++        },
++        {
+             "name": "symfony/yaml",
+             "version": "v4.0.1",
+             "source": {
+diff --git a/config/bundles.php b/config/bundles.php
+index 292a520e..5528430a 100644
+--- a/config/bundles.php
++++ b/config/bundles.php
+@@ -13,4 +13,5 @@ return [
+     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+     Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
+     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
++    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
+ ];
+diff --git a/config/packages/dev/web_profiler.yaml b/config/packages/dev/web_profiler.yaml
+new file mode 100644
+index 00000000..e92166a7
+--- /dev/null
++++ b/config/packages/dev/web_profiler.yaml
+@@ -0,0 +1,6 @@
++web_profiler:
++    toolbar: true
++    intercept_redirects: false
++
++framework:
++    profiler: { only_exceptions: false }
+diff --git a/config/packages/test/web_profiler.yaml b/config/packages/test/web_profiler.yaml
+new file mode 100644
+index 00000000..03752de2
+--- /dev/null
++++ b/config/packages/test/web_profiler.yaml
+@@ -0,0 +1,6 @@
++web_profiler:
++    toolbar: false
++    intercept_redirects: false
++
++framework:
++    profiler: { collect: false }
+diff --git a/config/routes/dev/web_profiler.yaml b/config/routes/dev/web_profiler.yaml
+new file mode 100644
+index 00000000..c82beff2
+--- /dev/null
++++ b/config/routes/dev/web_profiler.yaml
+@@ -0,0 +1,7 @@
++web_profiler_wdt:
++    resource: '@WebProfilerBundle/Resources/config/routing/wdt.xml'
++    prefix: /_wdt
++
++web_profiler_profiler:
++    resource: '@WebProfilerBundle/Resources/config/routing/profiler.xml'
++    prefix: /_profiler
+diff --git a/config/services_dev.yaml b/config/services_dev.yaml
+new file mode 100644
+index 00000000..7960993b
+--- /dev/null
++++ b/config/services_dev.yaml
+@@ -0,0 +1,2 @@
++parameters:
++    cache_type: array
+diff --git a/symfony.lock b/symfony.lock
+index 32a763da..ba896b0d 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -215,6 +215,12 @@
+     "symfony/polyfill-mbstring": {
+         "version": "v1.6.0"
+     },
++    "symfony/polyfill-php72": {
++        "version": "v1.6.0"
++    },
++    "symfony/profiler-pack": {
++        "version": "v1.0.2"
++    },
+     "symfony/property-access": {
+         "version": "v4.0.1"
+     },
+@@ -242,6 +248,9 @@
+     "symfony/security-csrf": {
+         "version": "v4.0.1"
+     },
++    "symfony/stopwatch": {
++        "version": "v4.0.1"
++    },
+     "symfony/swiftmailer-bundle": {
+         "version": "2.5",
+         "recipe": {
+@@ -278,6 +287,18 @@
+     "symfony/validator": {
+         "version": "v4.0.1"
+     },
++    "symfony/var-dumper": {
++        "version": "v4.0.1"
++    },
++    "symfony/web-profiler-bundle": {
++        "version": "3.3",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "3.3",
++            "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
++        }
++    },
+     "symfony/yaml": {
+         "version": "v4.0.1"
+     },

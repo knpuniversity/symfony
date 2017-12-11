@@ -1,0 +1,247 @@
+diff --git a/composer.json b/composer.json
+index 390686cb..33156ca9 100644
+--- a/composer.json
++++ b/composer.json
+@@ -32,6 +32,7 @@
+         "symfony/lts": "^4@dev",
+         "symfony/monolog-bundle": "^3.1",
+         "symfony/polyfill-apcu": "^1.0",
++        "symfony/security-bundle": "^4.0",
+         "symfony/security-csrf": "^4.0",
+         "symfony/swiftmailer-bundle": "^3.1",
+         "symfony/translation": "^4.0",
+diff --git a/composer.lock b/composer.lock
+index c3670ff6..fa44211f 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "d6dfdef6ed3a2835a31bde30a9da2c96",
++    "content-hash": "c43ed9bb9391d2828aa4f84a0ca51a92",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -3559,37 +3559,48 @@
+             "time": "2017-11-24T14:34:08+00:00"
+         },
+         {
+-            "name": "symfony/security-core",
++            "name": "symfony/security",
+             "version": "v4.0.1",
+             "source": {
+                 "type": "git",
+-                "url": "https://github.com/symfony/security-core.git",
+-                "reference": "5e57bd020b83a5bf7c40f9aa3d28d69013398927"
++                "url": "https://github.com/symfony/security.git",
++                "reference": "fc758a0d4a5575b8c209eec23b64d4d31c29de01"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/security-core/zipball/5e57bd020b83a5bf7c40f9aa3d28d69013398927",
+-                "reference": "5e57bd020b83a5bf7c40f9aa3d28d69013398927",
++                "url": "https://api.github.com/repos/symfony/security/zipball/fc758a0d4a5575b8c209eec23b64d4d31c29de01",
++                "reference": "fc758a0d4a5575b8c209eec23b64d4d31c29de01",
+                 "shasum": ""
+             },
+             "require": {
+-                "php": "^7.1.3"
++                "php": "^7.1.3",
++                "symfony/event-dispatcher": "~3.4|~4.0",
++                "symfony/http-foundation": "~3.4|~4.0",
++                "symfony/http-kernel": "~3.4|~4.0",
++                "symfony/property-access": "~3.4|~4.0"
++            },
++            "replace": {
++                "symfony/security-core": "self.version",
++                "symfony/security-csrf": "self.version",
++                "symfony/security-guard": "self.version",
++                "symfony/security-http": "self.version"
+             },
+             "require-dev": {
+                 "psr/container": "^1.0",
+                 "psr/log": "~1.0",
+-                "symfony/event-dispatcher": "~3.4|~4.0",
+                 "symfony/expression-language": "~3.4|~4.0",
+-                "symfony/http-foundation": "~3.4|~4.0",
++                "symfony/finder": "~3.4|~4.0",
+                 "symfony/ldap": "~3.4|~4.0",
++                "symfony/polyfill-intl-icu": "~1.0",
++                "symfony/routing": "~3.4|~4.0",
+                 "symfony/validator": "~3.4|~4.0"
+             },
+             "suggest": {
+                 "psr/container": "To instantiate the Security class",
+-                "symfony/event-dispatcher": "",
+                 "symfony/expression-language": "For using the expression voter",
+-                "symfony/http-foundation": "",
+-                "symfony/ldap": "For using LDAP integration",
++                "symfony/form": "",
++                "symfony/ldap": "For using the LDAP user and authentication providers",
++                "symfony/routing": "For using the HttpUtils class to create sub-requests, redirect the user, and match URLs",
+                 "symfony/validator": "For using the user password constraint"
+             },
+             "type": "library",
+@@ -3600,7 +3611,7 @@
+             },
+             "autoload": {
+                 "psr-4": {
+-                    "Symfony\\Component\\Security\\Core\\": ""
++                    "Symfony\\Component\\Security\\": ""
+                 },
+                 "exclude-from-classmap": [
+                     "/Tests/"
+@@ -3620,38 +3631,59 @@
+                     "homepage": "https://symfony.com/contributors"
+                 }
+             ],
+-            "description": "Symfony Security Component - Core Library",
++            "description": "Symfony Security Component",
+             "homepage": "https://symfony.com",
+-            "time": "2017-11-09T12:45:29+00:00"
++            "time": "2017-12-04T12:31:58+00:00"
+         },
+         {
+-            "name": "symfony/security-csrf",
++            "name": "symfony/security-bundle",
+             "version": "v4.0.1",
+             "source": {
+                 "type": "git",
+-                "url": "https://github.com/symfony/security-csrf.git",
+-                "reference": "7c9f2ba6cb69222172dec07c9d71addc1aecdff1"
++                "url": "https://github.com/symfony/security-bundle.git",
++                "reference": "bd834d038a48491c44df601a0173b2db69192474"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/security-csrf/zipball/7c9f2ba6cb69222172dec07c9d71addc1aecdff1",
+-                "reference": "7c9f2ba6cb69222172dec07c9d71addc1aecdff1",
++                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/bd834d038a48491c44df601a0173b2db69192474",
++                "reference": "bd834d038a48491c44df601a0173b2db69192474",
+                 "shasum": ""
+             },
+             "require": {
++                "ext-xml": "*",
+                 "php": "^7.1.3",
+-                "symfony/security-core": "~3.4|~4.0"
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/http-kernel": "~3.4|~4.0",
++                "symfony/security": "~3.4|~4.0"
+             },
+             "conflict": {
+-                "symfony/http-foundation": "<3.4"
++                "symfony/console": "<3.4",
++                "symfony/event-dispatcher": "<3.4",
++                "symfony/framework-bundle": "<3.4",
++                "symfony/var-dumper": "<3.4"
+             },
+             "require-dev": {
+-                "symfony/http-foundation": "~3.4|~4.0"
+-            },
+-            "suggest": {
+-                "symfony/http-foundation": "For using the class SessionTokenStorage."
++                "doctrine/doctrine-bundle": "~1.5",
++                "symfony/asset": "~3.4|~4.0",
++                "symfony/browser-kit": "~3.4|~4.0",
++                "symfony/console": "~3.4|~4.0",
++                "symfony/css-selector": "~3.4|~4.0",
++                "symfony/dom-crawler": "~3.4|~4.0",
++                "symfony/event-dispatcher": "~3.4|~4.0",
++                "symfony/expression-language": "~3.4|~4.0",
++                "symfony/form": "~3.4|~4.0",
++                "symfony/framework-bundle": "~3.4|~4.0",
++                "symfony/http-foundation": "~3.4|~4.0",
++                "symfony/process": "~3.4|~4.0",
++                "symfony/translation": "~3.4|~4.0",
++                "symfony/twig-bridge": "~3.4|~4.0",
++                "symfony/twig-bundle": "~3.4|~4.0",
++                "symfony/validator": "~3.4|~4.0",
++                "symfony/var-dumper": "~3.4|~4.0",
++                "symfony/yaml": "~3.4|~4.0",
++                "twig/twig": "~1.34|~2.4"
+             },
+-            "type": "library",
++            "type": "symfony-bundle",
+             "extra": {
+                 "branch-alias": {
+                     "dev-master": "4.0-dev"
+@@ -3659,7 +3691,7 @@
+             },
+             "autoload": {
+                 "psr-4": {
+-                    "Symfony\\Component\\Security\\Csrf\\": ""
++                    "Symfony\\Bundle\\SecurityBundle\\": ""
+                 },
+                 "exclude-from-classmap": [
+                     "/Tests/"
+@@ -3679,9 +3711,9 @@
+                     "homepage": "https://symfony.com/contributors"
+                 }
+             ],
+-            "description": "Symfony Security Component - CSRF Library",
++            "description": "Symfony SecurityBundle",
+             "homepage": "https://symfony.com",
+-            "time": "2017-12-04T12:31:58+00:00"
++            "time": "2017-12-04T20:15:30+00:00"
+         },
+         {
+             "name": "symfony/swiftmailer-bundle",
+diff --git a/config/bundles.php b/config/bundles.php
+index a1e22555..292a520e 100644
+--- a/config/bundles.php
++++ b/config/bundles.php
+@@ -12,4 +12,5 @@ return [
+     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
+     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+     Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
++    Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
+ ];
+diff --git a/config/packages/security.yaml b/config/packages/security.yaml
+new file mode 100644
+index 00000000..eea9b2ff
+--- /dev/null
++++ b/config/packages/security.yaml
+@@ -0,0 +1,18 @@
++security:
++    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
++    providers:
++        in_memory: { memory: ~ }
++    firewalls:
++        dev:
++            pattern: ^/(_(profiler|wdt)|css|images|js)/
++            security: false
++        main:
++            anonymous: ~
++
++            # activate different ways to authenticate
++
++            # http_basic: ~
++            # https://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
++
++            # form_login: ~
++            # https://symfony.com/doc/current/cookbook/security/form_login_setup.html
+diff --git a/symfony.lock b/symfony.lock
+index 9a4a00da..32a763da 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -227,9 +227,18 @@
+             "ref": "a249484db698d1a847a30291c8f732414ac47e25"
+         }
+     },
+-    "symfony/security-core": {
++    "symfony/security": {
+         "version": "v4.0.1"
+     },
++    "symfony/security-bundle": {
++        "version": "3.3",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "3.3",
++            "ref": "85834af1496735f28d831489d12ab1921a875e0d"
++        }
++    },
+     "symfony/security-csrf": {
+         "version": "v4.0.1"
+     },

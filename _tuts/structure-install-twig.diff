@@ -1,0 +1,419 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index e13019b5..959a7d3d 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -7,24 +7,11 @@ imports:
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ 
+ framework:
+-    templating:
+-        engines: ['twig']
+-        #assets_version: SomeVersionScheme
+     trusted_hosts:   ~
+     fragments:       ~
+     http_method_override: true
+     assets: ~
+ 
+-# Twig Configuration
+-twig:
+-    debug:            "%kernel.debug%"
+-    strict_variables: "%kernel.debug%"
+-    number_format:
+-        thousands_separator: ','
+-    form_themes:
+-        - bootstrap_3_layout.html.twig
+-        - _formTheme.html.twig
+-
+ # Doctrine Configuration
+ doctrine:
+     dbal:
+diff --git a/composer.json b/composer.json
+index 3615103a..0c216a4e 100644
+--- a/composer.json
++++ b/composer.json
+@@ -34,6 +34,7 @@
+         "symfony/security-csrf": "^4.0",
+         "symfony/swiftmailer-bundle": "^3.1",
+         "symfony/translation": "^4.0",
++        "symfony/twig-bundle": "^4.0",
+         "symfony/validator": "^4.0",
+         "symfony/yaml": "^4.0"
+     },
+diff --git a/composer.lock b/composer.lock
+index 0e273eaa..e2ffd0c3 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "19cba278fc132511f29c146faed09872",
++    "content-hash": "beca0ff80f01538331b21c2a25840741",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -3813,6 +3813,169 @@
+             "time": "2017-11-28T22:05:27+00:00"
+         },
+         {
++            "name": "symfony/twig-bridge",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/twig-bridge.git",
++                "reference": "3739f98d0890881359a7b314555cf151281ff509"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/3739f98d0890881359a7b314555cf151281ff509",
++                "reference": "3739f98d0890881359a7b314555cf151281ff509",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "twig/twig": "^1.35|^2.4.4"
++            },
++            "conflict": {
++                "symfony/console": "<3.4",
++                "symfony/form": "<3.4"
++            },
++            "require-dev": {
++                "fig/link-util": "^1.0",
++                "symfony/asset": "~3.4|~4.0",
++                "symfony/console": "~3.4|~4.0",
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/expression-language": "~3.4|~4.0",
++                "symfony/finder": "~3.4|~4.0",
++                "symfony/form": "~3.4|~4.0",
++                "symfony/http-foundation": "~3.4|~4.0",
++                "symfony/http-kernel": "~3.4|~4.0",
++                "symfony/polyfill-intl-icu": "~1.0",
++                "symfony/routing": "~3.4|~4.0",
++                "symfony/security": "~3.4|~4.0",
++                "symfony/security-acl": "~2.8|~3.0",
++                "symfony/stopwatch": "~3.4|~4.0",
++                "symfony/templating": "~3.4|~4.0",
++                "symfony/translation": "~3.4|~4.0",
++                "symfony/var-dumper": "~3.4|~4.0",
++                "symfony/web-link": "~3.4|~4.0",
++                "symfony/yaml": "~3.4|~4.0"
++            },
++            "suggest": {
++                "symfony/asset": "For using the AssetExtension",
++                "symfony/expression-language": "For using the ExpressionExtension",
++                "symfony/finder": "",
++                "symfony/form": "For using the FormExtension",
++                "symfony/http-kernel": "For using the HttpKernelExtension",
++                "symfony/routing": "For using the RoutingExtension",
++                "symfony/security": "For using the SecurityExtension",
++                "symfony/stopwatch": "For using the StopwatchExtension",
++                "symfony/templating": "For using the TwigEngine",
++                "symfony/translation": "For using the TranslationExtension",
++                "symfony/var-dumper": "For using the DumpExtension",
++                "symfony/web-link": "For using the WebLinkExtension",
++                "symfony/yaml": "For using the YamlExtension"
++            },
++            "type": "symfony-bridge",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Bridge\\Twig\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Twig Bridge",
++            "homepage": "https://symfony.com",
++            "time": "2017-12-04T20:15:30+00:00"
++        },
++        {
++            "name": "symfony/twig-bundle",
++            "version": "v4.0.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/twig-bundle.git",
++                "reference": "77381f8b99b319dc83e609c66942eb3a0a5b066d"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/77381f8b99b319dc83e609c66942eb3a0a5b066d",
++                "reference": "77381f8b99b319dc83e609c66942eb3a0a5b066d",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/config": "~3.4|~4.0",
++                "symfony/http-foundation": "~3.4|~4.0",
++                "symfony/http-kernel": "~3.4|~4.0",
++                "symfony/twig-bridge": "~3.4|~4.0",
++                "twig/twig": "~1.34|~2.4"
++            },
++            "conflict": {
++                "symfony/dependency-injection": "<3.4",
++                "symfony/event-dispatcher": "<3.4"
++            },
++            "require-dev": {
++                "doctrine/annotations": "~1.0",
++                "doctrine/cache": "~1.0",
++                "symfony/asset": "~3.4|~4.0",
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/expression-language": "~3.4|~4.0",
++                "symfony/finder": "~3.4|~4.0",
++                "symfony/form": "~3.4|~4.0",
++                "symfony/framework-bundle": "~3.4|~4.0",
++                "symfony/routing": "~3.4|~4.0",
++                "symfony/stopwatch": "~3.4|~4.0",
++                "symfony/templating": "~3.4|~4.0",
++                "symfony/web-link": "~3.4|~4.0",
++                "symfony/yaml": "~3.4|~4.0"
++            },
++            "type": "symfony-bundle",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.0-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Bundle\\TwigBundle\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony TwigBundle",
++            "homepage": "https://symfony.com",
++            "time": "2017-12-04T12:31:58+00:00"
++        },
++        {
+             "name": "symfony/validator",
+             "version": "v4.0.1",
+             "source": {
+@@ -3955,6 +4118,72 @@
+             "time": "2017-12-04T18:34:52+00:00"
+         },
+         {
++            "name": "twig/twig",
++            "version": "v2.4.4",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/twigphp/Twig.git",
++                "reference": "eddb97148ad779f27e670e1e3f19fb323aedafeb"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/twigphp/Twig/zipball/eddb97148ad779f27e670e1e3f19fb323aedafeb",
++                "reference": "eddb97148ad779f27e670e1e3f19fb323aedafeb",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.0",
++                "symfony/polyfill-mbstring": "~1.0"
++            },
++            "require-dev": {
++                "psr/container": "^1.0",
++                "symfony/debug": "~2.7",
++                "symfony/phpunit-bridge": "~3.3@dev"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "2.4-dev"
++                }
++            },
++            "autoload": {
++                "psr-0": {
++                    "Twig_": "lib/"
++                },
++                "psr-4": {
++                    "Twig\\": "src/"
++                }
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "BSD-3-Clause"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com",
++                    "homepage": "http://fabien.potencier.org",
++                    "role": "Lead Developer"
++                },
++                {
++                    "name": "Armin Ronacher",
++                    "email": "armin.ronacher@active-4.com",
++                    "role": "Project Founder"
++                },
++                {
++                    "name": "Twig Team",
++                    "homepage": "http://twig.sensiolabs.org/contributors",
++                    "role": "Contributors"
++                }
++            ],
++            "description": "Twig, the flexible, fast, and secure template language for PHP",
++            "homepage": "http://twig.sensiolabs.org",
++            "keywords": [
++                "templating"
++            ],
++            "time": "2017-09-27T18:10:31+00:00"
++        },
++        {
+             "name": "zendframework/zend-code",
+             "version": "3.3.0",
+             "source": {
+diff --git a/config/bundles.php b/config/bundles.php
+index f6fc1631..a1e22555 100644
+--- a/config/bundles.php
++++ b/config/bundles.php
+@@ -11,4 +11,5 @@ return [
+     Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
+     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
+     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
++    Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
+ ];
+diff --git a/config/packages/twig.yaml b/config/packages/twig.yaml
+new file mode 100644
+index 00000000..895a2db6
+--- /dev/null
++++ b/config/packages/twig.yaml
+@@ -0,0 +1,9 @@
++twig:
++    paths: ['%kernel.project_dir%/templates']
++    debug: '%kernel.debug%'
++    strict_variables: '%kernel.debug%'
++    number_format:
++        thousands_separator: ','
++    form_themes:
++        - bootstrap_3_layout.html.twig
++        - _formTheme.html.twig
+diff --git a/config/routes/dev/twig.yaml b/config/routes/dev/twig.yaml
+new file mode 100644
+index 00000000..f4ee8396
+--- /dev/null
++++ b/config/routes/dev/twig.yaml
+@@ -0,0 +1,3 @@
++_errors:
++    resource: '@TwigBundle/Resources/config/routing/errors.xml'
++    prefix: /_error
+diff --git a/symfony.lock b/symfony.lock
+index 32a5c955..26270592 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -251,12 +251,27 @@
+             "ref": "6bcd6c570c017ea6ae5a7a6a027c929fd3542cd8"
+         }
+     },
++    "symfony/twig-bridge": {
++        "version": "v4.0.1"
++    },
++    "symfony/twig-bundle": {
++        "version": "3.3",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "3.3",
++            "ref": "f75ac166398e107796ca94cc57fa1edaa06ec47f"
++        }
++    },
+     "symfony/validator": {
+         "version": "v4.0.1"
+     },
+     "symfony/yaml": {
+         "version": "v4.0.1"
+     },
++    "twig/twig": {
++        "version": "v2.4.4"
++    },
+     "zendframework/zend-code": {
+         "version": "3.3.0"
+     },
+diff --git a/app/Resources/views/_formTheme.html.twig b/templates/_formTheme.html.twig
+similarity index 100%
+rename from app/Resources/views/_formTheme.html.twig
+rename to templates/_formTheme.html.twig
+diff --git a/app/Resources/views/admin/genus/_form.html.twig b/templates/admin/genus/_form.html.twig
+similarity index 100%
+rename from app/Resources/views/admin/genus/_form.html.twig
+rename to templates/admin/genus/_form.html.twig
+diff --git a/app/Resources/views/admin/genus/edit.html.twig b/templates/admin/genus/edit.html.twig
+similarity index 100%
+rename from app/Resources/views/admin/genus/edit.html.twig
+rename to templates/admin/genus/edit.html.twig
+diff --git a/app/Resources/views/admin/genus/formLayout.html.twig b/templates/admin/genus/formLayout.html.twig
+similarity index 100%
+rename from app/Resources/views/admin/genus/formLayout.html.twig
+rename to templates/admin/genus/formLayout.html.twig
+diff --git a/app/Resources/views/admin/genus/list.html.twig b/templates/admin/genus/list.html.twig
+similarity index 100%
+rename from app/Resources/views/admin/genus/list.html.twig
+rename to templates/admin/genus/list.html.twig
+diff --git a/app/Resources/views/admin/genus/new.html.twig b/templates/admin/genus/new.html.twig
+similarity index 100%
+rename from app/Resources/views/admin/genus/new.html.twig
+rename to templates/admin/genus/new.html.twig
+diff --git a/app/Resources/views/base.html.twig b/templates/base.html.twig
+similarity index 100%
+rename from app/Resources/views/base.html.twig
+rename to templates/base.html.twig
+diff --git a/app/Resources/views/genus/list.html.twig b/templates/genus/list.html.twig
+similarity index 100%
+rename from app/Resources/views/genus/list.html.twig
+rename to templates/genus/list.html.twig
+diff --git a/app/Resources/views/genus/show.html.twig b/templates/genus/show.html.twig
+similarity index 100%
+rename from app/Resources/views/genus/show.html.twig
+rename to templates/genus/show.html.twig
+diff --git a/app/Resources/views/main/homepage.html.twig b/templates/main/homepage.html.twig
+similarity index 100%
+rename from app/Resources/views/main/homepage.html.twig
+rename to templates/main/homepage.html.twig
+diff --git a/app/Resources/views/security/login.html.twig b/templates/security/login.html.twig
+similarity index 100%
+rename from app/Resources/views/security/login.html.twig
+rename to templates/security/login.html.twig
+diff --git a/app/Resources/views/user/edit.html.twig b/templates/user/edit.html.twig
+similarity index 100%
+rename from app/Resources/views/user/edit.html.twig
+rename to templates/user/edit.html.twig
+diff --git a/app/Resources/views/user/register.html.twig b/templates/user/register.html.twig
+similarity index 100%
+rename from app/Resources/views/user/register.html.twig
+rename to templates/user/register.html.twig
+diff --git a/app/Resources/views/user/show.html.twig b/templates/user/show.html.twig
+similarity index 100%
+rename from app/Resources/views/user/show.html.twig
+rename to templates/user/show.html.twig

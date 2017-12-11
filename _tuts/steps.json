@@ -1569,7 +1569,137 @@
             "id": "structure-enable-session",
             "name": "Structure: Enable session",
             "description": null
+        },
+        {
+            "id": "structure-install-twig",
+            "name": "Structure: Install Twig",
+            "description": null
+        },
+        {
+            "id": "structure-various-framework-config",
+            "name": "Structure: Various framework config",
+            "description": null
+        },
+        {
+            "id": "structure-assets",
+            "name": "Structure: Assets",
+            "description": null
+        },
+        {
+            "id": "bundles-remove-doctrine-config",
+            "name": "Bundles: Remove Doctrine config",
+            "description": null
+        },
+        {
+            "id": "bundles-map-appbundle-entity",
+            "name": "Bundles: Map AppBundle entity",
+            "description": null
+        },
+        {
+            "id": "bundles-move-doctrinecache-stof-extensions",
+            "name": "Bundles: Move DoctrineCache & Stof extensions",
+            "description": null
+        },
+        {
+            "id": "bundles-move-all-services",
+            "name": "Bundles: Move all services",
+            "description": null
+        },
+        {
+            "id": "bundles-require-security",
+            "name": "Bundles: Require security",
+            "description": null
+        },
+        {
+            "id": "bundles-fix-authenticator",
+            "name": "Bundles: Fix authenticator",
+            "description": null
+        },
+        {
+            "id": "bundles-copy-security-yml",
+            "name": "Bundles: Copy security.yml",
+            "description": null
+        },
+        {
+            "id": "bundles-work-on-config-dev-yml",
+            "name": "Bundles: Work on config_dev.yml",
+            "description": null
+        },
+        {
+            "id": "bundles-deleting-old-logging-config",
+            "name": "Bundles: Deleting old logging config",
+            "description": null
+        },
+        {
+            "id": "bundles-config-test-session",
+            "name": "Bundles: config_test + session",
+            "description": null
+        },
+        {
+            "id": "bundles-config-db-in-env-dist",
+            "name": "Bundles: Config db in .env.dist",
+            "description": null
+        },
+        {
+            "id": "routes-move-over-routes",
+            "name": "Routes: Move over routes",
+            "description": null
+        },
+        {
+            "id": "migrations-move-migrations",
+            "name": "Migrations: Move migrations",
+            "description": null
+        },
+        {
+            "id": "config-delete-app-dir",
+            "name": "Config: Delete app\/ dir",
+            "description": null
+        },
+        {
+            "id": "config-remove-parts-of-var",
+            "name": "Config: Remove parts of var\/",
+            "description": null
+        },
+        {
+            "id": "config-re-moving-web",
+            "name": "Config: (Re)moving web\/",
+            "description": null
+        },
+        {
+            "id": "finishing-install-server",
+            "name": "Finishing: Install server",
+            "description": null
+        },
+        {
+            "id": "finishing-upgrade-sfwextrabundle",
+            "name": "Finishing: Upgrade SFWExtraBundle",
+            "description": null
+        },
+        {
+            "id": "finishing-use-isgranted",
+            "name": "Finishing: Use @IsGranted",
+            "description": null
+        },
+        {
+            "id": "src-refactor-everything-into-src",
+            "name": "Src: Refactor everything into src\/",
+            "description": null
+        },
+        {
+            "id": "src-remove-appbundle-in-services-routes",
+            "name": "Src: Remove AppBundle in services & routes",
+            "description": null
+        },
+        {
+            "id": "src-remove-doctrine-mapping",
+            "name": "Src: Remove doctrine mapping",
+            "description": null
+        },
+        {
+            "id": "src-remove-many-appbundle",
+            "name": "Src: Remove many AppBundle",
+            "description": null
         }
     ],
-    "sha": "b8ebd018cd50a6f3c0e9e4c3d313d5c32bbb2e9f"
+    "sha": "2547c7ace5e2e614549ca21e6cfc886fc286d43a"
 }

@@ -1,0 +1,49 @@
+diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
+index 23cac7fc..0a14fa01 100644
+--- a/src/AppBundle/Security/LoginFormAuthenticator.php
++++ b/src/AppBundle/Security/LoginFormAuthenticator.php
+@@ -5,16 +5,22 @@ namespace AppBundle\Security;
+ use AppBundle\Form\LoginForm;
+ use Doctrine\ORM\EntityManager;
+ use Symfony\Component\Form\FormFactoryInterface;
++use Symfony\Component\HttpFoundation\RedirectResponse;
+ use Symfony\Component\HttpFoundation\Request;
++use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\RouterInterface;
++use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+ use Symfony\Component\Security\Core\Security;
+ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+ use Symfony\Component\Security\Core\User\UserInterface;
+ use Symfony\Component\Security\Core\User\UserProviderInterface;
+ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
++use Symfony\Component\Security\Http\Util\TargetPathTrait;
+ 
+ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+ {
++    use TargetPathTrait;
++
+     private $formFactory;
+     private $em;
+     private $router;
+@@ -66,13 +72,17 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
+         return false;
+     }
+ 
+-    protected function getLoginUrl()
++    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+     {
+-        return $this->router->generate('security_login');
++        if ($targetPath = $this->getTargetPath($request->getSession(), 'main')) {
++            return new RedirectResponse($targetPath);
++        }
++
++        return new RedirectResponse($this->router->generate('homepage'));
+     }
+ 
+-    protected function getDefaultSuccessRedirectUrl()
++    protected function getLoginUrl()
+     {
+-        return $this->router->generate('homepage');
++        return $this->router->generate('security_login');
+     }
+ }

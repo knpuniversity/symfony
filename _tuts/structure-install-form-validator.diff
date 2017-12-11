@@ -13,7 +13,7 @@ index 9bf0ec2e..7ad718dd 100644
      templating:
          engines: ['twig']
 diff --git a/composer.json b/composer.json
-index f501be05..aa859220 100644
+index b5ad503e..c03c8b60 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -26,12 +26,14 @@

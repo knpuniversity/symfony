@@ -1,19 +1,20 @@
 diff --git a/.env.dist b/.env.dist
-new file mode 100644
-index 00000000..bcae0c14
---- /dev/null
+index 95bf91f6..01705648 100644
+--- a/.env.dist
 +++ b/.env.dist
-@@ -0,0 +1,10 @@
-+# This file is a "template" of which env vars need to be defined for your application
-+# Copy this file to .env file for development, create environment variables when deploying to production
-+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
-+
+@@ -2,6 +2,12 @@
+ # Copy this file to .env file for development, create environment variables when deploying to production
+ # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+ 
 +###> symfony/framework-bundle ###
 +APP_ENV=dev
 +APP_SECRET=12c008ecf65c043dc2b14b5eb9a115ef
 +#TRUSTED_PROXIES=127.0.0.1,127.0.0.2
 +#TRUSTED_HOSTS=localhost,example.com
 +###< symfony/framework-bundle ###
+ 
+ ###> doctrine/doctrine-bundle ###
+ # Format described at http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
 diff --git a/.gitignore b/.gitignore
 index 6f663e70..766faf5f 100644
 --- a/.gitignore
@@ -30,22 +31,24 @@ index 6f663e70..766faf5f 100644
 +/vendor/
 +###< symfony/framework-bundle ###
 diff --git a/composer.json b/composer.json
-index 3265d116..a99abe6a 100644
+index 3265d116..64c91cbb 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -4,18 +4,24 @@
      "type": "project",
      "autoload": {
          "psr-4": {
-+            "App\\": "src/",
-             "": "src/"
+-            "": "src/"
++            "AppBundle\\": "src/AppBundle",
++            "App\\": "src/"
          },
          "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
      },
      "autoload-dev": {
          "psr-4": {
-+            "App\\Tests\\": "tests/",
-             "Tests\\": "tests/"
+-            "Tests\\": "tests/"
++            "Tests\\AppBundle\\": "tests/AppBundle",
++            "App\\Tests\\": "tests/"
          }
      },
      "require": {

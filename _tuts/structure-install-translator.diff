@@ -13,7 +13,7 @@ index 2deade27..fa6e5f1e 100644
          resource: "%kernel.root_dir%/config/routing.yml"
          strict_requirements: ~
 diff --git a/composer.json b/composer.json
-index d507e949..f501be05 100644
+index 9b218b63..b5ad503e 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -31,6 +31,7 @@

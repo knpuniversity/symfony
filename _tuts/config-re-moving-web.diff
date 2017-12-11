@@ -1,0 +1,977 @@
+diff --git a/web/css/styles.css b/public/css/styles.css
+similarity index 100%
+rename from web/css/styles.css
+rename to public/css/styles.css
+diff --git a/web/images/aquanote-logo.png b/public/images/aquanote-logo.png
+similarity index 100%
+rename from web/images/aquanote-logo.png
+rename to public/images/aquanote-logo.png
+diff --git a/web/images/leanna.jpeg b/public/images/leanna.jpeg
+similarity index 100%
+rename from web/images/leanna.jpeg
+rename to public/images/leanna.jpeg
+diff --git a/web/images/octopus-rubescens.jpg b/public/images/octopus-rubescens.jpg
+similarity index 100%
+rename from web/images/octopus-rubescens.jpg
+rename to public/images/octopus-rubescens.jpg
+diff --git a/web/images/ryan.jpeg b/public/images/ryan.jpeg
+similarity index 100%
+rename from web/images/ryan.jpeg
+rename to public/images/ryan.jpeg
+diff --git a/web/js/GenusAdminForm.js b/public/js/GenusAdminForm.js
+similarity index 100%
+rename from web/js/GenusAdminForm.js
+rename to public/js/GenusAdminForm.js
+diff --git a/web/js/main.js b/public/js/main.js
+similarity index 100%
+rename from web/js/main.js
+rename to public/js/main.js
+diff --git a/web/js/notes.react.js b/public/js/notes.react.js
+similarity index 100%
+rename from web/js/notes.react.js
+rename to public/js/notes.react.js
+diff --git a/web/robots.txt b/public/robots.txt
+similarity index 100%
+rename from web/robots.txt
+rename to public/robots.txt
+diff --git a/web/vendor/bootstrap/css/bootstrap-theme.css b/public/vendor/bootstrap/css/bootstrap-theme.css
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap-theme.css
+rename to public/vendor/bootstrap/css/bootstrap-theme.css
+diff --git a/web/vendor/bootstrap/css/bootstrap-theme.css.map b/public/vendor/bootstrap/css/bootstrap-theme.css.map
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap-theme.css.map
+rename to public/vendor/bootstrap/css/bootstrap-theme.css.map
+diff --git a/web/vendor/bootstrap/css/bootstrap-theme.min.css b/public/vendor/bootstrap/css/bootstrap-theme.min.css
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap-theme.min.css
+rename to public/vendor/bootstrap/css/bootstrap-theme.min.css
+diff --git a/web/vendor/bootstrap/css/bootstrap-theme.min.css.map b/public/vendor/bootstrap/css/bootstrap-theme.min.css.map
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap-theme.min.css.map
+rename to public/vendor/bootstrap/css/bootstrap-theme.min.css.map
+diff --git a/web/vendor/bootstrap/css/bootstrap.css b/public/vendor/bootstrap/css/bootstrap.css
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap.css
+rename to public/vendor/bootstrap/css/bootstrap.css
+diff --git a/web/vendor/bootstrap/css/bootstrap.css.map b/public/vendor/bootstrap/css/bootstrap.css.map
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap.css.map
+rename to public/vendor/bootstrap/css/bootstrap.css.map
+diff --git a/web/vendor/bootstrap/css/bootstrap.min.css b/public/vendor/bootstrap/css/bootstrap.min.css
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap.min.css
+rename to public/vendor/bootstrap/css/bootstrap.min.css
+diff --git a/web/vendor/bootstrap/css/bootstrap.min.css.map b/public/vendor/bootstrap/css/bootstrap.min.css.map
+similarity index 100%
+rename from web/vendor/bootstrap/css/bootstrap.min.css.map
+rename to public/vendor/bootstrap/css/bootstrap.min.css.map
+diff --git a/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot b/public/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot
+similarity index 100%
+rename from web/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot
+rename to public/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot
+diff --git a/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg b/public/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
+similarity index 100%
+rename from web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
+rename to public/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
+diff --git a/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf b/public/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf
+similarity index 100%
+rename from web/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf
+rename to public/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf
+diff --git a/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff b/public/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff
+similarity index 100%
+rename from web/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff
+rename to public/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff
+diff --git a/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2 b/public/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2
+similarity index 100%
+rename from web/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2
+rename to public/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2
+diff --git a/web/vendor/bootstrap/js/bootstrap.js b/public/vendor/bootstrap/js/bootstrap.js
+similarity index 100%
+rename from web/vendor/bootstrap/js/bootstrap.js
+rename to public/vendor/bootstrap/js/bootstrap.js
+diff --git a/web/vendor/bootstrap/js/bootstrap.min.js b/public/vendor/bootstrap/js/bootstrap.min.js
+similarity index 100%
+rename from web/vendor/bootstrap/js/bootstrap.min.js
+rename to public/vendor/bootstrap/js/bootstrap.min.js
+diff --git a/web/vendor/bootstrap/js/npm.js b/public/vendor/bootstrap/js/npm.js
+similarity index 100%
+rename from web/vendor/bootstrap/js/npm.js
+rename to public/vendor/bootstrap/js/npm.js
+diff --git a/web/vendor/fontawesome/css/font-awesome.css b/public/vendor/fontawesome/css/font-awesome.css
+similarity index 100%
+rename from web/vendor/fontawesome/css/font-awesome.css
+rename to public/vendor/fontawesome/css/font-awesome.css
+diff --git a/web/vendor/fontawesome/css/font-awesome.min.css b/public/vendor/fontawesome/css/font-awesome.min.css
+similarity index 100%
+rename from web/vendor/fontawesome/css/font-awesome.min.css
+rename to public/vendor/fontawesome/css/font-awesome.min.css
+diff --git a/web/vendor/fontawesome/fonts/FontAwesome.otf b/public/vendor/fontawesome/fonts/FontAwesome.otf
+similarity index 100%
+rename from web/vendor/fontawesome/fonts/FontAwesome.otf
+rename to public/vendor/fontawesome/fonts/FontAwesome.otf
+diff --git a/web/vendor/fontawesome/fonts/fontawesome-webfont.eot b/public/vendor/fontawesome/fonts/fontawesome-webfont.eot
+similarity index 100%
+rename from web/vendor/fontawesome/fonts/fontawesome-webfont.eot
+rename to public/vendor/fontawesome/fonts/fontawesome-webfont.eot
+diff --git a/web/vendor/fontawesome/fonts/fontawesome-webfont.svg b/public/vendor/fontawesome/fonts/fontawesome-webfont.svg
+similarity index 100%
+rename from web/vendor/fontawesome/fonts/fontawesome-webfont.svg
+rename to public/vendor/fontawesome/fonts/fontawesome-webfont.svg
+diff --git a/web/vendor/fontawesome/fonts/fontawesome-webfont.ttf b/public/vendor/fontawesome/fonts/fontawesome-webfont.ttf
+similarity index 100%
+rename from web/vendor/fontawesome/fonts/fontawesome-webfont.ttf
+rename to public/vendor/fontawesome/fonts/fontawesome-webfont.ttf
+diff --git a/web/vendor/fontawesome/fonts/fontawesome-webfont.woff b/public/vendor/fontawesome/fonts/fontawesome-webfont.woff
+similarity index 100%
+rename from web/vendor/fontawesome/fonts/fontawesome-webfont.woff
+rename to public/vendor/fontawesome/fonts/fontawesome-webfont.woff
+diff --git a/web/vendor/fontawesome/fonts/fontawesome-webfont.woff2 b/public/vendor/fontawesome/fonts/fontawesome-webfont.woff2
+similarity index 100%
+rename from web/vendor/fontawesome/fonts/fontawesome-webfont.woff2
+rename to public/vendor/fontawesome/fonts/fontawesome-webfont.woff2
+diff --git a/web/.htaccess b/web/.htaccess
+deleted file mode 100644
+index 4dc72516..00000000
+--- a/web/.htaccess
++++ /dev/null
+@@ -1,68 +0,0 @@
+-# Use the front controller as index file. It serves as a fallback solution when
+-# every other rewrite/redirect fails (e.g. in an aliased environment without
+-# mod_rewrite). Additionally, this reduces the matching process for the
+-# start page (path "/") because otherwise Apache will apply the rewriting rules
+-# to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
+-DirectoryIndex app.php
+-
+-# By default, Apache does not evaluate symbolic links if you did not enable this
+-# feature in your server configuration. Uncomment the following line if you
+-# install assets as symlinks or if you experience problems related to symlinks
+-# when compiling LESS/Sass/CoffeScript assets.
+-# Options FollowSymlinks
+-
+-# Disabling MultiViews prevents unwanted negotiation, e.g. "/app" should not resolve
+-# to the front controller "/app.php" but be rewritten to "/app.php/app".
+-<IfModule mod_negotiation.c>
+-    Options -MultiViews
+-</IfModule>
+-
+-<IfModule mod_rewrite.c>
+-    RewriteEngine On
+-
+-    # Determine the RewriteBase automatically and set it as environment variable.
+-    # If you are using Apache aliases to do mass virtual hosting or installed the
+-    # project in a subdirectory, the base path will be prepended to allow proper
+-    # resolution of the app.php file and to redirect to the correct URI. It will
+-    # work in environments without path prefix as well, providing a safe, one-size
+-    # fits all solution. But as you do not need it in this case, you can comment
+-    # the following 2 lines to eliminate the overhead.
+-    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+-    RewriteRule ^(.*) - [E=BASE:%1]
+-
+-    # Sets the HTTP_AUTHORIZATION header removed by Apache
+-    RewriteCond %{HTTP:Authorization} .
+-    RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+-
+-    # Redirect to URI without front controller to prevent duplicate content
+-    # (with and without `/app.php`). Only do this redirect on the initial
+-    # rewrite by Apache and not on subsequent cycles. Otherwise we would get an
+-    # endless redirect loop (request -> rewrite to front controller ->
+-    # redirect -> request -> ...).
+-    # So in case you get a "too many redirects" error or you always get redirected
+-    # to the start page because your Apache does not expose the REDIRECT_STATUS
+-    # environment variable, you have 2 choices:
+-    # - disable this feature by commenting the following 2 lines or
+-    # - use Apache >= 2.3.9 and replace all L flags by END flags and remove the
+-    #   following RewriteCond (best solution)
+-    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+-    RewriteRule ^app\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
+-
+-    # If the requested filename exists, simply serve it.
+-    # We only want to let Apache serve files and not directories.
+-    RewriteCond %{REQUEST_FILENAME} -f
+-    RewriteRule ^ - [L]
+-
+-    # Rewrite all other queries to the front controller.
+-    RewriteRule ^ %{ENV:BASE}/app.php [L]
+-</IfModule>
+-
+-<IfModule !mod_rewrite.c>
+-    <IfModule mod_alias.c>
+-        # When mod_rewrite is not available, we instruct a temporary redirect of
+-        # the start page to the front controller explicitly so that the website
+-        # and the generated links can still be used.
+-        RedirectMatch 302 ^/$ /app.php/
+-        # RedirectTemp cannot be used instead
+-    </IfModule>
+-</IfModule>
+diff --git a/web/app.php b/web/app.php
+deleted file mode 100644
+index 8a4c27d5..00000000
+--- a/web/app.php
++++ /dev/null
+@@ -1,31 +0,0 @@
+-<?php
+-
+-use Symfony\Component\HttpFoundation\Request;
+-
+-/**
+- * @var Composer\Autoload\ClassLoader
+- */
+-$loader = require __DIR__.'/../app/autoload.php';
+-include_once __DIR__.'/../var/bootstrap.php.cache';
+-
+-// Enable APC for autoloading to improve performance.
+-// You should change the ApcClassLoader first argument to a unique prefix
+-// in order to prevent cache key conflicts with other applications
+-// also using APC.
+-/*
+-$apcLoader = new Symfony\Component\ClassLoader\ApcClassLoader(sha1(__FILE__), $loader);
+-$loader->unregister();
+-$apcLoader->register(true);
+-*/
+-
+-//require_once __DIR__.'/../app/AppCache.php';
+-
+-$kernel = new AppKernel('prod', false);
+-//$kernel = new AppCache($kernel);
+-
+-// When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
+-//Request::enableHttpMethodParameterOverride();
+-$request = Request::createFromGlobals();
+-$response = $kernel->handle($request);
+-$response->send();
+-$kernel->terminate($request, $response);
+diff --git a/web/app_dev.php b/web/app_dev.php
+deleted file mode 100644
+index 9613d18d..00000000
+--- a/web/app_dev.php
++++ /dev/null
+@@ -1,31 +0,0 @@
+-<?php
+-
+-use Symfony\Component\HttpFoundation\Request;
+-use Symfony\Component\Debug\Debug;
+-
+-// If you don't want to setup permissions the proper way, just uncomment the following PHP line
+-// read http://symfony.com/doc/current/book/installation.html#checking-symfony-application-configuration-and-setup
+-// for more information
+-//umask(0000);
+-
+-// This check prevents access to debug front controllers that are deployed by accident to production servers.
+-// Feel free to remove this, extend it, or make something more sophisticated.
+-if (isset($_SERVER['HTTP_CLIENT_IP'])
+-    || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+-    || !(in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1')) || php_sapi_name() === 'cli-server')
+-) {
+-    header('HTTP/1.0 403 Forbidden');
+-    exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
+-}
+-
+-/**
+- * @var Composer\Autoload\ClassLoader $loader
+- */
+-$loader = require __DIR__.'/../app/autoload.php';
+-Debug::enable();
+-
+-$kernel = new AppKernel('dev', true);
+-$request = Request::createFromGlobals();
+-$response = $kernel->handle($request);
+-$response->send();
+-$kernel->terminate($request, $response);
+diff --git a/web/apple-touch-icon.png b/web/apple-touch-icon.png
+deleted file mode 100644
+index 11f17e6d89ee3b416218ede42b66ec1dd81507f2..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 10784
+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
+
+diff --git a/web/config.php b/web/config.php
+deleted file mode 100644
+index fd7e17e6..00000000
+--- a/web/config.php
++++ /dev/null
+@@ -1,422 +0,0 @@
+-<?php
+-
+-/*
+- * ************** CAUTION **************
+- *
+- * DO NOT EDIT THIS FILE as it will be overridden by Composer as part of
+- * the installation/update process. The original file resides in the
+- * SensioDistributionBundle.
+- *
+- * ************** CAUTION **************
+- */
+-
+-if (!isset($_SERVER['HTTP_HOST'])) {
+-    exit("This script cannot be run from the CLI. Run it from a browser.\n");
+-}
+-
+-if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
+-    '127.0.0.1',
+-    '::1',
+-))) {
+-    header('HTTP/1.0 403 Forbidden');
+-    exit('This script is only accessible from localhost.');
+-}
+-
+-require_once dirname(__FILE__).'/../var/SymfonyRequirements.php';
+-
+-$symfonyRequirements = new SymfonyRequirements();
+-
+-$majorProblems = $symfonyRequirements->getFailedRequirements();
+-$minorProblems = $symfonyRequirements->getFailedRecommendations();
+-$hasMajorProblems = (bool) count($majorProblems);
+-$hasMinorProblems = (bool) count($minorProblems);
+-
+-?>
+-<!DOCTYPE html>
+-<html>
+-    <head>
+-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+-        <meta name="robots" content="noindex,nofollow" />
+-        <title>Symfony Configuration Checker</title>
+-        <style>
+-            /* styles copied from symfony framework bundle */
+-            html {
+-                background: #eee;
+-            }
+-            body {
+-                font: 11px Verdana, Arial, sans-serif;
+-                color: #333;
+-            }
+-            .sf-reset, .sf-reset .block, .sf-reset #message {
+-                margin: auto;
+-            }
+-            img {
+-                border: 0;
+-            }
+-            .clear {
+-                clear: both;
+-                height: 0;
+-                font-size: 0;
+-                line-height: 0;
+-            }
+-            .clear-fix:after {
+-                content: "\0020";
+-                display: block;
+-                height: 0;
+-                clear: both;
+-                visibility: hidden;
+-            }
+-            .clear-fix {
+-                display: inline-block;
+-            }
+-            * html .clear-fix {
+-                height: 1%;
+-            }
+-            .clear-fix {
+-                display: block;
+-            }
+-            .header {
+-                padding: 30px 30px 20px 30px;
+-            }
+-            .header-logo {
+-                float: left;
+-            }
+-            .search {
+-                float: right;
+-                padding-top: 20px;
+-            }
+-            .search label {
+-                line-height: 28px;
+-                vertical-align: middle;
+-            }
+-            .search input {
+-                width: 195px;
+-                font-size: 12px;
+-                border: 1px solid #dadada;
+-                background: #fff url(data:image/gif;base64,R0lGODlhAQAFAKIAAPX19e/v7/39/fr6+urq6gAAAAAAAAAAACH5BAAAAAAALAAAAAABAAUAAAMESAEjCQA7) repeat-x left top;
+-                padding: 5px 6px;
+-                color: #565656;
+-            }
+-            .search input[type="search"] {
+-                -webkit-appearance: textfield;
+-            }
+-            #content {
+-                width: 970px;
+-                margin: 0 auto;
+-            }
+-            #content pre {
+-                white-space: normal;
+-                font-family: Arial, Helvetica, sans-serif;
+-            }
+-
+-            /*
+-            Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+-            Code licensed under the BSD License:
+-            http://developer.yahoo.com/yui/license.html
+-            version: 3.1.2
+-            build: 56
+-            */
+-            .sf-reset div,.sf-reset dl,.sf-reset dt,.sf-reset dd,.sf-reset ul,.sf-reset ol,.sf-reset li,.sf-reset h1,.sf-reset h2,.sf-reset h3,.sf-reset h4,.sf-reset h5,.sf-reset h6,.sf-reset pre,.sf-reset code,.sf-reset form,.sf-reset fieldset,.sf-reset legend,.sf-reset input,.sf-reset textarea,.sf-reset p,.sf-reset blockquote,.sf-reset th,.sf-reset td{margin:0;padding:0;}.sf-reset table{border-collapse:collapse;border-spacing:0;}.sf-reset fieldset,.sf-reset img{border:0;}.sf-reset address,.sf-reset caption,.sf-reset cite,.sf-reset code,.sf-reset dfn,.sf-reset em,.sf-reset strong,.sf-reset th,.sf-reset var{font-style:normal;font-weight:normal;}.sf-reset li{list-style:none;}.sf-reset caption,.sf-reset th{text-align:left;}.sf-reset h1,.sf-reset h2,.sf-reset h3,.sf-reset h4,.sf-reset h5,.sf-reset h6{font-size:100%;font-weight:normal;}.sf-reset q:before,.sf-reset q:after{content:'';}.sf-reset abbr,.sf-reset acronym{border:0;font-variant:normal;}.sf-reset sup{vertical-align:text-top;}.sf-reset sub{vertical-align:text-bottom;}.sf-reset input,.sf-reset textarea,.sf-reset select{font-family:inherit;font-size:inherit;font-weight:inherit;}.sf-reset input,.sf-reset textarea,.sf-reset select{font-size:100%;}.sf-reset legend{color:#000;}
+-            .sf-reset abbr {
+-                border-bottom: 1px dotted #000;
+-                cursor: help;
+-            }
+-            .sf-reset p {
+-                font-size: 14px;
+-                line-height: 20px;
+-                padding-bottom: 20px;
+-            }
+-            .sf-reset strong {
+-                color: #313131;
+-                font-weight: bold;
+-            }
+-            .sf-reset a {
+-                color: #6c6159;
+-            }
+-            .sf-reset a img {
+-                border: none;
+-            }
+-            .sf-reset a:hover {
+-                text-decoration: underline;
+-            }
+-            .sf-reset em {
+-                font-style: italic;
+-            }
+-            .sf-reset h2,
+-            .sf-reset h3 {
+-                font-weight: bold;
+-            }
+-            .sf-reset h1 {
+-                font-family: Georgia, "Times New Roman", Times, serif;
+-                font-size: 20px;
+-                color: #313131;
+-                word-wrap: break-word;
+-            }
+-            .sf-reset li {
+-                padding-bottom: 10px;
+-            }
+-            .sf-reset .block {
+-                -moz-border-radius: 16px;
+-                -webkit-border-radius: 16px;
+-                border-radius: 16px;
+-                margin-bottom: 20px;
+-                background-color: #FFFFFF;
+-                border: 1px solid #dfdfdf;
+-                padding: 40px 50px;
+-                word-break: break-all;
+-            }
+-            .sf-reset h2 {
+-                font-size: 16px;
+-                font-family: Arial, Helvetica, sans-serif;
+-            }
+-            .sf-reset li a {
+-                background: none;
+-                color: #868686;
+-                text-decoration: none;
+-            }
+-            .sf-reset li a:hover {
+-                background: none;
+-                color: #313131;
+-                text-decoration: underline;
+-            }
+-            .sf-reset ol {
+-                padding: 10px 0;
+-            }
+-            .sf-reset ol li {
+-                list-style: decimal;
+-                margin-left: 20px;
+-                padding: 2px;
+-                padding-bottom: 20px;
+-            }
+-            .sf-reset ol ol li {
+-                list-style-position: inside;
+-                margin-left: 0;
+-                white-space: nowrap;
+-                font-size: 12px;
+-                padding-bottom: 0;
+-            }
+-            .sf-reset li .selected {
+-                background-color: #ffd;
+-            }
+-            .sf-button {
+-                display: -moz-inline-box;
+-                display: inline-block;
+-                text-align: center;
+-                vertical-align: middle;
+-                border: 0;
+-                background: transparent none;
+-                text-transform: uppercase;
+-                cursor: pointer;
+-                font: bold 11px Arial, Helvetica, sans-serif;
+-            }
+-            .sf-button span {
+-                text-decoration: none;
+-                display: block;
+-                height: 28px;
+-                float: left;
+-            }
+-            .sf-button .border-l {
+-                text-decoration: none;
+-                display: block;
+-                height: 28px;
+-                float: left;
+-                padding: 0 0 0 7px;
+-                background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAcCAYAAACtQ6WLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQtJREFUeNpiPHnyJAMakARiByDWYEGT8ADiYGVlZStubm5xlv///4MEQYoKZGRkQkRERLRYWVl5wYJQyXBZWdkwCQkJUxAHKgaWlAHSLqKiosb//v1DsYMFKGCvoqJiDmQzwXTAJYECulxcXNLoumCSoszMzDzoumDGghQwYZUECWIzkrAkSIIGOmlkLI10AiX//P379x8jIyMTNmPf/v79+ysLCwsvuiQoNi5//fr1Kch4dAyS3P/gwYMTQBP+wxwHw0xA4gkQ73v9+vUZdJ2w1Lf82bNn4iCHCQoKasHsZw4ODgbRIL8c+/Lly5M3b978Y2dn5wC6npkFLXnsAOKLjx49AmUHLYAAAwBoQubG016R5wAAAABJRU5ErkJggg==) no-repeat top left;
+-            }
+-            .sf-button .border-r {
+-                padding: 0 7px 0 0;
+-                background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAcCAYAAACtQ6WLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAR1JREFUeNpiPHnyZCMDA8MNID5gZmb2nAEJMH7//v3N169fX969e/cYkL8WqGAHXPLv37//QYzfv39/fvPmzbUnT56sAXInmJub/2H5/x8sx8DCwsIrISFhDmQyPX78+CmQXs70798/BmQsKipqBNTgdvz4cWkmkE5kDATMioqKZkCFdiwg1eiAi4tLGqhQF24nMmBmZuYEigth1QkEbEBxTlySYPvJkwSJ00AnjYylgU6gxB8g/oFVEphkvgLF32KNMmCCewYUv4qhEyj47+HDhyeBzIMYOoEp8CxQw56wsLAncJ1//vz5/P79+2svX74EJc2V4BT58+fPd8CE/QKYHMGJOiIiAp6oWW7evDkNSF8DZYfIyEiU7AAQYACJ2vxVdJW4eQAAAABJRU5ErkJggg==) right top no-repeat;
+-            }
+-            .sf-button .btn-bg {
+-                padding: 0 14px;
+-                color: #636363;
+-                line-height: 28px;
+-                background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAcCAYAAACgXdXMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAClJREFUeNpiPnny5EKGf//+/Wf6//8/A4QAcrGzKCZwGc9sa2urBBBgAIbDUoYVp9lmAAAAAElFTkSuQmCC) repeat-x top left;
+-            }
+-            .sf-button:hover .border-l,
+-            .sf-button-selected .border-l {
+-                background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAcCAYAAACtQ6WLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAR9JREFUeNpi/P//PwMyOHfunDqQSgNiexZkibNnzxYBqZa3HOs5v7PcYQBLnjlzhg1IbfzIdsTjA/t+ht9Mr8GKwZL//v3r+sB+0OMN+zqIEf8gFMvJkyd1gXTOa9YNDP//otrPAtSV/Jp9HfPff78Z0AEL0LUeXxivMfxD0wXTqfjj/2ugkf+wSrL9/YtpJEyS4S8WI5Ek/+GR/POPFjr//cenE6/kP9q4Fo/kr39/mdj+M/zFkGQCSj5i+ccPjLJ/GBgkuYOHQR1sNDpmAkb2LBmWwL///zKCIxwZM0VHR18G6p4uxeLLAA4tJMwEshiou1iMxXaHLGswA+t/YbhORuQUv2DBAnCifvxzI+enP3dQJUFg/vz5sOzgBBBgAPxX9j0YnH4JAAAAAElFTkSuQmCC) no-repeat top left;
+-            }
+-            .sf-button:hover .border-r,
+-            .sf-button-selected .border-r {
+-                background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAcCAYAAACtQ6WLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAT5JREFUeNpiPHv27BkGBoaDQDzLyMjoJgMSYHrM3WX8hn1d0f///88DFRYhSzIuv2X5H8Rg/SfKIPDTkYH/l80OINffxMTkF9O/f/8ZQPgnwyuGl+wrGd6x7vf49+9fO9jYf3+Bkkj4NesmBqAV+SdPntQC6vzHgIz//gOawbqOGchOxtAJwp8Zr4F0e7D8/fuPAR38/P8eZIo0yz8skv8YvoIk+YE6/zNgAyD7sRqLkPzzjxY6/+HS+R+fTkZ8djLh08lCUCcuSWawJGbwMTGwg7zyBatX2Bj5QZKPsBrLzaICktzN8g/NWEYGZgYZjoC/wMiei5FMpFh8QPSU6Ojoy3Cd7EwiDBJsDgxiLNY7gLrKQGIsHAxSDHxAO2TZ/b8D+TVxcXF9MCtYtLiKLgDpfUDVsxITE1GyA0CAAQA2E/N8VuHyAAAAAABJRU5ErkJggg==) right top no-repeat;
+-            }
+-            .sf-button:hover .btn-bg,
+-            .sf-button-selected .btn-bg {
+-                color: #FFFFFF;
+-                text-shadow:0 1px 1px #6b9311;
+-                background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAcCAIAAAAvP0KbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEFJREFUeNpiPnv2LNMdvlymf///M/37B8R/QfQ/MP33L4j+B6Qh7L9//sHpf2h8MA1V+w/KRjYLaDaLCU8vQIABAFO3TxZriO4yAAAAAElFTkSuQmCC) repeat-x top left;
+-            }
+-
+-            /* styles copied from bundles/sensiodistribution/webconfigurator/css/install.css */
+-            body {
+-                font-size: 14px;
+-                font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+-            }
+-            .sf-reset h1.title {
+-                font-size: 45px;
+-                padding-bottom: 30px;
+-            }
+-            .sf-reset h2 {
+-                font-weight: bold;
+-                color: #FFFFFF;
+-                /* Font is reset to sans-serif (like body) */
+-                font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+-                margin-bottom: 10px;
+-                background-color: #aacd4e;
+-                padding: 2px 4px;
+-                display: inline-block;
+-                text-transform: uppercase;
+-            }
+-            .sf-reset ul a,
+-            .sf-reset ul a:hover {
+-                background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAICAYAAAAx8TU7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFdJREFUeNpiYACBjjOhDEiACSggCKTLgXQ5TJARqhIkcReIKxgqTGYxwvV0nDEGkmeAOIwJySiQ4HsgvseIpGo3ELsCtZ9lRDIvDCiwhwHJPEFkJwEEGACq6hdnax8y1AAAAABJRU5ErkJggg==) no-repeat right 7px;
+-                padding-right: 10px;
+-            }
+-            .sf-reset ul, ol {
+-                padding-left: 20px;
+-            }
+-            .sf-reset li {
+-                padding-bottom: 18px;
+-            }
+-            .sf-reset ol li {
+-                list-style-type: decimal;
+-            }
+-            .sf-reset ul li {
+-                list-style-type: none;
+-            }
+-            .sf-reset .symfony-blocks-install {
+-                overflow: hidden;
+-            }
+-            .sf-reset .symfony-install-continue {
+-                font-size: 0.95em;
+-                padding-left: 0;
+-            }
+-            .sf-reset .symfony-install-continue li {
+-                padding-bottom: 10px;
+-            }
+-            .sf-reset .ok {
+-                color: #fff;
+-                font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+-                background-color: #6d6;
+-                padding: 10px;
+-                margin-bottom: 20px;
+-            }
+-            .sf-reset .ko {
+-                background-color: #d66;
+-            }
+-            .sf-reset p.help {
+-                padding: 12px 16px;
+-                word-break: break-word;
+-            }
+-            .version {
+-                text-align: right;
+-                font-size: 10px;
+-                margin-right: 20px;
+-            }
+-            .sf-reset a,
+-            .sf-reset li a {
+-                color: #08C;
+-                text-decoration: none;
+-            }
+-            .sf-reset a:hover,
+-            .sf-reset li a:hover {
+-                color: #08C;
+-                text-decoration: underline;
+-            }
+-            .sf-reset textarea {
+-                padding: 7px;
+-            }
+-        </style>
+-    </head>
+-    <body>
+-        <div id="content">
+-            <div class="header clear-fix">
+-                <div class="header-logo">
+-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALYAAAA+CAMAAACxzRGDAAAAUVBMVEX////Ly8yko6WLioxkYmVXVVkwLjLl5eWxsLJKSEzy8vJxcHLY2Ni+vb89Oz9XVVh+fH+Yl5n///+xsbLY2Nlxb3KkpKWXlph+fX+LiYy+vr/IZP61AAAAAXRSTlMAQObYZgAABRBJREFUeNrVmtuWoyAQRS1FEEQSzQU7//+hYxUiXsKQZLJWM+chsUloN+WhCuguYoKyYqzmvGasKqH4HyRKxndipcgcumH8qViTM7TkUclcwaHmf5XM0eWq4km1KjdqXfMXJHVe1J3hL8lk5fCGv6wmT+o0d87U+XNrk0Y9nfv+7LM6ZJH5ZBL6LAbSxQ3Q5FDr22Skr8PQSy4n7isnsQxSX4r6pobhjCHHeDNOKrO3yGmCvZOjV9jmt8ulTdXFKdbKLNh+kOMvBzuVRa4Y7MUsdEUSWQe7xxCfZmcwjHU83LqzFvSbJQOXQvptbPnEFoyZtUUGwTeKuLuTHyT1kaP0P6cR01OKvv448gtl61dqZfmJezQmU/t+1R2fJLtBwXV6uWGwB9SZPrn0fKO2WAvQN1PUhHjTom3xgXYTkvlSKHs19OhslETq6X3HrXbjt8XbGj9b4Gi+lUAnL6XxQj8Pyk9N4Bt1xUrsLVN/3isYMug8rODMdbgOvoHs8uAb2fcANIAzkKCLYy+AXRpSU8sr1r4P67xhLgPp7vM32zlqt7Bhq2fI1Hwp+VgANxok59SsGV3oqdUL0YVDMRY7Yg8QLbVUU4NZNoOq5hJHuxEM28Sh/IyUZ8D3reR+yc58EGvOy2U0HQL6G9V+kWyEWHmzaMx6t4o9RhOm/riUiYrzqij4Ptqkn7AaCXqc+F47m04ahfde7YIz8RHEBN6BdVwdIGRVdNbKqYu1Hc0x0wBY4wqC8+XUgBGnj81SZsQB+0yAS1x/BlI/6ebHHk0lauQLuPDpu6EwAVJ7T0rl2uXa23jcqNyOZekhqYHRz3JOANrF4wCCmEs1f9D1lUe0n4NAATed80Y5e0Q7CO2TezM/BR6wKdgQzKbCF4uOQC3Bk0fKAzbFlyRWg3gksA/gmm7eOjrpaKX7fHlEW2xLbE6GZsPiCiShVzN7RG2xTz2G+OJtEqzdJ7APxy3MrSsV0VukXbKMp9lhs5BN6dr3CN+sySUaoxGwfRUM3I/gdPYONgVU+PLX4vUWm32AvUySarbONvcpV2RQEPKKjEBHFk01kQDGRblnn8ZuE9g+JUl8OWAPbkFK2K6JxhJVvF47FzYYnAN22ttwxKYCoH36rheEB7KG/HF/YUaa2G5JF+55tpyrl7B1WHM39HuP2N2EXPl1UBu8vbj4OjvD+NoTE4ssF+ScARgaJY1N7+u8bY/Y9BSM5PKwJbvMVab32YP5FB5TtcYVrGoASolVLTzI7kVsYVxRtAb5n2JXq1vCdtd47XtYItynrN0835PasLg0y13aOPbmPI+on2Lr9e5tjSHvgkAvclUjL3Fsdaw03IzgTR62yYClk7QMah4IQ0qSsoYYbOix6zJR1ZGDNMOY3Bb6W5S6jiyovep3t7bUPyoq7OkjYumrfESp8zSBc/OLosVf+nTnnKjsqR16++WDwpI8FxJWRFTlI6NKnqYJaL96TqjAbo9Toi5QiWBDcmfdFV+T8dkvFe5bItgstbM2X6QG2mVun+cazfRwOS0eiaeRRJKgLfc3BQAqfnhJyz8lfR6580SF/FXVu83Nz1xrrnFqqXL6Qxl47DNSm4RFflvN5sABDD8peouqLLKQXVdGbnqf+qIpOxON4ZyYdJEJ6sy4zS2c5eRPTT4Jyp46qDE5/ptAWqJOQ9e6yE82FXBbZCk1/tXVoshVoopE3CB0zmraI3nbqCJ/gW3ZMgtbC5nh/QHlOoOZBxQCRgAAAABJRU5ErkJggg==" alt="Symfony" />
+-                </div>
+-
+-                <div class="search">
+-                  <form method="get" action="http://symfony.com/search">
+-                    <div class="form-row">
+-
+-                      <label for="search-id">
+-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABUElEQVQoz2NgAIJ29iBdD0d7X2cPb+tY2f9MDMjgP2O2hKu7vS8CBlisZUNSMJ3fxRMkXO61wm2ue6I3iB1q8Z8ZriDZFCS03fm/wX+1/xp/TBo8QPxeqf+MUAW+QIFKj/+q/wX/c/3n/i/6Qd/bx943z/Q/K1SBI1D9fKv/AhCn/Wf5L5EHdFGKw39OqAIXoPpOMziX4T9/DFBBnuN/HqhAEtCKCNf/XDA/rZRyAmrpsvrPDVUw3wrkqCiLaewg6TohX1d7X0ffs5r/OaAKfinmgt3t4ulr4+Xg4ANip3j+l/zPArNT4LNOD0pAgWCSOUIBy3+h/+pXbBa5tni0eMx23+/mB1YSYnENroT5Pw/QSOX/mkCo+l/jgo0v2KJA643s8PgAmsMBDCbu/5xALHPB2husxN9uCzsDOgAq5kAoaZVnYMCh5Ky1r88Eh/+iABM8jUk7ClYIAAAAAElFTkSuQmCC" alt="Search on Symfony website" />
+-                      </label>
+-
+-                      <input name="q" id="search-id" type="search" placeholder="Search on Symfony website" />
+-
+-                      <button type="submit" class="sf-button">
+-                          <span class="border-l">
+-                            <span class="border-r">
+-                                <span class="btn-bg">OK</span>
+-                            </span>
+-                        </span>
+-                      </button>
+-                    </div>
+-                   </form>
+-                </div>
+-            </div>
+-
+-            <div class="sf-reset">
+-                <div class="block">
+-                    <div class="symfony-block-content">
+-                        <h1 class="title">Configuration Checker</h1>
+-                        <p>
+-                            This script analyzes your system to check whether is
+-                            ready to run Symfony applications.
+-                        </p>
+-
+-                        <?php if ($hasMajorProblems): ?>
+-                            <h2 class="ko">Major problems</h2>
+-                            <p>Major problems have been detected and <strong>must</strong> be fixed before continuing:</p>
+-                            <ol>
+-                                <?php foreach ($majorProblems as $problem): ?>
+-                                    <li><?php echo $problem->getTestMessage() ?>
+-                                        <p class="help"><em><?php echo $problem->getHelpHtml() ?></em></p>
+-                                    </li>
+-                                <?php endforeach; ?>
+-                            </ol>
+-                        <?php endif; ?>
+-
+-                        <?php if ($hasMinorProblems): ?>
+-                            <h2>Recommendations</h2>
+-                            <p>
+-                                <?php if ($hasMajorProblems): ?>Additionally, to<?php else: ?>To<?php endif; ?> enhance your Symfony experience,
+-                                it’s recommended that you fix the following:
+-                            </p>
+-                            <ol>
+-                                <?php foreach ($minorProblems as $problem): ?>
+-                                    <li><?php echo $problem->getTestMessage() ?>
+-                                        <p class="help"><em><?php echo $problem->getHelpHtml() ?></em></p>
+-                                    </li>
+-                                <?php endforeach; ?>
+-                            </ol>
+-                        <?php endif; ?>
+-
+-                        <?php if ($symfonyRequirements->hasPhpIniConfigIssue()): ?>
+-                            <p id="phpini">*
+-                                <?php if ($symfonyRequirements->getPhpIniConfigPath()): ?>
+-                                    Changes to the <strong>php.ini</strong> file must be done in "<strong><?php echo $symfonyRequirements->getPhpIniConfigPath() ?></strong>".
+-                                <?php else: ?>
+-                                    To change settings, create a "<strong>php.ini</strong>".
+-                                <?php endif; ?>
+-                            </p>
+-                        <?php endif; ?>
+-
+-                        <?php if (!$hasMajorProblems && !$hasMinorProblems): ?>
+-                            <p class="ok">All checks passed successfully. Your system is ready to run Symfony applications.</p>
+-                        <?php endif; ?>
+-
+-                        <ul class="symfony-install-continue">
+-                            <?php if ($hasMajorProblems || $hasMinorProblems): ?>
+-                                <li><a href="config.php">Re-check configuration</a></li>
+-                            <?php endif; ?>
+-                        </ul>
+-                    </div>
+-                </div>
+-            </div>
+-            <div class="version">Symfony Standard Edition</div>
+-        </div>
+-    </body>
+-</html>
+diff --git a/web/favicon.ico b/web/favicon.ico
+deleted file mode 100644
+index 479f7f50f404ada1e42c536097521d19f2c22f35..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 6518
+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
+BFLeL_
+

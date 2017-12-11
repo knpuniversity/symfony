@@ -1,0 +1,74 @@
+diff --git a/config/packages/doctrine_migrations.yaml b/config/packages/doctrine_migrations.yaml
+index 3bf0fbca..c887ec2d 100644
+--- a/config/packages/doctrine_migrations.yaml
++++ b/config/packages/doctrine_migrations.yaml
+@@ -2,4 +2,4 @@ doctrine_migrations:
+     dir_name: '%kernel.project_dir%/src/Migrations'
+     # namespace is arbitrary but should be different from App\Migrations
+     # as migrations classes should NOT be autoloaded
+-    namespace: DoctrineMigrations
++    namespace: Application
+diff --git a/app/DoctrineMigrations/Version20160207083131.php b/src/Migrations/Version20160207083131.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160207083131.php
+rename to src/Migrations/Version20160207083131.php
+diff --git a/app/DoctrineMigrations/Version20160207083337.php b/src/Migrations/Version20160207083337.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160207083337.php
+rename to src/Migrations/Version20160207083337.php
+diff --git a/app/DoctrineMigrations/Version20160207083347.php b/src/Migrations/Version20160207083347.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160207083347.php
+rename to src/Migrations/Version20160207083347.php
+diff --git a/app/DoctrineMigrations/Version20160207091728.php b/src/Migrations/Version20160207091728.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160207091728.php
+rename to src/Migrations/Version20160207091728.php
+diff --git a/app/DoctrineMigrations/Version20160207091756.php b/src/Migrations/Version20160207091756.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160207091756.php
+rename to src/Migrations/Version20160207091756.php
+diff --git a/app/DoctrineMigrations/Version20160207092254.php b/src/Migrations/Version20160207092254.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160207092254.php
+rename to src/Migrations/Version20160207092254.php
+diff --git a/app/DoctrineMigrations/Version20160412160008.php b/src/Migrations/Version20160412160008.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160412160008.php
+rename to src/Migrations/Version20160412160008.php
+diff --git a/app/DoctrineMigrations/Version20160412165619.php b/src/Migrations/Version20160412165619.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160412165619.php
+rename to src/Migrations/Version20160412165619.php
+diff --git a/app/DoctrineMigrations/Version20160524105319.php b/src/Migrations/Version20160524105319.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160524105319.php
+rename to src/Migrations/Version20160524105319.php
+diff --git a/app/DoctrineMigrations/Version20160524115250.php b/src/Migrations/Version20160524115250.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160524115250.php
+rename to src/Migrations/Version20160524115250.php
+diff --git a/app/DoctrineMigrations/Version20160524141318.php b/src/Migrations/Version20160524141318.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160524141318.php
+rename to src/Migrations/Version20160524141318.php
+diff --git a/app/DoctrineMigrations/Version20160921131459.php b/src/Migrations/Version20160921131459.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160921131459.php
+rename to src/Migrations/Version20160921131459.php
+diff --git a/app/DoctrineMigrations/Version20160921164430.php b/src/Migrations/Version20160921164430.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160921164430.php
+rename to src/Migrations/Version20160921164430.php
+diff --git a/app/DoctrineMigrations/Version20160921253370.php b/src/Migrations/Version20160921253370.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20160921253370.php
+rename to src/Migrations/Version20160921253370.php
+diff --git a/app/DoctrineMigrations/Version20161017160251.php b/src/Migrations/Version20161017160251.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20161017160251.php
+rename to src/Migrations/Version20161017160251.php
+diff --git a/app/DoctrineMigrations/Version20161024154711.php b/src/Migrations/Version20161024154711.php
+similarity index 100%
+rename from app/DoctrineMigrations/Version20161024154711.php
+rename to src/Migrations/Version20161024154711.php
