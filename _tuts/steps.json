@@ -1436,6 +1436,11 @@
             "description": null
         },
         {
+            "id": "setup-new-tutorial",
+            "name": "Setup: New tutorial\/",
+            "description": null
+        },
+        {
             "id": "upgrade-upgrading-to-3-4",
             "name": "Upgrade: Upgrading to 3.4",
             "description": null
@@ -1686,6 +1691,16 @@
             "description": null
         },
         {
+            "id": "src-refactor-tests",
+            "name": "Src: Refactor tests",
+            "description": null
+        },
+        {
+            "id": "src-remove-appbundle-autoload",
+            "name": "Src: Remove AppBundle autoload",
+            "description": null
+        },
+        {
             "id": "src-remove-appbundle-in-services-routes",
             "name": "Src: Remove AppBundle in services & routes",
             "description": null
@@ -1699,7 +1714,22 @@
             "id": "src-remove-many-appbundle",
             "name": "Src: Remove many AppBundle",
             "description": null
+        },
+        {
+            "id": "extras-service-repository",
+            "name": "Extras: Service repository",
+            "description": null
+        },
+        {
+            "id": "extras-upgrade-to-new-fixtures",
+            "name": "Extras: Upgrade to new fixtures",
+            "description": null
+        },
+        {
+            "id": "extras-maker",
+            "name": "Extras: Maker",
+            "description": null
         }
     ],
-    "sha": "2547c7ace5e2e614549ca21e6cfc886fc286d43a"
+    "sha": "719e71520ca3ca7bcf11774132876546b3b0661b"
 }

@@ -1,0 +1,15 @@
+diff --git a/tests/AppBundle/Controller/DefaultControllerTest.php b/tests/Controller/DefaultControllerTest.php
+similarity index 91%
+rename from tests/AppBundle/Controller/DefaultControllerTest.php
+rename to tests/Controller/DefaultControllerTest.php
+index 594803cc..9172986c 100644
+--- a/tests/AppBundle/Controller/DefaultControllerTest.php
++++ b/tests/Controller/DefaultControllerTest.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace Tests\AppBundle\Controller;
++namespace App\Tests\Controller;
+ 
+ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+ 

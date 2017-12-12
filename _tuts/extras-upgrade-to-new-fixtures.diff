@@ -1,0 +1,354 @@
+diff --git a/composer.json b/composer.json
+index 0abd50fc..79203b3a 100644
+--- a/composer.json
++++ b/composer.json
+@@ -18,6 +18,7 @@
+         "doctrine/doctrine-cache-bundle": "^1.2",
+         "doctrine/doctrine-migrations-bundle": "^1.1",
+         "doctrine/orm": "^2.5",
++        "fzaninotto/faker": "^1.7",
+         "knplabs/knp-markdown-bundle": "^1.4",
+         "sensio/framework-extra-bundle": "^5.0",
+         "stof/doctrine-extensions-bundle": "dev-sf4",
+@@ -42,7 +43,7 @@
+     "require-dev": {
+         "symfony/dotenv": "^4.0",
+         "symfony/phpunit-bridge": "^4.0",
+-        "doctrine/doctrine-fixtures-bundle": "^2.3"
++        "doctrine/doctrine-fixtures-bundle": "^3.0"
+     },
+     "config": {
+         "preferred-install": {
+diff --git a/composer.lock b/composer.lock
+index 9cf69e4f..61608f37 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "03284b8c4cb32ac082ca8a195da0d12a",
++    "content-hash": "cb88d6cdb3e956ef89bbccbd87c3f6e8",
+     "packages": [
+         {
+             "name": "behat/transliterator",
+@@ -1020,6 +1020,56 @@
+             "time": "2017-11-15T23:40:40+00:00"
+         },
+         {
++            "name": "fzaninotto/faker",
++            "version": "v1.7.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/fzaninotto/Faker.git",
++                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
++                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^5.3.3 || ^7.0"
++            },
++            "require-dev": {
++                "ext-intl": "*",
++                "phpunit/phpunit": "^4.0 || ^5.0",
++                "squizlabs/php_codesniffer": "^1.5"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "1.8-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Faker\\": "src/Faker/"
++                }
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "François Zaninotto"
++                }
++            ],
++            "description": "Faker is a PHP library that generates fake data for you.",
++            "keywords": [
++                "data",
++                "faker",
++                "fixtures"
++            ],
++            "time": "2017-08-15T16:48:10+00:00"
++        },
++        {
+             "name": "gedmo/doctrine-extensions",
+             "version": "v2.4.31",
+             "source": {
+@@ -4808,28 +4858,32 @@
+         },
+         {
+             "name": "doctrine/doctrine-fixtures-bundle",
+-            "version": "v2.4.1",
++            "version": "3.0.2",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
+-                "reference": "74b8cc70a4a25b774628ee59f4cdf3623a146273"
++                "reference": "7fc29d2b18c61ed99826b21fbfd1ff9969cc2e7f"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/74b8cc70a4a25b774628ee59f4cdf3623a146273",
+-                "reference": "74b8cc70a4a25b774628ee59f4cdf3623a146273",
++                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/7fc29d2b18c61ed99826b21fbfd1ff9969cc2e7f",
++                "reference": "7fc29d2b18c61ed99826b21fbfd1ff9969cc2e7f",
+                 "shasum": ""
+             },
+             "require": {
+                 "doctrine/data-fixtures": "~1.0",
+                 "doctrine/doctrine-bundle": "~1.0",
+-                "php": ">=5.3.2",
+-                "symfony/doctrine-bridge": "~2.7|~3.0|~4.0"
++                "php": ">=5.5.9|^7.0",
++                "symfony/doctrine-bridge": "~2.7|~3.0|~4.0",
++                "symfony/framework-bundle": "^3.3|^4.0"
++            },
++            "require-dev": {
++                "symfony/phpunit-bridge": "^3.3"
+             },
+             "type": "symfony-bundle",
+             "extra": {
+                 "branch-alias": {
+-                    "dev-master": "2.4.x-dev"
++                    "dev-master": "3.0.x-dev"
+                 }
+             },
+             "autoload": {
+@@ -4861,7 +4915,7 @@
+                 "Fixture",
+                 "persistence"
+             ],
+-            "time": "2017-10-30T19:26:42+00:00"
++            "time": "2017-12-04T20:26:38+00:00"
+         },
+         {
+             "name": "symfony/dotenv",
+diff --git a/src/DataFixtures/AllFixtures.php b/src/DataFixtures/AllFixtures.php
+new file mode 100644
+index 00000000..0305e495
+--- /dev/null
++++ b/src/DataFixtures/AllFixtures.php
+@@ -0,0 +1,141 @@
++<?php
++
++namespace App\DataFixtures;
++
++use App\Entity\Genus;
++use App\Entity\GenusNote;
++use App\Entity\GenusScientist;
++use App\Entity\SubFamily;
++use App\Entity\User;
++use Doctrine\Bundle\FixturesBundle\Fixture;
++use Doctrine\Common\Persistence\ObjectManager;
++use Doctrine\ORM\EntityManager;
++use Faker\Factory;
++use Faker\Generator;
++
++class AllFixtures extends Fixture
++{
++    /**
++     * @var Generator
++     */
++    private $faker;
++
++    public function load(ObjectManager $manager)
++    {
++        $this->faker = Factory::create();
++        $this->addSubFamily($manager);
++        $this->addGenus($manager);
++        $this->addGenusNote($manager);
++        $this->addUser($manager);
++        $this->addGenusScientist($manager);
++
++        $manager->flush();
++    }
++
++    private function addGenus(EntityManager $em)
++    {
++        for ($i = 1; $i <= 10; $i++) {
++            $genus = new Genus();
++            $genus->setName($this->genus());
++            $genus->setSubFamily($this->getReference('subfamily_'.random_int(1, 10)));
++            $genus->setSpeciesCount($this->faker->numberBetween(100, 100000));
++            $genus->setFunFact($this->faker->sentence());
++            $genus->setIsPublished($this->faker->boolean(75));
++            $genus->setFirstDiscoveredAt($this->faker->dateTimeBetween('-200 years', 'now'));
++
++            $this->setReference('genus_'.$i, $genus);
++            $em->persist($genus);
++        }
++    }
++
++    private function addGenusNote(EntityManager $em)
++    {
++        for ($i = 1; $i <= 100; $i++) {
++            $genusNote = new GenusNote();
++            $genusNote->setUsername($this->faker->userName);
++            $genusNote->setUserAvatarFilename($this->faker->boolean() ? 'leanna.jpeg' : 'ryan.jpeg');
++            $genusNote->setNote($this->faker->paragraph());
++            $genusNote->setCreatedAt($this->faker->dateTimeBetween('-6 months', 'now'));
++            $genusNote->setGenus($this->getReference('genus_'.random_int(1, 10)));
++
++            $this->setReference('genus.note_'.$i, $genusNote);
++            $em->persist($genusNote);
++        }
++    }
++
++    private function addSubFamily(EntityManager $em)
++    {
++        for ($i = 1; $i <= 10; $i++) {
++            $subFamily = new SubFamily();
++            $subFamily->setName($this->faker->lastName);
++
++            $this->setReference('subfamily_' . $i, $subFamily);
++            $em->persist($subFamily);
++        }
++    }
++
++    private function addUser(EntityManager $em)
++    {
++        for ($i = 1; $i <= 10; $i++) {
++            $user = new User();
++            $user->setEmail("weaverryan+$i@gmail.com");
++            $user->setPlainPassword('iliketurtles');
++            $user->setRoles(['ROLE_ADMIN']);
++            $user->setAvatarUri($this->faker->imageUrl(100, 100, 'abstract'));
++
++            $this->setReference('user_' . $i, $user);
++            $em->persist($user);
++        }
++
++        for ($i = 1; $i <= 10; $i++) {
++            $user = new User();
++            $user->setEmail("aquanaut$i@example.org");
++            $user->setPlainPassword('aquanote');
++            $user->setIsScientist(true);
++            $user->setFirstName($this->faker->firstName);
++            $user->setLastName($this->faker->lastName);
++            $user->setUniversityName($this->faker->company.' University');
++            $user->setAvatarUri($this->faker->imageUrl(100, 100, 'abstract'));
++
++            $this->setReference('user.aquanaut_' . $i, $user);
++            $em->persist($user);
++        }
++    }
++
++    private function addGenusScientist(EntityManager $em)
++    {
++        for ($i = 1; $i <= 10; $i++) {
++            $genusScientist = new GenusScientist();
++            $genusScientist->setUser($this->getReference('user.aquanaut_'.random_int(1, 10)));
++            $genusScientist->setGenus($this->getReference('genus_'.random_int(1, 10)));
++            $genusScientist->setYearsStudied($this->faker->numberBetween(1, 30));
++
++            $this->setReference('genus.scientist_' . $i, $genusScientist);
++            $em->persist($genusScientist);
++        }
++    }
++
++    private function genus()
++    {
++        $genera = [
++            'Octopus',
++            'Balaena',
++            'Orcinus',
++            'Hippocampus',
++            'Asterias',
++            'Amphiprion',
++            'Carcharodon',
++            'Aurelia',
++            'Cucumaria',
++            'Balistoides',
++            'Paralithodes',
++            'Chelonia',
++            'Trichechus',
++            'Eumetopias'
++        ];
++
++        $key = array_rand($genera);
++
++        return $genera[$key];
++    }
++}
+diff --git a/src/DataFixtures/ORM/LoadFixtures.php b/src/DataFixtures/ORM/LoadFixtures.php
+deleted file mode 100644
+index 4db98ab6..00000000
+--- a/src/DataFixtures/ORM/LoadFixtures.php
++++ /dev/null
+@@ -1,46 +0,0 @@
+-<?php
+-
+-namespace App\DataFixtures\ORM;
+-
+-use App\Entity\Genus;
+-use Doctrine\Common\DataFixtures\FixtureInterface;
+-use Doctrine\Common\Persistence\ObjectManager;
+-use Nelmio\Alice\Fixtures;
+-
+-class LoadFixtures implements FixtureInterface
+-{
+-    public function load(ObjectManager $manager)
+-    {
+-        $objects = Fixtures::load(
+-            __DIR__.'/fixtures.yml',
+-            $manager,
+-            [
+-                'providers' => [$this]
+-            ]
+-        );
+-    }
+-
+-    public function genus()
+-    {
+-        $genera = [
+-            'Octopus',
+-            'Balaena',
+-            'Orcinus',
+-            'Hippocampus',
+-            'Asterias',
+-            'Amphiprion',
+-            'Carcharodon',
+-            'Aurelia',
+-            'Cucumaria',
+-            'Balistoides',
+-            'Paralithodes',
+-            'Chelonia',
+-            'Trichechus',
+-            'Eumetopias'
+-        ];
+-
+-        $key = array_rand($genera);
+-
+-        return $genera[$key];
+-    }
+-}
+\ No newline at end of file
+diff --git a/symfony.lock b/symfony.lock
+index 7c15b107..b6f56cea 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -68,6 +68,9 @@
+     "egulias/email-validator": {
+         "version": "2.1.3"
+     },
++    "fzaninotto/faker": {
++        "version": "v1.7.1"
++    },
+     "gedmo/doctrine-extensions": {
+         "version": "v2.4.31"
+     },

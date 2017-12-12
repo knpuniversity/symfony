@@ -1,0 +1,50 @@
+diff --git a/src/Controller/GenusController.php b/src/Controller/GenusController.php
+index f3b51792..feb91083 100644
+--- a/src/Controller/GenusController.php
++++ b/src/Controller/GenusController.php
+@@ -7,6 +7,7 @@ use App\Entity\GenusNote;
+ use App\Entity\GenusScientist;
+ use App\Entity\SubFamily;
+ use App\Entity\User;
++use App\Repository\GenusRepository;
+ use App\Service\MarkdownTransformer;
+ use Psr\Log\LoggerInterface;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+@@ -63,11 +64,9 @@ class GenusController extends Controller
+     /**
+      * @Route("/genus")
+      */
+-    public function listAction()
++    public function listAction(GenusRepository $genusRepository)
+     {
+-        $em = $this->getDoctrine()->getManager();
+-
+-        $genuses = $em->getRepository(Genus::class)
++        $genuses = $genusRepository
+             ->findAllPublishedOrderedByRecentlyActive();
+ 
+         return $this->render('genus/list.html.twig', [
+diff --git a/src/Repository/GenusRepository.php b/src/Repository/GenusRepository.php
+index 3fb2d434..c55c8815 100644
+--- a/src/Repository/GenusRepository.php
++++ b/src/Repository/GenusRepository.php
+@@ -3,11 +3,18 @@
+ namespace App\Repository;
+ 
+ use App\Entity\Genus;
++use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+ use Doctrine\Common\Collections\Criteria;
++use Doctrine\Common\Persistence\ManagerRegistry;
+ use Doctrine\ORM\EntityRepository;
+ 
+-class GenusRepository extends EntityRepository
++class GenusRepository extends ServiceEntityRepository
+ {
++    public function __construct(ManagerRegistry $registry)
++    {
++        parent::__construct($registry, Genus::class);
++    }
++
+     /**
+      * @return Genus[]
+      */

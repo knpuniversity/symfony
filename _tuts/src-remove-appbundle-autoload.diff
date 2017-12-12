@@ -1,0 +1,18 @@
+diff --git a/composer.json b/composer.json
+index 8e0cc30e..0abd50fc 100644
+--- a/composer.json
++++ b/composer.json
+@@ -4,13 +4,11 @@
+     "type": "project",
+     "autoload": {
+         "psr-4": {
+-            "AppBundle\\": "src/AppBundle",
+             "App\\": "src/"
+         }
+     },
+     "autoload-dev": {
+         "psr-4": {
+-            "Tests\\AppBundle\\": "tests/AppBundle",
+             "App\\Tests\\": "tests/"
+         }
+     },
