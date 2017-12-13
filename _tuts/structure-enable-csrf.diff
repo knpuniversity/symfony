@@ -16,7 +16,7 @@ index 7ad718dd..079dc83f 100644
      session:
          # handler_id set to null will use default session handler from php.ini
 diff --git a/composer.json b/composer.json
-index c03c8b60..3615103a 100644
+index d96b61b6..2909f58d 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -31,6 +31,7 @@
@@ -28,19 +28,19 @@ index c03c8b60..3615103a 100644
          "symfony/translation": "^4.0",
          "symfony/validator": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index d4c8e9ec..0e273eaa 100644
+index bfa212ba..5b929492 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "597dae7b2b5c05c13bb2e0ae6f99010c",
-+    "content-hash": "19cba278fc132511f29c146faed09872",
+-    "content-hash": "9dfc13d9d1e9ca31b8f7167a10e14166",
++    "content-hash": "19d9de20fe28dc6bb1c2143da721e6d8",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3503,6 +3503,131 @@
+@@ -3501,6 +3501,131 @@
              "time": "2017-11-24T14:34:08+00:00"
          },
          {

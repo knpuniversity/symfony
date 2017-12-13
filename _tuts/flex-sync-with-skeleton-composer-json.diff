@@ -31,7 +31,7 @@ index 6f663e70..766faf5f 100644
 +/vendor/
 +###< symfony/framework-bundle ###
 diff --git a/composer.json b/composer.json
-index 3265d116..64c91cbb 100644
+index c9ebc3a6..6ec2b603 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -4,18 +4,24 @@
@@ -67,9 +67,9 @@ index 3265d116..64c91cbb 100644
          "sensio/framework-extra-bundle": "^3.0.2",
          "knplabs/knp-markdown-bundle": "^1.4",
          "doctrine/doctrine-migrations-bundle": "^1.1",
--        "stof/doctrine-extensions-bundle": "dev-sf4",
+-        "stof/doctrine-extensions-bundle": "dev-master",
 -        "symfony/flex": "^1.0"
-+        "stof/doctrine-extensions-bundle": "dev-sf4"
++        "stof/doctrine-extensions-bundle": "dev-master"
      },
      "require-dev": {
 +        "symfony/dotenv": "^4.0",
@@ -123,15 +123,15 @@ index 3265d116..64c91cbb 100644
              "allow-contrib": true
          }
 diff --git a/composer.lock b/composer.lock
-index 1308f2e2..b9eab12a 100644
+index 7767a734..e5b86939 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "464fe2404b8ff2e60f0f89f0b63caa24",
-+    "content-hash": "ca627ae71e88a58b5210118f9c6836cd",
+-    "content-hash": "d4f6b69bf6d7194366b376101ff098ae",
++    "content-hash": "839e6b8e85c0ab291fd2811a20cbbf1b",
      "packages": [
          {
              "name": "behat/transliterator",
@@ -288,25 +288,25 @@ index 1308f2e2..b9eab12a 100644
          },
          {
              "name": "stof/doctrine-extensions-bundle",
-@@ -1939,38 +1836,51 @@
+@@ -1937,38 +1834,51 @@
              "time": "2017-09-30T22:39:41+00:00"
          },
          {
 -            "name": "symfony/flex",
--            "version": "v1.0.48",
+-            "version": "v1.0.49",
 +            "name": "symfony/cache",
 +            "version": "v4.0.1",
              "source": {
                  "type": "git",
 -                "url": "https://github.com/symfony/flex.git",
--                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f"
+-                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2"
 +                "url": "https://github.com/symfony/cache.git",
 +                "reference": "3691cb27e436c55af10ee06de30732623fa2f33e"
              },
              "dist": {
                  "type": "zip",
--                "url": "https://api.github.com/repos/symfony/flex/zipball/73436bc5c0e3b63f5655552d580b48ad0e17543f",
--                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f",
+-                "url": "https://api.github.com/repos/symfony/flex/zipball/c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
+-                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
 +                "url": "https://api.github.com/repos/symfony/cache/zipball/3691cb27e436c55af10ee06de30732623fa2f33e",
 +                "reference": "3691cb27e436c55af10ee06de30732623fa2f33e",
                  "shasum": ""
@@ -356,7 +356,7 @@ index 1308f2e2..b9eab12a 100644
              },
              "notification-url": "https://packagist.org/downloads/",
              "license": [
-@@ -1978,48 +1888,59 @@
+@@ -1976,48 +1886,59 @@
              ],
              "authors": [
                  {
@@ -370,7 +370,7 @@ index 1308f2e2..b9eab12a 100644
 +                    "homepage": "https://symfony.com/contributors"
                  }
              ],
--            "time": "2017-12-07T20:09:46+00:00"
+-            "time": "2017-12-11T15:40:16+00:00"
 +            "description": "Symfony Cache component with PSR-6, PSR-16, and tags",
 +            "homepage": "https://symfony.com",
 +            "keywords": [
@@ -437,7 +437,7 @@ index 1308f2e2..b9eab12a 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -2031,51 +1952,66 @@
+@@ -2029,51 +1950,66 @@
              ],
              "authors": [
                  {
@@ -526,7 +526,7 @@ index 1308f2e2..b9eab12a 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2084,55 +2020,54 @@
+@@ -2082,55 +2018,54 @@
              ],
              "authors": [
                  {
@@ -605,7 +605,7 @@ index 1308f2e2..b9eab12a 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2141,58 +2076,69 @@
+@@ -2139,58 +2074,69 @@
              ],
              "authors": [
                  {
@@ -699,7 +699,7 @@ index 1308f2e2..b9eab12a 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2201,19 +2147,827 @@
+@@ -2199,19 +2145,827 @@
              ],
              "authors": [
                  {
@@ -963,16 +963,16 @@ index 1308f2e2..b9eab12a 100644
 +        },
 +        {
 +            "name": "symfony/flex",
-+            "version": "v1.0.48",
++            "version": "v1.0.49",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f"
++                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/73436bc5c0e3b63f5655552d580b48ad0e17543f",
-+                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
++                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -1005,7 +1005,7 @@ index 1308f2e2..b9eab12a 100644
 +                    "email": "fabien.potencier@gmail.com"
 +                }
 +            ],
-+            "time": "2017-12-07T20:09:46+00:00"
++            "time": "2017-12-11T15:40:16+00:00"
 +        },
 +        {
 +            "name": "symfony/framework-bundle",
@@ -1533,7 +1533,7 @@ index 1308f2e2..b9eab12a 100644
                  "polyfill",
                  "portable",
                  "shim"
-@@ -2221,22 +2975,25 @@
+@@ -2219,22 +2973,25 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -1564,7 +1564,7 @@ index 1308f2e2..b9eab12a 100644
              "type": "library",
              "extra": {
                  "branch-alias": {
-@@ -2245,7 +3002,7 @@
+@@ -2243,7 +3000,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1573,7 +1573,7 @@ index 1308f2e2..b9eab12a 100644
                  },
                  "files": [
                      "bootstrap.php"
-@@ -2265,10 +3022,11 @@
+@@ -2263,10 +3020,11 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1586,7 +1586,7 @@ index 1308f2e2..b9eab12a 100644
                  "polyfill",
                  "portable",
                  "shim"
-@@ -2276,6 +3034,84 @@
+@@ -2274,6 +3032,84 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -1671,7 +1671,7 @@ index 1308f2e2..b9eab12a 100644
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
              "source": {
-@@ -2338,112 +3174,27 @@
+@@ -2336,112 +3172,27 @@
              "time": "2017-10-23T15:15:11+00:00"
          },
          {
@@ -1794,7 +1794,7 @@ index 1308f2e2..b9eab12a 100644
              },
              "type": "library",
              "extra": {
-@@ -2453,18 +3204,10 @@
+@@ -2451,18 +3202,10 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1815,7 +1815,7 @@ index 1308f2e2..b9eab12a 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2481,78 +3224,67 @@
+@@ -2479,78 +3222,67 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1923,7 +1923,7 @@ index 1308f2e2..b9eab12a 100644
          },
          {
              "name": "zendframework/zend-code",
-@@ -2778,6 +3510,63 @@
+@@ -2776,6 +3508,63 @@
              "time": "2017-10-30T19:26:42+00:00"
          },
          {
@@ -1987,7 +1987,7 @@ index 1308f2e2..b9eab12a 100644
              "name": "symfony/phpunit-bridge",
              "version": "v4.0.1",
              "source": {
-@@ -2843,12 +3632,13 @@
+@@ -2841,12 +3630,13 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {

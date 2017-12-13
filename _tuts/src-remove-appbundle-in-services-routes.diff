@@ -13,10 +13,10 @@ index f7e6ee45..59b6ef60 100644
 -        _controller: AppBundle\Controller\MainController::homepageAction
 +        _controller: App\Controller\MainController::homepageAction
 diff --git a/config/services.yaml b/config/services.yaml
-index a9c3bc01..cc370cd4 100644
+index 9eae1ca4..febf9709 100644
 --- a/config/services.yaml
 +++ b/config/services.yaml
-@@ -18,7 +18,7 @@ services:
+@@ -17,7 +17,7 @@ services:
      # this creates a service per class whose id is the fully-qualified class name
      App\:
          resource: '../src/*'
@@ -25,7 +25,7 @@ index a9c3bc01..cc370cd4 100644
  
      # controllers are imported separately to make sure services can be injected
      # as action arguments even if you don't extend any base controller class
-@@ -26,41 +26,29 @@ services:
+@@ -25,41 +25,29 @@ services:
          resource: '../src/Controller'
          tags: ['controller.service_arguments']
  

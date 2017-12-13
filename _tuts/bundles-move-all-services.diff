@@ -1,9 +1,9 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
 deleted file mode 100644
-index 1e524011..00000000
+index 39f165da..00000000
 --- a/app/config/services.yml
 +++ /dev/null
-@@ -1,51 +0,0 @@
+@@ -1,52 +0,0 @@
 -# Learn more about services, parameters and containers at
 -# http://symfony.com/doc/current/book/service_container.html
 -parameters:
@@ -54,12 +54,13 @@ index 1e524011..00000000
 -        arguments:
 -            $showDiscouragingMessage: true
 -
--    Symfony\Component\Security\Guard\GuardAuthenticatorHandler: '@security.authentication.guard_handler'
+-    # example of adding aliases, if one does not exist
+-    # Symfony\Component\Security\Guard\GuardAuthenticatorHandler: '@security.authentication.guard_handler'
 diff --git a/config/services.yaml b/config/services.yaml
-index 5e285122..a9c3bc01 100644
+index 7e1a1c6f..9eae1ca4 100644
 --- a/config/services.yaml
 +++ b/config/services.yaml
-@@ -26,5 +26,42 @@ services:
+@@ -25,5 +25,43 @@ services:
          resource: '../src/Controller'
          tags: ['controller.service_arguments']
  
@@ -101,4 +102,5 @@ index 5e285122..a9c3bc01 100644
 +        arguments:
 +            $showDiscouragingMessage: true
 +
-+    Symfony\Component\Security\Guard\GuardAuthenticatorHandler: '@security.authentication.guard_handler'
++    # example of adding aliases, if one does not exist
++    # Symfony\Component\Security\Guard\GuardAuthenticatorHandler: '@security.authentication.guard_handler'

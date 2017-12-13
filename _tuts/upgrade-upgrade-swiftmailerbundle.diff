@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 75d2f90f..63af00d4 100644
+index 9da19d08..6cb059ed 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -19,7 +19,7 @@
@@ -12,15 +12,15 @@ index 75d2f90f..63af00d4 100644
          "symfony/polyfill-apcu": "^1.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index 331cedf2..45fb807b 100644
+index fad3729b..ff01b25e 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "964da108fd59c29e116cbdcef81a5964",
-+    "content-hash": "4e1418e14780068269a5a528e317491a",
+-    "content-hash": "47f9b983830262d29e56101ac13e8670",
++    "content-hash": "75b1bba0fce8e7ad2db874e1692d9e44",
      "packages": [
          {
              "name": "behat/transliterator",
@@ -88,7 +88,7 @@ index 331cedf2..45fb807b 100644
              "name": "fig/link-util",
              "version": "1.0.0",
              "source": {
-@@ -1828,29 +1885,30 @@
+@@ -1826,29 +1883,30 @@
          },
          {
              "name": "swiftmailer/swiftmailer",
@@ -126,7 +126,7 @@ index 331cedf2..45fb807b 100644
                  }
              },
              "autoload": {
-@@ -1872,13 +1930,13 @@
+@@ -1870,13 +1928,13 @@
                  }
              ],
              "description": "Swiftmailer, free feature-rich PHP mailer",
@@ -142,7 +142,7 @@ index 331cedf2..45fb807b 100644
          },
          {
              "name": "symfony/monolog-bundle",
-@@ -2172,83 +2230,31 @@
+@@ -2170,83 +2228,31 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -239,7 +239,7 @@ index 331cedf2..45fb807b 100644
              },
              "suggest": {
                  "psr/log": "Allows logging"
-@@ -2256,13 +2262,16 @@
+@@ -2254,13 +2260,16 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -258,7 +258,7 @@ index 331cedf2..45fb807b 100644
              },
              "notification-url": "https://packagist.org/downloads/",
              "license": [
-@@ -2280,7 +2289,7 @@
+@@ -2278,7 +2287,7 @@
              ],
              "description": "Symfony SwiftmailerBundle",
              "homepage": "http://symfony.com",

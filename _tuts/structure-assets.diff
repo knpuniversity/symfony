@@ -13,31 +13,31 @@ index 70e8d4c8..2ce63a92 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index 0c216a4e..390686cb 100644
+index 8b0f76ad..c4fb1d39 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -24,6 +24,7 @@
          "knplabs/knp-markdown-bundle": "^1.4",
          "sensio/framework-extra-bundle": "^3.0.2",
-         "stof/doctrine-extensions-bundle": "dev-sf4",
+         "stof/doctrine-extensions-bundle": "dev-master",
 +        "symfony/asset": "^4.0",
          "symfony/console": "^4.0",
          "symfony/flex": "^1.0",
          "symfony/form": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index e2ffd0c3..c3670ff6 100644
+index 67a5cb3b..a15fbb20 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "beca0ff80f01538331b21c2a25840741",
-+    "content-hash": "d6dfdef6ed3a2835a31bde30a9da2c96",
+-    "content-hash": "6fc96fef35dda197c50ba57c9a5d77e4",
++    "content-hash": "3b157b68864835bb72ae68cf7c5e3147",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1836,6 +1836,62 @@
+@@ -1834,6 +1834,62 @@
              "time": "2017-09-30T22:39:41+00:00"
          },
          {

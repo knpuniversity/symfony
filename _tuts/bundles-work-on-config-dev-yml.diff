@@ -23,7 +23,7 @@ index 09dc7b3f..98912548 100644
      handlers:
          main:
 diff --git a/composer.json b/composer.json
-index 33156ca9..1a6aef20 100644
+index 06d45be1..48276f30 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -32,6 +32,7 @@
@@ -35,19 +35,19 @@ index 33156ca9..1a6aef20 100644
          "symfony/security-csrf": "^4.0",
          "symfony/swiftmailer-bundle": "^3.1",
 diff --git a/composer.lock b/composer.lock
-index fa44211f..eaf13726 100644
+index 0137f8c0..1b601f76 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "c43ed9bb9391d2828aa4f84a0ca51a92",
-+    "content-hash": "058b489ecf120b8be782c2922d636009",
+-    "content-hash": "5aa237ba3855fc99d86084f81b1aa071",
++    "content-hash": "0e7a1e3cc2b83e562e4faff25c6084cc",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3414,6 +3414,89 @@
+@@ -3575,6 +3575,61 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -106,17 +106,24 @@ index fa44211f..eaf13726 100644
 +            "time": "2017-10-11T12:05:26+00:00"
 +        },
 +        {
+             "name": "symfony/polyfill-util",
+             "version": "v1.6.0",
+             "source": {
+@@ -3627,6 +3682,34 @@
+             "time": "2017-10-11T12:05:26+00:00"
+         },
+         {
 +            "name": "symfony/profiler-pack",
-+            "version": "v1.0.2",
++            "version": "v1.0.3",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/profiler-pack.git",
-+                "reference": "ff9e32daca50ce4d98fcfeabdc27c9028cf6747b"
++                "reference": "fa2e2dad522a3bef322196abad28ffce6d0fdbc5"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/profiler-pack/zipball/ff9e32daca50ce4d98fcfeabdc27c9028cf6747b",
-+                "reference": "ff9e32daca50ce4d98fcfeabdc27c9028cf6747b",
++                "url": "https://api.github.com/repos/symfony/profiler-pack/zipball/fa2e2dad522a3bef322196abad28ffce6d0fdbc5",
++                "reference": "fa2e2dad522a3bef322196abad28ffce6d0fdbc5",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -125,20 +132,20 @@ index fa44211f..eaf13726 100644
 +                "symfony/twig-bundle": "^3.3|^4.0",
 +                "symfony/web-profiler-bundle": "^3.3|^4.0"
 +            },
-+            "type": "metapackage",
++            "type": "symfony-pack",
 +            "notification-url": "https://packagist.org/downloads/",
 +            "license": [
 +                "MIT"
 +            ],
 +            "description": "A pack for the Symfony web profiler",
-+            "time": "2017-09-27T22:22:21+00:00"
++            "time": "2017-12-12T01:48:24+00:00"
 +        },
 +        {
              "name": "symfony/property-access",
              "version": "v4.0.1",
              "source": {
-@@ -3716,6 +3799,55 @@
-             "time": "2017-12-04T20:15:30+00:00"
+@@ -3991,6 +4074,55 @@
+             "time": "2017-12-04T12:31:58+00:00"
          },
          {
 +            "name": "symfony/stopwatch",
@@ -193,7 +200,7 @@ index fa44211f..eaf13726 100644
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
              "source": {
-@@ -4148,6 +4280,141 @@
+@@ -4423,6 +4555,141 @@
              "time": "2017-12-04T12:31:58+00:00"
          },
          {
@@ -391,23 +398,26 @@ index 00000000..7960993b
 +parameters:
 +    cache_type: array
 diff --git a/symfony.lock b/symfony.lock
-index 32a763da..ba896b0d 100644
+index d34f5892..6cfa014b 100644
 --- a/symfony.lock
 +++ b/symfony.lock
-@@ -215,6 +215,12 @@
-     "symfony/polyfill-mbstring": {
+@@ -224,9 +224,15 @@
+     "symfony/polyfill-php70": {
          "version": "v1.6.0"
      },
 +    "symfony/polyfill-php72": {
 +        "version": "v1.6.0"
 +    },
+     "symfony/polyfill-util": {
+         "version": "v1.6.0"
+     },
 +    "symfony/profiler-pack": {
 +        "version": "v1.0.2"
 +    },
      "symfony/property-access": {
          "version": "v4.0.1"
      },
-@@ -242,6 +248,9 @@
+@@ -254,6 +260,9 @@
      "symfony/security-csrf": {
          "version": "v4.0.1"
      },
@@ -417,7 +427,7 @@ index 32a763da..ba896b0d 100644
      "symfony/swiftmailer-bundle": {
          "version": "2.5",
          "recipe": {
-@@ -278,6 +287,18 @@
+@@ -290,6 +299,18 @@
      "symfony/validator": {
          "version": "v4.0.1"
      },

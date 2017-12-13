@@ -11,7 +11,7 @@ index 766faf5f..6aa7b187 100644
 +.web-server-pid
 +###< symfony/web-server-bundle ###
 diff --git a/composer.json b/composer.json
-index ac0150ef..66675645 100644
+index f5ddc802..cad4fa2e 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -38,6 +38,7 @@
@@ -23,19 +23,19 @@ index ac0150ef..66675645 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index eaf13726..302449ff 100644
+index 1b601f76..c74e557f 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "058b489ecf120b8be782c2922d636009",
-+    "content-hash": "7e085f0dd86ff4448a0d4acfcf3a1c8f",
+-    "content-hash": "0e7a1e3cc2b83e562e4faff25c6084cc",
++    "content-hash": "820ed4e74da8b194fd8a3a05b2a60998",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3469,6 +3469,55 @@
+@@ -3682,6 +3682,55 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -89,9 +89,9 @@ index eaf13726..302449ff 100644
 +        },
 +        {
              "name": "symfony/profiler-pack",
-             "version": "v1.0.2",
+             "version": "v1.0.3",
              "source": {
-@@ -4415,6 +4464,60 @@
+@@ -4690,6 +4739,60 @@
              "time": "2017-12-04T19:38:58+00:00"
          },
          {
@@ -163,11 +163,11 @@ index 5528430a..a83fcd41 100644
 +    Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
  ];
 diff --git a/symfony.lock b/symfony.lock
-index ba896b0d..7c15b107 100644
+index 6cfa014b..824780ec 100644
 --- a/symfony.lock
 +++ b/symfony.lock
-@@ -218,6 +218,9 @@
-     "symfony/polyfill-php72": {
+@@ -230,6 +230,9 @@
+     "symfony/polyfill-util": {
          "version": "v1.6.0"
      },
 +    "symfony/process": {
@@ -176,7 +176,7 @@ index ba896b0d..7c15b107 100644
      "symfony/profiler-pack": {
          "version": "v1.0.2"
      },
-@@ -299,6 +302,15 @@
+@@ -311,6 +314,15 @@
              "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
          }
      },

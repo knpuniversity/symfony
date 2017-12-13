@@ -1,26 +1,11 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 788f40e2..1e524011 100644
+index 788f40e2..39f165da 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -47,3 +47,5 @@ services:
+@@ -47,3 +47,6 @@ services:
      AppBundle\EventSubscriber\AddNiceHeaderEventSubscriber:
          arguments:
              $showDiscouragingMessage: true
 +
-+    Symfony\Component\Security\Guard\GuardAuthenticatorHandler: '@security.authentication.guard_handler'
-diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
-index c1db30fb..348605a3 100644
---- a/src/AppBundle/Controller/UserController.php
-+++ b/src/AppBundle/Controller/UserController.php
-@@ -13,11 +13,6 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
- 
- class UserController extends Controller
- {
--    public function __construct(GuardAuthenticatorHandler $guardHandler)
--    {
--
--    }
--
-     /**
-      * @Route("/register", name="user_register")
-      */
++    # example of adding aliases, if one does not exist
++    # Symfony\Component\Security\Guard\GuardAuthenticatorHandler: '@security.authentication.guard_handler'

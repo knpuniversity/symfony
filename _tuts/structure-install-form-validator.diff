@@ -13,11 +13,11 @@ index 9bf0ec2e..7ad718dd 100644
      templating:
          engines: ['twig']
 diff --git a/composer.json b/composer.json
-index b5ad503e..c03c8b60 100644
+index 84f6700a..d96b61b6 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -26,12 +26,14 @@
-         "stof/doctrine-extensions-bundle": "dev-sf4",
+         "stof/doctrine-extensions-bundle": "dev-master",
          "symfony/console": "^4.0",
          "symfony/flex": "^1.0",
 +        "symfony/form": "^4.0",
@@ -32,20 +32,20 @@ index b5ad503e..c03c8b60 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 8f8102bc..d4c8e9ec 100644
+index f49fa565..bfa212ba 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "d8653657f1833f86ece12058333c64b7",
-+    "content-hash": "597dae7b2b5c05c13bb2e0ae6f99010c",
+-    "content-hash": "2bb785a608a4e1e2bc1db3b1f73099b9",
++    "content-hash": "9dfc13d9d1e9ca31b8f7167a10e14166",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2446,6 +2446,86 @@
-             "time": "2017-12-07T20:09:46+00:00"
+@@ -2444,6 +2444,86 @@
+             "time": "2017-12-11T15:40:16+00:00"
          },
          {
 +            "name": "symfony/form",
@@ -131,7 +131,7 @@ index 8f8102bc..d4c8e9ec 100644
              "name": "symfony/framework-bundle",
              "version": "v4.0.1",
              "source": {
-@@ -2699,6 +2779,138 @@
+@@ -2697,6 +2777,138 @@
              "time": "2017-12-05T00:18:20+00:00"
          },
          {
@@ -270,7 +270,7 @@ index 8f8102bc..d4c8e9ec 100644
              "name": "symfony/lts",
              "version": "dev-master",
              "source": {
-@@ -2919,6 +3131,60 @@
+@@ -2917,6 +3129,60 @@
              "time": "2017-11-06T16:02:17+00:00"
          },
          {
@@ -331,7 +331,7 @@ index 8f8102bc..d4c8e9ec 100644
              "name": "symfony/polyfill-apcu",
              "version": "v1.6.0",
              "source": {
-@@ -2975,6 +3241,64 @@
+@@ -2973,6 +3239,64 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -396,7 +396,7 @@ index 8f8102bc..d4c8e9ec 100644
              "name": "symfony/polyfill-mbstring",
              "version": "v1.6.0",
              "source": {
-@@ -3034,6 +3358,73 @@
+@@ -3032,6 +3356,73 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -470,7 +470,7 @@ index 8f8102bc..d4c8e9ec 100644
              "name": "symfony/routing",
              "version": "v4.0.1",
              "source": {
-@@ -3297,6 +3688,90 @@
+@@ -3295,6 +3686,90 @@
              "time": "2017-11-28T22:05:27+00:00"
          },
          {

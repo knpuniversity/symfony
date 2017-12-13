@@ -14,16 +14,15 @@ index d15de8c5..2deade27 100644
  framework:
      #esi:             ~
 diff --git a/config/services.yaml b/config/services.yaml
-index a10e5cb8..5e285122 100644
+index a10e5cb8..7e1a1c6f 100644
 --- a/config/services.yaml
 +++ b/config/services.yaml
-@@ -1,6 +1,9 @@
+@@ -1,6 +1,8 @@
  # Put parameters here that don't need to change on each machine where the app is deployed
  # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
  parameters:
 +    locale: en
 +    cache_type: file_system
-+    container.autowiring.strict_mode: true
  
  services:
      # default configuration for services in *this* file

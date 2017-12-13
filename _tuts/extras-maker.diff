@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 79203b3a..583c9148 100644
+index 647d8c9a..d914a436 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -28,6 +28,7 @@
@@ -11,19 +11,19 @@ index 79203b3a..583c9148 100644
          "symfony/polyfill-apcu": "^1.0",
          "symfony/profiler-pack": "^1.0",
 diff --git a/composer.lock b/composer.lock
-index 61608f37..be26b7b2 100644
+index 5d845e57..8b2088ce 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "cb88d6cdb3e956ef89bbccbd87c3f6e8",
-+    "content-hash": "a47e078f5d88ace953650b0589883ace",
+-    "content-hash": "987e797b74a79251a0ddb97c4648c5fc",
++    "content-hash": "1a7d71ae2540b0bb8f3ce20acf5d8c41",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3108,6 +3108,63 @@
+@@ -3154,6 +3154,63 @@
              "time": "2017-10-19T02:16:32+00:00"
          },
          {
@@ -144,10 +144,10 @@ index 00000000..0943b896
 +    }
 +}
 diff --git a/symfony.lock b/symfony.lock
-index b6f56cea..f0eef7b6 100644
+index c3e4b589..a5b0ddf1 100644
 --- a/symfony.lock
 +++ b/symfony.lock
-@@ -185,6 +185,15 @@
+@@ -188,6 +188,15 @@
      "symfony/lts": {
          "version": "4-dev"
      },

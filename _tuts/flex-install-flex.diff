@@ -9,47 +9,47 @@ index 00000000..5c32b0e6
 +# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 +
 diff --git a/composer.json b/composer.json
-index 63af00d4..7489a83c 100644
+index 6cb059ed..070e2128 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,7 +25,8 @@
          "sensio/framework-extra-bundle": "^3.0.2",
          "knplabs/knp-markdown-bundle": "^1.4",
          "doctrine/doctrine-migrations-bundle": "^1.1",
--        "stof/doctrine-extensions-bundle": "dev-sf4"
-+        "stof/doctrine-extensions-bundle": "dev-sf4",
+-        "stof/doctrine-extensions-bundle": "dev-master"
++        "stof/doctrine-extensions-bundle": "dev-master",
 +        "symfony/flex": "^1.0"
      },
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 45fb807b..1308f2e2 100644
+index ff01b25e..7767a734 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "4e1418e14780068269a5a528e317491a",
-+    "content-hash": "464fe2404b8ff2e60f0f89f0b63caa24",
+-    "content-hash": "75b1bba0fce8e7ad2db874e1692d9e44",
++    "content-hash": "d4f6b69bf6d7194366b376101ff098ae",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1939,6 +1939,52 @@
+@@ -1937,6 +1937,52 @@
              "time": "2017-09-30T22:39:41+00:00"
          },
          {
 +            "name": "symfony/flex",
-+            "version": "v1.0.48",
++            "version": "v1.0.49",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f"
++                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/73436bc5c0e3b63f5655552d580b48ad0e17543f",
-+                "reference": "73436bc5c0e3b63f5655552d580b48ad0e17543f",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
++                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -82,7 +82,7 @@ index 45fb807b..1308f2e2 100644
 +                    "email": "fabien.potencier@gmail.com"
 +                }
 +            ],
-+            "time": "2017-12-07T20:09:46+00:00"
++            "time": "2017-12-11T15:40:16+00:00"
 +        },
 +        {
              "name": "symfony/monolog-bundle",

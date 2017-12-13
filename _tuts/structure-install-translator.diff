@@ -13,7 +13,7 @@ index 2deade27..fa6e5f1e 100644
          resource: "%kernel.root_dir%/config/routing.yml"
          strict_requirements: ~
 diff --git a/composer.json b/composer.json
-index 9b218b63..b5ad503e 100644
+index 6d9feeb9..84f6700a 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -31,6 +31,7 @@
@@ -25,19 +25,19 @@ index 9b218b63..b5ad503e 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 6f591ee1..8f8102bc 100644
+index 56d77a77..f49fa565 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "f0115dcb366d9fd6d1222d77688f2ec5",
-+    "content-hash": "d8653657f1833f86ece12058333c64b7",
+-    "content-hash": "4ef1b0ce2ef6a14b95f6ed9a3a583356",
++    "content-hash": "2bb785a608a4e1e2bc1db3b1f73099b9",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3229,6 +3229,74 @@
+@@ -3227,6 +3227,74 @@
              "time": "2017-11-07T14:45:01+00:00"
          },
          {
