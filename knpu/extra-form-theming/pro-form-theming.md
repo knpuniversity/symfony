@@ -31,7 +31,7 @@ Symfony never renders this *whole* template at once, just each block, as it need
 It's almost like a list of small functions, where each function, or block, renders
 just a small part of the form.
 
-## The Bootstramp Theme
+## The Bootstrap Theme
 
 But in reality, not all of *our* markup is coming from this one file. In an
 [earlier tutorial][symfony_forms], we started using the Bootstrap form *theme*.
