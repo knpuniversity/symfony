@@ -1,1 +1,11 @@
-chapters: []
+chapters:
+	- sf34-deprecations
+	- service-deprecations
+	- upgrade4
+	- flex
+	- framework-config
+	- services-security
+	- remove-files
+	- server-isgranted
+	- bye-appbundle
+	- extras
