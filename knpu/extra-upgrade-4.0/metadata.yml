@@ -3,7 +3,10 @@ chapters:
 	- service-deprecations
 	- upgrade4
 	- flex
+  - flex-composer.json
+  - flex-alive
 	- framework-config
+  - framework-finish
 	- services-security
 	- remove-files
 	- server-isgranted

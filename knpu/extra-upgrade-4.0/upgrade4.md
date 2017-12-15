@@ -1,82 +1,131 @@
-With the deprecation is gone. Yeah it's time to upgrade some free for. This is
-probably the easiest step. In composing that Jaison change symphony is simply
-to care for point zero. There are a few other symphonies slash libraries. These
-all file their own versioning scheme. They're not part of the main it's simply
-package one that is that one that is actually simply a branch. So I'm going to
-bump that also to 4.0.
+# Upgrade to Symfony 4.0
 
-And then turnover run composer update. Now probably there are going to be some
-dependencies in our composer that Jaison file that are not compatible with
-simply for yet.
+With the deprecations gone... yeah! It's time to upgrade to Symfony 4! If you
+were hoping this was going to be really cool and difficult... sorry. It's *super*
+easy... well... *mostly* easy.
 
-And probably will need to actually upgrade those. Best way to find out is just
-to try and upgrade. Whoa. It's the big explosion and if read closely toxo how
-now meal Alice requires. Is not compatible with Symphonie for. Now. Actually
-there is a new version of snail mail Alice that is compatible with something
-however they made a ton of change to send them to Alice and I'm not a big fan
-of all the changes so I'm actually just going to remove this library. This will
-break our fixtures which use Alice Bhole fix those later.
+Open `composer.json` and change `symfony/symfony` to `^4.0`. There are a few other
+libraries that start with `symfony/`, but they're independent and follow different
+release cycles. Oh, except for `symfony/phpunit-bridge`: change that to `^4.0` also.
 
-So go back try and or update again.
+Let's do this! Find your terminal and run:
 
-And not surprisingly it explodes again. This time it's not to my unscented
-composer parameter handler. And actually compose a parameter Handler is a
-helper that helps with parameters doubt. Why am I not. Well guess what. And the
-symphony for flex at that file is gone. So this package isn't even needed
-anymore. Neither is the distribution bundle which also helped support the
-current directory structure. And down at the bottom the generator bundle. Did
-remove that as well and later we're going to install the new maker bundle.
-Right. To the terminal and run. Update. And this time it actually dies because
-of stock doctrine extensions bundle.
+```terminal
+composer update
+```
 
-So you want to do is soon as you find this is Godbout libraries get hard and
-try to figure out what's going on because they might already have support. For
-sympathy for what might be in a new version. And actually in this case if you
-look at the composer about Jaison it actually does allow Symphonie for however
-if you look at the releases there hasn't been a release in a long time.
+Yep, upgrading is *just* that easy! Except... there are almost *definitely* some
+libraries in our `composer.json` file that are *not* yet compatible with Symfony 4.
+The best way to find out is just to try it! And then wait for an explosion!
 
-So basically support isn't there but it hasn't actually been tagged yet. I hope
-that in this bundle it will happen very soon.
+## Removing Alice
 
-Another common thing is that it might not have Symphonie for support yet but
-you'll find a whole request that adds Symphonie for support.
+Ah! Here is our first! Look closely... this is coming from `nelmio/alice`: the version
+in our project is *not* compatible with Symfony 4. If we did some digging, we would
+find out that there *is* a new version of Alice that *is* compatible. But, that version
+also contains a lot of changes to Alice... and I don't like the library's new version
+very much. At least, not at this moment.
 
-In both situations there is a work. You have three options. 1 you can wait
-which is fine.
+So, instead of upgrading, remove alice from `composer.json`. This will break our
+fixtures: we'll fix them later.
 
-Or two you can too.
+Update again!
 
-If there's a request you can actually use that fork of that request by adding a
-repository is option and you can post that Jaison file for example. If we look
-at the symphony for Paul request if you imagine that this was not merged yet we
-can actually add this fork as a repository or compose a Jaison and then change
-the brass to Deb dash master. Now this is because there's not a release yet.
-All we need to do is change our target temporarily to Deb dasht master for this
-repository. So when composing a Jaison I'm going to change it to Dad dash
-master.
+```terminal-silent
+composer update
+```
 
-Not happy about that but I wanna keep upgrading.
+## Removing Outdated Libraries
 
-Move over try composer update again. Whoa. It's actually working.
+Our next explosion! This comes from `incenteev/composer-parameter-handler`. This
+library helps you manage your `parameters.yml` file and... guess what? When we
+finish upgrading, that file will be *gone*! Yep, we do not need this library anymore.
 
-Say hello to your symphony for project before you pull over and refresh. It
-doesn't fully work yet because we've removed a couple of dependencies that
-we're using but our project is on Symphonie for now. One last thing up here and
-see it's talking about this symphony swift Miller bridge is a band that you
-should avoid using it. And actually I don't see that in my composer that Chase
-on file composer. Why symphony SLAs bridge.
+Remove it from `composer.json`. Oh, also remove the distribution bundle: it helps
+support the *current* directory structure, and isn't needed with Flex. And below,
+remove the generator bundle. We'll install the new MakerBundle later.
 
-And he could see this dependency is because of the swift matter Bundall which
-we have at two point three point eight.
+Ok, update again!
 
-So I'm just curious. Let's google for that one.
+```terminal-silent
+composer update
+```
 
-And you can see there's actually a new version 3 of that bundle and probably
-that Abana package thing is fixed in that latest version.
+## When a Library is not Ready: StofDoctrineExtensionsBundle
 
-So let's change it to carrot. Three point one. Obviously you should also look
-at the change logs to make sure that nothing really important change for
-version 3 strong composer. UPDATE One More Time. So that we can get a symphony
-for a project without that old package. Hirvonen. Now comes the real we're
-moving our project to the new Flex directory structure which is the most word.
-Also really fun.
+It works! I'm just kidding - it totally exploded again. This time the culprit is
+StofDoctrineExtensionsBundle: the version in our project is not compatible with Symfony
+4. Now... we become detectives! Maybe the library supports it in a new version?
+Let's find out.
+
+Google for StofDoctrineExtensionsBundle to find its [GitHub](https://github.com/stof/StofDoctrineExtensionsBundle)
+page. Check out the [composer.json file](https://github.com/stof/StofDoctrineExtensionsBundle/blob/4619e9d8190f19aac7c9e44f78d13710b7f2966a/composer.json#L16).
+It *does* support Symfony 4! Great! Maybe there's a new version that has this! Check
+out the releases. Oof! no releases for a *long*, long time.
+
+This means that Symfony 4 support *was* added, but there has not *yet* a release
+that contains that code. Honestly, by the time you're watching this, the bundle
+probably *will* have a new release. But this is likely to happen with other libraries.
+
+Actually, another common problem is when a library does *not* have Symfony 4 support,
+but there is an open pull request that adds it. In both situations, we have a problem,
+and *you* have a choice to make.
+
+First... you can wait. This is the most responsible decision... but the least fun.
+I hate waiting!
+
+Second, if there is a pull request, you can use that *fork* as a custom composer
+repository and temporarily use that until the library merges the pull request and
+tags a release. For example, imagine this pull request was *not* merged. We could
+add this as a `vcs` repository in `composer.json`, and then update the version constraint
+to `dev-master`, because the branch on the fork is `master`.
+
+And third, since the pull request *is* merged, but there is no tag, we can simply
+change our version to `dev-master`. Believe me: I am *not* happy about this. But
+I'll update it later when there *is* a release.
+
+Try to update again:
+
+```terminal-silent
+composer update
+```
+
+Ha! Look! It's *actually* working! Say hello to our new Symfony 4 app! Woohoo!
+
+## Upgrading old Packages
+
+Oh, but check out that warning: the `symfony/swiftmailer-bridge` is abandoned. I
+don't like that! Hmm, I don't see that package in our `composer.json` file. Run:
+
+```terminal
+composer why symfony/swiftmailer-bridge
+```
+
+Ah! It's required by `symfony/swiftmailer-bundle`. We're using version `2.3.8`,
+which is *apparently* compatible with Symfony 4. But I wonder if there's a newer
+version?
+
+***TIP
+Actually, version 2.3.8 is *not* compatible with Symfony 4. But due to an old issue
+with its `composer.json` file, it *appears* compatible. Be careful with old libraries!
+***
+
+Google for the package to find its [GitHub](https://github.com/symfony/swiftmailer-bundle)
+page. Click releases.
+
+Woh! There is a new version *3* of the bundle. And I bet it fixes that abandoned
+packages issue. Change our version to `^3.1`.
+
+And now, update! 
+
+```terminal-silent
+composer update
+```
+
+Because we're upgrading to a new *major* version, you'll want to check out the
+CHANGELOG on the project to make sure there aren't any major, breaking changes.
+
+Yes! Abandoned package warning gone! And our project is on Symfony 4. No bad!
+
+But... get ready... because now the *real* work starts. And the fun! It's time to
+migrate our project to the Flex project structure!

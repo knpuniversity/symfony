@@ -1,203 +1,131 @@
-Let's look at our project. Most of our old code was an app config and also
-asters the app Andeel. We'll talk about this later. It's actually easier. Those
-are just ph classes. Most of what we need to migrate is our old configuration.
-It's a bit slow and tedious but the end result is totally worth it.
+# Migrating framework Config
 
-Start and can figure out why.
+Most of our old code lives in `app/config`, and also `src/AppBundle`. We'll talk
+about that directory later - it's easier.
 
-So the premise of those parameters we've done and then were to go into the new
-directory structure which is going to be config slashed services that YAML.
-That's where your parameters and services should live in space. Those there we
-can actually move the container our Wangchuk mode because that's on by default
-and since 24 perfect.
+Yep, *most* of the work of migrating our code to the new app involves moving each
+piece of config into the new location. Honestly, it's tedious and slow. But you're
+going to learn a lot, and the end result is totally worth it.
 
-Let's keep going. Backing can figure out why out. We're going to go through
-through the framework first which is by far the most complicated one. Now in a
-symphony like structure each package has its own configuration. So
+## Moving Parameters
 
-actually the file that we are going to be moving this to is config packages
-framework.
+Start in `config.yml`. Ignore imports: we'll look at each file one-by-one. The
+first key is parameters. Copy those, delete them, and open `config/services.yaml`.
+This is where your `parameters` and `services` will live. Paste them here. Oh, but
+remove the `strict_mode` line: autowiring *always* works in "strict mode" in Symfony 4.
 
-Yemen.
+## Environment Variables
 
-So first BSI we can just remove because inside Brehmer dynamic it's also
-commented out. The secret is set to app is set to the end v app on the secret.
-This is a relatively new syntax that reads from environment variables. So
-McNevin Bayamon. This is reading from the dot and b file where we have an app
-Secret set to this value so we don't need to read it from a parameter anymore
-so we can just delete that. That's basically already taken care of for us up
-here. Now the next one is translater. So the question is should we copy this
-config and move it into Frerichs YAML. Because there is no translator and
-actually not exactly a lot of the features under framework actually represent.
+Keep going! Back to `config.yml`. The keys under `framework` will be the *most* work
+to migrate... by *far*. In Flex, this configuration will live in `config/packages/framework.yaml`:
+each package has its *own* config file.
 
-Symphonie components that you are activating. There is actually a symphony
-translator component and guess what it is actually not installed right now. So
-the first thing we need to do.
+Remove the `esi` line from the old file: it's *also* commented out in the *new* one:
+nothing to migrate.
 
-Is install your terminal and run opposer require translator. Now if that looks
-funny to you it should. There is no package called translater. However as you
-can see that I actually added a new Symphonie slash translation line into are
-composed at a Jaison. This is one of the superpowers of flex.
+Check out the `secret` config: it's set to `%env(APP_SECRET)%`. That's a relatively
+new syntax that reads from *environment* variables. In the `dev` environment, Symfony
+loads the `.env` file, which sets all these keys as environment variables, including
+`APP_SECRET`.
 
-If you go to Symphonie dot sh you'll see the symphony recipe server. This
+Delete the old `secret` key. The *way* this value is set is a bit different, but,
+the point is, it's handled.
 
-is a long list of all of the packages and bundles out too that have simply
-recipes your search for translation you'll see the simply means less
-translation. It actually has a couple aliases which basically means we can
-report we can refer to this Agonistes translation of translations or translator
-and simply Boisseau figure out what we mean. Now as you're adding things with
-Symphonie flaps it's a really good idea to commit first actually committed
-before I started recording this specific video. The reason is is that after it
-runs your recipe. It's pretty fun to be able to say good status and see what it
-actually modified. In this case it actually created a new translation that yaml
-file a translation's directory which is where translations live and Symphonia
-for. So even though in 73 the config lives in a framework. This actually has
-its own configuration file called translation dot YAML. And you can see exactly
-why translations live at the root of your project. It's just in your config.
+## Requiring translator
 
-So do we need to move over our transit or stop. Actually no because all of it
-is already here so we can just remove that and actually now that we know our
-translations should live at the root of our project and a flex application.
+The next key is `translator`. Are you ready? Because *this* is where things get
+fun! You *might* think that all we need to do is copy this line into `framework.yaml`.
+But no!
 
-I actually do have a couple of translations and app resources translations. I'm
-going to move this validators that unit Y amount down into translation's room
-and then delete that translation's directory.
+Many of the keys under `framework` represent *components*. In Symfony 3, by adding
+the `translator` key, you *activated* that component.
 
-Yes progress all right let's keep going.
+But with Flex, the Translator component isn't even *installed* yet. Yep, if you
+want a translator, you need to install it. In your terminal, run:
 
-What about the robbers stuff. This was basically conveyor belt said load it
-rodding down YAML. While the routing stuff is already set up for you to
-Symphonie for application you can see it as a route's dight YAML. There's
-actually even a route's subdirectory for other packages can load other routes.
+```terminal
+composer require translator
+```
 
-The point is that there's even as far as routing config configuration of the
-routes there is a routing that yaml file and even an environment specific
-routing that yaml file which changes that strict requirements. The point is
-routing is one of those things that is all set up for you so we can just delete
-that. All right let's keep going.
+If that package name looks funny... it should! There is *no* package called `translator`!
+But look! It added a new `symfony/translator` key to `composer.json`.
 
-It forms our application is using similes form components so that means we do
-need the form and like the translator It's actually something we didn't stop.
-We're also using the validation system which is also its own components. So I'm
-going to move to my terminal.
+This is another superpower of Flex. Go to [https://symfony.sh/](https://symfony.sh/).
+This is a list of *all* of the packages that have a recipe. Search for "translation"
+to find `symfony/translation`. See those Aliases? Yep, we can reference `translation`,
+`translations` or `translator` and Flex will, um, translate that into `symfony/translator`
+automatically.
 
-And composer require form in validator which as you can tell are also aliases
-and a lot of the time you can just guess what the alias is. Perfect. So install
-those components. So the question is do we need these two lines I can think the
-answer is actually no. And the reason I know that is because we can run pin
-console debug config framework and this will show us the current the current
-configuration under the framework key and you can search for form.
+## The translator Recipe
 
-You'll see that the form is enabled which means we do not need to add extra
-configuration to enable it. This is a really common thing in symphony 4. As
-soon as a component is installed it's automatically enable. Don't need extra
-configuration to go and enable it.
+Back to the terminal! Before I started recording, I committed all of our changes
+so far. That was no accident: Flex just installed a recipe and I want to see *exactly*
+what it did! Run:
 
-Validation is actually even cooler search for validation. You can see it is
-also enabled and it has enabled annotations set to your so we do not need this
-validation config either. In fact the reason that they now enable annotations
-is automatically set to true.
+```terminal
+git status
+```
 
-Is that the doctrine annotations packages already installed so you can see it's
-turning on and just automatically as things are installed.
+Cool! It created a new `translation.yaml` file and a `translation/` *directory*.
+That is where translation files should live in Symfony 4. And even though the `translator`
+config lives under `framework`, in Flex, it has its *own* configuration file. Oh,
+and this is one of my *favorite* things about Flex. Why should my translation files
+live in a `translations/` directory? Is that hardcoded somewhere deep in core? Nope:
+it's right here in *your* configuration file. Want to put them somewhere else?
+Just update that line or add a second path.
 
-All right it might not look like it but this went. We're almost done. If you
-search for a default locale that actually defaults that's already set to end.
-So I'm actually going to just remove this config here. I don't need to move it
-over here at all because it's the default value. If you want to change it.
+So, do we need to move the `translator` config from our old project? Actually, no!
+It's already in the new file. Delete it.
 
-Or set it to your locale parameter. That's totally fine but it's not necessary.
+And since we now know that translations should live in this new `translations/`
+directory, let's move existing files... well file. In `app/Resources/translations`,
+move `validators.en.yml` down into `translations/`.
 
-I'll close a couple of files because I want to keep comparing. I can figure out
-why Bill and my framework that YAML so you can figure out why until we have
-SEUS our protection activated. So infirmaries I am LEDs uncomment out SEUS RF
-production.
+Celebrate by deleting the old directory!
 
-And then we can remove it from here.
+## Migrating router Config
 
-Let's also remove serializer. I'm not using serializer but if I were I would
-want to composer repliers serializer. Driving's now.
+We're on a roll! What about the `router` config? It told Symfony to load `routing.yml`.
+All of that is taken care of in the new app: it loads a `routes.yaml` file and anything
+in the `routes/` directory, like `annotations.yaml`.
 
-Been consul. They are so broken CSR support cannot be labeled as the C security
-c s as our opponent is not install.
+There's also a `config/packages/routing.yaml` file, and even another one in
+`dev/` to tweak that `strict_requirements` setting.
 
-So this shouldn't be too surprising because as we've seen most features under
-framework actually need to be installed. So if you move over to.
+The point is this: routing is handled. Delete that stuff!
 
-Submitted age in search wiseass or Eichten you can see a security dasht CSR
-package. Let's go and run composer require baggage. And actually.
+## Migrating Forms and Validator
 
-This configuration inside of framework that YAML shouldn't be necessary.
-There's a small bug in symphony in the future just by having the CSR.
-Protection. Package install the feature will automatically be enabled. Right
-now we need that config.
+Next, forms! Like with translations, this activates a component that is not installed
+yet. We *do* have forms in our app, so we need this and validation. Let's get them
+installed:
 
-Dowds package and. Another air C as our eye protection needs sessions enabled
-which makes sense. With Fleck's everything is opt in.
+```terminal
+composer erquire form validator
+```
 
-So if you want sessions this case is actually a little bit weird. Unlike some
-of the other features it's not a separate package it's just some configuration
-that you need to comment out. So I'm not uncommon. This section here. Now
-notice in simply three point three we had slightly different config because we
-recommended storing the sessions in the VAR session directory. You can still do
-that but it's no longer the default config. Instead. The new config allows ph
-to store it in whatever place it thinks is best.
+Yep! More aliases! Perfect! This time, it did not install *any* recipes. That's cool:
+not all packages need a recipe.
 
-Or remove our old session configuration. We don't need it anymore. And now.
-Let's try and console. S. Everything works.
+So, do we need to move these 2 lines of config into `framework.yaml`? Actually, no!
 
-So the next thing on this list is templating Ms activity symphonies template
-and components which still exists but it's not recommended anymore. Instead you
-should just use Twitter directory. So I'm going to remove. All of this template
-configuration but our application does use tweak. So I'm going to move over to
-my terminal and run composer required twitt. So. I'm. Gonna move over to my
-channel. Before I run this I'm actually going to commit.
+Go back to your terminal and run:
 
-And then run composer require tway. Now I'm doing that so that we can see what
-changes this recipe makes.
+```terminal
+./bin/console debug:config framework
+```
 
-Now by removing the templating component just means you can't use the
-templating service explicitly which you're probably not anyways. Cool.
+This prints out the current `framework` configuration. Search for `form`. Nice!
+It's *already* enabled, even without *any* config! This is really common with Flex:
+as soon as a component is installed, `FrameworkBundle` automatically enables it.
+No configuration is needed unless you want to change something. Delete the `form`
+line.
 
-And you can see this install the tweak bundle and install the twig bundle
-recipe. If we do get status data did a couple of really cool things. First like
-Flagstar as. It automatically enabled the bundle in bundled up each week. So we
-don't need to worry about Navalny Nippon. It also added a twig dot yaml file
-with the tweet configuration. This is almost the same. Now you see right here
-that by default inflects. Cumquats are actually stored at the root of the
-project and hey it even created a templates directory forests which is awesome.
-Now this config is almost the same as our tweak config. Except for these last
-few lines here so I'll copy those we deal tweak configuration. And paste them
-at the bot. Another cool thing the rest we did in this case was it actually
-installed.
+Search for "validation" next: it's even *more* interesting! It's *also* enabled,
+and `enable_annotations` is set to `true`. Great! Delete the `validation` line!
+What's *really* interesting is that `enable_annotations` is set to true because
+it detected that we have the Doctrine annotations package installed. This is the
+flow with Flex: install a package and you're done.
 
-Some routes that are only accessible in the dev environment and these are the
-routes that help you debug what your error pages look like. So all this stuff
-just taken care out of the box. Now since our templates live in a template
-directory wots move them there. So go to app resources views. And copy of all
-the contents in their. Hastened down in the templates. We do want to override
-the base that each time locked away with our own. Perfect. Them and go up and
-completely remove my app resource use directory which actually means I'm going
-to remove the resource directory. So Appian big directory is getting really
-small. All right. Last things here to think that why now.
-
-Trust that holds fragments and AC method override. You can remove all those.
-Because if you look in debug config framework. Actually.
-
-You know what.
-
-You can remove all of these within a framework diameter. We're going to
-uncomment out fragments. If you look if you're in debug config framework you
-would actually see. That the other values are actually the defaults e.g. method
-override is already set true and trusted host is already set to empty. Array.
-
-That leaves us with just one last line in config that Y which is assets. Guess
-what. This is actually enabling the asset component. So the first step is to
-run. Because if you look right now the asset component is enabled false inside
-of our framework. But if you run a composer require asset. When it finishes. It
-installs the asset components. This case there is no recipe generated. But when
-you run debug config framework again. And search for asset now it is enabled
-trews automatically enable itself. Once it was their genes we can remove
-brainwork assets. That is the biggest worry right there for converting to the
-Flex frameworks structure. Next we need to continue it for the individual
-bundles but this ends up being actually pretty easy.
+Ok! It might not look like it, but we're almost done with the `framework` stuff.
+Let's finish it next!

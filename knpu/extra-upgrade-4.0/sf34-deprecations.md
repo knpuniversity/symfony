@@ -44,7 +44,7 @@ to `^3.4`, find your terminal and run:
 composer update
 ```
 
-And celebrate! So easy! By teh way, you *could* just update `symfony/symfony`. But,
+And celebrate! So easy! By the way, you *could* just update `symfony/symfony`. But,
 honestly, it's just *easier* to upgrade *everything*. And since I keep responsible
 version constraints in `composer.json`, ahem, no `dev-master` or `*` versions, this
 is pretty safe and also means I get bug fixes, security fixes and new features.
@@ -128,7 +128,7 @@ paste this and set it to `true`.
 So, what the heck is this? Check it out: suppose you change your password while
 on your work computer. Previously, doing that did *not* cause you to be logged out
 on any *other* computers, like on your home computer. This was a security flaw, and
-the behavior was changed in Symfony 4. But turning this on, you can test to make
+the behavior was changed in Symfony 4. By turning this on, you can test to make
 sure your app doesn't have any surprises with that behavior.
 
 Phew! Before we talk about the last deprecations, go back to the homepage and refresh.
