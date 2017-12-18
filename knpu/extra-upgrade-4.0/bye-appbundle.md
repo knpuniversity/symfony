@@ -1,3 +1,5 @@
+# Bye Bye AppBundle
+
 So if you want to be done you can basically your old code lives. And about all
 of my new coach happy to see that over time you might decide to migrate all
 these files into SIRC but if you want to do it all at once it's not as hard as

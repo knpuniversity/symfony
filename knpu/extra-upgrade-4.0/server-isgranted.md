@@ -1,3 +1,5 @@
+# Server & the New IsGranted
+
 All right our app should be using flags so let's try it out. First thing to do
 is in the end.
 
