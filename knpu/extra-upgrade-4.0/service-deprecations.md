@@ -86,7 +86,7 @@ Start in `SecurityController`. Ah, here it is. So: what type-hint should we use
 to replace this? Well, you *could* just guess! Honestly, that works a lot. Or try
 the brand new console command:
 
-```terminal
+```terminal-silent
 ./bin/console debug:autowiring
 ```
 

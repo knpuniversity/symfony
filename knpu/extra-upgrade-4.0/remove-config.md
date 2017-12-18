@@ -5,19 +5,19 @@ with `config_dev.yml`.
 
 ## Dev Environment Parameters
 
-Hmm, we have a `cache_type` parameter. This is meant to override the value that
-lives in `services.yaml` when we're in the `dev` environment.
+Ok, we have a `cache_type` parameter. This is meant to override the value that
+lives in `services.yaml` whenever we're in the `dev` environment.
 
 How can we have dev-specific parameters or services in Flex? By creating a new
 `services_dev.yaml` file. Copy the parameter, remove it and paste it here.
 
-Symfony will already load this file in the `dev` environment only.
+Symfony will automatically load this file in the `dev` environment only.
 
 ## Migrating config_dev.yml
 
-For the rest of the file... we haven't changed anything! These are the original
-default values. So there's a good chance that we can just use the new files without
-any changes.
+For the rest of the file... we haven't really changed anything: these are the original
+default values. So there's a good chance that we can just use the *new* files without
+doing anything.
 
 And yea! If you investigated, you would find that the `framework` config is already
 represented in the new files. And the `profiler`... well actually... that's not
@@ -28,16 +28,16 @@ composer require profiler
 ```
 
 Go back and remove the `framework` and `web_profiler` sections. When Composer finishes...
-yes! This installed a new recipe. The new `web_profiler.yaml` file contains exactly
-what we just removed. It even added config for the `test` environment *and* automatically
-loaded the routes it needs. Thanks profiler!
+yes! This installed a recipe. The new `web_profiler.yaml` file contains exactly
+what we just removed. It even added config for the `test` environment *and* loaded
+the routes it needs. Thanks profiler!
 
-The last key in `config_test.yml` is `monolog`. Monolog *is* installed... and its
-recipe added config for the `dev` environment and the `prod` environment. 
+The last key in `config_dev.yml` is `monolog`. Monolog *is* installed... and its
+recipe added config for the `dev` and `prod` environments.
 
 I haven't made any changes to my `monlog` config that I really care about - just
 this `firephp` section, which I could re-add if I want. So I'll use the new default
-config and just... delete `config_test.yml`! We can also delete `config_prod.yml`.
+config and just... delete `config_dev.yml`! We can also delete `config_prod.yml`.
 
 ## doctrine Config in config_prod.yml
 
@@ -51,31 +51,31 @@ Next: `config_test.yml`. And yea... this is *still* just default config. But the
 *is* one gotcha: in `config/packages/test/framework.yaml`, uncomment the `session`
 config.
 
-Like I mention earlier, the session config is not perfect yet: if you need sessions,
+I mentioned earlier that the session config is not perfect smooth: if you need sessions,
 you need to uncomment some config in the main `framework.yaml` and here too.
 
 Ok, delete `config_test.yml`!
 
 ## Migrating paramters.yml?
 
-So what about `parameters.yml`? In Flex, this files does *not* exist. Instead of
+What about `parameters.yml`? In Flex, this file does *not* exist. Instead of
 referencing parameters, we reference *environment variables*. And in the `dev`
 environment, we set these in the `.env` file.
 
-We also had a `parameters.yml.dist`, which kept track of all the parameters we
-needed. In Flex, yea, we've got the same: `.env.dist`.
+We also had a `parameters.yml.dist` file, which kept track of all the parameters
+we need. In Flex, yea, we've got the same: `.env.dist`.
 
 The `parameters.yml` file in this project only holds database config and `secret`...
-and both of these are already insdie `.env` and `.env.dist`.
+and both of these are already inside `.env` and `.env.dist`.
 
 The only difference between the files is how you *reference* the config. In `doctrine.yaml`,
-instead of using `%DATABASE_URL%`, you reference environment variables with a
-strange config: `%env(DATBASE_URL)%`.
+instead of using `%DATABASE_URL%` to reference a paramter, you reference environment
+variables with a strange config: `%env(DATABASE_URL)%`.
 
-But other than that, it's the same idea. The `resolve:` part is optional: it allows
-you to reference parameters *inside* of your environment variable values.
+But other than that, it's the same idea. Oh, the `resolve:` part is optional: it
+allows you to put parameters *inside* of your environment variable values.
 
-So... we're good! Delete `parameters.yml` and `parameters.yml.dist`. If you have
+So... we're good! Delete `parameters.yml` and `parameters.yml.dist`. If *you* have
 other keys in `parameters.yml`, add them to `.env` and `.env.dist` and then go
 update where they're referenced to use the new syntax. Easy peasy.
 
@@ -89,13 +89,13 @@ Copy that and repeat it in `.env.dist`: I want this to be my default value.
 Back to the mission! What about `routing.yml`? Copy its contents. I'll close a few
 directories... then open `config/routes.yaml`. Paste here!
 
-There is actually *already* a `config/routes/dev/annotations.yaml` file that loads
-annotation routes from `src/Controller`. But for now, we still need *our* import:
-it loads routes from AppBundle.
+We *already* have a `config/routes/dev/annotations.yaml` file that loads annotation
+routes from `src/Controller`. But for now, we still need *our* import because it
+loads routes from AppBundle.
 
 But we *do* need to make two small changes. *Even* though we'll keep the `AppBundle`
-directory, we are *not* going to actually *register* it as a bundle anymore. Yep,
-`AppBundle.php` can be deleted: we just *don't* need bundles anymore.
+directory for now, we are *not* going to actually *register* it as a bundle anymore.
+Yep, `AppBundle.php` can be deleted: we just *don't* need bundles anymore.
 
 But to make this work, we need to replace `@AppBundle` with a normal path:
 `../src/AppBundle/Controller`.
@@ -103,10 +103,11 @@ But to make this work, we need to replace `@AppBundle` with a normal path:
 And for the homepage route, remove the weird three-part colon syntax and just use
 the full class name: `App\Controller\MainController::homepageAction`.
 
-That's nice! Delete `routing.yml`. And... `routing_dev.yml`? Yep, delete it too!
-The Flex recipes handle this stuff for us.
+I am *so* happy to be done with those two Symfony-specific syntaxes! Delete
+`routing.yml`. And... `routing_dev.yml`? Yep, delete it too! The Flex recipes handle
+this stuff too.
 
-In fact, delete the `config/` directory! 
+In fact, delete the `config/` directory!
 
 Does our app work? Try to list the routes:
 
@@ -114,6 +115,7 @@ Does our app work? Try to list the routes:
 ./bin/console debug:router
 ```
 
-Ha! Yes! All our routes are here!
+Ha! Yes! We have our routes back!
 
-Next, let's delete some files and welcome our new Flex app!
+Next, let's *delete* some files - that's always fun - and then welcome our new Flex
+app!
