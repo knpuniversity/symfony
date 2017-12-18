@@ -41,7 +41,7 @@ a big change, and you may *not* be able to do that all at once in a real project
 
 So, I'm going to show you a more "gentle", gradual way to upgrade to Flex. Yep,
 for now, we're going to leave our files in `AppBundle` and make them work. But *new*
-files will directly in `src/`.
+files will live directly in `src/`.
 
 Right now, the `autoload` key in `composer.json` says to look for *all* namespaces
 in `src/`. Make this more specific: the `AppBundle\\` namespace prefix should live

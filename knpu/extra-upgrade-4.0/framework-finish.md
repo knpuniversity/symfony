@@ -32,7 +32,7 @@ composer require security-csrf
 ```
 
 By the way, once this is installed, the `csrf_protection` key in `framework.yaml`
-should *not* be needed... well, starting in symfony 4.0.2... there was a small bug.
+should *not* be needed... well, starting in Symfony 4.0.2... there was a small bug.
 Since I'm using 4.0.1, I'll keep it.
 
 Let's go check on Composer. It downloads the package and... explodes!
@@ -101,8 +101,8 @@ the bottom of `twig.yaml`.
 
 Oh, and the recipe gave us something else for free! Any routes in `config/routes/dev`
 are automatically loaded, but only in the `dev` environment. The recipe added a
-`twig.yaml` there with a route import. This helps you debug and design your error
-pages. All of this stuff is handled automatically.
+`twig.yaml` file there with a route import. This helps you debug and design your
+error pages. All of this stuff is handled automatically.
 
 Now that we know that template files should live in `templates/`, let's move them
 there! Open `app/Resources/views`. Copy *all* of the files and paste them. And yes,

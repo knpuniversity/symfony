@@ -78,7 +78,7 @@ So, do we need to move the `translator` config from our old project? Actually, n
 It's already in the new file. Delete it.
 
 And since we now know that translations should live in this new `translations/`
-directory, let's move existing files... well file. In `app/Resources/translations`,
+directory, let's move our existing files... well file. In `app/Resources/translations`,
 move `validators.en.yml` down into `translations/`.
 
 Celebrate by deleting the old directory!
@@ -101,7 +101,7 @@ yet. We *do* have forms in our app, so we need this and validation. Let's get th
 installed:
 
 ```terminal
-composer erquire form validator
+composer require form validator
 ```
 
 Yep! More aliases! Perfect! This time, it did not install *any* recipes. That's cool:

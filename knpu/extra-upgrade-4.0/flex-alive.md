@@ -10,7 +10,7 @@ basically empty and *waiting* for us to move our code into it.
 
 ## Re-Order .env
 
-Open up `.env.dist`. Woh! this has more stuff now! That's thanks to the recipes
+Open up `.env.dist`. Woh! This has more stuff now! That's thanks to the recipes
 from DoctrineBundle, SwiftmailerBundle and FrameworkBundle. Copy the FrameworkBundle
 section and move that to the top. Do the same thing to `.env`.
 

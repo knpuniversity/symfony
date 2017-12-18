@@ -32,7 +32,7 @@ But, there's a *better* way to find this deprecated logic. Open `app/config/conf
 Under `parameters`, add `container.autowiring.strict_mode: true`.
 
 This tells Symfony to use the simpler, Symfony 4-style autowiring logic right *now*.
-Instead of deprecations, you'll see great bug, beautiful errors when you try to refresh.
+Instead of deprecations, you'll see great big, beautiful errors when you try to refresh.
 
 So... try it! Refresh the homepage. Woh! No errors! That's because we already fixed
 all our old autowiring logic in the Symfony 3.3 tutorial. *And*... the 2 deprecation
@@ -129,7 +129,7 @@ There is one more deprecation on the registration page. Look at the details:
 
 This comes from `UserController`. Open that class and search for `isValid()`. Before
 `$form->isValid()`, add `$form->isSubmitted()`. Find again and fix the other spot.
-This isn'tvery important... you just need both in Symfony 4.
+This isn't very important... you just need both in Symfony 4.
 
 And now... I think we're done! All the deprecations I could find are *gone*.
 

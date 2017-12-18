@@ -1,109 +1,121 @@
-OK. Remember the goal is to move our code which mostly lives in the config
-directory into the new directory structure.
+## Migrating Services & Security
 
-Now the next bit of configuration is doctrine which we don't have anything
-special here just our database configuration. And a bit more config Config
-packages Dr. Di YAML you can actually see we basically have the exact same
-config here. There are some slight differences which are actually improvements.
+Ok, remember our goal: to move our code - which mostly lives in the `config/`
+directory - into the *new* directory structure.
 
-Basic it's the same in this case the actual instead of having multiple
-different config for host port database Numery user and password. They're all
-just done via the UL in this database. Is actually defined in our data and via
-it has all the information right there. The of the config like naming strategy
-in auto mapping is exactly the same. The only difference is the mappings in a
-symphony for flux project. We expect your diesel Essar C entity but ours right
-now live in Aspendale and SDE.
+## Migrating the doctrine Config
 
-And yes we are going to eventually move them. But let's pretend like moving
-them is too big of a thing right now. I want to make my DS work where they are.
-So to do that I'm going to add a second mapping it says we also have things an
-app bundle.
+The next section is for `doctrine`... and there's nothing special here: it's the
+default config from Symfony 3. Compare this with `config/packages/doctrine.yaml`.
+If you look closely, they're basically the same - just with a few improvements.
 
-Which is directory SLAC app bundle entity prefix namespace prefixes app on the
-slushed Wednesday and the alias is app bundle.
+Instead of having multiple config entries for the database host, username and
+password, it's all combined into one `url`. The `DATBASE_URL` environment variable
+is waiting to be configured in the `.env` file.
 
-Now that we can remove all of this doctrine configuration. The last Cubanos
-here are for Dokken cash and stock dock and extensions bundles both these
-bundles are installed. We just need to move over that configuration when we
-install the doctor and cache Mondal. You can see that it actually did not
-create a configuration file which is fine. Not all packages have configuration
-files. So let's create a new one called doctrine on the score Kashdan YAML and
-then we all move all of the configuration into that all YAML configuration
-files are automatically loaded so we don't need to register this anywhere. And
-then for stop Dokken extensions. It does have a configuration file but we need
-to add our configuration to the bottom of it.
+There is *one* important difference: `mappings`. In a Flex project, we expect your
+entities to live in `src/Entity`. But currently, *our* classes live in `src/AppBundle/Entity`.
 
-You guys config YAML is gone. We'll look at the rest of these YAML files in
-second let's celebrate. Delete config. Now I'm out.
+And yes yes, we *are* eventually going to move them. But let's pretend like moving
+them is too big of a change right now: I want to make my files work where they are.
+How can we do that? Just add a second mapping. This one will look in the `src/AppBundle/Entity`
+directory for classes that start with ``AppBundle\Entity``. Update the alias to
+`AppBundle` - that's what allows you to say `AppBundle:Genus`.
 
-Actually close.
+Simple & explicit. I *love* it! Now go delete all the `doctrine` config!
 
-All of these other files except for service has died. Yeah. Because that's the
-one I wanna work on next. Open to our original services. Why I'm out here we
-have the default the auto registration and then we have some aliases and some
-specific wiring that we needed for our services. So again for now we're going
-to keep our old code in app bundle which means that we still need to register
-those. Classes as services.
+## Migrating doctrine_cache and stof_doctrine_extensions
 
-In our new file to make things work. We specifically said not to register those
-services because they don't have the app namespace prefix. So now. Copying
-those two. Imports from your original services file.
+The last two sections are for `doctrine_cache` and `stof_doctrine_extensions`. Both
+bundles are installed, so we just need to move the config. Huh, but the DoctrineCacheBundle
+did *not* create a config file. That's normal: some bundles don't *need* configuration,
+so their recipes don't add a file. Create the file manually: `doctrine_cache.yaml`.
+And move all the config into it.
 
-And paste them into the new file. I'm going to have a little comment here. It
-says we can remove this stuff later as soon as. Our app bundle stop is gone.
-But this is going to continue. To load things from bundle. For move one level
-of directory structure since we're not as deep as we were before.
+All of the files in this directory are loaded automatically, so we don't need to
+do anything else.
 
-So anything that Apple gets on a redshirt as a service correctly anything
-directly an app also gets registered as a service frankly. Let's also make sure
-that we move over all of our existing.
+Then, for `stof_doctrine_extensions`, it *does* have a config file, but we need
+to paste our custom config at the bottom.
 
-Aliases and service configuration. We'll put those down here at the bottom.
-Gap. It's that easy. And now we can delete our services that yaml file. So
-let's see where we're at right now because that was a big step. All of a
-sudden. Most of our code is being used. We have actually just hooked our old
-application into our new application. So the civil works let's run then consul.
-And actually you get this big.
+And... that's it! Delete `config.yml`. Yes! 
 
-Class not found air that's coming from our long form authenticator abstract
-form log authenticator. It comes from the simply security components mission
-here is action. Don't have the security component installed.
+Close a few files, but keep the new `services.yaml` open... because this is our
+next target! Open the *old* `services.yml` file. This holds the normal autowiring
+and auto-registration stuff, as well as some alias and custom service wiring.
 
-So let's run composer require security. Another. Alias.
+Because we're *not* going to move our classes out of AppBundle yet, we need to
+*continue* to register those classes as services. But in the new file, to get things
+working, we *explicitly* excluded the `AppBundle` directory, because that stuff
+does not have the `App\` namespace.
 
-That stalls and then boom we have another air. This actually says beta class
-log form authenticator contains one abstract method. So I think I may have
-missed a deprecation on simply 3 which is now causing a fatal error on 74. So
-let's go take a look. And see at Bundall security logon form authenticator.
-Yeah. Class must implement authentication success. This is a deprecation that I
-missed. So let me walk you through it. Remove the default success redirect you
-or else they use to there. Instead of go to code generator or command and go to
-implement methods and implement authentication success. Before this method is
-done for you. Now we just have to do it yourself. To help with it. Go to the
-top of the class. And use a trade called Target has a trait. That allows you to
-do down in authentication success. You can say if Target Path. Equals this
-arrow good target get target path. Then pass it. Request arrow get session. And
-then the key made. Now let me talk about this in two pieces.
+No problem! Copy the 2 auto-registration sections from `services.yml`  and paste
+them into the new `services.yaml`. And I'll add a comment: when we eventually move
+everything *out* of AppBundle, we can delete this. Oh, and change the paths: we're
+now one level *less* deep.
 
-First of all this main key here is actually the name of our firewall which in
-both the old both the new security configuration which was just installed for
-us. It's called Maine and in the old security configuration which we're going
-to use in a second is also called Maine. Now what this does is it looks to see
-if the user tried to go to some well before they hit the log in page like they
-want to slash admin and then more redirected to slash logging that happens want
-to redirect them to the page they were trying to go to before.
+Now, copy all of the existing aliases and services and paste them in the new file.
 
-So if there is a target path we can return new redirect response target path.
-Else return new redirect response. And generate a mural to the home page route.
-Which is highlighting is a real route in our application.
+And... ready? Delete `services.yml`. That was a *big* step! Suddenly, almost *all*
+of our existing code is being used: our we just hooked our old code into the new
+app.
 
-And that should be enough to make our application a little bit happier. Yes.
+But, does it work! Try it:
 
-Of course I I'd dump before we move on. I do want to take our old security that
-YAML configuration. And copy this over the default secure that YAML
-configuration. Unfortunately not much really changed in security so that just
-works and we can delete another file delete Security dot YAML the old secure
-that YAML.
+```terminal
+./bin/console
+```
 
-Guys at this point we're really close. We only have a couple more files to deal
-with and then our application is in Flack's. Let's finish this.
+## Migrating Security
+
+Ah! Not *quite* yet: a class not found error from Symfony's Guard security component.
+Why? Because we haven't installed security yet! Let's do it:
+
+```terminal
+composer require security
+```
+
+It downloads and then... another error! Interesting:
+
+> LoginFormAuthenticator contains 1 abstract methods
+
+Ah! I think we *missed* a deprecation warning, and now we're seeing a fatal error.
+Open `AppBundle/Security/LoginFormAuthentication.php`.
+
+PhpStorm agrees: class must implement method `onAuthenticationSuccess`. Let me walk
+you through this change. First, remove `getDefaultSuccessRedirectUrl()`: that's
+not used anymore. Then, go to the Code->Generate menu - or Command+N on a Mac -
+select "Implement methods" and choose `onAuthenticationSuccess`.
+
+Previously, this method was handled by the base class for you. But now, it's your
+responsibility. No worries: it's pretty simple. To help, at the top, use a trait
+called `TargetPathTrait`.
+
+Back down in `onAuthenticationSuccess`, this allows us to say if
+`$targetPath = $this->getTargetPath()` with `$request->getSession()` and `main`.
+
+Let's break this down. First, the `main` string is just the name of our firewall.
+In both the old *and* new security config that was just installed, it's called `main`.
+
+Second, what does `getTargetPath()` do? Well, suppose the user originally tried
+to go to `/admin`, and then they were redirected to the login page. After they login,
+we should probably send them back to `/admin`, right? The `getTargetPath()` method
+returns the URL that the user was *originally* trying to access, if there was any.
+
+So if there *is* a target path, return new `RedirectResponse($targetPath)`. Else,
+return new `RedirectResponse` and generate a URL to the homepage.
+
+PhpStorm thinks this isn't a real route, but it is!
+
+Problem solved! Is that enough to make our app happy? Find out!
+
+```terminal-silent
+./bin/console
+```
+
+It *is*! But before we move on, let's migrate the security config. Copy *all* of
+the old `security.yml`, and *completely* replace the new `security.yaml`. And to
+celebrate, delete the old file!
+
+And... ah! We're *really* close. Only a *few* more files to deal! By the end of
+the next chapter, our app directory will be gone!

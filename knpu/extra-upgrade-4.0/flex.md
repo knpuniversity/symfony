@@ -14,7 +14,7 @@ But... since Flex is *awesome*... let's do it!
 Flex is a Composer *plugin*, and, it's pretty simple: when you install a package,
 it checks to see if there is a *recipe* for that package. A recipe can add configuration
 files, auto-enable the bundle, add paths to your `.gitignore` file and more. But,
-for Flex to work, you need to have specific Flex directory structure.
+for Flex to work, you need to use the Flex directory structure.
 
 ## Upgrade to Flex: The Plan
 

@@ -61,9 +61,9 @@ Let's find out.
 Google for StofDoctrineExtensionsBundle to find its [GitHub](https://github.com/stof/StofDoctrineExtensionsBundle)
 page. Check out the [composer.json file](https://github.com/stof/StofDoctrineExtensionsBundle/blob/4619e9d8190f19aac7c9e44f78d13710b7f2966a/composer.json#L16).
 It *does* support Symfony 4! Great! Maybe there's a new version that has this! Check
-out the releases. Oof! no releases for a *long*, long time.
+out the releases. Oof! No releases for a *long*, long time.
 
-This means that Symfony 4 support *was* added, but there has not *yet* a release
+This means that Symfony 4 support *was* added, but there is not *yet* a release
 that contains that code. Honestly, by the time you're watching this, the bundle
 probably *will* have a new release. But this is likely to happen with other libraries.
 
@@ -125,7 +125,7 @@ composer update
 Because we're upgrading to a new *major* version, you'll want to check out the
 CHANGELOG on the project to make sure there aren't any major, breaking changes.
 
-Yes! Abandoned package warning gone! And our project is on Symfony 4. No bad!
+Yes! Abandoned package warning gone! And our project is on Symfony 4. Not bad!
 
 But... get ready... because now the *real* work starts. And the fun! It's time to
 migrate our project to the Flex project structure!
