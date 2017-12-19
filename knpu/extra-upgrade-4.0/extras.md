@@ -5,7 +5,7 @@ Now that we're on Symfony 4 with Flex, I have *three* cool things to show you.
 ## Repositories as a Service
 
 Start by opening `GenusController`: find `listAction`. Ah yes: this is a very
-class setup: get the entity manager, get the repository, then call a method on it.
+classic setup: get the entity manager, get the repository, then call a method on it.
 
 One of the annoying things is that - unless you add a bunch of extra config - repositories
 are *not* services and can *not* be autowired. Boo!
@@ -17,11 +17,11 @@ And second, override the `__construct()` function. But remove the `$entityClass`
 argument. In the parent call, use `Genus::class`.
 
 That might look weird at first... but with those *two* small changes, your repository
-is *already* being auto-registered as a service. Yep, back in `listAction`, add
+is *already* being auto-registered as a service! Yep, back in `listAction`, add
 a new argument: `GenusRepository $genusRepository`. Use that below *instead* of
 fetching the `EntityManager`.
 
-And that's it! Go the page in your browser: `/genus`. Beautiful! Make that same
+And that's it! Go to that page in your browser: `/genus`. Beautiful! Make that same
 change to your other repository classes when you want to.
 
 ## Fixtures as Services
@@ -40,13 +40,13 @@ the version constraint is `^3.0`. Then, run:
 composer update doctrine/doctrine-fixtures-bundle
 ```
 
-Version 3 of this bundle *all* new... but not in a "broke everything" kind of way,
-Before, fixtures classes were loaded because they lived in an *exact* directory:
-usually `DataFixtures\ORM` in your bundle. And if you needed to access to services,
+Version 3 of this bundle is *all* new... but not in a "broke everything" kind of
+way. Before, fixtures classes were loaded because they lived in an *exact* directory:
+usually `DataFixtures\ORM` in your bundle. And if you needed to access services,
 you extended `ContainerAwareFixture` and fetched them directly from the container.
 
-Well, no more! In the new version, your fixtures are *services*, and so act like
-*everything* else. You can even put them *anywhere*.
+Well, no more! In the new version, your fixtures are *services*, and so they act
+like *everything* else. You can even put them *anywhere*.
 
 When Composer finishes, download one more package:
 
@@ -70,7 +70,7 @@ really nice, random values. Does it work? Reload the fixtures:
 ```
 
 It sees our class immediately and... it works! Fixtures are services... and they
-just work great.
+work great.
 
 ## MakerBundle
 
@@ -82,7 +82,7 @@ composer require maker
 
 This installs the MakerBundle: Symfony's new code generator. Code generation is
 of course optional. But with this bundle, you'll be able to develop new features
-faster than ever. Need a console command, an event subscriber or Twig extension?
+faster than ever. Need a console command, an event subscriber or a Twig extension?
 Yep, there's a command for that.
 
 What's everything it can do? Run:
@@ -94,21 +94,21 @@ What's everything it can do? Run:
 Right now, it has about 10 commands - but there are a lot more planned: this bundle
 is only about 1 month old!
 
-Let's do one example:
+Let's try one of these commands!
 
 ```terminal
 ./bin/console make:voter
 ```
 
-Call it `RandomAccessVoter`: we'll create a class that randomly gives us access.
+Call it `RandomAccessVoter`: we'll create a voter that randomly gives us access.
 Fun! Open the new class in `src/Security/Voter`. This comes pre-generated with
-real-world example code. In `supports()`, return `$attribute === 'RANDOM_ACCESS`.
+real-world example code. In `supports()`, return `$attribute === 'RANDOM_ACCESS'`.
 Our voter will vote when someone calls `isGranted()` with `RANDOM_ACCESS`.
 
 Then, for `voteOnAttribute()`, return `random_int(0, 10) > 5`.
 
 Now we need to go and update some configuration, right? No! This class is *already*
-being used. Open `GenusController` and... above `newAction()`, add `@IsGranted("RANDOM_ACCESS")`.
+being used! Open `GenusController` and... above `newAction()`, add `@IsGranted("RANDOM_ACCESS")`.
 
 Done! Try it: go to `/genus/new`. Ha! It sent us to the login page - that proves
 its working. Login with `iliketurtles` and... access granted! Refresh - granted!
@@ -119,7 +119,7 @@ All that by running 1 command and change about 3 lines. Welcome to Symfony 4.
 ## Let's go Symfony 4!
 
 Hey, we're done! Upgrading to the Flex structure *is* work, but I hope you're
-as happy about the result as I am! To go further with Flex and Symfony 4, check
+as happy as I am about the result! To go further with Flex and Symfony 4, check
 out our [Symfony Track](https://knpuniversity.com/tracks/symfony): we're going to
 *start* a project with Flex and *really* do things right.
 
