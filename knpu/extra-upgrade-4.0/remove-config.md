@@ -35,7 +35,7 @@ the routes it needs. Thanks profiler!
 The last key in `config_dev.yml` is `monolog`. Monolog *is* installed... and its
 recipe added config for the `dev` and `prod` environments.
 
-I haven't made any changes to my `monlog` config that I really care about - just
+I haven't made any changes to my `monolog` config that I really care about - just
 this `firephp` section, which I could re-add if I want. So I'll use the new default
 config and just... delete `config_dev.yml`! We can also delete `config_prod.yml`.
 
@@ -51,7 +51,7 @@ Next: `config_test.yml`. And yea... this is *still* just default config. But the
 *is* one gotcha: in `config/packages/test/framework.yaml`, uncomment the `session`
 config.
 
-I mentioned earlier that the session config is not perfect smooth: if you need sessions,
+I mentioned earlier that the session config is not perfectly smooth: if you need sessions,
 you need to uncomment some config in the main `framework.yaml` and here too.
 
 Ok, delete `config_test.yml`!
@@ -89,7 +89,7 @@ Copy that and repeat it in `.env.dist`: I want this to be my default value.
 Back to the mission! What about `routing.yml`? Copy its contents. I'll close a few
 directories... then open `config/routes.yaml`. Paste here!
 
-We *already* have a `config/routes/dev/annotations.yaml` file that loads annotation
+We *already* have a `config/routes/annotations.yaml` file that loads annotation
 routes from `src/Controller`. But for now, we still need *our* import because it
 loads routes from AppBundle.
 

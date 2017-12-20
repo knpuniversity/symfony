@@ -41,7 +41,7 @@ composer update doctrine/doctrine-fixtures-bundle
 ```
 
 Version 3 of this bundle is *all* new... but not in a "broke everything" kind of
-way. Before, fixtures classes were loaded because they lived in an *exact* directory:
+way. Before, fixture classes were loaded because they lived in an *exact* directory:
 usually `DataFixtures\ORM` in your bundle. And if you needed to access services,
 you extended `ContainerAwareFixture` and fetched them directly from the container.
 
@@ -114,7 +114,7 @@ Done! Try it: go to `/genus/new`. Ha! It sent us to the login page - that proves
 its working. Login with `iliketurtles` and... access granted! Refresh - granted!
 Refresh - denied!
 
-All that by running 1 command and change about 3 lines. Welcome to Symfony 4.
+All that by running 1 command and changing about 3 lines. Welcome to Symfony 4.
 
 ## Let's go Symfony 4!
 
