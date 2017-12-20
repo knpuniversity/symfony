@@ -8,6 +8,8 @@ Open `composer.json` and change `symfony/symfony` to `^4.0`. There are a few oth
 libraries that start with `symfony/`, but they're independent and follow different
 release cycles. Oh, except for `symfony/phpunit-bridge`: change that to `^4.0` also.
 
+[[[ code('21b00f2815') ]]]
+
 Let's do this! Find your terminal and run:
 
 ```terminal
@@ -84,6 +86,8 @@ And third, since the pull request *is* merged, but there is no tag, we can simpl
 change our version to `dev-master`. Believe me: I am *not* happy about this. But
 I'll update it later when there *is* a release.
 
+[[[ code('505911cc20') ]]]
+
 Try to update again:
 
 ```terminal-silent
@@ -115,6 +119,8 @@ page. Click releases.
 
 Woh! There is a new version *3* of the bundle. And I bet it fixes that abandoned
 packages issue. Change our version to `^3.1`.
+
+[[[ code('e633fcdd82') ]]]
 
 And now, update! 
 

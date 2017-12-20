@@ -40,6 +40,8 @@ So: what's the first step to upgrading to Symfony 4? It's upgrading to *3.4*! An
 that's *delighyfully* simple: Open `composer.json`, change the version of `symfony/symfony`
 to `^3.4`, find your terminal and run:
 
+[[[ code('29c1a35e3d') ]]]
+
 ```terminal
 composer update
 ```
@@ -94,6 +96,8 @@ Here's the deal: in Symfony 3, `getCredentials()` was called on *every* request.
 If it returned `null`, the authenticator was done: no other methods were called on
 it.
 
+[[[ code('fec8534f64') ]]]
+
 In Symfony 4, `supports()` is now called on every request instead. If it returns
 false, the authenticator is done like before. But if it returns `true`, then
 `getCredentials()` is called. We split the work of `getCredentials()` into two methods.
@@ -115,6 +119,8 @@ Open up `app/config/config.yml` and find line 71. Yep! Put quotes around `%cache
 To more closely follow the official YAML spec, if a value starts with `%`, it needs
 to have quotes around it. Do the same around the `directory` value.
 
+[[[ code('ae144ab428') ]]]
+
 ## Deprecation: logout_on_user_change
 
 Back on the list, there is one more easy deprecation!
@@ -124,6 +130,8 @@ Back on the list, there is one more easy deprecation!
 
 Copy that key. Then, open `app/config/security.yml`. Under the `main` firewall,
 paste this and set it to `true`.
+
+[[[ code('393e2eac10') ]]]
 
 So, what the heck is this? Check it out: suppose you change your password while
 on your work computer. Previously, doing that did *not* cause you to be logged out

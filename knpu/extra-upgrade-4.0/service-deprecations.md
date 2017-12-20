@@ -31,6 +31,8 @@ from!
 But, there's a *better* way to find this deprecated logic. Open `app/config/config.yml`.
 Under `parameters`, add `container.autowiring.strict_mode: true`.
 
+[[[ code('706a2e4dab') ]]]
+
 This tells Symfony to use the simpler, Symfony 4-style autowiring logic right *now*.
 Instead of deprecations, you'll see great big, beautiful errors when you try to refresh.
 
@@ -70,6 +72,8 @@ services directly form the container... everywhere. It's just *not* needed anymo
 What's the solution? Since we're in a controller, add a `LoggerInterface $logger`
 argument. Then, just `$logger->info()`.
 
+[[[ code('dec1afc711') ]]]
+
 Isn't that better anyways? As *soon* as we refresh the page... deprecation gone!
 
 Where *else* are we using `$container->get()`? Let's find out! In your terminal,
@@ -97,9 +101,13 @@ we want.
 That means, back in `SecurityController`, delete this line and add a new
 `AuthenticationUtils $authenticationUtils` argument. Done.
 
+[[[ code('4a28686204') ]]]
+
 The last spot is in `UserController`: we're using `security.authentication.guard_handler`.
 This time, let's guess the type-hint! Add a new argument: Guard... `GuardAuthenticationHandler`.
 That's probably it! And if we're *wrong*, Symfony will tell us. Use that value below.
+
+[[[ code('aa60d20381') ]]]
 
 And yep, you *can* see the `GuardAuthenticationHandler` class in the `debug:autowiring`
 list. But... what if it *weren't* there? What if we were trying to autowire a service
@@ -111,6 +119,8 @@ Well... you would get a *huge* error. And *maybe* you should ask yourself: is th
 But anyways, if it's not in the list, there's a simple solution: go to `services.yml`
 and add your *own* alias. At the bottom, paste the class you want to use as the
 type-hint, then copy the service id, and say `@` and paste.
+
+[[[ code('61c0551ff5') ]]]
 
 Yep, that is *all* you need to do in order to define your *own* autowiring rules.
 Since we don't need it in this case, comment it out.
@@ -130,6 +140,8 @@ There is one more deprecation on the registration page. Look at the details:
 This comes from `UserController`. Open that class and search for `isValid()`. Before
 `$form->isValid()`, add `$form->isSubmitted()`. Find again and fix the other spot.
 This isn't very important... you just need both in Symfony 4.
+
+[[[ code('8859356921') ]]]
 
 And now... I think we're done! All the deprecations I could find are *gone*.
 
