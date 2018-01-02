@@ -31,7 +31,7 @@ When it finishes, run:
 Interesting - it started on `localhost:8001`. Ah, that's because the *old* server
 is still running and hogging port 8000! And woh! It's *super* broken: we've removed
 a *ton* of files it was using. Hit Ctrl+C to stop the server. Ah! It's so broken
-it doesn't want to stop! It's taking over! Close the angry terminal!
+it doesn't want to stop! It's taking over! Close that terminal!
 
 Start the server again:
 

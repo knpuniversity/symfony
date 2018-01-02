@@ -101,7 +101,7 @@ But to make this work, we need to replace `@AppBundle` with a normal path:
 `../src/AppBundle/Controller`.
 
 And for the homepage route, remove the weird three-part colon syntax and just use
-the full class name: `App\Controller\MainController::homepageAction`.
+the full class name: `AppBundle\Controller\MainController::homepageAction`.
 
 I am *so* happy to be done with those two Symfony-specific syntaxes! Delete
 `routing.yml`. And... `routing_dev.yml`? Yep, delete it too! The Flex recipes handle
