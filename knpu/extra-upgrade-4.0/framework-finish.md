@@ -13,6 +13,8 @@ Then, remove it from `config.yml`. Let's also remove `serializer`: I wasn't usin
 it before. If you *are*, run `composer require serializer` to activate it. No config
 is needed.
 
+[[[ code('ab69b2c50b') ]]]
+
 Ok, let's see if we broke anything! Run:
 
 ```terminal
@@ -46,6 +48,8 @@ Sessions are a bit weird, because, unlike `translator` or `csrf_protection`, you
 can't activate them simply by requiring a package. You need to *manually* change
 this config. It's no big deal, but it's the *one* part of `framework` config that
 isn't super smooth.
+
+[[[ code('21d867bef1') ]]]
 
 Oh, and notice that this config *is* a bit different than before. In Symfony 3,
 we stored sessions in `var/sessions`. And you can still *totally* do this. But
@@ -99,10 +103,14 @@ The config in `twig.yaml` is *almost* the same as our old app. Copy the extra
 `form_themes` and `number_format` keys, delete the old config, and paste them at
 the bottom of `twig.yaml`.
 
+[[[ code('e40900ef25') ]]]
+
 Oh, and the recipe gave us something else for free! Any routes in `config/routes/dev`
 are automatically loaded, but only in the `dev` environment. The recipe added a
 `twig.yaml` file there with a route import. This helps you debug and design your
 error pages. All of this stuff is handled automatically.
+
+[[[ code('3a2a450ab5') ]]]
 
 Now that we know that template files should live in `templates/`, let's move them
 there! Open `app/Resources/views`. Copy *all* of the files and paste them. And yes,
@@ -116,6 +124,8 @@ We can delete *all* of `Resources/`! Our `app/` directory is getting *really* sm
 We're now down to the *final* parts of `framework`. So what about `trusted_hosts`,
 `fragments` and `http_method_override`? Remove all of those. And in `framework.yaml`,
 uncomment `fragments`.
+
+[[[ code('2d24800d9f') ]]]
 
 If you run:
 
