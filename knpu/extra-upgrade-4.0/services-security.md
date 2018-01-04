@@ -88,10 +88,10 @@ composer require security
 
 It downloads and then... another error! Interesting:
 
-> LoginFormAuthenticator contains 1 abstract methods
+> LoginFormAuthenticator contains 1 abstract method
 
 Ah! I think we *missed* a deprecation warning, and now we're seeing a fatal error.
-Open `AppBundle/Security/LoginFormAuthentication.php`.
+Open `AppBundle/Security/LoginFormAuthenticator.php`.
 
 PhpStorm agrees: class must implement method `onAuthenticationSuccess`. Let's walk
 through this change together. First, remove `getDefaultSuccessRedirectUrl()`: that's

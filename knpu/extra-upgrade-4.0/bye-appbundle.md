@@ -54,7 +54,7 @@ Oh, and change `AppBundle` to `App` for the homepage route - I can now even
 Command+Click into that class. Love it!
 
 Back in `services.yaml`, we still have a lot of `AppBundle` classes in here: PhpStorm
-is *not* smart enough to refactor YAML stings. But, the fix is easy: Find all
+is *not* smart enough to refactor YAML strings. But, the fix is easy: Find all
 `AppBundle` and replace with `App`.
 
 Done! There is one last thing we need to undo: in `config/packages/doctrine.yaml`.

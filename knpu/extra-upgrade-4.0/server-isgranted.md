@@ -31,7 +31,7 @@ When it finishes, run:
 Interesting - it started on `localhost:8001`. Ah, that's because the *old* server
 is still running and hogging port 8000! And woh! It's *super* broken: we've removed
 a *ton* of files it was using. Hit Ctrl+C to stop the server. Ah! It's so broken
-it doesn't want to stop! It's taking over! Close that angry terminal tab!
+it doesn't want to stop! It's taking over! Close that terminal!
 
 Start the server again:
 
@@ -66,7 +66,7 @@ composer update sensio/framework-extra-bundle
 ```
 
 to update *just* this library. Like with any major upgrade, look for a CHANGELOG
-to make sure you there aren't any insane changes that will break your app.
+to make sure there aren't any insane changes that will break your app.
 
 So... why are we upgrading? So glad you asked: because the new version has a feature
 I *really* like! As soon as Composer finishes, go back to `GenusAdminController`.
