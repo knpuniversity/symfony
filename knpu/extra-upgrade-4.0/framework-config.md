@@ -14,6 +14,8 @@ first key is parameters. Copy those, delete them, and open `config/services.yaml
 This is where your `parameters` and `services` will live. Paste them here. Oh, but
 remove the `strict_mode` line: autowiring *always* works in "strict mode" in Symfony 4.
 
+[[[ code('cd5b2516ec') ]]]
+
 ## Environment Variables
 
 Keep going! Back to `config.yml`. The keys under `framework` will be the *most* work
@@ -67,6 +69,9 @@ git status
 ```
 
 Cool! It created a new `translation.yaml` file and a `translation/` *directory*.
+
+[[[ code('860e3897ff') ]]]
+
 That is where translation files should live in Symfony 4. And even though the `translator`
 config lives under `framework`, in Flex, it has its *own* configuration file. Oh,
 and this is one of my *favorite* things about Flex. Why should my translation files
@@ -80,8 +85,6 @@ It's already in the new file. Delete it.
 And since we now know that translations should live in this new `translations/`
 directory, let's move our existing files... well file. In `app/Resources/translations`,
 move `validators.en.yml` down into `translations/`.
-
-Celebrate by deleting the old directory!
 
 ## Migrating router Config
 
