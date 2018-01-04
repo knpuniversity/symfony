@@ -14,17 +14,26 @@ Yep, you require *only* the specific packages that you need. Copy all of the
 `require` lines, find our `composer.json` file, and paste over the `php` and `symfony/symfony`
 lines. Oh, and remove `symfony/flex` from the bottom: it's up here now.
 
+[[[ code('f1d749c324') ]]]
+
 The `symfony/framework-bundle` package is the most important: this is the *core*
 of Symfony: it's *really* the only required package for a Symfony app.
 
 Go back and also copy the `dotenv` package from `require-dev` and put it in our
 `composer.json` file. This package is responsible for reading the new `.env` file.
 
+[[[ code('129d69a6fc') ]]]
+
 ## Synchronizing the rest of Composer.json
 
-Go back and also copy the `config` line and paste that here too. Skip the
-`autoload` sections for now, but copy the rest of the file. Replace the existing
+Go back and also copy the `config` line and paste that here too. 
+
+[[[ code('9c33cf22c1') ]]]
+
+Skip the `autoload` sections for now, but copy the rest of the file. Replace the existing
 `scripts` and `extras` sections with this new, shiny stuff.
+
+[[[ code('6a861b25d2') ]]]
 
 Brilliant!
 
@@ -48,9 +57,13 @@ in `src/`. Make this more specific: the `AppBundle\\` namespace prefix should li
 in `src/AppBundle`. Do the same in `autoload-dev`: `Tests\\AppBundle\\` will live
 in `tests/AppBundle`.
 
+[[[ code('aad91671d8') ]]]
+
 Why are we doing this? Because *now* we can go copy the `autoload` entry from the
 official `composer.json` file and add it below our `AppBundle\\` line. Copy the
 new `autoload-dev` line also.
+
+[[[ code('06660f9522') ]]]
 
 Thanks to this, Composer can autoload our *old* classes *and* any new classes!
 
