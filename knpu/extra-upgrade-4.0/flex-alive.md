@@ -14,6 +14,8 @@ Open up `.env.dist`. Woh! This has more stuff now! That's thanks to the recipes
 from DoctrineBundle, SwiftmailerBundle and FrameworkBundle. Copy the FrameworkBundle
 section and move that to the top. Do the same thing to `.env`.
 
+[[[ code('af379875fc') ]]]
+
 We don't need to do this, but `APP_ENV` is *so* important, I want to see it first.
 If you start a *new* Flex app, it's on top.
 
@@ -49,6 +51,8 @@ Welcome to the official recipes repository!
 Navigate to `symfony`, `console`, then `bin`. There it is! Copy its contents. Then,
 completely replace our version.
 
+[[[ code('70847adb79') ]]]
+
 This will boot the *new* application! So... does it work? Run:
 
 ```terminal
@@ -68,6 +72,8 @@ of each class will start with `App\`.  But, our stuff starts with `AppBundle`!
 
 For now, completely ignore `AppBundle`: let's get the new project working and *then*
 migrate our code.
+
+[[[ code('24c0288dfc') ]]]
 
 Ok, try `bin/console` again:
 
