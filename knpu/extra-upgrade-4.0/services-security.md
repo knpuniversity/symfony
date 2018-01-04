@@ -22,6 +22,8 @@ How can we do that? Add a second mapping! This one will look in the `src/AppBund
 directory for classes that start with ``AppBundle\Entity``. Update the alias to
 `AppBundle` - that's what lets you say `AppBundle:Genus`.
 
+[[[ code('7df5d38981') ]]]
+
 Simple & explicit. I *love* it! Go delete the old `doctrine` config!
 
 ## Migrating doctrine_cache and stof_doctrine_extensions
@@ -32,11 +34,15 @@ did *not* create a config file. That's normal: some bundles don't *need* configu
 so their recipes don't add a file. Create it manually: `doctrine_cache.yaml`. And
 move all the config into it.
 
+[[[ code('80b44e341d') ]]]
+
 All of the files in this directory are automatically loaded, so we don't need to
 do anything else.
 
 Then, for `stof_doctrine_extensions`, it *does* have a config file, but we need
 to paste our custom config at the bottom.
+
+[[[ code('12f6ce20ea') ]]]
 
 And... that's it! Delete `config.yml`. Victory!
 
@@ -56,7 +62,11 @@ them into the new file. And I'll add a comment: when we eventually move everythi
 *out* of AppBundle, we can delete this. Change the paths: we're now one level *less*
 deep.
 
+[[[ code('8393190e7e') ]]]
+
 Next, copy the existing aliases and services and paste them into the new file.
+
+[[[ code('b0913e450c') ]]]
 
 And... ready? Delete `services.yml`! That was a *big* step! Suddenly, almost *all*
 of our existing code is being used: we just hooked our old code into the new app.
@@ -92,8 +102,12 @@ Previously, this method was handled by the base class for you. But now, it's you
 responsibility. No worries: it's pretty simple. To help, at the top, use a trait
 called `TargetPathTrait`.
 
+[[[ code('07785489e1') ]]]
+
 Back down in `onAuthenticationSuccess`, this allows us to say if
 `$targetPath = $this->getTargetPath()` with `$request->getSession()` and `main`.
+
+[[[ code('760d0d3ec0') ]]]
 
 Let's break this down. First, the `main` string is just the name of our firewall.
 In both the old *and* new security config, that's its key.
@@ -106,6 +120,8 @@ returns the URL that the user *originally* tried to access, if any.
 So if there *is* a target path, return new `RedirectResponse($targetPath)`. Else,
 return new `RedirectResponse` and generate a URL to the homepage.
 
+[[[ code('bab033b6df') ]]]
+
 PhpStorm thinks this isn't a real route, but it is!
 
 Problem solved! Is that enough to make our app happy? Find out!
@@ -117,6 +133,8 @@ Problem solved! Is that enough to make our app happy? Find out!
 It *is*! But before we move on, we need to migrate the security config. Copy *all*
 of the old `security.yml`, and *completely* replace the new `security.yaml`. To
 celebrate, delete the old file!
+
+[[[ code('ca0aaa178b') ]]]
 
 And... ah! We're *super* close. Only a *few* more files to deal with! By the end
 of the next chapter, our `app/config/` directory will be gone!
