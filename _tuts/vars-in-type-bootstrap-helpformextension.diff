@@ -1,6 +1,6 @@
 diff --git a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 new file mode 100644
-index 00000000..a0c88a87
+index 0000000..a0c88a8
 --- /dev/null
 +++ b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 @@ -0,0 +1,13 @@

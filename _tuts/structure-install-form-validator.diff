@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 9bf0ec2e..7ad718dd 100644
+index 9bf0ec2..7ad718d 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -7,9 +7,7 @@ imports:
@@ -13,7 +13,7 @@ index 9bf0ec2e..7ad718dd 100644
      templating:
          engines: ['twig']
 diff --git a/composer.json b/composer.json
-index 84f6700a..d96b61b6 100644
+index 84f6700..d96b61b 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -26,12 +26,14 @@
@@ -32,7 +32,7 @@ index 84f6700a..d96b61b6 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index f49fa565..bfa212ba 100644
+index f49fa56..bfa212b 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -562,7 +562,7 @@ index f49fa565..bfa212ba 100644
              "version": "v4.0.1",
              "source": {
 diff --git a/symfony.lock b/symfony.lock
-index a18dab51..b1e3d6a9 100644
+index a18dab5..b1e3d6a 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -152,6 +152,9 @@

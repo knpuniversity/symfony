@@ -1,5 +1,5 @@
 diff --git a/README.md b/README.md
-index afbdb225..ce594daf 100644
+index afbdb22..ce594da 100644
 --- a/README.md
 +++ b/README.md
 @@ -30,6 +30,21 @@ composer install
@@ -26,7 +26,7 @@ index afbdb225..ce594daf 100644
  You can use Nginx or Apache, but the built-in web server works
 diff --git a/app/DoctrineMigrations/Version20160207083131.php b/app/DoctrineMigrations/Version20160207083131.php
 new file mode 100644
-index 00000000..0eb5b016
+index 0000000..0eb5b01
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160207083131.php
 @@ -0,0 +1,28 @@
@@ -59,7 +59,7 @@ index 00000000..0eb5b016
 +    }
 +}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index a24c27cb..088d75ac 100644
+index a24c27c..088d75a 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -22,6 +22,21 @@ class Genus

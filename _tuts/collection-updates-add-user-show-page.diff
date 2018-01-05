@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/user/edit.html.twig b/app/Resources/views/user/edit.html.twig
 new file mode 100644
-index 00000000..5b39c821
+index 0000000..5b39c82
 --- /dev/null
 +++ b/app/Resources/views/user/edit.html.twig
 @@ -0,0 +1,23 @@
@@ -29,7 +29,7 @@ index 00000000..5b39c821
 +{% endblock %}
 diff --git a/app/Resources/views/user/show.html.twig b/app/Resources/views/user/show.html.twig
 new file mode 100644
-index 00000000..5a0984f8
+index 0000000..5a0984f
 --- /dev/null
 +++ b/app/Resources/views/user/show.html.twig
 @@ -0,0 +1,40 @@
@@ -74,7 +74,7 @@ index 00000000..5a0984f8
 +    </div>
 +{% endblock %}
 diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
-index 7b8a18c0..da61629e 100644
+index 7b8a18c..da61629 100644
 --- a/src/AppBundle/Controller/UserController.php
 +++ b/src/AppBundle/Controller/UserController.php
 @@ -3,6 +3,7 @@
@@ -128,7 +128,7 @@ index 7b8a18c0..da61629e 100644
  }
 diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php
 new file mode 100644
-index 00000000..6c9c0bb2
+index 0000000..6c9c0bb
 --- /dev/null
 +++ b/src/AppBundle/Form/UserEditForm.php
 @@ -0,0 +1,32 @@

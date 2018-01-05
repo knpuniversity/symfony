@@ -1,6 +1,6 @@
 diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
 new file mode 100644
-index 00000000..7230c4e5
+index 0000000..7230c4e
 --- /dev/null
 +++ b/app/config/legacy_aliases.yml
 @@ -0,0 +1,6 @@
@@ -11,7 +11,7 @@ index 00000000..7230c4e5
 +    app.doctrine.hash_password_listener: '@AppBundle\Doctrine\HashPasswordListener'
 +    app.form.help_form_extenion: '@AppBundle\Form\TypeExtension\HelpFormExtension'
 diff --git a/app/config/services.yml b/app/config/services.yml
-index d0208666..7f6f9359 100644
+index d020866..7f6f935 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -1,5 +1,8 @@

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index a6a1917a..674e7423 100644
+index a6a1917..674e742 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Response;

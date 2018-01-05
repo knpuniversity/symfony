@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 3f6b6a09..ab349e51 100644
+index 3f6b6a0..ab349e5 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -6,6 +6,7 @@ use AppBundle\Entity\Genus;
@@ -28,7 +28,7 @@ index 3f6b6a09..ab349e51 100644
          $recentNotes = $em->getRepository('AppBundle:GenusNote')
              ->findAllRecentNotesForGenus($genus);
 diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
-index 1094901e..d021ccf4 100644
+index 1094901..d021ccf 100644
 --- a/src/AppBundle/Controller/SecurityController.php
 +++ b/src/AppBundle/Controller/SecurityController.php
 @@ -5,16 +5,15 @@ namespace AppBundle\Controller;

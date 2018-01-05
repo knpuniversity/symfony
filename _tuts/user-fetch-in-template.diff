@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/main/homepage.html.twig b/app/Resources/views/main/homepage.html.twig
-index 56b50601..5cc67b2c 100644
+index 56b5060..5cc67b2 100644
 --- a/app/Resources/views/main/homepage.html.twig
 +++ b/app/Resources/views/main/homepage.html.twig
 @@ -1,5 +1,8 @@

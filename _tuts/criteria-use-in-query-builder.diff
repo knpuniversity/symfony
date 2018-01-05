@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
-index 0a0a3e93..a77abd8c 100644
+index 0a0a3e9..a77abd8 100644
 --- a/src/AppBundle/Repository/GenusRepository.php
 +++ b/src/AppBundle/Repository/GenusRepository.php
 @@ -24,6 +24,17 @@ class GenusRepository extends EntityRepository

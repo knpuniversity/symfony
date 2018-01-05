@@ -1,5 +1,5 @@
 diff --git a/app/config/security.yml b/app/config/security.yml
-index 8072372c..737ea351 100644
+index 8072372..737ea35 100644
 --- a/app/config/security.yml
 +++ b/app/config/security.yml
 @@ -15,6 +15,9 @@ security:
@@ -13,7 +13,7 @@ index 8072372c..737ea351 100644
  
              # http_basic: ~
 diff --git a/app/config/services.yml b/app/config/services.yml
-index bf948d1d..11d2cd1a 100644
+index bf948d1..11d2cd1 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -14,3 +14,7 @@ services:
@@ -25,7 +25,7 @@ index bf948d1d..11d2cd1a 100644
 +        class: AppBundle\Security\LoginFormAuthenticator
 +        autowire: true
 diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
-index de82b238..ffa7c90b 100644
+index de82b23..ffa7c90 100644
 --- a/src/AppBundle/Security/LoginFormAuthenticator.php
 +++ b/src/AppBundle/Security/LoginFormAuthenticator.php
 @@ -6,6 +6,7 @@ use AppBundle\Form\LoginForm;

@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160412165619.php b/app/DoctrineMigrations/Version20160412165619.php
 new file mode 100644
-index 00000000..fb5005dd
+index 0000000..fb5005d
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160412165619.php
 @@ -0,0 +1,34 @@
@@ -39,7 +39,7 @@ index 00000000..fb5005dd
 +    }
 +}
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
-index c550d3c5..92cd1d75 100644
+index c550d3c..92cd1d7 100644
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 @@ -5,6 +5,7 @@ AppBundle\Entity\Genus:
@@ -51,7 +51,7 @@ index c550d3c5..92cd1d75 100644
  AppBundle\Entity\GenusNote:
      genus.note_{1..100}:
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index d0eaf5da..ee9cfe37 100644
+index d0eaf5d..ee9cfe3 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -45,6 +45,11 @@ class Genus

@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
-index b7dfb7fc..10cbdf90 100644
+index b7dfb7f..10cbdf9 100644
 --- a/app/Resources/views/admin/genus/new.html.twig
 +++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -5,7 +5,13 @@
@@ -19,7 +19,7 @@ index b7dfb7fc..10cbdf90 100644
 +{% endblock %}
 \ No newline at end of file
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index f534c75b..d25bb339 100644
+index f534c75..d25bb33 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -2,6 +2,7 @@
@@ -44,7 +44,7 @@ index f534c75b..d25bb339 100644
  }
 \ No newline at end of file
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index bf8a4db2..b909507f 100644
+index bf8a4db..b909507 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
 @@ -10,7 +10,11 @@ class GenusFormType extends AbstractType

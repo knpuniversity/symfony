@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index cca22c91..24785bc8 100644
+index cca22c9..24785bc 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -68,9 +68,9 @@ doctrine:
@@ -15,7 +15,7 @@ index cca22c91..24785bc8 100644
  stof_doctrine_extensions:
      default_locale: en_US
 diff --git a/app/config/security.yml b/app/config/security.yml
-index 011f26f4..831abd65 100644
+index 011f26f..831abd6 100644
 --- a/app/config/security.yml
 +++ b/app/config/security.yml
 @@ -27,6 +27,7 @@ security:

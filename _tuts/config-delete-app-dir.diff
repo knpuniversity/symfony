@@ -1,6 +1,6 @@
 diff --git a/app/.htaccess b/app/.htaccess
 deleted file mode 100644
-index fb1de45b..00000000
+index fb1de45..0000000
 --- a/app/.htaccess
 +++ /dev/null
 @@ -1,7 +0,0 @@
@@ -13,7 +13,7 @@ index fb1de45b..00000000
 -</IfModule>
 diff --git a/app/AppCache.php b/app/AppCache.php
 deleted file mode 100644
-index 639ec2cd..00000000
+index 639ec2c..0000000
 --- a/app/AppCache.php
 +++ /dev/null
 @@ -1,7 +0,0 @@
@@ -26,7 +26,7 @@ index 639ec2cd..00000000
 -}
 diff --git a/app/AppKernel.php b/app/AppKernel.php
 deleted file mode 100644
-index c8e61306..00000000
+index c8e6130..0000000
 --- a/app/AppKernel.php
 +++ /dev/null
 @@ -1,59 +0,0 @@
@@ -91,7 +91,7 @@ index c8e61306..00000000
 -}
 diff --git a/app/autoload.php b/app/autoload.php
 deleted file mode 100644
-index b32da0f3..00000000
+index b32da0f..0000000
 --- a/app/autoload.php
 +++ /dev/null
 @@ -1,15 +0,0 @@
@@ -111,7 +111,7 @@ index b32da0f3..00000000
 -
 -return $loader;
 diff --git a/composer.json b/composer.json
-index 48276f30..f5ddc802 100644
+index 48276f3..f5ddc80 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -6,8 +6,7 @@

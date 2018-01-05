@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index aad27324..9da19d08 100644
+index aad2732..9da19d0 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,7 +25,7 @@
@@ -25,7 +25,7 @@ index aad27324..9da19d08 100644
 +    ]
  }
 diff --git a/composer.lock b/composer.lock
-index 72efad2a..fad3729b 100644
+index 72efad2..fad3729 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

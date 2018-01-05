@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index f0366657..e6177490 100644
+index f036665..e617749 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -20,7 +20,7 @@
@@ -12,7 +12,7 @@ index f0366657..e6177490 100644
          "sensio/distribution-bundle": "^5.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index 85d0d45e..1b0276a8 100644
+index 85d0d45..1b0276a 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -139,7 +139,7 @@ index 85d0d45e..1b0276a8 100644
          {
              "name": "symfony/polyfill-apcu",
 diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
-index f8365110..7e73d514 100644
+index f836511..7e73d51 100644
 --- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 +++ b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 @@ -2,14 +2,24 @@

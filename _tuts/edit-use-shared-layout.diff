@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
-index 80c9ff19..e769bc78 100644
+index 80c9ff1..e769bc7 100644
 --- a/app/Resources/views/admin/genus/edit.html.twig
 +++ b/app/Resources/views/admin/genus/edit.html.twig
 @@ -1,24 +1,4 @@
@@ -30,7 +30,7 @@ index 80c9ff19..e769bc78 100644
      <div class="container">
 diff --git a/app/Resources/views/admin/genus/formLayout.html.twig b/app/Resources/views/admin/genus/formLayout.html.twig
 new file mode 100644
-index 00000000..d20fcbc8
+index 0000000..d20fcbc
 --- /dev/null
 +++ b/app/Resources/views/admin/genus/formLayout.html.twig
 @@ -0,0 +1,21 @@
@@ -56,7 +56,7 @@ index 00000000..d20fcbc8
 +    </script>
 +{% endblock %}
 diff --git a/app/Resources/views/admin/genus/new.html.twig b/app/Resources/views/admin/genus/new.html.twig
-index c770ab08..1d5ac0c6 100644
+index c770ab0..1d5ac0c 100644
 --- a/app/Resources/views/admin/genus/new.html.twig
 +++ b/app/Resources/views/admin/genus/new.html.twig
 @@ -1,24 +1,4 @@
