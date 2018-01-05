@@ -11,11 +11,13 @@ lives in `services.yaml` whenever we're in the `dev` environment.
 How can we have dev-specific parameters or services in Flex? By creating a new
 `services_dev.yaml` file. Copy the parameter, remove it and paste it here.
 
+[[[ code('bf593b0abe') ]]]
+
 Symfony will automatically load this file in the `dev` environment only.
 
 ## Migrating config_dev.yml
 
-For the rest of the file... we haven't really changed anything: these are the original
+For the rest of this file... we haven't really changed anything: these are the original
 default values. So there's a good chance that we can just use the *new* files without
 doing anything.
 
@@ -31,6 +33,10 @@ Go back and remove the `framework` and `web_profiler` sections. When Composer fi
 yes! This installed a recipe. The new `web_profiler.yaml` file contains exactly
 what we just removed. It even added config for the `test` environment *and* loaded
 the routes it needs. Thanks profiler!
+
+[[[ code('f5da3b3268') ]]]
+[[[ code('9e4309b686') ]]]
+[[[ code('ea26fed6cb') ]]]
 
 The last key in `config_dev.yml` is `monolog`. Monolog *is* installed... and its
 recipe added config for the `dev` and `prod` environments.
@@ -51,7 +57,9 @@ Next: `config_test.yml`. And yea... this is *still* just default config. But the
 *is* one gotcha: in `config/packages/test/framework.yaml`, uncomment the `session`
 config.
 
-I mentioned earlier that the session config is not perfectly smooth: if you need sessions,
+[[[ code('a036a82a6c') ]]]
+
+I mentioned earlier that the session config is not perfect smooth: if you need sessions,
 you need to uncomment some config in the main `framework.yaml` and here too.
 
 Ok, delete `config_test.yml`!
@@ -84,12 +92,16 @@ with no password and call the database `symfony4_tutorial`.
 
 Copy that and repeat it in `.env.dist`: I want this to be my default value.
 
+[[[ code('b22d92a777') ]]]
+
 ## Migrating routing Files
 
 Back to the mission! What about `routing.yml`? Copy its contents. I'll close a few
 directories... then open `config/routes.yaml`. Paste here!
 
-We *already* have a `config/routes/annotations.yaml` file that loads annotation
+[[[ code('8d63c5fa11') ]]]
+
+We *already* have a `config/routes/dev/annotations.yaml` file that loads annotation
 routes from `src/Controller`. But for now, we still need *our* import because it
 loads routes from AppBundle.
 
@@ -102,6 +114,8 @@ But to make this work, we need to replace `@AppBundle` with a normal path:
 
 And for the homepage route, remove the weird three-part colon syntax and just use
 the full class name: `AppBundle\Controller\MainController::homepageAction`.
+
+[[[ code('3d7aeac128') ]]]
 
 I am *so* happy to be done with those two Symfony-specific syntaxes! Delete
 `routing.yml`. And... `routing_dev.yml`? Yep, delete it too! The Flex recipes handle
