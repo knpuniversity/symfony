@@ -59,7 +59,11 @@ But wait! I have a better idea. Google for SensioFrameworkExtraBundle and find i
 releases: the latest is 5.1.3. What version do we have? Open `composer.json`: woh!
 We're using version *3*! Ancient!
 
-Let's update this to `^5.0`. Then, run:
+Let's update this to `^5.0`.
+
+[[[ code('287fbdb7a5') ]]]
+
+Then, run:
 
 ```terminal
 composer update sensio/framework-extra-bundle
@@ -71,6 +75,8 @@ to make sure there aren't any insane changes that will break your app.
 So... why are we upgrading? So glad you asked: because the new version has a feature
 I *really* like! As soon as Composer finishes, go back to `GenusAdminController`.
 Instead of using `@Security`, use `@IsGranted`.
+
+[[[ code('7d0bf93483') ]]]
 
 This is *similar*, but *simpler*. For the value, you *only* need to say: `ROLE_MANAGE_GENUS`.
 
