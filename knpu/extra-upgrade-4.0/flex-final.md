@@ -24,6 +24,8 @@ Our files have an `Application\Migrations` namespace. What's going on? Open the
 Ah ha! The recipe installed config that told the bundle to expect a `DoctrineMigrations`
 namespace. Easy fix! Copy the current namespace, and paste it here.
 
+[[[ code('7dfb0f72e3') ]]]
+
 Try the command again:
 
 ```terminal-silent
