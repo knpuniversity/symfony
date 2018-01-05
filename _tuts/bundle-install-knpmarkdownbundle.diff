@@ -1,5 +1,5 @@
 diff --git a/app/AppKernel.php b/app/AppKernel.php
-index ff6d5d20..f04accd3 100644
+index ff6d5d2..f04accd 100644
 --- a/app/AppKernel.php
 +++ b/app/AppKernel.php
 @@ -15,6 +15,9 @@ class AppKernel extends Kernel
@@ -13,7 +13,7 @@ index ff6d5d20..f04accd3 100644
          );
  
 diff --git a/composer.json b/composer.json
-index 4fe28ccd..4965d4de 100644
+index 4fe28cc..4965d4d 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -24,7 +24,8 @@
@@ -27,7 +27,7 @@ index 4fe28ccd..4965d4de 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 3089c0e3..b8a4f927 100644
+index 3089c0e..b8a4f92 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,8 @@
@@ -41,10 +41,11 @@ index 3089c0e3..b8a4f927 100644
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -877,6 +877,118 @@
+@@ -876,6 +876,118 @@
+             ],
              "time": "2014-01-12 16:20:24"
          },
-         {
++        {
 +            "name": "knplabs/knp-markdown-bundle",
 +            "version": "1.4.2",
 +            "source": {
@@ -156,7 +157,6 @@ index 3089c0e3..b8a4f927 100644
 +            ],
 +            "time": "2015-12-24 01:37:31"
 +        },
-+        {
+         {
              "name": "monolog/monolog",
              "version": "1.21.0",
-             "source": {

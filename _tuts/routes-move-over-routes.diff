@@ -1,6 +1,6 @@
 diff --git a/app/config/routing.yml b/app/config/routing.yml
 deleted file mode 100644
-index e88b48e8..00000000
+index e88b48e..0000000
 --- a/app/config/routing.yml
 +++ /dev/null
 @@ -1,8 +0,0 @@
@@ -14,7 +14,7 @@ index e88b48e8..00000000
 -        _controller: AppBundle:Main:homepage
 diff --git a/app/config/routing_dev.yml b/app/config/routing_dev.yml
 deleted file mode 100644
-index 404f6a3b..00000000
+index 404f6a3..0000000
 --- a/app/config/routing_dev.yml
 +++ /dev/null
 @@ -1,14 +0,0 @@
@@ -33,7 +33,7 @@ index 404f6a3b..00000000
 -_main:
 -    resource: routing.yml
 diff --git a/config/routes.yaml b/config/routes.yaml
-index 3fab0c64..f7e6ee45 100644
+index 3fab0c6..f7e6ee4 100644
 --- a/config/routes.yaml
 +++ b/config/routes.yaml
 @@ -1,3 +1,8 @@

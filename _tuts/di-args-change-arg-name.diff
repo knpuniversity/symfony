@@ -1,5 +1,5 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 84cef3bd..fa45c13f 100644
+index 84cef3b..fa45c13 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -30,7 +30,7 @@ services:
@@ -12,7 +12,7 @@ index 84cef3bd..fa45c13f 100644
      AppBundle\Doctrine\HashPasswordListener:
          tags: [doctrine.event_subscriber]
 diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
-index bb9baae0..0f6f29fc 100644
+index bb9baae..0f6f29f 100644
 --- a/src/AppBundle/Service/MarkdownTransformer.php
 +++ b/src/AppBundle/Service/MarkdownTransformer.php
 @@ -10,10 +10,10 @@ class MarkdownTransformer

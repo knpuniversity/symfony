@@ -1,5 +1,5 @@
 diff --git a/README.md b/README.md
-index ce594daf..3595332d 100644
+index ce594da..3595332 100644
 --- a/README.md
 +++ b/README.md
 @@ -39,6 +39,7 @@ schema!
@@ -12,7 +12,7 @@ index ce594daf..3595332d 100644
  If you get an error that the database exists, that should
 diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 new file mode 100644
-index 00000000..cb48a00e
+index 0000000..cb48a00
 --- /dev/null
 +++ b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 @@ -0,0 +1,21 @@

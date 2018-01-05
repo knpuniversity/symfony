@@ -1,6 +1,6 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
 deleted file mode 100644
-index 0a292950..00000000
+index 0a29295..0000000
 --- a/app/config/config.yml
 +++ /dev/null
 @@ -1,20 +0,0 @@
@@ -26,7 +26,7 @@ index 0a292950..00000000
 -            sluggable: true
 diff --git a/config/packages/doctrine_cache.yaml b/config/packages/doctrine_cache.yaml
 new file mode 100644
-index 00000000..71161888
+index 0000000..7116188
 --- /dev/null
 +++ b/config/packages/doctrine_cache.yaml
 @@ -0,0 +1,6 @@
@@ -37,7 +37,7 @@ index 00000000..71161888
 +            file_system:
 +                directory: '%kernel.cache_dir%/markdown_cache'
 diff --git a/config/packages/stof_doctrine_extensions.yaml b/config/packages/stof_doctrine_extensions.yaml
-index c83f3b1d..e7ac8f4a 100644
+index c83f3b1..e7ac8f4 100644
 --- a/config/packages/stof_doctrine_extensions.yaml
 +++ b/config/packages/stof_doctrine_extensions.yaml
 @@ -2,3 +2,6 @@

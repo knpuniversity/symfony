@@ -1,5 +1,5 @@
 diff --git a/config/routes.yaml b/config/routes.yaml
-index f7e6ee45..59b6ef60 100644
+index f7e6ee4..59b6ef6 100644
 --- a/config/routes.yaml
 +++ b/config/routes.yaml
 @@ -1,8 +1,4 @@
@@ -13,7 +13,7 @@ index f7e6ee45..59b6ef60 100644
 -        _controller: AppBundle\Controller\MainController::homepageAction
 +        _controller: App\Controller\MainController::homepageAction
 diff --git a/config/services.yaml b/config/services.yaml
-index 9eae1ca4..febf9709 100644
+index 9eae1ca..febf970 100644
 --- a/config/services.yaml
 +++ b/config/services.yaml
 @@ -17,7 +17,7 @@ services:

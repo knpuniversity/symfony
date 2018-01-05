@@ -1,5 +1,5 @@
 diff --git a/web/app.php b/web/app.php
-index 20fa4f2e..8a4c27d5 100644
+index 20fa4f2..8a4c27d 100644
 --- a/web/app.php
 +++ b/web/app.php
 @@ -21,7 +21,6 @@ $apcLoader->register(true);
@@ -11,7 +11,7 @@ index 20fa4f2e..8a4c27d5 100644
  
  // When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
 diff --git a/web/app_dev.php b/web/app_dev.php
-index 635bf7ac..9613d18d 100644
+index 635bf7a..9613d18 100644
 --- a/web/app_dev.php
 +++ b/web/app_dev.php
 @@ -25,7 +25,6 @@ $loader = require __DIR__.'/../app/autoload.php';

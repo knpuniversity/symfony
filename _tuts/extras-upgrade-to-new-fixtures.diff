@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 3efeb799..647d8c9a 100644
+index 3efeb79..647d8c9 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -18,6 +18,7 @@
@@ -20,7 +20,7 @@ index 3efeb799..647d8c9a 100644
      "config": {
          "preferred-install": {
 diff --git a/composer.lock b/composer.lock
-index d0dcfd52..5d845e57 100644
+index d0dcfd5..5d845e5 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -32,10 +32,11 @@ index d0dcfd52..5d845e57 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1020,6 +1020,56 @@
+@@ -1019,6 +1019,56 @@
+             ],
              "time": "2017-11-15T23:40:40+00:00"
          },
-         {
++        {
 +            "name": "fzaninotto/faker",
 +            "version": "v1.7.1",
 +            "source": {
@@ -85,10 +86,9 @@ index d0dcfd52..5d845e57 100644
 +            ],
 +            "time": "2017-08-15T16:48:10+00:00"
 +        },
-+        {
+         {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-             "source": {
 @@ -5083,28 +5133,32 @@
          },
          {
@@ -140,7 +140,7 @@ index d0dcfd52..5d845e57 100644
              "name": "symfony/dotenv",
 diff --git a/src/DataFixtures/AllFixtures.php b/src/DataFixtures/AllFixtures.php
 new file mode 100644
-index 00000000..0305e495
+index 0000000..0305e49
 --- /dev/null
 +++ b/src/DataFixtures/AllFixtures.php
 @@ -0,0 +1,141 @@
@@ -287,7 +287,7 @@ index 00000000..0305e495
 +}
 diff --git a/src/DataFixtures/ORM/LoadFixtures.php b/src/DataFixtures/ORM/LoadFixtures.php
 deleted file mode 100644
-index 4db98ab6..00000000
+index 4db98ab..0000000
 --- a/src/DataFixtures/ORM/LoadFixtures.php
 +++ /dev/null
 @@ -1,46 +0,0 @@
@@ -339,7 +339,7 @@ index 4db98ab6..00000000
 -}
 \ No newline at end of file
 diff --git a/symfony.lock b/symfony.lock
-index 824780ec..c3e4b589 100644
+index 824780e..c3e4b58 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -68,6 +68,9 @@

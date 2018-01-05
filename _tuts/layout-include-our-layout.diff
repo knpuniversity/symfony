@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/base.html.twig b/app/Resources/views/base.html.twig
-index bafd28d3..15fb4d68 100644
+index bafd28d..15fb4d6 100644
 --- a/app/Resources/views/base.html.twig
 +++ b/app/Resources/views/base.html.twig
 @@ -1,13 +1,42 @@
@@ -51,7 +51,7 @@ index bafd28d3..15fb4d68 100644
      </body>
  </html>
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index 29269043..b146caec 100644
+index 2926904..b146cae 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -3,11 +3,36 @@
@@ -102,7 +102,7 @@ index 29269043..b146caec 100644
 +{% endblock %}
 diff --git a/web/css/styles.css b/web/css/styles.css
 new file mode 100644
-index 00000000..cca1e34e
+index 0000000..cca1e34
 --- /dev/null
 +++ b/web/css/styles.css
 @@ -0,0 +1,670 @@
@@ -3427,7 +3427,7 @@ HcmV?d00001
 
 diff --git a/web/js/main.js b/web/js/main.js
 new file mode 100644
-index 00000000..be7fbe7f
+index 0000000..be7fbe7
 --- /dev/null
 +++ b/web/js/main.js
 @@ -0,0 +1,9 @@
@@ -3442,7 +3442,7 @@ index 00000000..be7fbe7f
 +}(jQuery);
 diff --git a/web/vendor/bootstrap/css/bootstrap-theme.css b/web/vendor/bootstrap/css/bootstrap-theme.css
 new file mode 100644
-index 00000000..ebe57fbf
+index 0000000..ebe57fb
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap-theme.css
 @@ -0,0 +1,587 @@
@@ -4035,7 +4035,7 @@ index 00000000..ebe57fbf
 +/*# sourceMappingURL=bootstrap-theme.css.map */
 diff --git a/web/vendor/bootstrap/css/bootstrap-theme.css.map b/web/vendor/bootstrap/css/bootstrap-theme.css.map
 new file mode 100644
-index 00000000..21e19101
+index 0000000..21e1910
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap-theme.css.map
 @@ -0,0 +1 @@
@@ -4043,7 +4043,7 @@ index 00000000..21e19101
 \ No newline at end of file
 diff --git a/web/vendor/bootstrap/css/bootstrap-theme.min.css b/web/vendor/bootstrap/css/bootstrap-theme.min.css
 new file mode 100644
-index 00000000..dc95d8e4
+index 0000000..dc95d8e
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap-theme.min.css
 @@ -0,0 +1,6 @@
@@ -4056,7 +4056,7 @@ index 00000000..dc95d8e4
 \ No newline at end of file
 diff --git a/web/vendor/bootstrap/css/bootstrap-theme.min.css.map b/web/vendor/bootstrap/css/bootstrap-theme.min.css.map
 new file mode 100644
-index 00000000..2c6b65af
+index 0000000..2c6b65a
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap-theme.min.css.map
 @@ -0,0 +1 @@
@@ -4064,7 +4064,7 @@ index 00000000..2c6b65af
 \ No newline at end of file
 diff --git a/web/vendor/bootstrap/css/bootstrap.css b/web/vendor/bootstrap/css/bootstrap.css
 new file mode 100644
-index 00000000..42c79d6e
+index 0000000..42c79d6
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap.css
 @@ -0,0 +1,6760 @@
@@ -10830,7 +10830,7 @@ index 00000000..42c79d6e
 +/*# sourceMappingURL=bootstrap.css.map */
 diff --git a/web/vendor/bootstrap/css/bootstrap.css.map b/web/vendor/bootstrap/css/bootstrap.css.map
 new file mode 100644
-index 00000000..09f8cda7
+index 0000000..09f8cda
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap.css.map
 @@ -0,0 +1 @@
@@ -10838,7 +10838,7 @@ index 00000000..09f8cda7
 \ No newline at end of file
 diff --git a/web/vendor/bootstrap/css/bootstrap.min.css b/web/vendor/bootstrap/css/bootstrap.min.css
 new file mode 100644
-index 00000000..4cf729e4
+index 0000000..4cf729e
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap.min.css
 @@ -0,0 +1,6 @@
@@ -10851,7 +10851,7 @@ index 00000000..4cf729e4
 \ No newline at end of file
 diff --git a/web/vendor/bootstrap/css/bootstrap.min.css.map b/web/vendor/bootstrap/css/bootstrap.min.css.map
 new file mode 100644
-index 00000000..5f49bb37
+index 0000000..5f49bb3
 --- /dev/null
 +++ b/web/vendor/bootstrap/css/bootstrap.min.css.map
 @@ -0,0 +1 @@
@@ -11254,7 +11254,7 @@ HcmV?d00001
 
 diff --git a/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg b/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
 new file mode 100644
-index 00000000..94fb5490
+index 0000000..94fb549
 --- /dev/null
 +++ b/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
 @@ -0,0 +1,288 @@
@@ -12850,7 +12850,7 @@ HcmV?d00001
 
 diff --git a/web/vendor/bootstrap/js/bootstrap.js b/web/vendor/bootstrap/js/bootstrap.js
 new file mode 100644
-index 00000000..01fbbcba
+index 0000000..01fbbcb
 --- /dev/null
 +++ b/web/vendor/bootstrap/js/bootstrap.js
 @@ -0,0 +1,2363 @@
@@ -15219,7 +15219,7 @@ index 00000000..01fbbcba
 +}(jQuery);
 diff --git a/web/vendor/bootstrap/js/bootstrap.min.js b/web/vendor/bootstrap/js/bootstrap.min.js
 new file mode 100644
-index 00000000..e79c0651
+index 0000000..e79c065
 --- /dev/null
 +++ b/web/vendor/bootstrap/js/bootstrap.min.js
 @@ -0,0 +1,7 @@
@@ -15233,7 +15233,7 @@ index 00000000..e79c0651
 \ No newline at end of file
 diff --git a/web/vendor/bootstrap/js/npm.js b/web/vendor/bootstrap/js/npm.js
 new file mode 100644
-index 00000000..bf6aa806
+index 0000000..bf6aa80
 --- /dev/null
 +++ b/web/vendor/bootstrap/js/npm.js
 @@ -0,0 +1,13 @@
@@ -15253,7 +15253,7 @@ index 00000000..bf6aa806
 \ No newline at end of file
 diff --git a/web/vendor/fontawesome/css/font-awesome.css b/web/vendor/fontawesome/css/font-awesome.css
 new file mode 100644
-index 00000000..b2a5fe2f
+index 0000000..b2a5fe2
 --- /dev/null
 +++ b/web/vendor/fontawesome/css/font-awesome.css
 @@ -0,0 +1,2086 @@
@@ -17345,7 +17345,7 @@ index 00000000..b2a5fe2f
 +}
 diff --git a/web/vendor/fontawesome/css/font-awesome.min.css b/web/vendor/fontawesome/css/font-awesome.min.css
 new file mode 100644
-index 00000000..d0603cb4
+index 0000000..d0603cb
 --- /dev/null
 +++ b/web/vendor/fontawesome/css/font-awesome.min.css
 @@ -0,0 +1,4 @@
@@ -20481,7 +20481,7 @@ HcmV?d00001
 
 diff --git a/web/vendor/fontawesome/fonts/fontawesome-webfont.svg b/web/vendor/fontawesome/fonts/fontawesome-webfont.svg
 new file mode 100644
-index 00000000..d05688e9
+index 0000000..d05688e
 --- /dev/null
 +++ b/web/vendor/fontawesome/fonts/fontawesome-webfont.svg
 @@ -0,0 +1,655 @@

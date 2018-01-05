@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 647d8c9a..d914a436 100644
+index 647d8c9..d914a43 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -28,6 +28,7 @@
@@ -11,7 +11,7 @@ index 647d8c9a..d914a436 100644
          "symfony/polyfill-apcu": "^1.0",
          "symfony/profiler-pack": "^1.0",
 diff --git a/composer.lock b/composer.lock
-index 5d845e57..8b2088ce 100644
+index 5d845e5..8b2088c 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -23,10 +23,11 @@ index 5d845e57..8b2088ce 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3154,6 +3154,63 @@
+@@ -3153,6 +3153,63 @@
+             "homepage": "https://symfony.com",
              "time": "2017-10-19T02:16:32+00:00"
          },
-         {
++        {
 +            "name": "symfony/maker-bundle",
 +            "version": "v1.0.2",
 +            "source": {
@@ -83,12 +84,11 @@ index 5d845e57..8b2088ce 100644
 +            ],
 +            "time": "2017-12-04T17:50:28+00:00"
 +        },
-+        {
+         {
              "name": "symfony/monolog-bridge",
              "version": "v4.0.1",
-             "source": {
 diff --git a/config/bundles.php b/config/bundles.php
-index a83fcd41..cdd8b3b9 100644
+index a83fcd4..cdd8b3b 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -15,4 +15,5 @@ return [
@@ -98,7 +98,7 @@ index a83fcd41..cdd8b3b9 100644
 +    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
  ];
 diff --git a/src/Controller/GenusController.php b/src/Controller/GenusController.php
-index feb91083..35a0c775 100644
+index feb9108..35a0c77 100644
 --- a/src/Controller/GenusController.php
 +++ b/src/Controller/GenusController.php
 @@ -10,6 +10,7 @@ use App\Entity\User;
@@ -119,7 +119,7 @@ index feb91083..35a0c775 100644
      {
 diff --git a/src/Security/Voter/RandomAccessVoter.php b/src/Security/Voter/RandomAccessVoter.php
 new file mode 100644
-index 00000000..0943b896
+index 0000000..0943b89
 --- /dev/null
 +++ b/src/Security/Voter/RandomAccessVoter.php
 @@ -0,0 +1,20 @@
@@ -144,7 +144,7 @@ index 00000000..0943b896
 +    }
 +}
 diff --git a/symfony.lock b/symfony.lock
-index c3e4b589..a5b0ddf1 100644
+index c3e4b58..a5b0ddf 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -188,6 +188,15 @@

@@ -1,5 +1,5 @@
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
-index 09dc7b3f..98912548 100644
+index 09dc7b3..9891254 100644
 --- a/app/config/config_dev.yml
 +++ b/app/config/config_dev.yml
 @@ -1,19 +1,6 @@
@@ -23,7 +23,7 @@ index 09dc7b3f..98912548 100644
      handlers:
          main:
 diff --git a/composer.json b/composer.json
-index 06d45be1..48276f30 100644
+index 06d45be..48276f3 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -32,6 +32,7 @@
@@ -35,7 +35,7 @@ index 06d45be1..48276f30 100644
          "symfony/security-csrf": "^4.0",
          "symfony/swiftmailer-bundle": "^3.1",
 diff --git a/composer.lock b/composer.lock
-index 0137f8c0..1b601f76 100644
+index 0137f8c..1b601f7 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -47,10 +47,11 @@ index 0137f8c0..1b601f76 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3575,6 +3575,61 @@
+@@ -3574,6 +3574,61 @@
+             ],
              "time": "2017-10-11T12:05:26+00:00"
          },
-         {
++        {
 +            "name": "symfony/polyfill-php72",
 +            "version": "v1.6.0",
 +            "source": {
@@ -105,14 +106,14 @@ index 0137f8c0..1b601f76 100644
 +            ],
 +            "time": "2017-10-11T12:05:26+00:00"
 +        },
-+        {
+         {
              "name": "symfony/polyfill-util",
              "version": "v1.6.0",
-             "source": {
-@@ -3627,6 +3682,34 @@
+@@ -3626,6 +3681,34 @@
+             ],
              "time": "2017-10-11T12:05:26+00:00"
          },
-         {
++        {
 +            "name": "symfony/profiler-pack",
 +            "version": "v1.0.3",
 +            "source": {
@@ -140,14 +141,14 @@ index 0137f8c0..1b601f76 100644
 +            "description": "A pack for the Symfony web profiler",
 +            "time": "2017-12-12T01:48:24+00:00"
 +        },
-+        {
+         {
              "name": "symfony/property-access",
              "version": "v4.0.1",
-             "source": {
-@@ -3991,6 +4074,55 @@
+@@ -3990,6 +4073,55 @@
+             "homepage": "https://symfony.com",
              "time": "2017-12-04T12:31:58+00:00"
          },
-         {
++        {
 +            "name": "symfony/stopwatch",
 +            "version": "v4.0.1",
 +            "source": {
@@ -196,14 +197,14 @@ index 0137f8c0..1b601f76 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-11-09T12:45:29+00:00"
 +        },
-+        {
+         {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-             "source": {
-@@ -4423,6 +4555,141 @@
+@@ -4422,6 +4554,141 @@
+             "homepage": "https://symfony.com",
              "time": "2017-12-04T12:31:58+00:00"
          },
-         {
++        {
 +            "name": "symfony/var-dumper",
 +            "version": "v4.0.1",
 +            "source": {
@@ -338,12 +339,11 @@ index 0137f8c0..1b601f76 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-12-04T19:38:58+00:00"
 +        },
-+        {
+         {
              "name": "symfony/yaml",
              "version": "v4.0.1",
-             "source": {
 diff --git a/config/bundles.php b/config/bundles.php
-index 292a520e..5528430a 100644
+index 292a520..5528430 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -13,4 +13,5 @@ return [
@@ -354,7 +354,7 @@ index 292a520e..5528430a 100644
  ];
 diff --git a/config/packages/dev/web_profiler.yaml b/config/packages/dev/web_profiler.yaml
 new file mode 100644
-index 00000000..e92166a7
+index 0000000..e92166a
 --- /dev/null
 +++ b/config/packages/dev/web_profiler.yaml
 @@ -0,0 +1,6 @@
@@ -366,7 +366,7 @@ index 00000000..e92166a7
 +    profiler: { only_exceptions: false }
 diff --git a/config/packages/test/web_profiler.yaml b/config/packages/test/web_profiler.yaml
 new file mode 100644
-index 00000000..03752de2
+index 0000000..03752de
 --- /dev/null
 +++ b/config/packages/test/web_profiler.yaml
 @@ -0,0 +1,6 @@
@@ -378,7 +378,7 @@ index 00000000..03752de2
 +    profiler: { collect: false }
 diff --git a/config/routes/dev/web_profiler.yaml b/config/routes/dev/web_profiler.yaml
 new file mode 100644
-index 00000000..c82beff2
+index 0000000..c82beff
 --- /dev/null
 +++ b/config/routes/dev/web_profiler.yaml
 @@ -0,0 +1,7 @@
@@ -391,14 +391,14 @@ index 00000000..c82beff2
 +    prefix: /_profiler
 diff --git a/config/services_dev.yaml b/config/services_dev.yaml
 new file mode 100644
-index 00000000..7960993b
+index 0000000..7960993
 --- /dev/null
 +++ b/config/services_dev.yaml
 @@ -0,0 +1,2 @@
 +parameters:
 +    cache_type: array
 diff --git a/symfony.lock b/symfony.lock
-index d34f5892..6cfa014b 100644
+index d34f589..6cfa014 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -224,9 +224,15 @@

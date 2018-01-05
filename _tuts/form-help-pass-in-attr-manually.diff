@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/_formTheme.html.twig b/app/Resources/views/_formTheme.html.twig
-index 406b577d..89fb20e8 100644
+index 406b577..89fb20e 100644
 --- a/app/Resources/views/_formTheme.html.twig
 +++ b/app/Resources/views/_formTheme.html.twig
 @@ -8,7 +8,9 @@
@@ -15,7 +15,7 @@ index 406b577d..89fb20e8 100644
          {% endif %}
 diff --git a/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/BaseType.php b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/BaseType.php
 new file mode 100644
-index 00000000..d68337e3
+index 0000000..d68337e
 --- /dev/null
 +++ b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/BaseType.php
 @@ -0,0 +1,124 @@
@@ -145,7 +145,7 @@ index 00000000..d68337e3
 +}
 diff --git a/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FormType.php b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FormType.php
 new file mode 100644
-index 00000000..ff8d0b4f
+index 0000000..ff8d0b4
 --- /dev/null
 +++ b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FormType.php
 @@ -0,0 +1,194 @@
@@ -345,7 +345,7 @@ index 00000000..ff8d0b4f
 +}
 diff --git a/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php
 new file mode 100644
-index 00000000..4776ebc4
+index 0000000..4776ebc
 --- /dev/null
 +++ b/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php
 @@ -0,0 +1,68 @@

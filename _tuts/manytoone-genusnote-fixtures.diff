@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
-index 58e64d6e..57f8fe74 100644
+index 58e64d6..57f8fe7 100644
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 @@ -5,3 +5,10 @@ AppBundle\Entity\Genus:

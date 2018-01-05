@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 70e8d4c8..2ce63a92 100644
+index 70e8d4c..2ce63a9 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -6,9 +6,6 @@ imports:
@@ -13,7 +13,7 @@ index 70e8d4c8..2ce63a92 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index 8b0f76ad..c4fb1d39 100644
+index 8b0f76a..c4fb1d3 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -24,6 +24,7 @@
@@ -25,7 +25,7 @@ index 8b0f76ad..c4fb1d39 100644
          "symfony/flex": "^1.0",
          "symfony/form": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 67a5cb3b..a15fbb20 100644
+index 67a5cb3..a15fbb2 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -37,10 +37,11 @@ index 67a5cb3b..a15fbb20 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1834,6 +1834,62 @@
+@@ -1833,6 +1833,62 @@
+             ],
              "time": "2017-09-30T22:39:41+00:00"
          },
-         {
++        {
 +            "name": "symfony/asset",
 +            "version": "v4.0.1",
 +            "source": {
@@ -96,12 +97,11 @@ index 67a5cb3b..a15fbb20 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-11-07T14:45:01+00:00"
 +        },
-+        {
+         {
              "name": "symfony/cache",
              "version": "v4.0.1",
-             "source": {
 diff --git a/symfony.lock b/symfony.lock
-index 26270592..9a4a00da 100644
+index 2627059..9a4a00d 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -113,6 +113,9 @@

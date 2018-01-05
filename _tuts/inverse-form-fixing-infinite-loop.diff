@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 7ca89abd..259f24a9 100644
+index 7ca89ab..259f24a 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -185,6 +185,10 @@ class Genus
@@ -14,7 +14,7 @@ index 7ca89abd..259f24a9 100644
          // not needed for persistence, just keeping both sides in sync
          $user->removeStudiedGenus($this);
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 50c2c9a6..85f5458d 100644
+index 50c2c9a..85f5458 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -233,6 +233,10 @@ class User implements UserInterface

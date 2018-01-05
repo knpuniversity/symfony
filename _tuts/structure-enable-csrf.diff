@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 7ad718dd..079dc83f 100644
+index 7ad718d..079dc83 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -7,12 +7,9 @@ imports:
@@ -16,7 +16,7 @@ index 7ad718dd..079dc83f 100644
      session:
          # handler_id set to null will use default session handler from php.ini
 diff --git a/composer.json b/composer.json
-index d96b61b6..2909f58d 100644
+index d96b61b..2909f58 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -31,6 +31,7 @@
@@ -28,7 +28,7 @@ index d96b61b6..2909f58d 100644
          "symfony/translation": "^4.0",
          "symfony/validator": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index bfa212ba..5b929492 100644
+index bfa212b..5b92949 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -40,10 +40,11 @@ index bfa212ba..5b929492 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3501,6 +3501,131 @@
+@@ -3500,6 +3500,131 @@
+             ],
              "time": "2017-11-24T14:34:08+00:00"
          },
-         {
++        {
 +            "name": "symfony/security-core",
 +            "version": "v4.0.1",
 +            "source": {
@@ -168,12 +169,11 @@ index bfa212ba..5b929492 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-12-04T12:31:58+00:00"
 +        },
-+        {
+         {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-             "source": {
 diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
-index b32f52d9..967f3eb9 100644
+index b32f52d..967f3eb 100644
 --- a/config/packages/framework.yaml
 +++ b/config/packages/framework.yaml
 @@ -1,7 +1,7 @@
@@ -186,7 +186,7 @@ index b32f52d9..967f3eb9 100644
  
      # uncomment this entire section to enable sessions
 diff --git a/symfony.lock b/symfony.lock
-index b1e3d6a9..32a5c955 100644
+index b1e3d6a..32a5c95 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -224,6 +224,12 @@
