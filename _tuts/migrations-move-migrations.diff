@@ -647,7 +647,7 @@ index d2793ef..0000000
 -    }
 -}
 diff --git a/config/packages/doctrine_migrations.yaml b/config/packages/doctrine_migrations.yaml
-index 3bf0fbc..c887ec2 100644
+index 3bf0fbc..9363711 100644
 --- a/config/packages/doctrine_migrations.yaml
 +++ b/config/packages/doctrine_migrations.yaml
 @@ -2,4 +2,4 @@ doctrine_migrations:
@@ -655,7 +655,7 @@ index 3bf0fbc..c887ec2 100644
      # namespace is arbitrary but should be different from App\Migrations
      # as migrations classes should NOT be autoloaded
 -    namespace: DoctrineMigrations
-+    namespace: Application
++    namespace: 'Application\Migrations'
 diff --git a/src/Migrations/Version20160207083131.php b/src/Migrations/Version20160207083131.php
 new file mode 100644
 index 0000000..0eb5b01
