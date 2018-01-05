@@ -32,11 +32,10 @@ index d0dcfd5..5d845e5 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1019,6 +1019,56 @@
-             ],
+@@ -1020,6 +1020,56 @@
              "time": "2017-11-15T23:40:40+00:00"
          },
-+        {
+         {
 +            "name": "fzaninotto/faker",
 +            "version": "v1.7.1",
 +            "source": {
@@ -86,9 +85,10 @@ index d0dcfd5..5d845e5 100644
 +            ],
 +            "time": "2017-08-15T16:48:10+00:00"
 +        },
-         {
++        {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
+             "source": {
 @@ -5083,28 +5133,32 @@
          },
          {

@@ -35,11 +35,10 @@ index 1b601f7..c74e557 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3681,6 +3681,55 @@
-             ],
+@@ -3682,6 +3682,55 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
-+        {
+         {
 +            "name": "symfony/process",
 +            "version": "v4.0.1",
 +            "source": {
@@ -88,14 +87,14 @@ index 1b601f7..c74e557 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-11-22T12:29:35+00:00"
 +        },
-         {
++        {
              "name": "symfony/profiler-pack",
              "version": "v1.0.3",
-@@ -4689,6 +4738,60 @@
-             "homepage": "https://symfony.com",
+             "source": {
+@@ -4690,6 +4739,60 @@
              "time": "2017-12-04T19:38:58+00:00"
          },
-+        {
+         {
 +            "name": "symfony/web-server-bundle",
 +            "version": "v4.0.1",
 +            "source": {
@@ -149,9 +148,10 @@ index 1b601f7..c74e557 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-11-19T21:23:04+00:00"
 +        },
-         {
++        {
              "name": "symfony/yaml",
              "version": "v4.0.1",
+             "source": {
 diff --git a/config/bundles.php b/config/bundles.php
 index 5528430..a83fcd4 100644
 --- a/config/bundles.php

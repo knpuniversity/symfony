@@ -135,11 +135,10 @@ index 7767a73..e5b8693 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1019,60 +1019,6 @@
-             ],
+@@ -1020,60 +1020,6 @@
              "time": "2017-11-15T23:40:40+00:00"
          },
--        {
+         {
 -            "name": "fig/link-util",
 -            "version": "1.0.0",
 -            "source": {
@@ -193,14 +192,14 @@ index 7767a73..e5b8693 100644
 -            ],
 -            "time": "2016-10-17T18:31:11+00:00"
 -        },
-         {
+-        {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-@@ -1606,55 +1552,6 @@
-             ],
+             "source": {
+@@ -1607,55 +1553,6 @@
              "time": "2017-02-14T16:28:37+00:00"
          },
--        {
+         {
 -            "name": "psr/link",
 -            "version": "1.0.0",
 -            "source": {
@@ -249,9 +248,10 @@ index 7767a73..e5b8693 100644
 -            ],
 -            "time": "2016-10-28T16:06:13+00:00"
 -        },
-         {
+-        {
              "name": "psr/log",
              "version": "1.0.2",
+             "source": {
 @@ -1752,21 +1649,21 @@
          },
          {
@@ -437,15 +437,14 @@ index 7767a73..e5b8693 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -2028,52 +1949,67 @@
-                 "MIT"
+@@ -2029,51 +1950,66 @@
              ],
              "authors": [
--                {
+                 {
 -                    "name": "Symfony Community",
 -                    "homepage": "http://symfony.com/contributors"
 -                },
-                 {
+-                {
                      "name": "Fabien Potencier",
                      "email": "fabien@symfony.com"
 +                },
@@ -1574,7 +1573,7 @@ index 7767a73..e5b8693 100644
                  },
                  "files": [
                      "bootstrap.php"
-@@ -2263,16 +3020,95 @@
+@@ -2263,10 +3020,11 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1587,10 +1586,10 @@ index 7767a73..e5b8693 100644
                  "polyfill",
                  "portable",
                  "shim"
-             ],
+@@ -2274,6 +3032,84 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
-+        {
+         {
 +            "name": "symfony/routing",
 +            "version": "v4.0.1",
 +            "source": {
@@ -1668,9 +1667,10 @@ index 7767a73..e5b8693 100644
 +            ],
 +            "time": "2017-11-24T14:34:08+00:00"
 +        },
-         {
++        {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
+             "source": {
 @@ -2336,112 +3172,27 @@
              "time": "2017-10-23T15:15:11+00:00"
          },
@@ -1923,11 +1923,10 @@ index 7767a73..e5b8693 100644
          },
          {
              "name": "zendframework/zend-code",
-@@ -2775,6 +3507,63 @@
-             ],
+@@ -2776,6 +3508,63 @@
              "time": "2017-10-30T19:26:42+00:00"
          },
-+        {
+         {
 +            "name": "symfony/dotenv",
 +            "version": "v4.0.1",
 +            "source": {
@@ -1984,9 +1983,10 @@ index 7767a73..e5b8693 100644
 +            ],
 +            "time": "2017-11-30T15:11:43+00:00"
 +        },
-         {
++        {
              "name": "symfony/phpunit-bridge",
              "version": "v4.0.1",
+             "source": {
 @@ -2841,12 +3630,13 @@
      "aliases": [],
      "minimum-stability": "stable",

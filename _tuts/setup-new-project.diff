@@ -3839,11 +3839,10 @@ index 01bf726..db436a0 100644
  
          return $this->container->get('http_kernel')->handle($subRequest, HttpKernelInterface::SUB_REQUEST);
      }
-@@ -100,6 +100,29 @@ abstract class Controller implements ContainerAwareInterface
-         return $this->redirect($this->generateUrl($route, $parameters), $status);
+@@ -101,6 +101,29 @@ abstract class Controller implements ContainerAwareInterface
      }
  
-+    /**
+     /**
 +     * Returns a JsonResponse that uses the serializer component if enabled, or json_encode.
 +     *
 +     * @param mixed $data    The response data
@@ -3866,9 +3865,10 @@ index 01bf726..db436a0 100644
 +        return new JsonResponse($data, $status, $headers);
 +    }
 +
-     /**
++    /**
       * Adds a flash message to the current session for type.
       *
+      * @param string $type    The type
 @@ -275,9 +298,9 @@ abstract class Controller implements ContainerAwareInterface
      /**
       * Creates and returns a Form instance from the type of the form.

@@ -37,11 +37,10 @@ index 72efad2..fad3729 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -50,74 +50,18 @@
-             ],
+@@ -51,73 +51,17 @@
              "time": "2017-04-04T11:38:05+00:00"
          },
--        {
+         {
 -            "name": "composer/ca-bundle",
 -            "version": "1.1.0",
 -            "source": {
@@ -97,7 +96,7 @@ index 72efad2..fad3729 100644
 -            ],
 -            "time": "2017-11-29T09:37:33+00:00"
 -        },
-         {
+-        {
              "name": "doctrine/annotations",
 -            "version": "v1.5.0",
 +            "version": "v1.6.0",
@@ -140,11 +139,10 @@ index 72efad2..fad3729 100644
          },
          {
              "name": "doctrine/cache",
-@@ -1150,57 +1094,6 @@
-             ],
+@@ -1151,57 +1095,6 @@
              "time": "2017-10-12T06:26:21+00:00"
          },
--        {
+         {
 -            "name": "incenteev/composer-parameter-handler",
 -            "version": "v2.1.2",
 -            "source": {
@@ -195,14 +193,14 @@ index 72efad2..fad3729 100644
 -            ],
 -            "time": "2015-11-10T17:04:01+00:00"
 -        },
-         {
+-        {
              "name": "jdorn/sql-formatter",
              "version": "v1.2.17",
-@@ -1561,54 +1454,6 @@
-             ],
+             "source": {
+@@ -1562,54 +1455,6 @@
              "time": "2017-05-04T11:12:50+00:00"
          },
--        {
+         {
 -            "name": "paragonie/random_compat",
 -            "version": "v2.0.11",
 -            "source": {
@@ -250,14 +248,14 @@ index 72efad2..fad3729 100644
 -            ],
 -            "time": "2017-09-27T21:40:39+00:00"
 -        },
-         {
+-        {
              "name": "psr/cache",
              "version": "1.0.1",
-@@ -1848,75 +1693,23 @@
-             ],
+             "source": {
+@@ -1849,74 +1694,22 @@
              "time": "2017-01-02T13:31:39+00:00"
          },
--        {
+         {
 -            "name": "sensio/distribution-bundle",
 -            "version": "v5.0.21",
 -            "source": {
@@ -309,7 +307,7 @@ index 72efad2..fad3729 100644
 -            ],
 -            "time": "2017-08-25T16:55:44+00:00"
 -        },
-         {
+-        {
              "name": "sensio/framework-extra-bundle",
 -            "version": "v3.0.28",
 +            "version": "v3.0.27",
@@ -730,11 +728,10 @@ index 72efad2..fad3729 100644
          },
          {
              "name": "twig/twig",
-@@ -3036,181 +2720,18 @@
-             ],
+@@ -3037,180 +2721,17 @@
              "time": "2017-10-30T19:26:42+00:00"
          },
--        {
+         {
 -            "name": "fzaninotto/faker",
 -            "version": "v1.7.1",
 -            "source": {
@@ -897,7 +894,7 @@ index 72efad2..fad3729 100644
 -            "description": "This bundle generates code for you",
 -            "time": "2017-12-07T15:36:41+00:00"
 -        },
-         {
+-        {
              "name": "symfony/phpunit-bridge",
 -            "version": "v3.4.1",
 +            "version": "v4.0.1",

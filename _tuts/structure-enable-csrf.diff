@@ -40,11 +40,10 @@ index bfa212b..5b92949 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3500,6 +3500,131 @@
-             ],
+@@ -3501,6 +3501,131 @@
              "time": "2017-11-24T14:34:08+00:00"
          },
-+        {
+         {
 +            "name": "symfony/security-core",
 +            "version": "v4.0.1",
 +            "source": {
@@ -169,9 +168,10 @@ index bfa212b..5b92949 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-12-04T12:31:58+00:00"
 +        },
-         {
++        {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
+             "source": {
 diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
 index b32f52d..967f3eb 100644
 --- a/config/packages/framework.yaml

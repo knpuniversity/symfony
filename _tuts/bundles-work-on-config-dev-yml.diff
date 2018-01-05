@@ -47,11 +47,10 @@ index 0137f8c..1b601f7 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3574,6 +3574,61 @@
-             ],
+@@ -3575,6 +3575,61 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
-+        {
+         {
 +            "name": "symfony/polyfill-php72",
 +            "version": "v1.6.0",
 +            "source": {
@@ -106,14 +105,14 @@ index 0137f8c..1b601f7 100644
 +            ],
 +            "time": "2017-10-11T12:05:26+00:00"
 +        },
-         {
++        {
              "name": "symfony/polyfill-util",
              "version": "v1.6.0",
-@@ -3626,6 +3681,34 @@
-             ],
+             "source": {
+@@ -3627,6 +3682,34 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
-+        {
+         {
 +            "name": "symfony/profiler-pack",
 +            "version": "v1.0.3",
 +            "source": {
@@ -141,14 +140,14 @@ index 0137f8c..1b601f7 100644
 +            "description": "A pack for the Symfony web profiler",
 +            "time": "2017-12-12T01:48:24+00:00"
 +        },
-         {
++        {
              "name": "symfony/property-access",
              "version": "v4.0.1",
-@@ -3990,6 +4073,55 @@
-             "homepage": "https://symfony.com",
+             "source": {
+@@ -3991,6 +4074,55 @@
              "time": "2017-12-04T12:31:58+00:00"
          },
-+        {
+         {
 +            "name": "symfony/stopwatch",
 +            "version": "v4.0.1",
 +            "source": {
@@ -197,14 +196,14 @@ index 0137f8c..1b601f7 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-11-09T12:45:29+00:00"
 +        },
-         {
++        {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-@@ -4422,6 +4554,141 @@
-             "homepage": "https://symfony.com",
+             "source": {
+@@ -4423,6 +4555,141 @@
              "time": "2017-12-04T12:31:58+00:00"
          },
-+        {
+         {
 +            "name": "symfony/var-dumper",
 +            "version": "v4.0.1",
 +            "source": {
@@ -339,9 +338,10 @@ index 0137f8c..1b601f7 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-12-04T19:38:58+00:00"
 +        },
-         {
++        {
              "name": "symfony/yaml",
              "version": "v4.0.1",
+             "source": {
 diff --git a/config/bundles.php b/config/bundles.php
 index 292a520..5528430 100644
 --- a/config/bundles.php
