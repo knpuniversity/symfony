@@ -1,0 +1,15 @@
+diff --git a/config/routes.yaml b/config/routes.yaml
+index e88b48e..f7e6ee4 100644
+--- a/config/routes.yaml
++++ b/config/routes.yaml
+@@ -1,8 +1,8 @@
+ app:
+-    resource: "@AppBundle/Controller/"
++    resource: "../src/AppBundle/Controller/"
+     type:     annotation
+ 
+ homepage:
+     path: /
+     defaults:
+-        _controller: AppBundle:Main:homepage
++        _controller: AppBundle\Controller\MainController::homepageAction
