@@ -11,7 +11,7 @@ of those rare times when you really *need* to use it.
 
 Open `AppBundle.php`. Then, right click on the `AppBundle` namespace and go to
 Refactor -> Move. The new namespace will be `App`. And below... yea! The target
-destination should be `src/`. If you need to change this, press F12.
+destination should be `src/`.
 
 This says: change all `AppBundle` namespaces to `App` and move things into the
 `src/` directory. Try it! On the big summary, click OK!
@@ -29,7 +29,7 @@ Delete AppBundle! That felt *amazing*!
 
 Let's do the same thing for the `tests/` directory... even though we only have one
 file. Open `DefaultControllerTest.php` and Refactor -> Move its namespace. In Flex,
-the namespace should start with `App\Tests`. Then, press F12 to change the directory
+the namespace should start with `App\Tests`. Then, press F2 to change the directory
 to `tests/Controller`.
 
 Ok, Refactor! Nice! Now delete that AppBundle.
