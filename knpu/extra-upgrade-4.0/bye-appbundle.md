@@ -16,6 +16,8 @@ destination should be `src/`.
 This says: change all `AppBundle` namespaces to `App` and move things into the
 `src/` directory. Try it! On the big summary, click OK!
 
+[[[ code('2fea577566') ]]]
+
 In addition to changing the namespace at the top of each file, PhpStorm is also
 searching for *references* to the namespaces and changing those too. Will it be perfect?
 Of course not! But that last pieces are pretty easy.
@@ -31,6 +33,8 @@ Let's do the same thing for the `tests/` directory... even though we only have o
 file. Open `DefaultControllerTest.php` and Refactor -> Move its namespace. In Flex,
 the namespace should start with `App\Tests`. Then, press F2 to change the directory
 to `tests/Controller`.
+
+[[[ code('0753651b5e') ]]]
 
 Ok, Refactor! Nice! Now delete that AppBundle.
 
@@ -53,9 +57,13 @@ being loaded from `src/Controller`. And *now*, that's where our controllers live
 Oh, and change `AppBundle` to `App` for the homepage route - I can now even
 Command+Click into that class. Love it!
 
+[[[ code('66e6c091a7') ]]]
+
 Back in `services.yaml`, we still have a lot of `AppBundle` classes in here: PhpStorm
 is *not* smart enough to refactor YAML strings. But, the fix is easy: Find all
 `AppBundle` and replace with `App`.
+
+[[[ code('96c56d301f') ]]]
 
 Done! There is one last thing we need to undo: in `config/packages/doctrine.yaml`.
 Remove the `AppBundle` mapping we added.
@@ -71,6 +79,8 @@ Hey! Not too bad. And most of these are the same: calls to `getRepository()`.
 Start in `security.yaml` and do the same find and replace. You could do this for
 your *entire* project, but I'll play it safe.
 
+[[[ code('19be301a69') ]]]
+
 Now, *completely* delete the `AppBundle.php` file: we're *already* not using that.
 Next is `GenusAdminController`. Open that class. But instead of replacing everything,
 which *would* work, search for AppBundle. Ah! It's a `getRepository()` call!
@@ -79,20 +89,34 @@ Our project has a lot of these... and... well... if you're lazy, there's a secre
 way to fix it! Just change the `alias` in `doctrine.yaml` from `App` to `AppBundle`.
 Cool... but let's do it the right way! Use `Genus::class`.
 
+[[[ code('15cedd3d17') ]]]
+
 We have a few more in `GenusController`. Use `SubFamily::class`, `User::class`, 
 `Genus::class`, `GenusNote::class` and `GenusScientist::class`.
+
+[[[ code('efedfb1efa') ]]]
 
 Ok, back to the list! Ah, a few entities still have `AppBundle`. Start with `Genus`.
 The `repositoryClass`, of course! Change `AppBundle` to `App`. There's another
 reference down below on a relationship. Since all the entities live in the same
 directory, this can be shortened to just `SubFamily`. 
 
+[[[ code('ada4a60bd3') ]]]
+
 Make the same change in `GenusNote`, `SubFamily` and `User`. 
+
+[[[ code('731d7987bb') ]]]
+[[[ code('1e93589143') ]]]
+[[[ code('5ad1958b6f') ]]]
 
 Almost done! Next is `GenusFormType`: open that and change the `data_class` to
 `Genus::class`.
 
+[[[ code('25d1a2ad9b') ]]]
+
 Then, finally, `LoginFormAuthenticator`. Update `AppBundle:User` to `User::class`.
+
+[[[ code('eac035918d') ]]]
 
 Phew! Search for `AppBundle` again:
 
