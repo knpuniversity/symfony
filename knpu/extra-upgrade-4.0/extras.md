@@ -13,13 +13,19 @@ are *not* services and can *not* be autowired. Boo!
 Well... that's not true anymore! Want your repository to be a service? Just make
 two changes. First, extend a new base class: `ServiceEntityRepository`.
 
+[[[ code('57b4a51eb4') ]]]
+
 And second, override the `__construct()` function. But remove the `$entityClass`
 argument. In the parent call, use `Genus::class`.
+
+[[[ code('2da79bf613') ]]]
 
 That might look weird at first... but with those *two* small changes, your repository
 is *already* being auto-registered as a service! Yep, back in `listAction`, add
 a new argument: `GenusRepository $genusRepository`. Use that below *instead* of
 fetching the `EntityManager`.
+
+[[[ code('26b9f5edbc') ]]]
 
 And that's it! Go to that page in your browser: `/genus`. Beautiful! Make that same
 change to your other repository classes when you want to.
@@ -29,12 +35,12 @@ change to your other repository classes when you want to.
 Ok, cool thing #2: our fixtures are broken. Well... that's not the cool part. They're
 broken because we removed Alice, so everything explodes:
 
-```terminal-silent
-./bin/console doctrine:fixtures:load
-```
-
 But, there's even *more* going on. Find your `composer.json` file and make sure
-the version constraint is `^3.0`. Then, run:
+the version constraint is `^3.0`. 
+
+[[[ code('4d22be56ac') ]]]
+
+Then, run:
 
 ```terminal
 composer update doctrine/doctrine-fixtures-bundle
@@ -57,6 +63,8 @@ composer require fzaninotto/faker
 This isn't needed by DoctrineFixturesBundle, but we *are* going to use it. In fact,
 if you downloaded the course code, you should have a `tutorial/` directory with
 an `AllFixtures.php` file inside. Copy that and put it directly into `DataFixtures`.
+
+[[[ code('d28f1ae701') ]]]
 
 Then, delete the old ORM directory. This is our new fixture class: all we need to
 do is extend `Fixture` from the bundle, and the command instantly recognizes it.
@@ -105,10 +113,16 @@ Fun! Open the new class in `src/Security/Voter`. This comes pre-generated with
 real-world example code. In `supports()`, return `$attribute === 'RANDOM_ACCESS'`.
 Our voter will vote when someone calls `isGranted()` with `RANDOM_ACCESS`.
 
+[[[ code('0f048474d7') ]]]
+
 Then, for `voteOnAttribute()`, return `random_int(0, 10) > 5`.
+
+[[[ code('dca5ba5a9b') ]]]
 
 Now we need to go and update some configuration, right? No! This class is *already*
 being used! Open `GenusController` and... above `newAction()`, add `@IsGranted("RANDOM_ACCESS")`.
+
+[[[ code('d4abf8b6e3') ]]]
 
 Done! Try it: go to `/genus/new`. Ha! It sent us to the login page - that proves
 its working. Login with `iliketurtles` and... access granted! Refresh - granted!
