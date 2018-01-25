@@ -60,6 +60,10 @@ When Composer finishes, download one more package:
 composer require fzaninotto/faker
 ```
 
+***TIP
+Even better would be `composer require fzaninotto/faker --dev`!
+***
+
 This isn't needed by DoctrineFixturesBundle, but we *are* going to use it. In fact,
 if you downloaded the course code, you should have a `tutorial/` directory with
 an `AllFixtures.php` file inside. Copy that and put it directly into `DataFixtures`.
