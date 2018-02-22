@@ -14,8 +14,12 @@ Google for a library called [StofDoctrineExtensionsBundle][stof_doctrine_extensi
 You can find its docs on Symfony.com. First, copy the composer require line and paste
 it into your terminal:
 
+***TIP
+If you are on Symfony 3.2 or higher, you don't have to specify the bundle's version
+***
+
 ```bash
-composer require stof/doctrine-extensions-bundle
+composer require stof/doctrine-extensions-bundle@1.2
 ```
 
 Second, plug the bundle into your `AppKernel`: copy the `new` bundle statement,
