@@ -15,7 +15,7 @@ You can find its docs on Symfony.com. First, copy the composer require line and 
 it into your terminal:
 
 ***TIP
-If you are on Symfony 3.2 or higher, you don't have to specify the bundle's version
+If you are on Symfony 3.2 or higher, you don't have to specify the bundle's version 
 ***
 
 ```bash
