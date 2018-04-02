@@ -1,7 +1,7 @@
 # Validation Groups: Conditional Validation
 
 Ready for the problem? Right now, we need the `plainPassword` to be required. But
-later when we create an edit profile page, we *don't* want to make `plainPasword`
+later when we create an edit profile page, we *don't* want to make `plainPassword`
 required. Remember, this is *not* saved to the database. So if the user leaves it
 blank on the edit form, it just means they don't want to change their password.
 And that should be allowed.
