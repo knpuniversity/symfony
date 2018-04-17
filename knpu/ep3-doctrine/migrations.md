@@ -4,8 +4,12 @@ Google for `DoctrineMigrationsBundle`. To install it, copy the `composer require
 line. But again, we don't need to have the version - Composer will find the best
 version for us:
 
+***TIP
+If you are on Symfony 3.2 or higher, you don't have to specify the bundle's version
+***
+
 ```bash
-composer require doctrine/doctrine-migrations-bundle
+composer require doctrine/doctrine-migrations-bundle:1.1
 ```
 
 While Jordi is preparing that for us, let's keep busy. Copy the `new` statement from

@@ -88,7 +88,7 @@ Congratulations, you've just created your first Symfony API endpoint.
 But you know, that *could* have been easier. Replace the Response with `new JsonResponse`
 and pass it `$data` without the `json_encode`:
 
-[[[ code('7a85429388') ]]]
+[[[ code('561bfd5b1d') ]]]
 
 This does two things. First, it
 calls `json_encode()` for you. Hey thanks! And second, it sets the `application/json`

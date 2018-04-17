@@ -13,8 +13,12 @@ the `composer require` line and paste that into the terminal. But hold on! I *al
 want to download something else: `nelmio/alice`. That's just a normal PHP library,
 not a bundle. And it's going to make our fixtures amazing:
 
+***TIP
+If you are on Symfony 3.2 or higher, you don't have to specify the DoctrineFixturesBundle version constraint
+***
+
 ```bash
-composer require --dev doctrine/doctrine-fixtures-bundle nelmio/alice:2.1.4
+composer require --dev doctrine/doctrine-fixtures-bundle:2.3.0 nelmio/alice:2.1.4
 ```
 
 ***TIP
