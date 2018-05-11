@@ -19,7 +19,7 @@ your entities to live in `src/Entity`. But currently, *our* classes live in `src
 And yes yes, we *are* going to move them... eventually. But let's pretend like moving
 them is too big of a change right now: I want to make my files work where they are.
 How can we do that? Add a second mapping! This one will look in the `src/AppBundle/Entity`
-directory for classes that start with ``AppBundle\Entity``. Update the alias to
+directory for classes that start with `AppBundle\Entity`. Update the alias to
 `AppBundle` - that's what lets you say `AppBundle:Genus`.
 
 [[[ code('7df5d38981') ]]]
