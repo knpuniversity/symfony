@@ -57,8 +57,10 @@ It downloads the new version then... woh! An error! Occasionally, if we have a *
 good reason, Symfony will change something that *will* break your app on upgrade...
 but only in a huge, obvious and unavoidable way:
 
-> The "framework.trusted_proxies" configuration key has been removed in Symfony 3.3.
-> Use the `Request::setTrustedProxies()` method in your front controller instead.
+***TIP 
+The "framework.trusted_proxies" configuration key has been removed in Symfony 3.3.
+Use the `Request::setTrustedProxies()` method in your front controller instead.
+***
 
 This says that a `framework.trusted_proxies` configuration was removed. Open up
 `app/config/config.yml`: there it is! Just take that out:
