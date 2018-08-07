@@ -7,6 +7,10 @@ files. Now we can see the *stable* `composer.json` contents.
 So... yea, this *one* file is all you need to start a *new* project. That's crazy!
 Flex *builds* the project structure around it.
 
+***TIP
+Before copying the composer.json, make sure to change the branch on GitHub to the latest released version you want to upgrade to (e.g. 4.1)
+***
+
 ## Bye Bye symfony/symfony
 
 Anyways, the *most* important change is that, with Flex, you *stop* requiring `symfony/symfony`.
