@@ -29,7 +29,7 @@ The HTML is *still* being escaped - I don't want to finish before we fix that! W
 *could* add the `|raw` filter... but let's do something cooler. Add a third argument
 to `Twig_SimpleFilter`: an options array. Add `is_safe` set to an array containing `html`:
 
-[[[ code('9e2bfbd6ed') ]]]
+[[[ code('8565766d65') ]]]
 
 This means it's *always* safe to output contents of this filter in HTML.
 Refresh one last time. Beautiful.
