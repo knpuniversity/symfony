@@ -16,7 +16,13 @@ two changes. First, extend a new base class: `ServiceEntityRepository`.
 [[[ code('57b4a51eb4') ]]]
 
 And second, override the `__construct()` function. But remove the `$entityClass`
-argument. In the parent call, use `Genus::class`.
+argument.
+
+***TIP
+Make sure the type-hint for the first argument is RegistryInterface not ManagerRegistry.
+***
+
+In the parent call, use `Genus::class`.
 
 [[[ code('2da79bf613') ]]]
 
