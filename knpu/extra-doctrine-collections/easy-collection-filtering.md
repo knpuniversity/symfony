@@ -4,21 +4,21 @@ I have *one* last cool trick to show you. Go back to `/genus`.
 
 Oh, but real quick, I need to fix two little things that I messed up before we finish.
 
-## Oh my, a Missing inversedBt
+## Oh my, a Missing `inversedBy()`
 
 First, see that red label on the web debug toolbar? Click it, and scroll down.
 It's a mapping warning:
 
 > The field `User#studiedGenuses` property is on the inverse side of a bidirectional
 > relationship, but the association on blah-blah-blah does not contain the required
-> `inversedBy`.
+> `inversedBy()`.
 
 In human-speak, this says that my `User` correctly has a `studiedGenuses` property
 with a `mappedBy` option...
 
 [[[ code('59f015559c') ]]]
 
-But on `GenusScientist`, I forgot to add the `inversedBy` that points back to this:
+But on `GenusScientist`, I forgot to add the `inversedBy()` that points back to this:
 
 [[[ code('ff68759154') ]]]
 
