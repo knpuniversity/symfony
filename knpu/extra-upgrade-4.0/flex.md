@@ -53,7 +53,7 @@ git status
 ```
 
 Of course, it modified `composer.json` and `composer.lock`. But there are two *new*
-files: `.env.dist` and `symfony.lock`. Open the first.
+files: `.env` and `symfony.lock`. Open the first.
 
 How did this get here? It was added by the `symfony/flex` recipe! More about this
 file later.
