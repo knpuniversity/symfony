@@ -17,6 +17,16 @@ If we add a `span` and give it a `help-block` class, it should look great, for f
 
 ## Inventing a new help Variable
 
+***TIP
+Since Symfony 4.1 there is `help` option you can use on every form field:
+```
+$builder->add('price', null, [
+    'help' => 'In cents',
+]);
+```
+For more information, check this doc: https://symfony.com/blog/new-in-symfony-4-1-form-field-help
+***
+
 This feature doesn't exist in Symfony... yet, but here's how I *want* it to work:
 I want to be able to pass a variable called `help` and just have it show up:
 
