@@ -95,7 +95,7 @@ work great.
 Ready for one last cool thing? Run:
 
 ```terminal
-composer require maker
+composer require maker --dev
 ```
 
 This installs the MakerBundle: Symfony's new code generator. Code generation is
