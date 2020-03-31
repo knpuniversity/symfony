@@ -20,7 +20,7 @@ index 3efeb79..647d8c9 100644
      "config": {
          "preferred-install": {
 diff --git a/composer.lock b/composer.lock
-index dfeaa09..cc09d2e 100644
+index 5e8a3ac..ec7c538 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -89,7 +89,7 @@ index dfeaa09..cc09d2e 100644
          {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-@@ -5387,28 +5437,32 @@
+@@ -5111,28 +5161,32 @@
          },
          {
              "name": "doctrine/doctrine-fixtures-bundle",
@@ -129,7 +129,7 @@ index dfeaa09..cc09d2e 100644
                  }
              },
              "autoload": {
-@@ -5440,7 +5494,7 @@
+@@ -5164,7 +5218,7 @@
                  "Fixture",
                  "persistence"
              ],
@@ -137,7 +137,7 @@ index dfeaa09..cc09d2e 100644
 +            "time": "2017-12-04T20:26:38+00:00"
          },
          {
-             "name": "symfony/dotenv",
+             "name": "paragonie/random_compat",
 diff --git a/src/DataFixtures/AllFixtures.php b/src/DataFixtures/AllFixtures.php
 new file mode 100644
 index 0000000..0305e49

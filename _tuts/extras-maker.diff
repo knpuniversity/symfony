@@ -11,7 +11,7 @@ index 647d8c9..d914a43 100644
          "symfony/polyfill-apcu": "^1.0",
          "symfony/profiler-pack": "^1.0",
 diff --git a/composer.lock b/composer.lock
-index cc09d2e..a14fae4 100644
+index ec7c538..2da52da 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -23,8 +23,8 @@ index cc09d2e..a14fae4 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3451,6 +3451,63 @@
-             "homepage": "https://symfony.com",
+@@ -3404,6 +3404,63 @@
+             "abandoned": "symfony/flex",
              "time": "2017-10-19T02:16:32+00:00"
          },
 +        {
