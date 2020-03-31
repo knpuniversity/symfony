@@ -12,11 +12,11 @@ index 9da19d0..6cb059e 100644
          "symfony/polyfill-apcu": "^1.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index fad3729..ff01b25 100644
+index 9f39fae..5ed54ff 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "47f9b983830262d29e56101ac13e8670",
@@ -24,9 +24,9 @@ index fad3729..ff01b25 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -962,6 +962,63 @@
+@@ -1257,6 +1257,63 @@
              ],
-             "time": "2017-11-27T23:25:55+00:00"
+             "time": "2020-03-27T11:06:43+00:00"
          },
 +        {
 +            "name": "egulias/email-validator",
@@ -88,7 +88,7 @@ index fad3729..ff01b25 100644
          {
              "name": "fig/link-util",
              "version": "1.0.0",
-@@ -1826,29 +1883,30 @@
+@@ -2124,29 +2181,30 @@
          },
          {
              "name": "swiftmailer/swiftmailer",
@@ -126,7 +126,7 @@ index fad3729..ff01b25 100644
                  }
              },
              "autoload": {
-@@ -1870,13 +1928,13 @@
+@@ -2168,13 +2226,13 @@
                  }
              ],
              "description": "Swiftmailer, free feature-rich PHP mailer",
@@ -142,7 +142,7 @@ index fad3729..ff01b25 100644
          },
          {
              "name": "symfony/monolog-bundle",
-@@ -2169,84 +2227,32 @@
+@@ -2467,84 +2525,32 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -197,7 +197,7 @@ index fad3729..ff01b25 100644
 -            ],
 -            "description": "Symfony Swiftmailer Bridge",
 -            "homepage": "https://symfony.com",
--            "abandoned": true,
+-            "abandoned": "symfony/swiftmailer-bundle",
 -            "time": "2017-10-01T21:00:16+00:00"
 -        },
          {
@@ -240,7 +240,7 @@ index fad3729..ff01b25 100644
              },
              "suggest": {
                  "psr/log": "Allows logging"
-@@ -2254,13 +2260,16 @@
+@@ -2552,13 +2558,16 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -259,7 +259,7 @@ index fad3729..ff01b25 100644
              },
              "notification-url": "https://packagist.org/downloads/",
              "license": [
-@@ -2278,7 +2287,7 @@
+@@ -2576,7 +2585,7 @@
              ],
              "description": "Symfony SwiftmailerBundle",
              "homepage": "http://symfony.com",

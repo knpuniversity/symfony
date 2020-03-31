@@ -23,11 +23,11 @@ index 6cb059e..070e212 100644
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index ff01b25..7767a73 100644
+index 5ed54ff..7092192 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "75b1bba0fce8e7ad2db874e1692d9e44",
@@ -35,7 +35,7 @@ index ff01b25..7767a73 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1936,6 +1936,52 @@
+@@ -2234,6 +2234,52 @@
              ],
              "time": "2017-09-30T22:39:41+00:00"
          },

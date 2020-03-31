@@ -32,11 +32,11 @@ index 84f6700..d96b61b 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index f49fa56..bfa212b 100644
+index 81a1e63..36b51f0 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "2bb785a608a4e1e2bc1db3b1f73099b9",
@@ -44,7 +44,7 @@ index f49fa56..bfa212b 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2443,6 +2443,86 @@
+@@ -2741,6 +2741,86 @@
              ],
              "time": "2017-12-11T15:40:16+00:00"
          },
@@ -131,7 +131,7 @@ index f49fa56..bfa212b 100644
          {
              "name": "symfony/framework-bundle",
              "version": "v4.0.1",
-@@ -2696,6 +2776,138 @@
+@@ -2994,6 +3074,138 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-05T00:18:20+00:00"
          },
@@ -270,7 +270,7 @@ index f49fa56..bfa212b 100644
          {
              "name": "symfony/lts",
              "version": "dev-master",
-@@ -2916,6 +3128,60 @@
+@@ -3214,6 +3426,60 @@
              ],
              "time": "2017-11-06T16:02:17+00:00"
          },
@@ -331,7 +331,7 @@ index f49fa56..bfa212b 100644
          {
              "name": "symfony/polyfill-apcu",
              "version": "v1.6.0",
-@@ -2972,6 +3238,64 @@
+@@ -3270,6 +3536,64 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -396,7 +396,7 @@ index f49fa56..bfa212b 100644
          {
              "name": "symfony/polyfill-mbstring",
              "version": "v1.6.0",
-@@ -3031,6 +3355,73 @@
+@@ -3329,6 +3653,73 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -470,7 +470,7 @@ index f49fa56..bfa212b 100644
          {
              "name": "symfony/routing",
              "version": "v4.0.1",
-@@ -3294,6 +3685,90 @@
+@@ -3592,6 +3983,90 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },

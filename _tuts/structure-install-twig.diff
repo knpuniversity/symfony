@@ -40,11 +40,11 @@ index 2909f58..8b0f76a 100644
          "symfony/yaml": "^4.0"
      },
 diff --git a/composer.lock b/composer.lock
-index 5b92949..67a5cb3 100644
+index c90db41..a076d23 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "19d9de20fe28dc6bb1c2143da721e6d8",
@@ -52,7 +52,7 @@ index 5b92949..67a5cb3 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3810,6 +3810,169 @@
+@@ -4108,6 +4108,169 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },
@@ -222,7 +222,7 @@ index 5b92949..67a5cb3 100644
          {
              "name": "symfony/validator",
              "version": "v4.0.1",
-@@ -3952,6 +4115,72 @@
+@@ -4250,6 +4413,72 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T18:34:52+00:00"
          },
@@ -294,7 +294,7 @@ index 5b92949..67a5cb3 100644
 +        },
          {
              "name": "zendframework/zend-code",
-             "version": "3.3.0",
+             "version": "3.4.1",
 diff --git a/config/bundles.php b/config/bundles.php
 index f6fc163..a1e2255 100644
 --- a/config/bundles.php

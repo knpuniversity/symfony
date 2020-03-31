@@ -11,11 +11,11 @@ index 647d8c9..d914a43 100644
          "symfony/polyfill-apcu": "^1.0",
          "symfony/profiler-pack": "^1.0",
 diff --git a/composer.lock b/composer.lock
-index 5d845e5..8b2088c 100644
+index cc09d2e..a14fae4 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "987e797b74a79251a0ddb97c4648c5fc",
@@ -23,7 +23,7 @@ index 5d845e5..8b2088c 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3153,6 +3153,63 @@
+@@ -3451,6 +3451,63 @@
              "homepage": "https://symfony.com",
              "time": "2017-10-19T02:16:32+00:00"
          },

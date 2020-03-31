@@ -28,11 +28,11 @@ index d96b61b..2909f58 100644
          "symfony/translation": "^4.0",
          "symfony/validator": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index bfa212b..5b92949 100644
+index 36b51f0..c90db41 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "9dfc13d9d1e9ca31b8f7167a10e14166",
@@ -40,7 +40,7 @@ index bfa212b..5b92949 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3500,6 +3500,131 @@
+@@ -3798,6 +3798,131 @@
              ],
              "time": "2017-11-24T14:34:08+00:00"
          },

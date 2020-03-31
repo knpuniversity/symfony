@@ -20,11 +20,11 @@ index 3efeb79..647d8c9 100644
      "config": {
          "preferred-install": {
 diff --git a/composer.lock b/composer.lock
-index d0dcfd5..5d845e5 100644
+index dfeaa09..cc09d2e 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "5b72b05365177cb784e849abf5e4456c",
@@ -32,7 +32,7 @@ index d0dcfd5..5d845e5 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1019,6 +1019,56 @@
+@@ -1314,6 +1314,56 @@
              ],
              "time": "2017-11-15T23:40:40+00:00"
          },
@@ -89,7 +89,7 @@ index d0dcfd5..5d845e5 100644
          {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-@@ -5083,28 +5133,32 @@
+@@ -5387,28 +5437,32 @@
          },
          {
              "name": "doctrine/doctrine-fixtures-bundle",
@@ -129,7 +129,7 @@ index d0dcfd5..5d845e5 100644
                  }
              },
              "autoload": {
-@@ -5136,7 +5190,7 @@
+@@ -5440,7 +5494,7 @@
                  "Fixture",
                  "persistence"
              ],

@@ -11,11 +11,11 @@ index c4fb1d3..06d45be 100644
          "symfony/swiftmailer-bundle": "^3.1",
          "symfony/translation": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index a15fbb2..0137f8c 100644
+index ef6e622..f10ea08 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "3b157b68864835bb72ae68cf7c5e3147",
@@ -23,9 +23,9 @@ index a15fbb2..0137f8c 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1457,6 +1457,54 @@
+@@ -1755,6 +1755,54 @@
              ],
-             "time": "2017-05-04T11:12:50+00:00"
+             "time": "2019-08-10T08:37:15+00:00"
          },
 +        {
 +            "name": "paragonie/random_compat",
@@ -78,7 +78,7 @@ index a15fbb2..0137f8c 100644
          {
              "name": "psr/cache",
              "version": "1.0.1",
-@@ -3411,6 +3459,173 @@
+@@ -3709,6 +3757,173 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -252,7 +252,7 @@ index a15fbb2..0137f8c 100644
          {
              "name": "symfony/property-access",
              "version": "v4.0.1",
-@@ -3557,40 +3772,134 @@
+@@ -3855,40 +4070,134 @@
              "time": "2017-11-24T14:34:08+00:00"
          },
          {
@@ -402,7 +402,7 @@ index a15fbb2..0137f8c 100644
              "extra": {
                  "branch-alias": {
                      "dev-master": "4.0-dev"
-@@ -3598,7 +3907,7 @@
+@@ -3896,7 +4205,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -411,7 +411,7 @@ index a15fbb2..0137f8c 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -3618,9 +3927,9 @@
+@@ -3916,9 +4225,9 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
