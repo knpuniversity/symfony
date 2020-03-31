@@ -23,7 +23,7 @@ index f5ddc80..cad4fa2 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 9877d9b..eebef6b 100644
+index 5ce4837..7355817 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -35,7 +35,7 @@ index 9877d9b..eebef6b 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3765,6 +3765,55 @@
+@@ -3767,6 +3767,55 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -91,7 +91,7 @@ index 9877d9b..eebef6b 100644
          {
              "name": "symfony/profiler-pack",
              "version": "v1.0.3",
-@@ -4711,6 +4760,60 @@
+@@ -4713,6 +4762,60 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T19:38:58+00:00"
          },

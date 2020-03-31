@@ -26,21 +26,19 @@ index 592bf07..251233d 100644
      "scripts": {
          "post-install-cmd": [
 diff --git a/composer.lock b/composer.lock
-index 1e97ee2..a14481d 100644
+index 33fd9f7..b8e0cc2 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,8 +4,8 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "hash": "a7dce4ce68fc090dfe5912f3e21fafac",
--    "content-hash": "f3ff126265deaf50cf5e7720d143c3f5",
-+    "hash": "d03b4baeb83494d920cc52d1ace011fc",
-+    "content-hash": "c98ecfa7dd30c9cd44b9c5659d3127cb",
+-    "content-hash": "8120645257e2a3c63cbee97a77ce9a33",
++    "content-hash": "c14025000a1874e841dc1ce721a1fcac",
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -2362,6 +2362,230 @@
+@@ -2733,6 +2733,230 @@
          }
      ],
      "packages-dev": [
@@ -99,7 +97,7 @@ index 1e97ee2..a14481d 100644
 +            "keywords": [
 +                "database"
 +            ],
-+            "time": "2015-03-30 12:14:13"
++            "time": "2015-03-30T12:14:13+00:00"
 +        },
 +        {
 +            "name": "doctrine/doctrine-fixtures-bundle",
@@ -156,7 +154,7 @@ index 1e97ee2..a14481d 100644
 +                "Fixture",
 +                "persistence"
 +            ],
-+            "time": "2015-11-04 21:23:23"
++            "time": "2015-11-04T21:23:23+00:00"
 +        },
 +        {
 +            "name": "fzaninotto/faker",
@@ -208,7 +206,7 @@ index 1e97ee2..a14481d 100644
 +                "faker",
 +                "fixtures"
 +            ],
-+            "time": "2015-05-29 06:29:14"
++            "time": "2015-05-29T06:29:14+00:00"
 +        },
 +        {
 +            "name": "nelmio/alice",
@@ -266,7 +264,7 @@ index 1e97ee2..a14481d 100644
 +                "orm",
 +                "test"
 +            ],
-+            "time": "2016-01-07 14:44:47"
++            "time": "2016-01-07T14:44:47+00:00"
 +        },
          {
              "name": "sensio/generator-bundle",

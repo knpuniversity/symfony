@@ -25,7 +25,7 @@ index 6d9feeb..84f6700 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index a3096a7..81a1e63 100644
+index ed97ec2..d12d46c 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -37,7 +37,7 @@ index a3096a7..81a1e63 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3524,6 +3524,74 @@
+@@ -3526,6 +3526,74 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-07T14:45:01+00:00"
          },

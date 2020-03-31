@@ -12,7 +12,7 @@ index 9da19d0..6cb059e 100644
          "symfony/polyfill-apcu": "^1.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index 9f39fae..5ed54ff 100644
+index aca4a4a..b99d048 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -24,7 +24,7 @@ index 9f39fae..5ed54ff 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1257,6 +1257,63 @@
+@@ -1259,6 +1259,63 @@
              ],
              "time": "2020-03-27T11:06:43+00:00"
          },
@@ -88,7 +88,7 @@ index 9f39fae..5ed54ff 100644
          {
              "name": "fig/link-util",
              "version": "1.0.0",
-@@ -2124,29 +2181,30 @@
+@@ -2126,29 +2183,30 @@
          },
          {
              "name": "swiftmailer/swiftmailer",
@@ -126,7 +126,7 @@ index 9f39fae..5ed54ff 100644
                  }
              },
              "autoload": {
-@@ -2168,13 +2226,13 @@
+@@ -2170,13 +2228,13 @@
                  }
              ],
              "description": "Swiftmailer, free feature-rich PHP mailer",
@@ -142,7 +142,7 @@ index 9f39fae..5ed54ff 100644
          },
          {
              "name": "symfony/monolog-bundle",
-@@ -2467,84 +2525,32 @@
+@@ -2469,84 +2527,32 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -240,7 +240,7 @@ index 9f39fae..5ed54ff 100644
              },
              "suggest": {
                  "psr/log": "Allows logging"
-@@ -2552,13 +2558,16 @@
+@@ -2554,13 +2560,16 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -259,7 +259,7 @@ index 9f39fae..5ed54ff 100644
              },
              "notification-url": "https://packagist.org/downloads/",
              "license": [
-@@ -2576,7 +2585,7 @@
+@@ -2578,7 +2587,7 @@
              ],
              "description": "Symfony SwiftmailerBundle",
              "homepage": "http://symfony.com",

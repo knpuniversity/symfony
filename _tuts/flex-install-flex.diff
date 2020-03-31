@@ -23,7 +23,7 @@ index 6cb059e..070e212 100644
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 5ed54ff..7092192 100644
+index b99d048..2ec1a86 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -35,7 +35,7 @@ index 5ed54ff..7092192 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2234,6 +2234,52 @@
+@@ -2236,6 +2236,52 @@
              ],
              "time": "2017-09-30T22:39:41+00:00"
          },

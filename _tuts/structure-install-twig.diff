@@ -40,7 +40,7 @@ index 2909f58..8b0f76a 100644
          "symfony/yaml": "^4.0"
      },
 diff --git a/composer.lock b/composer.lock
-index c90db41..a076d23 100644
+index 580361c..46291c6 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -52,7 +52,7 @@ index c90db41..a076d23 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -4108,6 +4108,169 @@
+@@ -4110,6 +4110,169 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },
@@ -222,7 +222,7 @@ index c90db41..a076d23 100644
          {
              "name": "symfony/validator",
              "version": "v4.0.1",
-@@ -4250,6 +4413,72 @@
+@@ -4252,6 +4415,72 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T18:34:52+00:00"
          },

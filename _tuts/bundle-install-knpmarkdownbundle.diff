@@ -27,23 +27,21 @@ index 4fe28cc..4965d4d 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 3089c0e..b8a4f92 100644
+index 555dd3c..a822cc0 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,8 +4,8 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "hash": "4df693adfb1f99095c466dff66085656",
 -    "content-hash": "d780e5e953712680199ad469e5cd6214",
-+    "hash": "9f3f8c3f80d6d7c72706e479193018e3",
-+    "content-hash": "465678b671ace9387f2ebf848800e499",
++    "content-hash": "3304dc9d351ec6a8b23980a2eb089395",
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -876,6 +876,118 @@
+@@ -1177,6 +1177,118 @@
              ],
-             "time": "2014-01-12 16:20:24"
+             "time": "2014-01-12T16:20:24+00:00"
          },
 +        {
 +            "name": "knplabs/knp-markdown-bundle",
@@ -104,7 +102,7 @@ index 3089c0e..b8a4f92 100644
 +                "knplabs",
 +                "markdown"
 +            ],
-+            "time": "2015-12-15 20:41:45"
++            "time": "2015-12-15T20:41:45+00:00"
 +        },
 +        {
 +            "name": "michelf/php-markdown",
@@ -155,7 +153,7 @@ index 3089c0e..b8a4f92 100644
 +            "keywords": [
 +                "markdown"
 +            ],
-+            "time": "2015-12-24 01:37:31"
++            "time": "2015-12-24T01:37:31+00:00"
 +        },
          {
              "name": "monolog/monolog",

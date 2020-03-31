@@ -12,11 +12,11 @@ index f036665..e617749 100644
          "sensio/distribution-bundle": "^5.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index 85d0d45..1b0276a 100644
+index 52b6fcb..f52a5d7 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "4ccfe7e10760cb5a2cbe75a99f57d7a4",
@@ -24,7 +24,7 @@ index 85d0d45..1b0276a 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -456,37 +456,37 @@
+@@ -502,37 +502,37 @@
          },
          {
              "name": "doctrine/doctrine-bundle",
@@ -76,7 +76,7 @@ index 85d0d45..1b0276a 100644
              },
              "suggest": {
                  "doctrine/orm": "The Doctrine ORM integration is optional in the bundle.",
-@@ -533,7 +533,7 @@
+@@ -579,7 +579,7 @@
                  "orm",
                  "persistence"
              ],
@@ -85,7 +85,7 @@ index 85d0d45..1b0276a 100644
          },
          {
              "name": "doctrine/doctrine-cache-bundle",
-@@ -2121,25 +2121,25 @@
+@@ -2426,25 +2426,25 @@
          },
          {
              "name": "symfony/monolog-bundle",
@@ -120,7 +120,7 @@ index 85d0d45..1b0276a 100644
              },
              "require-dev": {
                  "phpunit/phpunit": "^4.8",
-@@ -2149,7 +2149,7 @@
+@@ -2454,7 +2454,7 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -129,7 +129,7 @@ index 85d0d45..1b0276a 100644
                  }
              },
              "autoload": {
-@@ -2177,7 +2177,7 @@
+@@ -2482,7 +2482,7 @@
                  "log",
                  "logging"
              ],

@@ -12,7 +12,7 @@ index cad4fa2..d1369b8 100644
          "symfony/asset": "^4.0",
          "symfony/console": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index eebef6b..5e8a3ac 100644
+index 7355817..0fd55e0 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -24,7 +24,7 @@ index eebef6b..5e8a3ac 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1947,38 +1947,37 @@
+@@ -1949,38 +1949,37 @@
          },
          {
              "name": "sensio/framework-extra-bundle",
@@ -83,7 +83,7 @@ index eebef6b..5e8a3ac 100644
                  "twig/twig": "~1.12|~2.0",
                  "zendframework/zend-diactoros": "^1.3"
              },
-@@ -1990,7 +1989,7 @@
+@@ -1992,7 +1991,7 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -92,7 +92,7 @@ index eebef6b..5e8a3ac 100644
                  }
              },
              "autoload": {
-@@ -2013,7 +2012,7 @@
+@@ -2015,7 +2014,7 @@
                  "annotations",
                  "controllers"
              ],
@@ -101,7 +101,7 @@ index eebef6b..5e8a3ac 100644
          },
          {
              "name": "stof/doctrine-extensions-bundle",
-@@ -2442,25 +2441,25 @@
+@@ -2444,25 +2443,25 @@
          },
          {
              "name": "symfony/dependency-injection",
@@ -134,7 +134,7 @@ index eebef6b..5e8a3ac 100644
                  "symfony/proxy-manager-bridge": "<3.4",
                  "symfony/yaml": "<3.4"
              },
-@@ -2468,8 +2467,8 @@
+@@ -2470,8 +2469,8 @@
                  "psr/container-implementation": "1.0"
              },
              "require-dev": {
@@ -145,7 +145,7 @@ index eebef6b..5e8a3ac 100644
                  "symfony/yaml": "~3.4|~4.0"
              },
              "suggest": {
-@@ -2482,7 +2481,7 @@
+@@ -2484,7 +2483,7 @@
              "type": "library",
              "extra": {
                  "branch-alias": {
@@ -154,7 +154,7 @@ index eebef6b..5e8a3ac 100644
                  }
              },
              "autoload": {
-@@ -2509,7 +2508,7 @@
+@@ -2511,7 +2510,7 @@
              ],
              "description": "Symfony DependencyInjection Component",
              "homepage": "https://symfony.com",
