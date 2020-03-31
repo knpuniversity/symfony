@@ -1,495 +1,18 @@
-diff --git a/src/AppBundle.php b/src/AppBundle.php
-new file mode 100644
-index 0000000..9251095
---- /dev/null
-+++ b/src/AppBundle.php
-@@ -0,0 +1,9 @@
-+<?php
-+
-+namespace App;
-+
-+use Symfony\Component\HttpKernel\Bundle\Bundle;
-+
-+class AppBundle extends Bundle
-+{
-+}
-diff --git a/src/AppBundle/AppBundle.php b/src/AppBundle/AppBundle.php
-deleted file mode 100644
-index 05123b6..0000000
+diff --git a/src/AppBundle/AppBundle.php b/src/AppBundle.php
+similarity index 81%
+rename from src/AppBundle/AppBundle.php
+rename to src/AppBundle.php
+index 05123b6..9251095 100644
 --- a/src/AppBundle/AppBundle.php
-+++ /dev/null
-@@ -1,9 +0,0 @@
--<?php
--
++++ b/src/AppBundle.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
 -namespace AppBundle;
--
--use Symfony\Component\HttpKernel\Bundle\Bundle;
--
--class AppBundle extends Bundle
--{
--}
-diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-deleted file mode 100644
-index 2895fce..0000000
---- a/src/AppBundle/Controller/Admin/GenusAdminController.php
-+++ /dev/null
-@@ -1,97 +0,0 @@
--<?php
--
--namespace AppBundle\Controller\Admin;
--
--use AppBundle\Entity\Genus;
--use AppBundle\Form\GenusFormType;
--use AppBundle\Service\MessageManager;
--use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
--use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
--use Symfony\Bundle\FrameworkBundle\Controller\Controller;
--use Symfony\Component\HttpFoundation\Request;
--
--/**
-- * @IsGranted("ROLE_MANAGE_GENUS")
-- * @Route("/admin")
-- */
--class GenusAdminController extends Controller
--{
--    /**
--     * @Route("/genus", name="admin_genus_list")
--     */
--    public function indexAction()
--    {
--        $genuses = $this->getDoctrine()
--            ->getRepository('AppBundle:Genus')
--            ->findAll();
--
--        return $this->render('admin/genus/list.html.twig', array(
--            'genuses' => $genuses
--        ));
--    }
--
--    /**
--     * @Route("/genus/new", name="admin_genus_new")
--     */
--    public function newAction(Request $request)
--    {
--        $form = $this->createForm(GenusFormType::class);
--
--        // only handles data on POST
--        $form->handleRequest($request);
--        if ($form->isSubmitted() && $form->isValid()) {
--            $genus = $form->getData();
--
--            $em = $this->getDoctrine()->getManager();
--            $em->persist($genus);
--            $em->flush();
--
--            $this->addFlash(
--                'success',
--                sprintf('Genus created by you: %s!', $this->getUser()->getEmail())
--            );
--
--            return $this->redirectToRoute('admin_genus_list');
--        }
--
--        return $this->render('admin/genus/new.html.twig', [
--            'genusForm' => $form->createView()
--        ]);
--    }
--
--    /**
--     * @Route("/genus/{id}/edit", name="admin_genus_edit")
--     */
--    public function editAction(Request $request, Genus $genus, MessageManager $messageManager)
--    {
--        $form = $this->createForm(GenusFormType::class, $genus);
--
--        // only handles data on POST
--        $form->handleRequest($request);
--        if ($form->isSubmitted() && $form->isValid()) {
--            $genus = $form->getData();
--
--            $em = $this->getDoctrine()->getManager();
--            $em->persist($genus);
--            $em->flush();
--
--            $this->addFlash(
--                'success',
--                $messageManager->getEncouragingMessage()
--            );
--
--            return $this->redirectToRoute('admin_genus_edit', [
--                'id' => $genus->getId()
--            ]);
--        }  elseif ($form->isSubmitted()) {
--            $this->addFlash(
--                'error',
--                $messageManager->getDiscouragingMessage()
--            );
--        }
--
--        return $this->render('admin/genus/edit.html.twig', [
--            'genusForm' => $form->createView()
--        ]);
--    }
--}
-\ No newline at end of file
-diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-deleted file mode 100644
-index ab349e5..0000000
---- a/src/AppBundle/Controller/GenusController.php
-+++ /dev/null
-@@ -1,141 +0,0 @@
--<?php
--
--namespace AppBundle\Controller;
--
--use AppBundle\Entity\Genus;
--use AppBundle\Entity\GenusNote;
--use AppBundle\Entity\GenusScientist;
--use AppBundle\Service\MarkdownTransformer;
--use Psr\Log\LoggerInterface;
--use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
--use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
--use Symfony\Bundle\FrameworkBundle\Controller\Controller;
--use Symfony\Component\HttpFoundation\JsonResponse;
--use Symfony\Component\HttpFoundation\Response;
--
--class GenusController extends Controller
--{
--    /**
--     * @Route("/genus/new")
--     */
--    public function newAction()
--    {
--        $em = $this->getDoctrine()->getManager();
--
--        $subFamily = $em->getRepository('AppBundle:SubFamily')
--            ->findAny();
--
--        $genus = new Genus();
--        $genus->setName('Octopus'.rand(1, 10000));
--        $genus->setSubFamily($subFamily);
--        $genus->setSpeciesCount(rand(100, 99999));
--        $genus->setFirstDiscoveredAt(new \DateTime('50 years'));
--
--        $genusNote = new GenusNote();
--        $genusNote->setUsername('AquaWeaver');
--        $genusNote->setUserAvatarFilename('ryan.jpeg');
--        $genusNote->setNote('I counted 8 legs... as they wrapped around me');
--        $genusNote->setCreatedAt(new \DateTime('-1 month'));
--        $genusNote->setGenus($genus);
--
--        $user = $em->getRepository('AppBundle:User')
--            ->findOneBy(['email' => 'aquanaut1@example.org']);
--
--        $genusScientist = new GenusScientist();
--        $genusScientist->setGenus($genus);
--        $genusScientist->setUser($user);
--        $genusScientist->setYearsStudied(10);
--        $em->persist($genusScientist);
--
--        $em->persist($genus);
--        $em->persist($genusNote);
--        $em->flush();
--
--        return new Response(sprintf(
--            '<html><body>Genus created! <a href="%s">%s</a></body></html>',
--            $this->generateUrl('genus_show', ['slug' => $genus->getSlug()]),
--            $genus->getName()
--        ));
--    }
--
--    /**
--     * @Route("/genus")
--     */
--    public function listAction()
--    {
--        $em = $this->getDoctrine()->getManager();
--
--        $genuses = $em->getRepository('AppBundle:Genus')
--            ->findAllPublishedOrderedByRecentlyActive();
--
--        return $this->render('genus/list.html.twig', [
--            'genuses' => $genuses
--        ]);
--    }
--
--    /**
--     * @Route("/genus/{slug}", name="genus_show")
--     */
--    public function showAction(Genus $genus, MarkdownTransformer $markdownTransformer, LoggerInterface $logger)
--    {
--        $em = $this->getDoctrine()->getManager();
--
--        $funFact = $markdownTransformer->parse($genus->getFunFact());
--
--        $logger->info('Showing genus: '.$genus->getName());
--
--        $recentNotes = $em->getRepository('AppBundle:GenusNote')
--            ->findAllRecentNotesForGenus($genus);
--
--        return $this->render('genus/show.html.twig', array(
--            'genus' => $genus,
--            'funFact' => $funFact,
--            'recentNoteCount' => count($recentNotes)
--        ));
--    }
--
--    /**
--     * @Route("/genus/{slug}/notes", name="genus_show_notes")
--     * @Method("GET")
--     */
--    public function getNotesAction(Genus $genus)
--    {
--        $notes = [];
--
--        foreach ($genus->getNotes() as $note) {
--            $notes[] = [
--                'id' => $note->getId(),
--                'username' => $note->getUsername(),
--                'avatarUri' => '/images/'.$note->getUserAvatarFilename(),
--                'note' => $note->getNote(),
--                'date' => $note->getCreatedAt()->format('M d, Y')
--            ];
--        }
--
--        $data = [
--            'notes' => $notes
--        ];
--
--        return new JsonResponse($data);
--    }
--
--    /**
--     * @Route("/genus/{genusId}/scientists/{userId}", name="genus_scientists_remove")
--     * @Method("DELETE")
--     */
--    public function removeGenusScientistAction($genusId, $userId)
--    {
--        $em = $this->getDoctrine()->getManager();
--
--        $genusScientist = $em->getRepository('AppBundle:GenusScientist')
--            ->findOneBy([
--                'user' => $userId,
--                'genus' => $genusId
--            ]);
--
--        $em->remove($genusScientist);
--        $em->flush();
--
--        return new Response(null, 204);
--    }
--}
-diff --git a/src/AppBundle/Controller/MainController.php b/src/AppBundle/Controller/MainController.php
-deleted file mode 100644
-index ae8b6ea..0000000
---- a/src/AppBundle/Controller/MainController.php
-+++ /dev/null
-@@ -1,13 +0,0 @@
--<?php
--
--namespace AppBundle\Controller;
--
--use Symfony\Bundle\FrameworkBundle\Controller\Controller;
--
--class MainController extends Controller
--{
--    public function homepageAction()
--    {
--        return $this->render('main/homepage.html.twig');
--    }
--}
-\ No newline at end of file
-diff --git a/src/AppBundle/Controller/SecurityController.php b/src/AppBundle/Controller/SecurityController.php
-deleted file mode 100644
-index d021ccf..0000000
---- a/src/AppBundle/Controller/SecurityController.php
-+++ /dev/null
-@@ -1,43 +0,0 @@
--<?php
--
--namespace AppBundle\Controller;
--
--use Symfony\Bundle\FrameworkBundle\Controller\Controller;
--use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
--use AppBundle\Form\LoginForm;
--use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
--
--class SecurityController extends Controller
--{
--    /**
--     * @Route("/login", name="security_login")
--     */
--    public function loginAction(AuthenticationUtils $authenticationUtils)
--    {
--        // get the login error if there is one
--        $error = $authenticationUtils->getLastAuthenticationError();
--
--        // last username entered by the user
--        $lastUsername = $authenticationUtils->getLastUsername();
--
--        $form = $this->createForm(LoginForm::class, [
--            '_username' => $lastUsername,
--        ]);
--    
--        return $this->render(
--            'security/login.html.twig',
--            array(
--                'form' => $form->createView(),
--                'error' => $error,
--            )
--        );
--    }
--
--    /**
--     * @Route("/logout", name="security_logout")
--     */
--    public function logoutAction()
--    {
--        throw new \Exception('this should not be reached!');
--    }
--}
-\ No newline at end of file
-diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
-deleted file mode 100644
-index a75c404..0000000
---- a/src/AppBundle/Controller/UserController.php
-+++ /dev/null
-@@ -1,82 +0,0 @@
--<?php
--
--namespace AppBundle\Controller;
--
--use AppBundle\Entity\User;
--use AppBundle\Form\UserEditForm;
--use AppBundle\Form\UserRegistrationForm;
--use AppBundle\Security\LoginFormAuthenticator;
--use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
--use Symfony\Bundle\FrameworkBundle\Controller\Controller;
--use Symfony\Component\HttpFoundation\Request;
--use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
--
--class UserController extends Controller
--{
--    /**
--     * @Route("/register", name="user_register")
--     */
--    public function registerAction(Request $request, LoginFormAuthenticator $authenticator, GuardAuthenticatorHandler $guardHandler)
--    {
--        $form = $this->createForm(UserRegistrationForm::class);
--
--        $form->handleRequest($request);
--        if ($form->isSubmitted() && $form->isValid()) {
--            /** @var User $user */
--            $user = $form->getData();
--            $em = $this->getDoctrine()->getManager();
--            $em->persist($user);
--            $em->flush();
--
--            $this->addFlash('success', 'Welcome '.$user->getEmail());
--
--            return $guardHandler
--                ->authenticateUserAndHandleSuccess(
--                    $user,
--                    $request,
--                    $authenticator,
--                    'main'
--                );
--        }
--
--        return $this->render('user/register.html.twig', [
--            'form' => $form->createView()
--        ]);
--    }
--
--    /**
--     * @Route("/users/{id}", name="user_show")
--     */
--    public function showAction(User $user)
--    {
--        return $this->render('user/show.html.twig', array(
--            'user' => $user
--        ));
--    }
--
--    /**
--     * @Route("/users/{id}/edit", name="user_edit")
--     */
--    public function editAction(User $user, Request $request)
--    {
--        $form = $this->createForm(UserEditForm::class, $user);
--
--        $form->handleRequest($request);
--        if ($form->isSubmitted() && $form->isValid()) {
--            $em = $this->getDoctrine()->getManager();
--            $em->persist($user);
--            $em->flush();
--
--            $this->addFlash('success', 'User Updated!');
--
--            return $this->redirectToRoute('user_edit', [
--                'id' => $user->getId()
--            ]);
--        }
--
--        return $this->render('user/edit.html.twig', [
--            'userForm' => $form->createView()
--        ]);
--
--    }
--}
-diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
-deleted file mode 100644
-index 247253c..0000000
---- a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
-+++ /dev/null
-@@ -1,46 +0,0 @@
--<?php
--
--namespace AppBundle\DataFixtures\ORM;
--
--use AppBundle\Entity\Genus;
--use Doctrine\Common\DataFixtures\FixtureInterface;
--use Doctrine\Common\Persistence\ObjectManager;
--use Nelmio\Alice\Fixtures;
--
--class LoadFixtures implements FixtureInterface
--{
--    public function load(ObjectManager $manager)
--    {
--        $objects = Fixtures::load(
--            __DIR__.'/fixtures.yml',
--            $manager,
--            [
--                'providers' => [$this]
--            ]
--        );
--    }
--
--    public function genus()
--    {
--        $genera = [
--            'Octopus',
--            'Balaena',
--            'Orcinus',
--            'Hippocampus',
--            'Asterias',
--            'Amphiprion',
--            'Carcharodon',
--            'Aurelia',
--            'Cucumaria',
--            'Balistoides',
--            'Paralithodes',
--            'Chelonia',
--            'Trichechus',
--            'Eumetopias'
--        ];
--
--        $key = array_rand($genera);
--
--        return $genera[$key];
--    }
--}
-\ No newline at end of file
++namespace App;
+ 
+ use Symfony\Component\HttpKernel\Bundle\Bundle;
+ 
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 deleted file mode 100644
 index 12c2484..0000000
@@ -539,3403 +62,493 @@ index 12c2484..0000000
 -        user: '@user.aquanaut_*'
 -        genus: '@genus_*'
 -        yearsStudied: <numberBetween(1, 30)>
-diff --git a/src/AppBundle/Doctrine/HashPasswordListener.php b/src/AppBundle/Doctrine/HashPasswordListener.php
-deleted file mode 100644
-index a0facae..0000000
---- a/src/AppBundle/Doctrine/HashPasswordListener.php
-+++ /dev/null
-@@ -1,64 +0,0 @@
--<?php
--
--namespace AppBundle\Doctrine;
--
--use AppBundle\Entity\User;
--use Doctrine\Common\EventSubscriber;
--use Doctrine\ORM\Event\LifecycleEventArgs;
--use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
--
--class HashPasswordListener implements EventSubscriber
--{
--    private $passwordEncoder;
--
--    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
--    {
--        $this->passwordEncoder = $passwordEncoder;
--    }
--
--    public function prePersist(LifecycleEventArgs $args)
--    {
--        $entity = $args->getEntity();
--        if (!$entity instanceof User) {
--            return;
--        }
--
--        $this->encodePassword($entity);
--    }
--
--    public function preUpdate(LifecycleEventArgs $args)
--    {
--        $entity = $args->getEntity();
--        if (!$entity instanceof User) {
--            return;
--        }
--
--        $this->encodePassword($entity);
--
--        // necessary to force the update to see the change
--        $em = $args->getEntityManager();
--        $meta = $em->getClassMetadata(get_class($entity));
--        $em->getUnitOfWork()->recomputeSingleEntityChangeSet($meta, $entity);
--    }
--
--    public function getSubscribedEvents()
--    {
--        return ['prePersist', 'preUpdate'];
--    }
--
--    /**
--     * @param User $entity
--     */
--    private function encodePassword(User $entity)
--    {
--        if (!$entity->getPlainPassword()) {
--            return;
--        }
--
--        $encoded = $this->passwordEncoder->encodePassword(
--            $entity,
--            $entity->getPlainPassword()
--        );
--        $entity->setPassword($encoded);
--    }
--}
-diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-deleted file mode 100644
-index 9d95676..0000000
---- a/src/AppBundle/Entity/Genus.php
-+++ /dev/null
-@@ -1,222 +0,0 @@
--<?php
--
--namespace AppBundle\Entity;
--
--use AppBundle\Repository\GenusRepository;
--use Doctrine\Common\Collections\ArrayCollection;
--use Doctrine\Common\Collections\Criteria;
--use Doctrine\ORM\Mapping as ORM;
--use Symfony\Component\Validator\Constraints as Assert;
--use Gedmo\Mapping\Annotation as Gedmo;
--
--
--/**
-- * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusRepository")
-- * @ORM\Table(name="genus")
-- */
--class Genus
--{
--    /**
--     * @ORM\Id
--     * @ORM\GeneratedValue(strategy="AUTO")
--     * @ORM\Column(type="integer")
--     */
--    private $id;
--
--    /**
--     * @Assert\NotBlank()
--     * @ORM\Column(type="string")
--     */
--    private $name;
--
--    /**
--     * @ORM\Column(type="string", unique=true)
--     * @Gedmo\Slug(fields={"name"})
--     */
--    private $slug;
--
--    /**
--     * @Assert\NotBlank()
--     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubFamily")
--     * @ORM\JoinColumn(nullable=false)
--     */
--    private $subFamily;
--
--    /**
--     * @Assert\NotBlank()
--     * @Assert\Range(min=0, minMessage="Negative species! Come on...")
--     * @ORM\Column(type="integer")
--     */
--    private $speciesCount;
--
--    /**
--     * @ORM\Column(type="string", nullable=true)
--     */
--    private $funFact;
--
--    /**
--     * @ORM\Column(type="boolean")
--     */
--    private $isPublished = true;
--
--    /**
--     * @Assert\NotBlank()
--     * @ORM\Column(type="date")
--     */
--    private $firstDiscoveredAt;
--
--    /**
--     * @ORM\OneToMany(targetEntity="GenusNote", mappedBy="genus")
--     * @ORM\OrderBy({"createdAt" = "DESC"})
--     */
--    private $notes;
--
--    /**
--     * @ORM\OneToMany(
--     *     targetEntity="GenusScientist",
--     *     mappedBy="genus",
--     *     fetch="EXTRA_LAZY",
--     *     orphanRemoval=true,
--     *     cascade={"persist"}
--     * )
--     * @Assert\Valid()
--     */
--    private $genusScientists;
--
--    public function __construct()
--    {
--        $this->notes = new ArrayCollection();
--        $this->genusScientists = new ArrayCollection();
--    }
--
--    public function getId()
--    {
--        return $this->id;
--    }
--
--    public function getName()
--    {
--        return $this->name;
--    }
--
--    public function setName($name)
--    {
--        $this->name = $name;
--    }
--
--    /**
--     * @return SubFamily
--     */
--    public function getSubFamily()
--    {
--        return $this->subFamily;
--    }
--
--    public function setSubFamily(SubFamily $subFamily = null)
--    {
--        $this->subFamily = $subFamily;
--    }
--
--    public function getSpeciesCount()
--    {
--        return $this->speciesCount;
--    }
--
--    public function setSpeciesCount($speciesCount)
--    {
--        $this->speciesCount = $speciesCount;
--    }
--
--    public function getFunFact()
--    {
--        return $this->funFact;
--    }
--
--    public function setFunFact($funFact)
--    {
--        $this->funFact = $funFact;
--    }
--
--    public function getUpdatedAt()
--    {
--        return new \DateTime('-'.rand(0, 100).' days');
--    }
--
--    public function setIsPublished($isPublished)
--    {
--        $this->isPublished = $isPublished;
--    }
--
--    public function getIsPublished()
--    {
--        return $this->isPublished;
--    }
--
--    /**
--     * @return ArrayCollection|GenusNote[]
--     */
--    public function getNotes()
--    {
--        return $this->notes;
--    }
--
--    public function getFirstDiscoveredAt()
--    {
--        return $this->firstDiscoveredAt;
--    }
--
--    public function setFirstDiscoveredAt(\DateTime $firstDiscoveredAt = null)
--    {
--        $this->firstDiscoveredAt = $firstDiscoveredAt;
--    }
--
--    public function getSlug()
--    {
--        return $this->slug;
--    }
--
--    public function setSlug($slug)
--    {
--        $this->slug = $slug;
--    }
--
--    public function addGenusScientist(GenusScientist $genusScientist)
--    {
--        if ($this->genusScientists->contains($genusScientist)) {
--            return;
--        }
--
--        $this->genusScientists[] = $genusScientist;
--        // needed to update the owning side of the relationship!
--        $genusScientist->setGenus($this);
--    }
--
--    public function removeGenusScientist(GenusScientist $genusScientist)
--    {
--        if (!$this->genusScientists->contains($genusScientist)) {
--            return;
--        }
--
--        $this->genusScientists->removeElement($genusScientist);
--        // needed to update the owning side of the relationship!
--        $genusScientist->setGenus(null);
--    }
--
--    /**
--     * @return ArrayCollection|GenusScientist[]
--     */
--    public function getGenusScientists()
--    {
--        return $this->genusScientists;
--    }
--
--    /**
--     * @return \Doctrine\Common\Collections\Collection|GenusScientist[]
--     */
--    public function getExpertScientists()
--    {
--        return $this->getGenusScientists()->matching(
--            GenusRepository::createExpertCriteria()
--        );
--    }
--}
-diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-deleted file mode 100644
-index 04387e8..0000000
---- a/src/AppBundle/Entity/GenusNote.php
-+++ /dev/null
-@@ -1,100 +0,0 @@
--<?php
--
--namespace AppBundle\Entity;
--
--use Doctrine\ORM\Mapping as ORM;
--
--/**
-- * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusNoteRepository")
-- * @ORM\Table(name="genus_note")
-- */
--class GenusNote
--{
--    /**
--     * @ORM\Id
--     * @ORM\GeneratedValue(strategy="AUTO")
--     * @ORM\Column(type="integer")
--     */
--    private $id;
--
--    /**
--     * @ORM\Column(type="string")
--     */
--    private $username;
--
--    /**
--     * @ORM\Column(type="string")
--     */
--    private $userAvatarFilename;
--
--    /**
--     * @ORM\Column(type="text")
--     */
--    private $note;
--
--    /**
--     * @ORM\Column(type="datetime")
--     */
--    private $createdAt;
--
--    /**
--     * @ORM\ManyToOne(targetEntity="Genus", inversedBy="notes")
--     * @ORM\JoinColumn(nullable=false)
--     */
--    private $genus;
--
--    public function getId()
--    {
--        return $this->id;
--    }
--
--    public function getUsername()
--    {
--        return $this->username;
--    }
--
--    public function setUsername($username)
--    {
--        $this->username = $username;
--    }
--
--    public function getUserAvatarFilename()
--    {
--        return $this->userAvatarFilename;
--    }
--
--    public function setUserAvatarFilename($userAvatarFilename)
--    {
--        $this->userAvatarFilename = $userAvatarFilename;
--    }
--
--    public function getNote()
--    {
--        return $this->note;
--    }
--
--    public function setNote($note)
--    {
--        $this->note = $note;
--    }
--
--    public function getCreatedAt()
--    {
--        return $this->createdAt;
--    }
--
--    public function setCreatedAt($createdAt)
--    {
--        $this->createdAt = $createdAt;
--    }
--
--    public function getGenus()
--    {
--        return $this->genus;
--    }
--
--    public function setGenus(Genus $genus)
--    {
--        $this->genus = $genus;
--    }
--}
-diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
-deleted file mode 100644
-index d392492..0000000
---- a/src/AppBundle/Entity/GenusScientist.php
-+++ /dev/null
-@@ -1,79 +0,0 @@
--<?php
--
--namespace AppBundle\Entity;
--
--use Doctrine\ORM\Mapping as ORM;
--use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
--use Symfony\Component\Validator\Constraints as Assert;
--
--/**
-- * @ORM\Entity
-- * @ORM\Table(name="genus_scientist")
-- * @UniqueEntity(
-- *     fields={"genus", "user"},
-- *     message="This user is already studying this genus",
-- *     errorPath="user"
-- * )
-- */
--class GenusScientist
--{
--    /**
--     * @ORM\Id
--     * @ORM\GeneratedValue(strategy="AUTO")
--     * @ORM\Column(type="integer")
--     */
--    private $id;
--
--    /**
--     * @ORM\ManyToOne(targetEntity="Genus", inversedBy="genusScientists")
--     * @ORM\JoinColumn(nullable=false)
--     */
--    private $genus;
--
--    /**
--     * @ORM\ManyToOne(targetEntity="User", inversedBy="studiedGenuses")
--     * @ORM\JoinColumn(nullable=false)
--     */
--    private $user;
--
--    /**
--     * @ORM\Column(type="integer")
--     * @Assert\NotBlank()
--     */
--    private $yearsStudied;
--
--    public function getId()
--    {
--        return $this->id;
--    }
--
--    public function getGenus()
--    {
--        return $this->genus;
--    }
--
--    public function setGenus($genus)
--    {
--        $this->genus = $genus;
--    }
--
--    public function getUser()
--    {
--        return $this->user;
--    }
--
--    public function setUser($user)
--    {
--        $this->user = $user;
--    }
--
--    public function getYearsStudied()
--    {
--        return $this->yearsStudied;
--    }
--
--    public function setYearsStudied($yearsStudied)
--    {
--        $this->yearsStudied = $yearsStudied;
--    }
--}
-\ No newline at end of file
-diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
-deleted file mode 100644
-index 95e9de7..0000000
---- a/src/AppBundle/Entity/SubFamily.php
-+++ /dev/null
-@@ -1,44 +0,0 @@
--<?php
--
--namespace AppBundle\Entity;
--
--use Doctrine\ORM\Mapping as ORM;
--
--/**
-- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubFamilyRepository")
-- * @ORM\Table(name="sub_family")
-- */
--class SubFamily
--{
--    /**
--     * @ORM\Id
--     * @ORM\GeneratedValue(strategy="AUTO")
--     * @ORM\Column(type="integer")
--     */
--    private $id;
--
--    /**
--     * @ORM\Column(type="string")
--     */
--    private $name;
--
--    public function getId()
--    {
--        return $this->id;
--    }
--
--    public function getName()
--    {
--        return $this->name;
--    }
--
--    public function setName($name)
--    {
--        $this->name = $name;
--    }
--
--    public function __toString()
--    {
--        return $this->getName();
--    }
--}
-diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-deleted file mode 100644
-index 19d053a..0000000
---- a/src/AppBundle/Entity/User.php
-+++ /dev/null
-@@ -1,222 +0,0 @@
--<?php
--
--namespace AppBundle\Entity;
--
--use Doctrine\Common\Collections\ArrayCollection;
--use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
--use Symfony\Component\Security\Core\Role\Role;
--use Symfony\Component\Security\Core\User\UserInterface;
--use Doctrine\ORM\Mapping as ORM;
--use Symfony\Component\Validator\Constraints as Assert;
--
--/**
-- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
-- * @ORM\Table(name="user")
-- * @UniqueEntity(fields={"email"}, message="It looks like you already have an account!")
-- */
--class User implements UserInterface
--{
--    /**
--     * @ORM\Id
--     * @ORM\GeneratedValue(strategy="AUTO")
--     * @ORM\Column(type="integer")
--     */
--    private $id;
--
--    /**
--     * @Assert\NotBlank()
--     * @Assert\Email()
--     * @ORM\Column(type="string", unique=true)
--     */
--    private $email;
--
--    /**
--     * The encoded password
--     *
--     * @ORM\Column(type="string")
--     */
--    private $password;
--
--    /**
--     * A non-persisted field that's used to create the encoded password.
--     * @Assert\NotBlank(groups={"Registration"})
--     *
--     * @var string
--     */
--    private $plainPassword;
--
--    /**
--     * @ORM\Column(type="json_array")
--     */
--    private $roles = [];
--
--    /**
--     * @ORM\Column(type="boolean")
--     */
--    private $isScientist = false;
--
--    /**
--     * @ORM\Column(type="string", nullable=true)
--     */
--    private $firstName;
--
--    /**
--     * @ORM\Column(type="string", nullable=true)
--     */
--    private $lastName;
--
--    /**
--     * @ORM\Column(type="string", nullable=true)
--     */
--    private $avatarUri;
--
--    /**
--     * @ORM\Column(type="string", nullable=true)
--     */
--    private $universityName;
--
--    /**
--     * @ORM\OneToMany(targetEntity="GenusScientist", mappedBy="user")
--     */
--    private $studiedGenuses;
--
--    public function __construct()
--    {
--        $this->studiedGenuses = new ArrayCollection();
--    }
--
--
--    public function getId()
--    {
--        return $this->id;
--    }
--
--    // needed by the security system
--    public function getUsername()
--    {
--        return $this->email;
--    }
--
--    public function getRoles()
--    {
--        $roles = $this->roles;
--
--        // give everyone ROLE_USER!
--        if (!in_array('ROLE_USER', $roles)) {
--            $roles[] = 'ROLE_USER';
--        }
--
--        return $roles;
--    }
--
--    public function setRoles(array $roles)
--    {
--        $this->roles = $roles;
--    }
--
--    public function getPassword()
--    {
--        return $this->password;
--    }
--
--    public function getSalt()
--    {
--        // leaving blank - I don't need/have a password!
--    }
--
--    public function eraseCredentials()
--    {
--        $this->plainPassword = null;
--    }
--
--    public function getEmail()
--    {
--        return $this->email;
--    }
--
--    public function setEmail($email)
--    {
--        $this->email = $email;
--    }
--
--    public function setPassword($password)
--    {
--        $this->password = $password;
--    }
--
--    public function getPlainPassword()
--    {
--        return $this->plainPassword;
--    }
--
--    public function setPlainPassword($plainPassword)
--    {
--        $this->plainPassword = $plainPassword;
--        // forces the object to look "dirty" to Doctrine. Avoids
--        // Doctrine *not* saving this entity, if only plainPassword changes
--        $this->password = null;
--    }
--
--    public function isScientist()
--    {
--        return $this->isScientist;
--    }
--
--    public function setIsScientist($isScientist)
--    {
--        $this->isScientist = $isScientist;
--    }
--
--    public function getFirstName()
--    {
--        return $this->firstName;
--    }
--
--    public function setFirstName($firstName)
--    {
--        $this->firstName = $firstName;
--    }
--
--    public function getLastName()
--    {
--        return $this->lastName;
--    }
--
--    public function setLastName($lastName)
--    {
--        $this->lastName = $lastName;
--    }
--
--    public function getAvatarUri()
--    {
--        return $this->avatarUri;
--    }
--
--    public function setAvatarUri($avatarUri)
--    {
--        $this->avatarUri = $avatarUri;
--    }
--
--    public function getUniversityName()
--    {
--        return $this->universityName;
--    }
--
--    public function setUniversityName($universityName)
--    {
--        $this->universityName = $universityName;
--    }
--
--    public function getFullName()
--    {
--        return trim($this->getFirstName().' '.$this->getLastName());
--    }
--
--    /**
--     * @return ArrayCollection|GenusScientist[]
--     */
--    public function getStudiedGenuses()
--    {
--        return $this->studiedGenuses;
--    }
--}
-diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
-deleted file mode 100644
-index fe74265..0000000
---- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
-+++ /dev/null
-@@ -1,42 +0,0 @@
--<?php
--
--namespace AppBundle\EventSubscriber;
--
--use AppBundle\Service\MessageManager;
--use Psr\Log\LoggerInterface;
--use Symfony\Component\EventDispatcher\EventSubscriberInterface;
--use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
--use Symfony\Component\HttpKernel\KernelEvents;
--
--class AddNiceHeaderEventSubscriber implements EventSubscriberInterface
--{
--    private $logger;
--    private $messageManager;
--    private $showDiscouragingMessage;
--
--    public function __construct(LoggerInterface $logger, MessageManager $messageManager, $showDiscouragingMessage)
--    {
--        $this->logger = $logger;
--        $this->messageManager = $messageManager;
--        $this->showDiscouragingMessage = $showDiscouragingMessage;
--    }
--
--    public function onKernelResponse(FilterResponseEvent $event)
--    {
--        $this->logger->info('Adding a nice header!');
--
--        $message = $this->showDiscouragingMessage
--            ? $this->messageManager->getDiscouragingMessage()
--            : $this->messageManager->getEncouragingMessage();
--
--        $event->getResponse()
--            ->headers->set('X-NICE-MESSAGE', $message);
--    }
--
--    public static function getSubscribedEvents()
--    {
--        return [
--            KernelEvents::RESPONSE => 'onKernelResponse'
--        ];
--    }
--}
-diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-deleted file mode 100644
-index cdeb7b7..0000000
---- a/src/AppBundle/Form/GenusFormType.php
-+++ /dev/null
-@@ -1,107 +0,0 @@
--<?php
--
--namespace AppBundle\Form;
--
--use AppBundle\Entity\SubFamily;
--use AppBundle\Entity\User;
--use AppBundle\Repository\SubFamilyRepository;
--use AppBundle\Repository\UserRepository;
--use Symfony\Bridge\Doctrine\Form\Type\EntityType;
--use Symfony\Component\Form\AbstractType;
--use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
--use Symfony\Component\Form\Extension\Core\Type\CollectionType;
--use Symfony\Component\Form\Extension\Core\Type\DateType;
--use Symfony\Component\Form\FormBuilderInterface;
--use Symfony\Component\Form\FormEvent;
--use Symfony\Component\Form\FormEvents;
--use Symfony\Component\Form\FormInterface;
--use Symfony\Component\Form\FormView;
--use Symfony\Component\OptionsResolver\OptionsResolver;
--
--class GenusFormType extends AbstractType
--{
--    public function buildForm(FormBuilderInterface $builder, array $options)
--    {
--        $builder
--            ->add('name')
--            ->add('subFamily', EntityType::class, [
--                'placeholder' => 'Choose a Sub Family',
--                'class' => SubFamily::class,
--                'query_builder' => function(SubFamilyRepository $repo) {
--                    return $repo->createAlphabeticalQueryBuilder();
--                }
--            ])
--            ->add('speciesCount')
--            ->add('funFact', null, [
--                'help' => 'For example, Leatherback sea turtles can travel more than 10,000 miles every year!'
--            ])
--            ->add('isPublished', ChoiceType::class, [
--                'choices' => [
--                    'Yes' => true,
--                    'No' => false,
--                ]
--            ])
--            ->add('firstDiscoveredAt', DateType::class, [
--                'widget' => 'single_text',
--                'attr' => ['class' => 'js-datepicker'],
--                'html5' => false,
--            ])
--            ->add('genusScientists', CollectionType::class, [
--                'entry_type' => GenusScientistEmbeddedForm::class,
--                'allow_delete' => true,
--                'allow_add' => true,
--                'by_reference' => false,
--            ])
--        ;
--
--        $builder->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmit'));
--    }
--
--    public function configureOptions(OptionsResolver $resolver)
--    {
--        $resolver->setDefaults([
--            'data_class' => 'AppBundle\Entity\Genus'
--        ]);
--    }
--
--    /**
--     * This fixes a validation issue with the Collection. Suppose
--     * the following situation:
--     *
--     * A) Edit a Genus
--     * B) Add 2 new scientists - don't submit & leave all fields blank
--     * C) Delete the FIRST scientist
--     * D) Submit the form
--     *
--     * The one new scientist has a validation error, because
--     * the yearsStudied field was left blank. But, this error
--     * shows at the *top* of the form, not attached to the form.
--     * The reason is that, on submit, addGenusScientist() is
--     * called, and the new scientist is added to the next available
--     * index (so, if the Genus previously had 2 scientists, the
--     * new GenusScientist is added to the "2" index). However,
--     * in the HTML before the form was submitted, the index used
--     * in the name attribute of the fields for the new scientist
--     * was *3*: 0 & 1 were used for the existing scientists and 2 was
--     * used for the first genus scientist form that you added
--     * (and then later deleted). This mis-match confuses the validator,
--     * which thinks there is an error on genusScientists[2].yearsStudied,
--     * and fails to map that to the genusScientists[3].yearsStudied
--     * field.
--     *
--     * Phew! It's a big pain :). Below, we fix it! On submit,
--     * we simply re-index the submitted data before it's bound
--     * to the form. The submitted genusScientists data, which
--     * previously had index 0, 1 and 3, will now have indexes
--     * 0, 1 and 2. And these indexes will match the indexes
--     * that they have on the Genus.genusScientists property.
--     *
--     * @param FormEvent $event
--     */
--    public function onPreSubmit(FormEvent $event)
--    {
--        $data = $event->getData();
--        $data['genusScientists'] = array_values($data['genusScientists']);
--        $event->setData($data);
--    }
--}
-diff --git a/src/AppBundle/Form/GenusScientistEmbeddedForm.php b/src/AppBundle/Form/GenusScientistEmbeddedForm.php
-deleted file mode 100644
-index f6232dd..0000000
---- a/src/AppBundle/Form/GenusScientistEmbeddedForm.php
-+++ /dev/null
-@@ -1,51 +0,0 @@
--<?php
--
--namespace AppBundle\Form;
--
--use AppBundle\Entity\GenusScientist;
--use AppBundle\Entity\User;
--use AppBundle\Repository\UserRepository;
--use Symfony\Bridge\Doctrine\Form\Type\EntityType;
--use Symfony\Component\Form\AbstractType;
--use Symfony\Component\Form\FormBuilderInterface;
--use Symfony\Component\Form\FormEvent;
--use Symfony\Component\Form\FormEvents;
--use Symfony\Component\OptionsResolver\OptionsResolver;
--
--class GenusScientistEmbeddedForm extends AbstractType
--{
--    public function buildForm(FormBuilderInterface $builder, array $options)
--    {
--        $builder
--            ->add('user', EntityType::class, [
--                'class' => User::class,
--                'choice_label' => 'email',
--                'query_builder' => function(UserRepository $repo) {
--                    return $repo->createIsScientistQueryBuilder();
--                }
--            ])
--            ->add('yearsStudied')
--            ->addEventListener(
--                FormEvents::POST_SET_DATA,
--                array($this, 'onPostSetData')
--            )
--        ;
--    }
--
--    public function onPostSetData(FormEvent $event)
--    {
--        if ($event->getData() && $event->getData()->getId()) {
--            $form = $event->getForm();
--            unset($form['user']);
--        }
--    }
--
--    public function configureOptions(OptionsResolver $resolver)
--    {
--        $resolver->setDefaults([
--            'data_class' => GenusScientist::class
--        ]);
--    }
--
--
--}
-\ No newline at end of file
-diff --git a/src/AppBundle/Form/LoginForm.php b/src/AppBundle/Form/LoginForm.php
-deleted file mode 100644
-index e7f478a..0000000
---- a/src/AppBundle/Form/LoginForm.php
-+++ /dev/null
-@@ -1,19 +0,0 @@
--<?php
--
--namespace AppBundle\Form;
--
--use Symfony\Component\Form\AbstractType;
--use Symfony\Component\Form\Extension\Core\Type\PasswordType;
--use Symfony\Component\Form\FormBuilderInterface;
--use Symfony\Component\OptionsResolver\OptionsResolver;
--
--class LoginForm extends AbstractType
--{
--    public function buildForm(FormBuilderInterface $builder, array $options)
--    {
--        $builder
--            ->add('_username')
--            ->add('_password', PasswordType::class)
--        ;
--    }
--}
-diff --git a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php b/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
-deleted file mode 100644
-index c4d7291..0000000
---- a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
-+++ /dev/null
-@@ -1,29 +0,0 @@
--<?php
--
--namespace AppBundle\Form\TypeExtension;
--
--use Symfony\Component\Form\AbstractTypeExtension;
--use Symfony\Component\Form\Extension\Core\Type\FormType;
--use Symfony\Component\Form\FormInterface;
--use Symfony\Component\Form\FormView;
--use Symfony\Component\OptionsResolver\OptionsResolver;
--
--class HelpFormExtension extends AbstractTypeExtension
--{
--    public function buildView(FormView $view, FormInterface $form, array $options)
--    {
--        if ($options['help']) {
--            $view->vars['help'] = $options['help'];
--        }
--    }
--
--    public function configureOptions(OptionsResolver $resolver)
--    {
--        $resolver->setDefault('help', null);
--    }
--
--    public function getExtendedType()
--    {
--        return FormType::class;
--    }
--}
-diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php
-deleted file mode 100644
-index 8829b50..0000000
---- a/src/AppBundle/Form/UserEditForm.php
-+++ /dev/null
-@@ -1,34 +0,0 @@
--<?php
--
--namespace AppBundle\Form;
--
--use AppBundle\Entity\Genus;
--use AppBundle\Entity\User;
--use Symfony\Bridge\Doctrine\Form\Type\EntityType;
--use Symfony\Component\Form\AbstractType;
--use Symfony\Component\Form\Extension\Core\Type\EmailType;
--use Symfony\Component\Form\Extension\Core\Type\PasswordType;
--use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
--use Symfony\Component\Form\FormBuilderInterface;
--use Symfony\Component\OptionsResolver\OptionsResolver;
--
--class UserEditForm extends AbstractType
--{
--    public function buildForm(FormBuilderInterface $builder, array $options)
--    {
--        $builder
--            ->add('email', EmailType::class)
--            ->add('isScientist')
--            ->add('firstName')
--            ->add('lastName')
--            ->add('universityName')
--        ;
--    }
--
--    public function configureOptions(OptionsResolver $resolver)
--    {
--        $resolver->setDefaults([
--            'data_class' => User::class,
--        ]);
--    }
--}
-diff --git a/src/AppBundle/Form/UserRegistrationForm.php b/src/AppBundle/Form/UserRegistrationForm.php
-deleted file mode 100644
-index 1c7577d..0000000
---- a/src/AppBundle/Form/UserRegistrationForm.php
-+++ /dev/null
-@@ -1,31 +0,0 @@
--<?php
--
--namespace AppBundle\Form;
--
--use AppBundle\Entity\User;
--use Symfony\Component\Form\AbstractType;
--use Symfony\Component\Form\Extension\Core\Type\EmailType;
--use Symfony\Component\Form\Extension\Core\Type\PasswordType;
--use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
--use Symfony\Component\Form\FormBuilderInterface;
--use Symfony\Component\OptionsResolver\OptionsResolver;
--
--class UserRegistrationForm extends AbstractType
--{
--    public function buildForm(FormBuilderInterface $builder, array $options)
--    {
--        $builder
--            ->add('email', EmailType::class)
--            ->add('plainPassword', RepeatedType::class, [
--                'type' => PasswordType::class
--            ]);
--    }
--
--    public function configureOptions(OptionsResolver $resolver)
--    {
--        $resolver->setDefaults([
--            'data_class' => User::class,
--            'validation_groups' => ['Default', 'Registration']
--        ]);
--    }
--}
-diff --git a/src/AppBundle/Repository/GenusNoteRepository.php b/src/AppBundle/Repository/GenusNoteRepository.php
-deleted file mode 100644
-index 9bde0e5..0000000
---- a/src/AppBundle/Repository/GenusNoteRepository.php
-+++ /dev/null
-@@ -1,26 +0,0 @@
--<?php
--
--namespace AppBundle\Repository;
--
--use AppBundle\Entity\Genus;
--use AppBundle\Entity\GenusNote;
--use Doctrine\ORM\EntityRepository;
--
--class GenusNoteRepository extends EntityRepository
--{
--    /**
--     * @param Genus $genus
--     * @return GenusNote[]
--     */
--    public function findAllRecentNotesForGenus(Genus $genus)
--    {
--        return $this->createQueryBuilder('genus_note')
--            ->andWhere('genus_note.genus = :genus')
--            ->setParameter('genus', $genus)
--            ->andWhere('genus_note.createdAt > :recentDate')
--            ->setParameter('recentDate', new \DateTime('-3 months'))
--            ->orderBy('genus_note.createdAt', 'DESC')
--            ->getQuery()
--            ->execute();
--    }
--}
-diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
-deleted file mode 100644
-index a77abd8..0000000
---- a/src/AppBundle/Repository/GenusRepository.php
-+++ /dev/null
-@@ -1,44 +0,0 @@
--<?php
--
--namespace AppBundle\Repository;
--
--use AppBundle\Entity\Genus;
--use Doctrine\Common\Collections\Criteria;
--use Doctrine\ORM\EntityRepository;
--
--class GenusRepository extends EntityRepository
--{
--    /**
--     * @return Genus[]
--     */
--    public function findAllPublishedOrderedByRecentlyActive()
--    {
--        return $this->createQueryBuilder('genus')
--            ->andWhere('genus.isPublished = :isPublished')
--            ->setParameter('isPublished', true)
--            ->leftJoin('genus.notes', 'genus_note')
--            ->orderBy('genus_note.createdAt', 'DESC')
--//            ->leftJoin('genus.genusScientists', 'genusScientist')
--//            ->addSelect('genusScientist')
--            ->getQuery()
--            ->execute();
--    }
--
--    /**
--     * @return Genus[]
--     */
--    public function findAllExperts()
--    {
--        return $this->createQueryBuilder('genus')
--            ->addCriteria(self::createExpertCriteria())
--            ->getQuery()
--            ->execute();
--    }
--
--    static public function createExpertCriteria()
--    {
--        return Criteria::create()
--            ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
--            ->orderBy(['yearsStudied', 'DESC']);
--    }
--}
-diff --git a/src/AppBundle/Repository/SubFamilyRepository.php b/src/AppBundle/Repository/SubFamilyRepository.php
-deleted file mode 100644
-index de614c4..0000000
---- a/src/AppBundle/Repository/SubFamilyRepository.php
-+++ /dev/null
-@@ -1,31 +0,0 @@
--<?php
--
--namespace AppBundle\Repository;
--
--use AppBundle\Entity\Genus;
--use AppBundle\Entity\SubFamily;
--use Doctrine\ORM\EntityRepository;
--
--class SubFamilyRepository extends EntityRepository
--{
--    public function createAlphabeticalQueryBuilder()
--    {
--        return $this->createQueryBuilder('sub_family')
--            ->orderBy('sub_family.name', 'ASC');
--    }
--
--    /**
--     * Helper method to return ANY SubFamily.
--     *
--     * This is mostly useful when playing and testing things.
--     *
--     * @return SubFamily
--     */
--    public function findAny()
--    {
--        return $this->createQueryBuilder('sub_family')
--            ->setMaxResults(1)
--            ->getQuery()
--            ->getOneOrNullResult();
--    }
--}
-diff --git a/src/AppBundle/Repository/UserRepository.php b/src/AppBundle/Repository/UserRepository.php
-deleted file mode 100644
-index 3338ef2..0000000
---- a/src/AppBundle/Repository/UserRepository.php
-+++ /dev/null
-@@ -1,15 +0,0 @@
--<?php
--
--namespace AppBundle\Repository;
--
--use Doctrine\ORM\EntityRepository;
--
--class UserRepository extends EntityRepository
--{
--    public function createIsScientistQueryBuilder()
--    {
--        return $this->createQueryBuilder('user')
--            ->andWhere('user.isScientist = :isScientist')
--            ->setParameter('isScientist', true);
--    }
--}
-diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
-deleted file mode 100644
-index 0a14fa0..0000000
---- a/src/AppBundle/Security/LoginFormAuthenticator.php
-+++ /dev/null
-@@ -1,88 +0,0 @@
--<?php
--
--namespace AppBundle\Security;
--
--use AppBundle\Form\LoginForm;
--use Doctrine\ORM\EntityManager;
--use Symfony\Component\Form\FormFactoryInterface;
--use Symfony\Component\HttpFoundation\RedirectResponse;
--use Symfony\Component\HttpFoundation\Request;
--use Symfony\Component\HttpFoundation\Response;
--use Symfony\Component\Routing\RouterInterface;
--use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
--use Symfony\Component\Security\Core\Security;
--use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
--use Symfony\Component\Security\Core\User\UserInterface;
--use Symfony\Component\Security\Core\User\UserProviderInterface;
--use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
--use Symfony\Component\Security\Http\Util\TargetPathTrait;
--
--class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
--{
--    use TargetPathTrait;
--
--    private $formFactory;
--    private $em;
--    private $router;
--    private $passwordEncoder;
--
--    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router, UserPasswordEncoderInterface $passwordEncoder)
--    {
--        $this->formFactory = $formFactory;
--        $this->em = $em;
--        $this->router = $router;
--        $this->passwordEncoder = $passwordEncoder;
--    }
--
--    public function supports(Request $request)
--    {
--        return $request->getPathInfo() == '/login' && $request->isMethod('POST');
--    }
--
--    public function getCredentials(Request $request)
--    {
--        $form = $this->formFactory->create(LoginForm::class);
--        $form->handleRequest($request);
--
--        $data = $form->getData();
--        $request->getSession()->set(
--            Security::LAST_USERNAME,
--            $data['_username']
--        );
--
--        return $data;
--    }
--
--    public function getUser($credentials, UserProviderInterface $userProvider)
--    {
--        $username = $credentials['_username'];
--
--        return $this->em->getRepository('AppBundle:User')
--            ->findOneBy(['email' => $username]);
--    }
--
--    public function checkCredentials($credentials, UserInterface $user)
--    {
--        $password = $credentials['_password'];
--
--        if ($this->passwordEncoder->isPasswordValid($user, $password)) {
--            return true;
--        }
--
--        return false;
--    }
--
--    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
--    {
--        if ($targetPath = $this->getTargetPath($request->getSession(), 'main')) {
--            return new RedirectResponse($targetPath);
--        }
--
--        return new RedirectResponse($this->router->generate('homepage'));
--    }
--
--    protected function getLoginUrl()
--    {
--        return $this->router->generate('security_login');
--    }
--}
-diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/AppBundle/Service/MarkdownTransformer.php
-deleted file mode 100644
-index 0f6f29f..0000000
---- a/src/AppBundle/Service/MarkdownTransformer.php
-+++ /dev/null
-@@ -1,34 +0,0 @@
--<?php
--
--namespace AppBundle\Service;
--
--use Doctrine\Common\Cache\Cache;
--use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
--
--class MarkdownTransformer
--{
--    private $markdownParser;
--    private $cache;
--
--    public function __construct(MarkdownParserInterface $markdownParser, Cache $cacheDriver)
--    {
--        $this->markdownParser = $markdownParser;
--        $this->cache = $cacheDriver;
--    }
--
--    public function parse($str)
--    {
--        $cache = $this->cache;
--        $key = md5($str);
--        if ($cache->contains($key)) {
--            return $cache->fetch($key);
--        }
--
--        sleep(1);
--        $str = $this->markdownParser
--            ->transformMarkdown($str);
--        $cache->save($key, $str);
--
--        return $str;
--    }
--}
-diff --git a/src/AppBundle/Service/MessageManager.php b/src/AppBundle/Service/MessageManager.php
-deleted file mode 100644
-index 8dbdbeb..0000000
---- a/src/AppBundle/Service/MessageManager.php
-+++ /dev/null
-@@ -1,25 +0,0 @@
--<?php
--
--namespace AppBundle\Service;
--
--class MessageManager
--{
--    private $encouragingMessages = array();
--    private $discouragingMessages = array();
--
--    public function __construct(array $encouragingMessages, array $discouragingMessages)
--    {
--        $this->encouragingMessages = $encouragingMessages;
--        $this->discouragingMessages = $discouragingMessages;
--    }
--
--    public function getEncouragingMessage()
--    {
--        return $this->encouragingMessages[array_rand($this->encouragingMessages)];
--    }
--
--    public function getDiscouragingMessage()
--    {
--        return $this->discouragingMessages[array_rand($this->discouragingMessages)];
--    }
--}
-diff --git a/src/AppBundle/Twig/MarkdownExtension.php b/src/AppBundle/Twig/MarkdownExtension.php
-deleted file mode 100644
-index 95e7eb2..0000000
---- a/src/AppBundle/Twig/MarkdownExtension.php
-+++ /dev/null
-@@ -1,34 +0,0 @@
--<?php
--
--namespace AppBundle\Twig;
--
--use AppBundle\Service\MarkdownTransformer;
--
--class MarkdownExtension extends \Twig_Extension
--{
--    private $markdownTransformer;
--
--    public function __construct(MarkdownTransformer $markdownTransformer)
--    {
--        $this->markdownTransformer = $markdownTransformer;
--    }
--
--    public function getFilters()
--    {
--        return [
--            new \Twig_SimpleFilter('markdownify', array($this, 'parseMarkdown'), [
--                'is_safe' => ['html']
--            ])
--        ];
--    }
--
--    public function parseMarkdown($str)
--    {
--        return $this->markdownTransformer->parse($str);
--    }
--
--    public function getName()
--    {
--        return 'app_markdown';
--    }
--}
-diff --git a/src/Controller/Admin/GenusAdminController.php b/src/Controller/Admin/GenusAdminController.php
-new file mode 100644
-index 0000000..6365d74
---- /dev/null
+diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/Controller/Admin/GenusAdminController.php
+similarity index 94%
+rename from src/AppBundle/Controller/Admin/GenusAdminController.php
+rename to src/Controller/Admin/GenusAdminController.php
+index 2895fce..6365d74 100644
+--- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/Controller/Admin/GenusAdminController.php
-@@ -0,0 +1,97 @@
-+<?php
-+
+@@ -1,10 +1,10 @@
+ <?php
+ 
+-namespace AppBundle\Controller\Admin;
 +namespace App\Controller\Admin;
-+
+ 
+-use AppBundle\Entity\Genus;
+-use AppBundle\Form\GenusFormType;
+-use AppBundle\Service\MessageManager;
 +use App\Entity\Genus;
 +use App\Form\GenusFormType;
 +use App\Service\MessageManager;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-+use Symfony\Component\HttpFoundation\Request;
-+
-+/**
-+ * @IsGranted("ROLE_MANAGE_GENUS")
-+ * @Route("/admin")
-+ */
-+class GenusAdminController extends Controller
-+{
-+    /**
-+     * @Route("/genus", name="admin_genus_list")
-+     */
-+    public function indexAction()
-+    {
-+        $genuses = $this->getDoctrine()
-+            ->getRepository('AppBundle:Genus')
-+            ->findAll();
-+
-+        return $this->render('admin/genus/list.html.twig', array(
-+            'genuses' => $genuses
-+        ));
-+    }
-+
-+    /**
-+     * @Route("/genus/new", name="admin_genus_new")
-+     */
-+    public function newAction(Request $request)
-+    {
-+        $form = $this->createForm(GenusFormType::class);
-+
-+        // only handles data on POST
-+        $form->handleRequest($request);
-+        if ($form->isSubmitted() && $form->isValid()) {
-+            $genus = $form->getData();
-+
-+            $em = $this->getDoctrine()->getManager();
-+            $em->persist($genus);
-+            $em->flush();
-+
-+            $this->addFlash(
-+                'success',
-+                sprintf('Genus created by you: %s!', $this->getUser()->getEmail())
-+            );
-+
-+            return $this->redirectToRoute('admin_genus_list');
-+        }
-+
-+        return $this->render('admin/genus/new.html.twig', [
-+            'genusForm' => $form->createView()
-+        ]);
-+    }
-+
-+    /**
-+     * @Route("/genus/{id}/edit", name="admin_genus_edit")
-+     */
-+    public function editAction(Request $request, Genus $genus, MessageManager $messageManager)
-+    {
-+        $form = $this->createForm(GenusFormType::class, $genus);
-+
-+        // only handles data on POST
-+        $form->handleRequest($request);
-+        if ($form->isSubmitted() && $form->isValid()) {
-+            $genus = $form->getData();
-+
-+            $em = $this->getDoctrine()->getManager();
-+            $em->persist($genus);
-+            $em->flush();
-+
-+            $this->addFlash(
-+                'success',
-+                $messageManager->getEncouragingMessage()
-+            );
-+
-+            return $this->redirectToRoute('admin_genus_edit', [
-+                'id' => $genus->getId()
-+            ]);
-+        }  elseif ($form->isSubmitted()) {
-+            $this->addFlash(
-+                'error',
-+                $messageManager->getDiscouragingMessage()
-+            );
-+        }
-+
-+        return $this->render('admin/genus/edit.html.twig', [
-+            'genusForm' => $form->createView()
-+        ]);
-+    }
-+}
-\ No newline at end of file
-diff --git a/src/Controller/GenusController.php b/src/Controller/GenusController.php
-new file mode 100644
-index 0000000..4c0a852
---- /dev/null
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/Controller/GenusController.php
+similarity index 95%
+rename from src/AppBundle/Controller/GenusController.php
+rename to src/Controller/GenusController.php
+index ab349e5..4c0a852 100644
+--- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/Controller/GenusController.php
-@@ -0,0 +1,141 @@
-+<?php
-+
+@@ -1,11 +1,11 @@
+ <?php
+ 
+-namespace AppBundle\Controller;
 +namespace App\Controller;
-+
+ 
+-use AppBundle\Entity\Genus;
+-use AppBundle\Entity\GenusNote;
+-use AppBundle\Entity\GenusScientist;
+-use AppBundle\Service\MarkdownTransformer;
 +use App\Entity\Genus;
 +use App\Entity\GenusNote;
 +use App\Entity\GenusScientist;
 +use App\Service\MarkdownTransformer;
-+use Psr\Log\LoggerInterface;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-+use Symfony\Component\HttpFoundation\JsonResponse;
-+use Symfony\Component\HttpFoundation\Response;
-+
-+class GenusController extends Controller
-+{
-+    /**
-+     * @Route("/genus/new")
-+     */
-+    public function newAction()
-+    {
-+        $em = $this->getDoctrine()->getManager();
-+
-+        $subFamily = $em->getRepository('AppBundle:SubFamily')
-+            ->findAny();
-+
-+        $genus = new Genus();
-+        $genus->setName('Octopus'.rand(1, 10000));
-+        $genus->setSubFamily($subFamily);
-+        $genus->setSpeciesCount(rand(100, 99999));
-+        $genus->setFirstDiscoveredAt(new \DateTime('50 years'));
-+
-+        $genusNote = new GenusNote();
-+        $genusNote->setUsername('AquaWeaver');
-+        $genusNote->setUserAvatarFilename('ryan.jpeg');
-+        $genusNote->setNote('I counted 8 legs... as they wrapped around me');
-+        $genusNote->setCreatedAt(new \DateTime('-1 month'));
-+        $genusNote->setGenus($genus);
-+
-+        $user = $em->getRepository('AppBundle:User')
-+            ->findOneBy(['email' => 'aquanaut1@example.org']);
-+
-+        $genusScientist = new GenusScientist();
-+        $genusScientist->setGenus($genus);
-+        $genusScientist->setUser($user);
-+        $genusScientist->setYearsStudied(10);
-+        $em->persist($genusScientist);
-+
-+        $em->persist($genus);
-+        $em->persist($genusNote);
-+        $em->flush();
-+
-+        return new Response(sprintf(
-+            '<html><body>Genus created! <a href="%s">%s</a></body></html>',
-+            $this->generateUrl('genus_show', ['slug' => $genus->getSlug()]),
-+            $genus->getName()
-+        ));
-+    }
-+
-+    /**
-+     * @Route("/genus")
-+     */
-+    public function listAction()
-+    {
-+        $em = $this->getDoctrine()->getManager();
-+
-+        $genuses = $em->getRepository('AppBundle:Genus')
-+            ->findAllPublishedOrderedByRecentlyActive();
-+
-+        return $this->render('genus/list.html.twig', [
-+            'genuses' => $genuses
-+        ]);
-+    }
-+
-+    /**
-+     * @Route("/genus/{slug}", name="genus_show")
-+     */
-+    public function showAction(Genus $genus, MarkdownTransformer $markdownTransformer, LoggerInterface $logger)
-+    {
-+        $em = $this->getDoctrine()->getManager();
-+
-+        $funFact = $markdownTransformer->parse($genus->getFunFact());
-+
-+        $logger->info('Showing genus: '.$genus->getName());
-+
-+        $recentNotes = $em->getRepository('AppBundle:GenusNote')
-+            ->findAllRecentNotesForGenus($genus);
-+
-+        return $this->render('genus/show.html.twig', array(
-+            'genus' => $genus,
-+            'funFact' => $funFact,
-+            'recentNoteCount' => count($recentNotes)
-+        ));
-+    }
-+
-+    /**
-+     * @Route("/genus/{slug}/notes", name="genus_show_notes")
-+     * @Method("GET")
-+     */
-+    public function getNotesAction(Genus $genus)
-+    {
-+        $notes = [];
-+
-+        foreach ($genus->getNotes() as $note) {
-+            $notes[] = [
-+                'id' => $note->getId(),
-+                'username' => $note->getUsername(),
-+                'avatarUri' => '/images/'.$note->getUserAvatarFilename(),
-+                'note' => $note->getNote(),
-+                'date' => $note->getCreatedAt()->format('M d, Y')
-+            ];
-+        }
-+
-+        $data = [
-+            'notes' => $notes
-+        ];
-+
-+        return new JsonResponse($data);
-+    }
-+
-+    /**
-+     * @Route("/genus/{genusId}/scientists/{userId}", name="genus_scientists_remove")
-+     * @Method("DELETE")
-+     */
-+    public function removeGenusScientistAction($genusId, $userId)
-+    {
-+        $em = $this->getDoctrine()->getManager();
-+
-+        $genusScientist = $em->getRepository('AppBundle:GenusScientist')
-+            ->findOneBy([
-+                'user' => $userId,
-+                'genus' => $genusId
-+            ]);
-+
-+        $em->remove($genusScientist);
-+        $em->flush();
-+
-+        return new Response(null, 204);
-+    }
-+}
-diff --git a/src/Controller/MainController.php b/src/Controller/MainController.php
-new file mode 100644
-index 0000000..31fc4ca
---- /dev/null
+ use Psr\Log\LoggerInterface;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+diff --git a/src/AppBundle/Controller/MainController.php b/src/Controller/MainController.php
+similarity index 86%
+rename from src/AppBundle/Controller/MainController.php
+rename to src/Controller/MainController.php
+index ae8b6ea..31fc4ca 100644
+--- a/src/AppBundle/Controller/MainController.php
 +++ b/src/Controller/MainController.php
-@@ -0,0 +1,13 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Controller;
 +namespace App\Controller;
-+
-+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-+
-+class MainController extends Controller
-+{
-+    public function homepageAction()
-+    {
-+        return $this->render('main/homepage.html.twig');
-+    }
-+}
-\ No newline at end of file
-diff --git a/src/Controller/SecurityController.php b/src/Controller/SecurityController.php
-new file mode 100644
-index 0000000..6d46cc9
---- /dev/null
+ 
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ 
+diff --git a/src/AppBundle/Controller/SecurityController.php b/src/Controller/SecurityController.php
+similarity index 94%
+rename from src/AppBundle/Controller/SecurityController.php
+rename to src/Controller/SecurityController.php
+index d021ccf..6d46cc9 100644
+--- a/src/AppBundle/Controller/SecurityController.php
 +++ b/src/Controller/SecurityController.php
-@@ -0,0 +1,43 @@
-+<?php
-+
+@@ -1,10 +1,10 @@
+ <?php
+ 
+-namespace AppBundle\Controller;
 +namespace App\Controller;
-+
-+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ 
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+-use AppBundle\Form\LoginForm;
 +use App\Form\LoginForm;
-+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-+
-+class SecurityController extends Controller
-+{
-+    /**
-+     * @Route("/login", name="security_login")
-+     */
-+    public function loginAction(AuthenticationUtils $authenticationUtils)
-+    {
-+        // get the login error if there is one
-+        $error = $authenticationUtils->getLastAuthenticationError();
-+
-+        // last username entered by the user
-+        $lastUsername = $authenticationUtils->getLastUsername();
-+
-+        $form = $this->createForm(LoginForm::class, [
-+            '_username' => $lastUsername,
-+        ]);
-+    
-+        return $this->render(
-+            'security/login.html.twig',
-+            array(
-+                'form' => $form->createView(),
-+                'error' => $error,
-+            )
-+        );
-+    }
-+
-+    /**
-+     * @Route("/logout", name="security_logout")
-+     */
-+    public function logoutAction()
-+    {
-+        throw new \Exception('this should not be reached!');
-+    }
-+}
-\ No newline at end of file
-diff --git a/src/Controller/UserController.php b/src/Controller/UserController.php
-new file mode 100644
-index 0000000..810f3b0
---- /dev/null
+ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+ 
+ class SecurityController extends Controller
+diff --git a/src/AppBundle/Controller/UserController.php b/src/Controller/UserController.php
+similarity index 92%
+rename from src/AppBundle/Controller/UserController.php
+rename to src/Controller/UserController.php
+index a75c404..810f3b0 100644
+--- a/src/AppBundle/Controller/UserController.php
 +++ b/src/Controller/UserController.php
-@@ -0,0 +1,82 @@
-+<?php
-+
+@@ -1,11 +1,11 @@
+ <?php
+ 
+-namespace AppBundle\Controller;
 +namespace App\Controller;
-+
+ 
+-use AppBundle\Entity\User;
+-use AppBundle\Form\UserEditForm;
+-use AppBundle\Form\UserRegistrationForm;
+-use AppBundle\Security\LoginFormAuthenticator;
 +use App\Entity\User;
 +use App\Form\UserEditForm;
 +use App\Form\UserRegistrationForm;
 +use App\Security\LoginFormAuthenticator;
-+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-+use Symfony\Component\HttpFoundation\Request;
-+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-+
-+class UserController extends Controller
-+{
-+    /**
-+     * @Route("/register", name="user_register")
-+     */
-+    public function registerAction(Request $request, LoginFormAuthenticator $authenticator, GuardAuthenticatorHandler $guardHandler)
-+    {
-+        $form = $this->createForm(UserRegistrationForm::class);
-+
-+        $form->handleRequest($request);
-+        if ($form->isSubmitted() && $form->isValid()) {
-+            /** @var User $user */
-+            $user = $form->getData();
-+            $em = $this->getDoctrine()->getManager();
-+            $em->persist($user);
-+            $em->flush();
-+
-+            $this->addFlash('success', 'Welcome '.$user->getEmail());
-+
-+            return $guardHandler
-+                ->authenticateUserAndHandleSuccess(
-+                    $user,
-+                    $request,
-+                    $authenticator,
-+                    'main'
-+                );
-+        }
-+
-+        return $this->render('user/register.html.twig', [
-+            'form' => $form->createView()
-+        ]);
-+    }
-+
-+    /**
-+     * @Route("/users/{id}", name="user_show")
-+     */
-+    public function showAction(User $user)
-+    {
-+        return $this->render('user/show.html.twig', array(
-+            'user' => $user
-+        ));
-+    }
-+
-+    /**
-+     * @Route("/users/{id}/edit", name="user_edit")
-+     */
-+    public function editAction(User $user, Request $request)
-+    {
-+        $form = $this->createForm(UserEditForm::class, $user);
-+
-+        $form->handleRequest($request);
-+        if ($form->isSubmitted() && $form->isValid()) {
-+            $em = $this->getDoctrine()->getManager();
-+            $em->persist($user);
-+            $em->flush();
-+
-+            $this->addFlash('success', 'User Updated!');
-+
-+            return $this->redirectToRoute('user_edit', [
-+                'id' => $user->getId()
-+            ]);
-+        }
-+
-+        return $this->render('user/edit.html.twig', [
-+            'userForm' => $form->createView()
-+        ]);
-+
-+    }
-+}
-diff --git a/src/DataFixtures/ORM/LoadFixtures.php b/src/DataFixtures/ORM/LoadFixtures.php
-new file mode 100644
-index 0000000..4db98ab
---- /dev/null
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Symfony\Component\HttpFoundation\Request;
+diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/DataFixtures/ORM/LoadFixtures.php
+similarity index 93%
+rename from src/AppBundle/DataFixtures/ORM/LoadFixtures.php
+rename to src/DataFixtures/ORM/LoadFixtures.php
+index 247253c..4db98ab 100644
+--- a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 +++ b/src/DataFixtures/ORM/LoadFixtures.php
-@@ -0,0 +1,46 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\DataFixtures\ORM;
 +namespace App\DataFixtures\ORM;
-+
+ 
+-use AppBundle\Entity\Genus;
 +use App\Entity\Genus;
-+use Doctrine\Common\DataFixtures\FixtureInterface;
-+use Doctrine\Common\Persistence\ObjectManager;
-+use Nelmio\Alice\Fixtures;
-+
-+class LoadFixtures implements FixtureInterface
-+{
-+    public function load(ObjectManager $manager)
-+    {
-+        $objects = Fixtures::load(
-+            __DIR__.'/fixtures.yml',
-+            $manager,
-+            [
-+                'providers' => [$this]
-+            ]
-+        );
-+    }
-+
-+    public function genus()
-+    {
-+        $genera = [
-+            'Octopus',
-+            'Balaena',
-+            'Orcinus',
-+            'Hippocampus',
-+            'Asterias',
-+            'Amphiprion',
-+            'Carcharodon',
-+            'Aurelia',
-+            'Cucumaria',
-+            'Balistoides',
-+            'Paralithodes',
-+            'Chelonia',
-+            'Trichechus',
-+            'Eumetopias'
-+        ];
-+
-+        $key = array_rand($genera);
-+
-+        return $genera[$key];
-+    }
-+}
-\ No newline at end of file
-diff --git a/src/Doctrine/HashPasswordListener.php b/src/Doctrine/HashPasswordListener.php
-new file mode 100644
-index 0000000..d5abfcb
---- /dev/null
+ use Doctrine\Common\DataFixtures\FixtureInterface;
+ use Doctrine\Common\Persistence\ObjectManager;
+ use Nelmio\Alice\Fixtures;
+diff --git a/src/AppBundle/Doctrine/HashPasswordListener.php b/src/Doctrine/HashPasswordListener.php
+similarity index 96%
+rename from src/AppBundle/Doctrine/HashPasswordListener.php
+rename to src/Doctrine/HashPasswordListener.php
+index a0facae..d5abfcb 100644
+--- a/src/AppBundle/Doctrine/HashPasswordListener.php
 +++ b/src/Doctrine/HashPasswordListener.php
-@@ -0,0 +1,64 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\Doctrine;
 +namespace App\Doctrine;
-+
+ 
+-use AppBundle\Entity\User;
 +use App\Entity\User;
-+use Doctrine\Common\EventSubscriber;
-+use Doctrine\ORM\Event\LifecycleEventArgs;
-+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-+
-+class HashPasswordListener implements EventSubscriber
-+{
-+    private $passwordEncoder;
-+
-+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-+    {
-+        $this->passwordEncoder = $passwordEncoder;
-+    }
-+
-+    public function prePersist(LifecycleEventArgs $args)
-+    {
-+        $entity = $args->getEntity();
-+        if (!$entity instanceof User) {
-+            return;
-+        }
-+
-+        $this->encodePassword($entity);
-+    }
-+
-+    public function preUpdate(LifecycleEventArgs $args)
-+    {
-+        $entity = $args->getEntity();
-+        if (!$entity instanceof User) {
-+            return;
-+        }
-+
-+        $this->encodePassword($entity);
-+
-+        // necessary to force the update to see the change
-+        $em = $args->getEntityManager();
-+        $meta = $em->getClassMetadata(get_class($entity));
-+        $em->getUnitOfWork()->recomputeSingleEntityChangeSet($meta, $entity);
-+    }
-+
-+    public function getSubscribedEvents()
-+    {
-+        return ['prePersist', 'preUpdate'];
-+    }
-+
-+    /**
-+     * @param User $entity
-+     */
-+    private function encodePassword(User $entity)
-+    {
-+        if (!$entity->getPlainPassword()) {
-+            return;
-+        }
-+
-+        $encoded = $this->passwordEncoder->encodePassword(
-+            $entity,
-+            $entity->getPlainPassword()
-+        );
-+        $entity->setPassword($encoded);
-+    }
-+}
-diff --git a/src/Entity/Genus.php b/src/Entity/Genus.php
-new file mode 100644
-index 0000000..f4f6a06
---- /dev/null
+ use Doctrine\Common\EventSubscriber;
+ use Doctrine\ORM\Event\LifecycleEventArgs;
+ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+diff --git a/src/AppBundle/Entity/Genus.php b/src/Entity/Genus.php
+similarity index 98%
+rename from src/AppBundle/Entity/Genus.php
+rename to src/Entity/Genus.php
+index 9d95676..f4f6a06 100644
+--- a/src/AppBundle/Entity/Genus.php
 +++ b/src/Entity/Genus.php
-@@ -0,0 +1,222 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\Entity;
 +namespace App\Entity;
-+
+ 
+-use AppBundle\Repository\GenusRepository;
 +use App\Repository\GenusRepository;
-+use Doctrine\Common\Collections\ArrayCollection;
-+use Doctrine\Common\Collections\Criteria;
-+use Doctrine\ORM\Mapping as ORM;
-+use Symfony\Component\Validator\Constraints as Assert;
-+use Gedmo\Mapping\Annotation as Gedmo;
-+
-+
-+/**
-+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusRepository")
-+ * @ORM\Table(name="genus")
-+ */
-+class Genus
-+{
-+    /**
-+     * @ORM\Id
-+     * @ORM\GeneratedValue(strategy="AUTO")
-+     * @ORM\Column(type="integer")
-+     */
-+    private $id;
-+
-+    /**
-+     * @Assert\NotBlank()
-+     * @ORM\Column(type="string")
-+     */
-+    private $name;
-+
-+    /**
-+     * @ORM\Column(type="string", unique=true)
-+     * @Gedmo\Slug(fields={"name"})
-+     */
-+    private $slug;
-+
-+    /**
-+     * @Assert\NotBlank()
-+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubFamily")
-+     * @ORM\JoinColumn(nullable=false)
-+     */
-+    private $subFamily;
-+
-+    /**
-+     * @Assert\NotBlank()
-+     * @Assert\Range(min=0, minMessage="Negative species! Come on...")
-+     * @ORM\Column(type="integer")
-+     */
-+    private $speciesCount;
-+
-+    /**
-+     * @ORM\Column(type="string", nullable=true)
-+     */
-+    private $funFact;
-+
-+    /**
-+     * @ORM\Column(type="boolean")
-+     */
-+    private $isPublished = true;
-+
-+    /**
-+     * @Assert\NotBlank()
-+     * @ORM\Column(type="date")
-+     */
-+    private $firstDiscoveredAt;
-+
-+    /**
-+     * @ORM\OneToMany(targetEntity="GenusNote", mappedBy="genus")
-+     * @ORM\OrderBy({"createdAt" = "DESC"})
-+     */
-+    private $notes;
-+
-+    /**
-+     * @ORM\OneToMany(
-+     *     targetEntity="GenusScientist",
-+     *     mappedBy="genus",
-+     *     fetch="EXTRA_LAZY",
-+     *     orphanRemoval=true,
-+     *     cascade={"persist"}
-+     * )
-+     * @Assert\Valid()
-+     */
-+    private $genusScientists;
-+
-+    public function __construct()
-+    {
-+        $this->notes = new ArrayCollection();
-+        $this->genusScientists = new ArrayCollection();
-+    }
-+
-+    public function getId()
-+    {
-+        return $this->id;
-+    }
-+
-+    public function getName()
-+    {
-+        return $this->name;
-+    }
-+
-+    public function setName($name)
-+    {
-+        $this->name = $name;
-+    }
-+
-+    /**
-+     * @return SubFamily
-+     */
-+    public function getSubFamily()
-+    {
-+        return $this->subFamily;
-+    }
-+
-+    public function setSubFamily(SubFamily $subFamily = null)
-+    {
-+        $this->subFamily = $subFamily;
-+    }
-+
-+    public function getSpeciesCount()
-+    {
-+        return $this->speciesCount;
-+    }
-+
-+    public function setSpeciesCount($speciesCount)
-+    {
-+        $this->speciesCount = $speciesCount;
-+    }
-+
-+    public function getFunFact()
-+    {
-+        return $this->funFact;
-+    }
-+
-+    public function setFunFact($funFact)
-+    {
-+        $this->funFact = $funFact;
-+    }
-+
-+    public function getUpdatedAt()
-+    {
-+        return new \DateTime('-'.rand(0, 100).' days');
-+    }
-+
-+    public function setIsPublished($isPublished)
-+    {
-+        $this->isPublished = $isPublished;
-+    }
-+
-+    public function getIsPublished()
-+    {
-+        return $this->isPublished;
-+    }
-+
-+    /**
-+     * @return ArrayCollection|GenusNote[]
-+     */
-+    public function getNotes()
-+    {
-+        return $this->notes;
-+    }
-+
-+    public function getFirstDiscoveredAt()
-+    {
-+        return $this->firstDiscoveredAt;
-+    }
-+
-+    public function setFirstDiscoveredAt(\DateTime $firstDiscoveredAt = null)
-+    {
-+        $this->firstDiscoveredAt = $firstDiscoveredAt;
-+    }
-+
-+    public function getSlug()
-+    {
-+        return $this->slug;
-+    }
-+
-+    public function setSlug($slug)
-+    {
-+        $this->slug = $slug;
-+    }
-+
-+    public function addGenusScientist(GenusScientist $genusScientist)
-+    {
-+        if ($this->genusScientists->contains($genusScientist)) {
-+            return;
-+        }
-+
-+        $this->genusScientists[] = $genusScientist;
-+        // needed to update the owning side of the relationship!
-+        $genusScientist->setGenus($this);
-+    }
-+
-+    public function removeGenusScientist(GenusScientist $genusScientist)
-+    {
-+        if (!$this->genusScientists->contains($genusScientist)) {
-+            return;
-+        }
-+
-+        $this->genusScientists->removeElement($genusScientist);
-+        // needed to update the owning side of the relationship!
-+        $genusScientist->setGenus(null);
-+    }
-+
-+    /**
-+     * @return ArrayCollection|GenusScientist[]
-+     */
-+    public function getGenusScientists()
-+    {
-+        return $this->genusScientists;
-+    }
-+
-+    /**
-+     * @return \Doctrine\Common\Collections\Collection|GenusScientist[]
-+     */
-+    public function getExpertScientists()
-+    {
-+        return $this->getGenusScientists()->matching(
-+            GenusRepository::createExpertCriteria()
-+        );
-+    }
-+}
-diff --git a/src/Entity/GenusNote.php b/src/Entity/GenusNote.php
-new file mode 100644
-index 0000000..c5d097f
---- /dev/null
+ use Doctrine\Common\Collections\ArrayCollection;
+ use Doctrine\Common\Collections\Criteria;
+ use Doctrine\ORM\Mapping as ORM;
+diff --git a/src/AppBundle/Entity/GenusNote.php b/src/Entity/GenusNote.php
+similarity index 98%
+rename from src/AppBundle/Entity/GenusNote.php
+rename to src/Entity/GenusNote.php
+index 04387e8..c5d097f 100644
+--- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/Entity/GenusNote.php
-@@ -0,0 +1,100 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Entity;
 +namespace App\Entity;
-+
-+use Doctrine\ORM\Mapping as ORM;
-+
-+/**
-+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GenusNoteRepository")
-+ * @ORM\Table(name="genus_note")
-+ */
-+class GenusNote
-+{
-+    /**
-+     * @ORM\Id
-+     * @ORM\GeneratedValue(strategy="AUTO")
-+     * @ORM\Column(type="integer")
-+     */
-+    private $id;
-+
-+    /**
-+     * @ORM\Column(type="string")
-+     */
-+    private $username;
-+
-+    /**
-+     * @ORM\Column(type="string")
-+     */
-+    private $userAvatarFilename;
-+
-+    /**
-+     * @ORM\Column(type="text")
-+     */
-+    private $note;
-+
-+    /**
-+     * @ORM\Column(type="datetime")
-+     */
-+    private $createdAt;
-+
-+    /**
-+     * @ORM\ManyToOne(targetEntity="Genus", inversedBy="notes")
-+     * @ORM\JoinColumn(nullable=false)
-+     */
-+    private $genus;
-+
-+    public function getId()
-+    {
-+        return $this->id;
-+    }
-+
-+    public function getUsername()
-+    {
-+        return $this->username;
-+    }
-+
-+    public function setUsername($username)
-+    {
-+        $this->username = $username;
-+    }
-+
-+    public function getUserAvatarFilename()
-+    {
-+        return $this->userAvatarFilename;
-+    }
-+
-+    public function setUserAvatarFilename($userAvatarFilename)
-+    {
-+        $this->userAvatarFilename = $userAvatarFilename;
-+    }
-+
-+    public function getNote()
-+    {
-+        return $this->note;
-+    }
-+
-+    public function setNote($note)
-+    {
-+        $this->note = $note;
-+    }
-+
-+    public function getCreatedAt()
-+    {
-+        return $this->createdAt;
-+    }
-+
-+    public function setCreatedAt($createdAt)
-+    {
-+        $this->createdAt = $createdAt;
-+    }
-+
-+    public function getGenus()
-+    {
-+        return $this->genus;
-+    }
-+
-+    public function setGenus(Genus $genus)
-+    {
-+        $this->genus = $genus;
-+    }
-+}
-diff --git a/src/Entity/GenusScientist.php b/src/Entity/GenusScientist.php
-new file mode 100644
-index 0000000..61dd497
---- /dev/null
+ 
+ use Doctrine\ORM\Mapping as ORM;
+ 
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/Entity/GenusScientist.php
+similarity index 98%
+rename from src/AppBundle/Entity/GenusScientist.php
+rename to src/Entity/GenusScientist.php
+index d392492..61dd497 100644
+--- a/src/AppBundle/Entity/GenusScientist.php
 +++ b/src/Entity/GenusScientist.php
-@@ -0,0 +1,79 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Entity;
 +namespace App\Entity;
-+
-+use Doctrine\ORM\Mapping as ORM;
-+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-+use Symfony\Component\Validator\Constraints as Assert;
-+
-+/**
-+ * @ORM\Entity
-+ * @ORM\Table(name="genus_scientist")
-+ * @UniqueEntity(
-+ *     fields={"genus", "user"},
-+ *     message="This user is already studying this genus",
-+ *     errorPath="user"
-+ * )
-+ */
-+class GenusScientist
-+{
-+    /**
-+     * @ORM\Id
-+     * @ORM\GeneratedValue(strategy="AUTO")
-+     * @ORM\Column(type="integer")
-+     */
-+    private $id;
-+
-+    /**
-+     * @ORM\ManyToOne(targetEntity="Genus", inversedBy="genusScientists")
-+     * @ORM\JoinColumn(nullable=false)
-+     */
-+    private $genus;
-+
-+    /**
-+     * @ORM\ManyToOne(targetEntity="User", inversedBy="studiedGenuses")
-+     * @ORM\JoinColumn(nullable=false)
-+     */
-+    private $user;
-+
-+    /**
-+     * @ORM\Column(type="integer")
-+     * @Assert\NotBlank()
-+     */
-+    private $yearsStudied;
-+
-+    public function getId()
-+    {
-+        return $this->id;
-+    }
-+
-+    public function getGenus()
-+    {
-+        return $this->genus;
-+    }
-+
-+    public function setGenus($genus)
-+    {
-+        $this->genus = $genus;
-+    }
-+
-+    public function getUser()
-+    {
-+        return $this->user;
-+    }
-+
-+    public function setUser($user)
-+    {
-+        $this->user = $user;
-+    }
-+
-+    public function getYearsStudied()
-+    {
-+        return $this->yearsStudied;
-+    }
-+
-+    public function setYearsStudied($yearsStudied)
-+    {
-+        $this->yearsStudied = $yearsStudied;
-+    }
-+}
-\ No newline at end of file
-diff --git a/src/Entity/SubFamily.php b/src/Entity/SubFamily.php
-new file mode 100644
-index 0000000..7bcf4e6
---- /dev/null
+ 
+ use Doctrine\ORM\Mapping as ORM;
+ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+diff --git a/src/AppBundle/Entity/SubFamily.php b/src/Entity/SubFamily.php
+similarity index 95%
+rename from src/AppBundle/Entity/SubFamily.php
+rename to src/Entity/SubFamily.php
+index 95e9de7..7bcf4e6 100644
+--- a/src/AppBundle/Entity/SubFamily.php
 +++ b/src/Entity/SubFamily.php
-@@ -0,0 +1,44 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Entity;
 +namespace App\Entity;
-+
-+use Doctrine\ORM\Mapping as ORM;
-+
-+/**
-+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubFamilyRepository")
-+ * @ORM\Table(name="sub_family")
-+ */
-+class SubFamily
-+{
-+    /**
-+     * @ORM\Id
-+     * @ORM\GeneratedValue(strategy="AUTO")
-+     * @ORM\Column(type="integer")
-+     */
-+    private $id;
-+
-+    /**
-+     * @ORM\Column(type="string")
-+     */
-+    private $name;
-+
-+    public function getId()
-+    {
-+        return $this->id;
-+    }
-+
-+    public function getName()
-+    {
-+        return $this->name;
-+    }
-+
-+    public function setName($name)
-+    {
-+        $this->name = $name;
-+    }
-+
-+    public function __toString()
-+    {
-+        return $this->getName();
-+    }
-+}
-diff --git a/src/Entity/User.php b/src/Entity/User.php
-new file mode 100644
-index 0000000..96b6168
---- /dev/null
+ 
+ use Doctrine\ORM\Mapping as ORM;
+ 
+diff --git a/src/AppBundle/Entity/User.php b/src/Entity/User.php
+similarity index 99%
+rename from src/AppBundle/Entity/User.php
+rename to src/Entity/User.php
+index 19d053a..96b6168 100644
+--- a/src/AppBundle/Entity/User.php
 +++ b/src/Entity/User.php
-@@ -0,0 +1,222 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Entity;
 +namespace App\Entity;
-+
-+use Doctrine\Common\Collections\ArrayCollection;
-+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-+use Symfony\Component\Security\Core\Role\Role;
-+use Symfony\Component\Security\Core\User\UserInterface;
-+use Doctrine\ORM\Mapping as ORM;
-+use Symfony\Component\Validator\Constraints as Assert;
-+
-+/**
-+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
-+ * @ORM\Table(name="user")
-+ * @UniqueEntity(fields={"email"}, message="It looks like you already have an account!")
-+ */
-+class User implements UserInterface
-+{
-+    /**
-+     * @ORM\Id
-+     * @ORM\GeneratedValue(strategy="AUTO")
-+     * @ORM\Column(type="integer")
-+     */
-+    private $id;
-+
-+    /**
-+     * @Assert\NotBlank()
-+     * @Assert\Email()
-+     * @ORM\Column(type="string", unique=true)
-+     */
-+    private $email;
-+
-+    /**
-+     * The encoded password
-+     *
-+     * @ORM\Column(type="string")
-+     */
-+    private $password;
-+
-+    /**
-+     * A non-persisted field that's used to create the encoded password.
-+     * @Assert\NotBlank(groups={"Registration"})
-+     *
-+     * @var string
-+     */
-+    private $plainPassword;
-+
-+    /**
-+     * @ORM\Column(type="json_array")
-+     */
-+    private $roles = [];
-+
-+    /**
-+     * @ORM\Column(type="boolean")
-+     */
-+    private $isScientist = false;
-+
-+    /**
-+     * @ORM\Column(type="string", nullable=true)
-+     */
-+    private $firstName;
-+
-+    /**
-+     * @ORM\Column(type="string", nullable=true)
-+     */
-+    private $lastName;
-+
-+    /**
-+     * @ORM\Column(type="string", nullable=true)
-+     */
-+    private $avatarUri;
-+
-+    /**
-+     * @ORM\Column(type="string", nullable=true)
-+     */
-+    private $universityName;
-+
-+    /**
-+     * @ORM\OneToMany(targetEntity="GenusScientist", mappedBy="user")
-+     */
-+    private $studiedGenuses;
-+
-+    public function __construct()
-+    {
-+        $this->studiedGenuses = new ArrayCollection();
-+    }
-+
-+
-+    public function getId()
-+    {
-+        return $this->id;
-+    }
-+
-+    // needed by the security system
-+    public function getUsername()
-+    {
-+        return $this->email;
-+    }
-+
-+    public function getRoles()
-+    {
-+        $roles = $this->roles;
-+
-+        // give everyone ROLE_USER!
-+        if (!in_array('ROLE_USER', $roles)) {
-+            $roles[] = 'ROLE_USER';
-+        }
-+
-+        return $roles;
-+    }
-+
-+    public function setRoles(array $roles)
-+    {
-+        $this->roles = $roles;
-+    }
-+
-+    public function getPassword()
-+    {
-+        return $this->password;
-+    }
-+
-+    public function getSalt()
-+    {
-+        // leaving blank - I don't need/have a password!
-+    }
-+
-+    public function eraseCredentials()
-+    {
-+        $this->plainPassword = null;
-+    }
-+
-+    public function getEmail()
-+    {
-+        return $this->email;
-+    }
-+
-+    public function setEmail($email)
-+    {
-+        $this->email = $email;
-+    }
-+
-+    public function setPassword($password)
-+    {
-+        $this->password = $password;
-+    }
-+
-+    public function getPlainPassword()
-+    {
-+        return $this->plainPassword;
-+    }
-+
-+    public function setPlainPassword($plainPassword)
-+    {
-+        $this->plainPassword = $plainPassword;
-+        // forces the object to look "dirty" to Doctrine. Avoids
-+        // Doctrine *not* saving this entity, if only plainPassword changes
-+        $this->password = null;
-+    }
-+
-+    public function isScientist()
-+    {
-+        return $this->isScientist;
-+    }
-+
-+    public function setIsScientist($isScientist)
-+    {
-+        $this->isScientist = $isScientist;
-+    }
-+
-+    public function getFirstName()
-+    {
-+        return $this->firstName;
-+    }
-+
-+    public function setFirstName($firstName)
-+    {
-+        $this->firstName = $firstName;
-+    }
-+
-+    public function getLastName()
-+    {
-+        return $this->lastName;
-+    }
-+
-+    public function setLastName($lastName)
-+    {
-+        $this->lastName = $lastName;
-+    }
-+
-+    public function getAvatarUri()
-+    {
-+        return $this->avatarUri;
-+    }
-+
-+    public function setAvatarUri($avatarUri)
-+    {
-+        $this->avatarUri = $avatarUri;
-+    }
-+
-+    public function getUniversityName()
-+    {
-+        return $this->universityName;
-+    }
-+
-+    public function setUniversityName($universityName)
-+    {
-+        $this->universityName = $universityName;
-+    }
-+
-+    public function getFullName()
-+    {
-+        return trim($this->getFirstName().' '.$this->getLastName());
-+    }
-+
-+    /**
-+     * @return ArrayCollection|GenusScientist[]
-+     */
-+    public function getStudiedGenuses()
-+    {
-+        return $this->studiedGenuses;
-+    }
-+}
-diff --git a/src/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/EventSubscriber/AddNiceHeaderEventSubscriber.php
-new file mode 100644
-index 0000000..138ba39
---- /dev/null
+ 
+ use Doctrine\Common\Collections\ArrayCollection;
+ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/EventSubscriber/AddNiceHeaderEventSubscriber.php
+similarity index 94%
+rename from src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
+rename to src/EventSubscriber/AddNiceHeaderEventSubscriber.php
+index fe74265..138ba39 100644
+--- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 +++ b/src/EventSubscriber/AddNiceHeaderEventSubscriber.php
-@@ -0,0 +1,42 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\EventSubscriber;
 +namespace App\EventSubscriber;
-+
+ 
+-use AppBundle\Service\MessageManager;
 +use App\Service\MessageManager;
-+use Psr\Log\LoggerInterface;
-+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-+use Symfony\Component\HttpKernel\KernelEvents;
-+
-+class AddNiceHeaderEventSubscriber implements EventSubscriberInterface
-+{
-+    private $logger;
-+    private $messageManager;
-+    private $showDiscouragingMessage;
-+
-+    public function __construct(LoggerInterface $logger, MessageManager $messageManager, $showDiscouragingMessage)
-+    {
-+        $this->logger = $logger;
-+        $this->messageManager = $messageManager;
-+        $this->showDiscouragingMessage = $showDiscouragingMessage;
-+    }
-+
-+    public function onKernelResponse(FilterResponseEvent $event)
-+    {
-+        $this->logger->info('Adding a nice header!');
-+
-+        $message = $this->showDiscouragingMessage
-+            ? $this->messageManager->getDiscouragingMessage()
-+            : $this->messageManager->getEncouragingMessage();
-+
-+        $event->getResponse()
-+            ->headers->set('X-NICE-MESSAGE', $message);
-+    }
-+
-+    public static function getSubscribedEvents()
-+    {
-+        return [
-+            KernelEvents::RESPONSE => 'onKernelResponse'
-+        ];
-+    }
-+}
-diff --git a/src/Form/GenusFormType.php b/src/Form/GenusFormType.php
-new file mode 100644
-index 0000000..7ab57f5
---- /dev/null
+ use Psr\Log\LoggerInterface;
+ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+diff --git a/src/AppBundle/Form/GenusFormType.php b/src/Form/GenusFormType.php
+similarity index 95%
+rename from src/AppBundle/Form/GenusFormType.php
+rename to src/Form/GenusFormType.php
+index cdeb7b7..7ab57f5 100644
+--- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/Form/GenusFormType.php
-@@ -0,0 +1,107 @@
-+<?php
-+
+@@ -1,11 +1,11 @@
+ <?php
+ 
+-namespace AppBundle\Form;
 +namespace App\Form;
-+
+ 
+-use AppBundle\Entity\SubFamily;
+-use AppBundle\Entity\User;
+-use AppBundle\Repository\SubFamilyRepository;
+-use AppBundle\Repository\UserRepository;
 +use App\Entity\SubFamily;
 +use App\Entity\User;
 +use App\Repository\SubFamilyRepository;
 +use App\Repository\UserRepository;
-+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-+use Symfony\Component\Form\AbstractType;
-+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-+use Symfony\Component\Form\Extension\Core\Type\DateType;
-+use Symfony\Component\Form\FormBuilderInterface;
-+use Symfony\Component\Form\FormEvent;
-+use Symfony\Component\Form\FormEvents;
-+use Symfony\Component\Form\FormInterface;
-+use Symfony\Component\Form\FormView;
-+use Symfony\Component\OptionsResolver\OptionsResolver;
-+
-+class GenusFormType extends AbstractType
-+{
-+    public function buildForm(FormBuilderInterface $builder, array $options)
-+    {
-+        $builder
-+            ->add('name')
-+            ->add('subFamily', EntityType::class, [
-+                'placeholder' => 'Choose a Sub Family',
-+                'class' => SubFamily::class,
-+                'query_builder' => function(SubFamilyRepository $repo) {
-+                    return $repo->createAlphabeticalQueryBuilder();
-+                }
-+            ])
-+            ->add('speciesCount')
-+            ->add('funFact', null, [
-+                'help' => 'For example, Leatherback sea turtles can travel more than 10,000 miles every year!'
-+            ])
-+            ->add('isPublished', ChoiceType::class, [
-+                'choices' => [
-+                    'Yes' => true,
-+                    'No' => false,
-+                ]
-+            ])
-+            ->add('firstDiscoveredAt', DateType::class, [
-+                'widget' => 'single_text',
-+                'attr' => ['class' => 'js-datepicker'],
-+                'html5' => false,
-+            ])
-+            ->add('genusScientists', CollectionType::class, [
-+                'entry_type' => GenusScientistEmbeddedForm::class,
-+                'allow_delete' => true,
-+                'allow_add' => true,
-+                'by_reference' => false,
-+            ])
-+        ;
-+
-+        $builder->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmit'));
-+    }
-+
-+    public function configureOptions(OptionsResolver $resolver)
-+    {
-+        $resolver->setDefaults([
-+            'data_class' => 'AppBundle\Entity\Genus'
-+        ]);
-+    }
-+
-+    /**
-+     * This fixes a validation issue with the Collection. Suppose
-+     * the following situation:
-+     *
-+     * A) Edit a Genus
-+     * B) Add 2 new scientists - don't submit & leave all fields blank
-+     * C) Delete the FIRST scientist
-+     * D) Submit the form
-+     *
-+     * The one new scientist has a validation error, because
-+     * the yearsStudied field was left blank. But, this error
-+     * shows at the *top* of the form, not attached to the form.
-+     * The reason is that, on submit, addGenusScientist() is
-+     * called, and the new scientist is added to the next available
-+     * index (so, if the Genus previously had 2 scientists, the
-+     * new GenusScientist is added to the "2" index). However,
-+     * in the HTML before the form was submitted, the index used
-+     * in the name attribute of the fields for the new scientist
-+     * was *3*: 0 & 1 were used for the existing scientists and 2 was
-+     * used for the first genus scientist form that you added
-+     * (and then later deleted). This mis-match confuses the validator,
-+     * which thinks there is an error on genusScientists[2].yearsStudied,
-+     * and fails to map that to the genusScientists[3].yearsStudied
-+     * field.
-+     *
-+     * Phew! It's a big pain :). Below, we fix it! On submit,
-+     * we simply re-index the submitted data before it's bound
-+     * to the form. The submitted genusScientists data, which
-+     * previously had index 0, 1 and 3, will now have indexes
-+     * 0, 1 and 2. And these indexes will match the indexes
-+     * that they have on the Genus.genusScientists property.
-+     *
-+     * @param FormEvent $event
-+     */
-+    public function onPreSubmit(FormEvent $event)
-+    {
-+        $data = $event->getData();
-+        $data['genusScientists'] = array_values($data['genusScientists']);
-+        $event->setData($data);
-+    }
-+}
-diff --git a/src/Form/GenusScientistEmbeddedForm.php b/src/Form/GenusScientistEmbeddedForm.php
-new file mode 100644
-index 0000000..421dacd
---- /dev/null
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+diff --git a/src/AppBundle/Form/GenusScientistEmbeddedForm.php b/src/Form/GenusScientistEmbeddedForm.php
+similarity index 90%
+rename from src/AppBundle/Form/GenusScientistEmbeddedForm.php
+rename to src/Form/GenusScientistEmbeddedForm.php
+index f6232dd..421dacd 100644
+--- a/src/AppBundle/Form/GenusScientistEmbeddedForm.php
 +++ b/src/Form/GenusScientistEmbeddedForm.php
-@@ -0,0 +1,51 @@
-+<?php
-+
+@@ -1,10 +1,10 @@
+ <?php
+ 
+-namespace AppBundle\Form;
 +namespace App\Form;
-+
+ 
+-use AppBundle\Entity\GenusScientist;
+-use AppBundle\Entity\User;
+-use AppBundle\Repository\UserRepository;
 +use App\Entity\GenusScientist;
 +use App\Entity\User;
 +use App\Repository\UserRepository;
-+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-+use Symfony\Component\Form\AbstractType;
-+use Symfony\Component\Form\FormBuilderInterface;
-+use Symfony\Component\Form\FormEvent;
-+use Symfony\Component\Form\FormEvents;
-+use Symfony\Component\OptionsResolver\OptionsResolver;
-+
-+class GenusScientistEmbeddedForm extends AbstractType
-+{
-+    public function buildForm(FormBuilderInterface $builder, array $options)
-+    {
-+        $builder
-+            ->add('user', EntityType::class, [
-+                'class' => User::class,
-+                'choice_label' => 'email',
-+                'query_builder' => function(UserRepository $repo) {
-+                    return $repo->createIsScientistQueryBuilder();
-+                }
-+            ])
-+            ->add('yearsStudied')
-+            ->addEventListener(
-+                FormEvents::POST_SET_DATA,
-+                array($this, 'onPostSetData')
-+            )
-+        ;
-+    }
-+
-+    public function onPostSetData(FormEvent $event)
-+    {
-+        if ($event->getData() && $event->getData()->getId()) {
-+            $form = $event->getForm();
-+            unset($form['user']);
-+        }
-+    }
-+
-+    public function configureOptions(OptionsResolver $resolver)
-+    {
-+        $resolver->setDefaults([
-+            'data_class' => GenusScientist::class
-+        ]);
-+    }
-+
-+
-+}
-\ No newline at end of file
-diff --git a/src/Form/LoginForm.php b/src/Form/LoginForm.php
-new file mode 100644
-index 0000000..50b05be
---- /dev/null
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\FormBuilderInterface;
+diff --git a/src/AppBundle/Form/LoginForm.php b/src/Form/LoginForm.php
+similarity index 94%
+rename from src/AppBundle/Form/LoginForm.php
+rename to src/Form/LoginForm.php
+index e7f478a..50b05be 100644
+--- a/src/AppBundle/Form/LoginForm.php
 +++ b/src/Form/LoginForm.php
-@@ -0,0 +1,19 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Form;
 +namespace App\Form;
-+
-+use Symfony\Component\Form\AbstractType;
-+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-+use Symfony\Component\Form\FormBuilderInterface;
-+use Symfony\Component\OptionsResolver\OptionsResolver;
-+
-+class LoginForm extends AbstractType
-+{
-+    public function buildForm(FormBuilderInterface $builder, array $options)
-+    {
-+        $builder
-+            ->add('_username')
-+            ->add('_password', PasswordType::class)
-+        ;
-+    }
-+}
-diff --git a/src/Form/TypeExtension/HelpFormExtension.php b/src/Form/TypeExtension/HelpFormExtension.php
-new file mode 100644
-index 0000000..b85abb0
---- /dev/null
+ 
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+diff --git a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php b/src/Form/TypeExtension/HelpFormExtension.php
+similarity index 94%
+rename from src/AppBundle/Form/TypeExtension/HelpFormExtension.php
+rename to src/Form/TypeExtension/HelpFormExtension.php
+index c4d7291..b85abb0 100644
+--- a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 +++ b/src/Form/TypeExtension/HelpFormExtension.php
-@@ -0,0 +1,29 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Form\TypeExtension;
 +namespace App\Form\TypeExtension;
-+
-+use Symfony\Component\Form\AbstractTypeExtension;
-+use Symfony\Component\Form\Extension\Core\Type\FormType;
-+use Symfony\Component\Form\FormInterface;
-+use Symfony\Component\Form\FormView;
-+use Symfony\Component\OptionsResolver\OptionsResolver;
-+
-+class HelpFormExtension extends AbstractTypeExtension
-+{
-+    public function buildView(FormView $view, FormInterface $form, array $options)
-+    {
-+        if ($options['help']) {
-+            $view->vars['help'] = $options['help'];
-+        }
-+    }
-+
-+    public function configureOptions(OptionsResolver $resolver)
-+    {
-+        $resolver->setDefault('help', null);
-+    }
-+
-+    public function getExtendedType()
-+    {
-+        return FormType::class;
-+    }
-+}
-diff --git a/src/Form/UserEditForm.php b/src/Form/UserEditForm.php
-new file mode 100644
-index 0000000..ab403d5
---- /dev/null
+ 
+ use Symfony\Component\Form\AbstractTypeExtension;
+ use Symfony\Component\Form\Extension\Core\Type\FormType;
+diff --git a/src/AppBundle/Form/UserEditForm.php b/src/Form/UserEditForm.php
+similarity index 91%
+rename from src/AppBundle/Form/UserEditForm.php
+rename to src/Form/UserEditForm.php
+index 8829b50..ab403d5 100644
+--- a/src/AppBundle/Form/UserEditForm.php
 +++ b/src/Form/UserEditForm.php
-@@ -0,0 +1,34 @@
-+<?php
-+
+@@ -1,9 +1,9 @@
+ <?php
+ 
+-namespace AppBundle\Form;
 +namespace App\Form;
-+
+ 
+-use AppBundle\Entity\Genus;
+-use AppBundle\Entity\User;
 +use App\Entity\Genus;
 +use App\Entity\User;
-+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-+use Symfony\Component\Form\AbstractType;
-+use Symfony\Component\Form\Extension\Core\Type\EmailType;
-+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-+use Symfony\Component\Form\FormBuilderInterface;
-+use Symfony\Component\OptionsResolver\OptionsResolver;
-+
-+class UserEditForm extends AbstractType
-+{
-+    public function buildForm(FormBuilderInterface $builder, array $options)
-+    {
-+        $builder
-+            ->add('email', EmailType::class)
-+            ->add('isScientist')
-+            ->add('firstName')
-+            ->add('lastName')
-+            ->add('universityName')
-+        ;
-+    }
-+
-+    public function configureOptions(OptionsResolver $resolver)
-+    {
-+        $resolver->setDefaults([
-+            'data_class' => User::class,
-+        ]);
-+    }
-+}
-diff --git a/src/Form/UserRegistrationForm.php b/src/Form/UserRegistrationForm.php
-new file mode 100644
-index 0000000..ece7177
---- /dev/null
+ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\EmailType;
+diff --git a/src/AppBundle/Form/UserRegistrationForm.php b/src/Form/UserRegistrationForm.php
+similarity index 94%
+rename from src/AppBundle/Form/UserRegistrationForm.php
+rename to src/Form/UserRegistrationForm.php
+index 1c7577d..ece7177 100644
+--- a/src/AppBundle/Form/UserRegistrationForm.php
 +++ b/src/Form/UserRegistrationForm.php
-@@ -0,0 +1,31 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\Form;
 +namespace App\Form;
-+
+ 
+-use AppBundle\Entity\User;
 +use App\Entity\User;
-+use Symfony\Component\Form\AbstractType;
-+use Symfony\Component\Form\Extension\Core\Type\EmailType;
-+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-+use Symfony\Component\Form\FormBuilderInterface;
-+use Symfony\Component\OptionsResolver\OptionsResolver;
-+
-+class UserRegistrationForm extends AbstractType
-+{
-+    public function buildForm(FormBuilderInterface $builder, array $options)
-+    {
-+        $builder
-+            ->add('email', EmailType::class)
-+            ->add('plainPassword', RepeatedType::class, [
-+                'type' => PasswordType::class
-+            ]);
-+    }
-+
-+    public function configureOptions(OptionsResolver $resolver)
-+    {
-+        $resolver->setDefaults([
-+            'data_class' => User::class,
-+            'validation_groups' => ['Default', 'Registration']
-+        ]);
-+    }
-+}
-diff --git a/src/Repository/GenusNoteRepository.php b/src/Repository/GenusNoteRepository.php
-new file mode 100644
-index 0000000..c5004a7
---- /dev/null
+ use Symfony\Component\Form\AbstractType;
+ use Symfony\Component\Form\Extension\Core\Type\EmailType;
+ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+diff --git a/src/AppBundle/Repository/GenusNoteRepository.php b/src/Repository/GenusNoteRepository.php
+similarity index 87%
+rename from src/AppBundle/Repository/GenusNoteRepository.php
+rename to src/Repository/GenusNoteRepository.php
+index 9bde0e5..c5004a7 100644
+--- a/src/AppBundle/Repository/GenusNoteRepository.php
 +++ b/src/Repository/GenusNoteRepository.php
-@@ -0,0 +1,26 @@
-+<?php
-+
+@@ -1,9 +1,9 @@
+ <?php
+ 
+-namespace AppBundle\Repository;
 +namespace App\Repository;
-+
+ 
+-use AppBundle\Entity\Genus;
+-use AppBundle\Entity\GenusNote;
 +use App\Entity\Genus;
 +use App\Entity\GenusNote;
-+use Doctrine\ORM\EntityRepository;
-+
-+class GenusNoteRepository extends EntityRepository
-+{
-+    /**
-+     * @param Genus $genus
-+     * @return GenusNote[]
-+     */
-+    public function findAllRecentNotesForGenus(Genus $genus)
-+    {
-+        return $this->createQueryBuilder('genus_note')
-+            ->andWhere('genus_note.genus = :genus')
-+            ->setParameter('genus', $genus)
-+            ->andWhere('genus_note.createdAt > :recentDate')
-+            ->setParameter('recentDate', new \DateTime('-3 months'))
-+            ->orderBy('genus_note.createdAt', 'DESC')
-+            ->getQuery()
-+            ->execute();
-+    }
-+}
-diff --git a/src/Repository/GenusRepository.php b/src/Repository/GenusRepository.php
-new file mode 100644
-index 0000000..3fb2d43
---- /dev/null
+ use Doctrine\ORM\EntityRepository;
+ 
+ class GenusNoteRepository extends EntityRepository
+diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/Repository/GenusRepository.php
+similarity index 94%
+rename from src/AppBundle/Repository/GenusRepository.php
+rename to src/Repository/GenusRepository.php
+index a77abd8..3fb2d43 100644
+--- a/src/AppBundle/Repository/GenusRepository.php
 +++ b/src/Repository/GenusRepository.php
-@@ -0,0 +1,44 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\Repository;
 +namespace App\Repository;
-+
+ 
+-use AppBundle\Entity\Genus;
 +use App\Entity\Genus;
-+use Doctrine\Common\Collections\Criteria;
-+use Doctrine\ORM\EntityRepository;
-+
-+class GenusRepository extends EntityRepository
-+{
-+    /**
-+     * @return Genus[]
-+     */
-+    public function findAllPublishedOrderedByRecentlyActive()
-+    {
-+        return $this->createQueryBuilder('genus')
-+            ->andWhere('genus.isPublished = :isPublished')
-+            ->setParameter('isPublished', true)
-+            ->leftJoin('genus.notes', 'genus_note')
-+            ->orderBy('genus_note.createdAt', 'DESC')
-+//            ->leftJoin('genus.genusScientists', 'genusScientist')
-+//            ->addSelect('genusScientist')
-+            ->getQuery()
-+            ->execute();
-+    }
-+
-+    /**
-+     * @return Genus[]
-+     */
-+    public function findAllExperts()
-+    {
-+        return $this->createQueryBuilder('genus')
-+            ->addCriteria(self::createExpertCriteria())
-+            ->getQuery()
-+            ->execute();
-+    }
-+
-+    static public function createExpertCriteria()
-+    {
-+        return Criteria::create()
-+            ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
-+            ->orderBy(['yearsStudied', 'DESC']);
-+    }
-+}
-diff --git a/src/Repository/SubFamilyRepository.php b/src/Repository/SubFamilyRepository.php
-new file mode 100644
-index 0000000..bac4d58
---- /dev/null
+ use Doctrine\Common\Collections\Criteria;
+ use Doctrine\ORM\EntityRepository;
+ 
+diff --git a/src/AppBundle/Repository/SubFamilyRepository.php b/src/Repository/SubFamilyRepository.php
+similarity index 87%
+rename from src/AppBundle/Repository/SubFamilyRepository.php
+rename to src/Repository/SubFamilyRepository.php
+index de614c4..bac4d58 100644
+--- a/src/AppBundle/Repository/SubFamilyRepository.php
 +++ b/src/Repository/SubFamilyRepository.php
-@@ -0,0 +1,31 @@
-+<?php
-+
+@@ -1,9 +1,9 @@
+ <?php
+ 
+-namespace AppBundle\Repository;
 +namespace App\Repository;
-+
+ 
+-use AppBundle\Entity\Genus;
+-use AppBundle\Entity\SubFamily;
 +use App\Entity\Genus;
 +use App\Entity\SubFamily;
-+use Doctrine\ORM\EntityRepository;
-+
-+class SubFamilyRepository extends EntityRepository
-+{
-+    public function createAlphabeticalQueryBuilder()
-+    {
-+        return $this->createQueryBuilder('sub_family')
-+            ->orderBy('sub_family.name', 'ASC');
-+    }
-+
-+    /**
-+     * Helper method to return ANY SubFamily.
-+     *
-+     * This is mostly useful when playing and testing things.
-+     *
-+     * @return SubFamily
-+     */
-+    public function findAny()
-+    {
-+        return $this->createQueryBuilder('sub_family')
-+            ->setMaxResults(1)
-+            ->getQuery()
-+            ->getOneOrNullResult();
-+    }
-+}
-diff --git a/src/Repository/UserRepository.php b/src/Repository/UserRepository.php
-new file mode 100644
-index 0000000..2667796
---- /dev/null
+ use Doctrine\ORM\EntityRepository;
+ 
+ class SubFamilyRepository extends EntityRepository
+diff --git a/src/AppBundle/Repository/UserRepository.php b/src/Repository/UserRepository.php
+similarity index 90%
+rename from src/AppBundle/Repository/UserRepository.php
+rename to src/Repository/UserRepository.php
+index 3338ef2..2667796 100644
+--- a/src/AppBundle/Repository/UserRepository.php
 +++ b/src/Repository/UserRepository.php
-@@ -0,0 +1,15 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Repository;
 +namespace App\Repository;
-+
-+use Doctrine\ORM\EntityRepository;
-+
-+class UserRepository extends EntityRepository
-+{
-+    public function createIsScientistQueryBuilder()
-+    {
-+        return $this->createQueryBuilder('user')
-+            ->andWhere('user.isScientist = :isScientist')
-+            ->setParameter('isScientist', true);
-+    }
-+}
-diff --git a/src/Security/LoginFormAuthenticator.php b/src/Security/LoginFormAuthenticator.php
-new file mode 100644
-index 0000000..912c93e
---- /dev/null
+ 
+ use Doctrine\ORM\EntityRepository;
+ 
+diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/Security/LoginFormAuthenticator.php
+similarity index 97%
+rename from src/AppBundle/Security/LoginFormAuthenticator.php
+rename to src/Security/LoginFormAuthenticator.php
+index 0a14fa0..912c93e 100644
+--- a/src/AppBundle/Security/LoginFormAuthenticator.php
 +++ b/src/Security/LoginFormAuthenticator.php
-@@ -0,0 +1,88 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\Security;
 +namespace App\Security;
-+
+ 
+-use AppBundle\Form\LoginForm;
 +use App\Form\LoginForm;
-+use Doctrine\ORM\EntityManager;
-+use Symfony\Component\Form\FormFactoryInterface;
-+use Symfony\Component\HttpFoundation\RedirectResponse;
-+use Symfony\Component\HttpFoundation\Request;
-+use Symfony\Component\HttpFoundation\Response;
-+use Symfony\Component\Routing\RouterInterface;
-+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-+use Symfony\Component\Security\Core\Security;
-+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-+use Symfony\Component\Security\Core\User\UserInterface;
-+use Symfony\Component\Security\Core\User\UserProviderInterface;
-+use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
-+use Symfony\Component\Security\Http\Util\TargetPathTrait;
-+
-+class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
-+{
-+    use TargetPathTrait;
-+
-+    private $formFactory;
-+    private $em;
-+    private $router;
-+    private $passwordEncoder;
-+
-+    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router, UserPasswordEncoderInterface $passwordEncoder)
-+    {
-+        $this->formFactory = $formFactory;
-+        $this->em = $em;
-+        $this->router = $router;
-+        $this->passwordEncoder = $passwordEncoder;
-+    }
-+
-+    public function supports(Request $request)
-+    {
-+        return $request->getPathInfo() == '/login' && $request->isMethod('POST');
-+    }
-+
-+    public function getCredentials(Request $request)
-+    {
-+        $form = $this->formFactory->create(LoginForm::class);
-+        $form->handleRequest($request);
-+
-+        $data = $form->getData();
-+        $request->getSession()->set(
-+            Security::LAST_USERNAME,
-+            $data['_username']
-+        );
-+
-+        return $data;
-+    }
-+
-+    public function getUser($credentials, UserProviderInterface $userProvider)
-+    {
-+        $username = $credentials['_username'];
-+
-+        return $this->em->getRepository('AppBundle:User')
-+            ->findOneBy(['email' => $username]);
-+    }
-+
-+    public function checkCredentials($credentials, UserInterface $user)
-+    {
-+        $password = $credentials['_password'];
-+
-+        if ($this->passwordEncoder->isPasswordValid($user, $password)) {
-+            return true;
-+        }
-+
-+        return false;
-+    }
-+
-+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-+    {
-+        if ($targetPath = $this->getTargetPath($request->getSession(), 'main')) {
-+            return new RedirectResponse($targetPath);
-+        }
-+
-+        return new RedirectResponse($this->router->generate('homepage'));
-+    }
-+
-+    protected function getLoginUrl()
-+    {
-+        return $this->router->generate('security_login');
-+    }
-+}
-diff --git a/src/Service/MarkdownTransformer.php b/src/Service/MarkdownTransformer.php
-new file mode 100644
-index 0000000..7b74375
---- /dev/null
+ use Doctrine\ORM\EntityManager;
+ use Symfony\Component\Form\FormFactoryInterface;
+ use Symfony\Component\HttpFoundation\RedirectResponse;
+diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/Service/MarkdownTransformer.php
+similarity index 96%
+rename from src/AppBundle/Service/MarkdownTransformer.php
+rename to src/Service/MarkdownTransformer.php
+index 0f6f29f..7b74375 100644
+--- a/src/AppBundle/Service/MarkdownTransformer.php
 +++ b/src/Service/MarkdownTransformer.php
-@@ -0,0 +1,34 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Service;
 +namespace App\Service;
-+
-+use Doctrine\Common\Cache\Cache;
-+use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
-+
-+class MarkdownTransformer
-+{
-+    private $markdownParser;
-+    private $cache;
-+
-+    public function __construct(MarkdownParserInterface $markdownParser, Cache $cacheDriver)
-+    {
-+        $this->markdownParser = $markdownParser;
-+        $this->cache = $cacheDriver;
-+    }
-+
-+    public function parse($str)
-+    {
-+        $cache = $this->cache;
-+        $key = md5($str);
-+        if ($cache->contains($key)) {
-+            return $cache->fetch($key);
-+        }
-+
-+        sleep(1);
-+        $str = $this->markdownParser
-+            ->transformMarkdown($str);
-+        $cache->save($key, $str);
-+
-+        return $str;
-+    }
-+}
-diff --git a/src/Service/MessageManager.php b/src/Service/MessageManager.php
-new file mode 100644
-index 0000000..e07e1c2
---- /dev/null
+ 
+ use Doctrine\Common\Cache\Cache;
+ use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
+diff --git a/src/AppBundle/Service/MessageManager.php b/src/Service/MessageManager.php
+similarity index 95%
+rename from src/AppBundle/Service/MessageManager.php
+rename to src/Service/MessageManager.php
+index 8dbdbeb..e07e1c2 100644
+--- a/src/AppBundle/Service/MessageManager.php
 +++ b/src/Service/MessageManager.php
-@@ -0,0 +1,25 @@
-+<?php
-+
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace AppBundle\Service;
 +namespace App\Service;
-+
-+class MessageManager
-+{
-+    private $encouragingMessages = array();
-+    private $discouragingMessages = array();
-+
-+    public function __construct(array $encouragingMessages, array $discouragingMessages)
-+    {
-+        $this->encouragingMessages = $encouragingMessages;
-+        $this->discouragingMessages = $discouragingMessages;
-+    }
-+
-+    public function getEncouragingMessage()
-+    {
-+        return $this->encouragingMessages[array_rand($this->encouragingMessages)];
-+    }
-+
-+    public function getDiscouragingMessage()
-+    {
-+        return $this->discouragingMessages[array_rand($this->discouragingMessages)];
-+    }
-+}
-diff --git a/src/Twig/MarkdownExtension.php b/src/Twig/MarkdownExtension.php
-new file mode 100644
-index 0000000..622a4de
---- /dev/null
+ 
+ class MessageManager
+ {
+diff --git a/src/AppBundle/Twig/MarkdownExtension.php b/src/Twig/MarkdownExtension.php
+similarity index 90%
+rename from src/AppBundle/Twig/MarkdownExtension.php
+rename to src/Twig/MarkdownExtension.php
+index 95e7eb2..622a4de 100644
+--- a/src/AppBundle/Twig/MarkdownExtension.php
 +++ b/src/Twig/MarkdownExtension.php
-@@ -0,0 +1,34 @@
-+<?php
-+
+@@ -1,8 +1,8 @@
+ <?php
+ 
+-namespace AppBundle\Twig;
 +namespace App\Twig;
-+
+ 
+-use AppBundle\Service\MarkdownTransformer;
 +use App\Service\MarkdownTransformer;
-+
-+class MarkdownExtension extends \Twig_Extension
-+{
-+    private $markdownTransformer;
-+
-+    public function __construct(MarkdownTransformer $markdownTransformer)
-+    {
-+        $this->markdownTransformer = $markdownTransformer;
-+    }
-+
-+    public function getFilters()
-+    {
-+        return [
-+            new \Twig_SimpleFilter('markdownify', array($this, 'parseMarkdown'), [
-+                'is_safe' => ['html']
-+            ])
-+        ];
-+    }
-+
-+    public function parseMarkdown($str)
-+    {
-+        return $this->markdownTransformer->parse($str);
-+    }
-+
-+    public function getName()
-+    {
-+        return 'app_markdown';
-+    }
-+}
+ 
+ class MarkdownExtension extends \Twig_Extension
+ {

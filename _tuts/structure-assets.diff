@@ -37,10 +37,11 @@ index 67a5cb3..a15fbb2 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1834,6 +1834,62 @@
+@@ -1833,6 +1833,62 @@
+             ],
              "time": "2017-09-30T22:39:41+00:00"
          },
-         {
++        {
 +            "name": "symfony/asset",
 +            "version": "v4.0.1",
 +            "source": {
@@ -96,10 +97,9 @@ index 67a5cb3..a15fbb2 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-11-07T14:45:01+00:00"
 +        },
-+        {
+         {
              "name": "symfony/cache",
              "version": "v4.0.1",
-             "source": {
 diff --git a/symfony.lock b/symfony.lock
 index 2627059..9a4a00d 100644
 --- a/symfony.lock

@@ -35,10 +35,11 @@ index ff01b25..7767a73 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1937,6 +1937,52 @@
+@@ -1936,6 +1936,52 @@
+             ],
              "time": "2017-09-30T22:39:41+00:00"
          },
-         {
++        {
 +            "name": "symfony/flex",
 +            "version": "v1.0.49",
 +            "source": {
@@ -84,10 +85,9 @@ index ff01b25..7767a73 100644
 +            ],
 +            "time": "2017-12-11T15:40:16+00:00"
 +        },
-+        {
+         {
              "name": "symfony/monolog-bundle",
              "version": "v3.1.2",
-             "source": {
 diff --git a/symfony.lock b/symfony.lock
 new file mode 100644
 index 0000000..a9e01b9

@@ -1,11 +1,3 @@
-diff --git a/app/Resources/translations/validators.en.yml b/app/Resources/translations/validators.en.yml
-deleted file mode 100644
-index 3244659..0000000
---- a/app/Resources/translations/validators.en.yml
-+++ /dev/null
-@@ -1 +0,0 @@
--"This value should not be blank.": Hi! Please enter *something* for this field :)
-\ No newline at end of file
 diff --git a/app/config/config.yml b/app/config/config.yml
 index 2deade2..fa6e5f1 100644
 --- a/app/config/config.yml
@@ -45,10 +37,11 @@ index 56d77a7..f49fa56 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3227,6 +3227,74 @@
+@@ -3226,6 +3226,74 @@
+             "homepage": "https://symfony.com",
              "time": "2017-11-07T14:45:01+00:00"
          },
-         {
++        {
 +            "name": "symfony/translation",
 +            "version": "v4.0.1",
 +            "source": {
@@ -116,10 +109,9 @@ index 56d77a7..f49fa56 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-11-28T22:05:27+00:00"
 +        },
-+        {
+         {
              "name": "symfony/yaml",
              "version": "v4.0.1",
-             "source": {
 diff --git a/config/packages/translation.yaml b/config/packages/translation.yaml
 new file mode 100644
 index 0000000..1edfbe2
@@ -156,11 +148,7 @@ index f66ce11..a18dab5 100644
 diff --git a/translations/.gitignore b/translations/.gitignore
 new file mode 100644
 index 0000000..e69de29
-diff --git a/translations/validators.en.yml b/translations/validators.en.yml
-new file mode 100644
-index 0000000..3244659
---- /dev/null
-+++ b/translations/validators.en.yml
-@@ -0,0 +1 @@
-+"This value should not be blank.": Hi! Please enter *something* for this field :)
-\ No newline at end of file
+diff --git a/app/Resources/translations/validators.en.yml b/translations/validators.en.yml
+similarity index 100%
+rename from app/Resources/translations/validators.en.yml
+rename to translations/validators.en.yml

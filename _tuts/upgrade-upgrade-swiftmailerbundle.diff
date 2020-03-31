@@ -24,10 +24,11 @@ index fad3729..ff01b25 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -963,6 +963,63 @@
+@@ -962,6 +962,63 @@
+             ],
              "time": "2017-11-27T23:25:55+00:00"
          },
-         {
++        {
 +            "name": "egulias/email-validator",
 +            "version": "2.1.3",
 +            "source": {
@@ -84,10 +85,9 @@ index fad3729..ff01b25 100644
 +            ],
 +            "time": "2017-11-15T23:40:40+00:00"
 +        },
-+        {
+         {
              "name": "fig/link-util",
              "version": "1.0.0",
-             "source": {
 @@ -1826,29 +1883,30 @@
          },
          {
@@ -142,10 +142,11 @@ index fad3729..ff01b25 100644
          },
          {
              "name": "symfony/monolog-bundle",
-@@ -2170,83 +2228,31 @@
+@@ -2169,84 +2227,32 @@
+             ],
              "time": "2017-10-11T12:05:26+00:00"
          },
-         {
+-        {
 -            "name": "symfony/swiftmailer-bridge",
 -            "version": "v2.8.32",
 -            "source": {
@@ -199,7 +200,7 @@ index fad3729..ff01b25 100644
 -            "abandoned": true,
 -            "time": "2017-10-01T21:00:16+00:00"
 -        },
--        {
+         {
              "name": "symfony/swiftmailer-bundle",
 -            "version": "v2.3.8",
 +            "version": "v3.1.6",

@@ -44,10 +44,11 @@ index f49fa56..bfa212b 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2444,6 +2444,86 @@
+@@ -2443,6 +2443,86 @@
+             ],
              "time": "2017-12-11T15:40:16+00:00"
          },
-         {
++        {
 +            "name": "symfony/form",
 +            "version": "v4.0.1",
 +            "source": {
@@ -127,14 +128,14 @@ index f49fa56..bfa212b 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-12-04T12:31:58+00:00"
 +        },
-+        {
+         {
              "name": "symfony/framework-bundle",
              "version": "v4.0.1",
-             "source": {
-@@ -2697,6 +2777,138 @@
+@@ -2696,6 +2776,138 @@
+             "homepage": "https://symfony.com",
              "time": "2017-12-05T00:18:20+00:00"
          },
-         {
++        {
 +            "name": "symfony/inflector",
 +            "version": "v4.0.1",
 +            "source": {
@@ -266,14 +267,14 @@ index f49fa56..bfa212b 100644
 +            ],
 +            "time": "2017-12-01T20:03:44+00:00"
 +        },
-+        {
+         {
              "name": "symfony/lts",
              "version": "dev-master",
-             "source": {
-@@ -2917,6 +3129,60 @@
+@@ -2916,6 +3128,60 @@
+             ],
              "time": "2017-11-06T16:02:17+00:00"
          },
-         {
++        {
 +            "name": "symfony/options-resolver",
 +            "version": "v4.0.1",
 +            "source": {
@@ -327,14 +328,14 @@ index f49fa56..bfa212b 100644
 +            ],
 +            "time": "2017-11-07T14:45:01+00:00"
 +        },
-+        {
+         {
              "name": "symfony/polyfill-apcu",
              "version": "v1.6.0",
-             "source": {
-@@ -2973,6 +3239,64 @@
+@@ -2972,6 +3238,64 @@
+             ],
              "time": "2017-10-11T12:05:26+00:00"
          },
-         {
++        {
 +            "name": "symfony/polyfill-intl-icu",
 +            "version": "v1.6.0",
 +            "source": {
@@ -392,14 +393,14 @@ index f49fa56..bfa212b 100644
 +            ],
 +            "time": "2017-10-11T12:05:26+00:00"
 +        },
-+        {
+         {
              "name": "symfony/polyfill-mbstring",
              "version": "v1.6.0",
-             "source": {
-@@ -3032,6 +3356,73 @@
+@@ -3031,6 +3355,73 @@
+             ],
              "time": "2017-10-11T12:05:26+00:00"
          },
-         {
++        {
 +            "name": "symfony/property-access",
 +            "version": "v4.0.1",
 +            "source": {
@@ -466,14 +467,14 @@ index f49fa56..bfa212b 100644
 +            ],
 +            "time": "2017-11-19T18:43:46+00:00"
 +        },
-+        {
+         {
              "name": "symfony/routing",
              "version": "v4.0.1",
-             "source": {
-@@ -3295,6 +3686,90 @@
+@@ -3294,6 +3685,90 @@
+             "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },
-         {
++        {
 +            "name": "symfony/validator",
 +            "version": "v4.0.1",
 +            "source": {
@@ -557,10 +558,9 @@ index f49fa56..bfa212b 100644
 +            "homepage": "https://symfony.com",
 +            "time": "2017-12-04T12:31:58+00:00"
 +        },
-+        {
+         {
              "name": "symfony/yaml",
              "version": "v4.0.1",
-             "source": {
 diff --git a/symfony.lock b/symfony.lock
 index a18dab5..b1e3d6a 100644
 --- a/symfony.lock
