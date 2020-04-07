@@ -27,7 +27,7 @@ index 4fe28cc..4965d4d 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 555dd3c..a822cc0 100644
+index 586347f..0192286 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

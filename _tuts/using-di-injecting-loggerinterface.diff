@@ -12,7 +12,7 @@ index f036665..e617749 100644
          "sensio/distribution-bundle": "^5.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index 52b6fcb..f52a5d7 100644
+index 6e7ab93..2dd77ae 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

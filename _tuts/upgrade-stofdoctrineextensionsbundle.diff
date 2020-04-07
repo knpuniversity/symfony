@@ -25,14 +25,14 @@ index aad2732..9da19d0 100644
 +    ]
  }
 diff --git a/composer.lock b/composer.lock
-index 3a310c7..aca4a4a 100644
+index 7fbd8f8..aca4a4a 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "93d7438cdd51cbf3397cdd1346e48eba",
+-    "content-hash": "53b2b460bc914dbb09f4b2a7c297c0b7",
 +    "content-hash": "47f9b983830262d29e56101ac13e8670",
      "packages": [
          {
@@ -219,16 +219,16 @@ index 3a310c7..aca4a4a 100644
          },
 -        {
 -            "name": "sensio/distribution-bundle",
--            "version": "v5.0.21",
+-            "version": "v5.0.22",
 -            "source": {
 -                "type": "git",
 -                "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
--                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a"
+-                "reference": "209b11f8cee5bf71986dd703e45e27d3ed7a6d15"
 -            },
 -            "dist": {
 -                "type": "zip",
--                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/eb6266b3b472e4002538610b28a0a04bcf94891a",
--                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a",
+-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/209b11f8cee5bf71986dd703e45e27d3ed7a6d15",
+-                "reference": "209b11f8cee5bf71986dd703e45e27d3ed7a6d15",
 -                "shasum": ""
 -            },
 -            "require": {
@@ -267,7 +267,7 @@ index 3a310c7..aca4a4a 100644
 -                "configuration",
 -                "distribution"
 -            ],
--            "time": "2017-08-25T16:55:44+00:00"
+-            "time": "2018-06-07T06:22:12+00:00"
 -        },
          {
              "name": "sensio/framework-extra-bundle",

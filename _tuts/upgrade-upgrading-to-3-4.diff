@@ -12,7 +12,7 @@ index e617749..2e8ede1 100644
          "doctrine/doctrine-bundle": "^1.6",
          "doctrine/doctrine-cache-bundle": "^1.2",
 diff --git a/composer.lock b/composer.lock
-index f52a5d7..3a310c7 100644
+index 2dd77ae..7fbd8f8 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,29 +4,33 @@
@@ -20,7 +20,7 @@ index f52a5d7..3a310c7 100644
          "This file is @generated automatically"
      ],
 -    "content-hash": "14dc38cef6560ab2fbfa812c9e2d89e9",
-+    "content-hash": "93d7438cdd51cbf3397cdd1346e48eba",
++    "content-hash": "53b2b460bc914dbb09f4b2a7c297c0b7",
      "packages": [
          {
              "name": "behat/transliterator",
@@ -438,33 +438,7 @@ index f52a5d7..3a310c7 100644
          },
          {
              "name": "psr/cache",
-@@ -2144,16 +2150,16 @@
-         },
-         {
-             "name": "sensio/distribution-bundle",
--            "version": "v5.0.20",
-+            "version": "v5.0.21",
-             "source": {
-                 "type": "git",
-                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
--                "reference": "4b019d4c0bd64438c42e4b6b0726085b409be8d9"
-+                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a"
-             },
-             "dist": {
-                 "type": "zip",
--                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/4b019d4c0bd64438c42e4b6b0726085b409be8d9",
--                "reference": "4b019d4c0bd64438c42e4b6b0726085b409be8d9",
-+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/eb6266b3b472e4002538610b28a0a04bcf94891a",
-+                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a",
-                 "shasum": ""
-             },
-             "require": {
-@@ -2192,42 +2198,42 @@
-                 "configuration",
-                 "distribution"
-             ],
--            "time": "2017-05-11T16:21:03+00:00"
-+            "time": "2017-08-25T16:55:44+00:00"
+@@ -2196,38 +2202,38 @@
          },
          {
              "name": "sensio/framework-extra-bundle",
@@ -1347,3 +1321,30 @@ index f52a5d7..3a310c7 100644
      "prefer-stable": false,
      "prefer-lowest": false,
      "platform": {
+diff --git a/var/SymfonyRequirements.php b/var/SymfonyRequirements.php
+index 5331001..4a1fcc6 100644
+--- a/var/SymfonyRequirements.php
++++ b/var/SymfonyRequirements.php
+@@ -389,7 +389,7 @@ class SymfonyRequirements extends RequirementCollection
+     {
+         /* mandatory requirements follow */
+ 
+-        $installedPhpVersion = phpversion();
++        $installedPhpVersion = PHP_VERSION;
+         $requiredPhpVersion = $this->getPhpRequiredVersion();
+ 
+         $this->addRecommendation(
+@@ -448,13 +448,6 @@ class SymfonyRequirements extends RequirementCollection
+         }
+ 
+         if (false !== $requiredPhpVersion && version_compare($installedPhpVersion, $requiredPhpVersion, '>=')) {
+-            $timezones = array();
+-            foreach (DateTimeZone::listAbbreviations() as $abbreviations) {
+-                foreach ($abbreviations as $abbreviation) {
+-                    $timezones[$abbreviation['timezone_id']] = true;
+-                }
+-            }
+-
+             $this->addRequirement(
+                 in_array(@date_default_timezone_get(), DateTimeZone::listIdentifiers(), true),
+                 sprintf('Configured default timezone "%s" must be supported by your installation of PHP', @date_default_timezone_get()),

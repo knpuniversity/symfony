@@ -2162,7 +2162,7 @@ literal 0
 HcmV?d00001
 
 diff --git a/web/images/leanna.jpeg b/web/images/leanna.jpeg
-new file mode 100755
+new file mode 100644
 index 0000000000000000000000000000000000000000..b027f2b588fe9ef762ff67e0961c20ca56fbcb08
 GIT binary patch
 literal 25013

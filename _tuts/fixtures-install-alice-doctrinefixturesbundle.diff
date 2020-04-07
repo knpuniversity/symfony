@@ -26,7 +26,7 @@ index 592bf07..251233d 100644
      "scripts": {
          "post-install-cmd": [
 diff --git a/composer.lock b/composer.lock
-index 33fd9f7..b8e0cc2 100644
+index b6ef928..7685168 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
