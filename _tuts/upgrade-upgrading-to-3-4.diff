@@ -12,7 +12,7 @@ index e617749..2e8ede1 100644
          "doctrine/doctrine-bundle": "^1.6",
          "doctrine/doctrine-cache-bundle": "^1.2",
 diff --git a/composer.lock b/composer.lock
-index 2dd77ae..7fbd8f8 100644
+index 5bc9694..5fd8e7d 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,29 +4,33 @@
@@ -20,7 +20,7 @@ index 2dd77ae..7fbd8f8 100644
          "This file is @generated automatically"
      ],
 -    "content-hash": "14dc38cef6560ab2fbfa812c9e2d89e9",
-+    "content-hash": "53b2b460bc914dbb09f4b2a7c297c0b7",
++    "content-hash": "93d7438cdd51cbf3397cdd1346e48eba",
      "packages": [
          {
              "name": "behat/transliterator",
@@ -1062,62 +1062,7 @@ index 2dd77ae..7fbd8f8 100644
          },
          {
              "name": "zendframework/zend-code",
-@@ -3213,31 +3288,29 @@
-     "packages-dev": [
-         {
-             "name": "doctrine/data-fixtures",
--            "version": "v1.2.2",
-+            "version": "v1.3.0",
-             "source": {
-                 "type": "git",
-                 "url": "https://github.com/doctrine/data-fixtures.git",
--                "reference": "17fa5bfe6ff52e35cb3d9ec37c934a2f4bd1fa2e"
-+                "reference": "7b76ccc8e648c4502aad7f61347326c8a072bd3b"
-             },
-             "dist": {
-                 "type": "zip",
--                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/17fa5bfe6ff52e35cb3d9ec37c934a2f4bd1fa2e",
--                "reference": "17fa5bfe6ff52e35cb3d9ec37c934a2f4bd1fa2e",
-+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/7b76ccc8e648c4502aad7f61347326c8a072bd3b",
-+                "reference": "7b76ccc8e648c4502aad7f61347326c8a072bd3b",
-                 "shasum": ""
-             },
-             "require": {
-                 "doctrine/common": "~2.2",
--                "php": "^5.6 || ^7.0"
--            },
--            "conflict": {
--                "doctrine/orm": "< 2.4"
-+                "php": "^7.1"
-             },
-             "require-dev": {
-                 "doctrine/dbal": "^2.5.4",
-                 "doctrine/orm": "^2.5.4",
--                "phpunit/phpunit": "^5.4.6"
-+                "phpunit/phpunit": "^6.3"
-             },
-             "suggest": {
-+                "alcaeus/mongo-php-adapter": "For using MongoDB ODM with PHP 7",
-                 "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
-                 "doctrine/orm": "For loading ORM fixtures",
-                 "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
-@@ -3249,8 +3322,8 @@
-                 }
-             },
-             "autoload": {
--                "psr-0": {
--                    "Doctrine\\Common\\DataFixtures": "lib/"
-+                "psr-4": {
-+                    "Doctrine\\Common\\DataFixtures\\": "lib/Doctrine/Common/DataFixtures"
-                 }
-             },
-             "notification-url": "https://packagist.org/downloads/",
-@@ -3268,32 +3341,32 @@
-             "keywords": [
-                 "database"
-             ],
--            "time": "2016-09-20T10:07:57+00:00"
-+            "time": "2017-11-27T18:48:06+00:00"
+@@ -3277,28 +3352,28 @@
          },
          {
              "name": "doctrine/doctrine-fixtures-bundle",
@@ -1152,7 +1097,7 @@ index 2dd77ae..7fbd8f8 100644
                  }
              },
              "autoload": {
-@@ -3325,33 +3398,35 @@
+@@ -3330,33 +3405,35 @@
                  "Fixture",
                  "persistence"
              ],
@@ -1197,7 +1142,7 @@ index 2dd77ae..7fbd8f8 100644
              },
              "autoload": {
                  "psr-4": {
-@@ -3373,20 +3448,20 @@
+@@ -3378,20 +3455,20 @@
                  "faker",
                  "fixtures"
              ],
@@ -1223,7 +1168,7 @@ index 2dd77ae..7fbd8f8 100644
                  "shasum": ""
              },
              "require": {
-@@ -3402,11 +3477,6 @@
+@@ -3407,11 +3484,6 @@
                  "symfony/property-access": "^2.2||^3.0"
              },
              "type": "library",
@@ -1235,7 +1180,7 @@ index 2dd77ae..7fbd8f8 100644
              "autoload": {
                  "psr-4": {
                      "Nelmio\\Alice\\": "src/Nelmio/Alice"
-@@ -3437,20 +3507,20 @@
+@@ -3442,20 +3514,20 @@
                  "orm",
                  "test"
              ],
@@ -1261,7 +1206,7 @@ index 2dd77ae..7fbd8f8 100644
                  "shasum": ""
              },
              "require": {
-@@ -3492,27 +3562,27 @@
+@@ -3497,27 +3569,27 @@
              ],
              "description": "This bundle generates code for you",
              "abandoned": "symfony/maker-bundle",
@@ -1295,7 +1240,7 @@ index 2dd77ae..7fbd8f8 100644
              },
              "suggest": {
                  "ext-zip": "Zip support is required when using bin/simple-phpunit",
-@@ -3524,7 +3594,7 @@
+@@ -3529,7 +3601,7 @@
              "type": "symfony-bridge",
              "extra": {
                  "branch-alias": {
@@ -1304,7 +1249,7 @@ index 2dd77ae..7fbd8f8 100644
                  }
              },
              "autoload": {
-@@ -3554,14 +3624,12 @@
+@@ -3559,14 +3631,12 @@
              ],
              "description": "Symfony PHPUnit Bridge",
              "homepage": "https://symfony.com",

@@ -25,7 +25,7 @@ index 8b0f76a..c4fb1d3 100644
          "symfony/flex": "^1.0",
          "symfony/form": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 46291c6..f1d7ff0 100644
+index 6d58529..b0ff165 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

@@ -11,7 +11,7 @@ index c4fb1d3..06d45be 100644
          "symfony/swiftmailer-bundle": "^3.1",
          "symfony/translation": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index f1d7ff0..17f2fd2 100644
+index b0ff165..5c3130a 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -195,7 +195,7 @@ index f1d7ff0..17f2fd2 100644
          },
          {
              "name": "symfony/swiftmailer-bundle",
-@@ -4766,6 +4799,54 @@
+@@ -4773,6 +4806,54 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -250,7 +250,7 @@ index f1d7ff0..17f2fd2 100644
          {
              "name": "symfony/dotenv",
              "version": "v4.0.1",
-@@ -4884,6 +4965,173 @@
+@@ -4891,6 +4972,173 @@
              "description": "Symfony PHPUnit Bridge",
              "homepage": "https://symfony.com",
              "time": "2017-12-04T20:23:32+00:00"

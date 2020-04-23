@@ -12,7 +12,7 @@ index 9da19d0..6cb059e 100644
          "symfony/polyfill-apcu": "^1.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index aca4a4a..b99d048 100644
+index cd0d3e0..50089be 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

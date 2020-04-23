@@ -34,7 +34,7 @@ index 6ec2b60..6d9feeb 100644
      "require-dev": {
          "symfony/dotenv": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 7aee1f4..ed97ec2 100644
+index a56ef46..c82174a 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -46,7 +46,7 @@ index 7aee1f4..ed97ec2 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3936,8 +3936,8 @@
+@@ -3943,8 +3943,8 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {

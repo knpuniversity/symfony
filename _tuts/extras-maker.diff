@@ -11,7 +11,7 @@ index 647d8c9..d914a43 100644
          "symfony/polyfill-apcu": "^1.0",
          "symfony/profiler-pack": "^1.0",
 diff --git a/composer.lock b/composer.lock
-index d6d7a95..b6faaf4 100644
+index 78c39a2..3bf4d66 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

@@ -28,7 +28,7 @@ index d96b61b..2909f58 100644
          "symfony/translation": "^4.0",
          "symfony/validator": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index a96d3c4..580361c 100644
+index 2518d9f..9cd6181 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

@@ -35,7 +35,7 @@ index 06d45be..48276f3 100644
          "symfony/security-csrf": "^4.0",
          "symfony/swiftmailer-bundle": "^3.1",
 diff --git a/composer.lock b/composer.lock
-index 17f2fd2..5ce4837 100644
+index 5c3130a..4d25e78 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

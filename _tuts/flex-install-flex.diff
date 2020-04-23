@@ -23,7 +23,7 @@ index 6cb059e..070e212 100644
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index b99d048..2ec1a86 100644
+index 50089be..cbb547d 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

@@ -123,7 +123,7 @@ index c9ebc3a..6ec2b60 100644
              "allow-contrib": true
          }
 diff --git a/composer.lock b/composer.lock
-index 2ec1a86..7aee1f4 100644
+index cbb547d..a56ef46 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -1923,7 +1923,7 @@ index 2ec1a86..7aee1f4 100644
          },
          {
              "name": "zendframework/zend-code",
-@@ -3081,6 +3813,63 @@
+@@ -3088,6 +3820,63 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -1987,7 +1987,7 @@ index 2ec1a86..7aee1f4 100644
          {
              "name": "symfony/phpunit-bridge",
              "version": "v4.0.1",
-@@ -3147,12 +3936,13 @@
+@@ -3154,12 +3943,13 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {
