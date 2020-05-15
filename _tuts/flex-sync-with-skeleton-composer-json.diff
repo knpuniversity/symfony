@@ -31,7 +31,7 @@ index 6f663e7..766faf5 100644
 +/vendor/
 +###< symfony/framework-bundle ###
 diff --git a/composer.json b/composer.json
-index c9ebc3a..6ec2b60 100644
+index d136ed5..c4a095c 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -4,18 +4,24 @@
@@ -123,19 +123,19 @@ index c9ebc3a..6ec2b60 100644
              "allow-contrib": true
          }
 diff --git a/composer.lock b/composer.lock
-index cbb547d..a56ef46 100644
+index ebcf7c9..ecdc518 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "d4f6b69bf6d7194366b376101ff098ae",
-+    "content-hash": "839e6b8e85c0ab291fd2811a20cbbf1b",
+-    "content-hash": "b9a627c53c195ac64e29352bc6c3225e",
++    "content-hash": "c6113d2e2f38ad50cfd1861b0e4f7508",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1316,60 +1316,6 @@
+@@ -1347,60 +1347,6 @@
              ],
              "time": "2017-11-15T23:40:40+00:00"
          },
@@ -196,7 +196,7 @@ index cbb547d..a56ef46 100644
          {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-@@ -1906,55 +1852,6 @@
+@@ -1935,55 +1881,6 @@
              ],
              "time": "2017-02-14T16:28:37+00:00"
          },
@@ -252,7 +252,7 @@ index cbb547d..a56ef46 100644
          {
              "name": "psr/log",
              "version": "1.0.2",
-@@ -2052,21 +1949,21 @@
+@@ -2081,21 +1978,21 @@
          },
          {
              "name": "sensio/framework-extra-bundle",
@@ -279,7 +279,7 @@ index cbb547d..a56ef46 100644
                  "symfony/framework-bundle": "~2.3|~3.0|~4.0"
              },
              "require-dev": {
-@@ -2118,7 +2015,7 @@
+@@ -2147,7 +2044,7 @@
                  "annotations",
                  "controllers"
              ],
@@ -288,7 +288,7 @@ index cbb547d..a56ef46 100644
          },
          {
              "name": "stof/doctrine-extensions-bundle",
-@@ -2237,38 +2134,51 @@
+@@ -2266,38 +2163,51 @@
              "time": "2017-09-30T22:39:41+00:00"
          },
          {
@@ -356,7 +356,7 @@ index cbb547d..a56ef46 100644
              },
              "notification-url": "https://packagist.org/downloads/",
              "license": [
-@@ -2276,48 +2186,59 @@
+@@ -2305,48 +2215,59 @@
              ],
              "authors": [
                  {
@@ -437,7 +437,7 @@ index cbb547d..a56ef46 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -2328,52 +2249,67 @@
+@@ -2357,52 +2278,67 @@
                  "MIT"
              ],
              "authors": [
@@ -527,7 +527,7 @@ index cbb547d..a56ef46 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2382,55 +2318,54 @@
+@@ -2411,55 +2347,54 @@
              ],
              "authors": [
                  {
@@ -606,7 +606,7 @@ index cbb547d..a56ef46 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2439,58 +2374,69 @@
+@@ -2468,58 +2403,69 @@
              ],
              "authors": [
                  {
@@ -700,7 +700,7 @@ index cbb547d..a56ef46 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2499,19 +2445,827 @@
+@@ -2528,19 +2474,829 @@
              ],
              "authors": [
                  {
@@ -1267,12 +1267,12 @@ index cbb547d..a56ef46 100644
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/lts.git",
-+                "reference": "396c5fca8d73d01186df37d7031321a3c0c2bf92"
++                "reference": "c1affae45b78aee036effa1759237e7fa96d4af2"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/lts/zipball/396c5fca8d73d01186df37d7031321a3c0c2bf92",
-+                "reference": "396c5fca8d73d01186df37d7031321a3c0c2bf92",
++                "url": "https://api.github.com/repos/symfony/lts/zipball/c1affae45b78aee036effa1759237e7fa96d4af2",
++                "reference": "c1affae45b78aee036effa1759237e7fa96d4af2",
 +                "shasum": ""
 +            },
 +            "conflict": {
@@ -1301,6 +1301,7 @@ index cbb547d..a56ef46 100644
 +                "symfony/intl": ">=5",
 +                "symfony/ldap": ">=5",
 +                "symfony/lock": ">=5",
++                "symfony/messenger": ">=5",
 +                "symfony/monolog-bridge": ">=5",
 +                "symfony/options-resolver": ">=5",
 +                "symfony/process": ">=5",
@@ -1351,7 +1352,8 @@ index cbb547d..a56ef46 100644
 +            ],
 +            "description": "Enforces Long Term Supported versions of Symfony components",
 +            "homepage": "https://symfony.com",
-+            "time": "2017-10-19T02:16:32+00:00"
++            "abandoned": "symfony/flex",
++            "time": "2018-10-03T12:03:19+00:00"
 +        },
 +        {
 +            "name": "symfony/monolog-bridge",
@@ -1534,7 +1536,7 @@ index cbb547d..a56ef46 100644
                  "polyfill",
                  "portable",
                  "shim"
-@@ -2519,22 +3273,25 @@
+@@ -2548,22 +3304,25 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -1565,7 +1567,7 @@ index cbb547d..a56ef46 100644
              "type": "library",
              "extra": {
                  "branch-alias": {
-@@ -2543,7 +3300,7 @@
+@@ -2572,7 +3331,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1574,7 +1576,7 @@ index cbb547d..a56ef46 100644
                  },
                  "files": [
                      "bootstrap.php"
-@@ -2563,16 +3320,95 @@
+@@ -2592,16 +3351,95 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1671,7 +1673,7 @@ index cbb547d..a56ef46 100644
          {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-@@ -2636,112 +3472,27 @@
+@@ -2665,112 +3503,27 @@
              "time": "2017-10-23T15:15:11+00:00"
          },
          {
@@ -1794,7 +1796,7 @@ index cbb547d..a56ef46 100644
              },
              "type": "library",
              "extra": {
-@@ -2751,18 +3502,10 @@
+@@ -2780,18 +3533,10 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1815,7 +1817,7 @@ index cbb547d..a56ef46 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2779,78 +3522,67 @@
+@@ -2808,78 +3553,67 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1923,7 +1925,7 @@ index cbb547d..a56ef46 100644
          },
          {
              "name": "zendframework/zend-code",
-@@ -3088,6 +3820,63 @@
+@@ -3115,6 +3849,63 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -1987,7 +1989,7 @@ index cbb547d..a56ef46 100644
          {
              "name": "symfony/phpunit-bridge",
              "version": "v4.0.1",
-@@ -3154,12 +3943,13 @@
+@@ -3181,12 +3972,13 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {
@@ -2000,8 +2002,8 @@ index cbb547d..a56ef46 100644
 -        "php": ">=5.5.9"
 +        "php": "^7.1.3"
      },
-     "platform-dev": []
- }
+     "platform-dev": [],
+     "platform-overrides": {
 diff --git a/config/bundles.php b/config/bundles.php
 index 38619f9..f6fc163 100644
 --- a/config/bundles.php

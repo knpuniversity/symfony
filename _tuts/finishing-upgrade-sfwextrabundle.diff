@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index cad4fa2..d1369b8 100644
+index 3991d29..99f6c26 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -21,7 +21,7 @@
@@ -12,19 +12,19 @@ index cad4fa2..d1369b8 100644
          "symfony/asset": "^4.0",
          "symfony/console": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index b341a9a..6deafb2 100644
+index 26c1490..500aa18 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "820ed4e74da8b194fd8a3a05b2a60998",
-+    "content-hash": "5b72b05365177cb784e849abf5e4456c",
+-    "content-hash": "1165bff91643c368697795e82452b2b7",
++    "content-hash": "d0e6d3790afe5f9ed054fd719431ad83",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1949,38 +1949,37 @@
+@@ -1978,38 +1978,37 @@
          },
          {
              "name": "sensio/framework-extra-bundle",
@@ -83,7 +83,7 @@ index b341a9a..6deafb2 100644
                  "twig/twig": "~1.12|~2.0",
                  "zendframework/zend-diactoros": "^1.3"
              },
-@@ -1992,7 +1991,7 @@
+@@ -2021,7 +2020,7 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -92,7 +92,7 @@ index b341a9a..6deafb2 100644
                  }
              },
              "autoload": {
-@@ -2015,7 +2014,7 @@
+@@ -2044,7 +2043,7 @@
                  "annotations",
                  "controllers"
              ],
@@ -101,7 +101,7 @@ index b341a9a..6deafb2 100644
          },
          {
              "name": "stof/doctrine-extensions-bundle",
-@@ -2444,25 +2443,25 @@
+@@ -2473,25 +2472,25 @@
          },
          {
              "name": "symfony/dependency-injection",
@@ -134,7 +134,7 @@ index b341a9a..6deafb2 100644
                  "symfony/proxy-manager-bridge": "<3.4",
                  "symfony/yaml": "<3.4"
              },
-@@ -2470,8 +2469,8 @@
+@@ -2499,8 +2498,8 @@
                  "psr/container-implementation": "1.0"
              },
              "require-dev": {
@@ -145,7 +145,7 @@ index b341a9a..6deafb2 100644
                  "symfony/yaml": "~3.4|~4.0"
              },
              "suggest": {
-@@ -2484,7 +2483,7 @@
+@@ -2513,7 +2512,7 @@
              "type": "library",
              "extra": {
                  "branch-alias": {
@@ -154,7 +154,7 @@ index b341a9a..6deafb2 100644
                  }
              },
              "autoload": {
-@@ -2511,7 +2510,7 @@
+@@ -2540,7 +2539,7 @@
              ],
              "description": "Symfony DependencyInjection Component",
              "homepage": "https://symfony.com",

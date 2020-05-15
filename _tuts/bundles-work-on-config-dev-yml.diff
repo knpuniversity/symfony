@@ -23,7 +23,7 @@ index 09dc7b3..9891254 100644
      handlers:
          main:
 diff --git a/composer.json b/composer.json
-index 06d45be..48276f3 100644
+index 0172116..eead019 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -32,6 +32,7 @@
@@ -35,19 +35,19 @@ index 06d45be..48276f3 100644
          "symfony/security-csrf": "^4.0",
          "symfony/swiftmailer-bundle": "^3.1",
 diff --git a/composer.lock b/composer.lock
-index 5c3130a..4d25e78 100644
+index bd7eccc..00ec2bf 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "5aa237ba3855fc99d86084f81b1aa071",
-+    "content-hash": "0e7a1e3cc2b83e562e4faff25c6084cc",
+-    "content-hash": "15c0a511e439880f9b62ac7adf40c2d1",
++    "content-hash": "a574796e139d2af53ab7d8774ba473b7",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3712,6 +3712,89 @@
+@@ -3741,6 +3741,89 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -137,7 +137,7 @@ index 5c3130a..4d25e78 100644
          {
              "name": "symfony/property-access",
              "version": "v4.0.1",
-@@ -4014,6 +4097,55 @@
+@@ -4043,6 +4126,55 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T20:15:30+00:00"
          },
@@ -193,7 +193,7 @@ index 5c3130a..4d25e78 100644
          {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-@@ -4446,6 +4578,141 @@
+@@ -4475,6 +4607,141 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T12:31:58+00:00"
          },

@@ -13,7 +13,7 @@ index ff6d5d2..f04accd 100644
          );
  
 diff --git a/composer.json b/composer.json
-index 4fe28cc..4965d4d 100644
+index 2855a8f..9825d82 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -24,7 +24,8 @@
@@ -27,19 +27,19 @@ index 4fe28cc..4965d4d 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 586347f..0192286 100644
+index d6fd058..0973e5e 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "d780e5e953712680199ad469e5cd6214",
-+    "content-hash": "3304dc9d351ec6a8b23980a2eb089395",
+-    "content-hash": "a560ecaf0768dd54997b2724541ee2b5",
++    "content-hash": "e38b7a9134e823fb0f0e9da1384d7b40",
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -1177,6 +1177,118 @@
+@@ -1208,6 +1208,118 @@
              ],
              "time": "2014-01-12T16:20:24+00:00"
          },

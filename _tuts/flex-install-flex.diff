@@ -1,3 +1,13 @@
+diff --git a/.env b/.env
+new file mode 100644
+index 0000000..5c32b0e
+--- /dev/null
++++ b/.env
+@@ -0,0 +1,4 @@
++# This file is a "template" of which env vars need to be defined for your application
++# Copy this file to .env file for development, create environment variables when deploying to production
++# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
++
 diff --git a/.env.dist b/.env.dist
 new file mode 100644
 index 0000000..5c32b0e
@@ -9,7 +19,7 @@ index 0000000..5c32b0e
 +# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 +
 diff --git a/composer.json b/composer.json
-index 6cb059e..070e212 100644
+index 23220d4..424f71a 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,7 +25,8 @@
@@ -23,19 +33,19 @@ index 6cb059e..070e212 100644
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 50089be..cbb547d 100644
+index 7f6b44c..ebcf7c9 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "75b1bba0fce8e7ad2db874e1692d9e44",
-+    "content-hash": "d4f6b69bf6d7194366b376101ff098ae",
+-    "content-hash": "abdc3d75130503a5e6b6ca7b7fc9fcee",
++    "content-hash": "b9a627c53c195ac64e29352bc6c3225e",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2236,6 +2236,52 @@
+@@ -2265,6 +2265,52 @@
              ],
              "time": "2017-09-30T22:39:41+00:00"
          },

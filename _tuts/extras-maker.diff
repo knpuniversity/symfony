@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 647d8c9..d914a43 100644
+index cdc0dd1..fa4ef62 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -28,6 +28,7 @@
@@ -11,19 +11,19 @@ index 647d8c9..d914a43 100644
          "symfony/polyfill-apcu": "^1.0",
          "symfony/profiler-pack": "^1.0",
 diff --git a/composer.lock b/composer.lock
-index 78c39a2..3bf4d66 100644
+index 50c71f0..eac55ea 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "987e797b74a79251a0ddb97c4648c5fc",
-+    "content-hash": "1a7d71ae2540b0bb8f3ce20acf5d8c41",
+-    "content-hash": "1347c5c9428575e06ac1d6d31ce26c37",
++    "content-hash": "3ef0972c9472e67cfc6f0874a6dcca00",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3406,6 +3406,63 @@
+@@ -3435,6 +3435,63 @@
              "abandoned": "symfony/flex",
              "time": "2017-10-19T02:16:32+00:00"
          },

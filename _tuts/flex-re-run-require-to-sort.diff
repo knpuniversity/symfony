@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 6ec2b60..6d9feeb 100644
+index c4a095c..1d23c35 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -17,21 +17,21 @@
@@ -34,19 +34,52 @@ index 6ec2b60..6d9feeb 100644
      "require-dev": {
          "symfony/dotenv": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index a56ef46..c82174a 100644
+index ecdc518..80df4f9 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "839e6b8e85c0ab291fd2811a20cbbf1b",
-+    "content-hash": "4ef1b0ce2ef6a14b95f6ed9a3a583356",
+-    "content-hash": "c6113d2e2f38ad50cfd1861b0e4f7508",
++    "content-hash": "0c08cc7cecd5c9308ce5726e42d8e595",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3943,8 +3943,8 @@
+@@ -3031,12 +3031,12 @@
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/symfony/lts.git",
+-                "reference": "c1affae45b78aee036effa1759237e7fa96d4af2"
++                "reference": "396c5fca8d73d01186df37d7031321a3c0c2bf92"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/lts/zipball/c1affae45b78aee036effa1759237e7fa96d4af2",
+-                "reference": "c1affae45b78aee036effa1759237e7fa96d4af2",
++                "url": "https://api.github.com/repos/symfony/lts/zipball/396c5fca8d73d01186df37d7031321a3c0c2bf92",
++                "reference": "396c5fca8d73d01186df37d7031321a3c0c2bf92",
+                 "shasum": ""
+             },
+             "conflict": {
+@@ -3065,7 +3065,6 @@
+                 "symfony/intl": ">=5",
+                 "symfony/ldap": ">=5",
+                 "symfony/lock": ">=5",
+-                "symfony/messenger": ">=5",
+                 "symfony/monolog-bridge": ">=5",
+                 "symfony/options-resolver": ">=5",
+                 "symfony/process": ">=5",
+@@ -3117,7 +3116,7 @@
+             "description": "Enforces Long Term Supported versions of Symfony components",
+             "homepage": "https://symfony.com",
+             "abandoned": "symfony/flex",
+-            "time": "2018-10-03T12:03:19+00:00"
++            "time": "2017-10-19T02:16:32+00:00"
+         },
+         {
+             "name": "symfony/monolog-bridge",
+@@ -3972,8 +3971,8 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {

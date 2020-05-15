@@ -13,7 +13,7 @@ index 70e8d4c..2ce63a9 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index 8b0f76a..c4fb1d3 100644
+index 4b74452..c3baaaf 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -24,6 +24,7 @@
@@ -25,19 +25,19 @@ index 8b0f76a..c4fb1d3 100644
          "symfony/flex": "^1.0",
          "symfony/form": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 6d58529..b0ff165 100644
+index 48105d2..28fff48 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "6fc96fef35dda197c50ba57c9a5d77e4",
-+    "content-hash": "3b157b68864835bb72ae68cf7c5e3147",
+-    "content-hash": "0128ecac528a79bd1b4122111e90541c",
++    "content-hash": "af1d1c0be54f39a3a7580eee7bd83b35",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2133,6 +2133,62 @@
+@@ -2162,6 +2162,62 @@
              ],
              "time": "2017-09-30T22:39:41+00:00"
          },

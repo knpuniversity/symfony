@@ -13,7 +13,7 @@ index 2deade2..fa6e5f1 100644
          resource: "%kernel.root_dir%/config/routing.yml"
          strict_requirements: ~
 diff --git a/composer.json b/composer.json
-index 6d9feeb..84f6700 100644
+index 1d23c35..8222f4f 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -31,6 +31,7 @@
@@ -25,19 +25,19 @@ index 6d9feeb..84f6700 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index c82174a..d3ec59a 100644
+index 80df4f9..9fe4d3e 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "4ef1b0ce2ef6a14b95f6ed9a3a583356",
-+    "content-hash": "2bb785a608a4e1e2bc1db3b1f73099b9",
+-    "content-hash": "0c08cc7cecd5c9308ce5726e42d8e595",
++    "content-hash": "8b36310938d4acad64a7f82b4d800f80",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3526,6 +3526,74 @@
+@@ -3556,6 +3556,74 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-07T14:45:01+00:00"
          },

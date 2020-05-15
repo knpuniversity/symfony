@@ -111,7 +111,7 @@ index b32da0f..0000000
 -
 -return $loader;
 diff --git a/composer.json b/composer.json
-index 48276f3..f5ddc80 100644
+index eead019..ce0e415 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -6,8 +6,7 @@

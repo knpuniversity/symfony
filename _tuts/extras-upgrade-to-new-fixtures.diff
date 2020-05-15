@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 3efeb79..647d8c9 100644
+index 8be891f..cdc0dd1 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -18,6 +18,7 @@
@@ -20,19 +20,19 @@ index 3efeb79..647d8c9 100644
      "config": {
          "preferred-install": {
 diff --git a/composer.lock b/composer.lock
-index 6deafb2..78c39a2 100644
+index 500aa18..50c71f0 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "5b72b05365177cb784e849abf5e4456c",
-+    "content-hash": "987e797b74a79251a0ddb97c4648c5fc",
+-    "content-hash": "d0e6d3790afe5f9ed054fd719431ad83",
++    "content-hash": "1347c5c9428575e06ac1d6d31ce26c37",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1316,6 +1316,56 @@
+@@ -1347,6 +1347,56 @@
              ],
              "time": "2017-11-15T23:40:40+00:00"
          },
@@ -89,7 +89,7 @@ index 6deafb2..78c39a2 100644
          {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-@@ -5120,28 +5170,32 @@
+@@ -5147,28 +5197,32 @@
          },
          {
              "name": "doctrine/doctrine-fixtures-bundle",
@@ -129,7 +129,7 @@ index 6deafb2..78c39a2 100644
                  }
              },
              "autoload": {
-@@ -5173,7 +5227,7 @@
+@@ -5200,7 +5254,7 @@
                  "Fixture",
                  "persistence"
              ],

@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 2e8ede1..67e2f59 100644
+index e053da5..f5078e5 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -15,7 +15,7 @@

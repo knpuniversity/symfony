@@ -28,7 +28,7 @@ index e13019b..959a7d3 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index 2909f58..8b0f76a 100644
+index a58dc92..4b74452 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -34,6 +34,7 @@
@@ -40,19 +40,19 @@ index 2909f58..8b0f76a 100644
          "symfony/yaml": "^4.0"
      },
 diff --git a/composer.lock b/composer.lock
-index 9cd6181..6d58529 100644
+index db24345..48105d2 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "19d9de20fe28dc6bb1c2143da721e6d8",
-+    "content-hash": "6fc96fef35dda197c50ba57c9a5d77e4",
+-    "content-hash": "b72166b4f809b7dc554ac5c2c66c2f49",
++    "content-hash": "0128ecac528a79bd1b4122111e90541c",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -4110,6 +4110,169 @@
+@@ -4140,6 +4140,169 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },
@@ -222,7 +222,7 @@ index 9cd6181..6d58529 100644
          {
              "name": "symfony/validator",
              "version": "v4.0.1",
-@@ -4252,6 +4415,72 @@
+@@ -4282,6 +4445,72 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T18:34:52+00:00"
          },

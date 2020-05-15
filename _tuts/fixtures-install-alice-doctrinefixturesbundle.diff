@@ -11,7 +11,7 @@ index 778fb62..d6fac03 100644
  
          return $bundles;
 diff --git a/composer.json b/composer.json
-index 592bf07..251233d 100644
+index 0c1c9bf..8750944 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -30,7 +30,9 @@
@@ -26,19 +26,19 @@ index 592bf07..251233d 100644
      "scripts": {
          "post-install-cmd": [
 diff --git a/composer.lock b/composer.lock
-index b6ef928..7685168 100644
+index db9a87d..e77dd36 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "8120645257e2a3c63cbee97a77ce9a33",
-+    "content-hash": "c14025000a1874e841dc1ce721a1fcac",
+-    "content-hash": "77ec5878923d6304aa1bc570a6eef612",
++    "content-hash": "fb83e31b2791a98bc2e48ffebaef0cba",
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -2733,6 +2733,230 @@
+@@ -2762,6 +2762,230 @@
          }
      ],
      "packages-dev": [
