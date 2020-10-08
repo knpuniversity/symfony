@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 2deade2..fa6e5f1 100644
+index 2deade27..fa6e5f1e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -7,9 +7,6 @@ imports:
@@ -13,7 +13,7 @@ index 2deade2..fa6e5f1 100644
          resource: "%kernel.root_dir%/config/routing.yml"
          strict_requirements: ~
 diff --git a/composer.json b/composer.json
-index 1d23c35..8222f4f 100644
+index 1d23c35d..8222f4f0 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -31,6 +31,7 @@
@@ -25,7 +25,7 @@ index 1d23c35..8222f4f 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 80df4f9..9fe4d3e 100644
+index 51791b67..523f398f 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -37,7 +37,7 @@ index 80df4f9..9fe4d3e 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3556,6 +3556,74 @@
+@@ -3573,6 +3573,74 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-07T14:45:01+00:00"
          },
@@ -114,7 +114,7 @@ index 80df4f9..9fe4d3e 100644
              "version": "v4.0.1",
 diff --git a/config/packages/translation.yaml b/config/packages/translation.yaml
 new file mode 100644
-index 0000000..1edfbe2
+index 00000000..1edfbe23
 --- /dev/null
 +++ b/config/packages/translation.yaml
 @@ -0,0 +1,7 @@
@@ -126,7 +126,7 @@ index 0000000..1edfbe2
 +        fallbacks:
 +            - '%locale%'
 diff --git a/symfony.lock b/symfony.lock
-index f66ce11..a18dab5 100644
+index f66ce11e..a18dab51 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -218,6 +218,15 @@
@@ -147,7 +147,7 @@ index f66ce11..a18dab5 100644
      },
 diff --git a/translations/.gitignore b/translations/.gitignore
 new file mode 100644
-index 0000000..e69de29
+index 00000000..e69de29b
 diff --git a/app/Resources/translations/validators.en.yml b/translations/validators.en.yml
 similarity index 100%
 rename from app/Resources/translations/validators.en.yml

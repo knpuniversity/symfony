@@ -1,6 +1,6 @@
 diff --git a/tutorial/AllFixtures.php b/tutorial/AllFixtures.php
 new file mode 100644
-index 0000000..0305e49
+index 00000000..0305e495
 --- /dev/null
 +++ b/tutorial/AllFixtures.php
 @@ -0,0 +1,141 @@
@@ -147,7 +147,7 @@ index 0000000..0305e49
 +}
 diff --git a/tutorial/MessageManager.php b/tutorial/MessageManager.php
 deleted file mode 100644
-index 8dbdbeb..0000000
+index 8dbdbeb3..00000000
 --- a/tutorial/MessageManager.php
 +++ /dev/null
 @@ -1,25 +0,0 @@
@@ -178,7 +178,7 @@ index 8dbdbeb..0000000
 -}
 diff --git a/tutorial/app/Resources/views/base.html.twig b/tutorial/app/Resources/views/base.html.twig
 deleted file mode 100644
-index 15fb4d6..0000000
+index 15fb4d68..00000000
 --- a/tutorial/app/Resources/views/base.html.twig
 +++ /dev/null
 @@ -1,42 +0,0 @@
@@ -226,7 +226,7 @@ index 15fb4d6..0000000
 -</html>
 diff --git a/tutorial/app/Resources/views/genus/show.html.twig b/tutorial/app/Resources/views/genus/show.html.twig
 deleted file mode 100644
-index b146cae..0000000
+index b146caec..00000000
 --- a/tutorial/app/Resources/views/genus/show.html.twig
 +++ /dev/null
 @@ -1,38 +0,0 @@
@@ -270,7 +270,7 @@ index b146cae..0000000
 -{% endblock %}
 diff --git a/tutorial/web/css/styles.css b/tutorial/web/css/styles.css
 deleted file mode 100644
-index cca1e34..0000000
+index cca1e34e..00000000
 --- a/tutorial/web/css/styles.css
 +++ /dev/null
 @@ -1,670 +0,0 @@
@@ -3595,7 +3595,7 @@ UOsA85{1ZFxz0|<+L+C62*{?mC{Qv*}
 
 diff --git a/tutorial/web/js/main.js b/tutorial/web/js/main.js
 deleted file mode 100644
-index be7fbe7..0000000
+index be7fbe7f..00000000
 --- a/tutorial/web/js/main.js
 +++ /dev/null
 @@ -1,9 +0,0 @@
@@ -3610,7 +3610,7 @@ index be7fbe7..0000000
 -}(jQuery);
 diff --git a/tutorial/web/js/notes.react.js b/tutorial/web/js/notes.react.js
 deleted file mode 100644
-index 0735701..0000000
+index 07357012..00000000
 --- a/tutorial/web/js/notes.react.js
 +++ /dev/null
 @@ -1,68 +0,0 @@
@@ -3684,7 +3684,7 @@ index 0735701..0000000
 -window.NoteSection = NoteSection;
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.css b/tutorial/web/vendor/bootstrap/css/bootstrap-theme.css
 deleted file mode 100644
-index ebe57fb..0000000
+index ebe57fbf..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.css
 +++ /dev/null
 @@ -1,587 +0,0 @@
@@ -4277,7 +4277,7 @@ index ebe57fb..0000000
 -/*# sourceMappingURL=bootstrap-theme.css.map */
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.css.map b/tutorial/web/vendor/bootstrap/css/bootstrap-theme.css.map
 deleted file mode 100644
-index 21e1910..0000000
+index 21e19101..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.css.map
 +++ /dev/null
 @@ -1 +0,0 @@
@@ -4285,7 +4285,7 @@ index 21e1910..0000000
 \ No newline at end of file
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.min.css b/tutorial/web/vendor/bootstrap/css/bootstrap-theme.min.css
 deleted file mode 100644
-index dc95d8e..0000000
+index dc95d8e4..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.min.css
 +++ /dev/null
 @@ -1,6 +0,0 @@
@@ -4298,7 +4298,7 @@ index dc95d8e..0000000
 \ No newline at end of file
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.min.css.map b/tutorial/web/vendor/bootstrap/css/bootstrap-theme.min.css.map
 deleted file mode 100644
-index 2c6b65a..0000000
+index 2c6b65af..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap-theme.min.css.map
 +++ /dev/null
 @@ -1 +0,0 @@
@@ -4306,7 +4306,7 @@ index 2c6b65a..0000000
 \ No newline at end of file
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap.css b/tutorial/web/vendor/bootstrap/css/bootstrap.css
 deleted file mode 100644
-index 42c79d6..0000000
+index 42c79d6e..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap.css
 +++ /dev/null
 @@ -1,6760 +0,0 @@
@@ -11072,7 +11072,7 @@ index 42c79d6..0000000
 -/*# sourceMappingURL=bootstrap.css.map */
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap.css.map b/tutorial/web/vendor/bootstrap/css/bootstrap.css.map
 deleted file mode 100644
-index 09f8cda..0000000
+index 09f8cda7..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap.css.map
 +++ /dev/null
 @@ -1 +0,0 @@
@@ -11080,7 +11080,7 @@ index 09f8cda..0000000
 \ No newline at end of file
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap.min.css b/tutorial/web/vendor/bootstrap/css/bootstrap.min.css
 deleted file mode 100644
-index 4cf729e..0000000
+index 4cf729e4..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap.min.css
 +++ /dev/null
 @@ -1,6 +0,0 @@
@@ -11093,7 +11093,7 @@ index 4cf729e..0000000
 \ No newline at end of file
 diff --git a/tutorial/web/vendor/bootstrap/css/bootstrap.min.css.map b/tutorial/web/vendor/bootstrap/css/bootstrap.min.css.map
 deleted file mode 100644
-index 5f49bb3..0000000
+index 5f49bb37..00000000
 --- a/tutorial/web/vendor/bootstrap/css/bootstrap.min.css.map
 +++ /dev/null
 @@ -1 +0,0 @@
@@ -11496,7 +11496,7 @@ c@Yw=E7;q9obAc&xg(1}n;wTCO(gbOOU|30r`2YX_
 
 diff --git a/tutorial/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg b/tutorial/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
 deleted file mode 100644
-index 94fb549..0000000
+index 94fb5490..00000000
 --- a/tutorial/web/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
 +++ /dev/null
 @@ -1,288 +0,0 @@
@@ -13092,7 +13092,7 @@ zlu{~6UVVTb6vR4Bl(ZyCk|ase4n~5DnVFfHdC{Mq``+`wUsuh>{X9oJ{sRC2(cs?-
 
 diff --git a/tutorial/web/vendor/bootstrap/js/bootstrap.js b/tutorial/web/vendor/bootstrap/js/bootstrap.js
 deleted file mode 100644
-index 01fbbcb..0000000
+index 01fbbcba..00000000
 --- a/tutorial/web/vendor/bootstrap/js/bootstrap.js
 +++ /dev/null
 @@ -1,2363 +0,0 @@
@@ -15461,7 +15461,7 @@ index 01fbbcb..0000000
 -}(jQuery);
 diff --git a/tutorial/web/vendor/bootstrap/js/bootstrap.min.js b/tutorial/web/vendor/bootstrap/js/bootstrap.min.js
 deleted file mode 100644
-index e79c065..0000000
+index e79c0651..00000000
 --- a/tutorial/web/vendor/bootstrap/js/bootstrap.min.js
 +++ /dev/null
 @@ -1,7 +0,0 @@
@@ -15475,7 +15475,7 @@ index e79c065..0000000
 \ No newline at end of file
 diff --git a/tutorial/web/vendor/bootstrap/js/npm.js b/tutorial/web/vendor/bootstrap/js/npm.js
 deleted file mode 100644
-index bf6aa80..0000000
+index bf6aa806..00000000
 --- a/tutorial/web/vendor/bootstrap/js/npm.js
 +++ /dev/null
 @@ -1,13 +0,0 @@
@@ -15495,7 +15495,7 @@ index bf6aa80..0000000
 \ No newline at end of file
 diff --git a/tutorial/web/vendor/fontawesome/css/font-awesome.css b/tutorial/web/vendor/fontawesome/css/font-awesome.css
 deleted file mode 100644
-index b2a5fe2..0000000
+index b2a5fe2f..00000000
 --- a/tutorial/web/vendor/fontawesome/css/font-awesome.css
 +++ /dev/null
 @@ -1,2086 +0,0 @@
@@ -17587,7 +17587,7 @@ index b2a5fe2..0000000
 -}
 diff --git a/tutorial/web/vendor/fontawesome/css/font-awesome.min.css b/tutorial/web/vendor/fontawesome/css/font-awesome.min.css
 deleted file mode 100644
-index d0603cb..0000000
+index d0603cb4..00000000
 --- a/tutorial/web/vendor/fontawesome/css/font-awesome.min.css
 +++ /dev/null
 @@ -1,4 +0,0 @@
@@ -20723,7 +20723,7 @@ Ppt>MT0000000000CGV>t
 
 diff --git a/tutorial/web/vendor/fontawesome/fonts/fontawesome-webfont.svg b/tutorial/web/vendor/fontawesome/fonts/fontawesome-webfont.svg
 deleted file mode 100644
-index d05688e..0000000
+index d05688e9..00000000
 --- a/tutorial/web/vendor/fontawesome/fonts/fontawesome-webfont.svg
 +++ /dev/null
 @@ -1,655 +0,0 @@

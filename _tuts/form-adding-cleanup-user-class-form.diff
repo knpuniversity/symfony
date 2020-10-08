@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/user/edit.html.twig b/app/Resources/views/user/edit.html.twig
-index 71bc247..5b39c82 100644
+index 71bc2479..5b39c821 100644
 --- a/app/Resources/views/user/edit.html.twig
 +++ b/app/Resources/views/user/edit.html.twig
 @@ -14,7 +14,6 @@
@@ -11,7 +11,7 @@ index 71bc247..5b39c82 100644
                      <button type="submit" class="btn btn-primary">Update</button>
                  {{ form_end(userForm) }}
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 8043dbf..19d053a 100644
+index 8043dbf1..19d053af 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -219,24 +219,4 @@ class User implements UserInterface
@@ -40,7 +40,7 @@ index 8043dbf..19d053a 100644
 -    }
  }
 diff --git a/src/AppBundle/Form/UserEditForm.php b/src/AppBundle/Form/UserEditForm.php
-index b8f01eb..8829b50 100644
+index b8f01eb4..8829b504 100644
 --- a/src/AppBundle/Form/UserEditForm.php
 +++ b/src/AppBundle/Form/UserEditForm.php
 @@ -22,13 +22,6 @@ class UserEditForm extends AbstractType

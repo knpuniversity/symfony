@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index ace2f64..c99e925 100644
+index ace2f645..c99e925a 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -36,6 +36,10 @@ class GenusController extends Controller
@@ -14,7 +14,7 @@ index ace2f64..c99e925 100644
          $em->persist($genusNote);
          $em->flush();
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 0e06a2c..07e1c25 100644
+index 0e06a2cd..07e1c255 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -171,4 +171,9 @@ class Genus

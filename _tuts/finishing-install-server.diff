@@ -1,5 +1,5 @@
 diff --git a/.gitignore b/.gitignore
-index 766faf5..6aa7b18 100644
+index 766faf5f..6aa7b187 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -26,3 +26,7 @@
@@ -11,7 +11,7 @@ index 766faf5..6aa7b18 100644
 +.web-server-pid
 +###< symfony/web-server-bundle ###
 diff --git a/composer.json b/composer.json
-index ce0e415..3991d29 100644
+index ce0e4155..3991d29c 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -38,6 +38,7 @@
@@ -23,7 +23,7 @@ index ce0e415..3991d29 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 00ec2bf..26c1490 100644
+index 712d2a85..53ce0c22 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -35,7 +35,7 @@ index 00ec2bf..26c1490 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3796,6 +3796,55 @@
+@@ -3813,6 +3813,55 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -91,7 +91,7 @@ index 00ec2bf..26c1490 100644
          {
              "name": "symfony/profiler-pack",
              "version": "v1.0.3",
-@@ -4742,6 +4791,60 @@
+@@ -4759,6 +4808,60 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T19:38:58+00:00"
          },
@@ -153,7 +153,7 @@ index 00ec2bf..26c1490 100644
              "name": "symfony/yaml",
              "version": "v4.0.1",
 diff --git a/config/bundles.php b/config/bundles.php
-index 5528430..a83fcd4 100644
+index 5528430a..a83fcd41 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -14,4 +14,5 @@ return [
@@ -163,7 +163,7 @@ index 5528430..a83fcd4 100644
 +    Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
  ];
 diff --git a/symfony.lock b/symfony.lock
-index 6cfa014..824780e 100644
+index 6cfa014b..824780ec 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -230,6 +230,9 @@

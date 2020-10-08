@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 9bf0ec2..7ad718d 100644
+index 9bf0ec2e..7ad718dd 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -7,9 +7,7 @@ imports:
@@ -13,7 +13,7 @@ index 9bf0ec2..7ad718d 100644
      templating:
          engines: ['twig']
 diff --git a/composer.json b/composer.json
-index 8222f4f..9535368 100644
+index 8222f4f0..95353682 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -26,12 +26,14 @@
@@ -32,7 +32,7 @@ index 8222f4f..9535368 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 9fe4d3e..6231377 100644
+index 523f398f..d925e551 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -44,9 +44,9 @@ index 9fe4d3e..6231377 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2772,6 +2772,86 @@
+@@ -2789,6 +2789,86 @@
              ],
-             "time": "2017-12-11T15:40:16+00:00"
+             "time": "2020-06-16T23:10:41+00:00"
          },
 +        {
 +            "name": "symfony/form",
@@ -131,7 +131,7 @@ index 9fe4d3e..6231377 100644
          {
              "name": "symfony/framework-bundle",
              "version": "v4.0.1",
-@@ -3025,6 +3105,138 @@
+@@ -3042,6 +3122,138 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-05T00:18:20+00:00"
          },
@@ -270,7 +270,7 @@ index 9fe4d3e..6231377 100644
          {
              "name": "symfony/lts",
              "version": "dev-master",
-@@ -3246,6 +3458,60 @@
+@@ -3263,6 +3475,60 @@
              ],
              "time": "2017-11-06T16:02:17+00:00"
          },
@@ -331,7 +331,7 @@ index 9fe4d3e..6231377 100644
          {
              "name": "symfony/polyfill-apcu",
              "version": "v1.6.0",
-@@ -3302,6 +3568,64 @@
+@@ -3319,6 +3585,64 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -396,7 +396,7 @@ index 9fe4d3e..6231377 100644
          {
              "name": "symfony/polyfill-mbstring",
              "version": "v1.6.0",
-@@ -3361,6 +3685,73 @@
+@@ -3378,6 +3702,73 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -470,7 +470,7 @@ index 9fe4d3e..6231377 100644
          {
              "name": "symfony/routing",
              "version": "v4.0.1",
-@@ -3624,6 +4015,90 @@
+@@ -3641,6 +4032,90 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },
@@ -562,7 +562,7 @@ index 9fe4d3e..6231377 100644
              "name": "symfony/yaml",
              "version": "v4.0.1",
 diff --git a/symfony.lock b/symfony.lock
-index a18dab5..b1e3d6a 100644
+index a18dab51..b1e3d6a9 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -152,6 +152,9 @@

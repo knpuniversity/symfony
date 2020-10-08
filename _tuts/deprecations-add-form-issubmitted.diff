@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
-index 348605a..a75c404 100644
+index 348605a3..a75c4044 100644
 --- a/src/AppBundle/Controller/UserController.php
 +++ b/src/AppBundle/Controller/UserController.php
 @@ -21,7 +21,7 @@ class UserController extends Controller

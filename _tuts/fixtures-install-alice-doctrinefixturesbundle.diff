@@ -1,5 +1,5 @@
 diff --git a/app/AppKernel.php b/app/AppKernel.php
-index 778fb62..d6fac03 100644
+index 778fb622..d6fac03a 100644
 --- a/app/AppKernel.php
 +++ b/app/AppKernel.php
 @@ -28,6 +28,7 @@ class AppKernel extends Kernel
@@ -11,7 +11,7 @@ index 778fb62..d6fac03 100644
  
          return $bundles;
 diff --git a/composer.json b/composer.json
-index 0c1c9bf..8750944 100644
+index 0c1c9bf3..87509445 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -30,7 +30,9 @@
@@ -26,7 +26,7 @@ index 0c1c9bf..8750944 100644
      "scripts": {
          "post-install-cmd": [
 diff --git a/composer.lock b/composer.lock
-index db9a87d..e77dd36 100644
+index db9a87d1..e77dd36f 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

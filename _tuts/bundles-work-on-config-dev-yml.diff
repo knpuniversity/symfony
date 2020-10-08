@@ -1,5 +1,5 @@
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
-index 09dc7b3..9891254 100644
+index 09dc7b3f..98912548 100644
 --- a/app/config/config_dev.yml
 +++ b/app/config/config_dev.yml
 @@ -1,19 +1,6 @@
@@ -23,7 +23,7 @@ index 09dc7b3..9891254 100644
      handlers:
          main:
 diff --git a/composer.json b/composer.json
-index 0172116..eead019 100644
+index 01721168..eead0193 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -32,6 +32,7 @@
@@ -35,7 +35,7 @@ index 0172116..eead019 100644
          "symfony/security-csrf": "^4.0",
          "symfony/swiftmailer-bundle": "^3.1",
 diff --git a/composer.lock b/composer.lock
-index bd7eccc..00ec2bf 100644
+index fbc6d553..712d2a85 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -47,7 +47,7 @@ index bd7eccc..00ec2bf 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3741,6 +3741,89 @@
+@@ -3758,6 +3758,89 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -137,7 +137,7 @@ index bd7eccc..00ec2bf 100644
          {
              "name": "symfony/property-access",
              "version": "v4.0.1",
-@@ -4043,6 +4126,55 @@
+@@ -4060,6 +4143,55 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T20:15:30+00:00"
          },
@@ -193,7 +193,7 @@ index bd7eccc..00ec2bf 100644
          {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-@@ -4475,6 +4607,141 @@
+@@ -4492,6 +4624,141 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T12:31:58+00:00"
          },
@@ -336,7 +336,7 @@ index bd7eccc..00ec2bf 100644
              "name": "symfony/yaml",
              "version": "v4.0.1",
 diff --git a/config/bundles.php b/config/bundles.php
-index 292a520..5528430 100644
+index 292a520e..5528430a 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -13,4 +13,5 @@ return [
@@ -347,7 +347,7 @@ index 292a520..5528430 100644
  ];
 diff --git a/config/packages/dev/web_profiler.yaml b/config/packages/dev/web_profiler.yaml
 new file mode 100644
-index 0000000..e92166a
+index 00000000..e92166a7
 --- /dev/null
 +++ b/config/packages/dev/web_profiler.yaml
 @@ -0,0 +1,6 @@
@@ -359,7 +359,7 @@ index 0000000..e92166a
 +    profiler: { only_exceptions: false }
 diff --git a/config/packages/test/web_profiler.yaml b/config/packages/test/web_profiler.yaml
 new file mode 100644
-index 0000000..03752de
+index 00000000..03752de2
 --- /dev/null
 +++ b/config/packages/test/web_profiler.yaml
 @@ -0,0 +1,6 @@
@@ -371,7 +371,7 @@ index 0000000..03752de
 +    profiler: { collect: false }
 diff --git a/config/routes/dev/web_profiler.yaml b/config/routes/dev/web_profiler.yaml
 new file mode 100644
-index 0000000..c82beff
+index 00000000..c82beff2
 --- /dev/null
 +++ b/config/routes/dev/web_profiler.yaml
 @@ -0,0 +1,7 @@
@@ -384,14 +384,14 @@ index 0000000..c82beff
 +    prefix: /_profiler
 diff --git a/config/services_dev.yaml b/config/services_dev.yaml
 new file mode 100644
-index 0000000..7960993
+index 00000000..7960993b
 --- /dev/null
 +++ b/config/services_dev.yaml
 @@ -0,0 +1,2 @@
 +parameters:
 +    cache_type: array
 diff --git a/symfony.lock b/symfony.lock
-index d34f589..6cfa014 100644
+index d34f5892..6cfa014b 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -224,9 +224,15 @@

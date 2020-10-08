@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/security/login.html.twig b/app/Resources/views/security/login.html.twig
-index 525ee7c..f38dea1 100644
+index 525ee7cc..f38dea1d 100644
 --- a/app/Resources/views/security/login.html.twig
 +++ b/app/Resources/views/security/login.html.twig
 @@ -16,6 +16,8 @@
@@ -13,7 +13,7 @@ index 525ee7c..f38dea1 100644
      </div>
 diff --git a/app/Resources/views/user/register.html.twig b/app/Resources/views/user/register.html.twig
 new file mode 100644
-index 0000000..db1c1a8
+index 00000000..db1c1a8b
 --- /dev/null
 +++ b/app/Resources/views/user/register.html.twig
 @@ -0,0 +1,19 @@
@@ -38,7 +38,7 @@ index 0000000..db1c1a8
 +{% endblock %}
 \ No newline at end of file
 diff --git a/src/AppBundle/Controller/UserController.php b/src/AppBundle/Controller/UserController.php
-index 0a902f7..e56dafe 100644
+index 0a902f70..e56dafeb 100644
 --- a/src/AppBundle/Controller/UserController.php
 +++ b/src/AppBundle/Controller/UserController.php
 @@ -2,6 +2,7 @@
@@ -61,7 +61,7 @@ index 0a902f7..e56dafe 100644
      }
  }
 diff --git a/src/AppBundle/Form/UserRegistrationForm.php b/src/AppBundle/Form/UserRegistrationForm.php
-index 285dd46..c707963 100644
+index 285dd46a..c707963c 100644
 --- a/src/AppBundle/Form/UserRegistrationForm.php
 +++ b/src/AppBundle/Form/UserRegistrationForm.php
 @@ -2,7 +2,11 @@

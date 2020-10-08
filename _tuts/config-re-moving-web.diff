@@ -132,7 +132,7 @@ rename from web/vendor/fontawesome/fonts/fontawesome-webfont.woff2
 rename to public/vendor/fontawesome/fonts/fontawesome-webfont.woff2
 diff --git a/web/.htaccess b/web/.htaccess
 deleted file mode 100644
-index 4dc7251..0000000
+index 4dc72516..00000000
 --- a/web/.htaccess
 +++ /dev/null
 @@ -1,68 +0,0 @@
@@ -206,7 +206,7 @@ index 4dc7251..0000000
 -</IfModule>
 diff --git a/web/app.php b/web/app.php
 deleted file mode 100644
-index 8a4c27d..0000000
+index 8a4c27d5..00000000
 --- a/web/app.php
 +++ /dev/null
 @@ -1,31 +0,0 @@
@@ -243,7 +243,7 @@ index 8a4c27d..0000000
 -$kernel->terminate($request, $response);
 diff --git a/web/app_dev.php b/web/app_dev.php
 deleted file mode 100644
-index 9613d18..0000000
+index 9613d18d..00000000
 --- a/web/app_dev.php
 +++ /dev/null
 @@ -1,31 +0,0 @@
@@ -496,7 +496,7 @@ f!<SkgjlZDu#P5sF0LHT589g8;tt3?|VI1@y22Fs4
 
 diff --git a/web/config.php b/web/config.php
 deleted file mode 100644
-index fd7e17e..0000000
+index fd7e17e6..00000000
 --- a/web/config.php
 +++ /dev/null
 @@ -1,422 +0,0 @@

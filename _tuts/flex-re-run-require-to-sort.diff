@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index c4a095c..1d23c35 100644
+index c4a095c5..1d23c35d 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -17,21 +17,21 @@
@@ -34,7 +34,7 @@ index c4a095c..1d23c35 100644
      "require-dev": {
          "symfony/dotenv": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index ecdc518..80df4f9 100644
+index 27e0fc53..51791b67 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -46,7 +46,7 @@ index ecdc518..80df4f9 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3031,12 +3031,12 @@
+@@ -3048,12 +3048,12 @@
              "source": {
                  "type": "git",
                  "url": "https://github.com/symfony/lts.git",
@@ -62,7 +62,7 @@ index ecdc518..80df4f9 100644
                  "shasum": ""
              },
              "conflict": {
-@@ -3065,7 +3065,6 @@
+@@ -3082,7 +3082,6 @@
                  "symfony/intl": ">=5",
                  "symfony/ldap": ">=5",
                  "symfony/lock": ">=5",
@@ -70,7 +70,7 @@ index ecdc518..80df4f9 100644
                  "symfony/monolog-bridge": ">=5",
                  "symfony/options-resolver": ">=5",
                  "symfony/process": ">=5",
-@@ -3117,7 +3116,7 @@
+@@ -3134,7 +3133,7 @@
              "description": "Enforces Long Term Supported versions of Symfony components",
              "homepage": "https://symfony.com",
              "abandoned": "symfony/flex",
@@ -79,7 +79,7 @@ index ecdc518..80df4f9 100644
          },
          {
              "name": "symfony/monolog-bridge",
-@@ -3972,8 +3971,8 @@
+@@ -3989,8 +3988,8 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {

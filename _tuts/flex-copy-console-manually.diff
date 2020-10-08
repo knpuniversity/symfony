@@ -1,5 +1,5 @@
 diff --git a/bin/console b/bin/console
-index ca74e93..d026a6d 100644
+index ca74e936..d026a6d2 100644
 --- a/bin/console
 +++ b/bin/console
 @@ -1,29 +1,39 @@

@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
-index 576d957..95e9de7 100644
+index 576d9571..95e9de77 100644
 --- a/src/AppBundle/Entity/SubFamily.php
 +++ b/src/AppBundle/Entity/SubFamily.php
 @@ -5,7 +5,7 @@ namespace AppBundle\Entity;
@@ -12,7 +12,7 @@ index 576d957..95e9de7 100644
   */
  class SubFamily
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index baf0b8b..256190a 100644
+index baf0b8b2..256190a4 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
 @@ -2,6 +2,8 @@
@@ -37,7 +37,7 @@ index baf0b8b..256190a 100644
              ->add('speciesCount')
 diff --git a/src/AppBundle/Repository/SubFamilyRepository.php b/src/AppBundle/Repository/SubFamilyRepository.php
 new file mode 100644
-index 0000000..f805ef7
+index 00000000..f805ef7f
 --- /dev/null
 +++ b/src/AppBundle/Repository/SubFamilyRepository.php
 @@ -0,0 +1,15 @@

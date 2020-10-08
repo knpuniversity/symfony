@@ -1,5 +1,5 @@
 diff --git a/app/config/legacy_aliases.yml b/app/config/legacy_aliases.yml
-index b22db64..7230c4e 100644
+index b22db645..7230c4e5 100644
 --- a/app/config/legacy_aliases.yml
 +++ b/app/config/legacy_aliases.yml
 @@ -4,4 +4,3 @@ services:
@@ -8,7 +8,7 @@ index b22db64..7230c4e 100644
      app.form.help_form_extenion: '@AppBundle\Form\TypeExtension\HelpFormExtension'
 -    app.encouraging_message_generator: '@AppBundle\Service\MessageGenerator'
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 96bdb65..679e29d 100644
+index 96bdb651..679e29d4 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -38,12 +38,8 @@ services:
@@ -26,7 +26,7 @@ index 96bdb65..679e29d 100644
              - ['We are *never* going to figure this out', 'Why even try again?', 'Facepalm']
          public: true
 diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/AppBundle/Controller/Admin/GenusAdminController.php
-index 180567a..0109ae5 100644
+index 180567af..0109ae56 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/AppBundle/Controller/Admin/GenusAdminController.php
 @@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
@@ -57,7 +57,7 @@ index 180567a..0109ae5 100644
  
 diff --git a/src/AppBundle/Service/MessageGenerator.php b/src/AppBundle/Service/MessageGenerator.php
 deleted file mode 100644
-index 4fa27c5..0000000
+index 4fa27c50..00000000
 --- a/src/AppBundle/Service/MessageGenerator.php
 +++ /dev/null
 @@ -1,18 +0,0 @@
@@ -81,7 +81,7 @@ index 4fa27c5..0000000
 -}
 diff --git a/src/AppBundle/Service/MessageManager.php b/src/AppBundle/Service/MessageManager.php
 new file mode 100644
-index 0000000..8dbdbeb
+index 00000000..8dbdbeb3
 --- /dev/null
 +++ b/src/AppBundle/Service/MessageManager.php
 @@ -0,0 +1,25 @@

@@ -2,7 +2,7 @@ diff --git a/src/AppBundle/AppBundle.php b/src/AppBundle.php
 similarity index 81%
 rename from src/AppBundle/AppBundle.php
 rename to src/AppBundle.php
-index 05123b6..9251095 100644
+index 05123b67..92510953 100644
 --- a/src/AppBundle/AppBundle.php
 +++ b/src/AppBundle.php
 @@ -1,6 +1,6 @@
@@ -15,7 +15,7 @@ index 05123b6..9251095 100644
  
 diff --git a/src/AppBundle/DataFixtures/ORM/fixtures.yml b/src/AppBundle/DataFixtures/ORM/fixtures.yml
 deleted file mode 100644
-index 12c2484..0000000
+index 12c24846..00000000
 --- a/src/AppBundle/DataFixtures/ORM/fixtures.yml
 +++ /dev/null
 @@ -1,43 +0,0 @@
@@ -66,7 +66,7 @@ diff --git a/src/AppBundle/Controller/Admin/GenusAdminController.php b/src/Contr
 similarity index 94%
 rename from src/AppBundle/Controller/Admin/GenusAdminController.php
 rename to src/Controller/Admin/GenusAdminController.php
-index 2895fce..6365d74 100644
+index 2895fce6..6365d744 100644
 --- a/src/AppBundle/Controller/Admin/GenusAdminController.php
 +++ b/src/Controller/Admin/GenusAdminController.php
 @@ -1,10 +1,10 @@
@@ -88,7 +88,7 @@ diff --git a/src/AppBundle/Controller/GenusController.php b/src/Controller/Genus
 similarity index 95%
 rename from src/AppBundle/Controller/GenusController.php
 rename to src/Controller/GenusController.php
-index ab349e5..4c0a852 100644
+index ab349e51..4c0a852c 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/Controller/GenusController.php
 @@ -1,11 +1,11 @@
@@ -112,7 +112,7 @@ diff --git a/src/AppBundle/Controller/MainController.php b/src/Controller/MainCo
 similarity index 86%
 rename from src/AppBundle/Controller/MainController.php
 rename to src/Controller/MainController.php
-index ae8b6ea..31fc4ca 100644
+index ae8b6eab..31fc4ca9 100644
 --- a/src/AppBundle/Controller/MainController.php
 +++ b/src/Controller/MainController.php
 @@ -1,6 +1,6 @@
@@ -127,7 +127,7 @@ diff --git a/src/AppBundle/Controller/SecurityController.php b/src/Controller/Se
 similarity index 94%
 rename from src/AppBundle/Controller/SecurityController.php
 rename to src/Controller/SecurityController.php
-index d021ccf..6d46cc9 100644
+index d021ccf4..6d46cc93 100644
 --- a/src/AppBundle/Controller/SecurityController.php
 +++ b/src/Controller/SecurityController.php
 @@ -1,10 +1,10 @@
@@ -147,7 +147,7 @@ diff --git a/src/AppBundle/Controller/UserController.php b/src/Controller/UserCo
 similarity index 92%
 rename from src/AppBundle/Controller/UserController.php
 rename to src/Controller/UserController.php
-index a75c404..810f3b0 100644
+index a75c4044..810f3b09 100644
 --- a/src/AppBundle/Controller/UserController.php
 +++ b/src/Controller/UserController.php
 @@ -1,11 +1,11 @@
@@ -171,7 +171,7 @@ diff --git a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php b/src/DataFixtures/
 similarity index 93%
 rename from src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 rename to src/DataFixtures/ORM/LoadFixtures.php
-index 247253c..4db98ab 100644
+index 247253c6..4db98ab6 100644
 --- a/src/AppBundle/DataFixtures/ORM/LoadFixtures.php
 +++ b/src/DataFixtures/ORM/LoadFixtures.php
 @@ -1,8 +1,8 @@
@@ -189,7 +189,7 @@ diff --git a/src/AppBundle/Doctrine/HashPasswordListener.php b/src/Doctrine/Hash
 similarity index 96%
 rename from src/AppBundle/Doctrine/HashPasswordListener.php
 rename to src/Doctrine/HashPasswordListener.php
-index a0facae..d5abfcb 100644
+index a0facaea..d5abfcba 100644
 --- a/src/AppBundle/Doctrine/HashPasswordListener.php
 +++ b/src/Doctrine/HashPasswordListener.php
 @@ -1,8 +1,8 @@
@@ -207,7 +207,7 @@ diff --git a/src/AppBundle/Entity/Genus.php b/src/Entity/Genus.php
 similarity index 98%
 rename from src/AppBundle/Entity/Genus.php
 rename to src/Entity/Genus.php
-index 9d95676..f4f6a06 100644
+index 9d956767..f4f6a062 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/Entity/Genus.php
 @@ -1,8 +1,8 @@
@@ -225,7 +225,7 @@ diff --git a/src/AppBundle/Entity/GenusNote.php b/src/Entity/GenusNote.php
 similarity index 98%
 rename from src/AppBundle/Entity/GenusNote.php
 rename to src/Entity/GenusNote.php
-index 04387e8..c5d097f 100644
+index 04387e8e..c5d097fc 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/Entity/GenusNote.php
 @@ -1,6 +1,6 @@
@@ -240,7 +240,7 @@ diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/Entity/GenusScientist
 similarity index 98%
 rename from src/AppBundle/Entity/GenusScientist.php
 rename to src/Entity/GenusScientist.php
-index d392492..61dd497 100644
+index d3924923..61dd497d 100644
 --- a/src/AppBundle/Entity/GenusScientist.php
 +++ b/src/Entity/GenusScientist.php
 @@ -1,6 +1,6 @@
@@ -255,7 +255,7 @@ diff --git a/src/AppBundle/Entity/SubFamily.php b/src/Entity/SubFamily.php
 similarity index 95%
 rename from src/AppBundle/Entity/SubFamily.php
 rename to src/Entity/SubFamily.php
-index 95e9de7..7bcf4e6 100644
+index 95e9de77..7bcf4e69 100644
 --- a/src/AppBundle/Entity/SubFamily.php
 +++ b/src/Entity/SubFamily.php
 @@ -1,6 +1,6 @@
@@ -270,7 +270,7 @@ diff --git a/src/AppBundle/Entity/User.php b/src/Entity/User.php
 similarity index 99%
 rename from src/AppBundle/Entity/User.php
 rename to src/Entity/User.php
-index 19d053a..96b6168 100644
+index 19d053af..96b6168d 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/Entity/User.php
 @@ -1,6 +1,6 @@
@@ -285,7 +285,7 @@ diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/sr
 similarity index 94%
 rename from src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 rename to src/EventSubscriber/AddNiceHeaderEventSubscriber.php
-index fe74265..138ba39 100644
+index fe742653..138ba39c 100644
 --- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 +++ b/src/EventSubscriber/AddNiceHeaderEventSubscriber.php
 @@ -1,8 +1,8 @@
@@ -303,7 +303,7 @@ diff --git a/src/AppBundle/Form/GenusFormType.php b/src/Form/GenusFormType.php
 similarity index 95%
 rename from src/AppBundle/Form/GenusFormType.php
 rename to src/Form/GenusFormType.php
-index cdeb7b7..7ab57f5 100644
+index cdeb7b7c..7ab57f51 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/Form/GenusFormType.php
 @@ -1,11 +1,11 @@
@@ -327,7 +327,7 @@ diff --git a/src/AppBundle/Form/GenusScientistEmbeddedForm.php b/src/Form/GenusS
 similarity index 90%
 rename from src/AppBundle/Form/GenusScientistEmbeddedForm.php
 rename to src/Form/GenusScientistEmbeddedForm.php
-index f6232dd..421dacd 100644
+index f6232dd9..421dacd9 100644
 --- a/src/AppBundle/Form/GenusScientistEmbeddedForm.php
 +++ b/src/Form/GenusScientistEmbeddedForm.php
 @@ -1,10 +1,10 @@
@@ -349,7 +349,7 @@ diff --git a/src/AppBundle/Form/LoginForm.php b/src/Form/LoginForm.php
 similarity index 94%
 rename from src/AppBundle/Form/LoginForm.php
 rename to src/Form/LoginForm.php
-index e7f478a..50b05be 100644
+index e7f478af..50b05be9 100644
 --- a/src/AppBundle/Form/LoginForm.php
 +++ b/src/Form/LoginForm.php
 @@ -1,6 +1,6 @@
@@ -364,7 +364,7 @@ diff --git a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php b/src/Form/T
 similarity index 94%
 rename from src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 rename to src/Form/TypeExtension/HelpFormExtension.php
-index c4d7291..b85abb0 100644
+index c4d72914..b85abb01 100644
 --- a/src/AppBundle/Form/TypeExtension/HelpFormExtension.php
 +++ b/src/Form/TypeExtension/HelpFormExtension.php
 @@ -1,6 +1,6 @@
@@ -379,7 +379,7 @@ diff --git a/src/AppBundle/Form/UserEditForm.php b/src/Form/UserEditForm.php
 similarity index 91%
 rename from src/AppBundle/Form/UserEditForm.php
 rename to src/Form/UserEditForm.php
-index 8829b50..ab403d5 100644
+index 8829b504..ab403d59 100644
 --- a/src/AppBundle/Form/UserEditForm.php
 +++ b/src/Form/UserEditForm.php
 @@ -1,9 +1,9 @@
@@ -399,7 +399,7 @@ diff --git a/src/AppBundle/Form/UserRegistrationForm.php b/src/Form/UserRegistra
 similarity index 94%
 rename from src/AppBundle/Form/UserRegistrationForm.php
 rename to src/Form/UserRegistrationForm.php
-index 1c7577d..ece7177 100644
+index 1c7577d7..ece71776 100644
 --- a/src/AppBundle/Form/UserRegistrationForm.php
 +++ b/src/Form/UserRegistrationForm.php
 @@ -1,8 +1,8 @@
@@ -417,7 +417,7 @@ diff --git a/src/AppBundle/Repository/GenusNoteRepository.php b/src/Repository/G
 similarity index 87%
 rename from src/AppBundle/Repository/GenusNoteRepository.php
 rename to src/Repository/GenusNoteRepository.php
-index 9bde0e5..c5004a7 100644
+index 9bde0e5e..c5004a7b 100644
 --- a/src/AppBundle/Repository/GenusNoteRepository.php
 +++ b/src/Repository/GenusNoteRepository.php
 @@ -1,9 +1,9 @@
@@ -437,7 +437,7 @@ diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/Repository/Genus
 similarity index 94%
 rename from src/AppBundle/Repository/GenusRepository.php
 rename to src/Repository/GenusRepository.php
-index a77abd8..3fb2d43 100644
+index a77abd8c..3fb2d434 100644
 --- a/src/AppBundle/Repository/GenusRepository.php
 +++ b/src/Repository/GenusRepository.php
 @@ -1,8 +1,8 @@
@@ -455,7 +455,7 @@ diff --git a/src/AppBundle/Repository/SubFamilyRepository.php b/src/Repository/S
 similarity index 87%
 rename from src/AppBundle/Repository/SubFamilyRepository.php
 rename to src/Repository/SubFamilyRepository.php
-index de614c4..bac4d58 100644
+index de614c48..bac4d58d 100644
 --- a/src/AppBundle/Repository/SubFamilyRepository.php
 +++ b/src/Repository/SubFamilyRepository.php
 @@ -1,9 +1,9 @@
@@ -475,7 +475,7 @@ diff --git a/src/AppBundle/Repository/UserRepository.php b/src/Repository/UserRe
 similarity index 90%
 rename from src/AppBundle/Repository/UserRepository.php
 rename to src/Repository/UserRepository.php
-index 3338ef2..2667796 100644
+index 3338ef22..2667796a 100644
 --- a/src/AppBundle/Repository/UserRepository.php
 +++ b/src/Repository/UserRepository.php
 @@ -1,6 +1,6 @@
@@ -490,7 +490,7 @@ diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/Security/Lo
 similarity index 97%
 rename from src/AppBundle/Security/LoginFormAuthenticator.php
 rename to src/Security/LoginFormAuthenticator.php
-index 0a14fa0..912c93e 100644
+index 0a14fa01..912c93ed 100644
 --- a/src/AppBundle/Security/LoginFormAuthenticator.php
 +++ b/src/Security/LoginFormAuthenticator.php
 @@ -1,8 +1,8 @@
@@ -508,7 +508,7 @@ diff --git a/src/AppBundle/Service/MarkdownTransformer.php b/src/Service/Markdow
 similarity index 96%
 rename from src/AppBundle/Service/MarkdownTransformer.php
 rename to src/Service/MarkdownTransformer.php
-index 0f6f29f..7b74375 100644
+index 0f6f29fc..7b74375c 100644
 --- a/src/AppBundle/Service/MarkdownTransformer.php
 +++ b/src/Service/MarkdownTransformer.php
 @@ -1,6 +1,6 @@
@@ -523,7 +523,7 @@ diff --git a/src/AppBundle/Service/MessageManager.php b/src/Service/MessageManag
 similarity index 95%
 rename from src/AppBundle/Service/MessageManager.php
 rename to src/Service/MessageManager.php
-index 8dbdbeb..e07e1c2 100644
+index 8dbdbeb3..e07e1c20 100644
 --- a/src/AppBundle/Service/MessageManager.php
 +++ b/src/Service/MessageManager.php
 @@ -1,6 +1,6 @@
@@ -538,7 +538,7 @@ diff --git a/src/AppBundle/Twig/MarkdownExtension.php b/src/Twig/MarkdownExtensi
 similarity index 90%
 rename from src/AppBundle/Twig/MarkdownExtension.php
 rename to src/Twig/MarkdownExtension.php
-index 95e7eb2..622a4de 100644
+index 95e7eb27..622a4de1 100644
 --- a/src/AppBundle/Twig/MarkdownExtension.php
 +++ b/src/Twig/MarkdownExtension.php
 @@ -1,8 +1,8 @@

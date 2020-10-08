@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index c3baaaf..0172116 100644
+index c3baaaf4..01721168 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -32,6 +32,7 @@
@@ -11,7 +11,7 @@ index c3baaaf..0172116 100644
          "symfony/swiftmailer-bundle": "^3.1",
          "symfony/translation": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 28fff48..bd7eccc 100644
+index 3328a385..fbc6d553 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -23,7 +23,7 @@ index 28fff48..bd7eccc 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -3887,37 +3887,48 @@
+@@ -3904,37 +3904,48 @@
              "time": "2017-11-24T14:34:08+00:00"
          },
          {
@@ -83,7 +83,7 @@ index 28fff48..bd7eccc 100644
                  "symfony/validator": "For using the user password constraint"
              },
              "type": "library",
-@@ -3928,7 +3939,7 @@
+@@ -3945,7 +3956,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -92,7 +92,7 @@ index 28fff48..bd7eccc 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -3948,38 +3959,59 @@
+@@ -3965,38 +3976,59 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -166,7 +166,7 @@ index 28fff48..bd7eccc 100644
              "extra": {
                  "branch-alias": {
                      "dev-master": "4.0-dev"
-@@ -3987,7 +4019,7 @@
+@@ -4004,7 +4036,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -175,7 +175,7 @@ index 28fff48..bd7eccc 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -4007,9 +4039,9 @@
+@@ -4024,9 +4056,9 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -187,7 +187,7 @@ index 28fff48..bd7eccc 100644
          },
          {
              "name": "symfony/swiftmailer-bundle",
-@@ -4801,6 +4833,54 @@
+@@ -4818,6 +4850,54 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -242,7 +242,7 @@ index 28fff48..bd7eccc 100644
          {
              "name": "symfony/dotenv",
              "version": "v4.0.1",
-@@ -4919,6 +4999,173 @@
+@@ -4936,6 +5016,173 @@
              "description": "Symfony PHPUnit Bridge",
              "homepage": "https://symfony.com",
              "time": "2017-12-04T20:23:32+00:00"
@@ -417,7 +417,7 @@ index 28fff48..bd7eccc 100644
      ],
      "aliases": [],
 diff --git a/config/bundles.php b/config/bundles.php
-index a1e2255..292a520 100644
+index a1e22555..292a520e 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -12,4 +12,5 @@ return [
@@ -428,7 +428,7 @@ index a1e2255..292a520 100644
  ];
 diff --git a/config/packages/security.yaml b/config/packages/security.yaml
 new file mode 100644
-index 0000000..eea9b2f
+index 00000000..eea9b2ff
 --- /dev/null
 +++ b/config/packages/security.yaml
 @@ -0,0 +1,18 @@
@@ -451,7 +451,7 @@ index 0000000..eea9b2f
 +            # form_login: ~
 +            # https://symfony.com/doc/current/cookbook/security/form_login_setup.html
 diff --git a/symfony.lock b/symfony.lock
-index 9a4a00d..d34f589 100644
+index 9a4a00da..d34f5892 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -86,6 +86,9 @@

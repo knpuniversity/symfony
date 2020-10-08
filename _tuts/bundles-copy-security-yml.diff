@@ -1,6 +1,6 @@
 diff --git a/app/config/security.yml b/app/config/security.yml
 deleted file mode 100644
-index 831abd6..0000000
+index 831abd65..00000000
 --- a/app/config/security.yml
 +++ /dev/null
 @@ -1,40 +0,0 @@
@@ -45,7 +45,7 @@ index 831abd6..0000000
 -    access_control:
 -        # - { path: ^/admin, roles: ROLE_ADMIN }
 diff --git a/config/packages/security.yaml b/config/packages/security.yaml
-index eea9b2f..831abd6 100644
+index eea9b2ff..831abd65 100644
 --- a/config/packages/security.yaml
 +++ b/config/packages/security.yaml
 @@ -1,18 +1,40 @@

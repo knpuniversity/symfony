@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160207091728.php b/app/DoctrineMigrations/Version20160207091728.php
 new file mode 100644
-index 0000000..b59c035
+index 00000000..b59c035f
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160207091728.php
 @@ -0,0 +1,28 @@
@@ -34,7 +34,7 @@ index 0000000..b59c035
 +}
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
 new file mode 100644
-index 0000000..4434903
+index 00000000..4434903c
 --- /dev/null
 +++ b/src/AppBundle/Entity/GenusNote.php
 @@ -0,0 +1,84 @@

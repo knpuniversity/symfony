@@ -1,6 +1,6 @@
 diff --git a/.env b/.env
 new file mode 100644
-index 0000000..5c32b0e
+index 00000000..5c32b0e6
 --- /dev/null
 +++ b/.env
 @@ -0,0 +1,4 @@
@@ -10,7 +10,7 @@ index 0000000..5c32b0e
 +
 diff --git a/.env.dist b/.env.dist
 new file mode 100644
-index 0000000..5c32b0e
+index 00000000..5c32b0e6
 --- /dev/null
 +++ b/.env.dist
 @@ -0,0 +1,4 @@
@@ -19,7 +19,7 @@ index 0000000..5c32b0e
 +# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 +
 diff --git a/composer.json b/composer.json
-index 23220d4..424f71a 100644
+index 23220d42..424f71a6 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,7 +25,8 @@
@@ -33,7 +33,7 @@ index 23220d4..424f71a 100644
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 7f6b44c..ebcf7c9 100644
+index 7f6b44c3..bdee71a8 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -45,36 +45,38 @@ index 7f6b44c..ebcf7c9 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2265,6 +2265,52 @@
+@@ -2265,6 +2265,69 @@
              ],
              "time": "2017-09-30T22:39:41+00:00"
          },
 +        {
 +            "name": "symfony/flex",
-+            "version": "v1.0.49",
++            "version": "v1.8.4",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2"
++                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
-+                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/7df5a72c7664baab629ec33de7890e9e3996b51b",
++                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b",
 +                "shasum": ""
 +            },
 +            "require": {
-+                "composer-plugin-api": "^1.1",
-+                "php": "^7.0"
++                "composer-plugin-api": "^1.0|^2.0",
++                "php": ">=7.1"
 +            },
 +            "require-dev": {
-+                "composer/composer": "^1.4",
-+                "symfony/phpunit-bridge": "^3.2.8"
++                "composer/composer": "^1.0.2|^2.0",
++                "symfony/dotenv": "^4.4|^5.0",
++                "symfony/phpunit-bridge": "^4.4|^5.0",
++                "symfony/process": "^3.4|^4.4|^5.0"
 +            },
 +            "type": "composer-plugin",
 +            "extra": {
 +                "branch-alias": {
-+                    "dev-master": "1.0-dev"
++                    "dev-master": "1.8-dev"
 +                },
 +                "class": "Symfony\\Flex\\Flex"
 +            },
@@ -93,14 +95,29 @@ index 7f6b44c..ebcf7c9 100644
 +                    "email": "fabien.potencier@gmail.com"
 +                }
 +            ],
-+            "time": "2017-12-11T15:40:16+00:00"
++            "description": "Composer plugin for Symfony",
++            "funding": [
++                {
++                    "url": "https://symfony.com/sponsor",
++                    "type": "custom"
++                },
++                {
++                    "url": "https://github.com/fabpot",
++                    "type": "github"
++                },
++                {
++                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
++                    "type": "tidelift"
++                }
++            ],
++            "time": "2020-06-16T23:10:41+00:00"
 +        },
          {
              "name": "symfony/monolog-bundle",
              "version": "v3.1.2",
 diff --git a/symfony.lock b/symfony.lock
 new file mode 100644
-index 0000000..a9e01b9
+index 00000000..a9e01b92
 --- /dev/null
 +++ b/symfony.lock
 @@ -0,0 +1,5 @@

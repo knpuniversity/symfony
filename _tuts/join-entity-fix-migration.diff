@@ -1,5 +1,5 @@
 diff --git a/app/DoctrineMigrations/Version20161017160251.php b/app/DoctrineMigrations/Version20161017160251.php
-index 300b10a..8cb53b9 100644
+index 300b10a8..8cb53b99 100644
 --- a/app/DoctrineMigrations/Version20161017160251.php
 +++ b/app/DoctrineMigrations/Version20161017160251.php
 @@ -21,10 +21,9 @@ class Version20161017160251 extends AbstractMigration

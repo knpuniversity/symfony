@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160207083337.php b/app/DoctrineMigrations/Version20160207083337.php
 new file mode 100644
-index 0000000..2620fa7
+index 00000000..2620fa78
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160207083337.php
 @@ -0,0 +1,28 @@
@@ -33,7 +33,7 @@ index 0000000..2620fa7
 +    }
 +}
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 088d75a..1c38378 100644
+index 088d75ac..1c383784 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -33,7 +33,7 @@ class Genus

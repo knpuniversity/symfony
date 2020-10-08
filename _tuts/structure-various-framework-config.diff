@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 959a7d3..70e8d4c 100644
+index 959a7d3d..70e8d4c8 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -7,9 +7,6 @@ imports:
@@ -13,7 +13,7 @@ index 959a7d3..70e8d4c 100644
  
  # Doctrine Configuration
 diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
-index 1e49a0b..eeefe2f 100644
+index 1e49a0b6..eeefe2f7 100644
 --- a/config/packages/framework.yaml
 +++ b/config/packages/framework.yaml
 @@ -10,6 +10,6 @@ framework:

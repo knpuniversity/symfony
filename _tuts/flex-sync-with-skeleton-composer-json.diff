@@ -1,5 +1,5 @@
 diff --git a/.env.dist b/.env.dist
-index 95bf91f..0170564 100644
+index 95bf91f6..01705648 100644
 --- a/.env.dist
 +++ b/.env.dist
 @@ -2,6 +2,12 @@
@@ -16,7 +16,7 @@ index 95bf91f..0170564 100644
  ###> doctrine/doctrine-bundle ###
  # Format described at http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
 diff --git a/.gitignore b/.gitignore
-index 6f663e7..766faf5 100644
+index 6f663e70..766faf5f 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -19,3 +19,10 @@
@@ -31,7 +31,7 @@ index 6f663e7..766faf5 100644
 +/vendor/
 +###< symfony/framework-bundle ###
 diff --git a/composer.json b/composer.json
-index d136ed5..c4a095c 100644
+index d136ed56..c4a095c5 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -4,18 +4,24 @@
@@ -123,7 +123,7 @@ index d136ed5..c4a095c 100644
              "allow-contrib": true
          }
 diff --git a/composer.lock b/composer.lock
-index ebcf7c9..ecdc518 100644
+index bdee71a8..27e0fc53 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -288,32 +288,32 @@ index ebcf7c9..ecdc518 100644
          },
          {
              "name": "stof/doctrine-extensions-bundle",
-@@ -2266,38 +2163,51 @@
+@@ -2266,40 +2163,51 @@
              "time": "2017-09-30T22:39:41+00:00"
          },
          {
 -            "name": "symfony/flex",
--            "version": "v1.0.49",
+-            "version": "v1.8.4",
 +            "name": "symfony/cache",
 +            "version": "v4.0.1",
              "source": {
                  "type": "git",
 -                "url": "https://github.com/symfony/flex.git",
--                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2"
+-                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b"
 +                "url": "https://github.com/symfony/cache.git",
 +                "reference": "3691cb27e436c55af10ee06de30732623fa2f33e"
              },
              "dist": {
                  "type": "zip",
--                "url": "https://api.github.com/repos/symfony/flex/zipball/c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
--                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
+-                "url": "https://api.github.com/repos/symfony/flex/zipball/7df5a72c7664baab629ec33de7890e9e3996b51b",
+-                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b",
 +                "url": "https://api.github.com/repos/symfony/cache/zipball/3691cb27e436c55af10ee06de30732623fa2f33e",
 +                "reference": "3691cb27e436c55af10ee06de30732623fa2f33e",
                  "shasum": ""
              },
              "require": {
--                "composer-plugin-api": "^1.1",
--                "php": "^7.0"
+-                "composer-plugin-api": "^1.0|^2.0",
+-                "php": ">=7.1"
 +                "php": "^7.1.3",
 +                "psr/cache": "~1.0",
 +                "psr/log": "~1.0",
@@ -327,8 +327,10 @@ index ebcf7c9..ecdc518 100644
 +                "psr/simple-cache-implementation": "1.0"
              },
              "require-dev": {
--                "composer/composer": "^1.4",
--                "symfony/phpunit-bridge": "^3.2.8"
+-                "composer/composer": "^1.0.2|^2.0",
+-                "symfony/dotenv": "^4.4|^5.0",
+-                "symfony/phpunit-bridge": "^4.4|^5.0",
+-                "symfony/process": "^3.4|^4.4|^5.0"
 +                "cache/integration-tests": "dev-master",
 +                "doctrine/cache": "~1.6",
 +                "doctrine/dbal": "~2.4",
@@ -338,7 +340,7 @@ index ebcf7c9..ecdc518 100644
 +            "type": "library",
              "extra": {
                  "branch-alias": {
--                    "dev-master": "1.0-dev"
+-                    "dev-master": "1.8-dev"
 -                },
 -                "class": "Symfony\\Flex\\Flex"
 +                    "dev-master": "4.0-dev"
@@ -356,21 +358,34 @@ index ebcf7c9..ecdc518 100644
              },
              "notification-url": "https://packagist.org/downloads/",
              "license": [
-@@ -2305,48 +2215,59 @@
+@@ -2307,63 +2215,59 @@
              ],
              "authors": [
                  {
 -                    "name": "Fabien Potencier",
 -                    "email": "fabien.potencier@gmail.com"
+-                }
+-            ],
+-            "description": "Composer plugin for Symfony",
+-            "funding": [
+-                {
+-                    "url": "https://symfony.com/sponsor",
+-                    "type": "custom"
+-                },
+-                {
+-                    "url": "https://github.com/fabpot",
+-                    "type": "github"
 +                    "name": "Nicolas Grekas",
 +                    "email": "p@tchwork.com"
-+                },
-+                {
+                 },
+                 {
+-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+-                    "type": "tidelift"
 +                    "name": "Symfony Community",
 +                    "homepage": "https://symfony.com/contributors"
                  }
              ],
--            "time": "2017-12-11T15:40:16+00:00"
+-            "time": "2020-06-16T23:10:41+00:00"
 +            "description": "Symfony Cache component with PSR-6, PSR-16, and tags",
 +            "homepage": "https://symfony.com",
 +            "keywords": [
@@ -437,7 +452,7 @@ index ebcf7c9..ecdc518 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -2357,52 +2278,67 @@
+@@ -2374,52 +2278,67 @@
                  "MIT"
              ],
              "authors": [
@@ -527,7 +542,7 @@ index ebcf7c9..ecdc518 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2411,55 +2347,54 @@
+@@ -2428,55 +2347,54 @@
              ],
              "authors": [
                  {
@@ -606,7 +621,7 @@ index ebcf7c9..ecdc518 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2468,58 +2403,69 @@
+@@ -2485,45 +2403,883 @@
              ],
              "authors": [
                  {
@@ -680,46 +695,37 @@ index ebcf7c9..ecdc518 100644
 +                "symfony/finder": "For using double-star glob patterns or when GLOB_BRACE portability is required",
 +                "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
 +                "symfony/yaml": ""
-             },
-             "type": "library",
-             "extra": {
-                 "branch-alias": {
--                    "dev-master": "1.6-dev"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
 +                    "dev-master": "3.4-dev"
-                 }
-             },
-             "autoload": {
-                 "psr-4": {
--                    "Symfony\\Polyfill\\Mbstring\\": ""
++                }
++            },
++            "autoload": {
++                "psr-4": {
 +                    "Symfony\\Component\\DependencyInjection\\": ""
-                 },
--                "files": [
--                    "bootstrap.php"
++                },
 +                "exclude-from-classmap": [
 +                    "/Tests/"
-                 ]
-             },
-             "notification-url": "https://packagist.org/downloads/",
-@@ -2528,19 +2474,829 @@
-             ],
-             "authors": [
-                 {
--                    "name": "Nicolas Grekas",
--                    "email": "p@tchwork.com"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
 +                    "name": "Fabien Potencier",
 +                    "email": "fabien@symfony.com"
-                 },
-                 {
-                     "name": "Symfony Community",
-                     "homepage": "https://symfony.com/contributors"
-                 }
-             ],
--            "description": "Symfony polyfill for the Mbstring extension",
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
 +            "description": "Symfony DependencyInjection Component",
-             "homepage": "https://symfony.com",
--            "keywords": [
--                "compatibility",
--                "mbstring",
++            "homepage": "https://symfony.com",
 +            "time": "2017-12-04T19:20:32+00:00"
 +        },
 +        {
@@ -964,30 +970,32 @@ index ebcf7c9..ecdc518 100644
 +        },
 +        {
 +            "name": "symfony/flex",
-+            "version": "v1.0.49",
++            "version": "v1.8.4",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2"
++                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
-+                "reference": "c3980f5ac79fbe8ba6b0d747baf7e57925f04ae2",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/7df5a72c7664baab629ec33de7890e9e3996b51b",
++                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b",
 +                "shasum": ""
 +            },
 +            "require": {
-+                "composer-plugin-api": "^1.1",
-+                "php": "^7.0"
++                "composer-plugin-api": "^1.0|^2.0",
++                "php": ">=7.1"
 +            },
 +            "require-dev": {
-+                "composer/composer": "^1.4",
-+                "symfony/phpunit-bridge": "^3.2.8"
++                "composer/composer": "^1.0.2|^2.0",
++                "symfony/dotenv": "^4.4|^5.0",
++                "symfony/phpunit-bridge": "^4.4|^5.0",
++                "symfony/process": "^3.4|^4.4|^5.0"
 +            },
 +            "type": "composer-plugin",
 +            "extra": {
 +                "branch-alias": {
-+                    "dev-master": "1.0-dev"
++                    "dev-master": "1.8-dev"
 +                },
 +                "class": "Symfony\\Flex\\Flex"
 +            },
@@ -1006,7 +1014,22 @@ index ebcf7c9..ecdc518 100644
 +                    "email": "fabien.potencier@gmail.com"
 +                }
 +            ],
-+            "time": "2017-12-11T15:40:16+00:00"
++            "description": "Composer plugin for Symfony",
++            "funding": [
++                {
++                    "url": "https://symfony.com/sponsor",
++                    "type": "custom"
++                },
++                {
++                    "url": "https://github.com/fabpot",
++                    "type": "github"
++                },
++                {
++                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
++                    "type": "tidelift"
++                }
++            ],
++            "time": "2020-06-16T23:10:41+00:00"
 +        },
 +        {
 +            "name": "symfony/framework-bundle",
@@ -1499,44 +1522,33 @@ index ebcf7c9..ecdc518 100644
 +            },
 +            "require": {
 +                "php": ">=5.3.3"
-+            },
-+            "type": "library",
-+            "extra": {
-+                "branch-alias": {
-+                    "dev-master": "1.6-dev"
-+                }
-+            },
-+            "autoload": {
-+                "psr-4": {
+             },
+             "type": "library",
+             "extra": {
+@@ -2533,7 +3289,7 @@
+             },
+             "autoload": {
+                 "psr-4": {
+-                    "Symfony\\Polyfill\\Mbstring\\": ""
 +                    "Symfony\\Polyfill\\Apcu\\": ""
-+                },
-+                "files": [
-+                    "bootstrap.php"
-+                ]
-+            },
-+            "notification-url": "https://packagist.org/downloads/",
-+            "license": [
-+                "MIT"
-+            ],
-+            "authors": [
-+                {
-+                    "name": "Nicolas Grekas",
-+                    "email": "p@tchwork.com"
-+                },
-+                {
-+                    "name": "Symfony Community",
-+                    "homepage": "https://symfony.com/contributors"
-+                }
-+            ],
+                 },
+                 "files": [
+                     "bootstrap.php"
+@@ -2553,11 +3309,11 @@
+                     "homepage": "https://symfony.com/contributors"
+                 }
+             ],
+-            "description": "Symfony polyfill for the Mbstring extension",
 +            "description": "Symfony polyfill backporting apcu_* functions to lower PHP versions",
-+            "homepage": "https://symfony.com",
-+            "keywords": [
+             "homepage": "https://symfony.com",
+             "keywords": [
 +                "apcu",
-+                "compatibility",
+                 "compatibility",
+-                "mbstring",
                  "polyfill",
                  "portable",
                  "shim"
-@@ -2548,22 +3304,25 @@
+@@ -2565,22 +3321,25 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -1567,7 +1579,7 @@ index ebcf7c9..ecdc518 100644
              "type": "library",
              "extra": {
                  "branch-alias": {
-@@ -2572,7 +3331,7 @@
+@@ -2589,7 +3348,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1576,7 +1588,7 @@ index ebcf7c9..ecdc518 100644
                  },
                  "files": [
                      "bootstrap.php"
-@@ -2592,16 +3351,95 @@
+@@ -2609,16 +3368,95 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1673,7 +1685,7 @@ index ebcf7c9..ecdc518 100644
          {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-@@ -2665,112 +3503,27 @@
+@@ -2682,112 +3520,27 @@
              "time": "2017-10-23T15:15:11+00:00"
          },
          {
@@ -1796,7 +1808,7 @@ index ebcf7c9..ecdc518 100644
              },
              "type": "library",
              "extra": {
-@@ -2780,18 +3533,10 @@
+@@ -2797,18 +3550,10 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1817,7 +1829,7 @@ index ebcf7c9..ecdc518 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2808,78 +3553,67 @@
+@@ -2825,78 +3570,67 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1925,7 +1937,7 @@ index ebcf7c9..ecdc518 100644
          },
          {
              "name": "zendframework/zend-code",
-@@ -3115,6 +3849,63 @@
+@@ -3132,6 +3866,63 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -1989,7 +2001,7 @@ index ebcf7c9..ecdc518 100644
          {
              "name": "symfony/phpunit-bridge",
              "version": "v4.0.1",
-@@ -3181,12 +3972,13 @@
+@@ -3198,12 +3989,13 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {
@@ -2005,7 +2017,7 @@ index ebcf7c9..ecdc518 100644
      "platform-dev": [],
      "platform-overrides": {
 diff --git a/config/bundles.php b/config/bundles.php
-index 38619f9..f6fc163 100644
+index 38619f9e..f6fc1631 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -10,4 +10,5 @@ return [
@@ -2016,7 +2028,7 @@ index 38619f9..f6fc163 100644
  ];
 diff --git a/config/packages/dev/routing.yaml b/config/packages/dev/routing.yaml
 new file mode 100644
-index 0000000..4116679
+index 00000000..4116679a
 --- /dev/null
 +++ b/config/packages/dev/routing.yaml
 @@ -0,0 +1,3 @@
@@ -2025,7 +2037,7 @@ index 0000000..4116679
 +        strict_requirements: true
 diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
 new file mode 100644
-index 0000000..b32f52d
+index 00000000..b32f52d9
 --- /dev/null
 +++ b/config/packages/framework.yaml
 @@ -0,0 +1,15 @@
@@ -2046,7 +2058,7 @@ index 0000000..b32f52d
 +        log: true
 diff --git a/config/packages/routing.yaml b/config/packages/routing.yaml
 new file mode 100644
-index 0000000..368bc7f
+index 00000000..368bc7f4
 --- /dev/null
 +++ b/config/packages/routing.yaml
 @@ -0,0 +1,3 @@
@@ -2055,7 +2067,7 @@ index 0000000..368bc7f
 +        strict_requirements: ~
 diff --git a/config/packages/test/framework.yaml b/config/packages/test/framework.yaml
 new file mode 100644
-index 0000000..9c5dc40
+index 00000000..9c5dc409
 --- /dev/null
 +++ b/config/packages/test/framework.yaml
 @@ -0,0 +1,4 @@
@@ -2065,7 +2077,7 @@ index 0000000..9c5dc40
 +    #    storage_id: session.storage.mock_file
 diff --git a/config/routes.yaml b/config/routes.yaml
 new file mode 100644
-index 0000000..3fab0c6
+index 00000000..3fab0c64
 --- /dev/null
 +++ b/config/routes.yaml
 @@ -0,0 +1,3 @@
@@ -2074,7 +2086,7 @@ index 0000000..3fab0c6
 +#    defaults: { _controller: 'App\Controller\DefaultController::index' }
 diff --git a/config/services.yaml b/config/services.yaml
 new file mode 100644
-index 0000000..23800b4
+index 00000000..23800b49
 --- /dev/null
 +++ b/config/services.yaml
 @@ -0,0 +1,27 @@
@@ -2106,7 +2118,7 @@ index 0000000..23800b4
 +    # add more service definitions when explicit configuration is needed
 +    # please note that last definitions always *replace* previous ones
 diff --git a/phpunit.xml.dist b/phpunit.xml.dist
-index 07d0387..7bf426a 100644
+index 07d03877..7bf426a5 100644
 --- a/phpunit.xml.dist
 +++ b/phpunit.xml.dist
 @@ -23,6 +23,13 @@
@@ -2139,7 +2151,7 @@ index 07d0387..7bf426a 100644
      <filter>
 diff --git a/public/index.php b/public/index.php
 new file mode 100644
-index 0000000..521b85d
+index 00000000..521b85d7
 --- /dev/null
 +++ b/public/index.php
 @@ -0,0 +1,36 @@
@@ -2181,10 +2193,10 @@ index 0000000..521b85d
 +$kernel->terminate($request, $response);
 diff --git a/src/Controller/.gitignore b/src/Controller/.gitignore
 new file mode 100644
-index 0000000..e69de29
+index 00000000..e69de29b
 diff --git a/src/Kernel.php b/src/Kernel.php
 new file mode 100644
-index 0000000..4425aee
+index 00000000..4425aee4
 --- /dev/null
 +++ b/src/Kernel.php
 @@ -0,0 +1,61 @@
@@ -2250,7 +2262,7 @@ index 0000000..4425aee
 +    }
 +}
 diff --git a/symfony.lock b/symfony.lock
-index 7264dbb..f66ce11 100644
+index 7264dbbc..f66ce11e 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -68,9 +68,6 @@

@@ -1,5 +1,5 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index fa45c13..788f40e 100644
+index fa45c13f..788f40e2 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -43,3 +43,7 @@ services:
@@ -11,7 +11,7 @@ index fa45c13..788f40e 100644
 +        arguments:
 +            $showDiscouragingMessage: true
 diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
-index a0d393d..fe74265 100644
+index a0d393d4..fe742653 100644
 --- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 +++ b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 @@ -12,18 +12,22 @@ class AddNiceHeaderEventSubscriber implements EventSubscriberInterface

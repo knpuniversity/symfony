@@ -1,6 +1,6 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
 deleted file mode 100644
-index 39f165d..0000000
+index 39f165da..00000000
 --- a/app/config/services.yml
 +++ /dev/null
 @@ -1,52 +0,0 @@
@@ -57,7 +57,7 @@ index 39f165d..0000000
 -    # example of adding aliases, if one does not exist
 -    # Symfony\Component\Security\Guard\GuardAuthenticatorHandler: '@security.authentication.guard_handler'
 diff --git a/config/services.yaml b/config/services.yaml
-index 7e1a1c6..9eae1ca 100644
+index 7e1a1c6f..9eae1ca4 100644
 --- a/config/services.yaml
 +++ b/config/services.yaml
 @@ -25,5 +25,43 @@ services:

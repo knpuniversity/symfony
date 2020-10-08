@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 8be891f..cdc0dd1 100644
+index 8be891fe..cdc0dd13 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -18,6 +18,7 @@
@@ -20,7 +20,7 @@ index 8be891f..cdc0dd1 100644
      "config": {
          "preferred-install": {
 diff --git a/composer.lock b/composer.lock
-index 500aa18..50c71f0 100644
+index 02594112..7ac4bb48 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -89,7 +89,7 @@ index 500aa18..50c71f0 100644
          {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-@@ -5147,28 +5197,32 @@
+@@ -5164,28 +5214,32 @@
          },
          {
              "name": "doctrine/doctrine-fixtures-bundle",
@@ -129,7 +129,7 @@ index 500aa18..50c71f0 100644
                  }
              },
              "autoload": {
-@@ -5200,7 +5254,7 @@
+@@ -5217,7 +5271,7 @@
                  "Fixture",
                  "persistence"
              ],
@@ -140,7 +140,7 @@ index 500aa18..50c71f0 100644
              "name": "paragonie/random_compat",
 diff --git a/src/DataFixtures/AllFixtures.php b/src/DataFixtures/AllFixtures.php
 new file mode 100644
-index 0000000..0305e49
+index 00000000..0305e495
 --- /dev/null
 +++ b/src/DataFixtures/AllFixtures.php
 @@ -0,0 +1,141 @@
@@ -287,7 +287,7 @@ index 0000000..0305e49
 +}
 diff --git a/src/DataFixtures/ORM/LoadFixtures.php b/src/DataFixtures/ORM/LoadFixtures.php
 deleted file mode 100644
-index 4db98ab..0000000
+index 4db98ab6..00000000
 --- a/src/DataFixtures/ORM/LoadFixtures.php
 +++ /dev/null
 @@ -1,46 +0,0 @@
@@ -339,7 +339,7 @@ index 4db98ab..0000000
 -}
 \ No newline at end of file
 diff --git a/symfony.lock b/symfony.lock
-index 824780e..c3e4b58 100644
+index 824780ec..c3e4b589 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -68,6 +68,9 @@

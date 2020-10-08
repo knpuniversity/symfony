@@ -2,7 +2,7 @@ diff --git a/tests/AppBundle/Controller/DefaultControllerTest.php b/tests/Contro
 similarity index 91%
 rename from tests/AppBundle/Controller/DefaultControllerTest.php
 rename to tests/Controller/DefaultControllerTest.php
-index 594803c..9172986 100644
+index 594803cc..9172986c 100644
 --- a/tests/AppBundle/Controller/DefaultControllerTest.php
 +++ b/tests/Controller/DefaultControllerTest.php
 @@ -1,6 +1,6 @@

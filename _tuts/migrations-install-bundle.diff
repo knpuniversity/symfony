@@ -1,5 +1,5 @@
 diff --git a/app/AppKernel.php b/app/AppKernel.php
-index 3bbadf8..778fb62 100644
+index 3bbadf81..778fb622 100644
 --- a/app/AppKernel.php
 +++ b/app/AppKernel.php
 @@ -18,6 +18,7 @@ class AppKernel extends Kernel
@@ -11,7 +11,7 @@ index 3bbadf8..778fb62 100644
              new AppBundle\AppBundle(),
          );
 diff --git a/composer.json b/composer.json
-index 9825d82..0c1c9bf 100644
+index 9825d82f..0c1c9bf3 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,7 +25,8 @@
@@ -25,7 +25,7 @@ index 9825d82..0c1c9bf 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 0973e5e..db9a87d 100644
+index 0973e5e8..db9a87d1 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@

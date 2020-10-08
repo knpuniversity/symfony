@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index b011382..6d95989 100644
+index b011382c..6d959893 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -14,7 +14,7 @@
@@ -12,7 +12,7 @@ index b011382..6d95989 100644
          </div>
      </div>
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 8a363b7..5b0bcdb 100644
+index 8a363b7c..5b0bcdbb 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -15,8 +15,11 @@ class GenusController extends Controller

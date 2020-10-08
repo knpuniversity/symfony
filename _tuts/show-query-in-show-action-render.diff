@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/genus/show.html.twig b/app/Resources/views/genus/show.html.twig
-index db277eb..3c5092b 100644
+index db277eb5..3c5092be 100644
 --- a/app/Resources/views/genus/show.html.twig
 +++ b/app/Resources/views/genus/show.html.twig
 @@ -1,20 +1,20 @@
@@ -38,7 +38,7 @@ index db277eb..3c5092b 100644
          ReactDOM.render(
            <NoteSection url={notesUrl} />,
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 32cb716..b770382 100644
+index 32cb7168..b7703827 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -48,8 +48,13 @@ class GenusController extends Controller
