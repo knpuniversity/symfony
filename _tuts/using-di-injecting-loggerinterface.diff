@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 1ee46d20..868c866b 100644
+index 691d30e2..f1e0c86e 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -20,7 +20,7 @@
@@ -12,19 +12,19 @@ index 1ee46d20..868c866b 100644
          "sensio/distribution-bundle": "^5.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index 3c6e367f..13e58287 100644
+index 9d689d60..e3551788 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "cf8e4c3c1bf75207533019662f4a058b",
-+    "content-hash": "711c3166ea9df94ef62d06d7f970ac22",
+-    "content-hash": "71a5f60fbaac8121b8340afeec219f87",
++    "content-hash": "baf156be079cb4d725c76697d8e5f745",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -507,37 +507,37 @@
+@@ -580,37 +580,37 @@
          },
          {
              "name": "doctrine/doctrine-bundle",
@@ -76,7 +76,7 @@ index 3c6e367f..13e58287 100644
              },
              "suggest": {
                  "doctrine/orm": "The Doctrine ORM integration is optional in the bundle.",
-@@ -584,7 +584,7 @@
+@@ -657,7 +657,7 @@
                  "orm",
                  "persistence"
              ],
@@ -85,7 +85,7 @@ index 3c6e367f..13e58287 100644
          },
          {
              "name": "doctrine/doctrine-cache-bundle",
-@@ -2455,25 +2455,25 @@
+@@ -2478,25 +2478,25 @@
          },
          {
              "name": "symfony/monolog-bundle",
@@ -120,7 +120,7 @@ index 3c6e367f..13e58287 100644
              },
              "require-dev": {
                  "phpunit/phpunit": "^4.8",
-@@ -2483,7 +2483,7 @@
+@@ -2506,7 +2506,7 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -129,7 +129,7 @@ index 3c6e367f..13e58287 100644
                  }
              },
              "autoload": {
-@@ -2511,7 +2511,7 @@
+@@ -2534,7 +2534,7 @@
                  "log",
                  "logging"
              ],

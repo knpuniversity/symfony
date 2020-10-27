@@ -31,7 +31,7 @@ index 6f663e70..766faf5f 100644
 +/vendor/
 +###< symfony/framework-bundle ###
 diff --git a/composer.json b/composer.json
-index d136ed56..c4a095c5 100644
+index 7e886635..b8a2b289 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -4,18 +4,24 @@
@@ -63,13 +63,13 @@ index d136ed56..c4a095c5 100644
          "doctrine/orm": "^2.5",
          "doctrine/doctrine-bundle": "^1.6",
          "doctrine/doctrine-cache-bundle": "^1.2",
-@@ -25,41 +31,35 @@
-         "sensio/framework-extra-bundle": "^3.0.2",
+@@ -26,41 +32,38 @@
          "knplabs/knp-markdown-bundle": "^1.4",
          "doctrine/doctrine-migrations-bundle": "^1.1",
--        "stof/doctrine-extensions-bundle": "dev-master",
+         "stof/doctrine-extensions-bundle": "dev-master",
+-        "composer/package-versions-deprecated": "^1.11",
 -        "symfony/flex": "^1.0"
-+        "stof/doctrine-extensions-bundle": "dev-master"
++        "composer/package-versions-deprecated": "^1.11"
      },
      "require-dev": {
 +        "symfony/dotenv": "^4.0",
@@ -80,7 +80,10 @@ index d136ed56..c4a095c5 100644
 +        "preferred-install": {
 +            "*": "dist"
 +        },
-+        "sort-packages": true
++        "sort-packages": true,
++        "platform": {
++            "php": "7.1.3"
++        }
 +    },
      "scripts": {
 +        "auto-scripts": {
@@ -122,20 +125,32 @@ index d136ed56..c4a095c5 100644
          "symfony": {
              "allow-contrib": true
          }
+@@ -70,10 +73,5 @@
+             "type": "vcs",
+             "url": "https://github.com/dunglas/StofDoctrineExtensionsBundle"
+         }
+-    ],
+-    "config": {
+-        "platform": {
+-            "php": "7.1.3"
+-        }
+-    }
++    ]
+ }
 diff --git a/composer.lock b/composer.lock
-index bdee71a8..27e0fc53 100644
+index b48c50b2..a9005a0b 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "b9a627c53c195ac64e29352bc6c3225e",
-+    "content-hash": "c6113d2e2f38ad50cfd1861b0e4f7508",
+-    "content-hash": "002063db1e90b19a0c3fbc315c7d55bf",
++    "content-hash": "8473a79b7fec3a08aea871885f2e15f5",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1347,60 +1347,6 @@
+@@ -1420,60 +1420,6 @@
              ],
              "time": "2017-11-15T23:40:40+00:00"
          },
@@ -196,7 +211,7 @@ index bdee71a8..27e0fc53 100644
          {
              "name": "gedmo/doctrine-extensions",
              "version": "v2.4.31",
-@@ -1935,55 +1881,6 @@
+@@ -1958,55 +1904,6 @@
              ],
              "time": "2017-02-14T16:28:37+00:00"
          },
@@ -252,7 +267,7 @@ index bdee71a8..27e0fc53 100644
          {
              "name": "psr/log",
              "version": "1.0.2",
-@@ -2081,21 +1978,21 @@
+@@ -2104,21 +2001,21 @@
          },
          {
              "name": "sensio/framework-extra-bundle",
@@ -279,7 +294,7 @@ index bdee71a8..27e0fc53 100644
                  "symfony/framework-bundle": "~2.3|~3.0|~4.0"
              },
              "require-dev": {
-@@ -2147,7 +2044,7 @@
+@@ -2170,7 +2067,7 @@
                  "annotations",
                  "controllers"
              ],
@@ -288,25 +303,25 @@ index bdee71a8..27e0fc53 100644
          },
          {
              "name": "stof/doctrine-extensions-bundle",
-@@ -2266,40 +2163,51 @@
+@@ -2289,40 +2186,51 @@
              "time": "2017-09-30T22:39:41+00:00"
          },
          {
 -            "name": "symfony/flex",
--            "version": "v1.8.4",
+-            "version": "v1.9.10",
 +            "name": "symfony/cache",
 +            "version": "v4.0.1",
              "source": {
                  "type": "git",
 -                "url": "https://github.com/symfony/flex.git",
--                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b"
+-                "reference": "7335ec033995aa34133e621627333368f260b626"
 +                "url": "https://github.com/symfony/cache.git",
 +                "reference": "3691cb27e436c55af10ee06de30732623fa2f33e"
              },
              "dist": {
                  "type": "zip",
--                "url": "https://api.github.com/repos/symfony/flex/zipball/7df5a72c7664baab629ec33de7890e9e3996b51b",
--                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b",
+-                "url": "https://api.github.com/repos/symfony/flex/zipball/7335ec033995aa34133e621627333368f260b626",
+-                "reference": "7335ec033995aa34133e621627333368f260b626",
 +                "url": "https://api.github.com/repos/symfony/cache/zipball/3691cb27e436c55af10ee06de30732623fa2f33e",
 +                "reference": "3691cb27e436c55af10ee06de30732623fa2f33e",
                  "shasum": ""
@@ -340,7 +355,7 @@ index bdee71a8..27e0fc53 100644
 +            "type": "library",
              "extra": {
                  "branch-alias": {
--                    "dev-master": "1.8-dev"
+-                    "dev-main": "1.9-dev"
 -                },
 -                "class": "Symfony\\Flex\\Flex"
 +                    "dev-master": "4.0-dev"
@@ -358,7 +373,7 @@ index bdee71a8..27e0fc53 100644
              },
              "notification-url": "https://packagist.org/downloads/",
              "license": [
-@@ -2307,63 +2215,59 @@
+@@ -2330,67 +2238,59 @@
              ],
              "authors": [
                  {
@@ -367,6 +382,10 @@ index bdee71a8..27e0fc53 100644
 -                }
 -            ],
 -            "description": "Composer plugin for Symfony",
+-            "support": {
+-                "issues": "https://github.com/symfony/flex/issues",
+-                "source": "https://github.com/symfony/flex/tree/v1.9.10"
+-            },
 -            "funding": [
 -                {
 -                    "url": "https://symfony.com/sponsor",
@@ -385,7 +404,7 @@ index bdee71a8..27e0fc53 100644
 +                    "homepage": "https://symfony.com/contributors"
                  }
              ],
--            "time": "2020-06-16T23:10:41+00:00"
+-            "time": "2020-10-14T17:41:54+00:00"
 +            "description": "Symfony Cache component with PSR-6, PSR-16, and tags",
 +            "homepage": "https://symfony.com",
 +            "keywords": [
@@ -452,7 +471,7 @@ index bdee71a8..27e0fc53 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -2374,52 +2278,67 @@
+@@ -2401,52 +2301,67 @@
                  "MIT"
              ],
              "authors": [
@@ -542,7 +561,7 @@ index bdee71a8..27e0fc53 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2428,55 +2347,54 @@
+@@ -2455,55 +2370,54 @@
              ],
              "authors": [
                  {
@@ -621,7 +640,7 @@ index bdee71a8..27e0fc53 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2485,45 +2403,883 @@
+@@ -2512,45 +2426,887 @@
              ],
              "authors": [
                  {
@@ -673,7 +692,9 @@ index bdee71a8..27e0fc53 100644
 -                "php": ">=5.3.3"
 +                "php": "^5.5.9|>=7.0.8",
 +                "psr/container": "^1.0"
-+            },
+             },
+-            "suggest": {
+-                "ext-mbstring": "For best performance"
 +            "conflict": {
 +                "symfony/config": "<3.3.1",
 +                "symfony/finder": "<3.3",
@@ -687,9 +708,8 @@ index bdee71a8..27e0fc53 100644
 +                "symfony/config": "~3.3|~4.0",
 +                "symfony/expression-language": "~2.8|~3.0|~4.0",
 +                "symfony/yaml": "~3.4|~4.0"
-             },
-             "suggest": {
--                "ext-mbstring": "For best performance"
++            },
++            "suggest": {
 +                "symfony/config": "",
 +                "symfony/expression-language": "For using expressions in service container configuration",
 +                "symfony/finder": "For using double-star glob patterns or when GLOB_BRACE portability is required",
@@ -970,16 +990,16 @@ index bdee71a8..27e0fc53 100644
 +        },
 +        {
 +            "name": "symfony/flex",
-+            "version": "v1.8.4",
++            "version": "v1.9.10",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b"
++                "reference": "7335ec033995aa34133e621627333368f260b626"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/7df5a72c7664baab629ec33de7890e9e3996b51b",
-+                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/7335ec033995aa34133e621627333368f260b626",
++                "reference": "7335ec033995aa34133e621627333368f260b626",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -995,7 +1015,7 @@ index bdee71a8..27e0fc53 100644
 +            "type": "composer-plugin",
 +            "extra": {
 +                "branch-alias": {
-+                    "dev-master": "1.8-dev"
++                    "dev-main": "1.9-dev"
 +                },
 +                "class": "Symfony\\Flex\\Flex"
 +            },
@@ -1015,6 +1035,10 @@ index bdee71a8..27e0fc53 100644
 +                }
 +            ],
 +            "description": "Composer plugin for Symfony",
++            "support": {
++                "issues": "https://github.com/symfony/flex/issues",
++                "source": "https://github.com/symfony/flex/tree/v1.9.10"
++            },
 +            "funding": [
 +                {
 +                    "url": "https://symfony.com/sponsor",
@@ -1029,7 +1053,7 @@ index bdee71a8..27e0fc53 100644
 +                    "type": "tidelift"
 +                }
 +            ],
-+            "time": "2020-06-16T23:10:41+00:00"
++            "time": "2020-10-14T17:41:54+00:00"
 +        },
 +        {
 +            "name": "symfony/framework-bundle",
@@ -1525,7 +1549,7 @@ index bdee71a8..27e0fc53 100644
              },
              "type": "library",
              "extra": {
-@@ -2533,7 +3289,7 @@
+@@ -2560,7 +3316,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1534,7 +1558,7 @@ index bdee71a8..27e0fc53 100644
                  },
                  "files": [
                      "bootstrap.php"
-@@ -2553,11 +3309,11 @@
+@@ -2580,11 +3336,11 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1548,7 +1572,7 @@ index bdee71a8..27e0fc53 100644
                  "polyfill",
                  "portable",
                  "shim"
-@@ -2565,22 +3321,25 @@
+@@ -2592,22 +3348,25 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -1579,7 +1603,7 @@ index bdee71a8..27e0fc53 100644
              "type": "library",
              "extra": {
                  "branch-alias": {
-@@ -2589,7 +3348,7 @@
+@@ -2616,7 +3375,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1588,7 +1612,7 @@ index bdee71a8..27e0fc53 100644
                  },
                  "files": [
                      "bootstrap.php"
-@@ -2609,16 +3368,95 @@
+@@ -2636,16 +3395,95 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1685,7 +1709,7 @@ index bdee71a8..27e0fc53 100644
          {
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
-@@ -2682,112 +3520,27 @@
+@@ -2709,112 +3547,27 @@
              "time": "2017-10-23T15:15:11+00:00"
          },
          {
@@ -1808,7 +1832,7 @@ index bdee71a8..27e0fc53 100644
              },
              "type": "library",
              "extra": {
-@@ -2797,18 +3550,10 @@
+@@ -2824,18 +3577,10 @@
              },
              "autoload": {
                  "psr-4": {
@@ -1829,7 +1853,7 @@ index bdee71a8..27e0fc53 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2825,78 +3570,67 @@
+@@ -2852,78 +3597,67 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -1937,7 +1961,7 @@ index bdee71a8..27e0fc53 100644
          },
          {
              "name": "zendframework/zend-code",
-@@ -3132,6 +3866,63 @@
+@@ -3159,6 +3893,63 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -2001,7 +2025,7 @@ index bdee71a8..27e0fc53 100644
          {
              "name": "symfony/phpunit-bridge",
              "version": "v4.0.1",
-@@ -3198,12 +3989,13 @@
+@@ -3225,12 +4016,13 @@
      "aliases": [],
      "minimum-stability": "stable",
      "stability-flags": {

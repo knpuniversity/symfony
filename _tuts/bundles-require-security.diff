@@ -1,8 +1,8 @@
 diff --git a/composer.json b/composer.json
-index c3baaaf4..01721168 100644
+index f681b6fc..18db0878 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -32,6 +32,7 @@
+@@ -33,6 +33,7 @@
          "symfony/lts": "^4@dev",
          "symfony/monolog-bundle": "^3.1",
          "symfony/polyfill-apcu": "^1.0",
@@ -11,19 +11,10 @@ index c3baaaf4..01721168 100644
          "symfony/swiftmailer-bundle": "^3.1",
          "symfony/translation": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 3328a385..fbc6d553 100644
+index 2ada48ad..e4969120 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-         "This file is @generated automatically"
-     ],
--    "content-hash": "af1d1c0be54f39a3a7580eee7bd83b35",
-+    "content-hash": "15c0a511e439880f9b62ac7adf40c2d1",
-     "packages": [
-         {
-             "name": "behat/transliterator",
-@@ -3904,37 +3904,48 @@
+@@ -3931,37 +3931,48 @@
              "time": "2017-11-24T14:34:08+00:00"
          },
          {
@@ -83,7 +74,7 @@ index 3328a385..fbc6d553 100644
                  "symfony/validator": "For using the user password constraint"
              },
              "type": "library",
-@@ -3945,7 +3956,7 @@
+@@ -3972,7 +3983,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -92,7 +83,7 @@ index 3328a385..fbc6d553 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -3965,38 +3976,59 @@
+@@ -3992,38 +4003,59 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -166,7 +157,7 @@ index 3328a385..fbc6d553 100644
              "extra": {
                  "branch-alias": {
                      "dev-master": "4.0-dev"
-@@ -4004,7 +4036,7 @@
+@@ -4031,7 +4063,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -175,7 +166,7 @@ index 3328a385..fbc6d553 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -4024,9 +4056,9 @@
+@@ -4051,9 +4083,9 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -187,7 +178,7 @@ index 3328a385..fbc6d553 100644
          },
          {
              "name": "symfony/swiftmailer-bundle",
-@@ -4818,6 +4850,54 @@
+@@ -4845,6 +4877,54 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -242,7 +233,7 @@ index 3328a385..fbc6d553 100644
          {
              "name": "symfony/dotenv",
              "version": "v4.0.1",
-@@ -4936,6 +5016,173 @@
+@@ -4963,6 +5043,173 @@
              "description": "Symfony PHPUnit Bridge",
              "homepage": "https://symfony.com",
              "time": "2017-12-04T20:23:32+00:00"

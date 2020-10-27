@@ -13,10 +13,10 @@ index 70e8d4c8..2ce63a92 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index 4b744522..c3baaaf4 100644
+index b8b737b0..f681b6fc 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -24,6 +24,7 @@
+@@ -25,6 +25,7 @@
          "knplabs/knp-markdown-bundle": "^1.4",
          "sensio/framework-extra-bundle": "^3.0.2",
          "stof/doctrine-extensions-bundle": "dev-master",
@@ -25,19 +25,10 @@ index 4b744522..c3baaaf4 100644
          "symfony/flex": "^1.0",
          "symfony/form": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 5f8c0b4f..3328a385 100644
+index 92faa6b6..2ada48ad 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-         "This file is @generated automatically"
-     ],
--    "content-hash": "0128ecac528a79bd1b4122111e90541c",
-+    "content-hash": "af1d1c0be54f39a3a7580eee7bd83b35",
-     "packages": [
-         {
-             "name": "behat/transliterator",
-@@ -2162,6 +2162,62 @@
+@@ -2185,6 +2185,62 @@
              ],
              "time": "2017-09-30T22:39:41+00:00"
          },

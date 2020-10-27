@@ -1,8 +1,8 @@
 diff --git a/composer.json b/composer.json
-index f5078e56..95aea47b 100644
+index 9b6cf1f9..1aaf4cc8 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -32,7 +32,6 @@
+@@ -33,7 +33,6 @@
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
          "symfony/phpunit-bridge": "^4.0",

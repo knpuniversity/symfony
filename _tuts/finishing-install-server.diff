@@ -11,10 +11,10 @@ index 766faf5f..6aa7b187 100644
 +.web-server-pid
 +###< symfony/web-server-bundle ###
 diff --git a/composer.json b/composer.json
-index ce0e4155..3991d29c 100644
+index e8d2aeb6..c50ad1e3 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -38,6 +38,7 @@
+@@ -39,6 +39,7 @@
          "symfony/translation": "^4.0",
          "symfony/twig-bundle": "^4.0",
          "symfony/validator": "^4.0",
@@ -23,19 +23,10 @@ index ce0e4155..3991d29c 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 712d2a85..53ce0c22 100644
+index 48814040..8b75beb6 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-         "This file is @generated automatically"
-     ],
--    "content-hash": "a574796e139d2af53ab7d8774ba473b7",
-+    "content-hash": "1165bff91643c368697795e82452b2b7",
-     "packages": [
-         {
-             "name": "behat/transliterator",
-@@ -3813,6 +3813,55 @@
+@@ -3840,6 +3840,55 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -91,7 +82,7 @@ index 712d2a85..53ce0c22 100644
          {
              "name": "symfony/profiler-pack",
              "version": "v1.0.3",
-@@ -4759,6 +4808,60 @@
+@@ -4786,6 +4835,60 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T19:38:58+00:00"
          },

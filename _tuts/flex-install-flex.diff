@@ -19,48 +19,48 @@ index 00000000..5c32b0e6
 +# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 +
 diff --git a/composer.json b/composer.json
-index 23220d42..424f71a6 100644
+index 2a482e5b..8d66bf42 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -25,7 +25,8 @@
-         "sensio/framework-extra-bundle": "^3.0.2",
+@@ -26,7 +26,8 @@
          "knplabs/knp-markdown-bundle": "^1.4",
          "doctrine/doctrine-migrations-bundle": "^1.1",
--        "stof/doctrine-extensions-bundle": "dev-master"
-+        "stof/doctrine-extensions-bundle": "dev-master",
+         "stof/doctrine-extensions-bundle": "dev-master",
+-        "composer/package-versions-deprecated": "^1.11"
++        "composer/package-versions-deprecated": "^1.11",
 +        "symfony/flex": "^1.0"
      },
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 7f6b44c3..bdee71a8 100644
+index dad37657..b48c50b2 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "abdc3d75130503a5e6b6ca7b7fc9fcee",
-+    "content-hash": "b9a627c53c195ac64e29352bc6c3225e",
+-    "content-hash": "4de53dca446c2de2fe19cdcfe5f5eb8b",
++    "content-hash": "002063db1e90b19a0c3fbc315c7d55bf",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -2265,6 +2265,69 @@
+@@ -2288,6 +2288,73 @@
              ],
              "time": "2017-09-30T22:39:41+00:00"
          },
 +        {
 +            "name": "symfony/flex",
-+            "version": "v1.8.4",
++            "version": "v1.9.10",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b"
++                "reference": "7335ec033995aa34133e621627333368f260b626"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/7df5a72c7664baab629ec33de7890e9e3996b51b",
-+                "reference": "7df5a72c7664baab629ec33de7890e9e3996b51b",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/7335ec033995aa34133e621627333368f260b626",
++                "reference": "7335ec033995aa34133e621627333368f260b626",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -76,7 +76,7 @@ index 7f6b44c3..bdee71a8 100644
 +            "type": "composer-plugin",
 +            "extra": {
 +                "branch-alias": {
-+                    "dev-master": "1.8-dev"
++                    "dev-main": "1.9-dev"
 +                },
 +                "class": "Symfony\\Flex\\Flex"
 +            },
@@ -96,6 +96,10 @@ index 7f6b44c3..bdee71a8 100644
 +                }
 +            ],
 +            "description": "Composer plugin for Symfony",
++            "support": {
++                "issues": "https://github.com/symfony/flex/issues",
++                "source": "https://github.com/symfony/flex/tree/v1.9.10"
++            },
 +            "funding": [
 +                {
 +                    "url": "https://symfony.com/sponsor",
@@ -110,7 +114,7 @@ index 7f6b44c3..bdee71a8 100644
 +                    "type": "tidelift"
 +                }
 +            ],
-+            "time": "2020-06-16T23:10:41+00:00"
++            "time": "2020-10-14T17:41:54+00:00"
 +        },
          {
              "name": "symfony/monolog-bundle",

@@ -25,12 +25,12 @@ index d00efc31..4948d4fe 100644
 +        default:
 +            sluggable: true
 diff --git a/composer.json b/composer.json
-index 87509445..8e45692e 100644
+index 387a26f1..41e52d97 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -26,7 +26,8 @@
-         "sensio/framework-extra-bundle": "^3.0.2",
+@@ -27,7 +27,8 @@
          "incenteev/composer-parameter-handler": "^2.0",
+         "composer/package-versions-deprecated": "^1.11",
          "knplabs/knp-markdown-bundle": "^1.4",
 -        "doctrine/doctrine-migrations-bundle": "^1.1"
 +        "doctrine/doctrine-migrations-bundle": "^1.1",
@@ -39,15 +39,15 @@ index 87509445..8e45692e 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 688010d9..e82ae13a 100644
+index ef2992aa..db5d6492 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,8 +4,48 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "fb83e31b2791a98bc2e48ffebaef0cba",
-+    "content-hash": "09e2b7d3f49d4108a2c737a35eff6c2d",
+-    "content-hash": "b5e233fc02a38266008054e86f0c8031",
++    "content-hash": "62356467af33d73446bc92612da0cb04",
      "packages": [
 +        {
 +            "name": "behat/transliterator",
@@ -90,9 +90,9 @@ index 688010d9..e82ae13a 100644
 +            "time": "2015-09-28T16:26:35+00:00"
 +        },
          {
-             "name": "doctrine/annotations",
-             "version": "1.10.2",
-@@ -1239,6 +1279,85 @@
+             "name": "composer/package-versions-deprecated",
+             "version": "1.11.99",
+@@ -1312,6 +1352,85 @@
              ],
              "time": "2020-03-27T11:06:43+00:00"
          },
@@ -178,7 +178,7 @@ index 688010d9..e82ae13a 100644
          {
              "name": "incenteev/composer-parameter-handler",
              "version": "v2.1.2",
-@@ -1939,6 +2058,67 @@
+@@ -1962,6 +2081,67 @@
              "description": "A security checker for your composer.lock",
              "time": "2015-11-07T08:07:40+00:00"
          },
@@ -246,7 +246,7 @@ index 688010d9..e82ae13a 100644
          {
              "name": "swiftmailer/swiftmailer",
              "version": "v5.4.3",
-@@ -2764,32 +2944,30 @@
+@@ -2787,32 +2967,30 @@
      "packages-dev": [
          {
              "name": "doctrine/data-fixtures",
@@ -286,7 +286,7 @@ index 688010d9..e82ae13a 100644
                  "phpunit/phpunit": "^7.0"
              },
              "suggest": {
-@@ -2801,7 +2979,7 @@
+@@ -2824,7 +3002,7 @@
              "type": "library",
              "extra": {
                  "branch-alias": {
@@ -295,7 +295,7 @@ index 688010d9..e82ae13a 100644
                  }
              },
              "autoload": {
-@@ -2824,7 +3002,7 @@
+@@ -2847,7 +3025,7 @@
              "keywords": [
                  "database"
              ],

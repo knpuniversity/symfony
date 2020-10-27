@@ -28,10 +28,10 @@ index e13019b5..959a7d3d 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index a58dc928..4b744522 100644
+index 367c6831..b8b737b0 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -34,6 +34,7 @@
+@@ -35,6 +35,7 @@
          "symfony/security-csrf": "^4.0",
          "symfony/swiftmailer-bundle": "^3.1",
          "symfony/translation": "^4.0",
@@ -40,19 +40,10 @@ index a58dc928..4b744522 100644
          "symfony/yaml": "^4.0"
      },
 diff --git a/composer.lock b/composer.lock
-index 3a9f58f8..5f8c0b4f 100644
+index 91d346d6..92faa6b6 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-         "This file is @generated automatically"
-     ],
--    "content-hash": "b72166b4f809b7dc554ac5c2c66c2f49",
-+    "content-hash": "0128ecac528a79bd1b4122111e90541c",
-     "packages": [
-         {
-             "name": "behat/transliterator",
-@@ -4157,6 +4157,169 @@
+@@ -4184,6 +4184,169 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },
@@ -222,7 +213,7 @@ index 3a9f58f8..5f8c0b4f 100644
          {
              "name": "symfony/validator",
              "version": "v4.0.1",
-@@ -4299,6 +4462,72 @@
+@@ -4326,6 +4489,72 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-04T18:34:52+00:00"
          },

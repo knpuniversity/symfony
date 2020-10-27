@@ -1,17 +1,21 @@
 diff --git a/composer.json b/composer.json
-index 746506f6..5404ba4a 100644
+index aac987dc..315bbe4c 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -25,7 +25,7 @@
+@@ -23,10 +23,10 @@
+         "symfony/monolog-bundle": "^3.1",
+         "symfony/polyfill-apcu": "^1.0",
          "sensio/framework-extra-bundle": "^3.0.2",
+-        "composer/package-versions-deprecated": "^1.11",
          "knplabs/knp-markdown-bundle": "^1.4",
          "doctrine/doctrine-migrations-bundle": "^1.1",
 -        "stof/doctrine-extensions-bundle": "^1.2"
-+        "stof/doctrine-extensions-bundle": "dev-master"
++        "stof/doctrine-extensions-bundle": "dev-master",
++        "composer/package-versions-deprecated": "^1.11"
      },
      "require-dev": {
          "symfony/phpunit-bridge": "^4.0",
-@@ -60,6 +60,12 @@
+@@ -61,6 +61,12 @@
              "file": "app/config/parameters.yml"
          }
      },
@@ -25,15 +29,15 @@ index 746506f6..5404ba4a 100644
          "platform": {
              "php": "7.1.3"
 diff --git a/composer.lock b/composer.lock
-index 63a27778..be51f1d5 100644
+index 6017231a..be03f798 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "4c7b640553620ac3550d92e36cfc4afa",
-+    "content-hash": "876aed7e3789a03f02ed2e2c9c169b5f",
+-    "content-hash": "695e734d0f8d66e0ddca8c08ac908059",
++    "content-hash": "4de53dca446c2de2fe19cdcfe5f5eb8b",
      "packages": [
          {
              "name": "behat/transliterator",
@@ -98,9 +102,9 @@ index 63a27778..be51f1d5 100644
 -            "time": "2017-11-29T09:37:33+00:00"
 -        },
          {
-             "name": "doctrine/annotations",
-             "version": "1.10.2",
-@@ -1478,57 +1422,6 @@
+             "name": "composer/package-versions-deprecated",
+             "version": "1.11.99",
+@@ -1551,57 +1495,6 @@
              ],
              "time": "2017-10-12T06:26:21+00:00"
          },
@@ -158,7 +162,7 @@ index 63a27778..be51f1d5 100644
          {
              "name": "jdorn/sql-formatter",
              "version": "v1.2.17",
-@@ -1890,54 +1783,6 @@
+@@ -1913,54 +1806,6 @@
              ],
              "time": "2017-05-04T11:12:50+00:00"
          },
@@ -213,7 +217,7 @@ index 63a27778..be51f1d5 100644
          {
              "name": "psr/cache",
              "version": "1.0.1",
-@@ -2177,75 +2022,23 @@
+@@ -2200,75 +2045,23 @@
              ],
              "time": "2017-01-02T13:31:39+00:00"
          },
@@ -294,7 +298,7 @@ index 63a27778..be51f1d5 100644
                  "symfony/framework-bundle": "~2.3|~3.0|~4.0"
              },
              "require-dev": {
-@@ -2297,71 +2090,26 @@
+@@ -2320,71 +2113,26 @@
                  "annotations",
                  "controllers"
              ],
@@ -373,7 +377,7 @@ index 63a27778..be51f1d5 100644
              },
              "suggest": {
                  "doctrine/doctrine-bundle": "to use the ORM extensions",
-@@ -2403,7 +2151,7 @@
+@@ -2426,7 +2174,7 @@
                  "translatable",
                  "tree"
              ],
@@ -382,7 +386,7 @@ index 63a27778..be51f1d5 100644
          },
          {
              "name": "swiftmailer/swiftmailer",
-@@ -2578,78 +2326,6 @@
+@@ -2601,78 +2349,6 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -461,7 +465,7 @@ index 63a27778..be51f1d5 100644
          {
              "name": "symfony/polyfill-intl-icu",
              "version": "v1.6.0",
-@@ -2768,22 +2444,21 @@
+@@ -2791,22 +2467,21 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -490,7 +494,7 @@ index 63a27778..be51f1d5 100644
              },
              "type": "library",
              "extra": {
-@@ -2793,7 +2468,7 @@
+@@ -2816,7 +2491,7 @@
              },
              "autoload": {
                  "psr-4": {
@@ -499,7 +503,7 @@ index 63a27778..be51f1d5 100644
                  },
                  "files": [
                      "bootstrap.php"
-@@ -2813,7 +2488,7 @@
+@@ -2836,7 +2511,7 @@
                      "homepage": "https://symfony.com/contributors"
                  }
              ],
@@ -508,7 +512,7 @@ index 63a27778..be51f1d5 100644
              "homepage": "https://symfony.com",
              "keywords": [
                  "compatibility",
-@@ -2824,38 +2499,38 @@
+@@ -2847,38 +2522,38 @@
              "time": "2017-10-11T12:05:26+00:00"
          },
          {
@@ -563,7 +567,7 @@ index 63a27778..be51f1d5 100644
                  ]
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2864,102 +2539,43 @@
+@@ -2887,102 +2562,43 @@
              ],
              "authors": [
                  {
@@ -681,7 +685,7 @@ index 63a27778..be51f1d5 100644
              },
              "suggest": {
                  "psr/log": "Allows logging"
-@@ -2967,7 +2583,7 @@
+@@ -2990,7 +2606,7 @@
              "type": "symfony-bundle",
              "extra": {
                  "branch-alias": {
@@ -690,7 +694,7 @@ index 63a27778..be51f1d5 100644
                  }
              },
              "autoload": {
-@@ -2991,44 +2607,41 @@
+@@ -3014,44 +2630,41 @@
              ],
              "description": "Symfony SwiftmailerBundle",
              "homepage": "http://symfony.com",
@@ -744,7 +748,7 @@ index 63a27778..be51f1d5 100644
              },
              "provide": {
                  "psr/cache-implementation": "1.0",
-@@ -3040,7 +2653,6 @@
+@@ -3063,7 +2676,6 @@
                  "symfony/asset": "self.version",
                  "symfony/browser-kit": "self.version",
                  "symfony/cache": "self.version",
@@ -752,7 +756,7 @@ index 63a27778..be51f1d5 100644
                  "symfony/config": "self.version",
                  "symfony/console": "self.version",
                  "symfony/css-selector": "self.version",
-@@ -3108,7 +2720,7 @@
+@@ -3131,7 +2743,7 @@
              "type": "library",
              "extra": {
                  "branch-alias": {
@@ -761,7 +765,7 @@ index 63a27778..be51f1d5 100644
                  }
              },
              "autoload": {
-@@ -3146,7 +2758,7 @@
+@@ -3169,7 +2781,7 @@
              "keywords": [
                  "framework"
              ],
@@ -770,7 +774,7 @@ index 63a27778..be51f1d5 100644
          },
          {
              "name": "twig/twig",
-@@ -3448,182 +3060,18 @@
+@@ -3471,182 +3083,18 @@
              ],
              "time": "2017-10-30T19:26:42+00:00"
          },
@@ -957,7 +961,7 @@ index 63a27778..be51f1d5 100644
                  "shasum": ""
              },
              "require": {
-@@ -3642,7 +3090,7 @@
+@@ -3665,7 +3113,7 @@
              "type": "symfony-bridge",
              "extra": {
                  "branch-alias": {
@@ -966,7 +970,7 @@ index 63a27778..be51f1d5 100644
                  }
              },
              "autoload": {
-@@ -3672,12 +3120,14 @@
+@@ -3695,12 +3143,14 @@
              ],
              "description": "Symfony PHPUnit Bridge",
              "homepage": "https://symfony.com",

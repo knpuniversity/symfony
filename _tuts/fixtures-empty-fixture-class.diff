@@ -11,10 +11,10 @@ index ce594daf..3595332d 100644
  
  If you get an error that the database exists, that should
 diff --git a/composer.lock b/composer.lock
-index e77dd36f..688010d9 100644
+index a33fd75e..ef2992aa 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -2764,29 +2764,36 @@
+@@ -2787,29 +2787,36 @@
      "packages-dev": [
          {
              "name": "doctrine/data-fixtures",
@@ -59,7 +59,7 @@ index e77dd36f..688010d9 100644
                  "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
                  "doctrine/orm": "For loading ORM fixtures",
                  "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
-@@ -2794,12 +2801,12 @@
+@@ -2817,12 +2824,12 @@
              "type": "library",
              "extra": {
                  "branch-alias": {
@@ -75,7 +75,7 @@ index e77dd36f..688010d9 100644
                  }
              },
              "notification-url": "https://packagist.org/downloads/",
-@@ -2817,7 +2824,7 @@
+@@ -2840,7 +2847,7 @@
              "keywords": [
                  "database"
              ],

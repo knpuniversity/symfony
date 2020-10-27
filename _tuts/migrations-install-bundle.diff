@@ -11,13 +11,13 @@ index 3bbadf81..778fb622 100644
              new AppBundle\AppBundle(),
          );
 diff --git a/composer.json b/composer.json
-index 9825d82f..0c1c9bf3 100644
+index e2576d3f..9f5c662c 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -25,7 +25,8 @@
-         "sensio/distribution-bundle": "^5.0",
+@@ -26,7 +26,8 @@
          "sensio/framework-extra-bundle": "^3.0.2",
          "incenteev/composer-parameter-handler": "^2.0",
+         "composer/package-versions-deprecated": "^1.11",
 -        "knplabs/knp-markdown-bundle": "^1.4"
 +        "knplabs/knp-markdown-bundle": "^1.4",
 +        "doctrine/doctrine-migrations-bundle": "^1.1"
@@ -25,19 +25,19 @@ index 9825d82f..0c1c9bf3 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 0973e5e8..db9a87d1 100644
+index fa6c8f00..416fe600 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "e38b7a9134e823fb0f0e9da1384d7b40",
-+    "content-hash": "77ec5878923d6304aa1bc570a6eef612",
+-    "content-hash": "5960aeffabc1db93e7ca8461f35c65f6",
++    "content-hash": "7fe76c76987c0f89c22ad05e22ab9306",
      "packages": [
          {
-             "name": "doctrine/annotations",
-@@ -575,6 +575,64 @@
+             "name": "composer/package-versions-deprecated",
+@@ -648,6 +648,64 @@
              ],
              "time": "2016-01-26T17:28:51+00:00"
          },
@@ -102,7 +102,7 @@ index 0973e5e8..db9a87d1 100644
          {
              "name": "doctrine/event-manager",
              "version": "1.1.0",
-@@ -834,6 +892,80 @@
+@@ -907,6 +965,80 @@
              ],
              "time": "2019-06-08T11:03:04+00:00"
          },
@@ -183,9 +183,9 @@ index 0973e5e8..db9a87d1 100644
          {
              "name": "doctrine/orm",
              "version": "v2.7.2",
-@@ -1448,6 +1580,75 @@
-             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-             "time": "2019-11-15T16:17:10+00:00"
+@@ -1471,6 +1603,75 @@
+             ],
+             "time": "2016-07-29T03:23:52+00:00"
          },
 +        {
 +            "name": "ocramius/proxy-manager",
@@ -259,7 +259,7 @@ index 0973e5e8..db9a87d1 100644
          {
              "name": "paragonie/random_compat",
              "version": "v2.0.2",
-@@ -2445,6 +2646,119 @@
+@@ -2468,6 +2669,119 @@
                  "templating"
              ],
              "time": "2016-05-30T09:11:59+00:00"

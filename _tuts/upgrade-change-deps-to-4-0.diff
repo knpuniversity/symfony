@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index e053da59..f5078e56 100644
+index 4db8b4d6..9b6cf1f9 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -15,7 +15,7 @@
@@ -11,7 +11,7 @@ index e053da59..f5078e56 100644
          "doctrine/orm": "^2.5",
          "doctrine/doctrine-bundle": "^1.6",
          "doctrine/doctrine-cache-bundle": "^1.2",
-@@ -31,7 +31,7 @@
+@@ -32,7 +32,7 @@
      },
      "require-dev": {
          "sensio/generator-bundle": "^3.0",

@@ -744,10 +744,10 @@ index 00000000..a7bf65a1
 +}
 diff --git a/composer.json b/composer.json
 new file mode 100644
-index 00000000..2855a8fc
+index 00000000..d7cdc5f1
 --- /dev/null
 +++ b/composer.json
-@@ -0,0 +1,67 @@
+@@ -0,0 +1,68 @@
 +{
 +    "name": "knpuniversity/symfony",
 +    "license": "proprietary",
@@ -774,7 +774,8 @@ index 00000000..2855a8fc
 +        "symfony/polyfill-apcu": "^1.0",
 +        "sensio/distribution-bundle": "^5.0",
 +        "sensio/framework-extra-bundle": "^3.0.2",
-+        "incenteev/composer-parameter-handler": "^2.0"
++        "incenteev/composer-parameter-handler": "^2.0",
++        "composer/package-versions-deprecated": "^1.11"
 +    },
 +    "require-dev": {
 +        "sensio/generator-bundle": "^3.0",
@@ -817,18 +818,91 @@ index 00000000..2855a8fc
 +}
 diff --git a/composer.lock b/composer.lock
 new file mode 100644
-index 00000000..d6fd0587
+index 00000000..b946da96
 --- /dev/null
 +++ b/composer.lock
-@@ -0,0 +1,2461 @@
+@@ -0,0 +1,2484 @@
 +{
 +    "_readme": [
 +        "This file locks the dependencies of your project to a known state",
 +        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
 +        "This file is @generated automatically"
 +    ],
-+    "content-hash": "a560ecaf0768dd54997b2724541ee2b5",
++    "content-hash": "4326222f89949948d50956716e869f38",
 +    "packages": [
++        {
++            "name": "composer/package-versions-deprecated",
++            "version": "1.11.99",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/composer/package-versions-deprecated.git",
++                "reference": "c8c9aa8a14cc3d3bec86d0a8c3fa52ea79936855"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/c8c9aa8a14cc3d3bec86d0a8c3fa52ea79936855",
++                "reference": "c8c9aa8a14cc3d3bec86d0a8c3fa52ea79936855",
++                "shasum": ""
++            },
++            "require": {
++                "composer-plugin-api": "^1.1.0 || ^2.0",
++                "php": "^7 || ^8"
++            },
++            "replace": {
++                "ocramius/package-versions": "1.11.99"
++            },
++            "require-dev": {
++                "composer/composer": "^1.9.3 || ^2.0@dev",
++                "ext-zip": "^1.13",
++                "phpunit/phpunit": "^6.5 || ^7"
++            },
++            "type": "composer-plugin",
++            "extra": {
++                "class": "PackageVersions\\Installer",
++                "branch-alias": {
++                    "dev-master": "1.x-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "PackageVersions\\": "src/PackageVersions"
++                }
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Marco Pivetta",
++                    "email": "ocramius@gmail.com"
++                },
++                {
++                    "name": "Jordi Boggiano",
++                    "email": "j.boggiano@seld.be"
++                }
++            ],
++            "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
++            "support": {
++                "issues": "https://github.com/composer/package-versions-deprecated/issues",
++                "source": "https://github.com/composer/package-versions-deprecated/tree/master"
++            },
++            "funding": [
++                {
++                    "url": "https://packagist.com",
++                    "type": "custom"
++                },
++                {
++                    "url": "https://github.com/composer",
++                    "type": "github"
++                },
++                {
++                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
++                    "type": "tidelift"
++                }
++            ],
++            "time": "2020-08-25T05:50:16+00:00"
++        },
 +        {
 +            "name": "doctrine/annotations",
 +            "version": "1.10.2",
@@ -2110,56 +2184,6 @@ index 00000000..d6fd0587
 +            "time": "2016-07-29T03:23:52+00:00"
 +        },
 +        {
-+            "name": "ocramius/package-versions",
-+            "version": "1.4.2",
-+            "source": {
-+                "type": "git",
-+                "url": "https://github.com/Ocramius/PackageVersions.git",
-+                "reference": "44af6f3a2e2e04f2af46bcb302ad9600cba41c7d"
-+            },
-+            "dist": {
-+                "type": "zip",
-+                "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/44af6f3a2e2e04f2af46bcb302ad9600cba41c7d",
-+                "reference": "44af6f3a2e2e04f2af46bcb302ad9600cba41c7d",
-+                "shasum": ""
-+            },
-+            "require": {
-+                "composer-plugin-api": "^1.0.0",
-+                "php": "^7.1.0"
-+            },
-+            "require-dev": {
-+                "composer/composer": "^1.6.3",
-+                "doctrine/coding-standard": "^5.0.1",
-+                "ext-zip": "*",
-+                "infection/infection": "^0.7.1",
-+                "phpunit/phpunit": "^7.5.17"
-+            },
-+            "type": "composer-plugin",
-+            "extra": {
-+                "class": "PackageVersions\\Installer",
-+                "branch-alias": {
-+                    "dev-master": "2.0.x-dev"
-+                }
-+            },
-+            "autoload": {
-+                "psr-4": {
-+                    "PackageVersions\\": "src/PackageVersions"
-+                }
-+            },
-+            "notification-url": "https://packagist.org/downloads/",
-+            "license": [
-+                "MIT"
-+            ],
-+            "authors": [
-+                {
-+                    "name": "Marco Pivetta",
-+                    "email": "ocramius@gmail.com"
-+                }
-+            ],
-+            "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-+            "time": "2019-11-15T16:17:10+00:00"
-+        },
-+        {
 +            "name": "paragonie/random_compat",
 +            "version": "v2.0.2",
 +            "source": {
@@ -3280,7 +3304,7 @@ index 00000000..d6fd0587
 +    "platform-overrides": {
 +        "php": "7.1.3"
 +    },
-+    "plugin-api-version": "1.1.0"
++    "plugin-api-version": "2.0.0"
 +}
 diff --git a/phpunit.xml.dist b/phpunit.xml.dist
 new file mode 100644

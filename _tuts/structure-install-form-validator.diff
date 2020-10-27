@@ -13,10 +13,10 @@ index 9bf0ec2e..7ad718dd 100644
      templating:
          engines: ['twig']
 diff --git a/composer.json b/composer.json
-index 8222f4f0..95353682 100644
+index 2713f37d..9e9baa7f 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -26,12 +26,14 @@
+@@ -27,12 +27,14 @@
          "stof/doctrine-extensions-bundle": "dev-master",
          "symfony/console": "^4.0",
          "symfony/flex": "^1.0",
@@ -32,21 +32,12 @@ index 8222f4f0..95353682 100644
      },
      "require-dev": {
 diff --git a/composer.lock b/composer.lock
-index 523f398f..d925e551 100644
+index a57b8763..fec8e533 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-         "This file is @generated automatically"
-     ],
--    "content-hash": "8b36310938d4acad64a7f82b4d800f80",
-+    "content-hash": "7dce6499221ddcb282d296153b3a5000",
-     "packages": [
-         {
-             "name": "behat/transliterator",
-@@ -2789,6 +2789,86 @@
+@@ -2816,6 +2816,86 @@
              ],
-             "time": "2020-06-16T23:10:41+00:00"
+             "time": "2020-10-14T17:41:54+00:00"
          },
 +        {
 +            "name": "symfony/form",
@@ -131,7 +122,7 @@ index 523f398f..d925e551 100644
          {
              "name": "symfony/framework-bundle",
              "version": "v4.0.1",
-@@ -3042,6 +3122,138 @@
+@@ -3069,6 +3149,138 @@
              "homepage": "https://symfony.com",
              "time": "2017-12-05T00:18:20+00:00"
          },
@@ -270,7 +261,7 @@ index 523f398f..d925e551 100644
          {
              "name": "symfony/lts",
              "version": "dev-master",
-@@ -3263,6 +3475,60 @@
+@@ -3290,6 +3502,60 @@
              ],
              "time": "2017-11-06T16:02:17+00:00"
          },
@@ -331,7 +322,7 @@ index 523f398f..d925e551 100644
          {
              "name": "symfony/polyfill-apcu",
              "version": "v1.6.0",
-@@ -3319,6 +3585,64 @@
+@@ -3346,6 +3612,64 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -396,7 +387,7 @@ index 523f398f..d925e551 100644
          {
              "name": "symfony/polyfill-mbstring",
              "version": "v1.6.0",
-@@ -3378,6 +3702,73 @@
+@@ -3405,6 +3729,73 @@
              ],
              "time": "2017-10-11T12:05:26+00:00"
          },
@@ -470,7 +461,7 @@ index 523f398f..d925e551 100644
          {
              "name": "symfony/routing",
              "version": "v4.0.1",
-@@ -3641,6 +4032,90 @@
+@@ -3668,6 +4059,90 @@
              "homepage": "https://symfony.com",
              "time": "2017-11-28T22:05:27+00:00"
          },
