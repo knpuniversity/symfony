@@ -23,11 +23,6 @@ set to `DESC`:
 
 [[[ code('c87c2d5d0a') ]]]
 
-***TIP
-The `orderBy()` method signature was changed, now it asks for an associative array like
-this `orderBy(['yearsStudied' => 'DESC'])`
-***
-
 This Criteria describes *how* we want to filter. To use it, return
 `$this->getGenusScientists()->matching()` and pass that `$criteria`:
 
