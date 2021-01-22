@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index bcd224b9..08948903 100644
+index bcd224b..0894890 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -29,6 +29,7 @@
@@ -11,7 +11,7 @@ index bcd224b9..08948903 100644
          "symfony/polyfill-apcu": "^1.0",
          "symfony/profiler-pack": "^1.0",
 diff --git a/composer.lock b/composer.lock
-index e5fd4758..fdad1137 100644
+index e5fd475..fdad113 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -3479,6 +3479,63 @@
@@ -79,7 +79,7 @@ index e5fd4758..fdad1137 100644
              "name": "symfony/monolog-bridge",
              "version": "v4.0.1",
 diff --git a/config/bundles.php b/config/bundles.php
-index a83fcd41..cdd8b3b9 100644
+index a83fcd4..cdd8b3b 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -15,4 +15,5 @@ return [
@@ -89,7 +89,7 @@ index a83fcd41..cdd8b3b9 100644
 +    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
  ];
 diff --git a/src/Controller/GenusController.php b/src/Controller/GenusController.php
-index feb91083..35a0c775 100644
+index feb9108..35a0c77 100644
 --- a/src/Controller/GenusController.php
 +++ b/src/Controller/GenusController.php
 @@ -10,6 +10,7 @@ use App\Entity\User;
@@ -110,7 +110,7 @@ index feb91083..35a0c775 100644
      {
 diff --git a/src/Security/Voter/RandomAccessVoter.php b/src/Security/Voter/RandomAccessVoter.php
 new file mode 100644
-index 00000000..0943b896
+index 0000000..0943b89
 --- /dev/null
 +++ b/src/Security/Voter/RandomAccessVoter.php
 @@ -0,0 +1,20 @@
@@ -135,7 +135,7 @@ index 00000000..0943b896
 +    }
 +}
 diff --git a/symfony.lock b/symfony.lock
-index c3e4b589..2b3f6d23 100644
+index c3e4b58..2b3f6d2 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -50,6 +50,9 @@

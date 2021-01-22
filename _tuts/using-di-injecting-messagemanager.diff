@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
-index 7e73d514..a0d393d4 100644
+index 7e73d51..a0d393d 100644
 --- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 +++ b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 @@ -2,6 +2,7 @@

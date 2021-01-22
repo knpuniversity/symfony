@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 691d30e2..f1e0c86e 100644
+index 691d30e..f1e0c86 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -20,7 +20,7 @@
@@ -12,7 +12,7 @@ index 691d30e2..f1e0c86e 100644
          "sensio/distribution-bundle": "^5.0",
          "sensio/framework-extra-bundle": "^3.0.2",
 diff --git a/composer.lock b/composer.lock
-index 9d689d60..e3551788 100644
+index 9d689d6..e355178 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -139,7 +139,7 @@ index 9d689d60..e3551788 100644
          {
              "name": "symfony/polyfill-apcu",
 diff --git a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
-index f8365110..7e73d514 100644
+index f836511..7e73d51 100644
 --- a/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 +++ b/src/AppBundle/EventSubscriber/AddNiceHeaderEventSubscriber.php
 @@ -2,14 +2,24 @@
@@ -168,7 +168,7 @@ index f8365110..7e73d514 100644
              ->headers->set('X-NICE-MESSAGE', 'That was a great request!');
      }
 diff --git a/var/cache/dev/appDevDebugProjectContainer.php b/var/cache/dev/appDevDebugProjectContainer.php
-index 9083cd9a..961faaac 100644
+index 9083cd9..961faaa 100644
 --- a/var/cache/dev/appDevDebugProjectContainer.php
 +++ b/var/cache/dev/appDevDebugProjectContainer.php
 @@ -34,21 +34,46 @@ class appDevDebugProjectContainer extends Container

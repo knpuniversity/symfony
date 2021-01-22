@@ -1,5 +1,5 @@
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
-index 09dc7b3f..98912548 100644
+index 09dc7b3..9891254 100644
 --- a/app/config/config_dev.yml
 +++ b/app/config/config_dev.yml
 @@ -1,19 +1,6 @@
@@ -23,7 +23,7 @@ index 09dc7b3f..98912548 100644
      handlers:
          main:
 diff --git a/composer.json b/composer.json
-index 18db0878..0572fc24 100644
+index 18db087..0572fc2 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -33,6 +33,7 @@
@@ -35,7 +35,7 @@ index 18db0878..0572fc24 100644
          "symfony/security-csrf": "^4.0",
          "symfony/swiftmailer-bundle": "^3.1",
 diff --git a/composer.lock b/composer.lock
-index e4969120..48814040 100644
+index e496912..4881404 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -3785,6 +3785,89 @@
@@ -327,7 +327,7 @@ index e4969120..48814040 100644
              "name": "symfony/yaml",
              "version": "v4.0.1",
 diff --git a/config/bundles.php b/config/bundles.php
-index 292a520e..5528430a 100644
+index 292a520..5528430 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -13,4 +13,5 @@ return [
@@ -338,7 +338,7 @@ index 292a520e..5528430a 100644
  ];
 diff --git a/config/packages/dev/web_profiler.yaml b/config/packages/dev/web_profiler.yaml
 new file mode 100644
-index 00000000..e92166a7
+index 0000000..e92166a
 --- /dev/null
 +++ b/config/packages/dev/web_profiler.yaml
 @@ -0,0 +1,6 @@
@@ -350,7 +350,7 @@ index 00000000..e92166a7
 +    profiler: { only_exceptions: false }
 diff --git a/config/packages/test/web_profiler.yaml b/config/packages/test/web_profiler.yaml
 new file mode 100644
-index 00000000..03752de2
+index 0000000..03752de
 --- /dev/null
 +++ b/config/packages/test/web_profiler.yaml
 @@ -0,0 +1,6 @@
@@ -362,7 +362,7 @@ index 00000000..03752de2
 +    profiler: { collect: false }
 diff --git a/config/routes/dev/web_profiler.yaml b/config/routes/dev/web_profiler.yaml
 new file mode 100644
-index 00000000..c82beff2
+index 0000000..c82beff
 --- /dev/null
 +++ b/config/routes/dev/web_profiler.yaml
 @@ -0,0 +1,7 @@
@@ -375,14 +375,14 @@ index 00000000..c82beff2
 +    prefix: /_profiler
 diff --git a/config/services_dev.yaml b/config/services_dev.yaml
 new file mode 100644
-index 00000000..7960993b
+index 0000000..7960993
 --- /dev/null
 +++ b/config/services_dev.yaml
 @@ -0,0 +1,2 @@
 +parameters:
 +    cache_type: array
 diff --git a/symfony.lock b/symfony.lock
-index d34f5892..6cfa014b 100644
+index d34f589..6cfa014 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -224,9 +224,15 @@

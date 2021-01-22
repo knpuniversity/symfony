@@ -1,5 +1,5 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 737b5e3d..7608383b 100644
+index 737b5e3..7608383 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -26,6 +26,7 @@ services:
@@ -11,7 +11,7 @@ index 737b5e3d..7608383b 100644
      AppBundle\Service\MarkdownTransformer:
          arguments: ['', '@doctrine_cache.providers.my_markdown_cache']
 diff --git a/src/AppBundle/Doctrine/HashPasswordListener.php b/src/AppBundle/Doctrine/HashPasswordListener.php
-index b67f96f7..a0facaea 100644
+index b67f96f..a0facae 100644
 --- a/src/AppBundle/Doctrine/HashPasswordListener.php
 +++ b/src/AppBundle/Doctrine/HashPasswordListener.php
 @@ -5,13 +5,13 @@ namespace AppBundle\Doctrine;
@@ -31,7 +31,7 @@ index b67f96f7..a0facaea 100644
          $this->passwordEncoder = $passwordEncoder;
      }
 diff --git a/src/AppBundle/Security/LoginFormAuthenticator.php b/src/AppBundle/Security/LoginFormAuthenticator.php
-index b982f89f..e1e7926f 100644
+index b982f89..e1e7926 100644
 --- a/src/AppBundle/Security/LoginFormAuthenticator.php
 +++ b/src/AppBundle/Security/LoginFormAuthenticator.php
 @@ -8,7 +8,7 @@ use Symfony\Component\Form\FormFactoryInterface;

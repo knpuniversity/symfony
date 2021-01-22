@@ -1,5 +1,5 @@
 diff --git a/src/Controller/GenusController.php b/src/Controller/GenusController.php
-index f3b51792..feb91083 100644
+index f3b5179..feb9108 100644
 --- a/src/Controller/GenusController.php
 +++ b/src/Controller/GenusController.php
 @@ -7,6 +7,7 @@ use App\Entity\GenusNote;
@@ -25,7 +25,7 @@ index f3b51792..feb91083 100644
  
          return $this->render('genus/list.html.twig', [
 diff --git a/src/Repository/GenusRepository.php b/src/Repository/GenusRepository.php
-index 3fb2d434..c55c8815 100644
+index 3fb2d43..c55c881 100644
 --- a/src/Repository/GenusRepository.php
 +++ b/src/Repository/GenusRepository.php
 @@ -3,11 +3,18 @@

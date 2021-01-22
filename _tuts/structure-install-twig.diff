@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index e13019b5..959a7d3d 100644
+index e13019b..959a7d3 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -7,24 +7,11 @@ imports:
@@ -28,7 +28,7 @@ index e13019b5..959a7d3d 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index 367c6831..b8b737b0 100644
+index 367c683..b8b737b 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -35,6 +35,7 @@
@@ -40,7 +40,7 @@ index 367c6831..b8b737b0 100644
          "symfony/yaml": "^4.0"
      },
 diff --git a/composer.lock b/composer.lock
-index 91d346d6..92faa6b6 100644
+index 91d346d..92faa6b 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4184,6 +4184,169 @@
@@ -287,7 +287,7 @@ index 91d346d6..92faa6b6 100644
              "name": "zendframework/zend-code",
              "version": "3.4.1",
 diff --git a/config/bundles.php b/config/bundles.php
-index f6fc1631..a1e22555 100644
+index f6fc163..a1e2255 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -11,4 +11,5 @@ return [
@@ -298,7 +298,7 @@ index f6fc1631..a1e22555 100644
  ];
 diff --git a/config/packages/twig.yaml b/config/packages/twig.yaml
 new file mode 100644
-index 00000000..895a2db6
+index 0000000..895a2db
 --- /dev/null
 +++ b/config/packages/twig.yaml
 @@ -0,0 +1,9 @@
@@ -313,7 +313,7 @@ index 00000000..895a2db6
 +        - _formTheme.html.twig
 diff --git a/config/routes/dev/twig.yaml b/config/routes/dev/twig.yaml
 new file mode 100644
-index 00000000..f4ee8396
+index 0000000..f4ee839
 --- /dev/null
 +++ b/config/routes/dev/twig.yaml
 @@ -0,0 +1,3 @@
@@ -321,7 +321,7 @@ index 00000000..f4ee8396
 +    resource: '@TwigBundle/Resources/config/routing/errors.xml'
 +    prefix: /_error
 diff --git a/symfony.lock b/symfony.lock
-index 32a5c955..26270592 100644
+index 32a5c95..2627059 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -251,12 +251,27 @@

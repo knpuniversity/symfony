@@ -1,5 +1,5 @@
 diff --git a/app/Resources/views/admin/genus/_form.html.twig b/app/Resources/views/admin/genus/_form.html.twig
-index 45d2207e..472ab763 100644
+index 45d2207..472ab76 100644
 --- a/app/Resources/views/admin/genus/_form.html.twig
 +++ b/app/Resources/views/admin/genus/_form.html.twig
 @@ -21,7 +21,10 @@
@@ -26,7 +26,7 @@ index 45d2207e..472ab763 100644
  
      <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
 diff --git a/app/Resources/views/admin/genus/edit.html.twig b/app/Resources/views/admin/genus/edit.html.twig
-index 870f5c09..ffb27eca 100644
+index 870f5c0..ffb27ec 100644
 --- a/app/Resources/views/admin/genus/edit.html.twig
 +++ b/app/Resources/views/admin/genus/edit.html.twig
 @@ -14,6 +14,26 @@
@@ -57,7 +57,7 @@ index 870f5c09..ffb27eca 100644
      </script>
  {% endblock %}
 diff --git a/src/AppBundle/Form/GenusFormType.php b/src/AppBundle/Form/GenusFormType.php
-index 8119e12e..b27928a5 100644
+index 8119e12..b27928a 100644
 --- a/src/AppBundle/Form/GenusFormType.php
 +++ b/src/AppBundle/Form/GenusFormType.php
 @@ -47,6 +47,7 @@ class GenusFormType extends AbstractType

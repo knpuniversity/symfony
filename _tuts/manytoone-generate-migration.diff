@@ -1,6 +1,6 @@
 diff --git a/app/DoctrineMigrations/Version20160207091756.php b/app/DoctrineMigrations/Version20160207091756.php
 new file mode 100644
-index 00000000..2d31ff86
+index 0000000..2d31ff8
 --- /dev/null
 +++ b/app/DoctrineMigrations/Version20160207091756.php
 @@ -0,0 +1,32 @@

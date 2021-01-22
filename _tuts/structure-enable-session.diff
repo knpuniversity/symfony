@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 079dc83f..e13019b5 100644
+index 079dc83..e13019b 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -11,10 +11,6 @@ framework:
@@ -14,7 +14,7 @@ index 079dc83f..e13019b5 100644
      http_method_override: true
      assets: ~
 diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
-index 967f3eb9..1e49a0b6 100644
+index 967f3eb..1e49a0b 100644
 --- a/config/packages/framework.yaml
 +++ b/config/packages/framework.yaml
 @@ -5,9 +5,9 @@ framework:

@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index f1e0c86e..4db8b4d6 100644
+index f1e0c86..4db8b4d 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -15,7 +15,7 @@
@@ -12,7 +12,7 @@ index f1e0c86e..4db8b4d6 100644
          "doctrine/doctrine-bundle": "^1.6",
          "doctrine/doctrine-cache-bundle": "^1.2",
 diff --git a/composer.lock b/composer.lock
-index e3551788..6017231a 100644
+index e355178..6017231 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,29 +4,33 @@

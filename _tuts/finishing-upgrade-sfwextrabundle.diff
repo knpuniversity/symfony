@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index c50ad1e3..a171f7c7 100644
+index c50ad1e..a171f7c 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -22,7 +22,7 @@
@@ -12,7 +12,7 @@ index c50ad1e3..a171f7c7 100644
          "symfony/asset": "^4.0",
          "symfony/console": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 8b75beb6..0b75d836 100644
+index 8b75beb..0b75d83 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -2001,38 +2001,37 @@

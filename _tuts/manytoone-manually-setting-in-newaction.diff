@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 111e66c4..3d1381ae 100644
+index 111e66c..3d1381a 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -3,6 +3,7 @@
@@ -28,7 +28,7 @@ index 111e66c4..3d1381ae 100644
  
          return new Response('<html><body>Genus created!</body></html>');
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 00782aaf..ad4b6c58 100644
+index 00782aa..ad4b6c5 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -40,7 +40,7 @@ class Genus

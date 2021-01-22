@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 259f24a9..bb07471a 100644
+index 259f24a..bb07471 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
 @@ -70,8 +70,7 @@ class Genus
@@ -13,7 +13,7 @@ index 259f24a9..bb07471a 100644
      private $genusScientists;
  
 diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
-index 172415c8..b366b414 100644
+index 172415c..b366b41 100644
 --- a/src/AppBundle/Entity/GenusScientist.php
 +++ b/src/AppBundle/Entity/GenusScientist.php
 @@ -18,13 +18,13 @@ class GenusScientist
@@ -33,7 +33,7 @@ index 172415c8..b366b414 100644
       */
      private $user;
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 85f5458d..1f00eb09 100644
+index 85f5458..1f00eb0 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -76,8 +76,7 @@ class User implements UserInterface

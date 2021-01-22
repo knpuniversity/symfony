@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 7ad718dd..079dc83f 100644
+index 7ad718d..079dc83 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -7,12 +7,9 @@ imports:
@@ -16,7 +16,7 @@ index 7ad718dd..079dc83f 100644
      session:
          # handler_id set to null will use default session handler from php.ini
 diff --git a/composer.json b/composer.json
-index 9e9baa7f..367c6831 100644
+index 9e9baa7..367c683 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -32,6 +32,7 @@
@@ -28,7 +28,7 @@ index 9e9baa7f..367c6831 100644
          "symfony/translation": "^4.0",
          "symfony/validator": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index fec8e533..91d346d6 100644
+index fec8e53..91d346d 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -3874,6 +3874,131 @@
@@ -164,7 +164,7 @@ index fec8e533..91d346d6 100644
              "name": "symfony/swiftmailer-bundle",
              "version": "v3.1.6",
 diff --git a/config/packages/framework.yaml b/config/packages/framework.yaml
-index b32f52d9..967f3eb9 100644
+index b32f52d..967f3eb 100644
 --- a/config/packages/framework.yaml
 +++ b/config/packages/framework.yaml
 @@ -1,7 +1,7 @@
@@ -177,7 +177,7 @@ index b32f52d9..967f3eb9 100644
  
      # uncomment this entire section to enable sessions
 diff --git a/symfony.lock b/symfony.lock
-index b1e3d6a9..32a5c955 100644
+index b1e3d6a..32a5c95 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -224,6 +224,12 @@

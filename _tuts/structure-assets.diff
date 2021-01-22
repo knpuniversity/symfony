@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 70e8d4c8..2ce63a92 100644
+index 70e8d4c..2ce63a9 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -6,9 +6,6 @@ imports:
@@ -13,7 +13,7 @@ index 70e8d4c8..2ce63a92 100644
  doctrine:
      dbal:
 diff --git a/composer.json b/composer.json
-index b8b737b0..f681b6fc 100644
+index b8b737b..f681b6f 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,6 +25,7 @@
@@ -25,7 +25,7 @@ index b8b737b0..f681b6fc 100644
          "symfony/flex": "^1.0",
          "symfony/form": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index 92faa6b6..2ada48ad 100644
+index 92faa6b..2ada48a 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -2185,6 +2185,62 @@
@@ -92,7 +92,7 @@ index 92faa6b6..2ada48ad 100644
              "name": "symfony/cache",
              "version": "v4.0.1",
 diff --git a/symfony.lock b/symfony.lock
-index 26270592..9a4a00da 100644
+index 2627059..9a4a00d 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -113,6 +113,9 @@

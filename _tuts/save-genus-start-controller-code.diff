@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index 105613b6..801bc2c1 100644
+index 105613b..801bc2c 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -2,6 +2,7 @@

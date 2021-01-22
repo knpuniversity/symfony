@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index b8a2b289..5688679c 100644
+index b8a2b28..5688679 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -17,22 +17,22 @@
@@ -36,7 +36,7 @@ index b8a2b289..5688679c 100644
      "require-dev": {
          "symfony/dotenv": "^4.0",
 diff --git a/composer.lock b/composer.lock
-index a9005a0b..d02e1e5a 100644
+index a9005a0..d02e1e5 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -3075,12 +3075,12 @@

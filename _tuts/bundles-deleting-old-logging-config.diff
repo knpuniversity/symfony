@@ -1,6 +1,6 @@
 diff --git a/app/config/config_dev.yml b/app/config/config_dev.yml
 deleted file mode 100644
-index 98912548..00000000
+index 9891254..0000000
 --- a/app/config/config_dev.yml
 +++ /dev/null
 @@ -1,35 +0,0 @@
@@ -41,7 +41,7 @@ index 98912548..00000000
 -#    delivery_address: me@example.com
 diff --git a/app/config/config_prod.yml b/app/config/config_prod.yml
 deleted file mode 100644
-index 5e5f0bcb..00000000
+index 5e5f0bc..0000000
 --- a/app/config/config_prod.yml
 +++ /dev/null
 @@ -1,27 +0,0 @@
