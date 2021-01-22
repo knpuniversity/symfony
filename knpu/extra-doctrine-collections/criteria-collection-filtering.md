@@ -21,12 +21,12 @@ and any other operator you can dream up. Inside `gt`, pass it `'yearsStudied', 2
 And hey! Let's show off: add an `orderBy()` passing it an array with `yearsStudied`
 set to `DESC`:
 
-[[[ code('c87c2d5d0a') ]]]
+[[[ code('650ffff972') ]]]
 
 This Criteria describes *how* we want to filter. To use it, return
 `$this->getGenusScientists()->matching()` and pass that `$criteria`:
 
-[[[ code('ebde980bd5') ]]]
+[[[ code('90a022bd26') ]]]
 
 That is it!
 
@@ -61,7 +61,7 @@ it operates on that entity.
 Copy the criteria line from genus, paste it here and return it. Oh, and be sure you
 type the "a" on `Criteria` and hit tab so that PhpStorm autocompletes the `use` statement:
 
-[[[ code('8c8285a797') ]]]
+[[[ code('e4240ad6a3') ]]]
 
 But wait, gasp! A static method! Why!? Well, it's because I need to be able to access
 it from my `Genus` class... and that's only possible if it's static. And also, I
