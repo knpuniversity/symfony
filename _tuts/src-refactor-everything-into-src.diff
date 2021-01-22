@@ -437,7 +437,7 @@ diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/Repository/Genus
 similarity index 94%
 rename from src/AppBundle/Repository/GenusRepository.php
 rename to src/Repository/GenusRepository.php
-index a77abd8..3fb2d43 100644
+index 3149844..f6c234c 100644
 --- a/src/AppBundle/Repository/GenusRepository.php
 +++ b/src/Repository/GenusRepository.php
 @@ -1,8 +1,8 @@

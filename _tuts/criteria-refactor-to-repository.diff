@@ -25,7 +25,7 @@ index 2c2e2c1..9d95676 100644
      }
  }
 diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
-index 3753d1e..0a0a3e9 100644
+index 3753d1e..9e200da 100644
 --- a/src/AppBundle/Repository/GenusRepository.php
 +++ b/src/AppBundle/Repository/GenusRepository.php
 @@ -3,6 +3,7 @@
@@ -45,6 +45,6 @@ index 3753d1e..0a0a3e9 100644
 +    {
 +        return Criteria::create()
 +            ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
-+            ->orderBy(['yearsStudied', 'DESC']);
++            ->orderBy(['yearsStudied' => 'DESC']);
 +    }
  }

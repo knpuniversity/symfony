@@ -25,7 +25,7 @@ index f3b5179..feb9108 100644
  
          return $this->render('genus/list.html.twig', [
 diff --git a/src/Repository/GenusRepository.php b/src/Repository/GenusRepository.php
-index 3fb2d43..c55c881 100644
+index f6c234c..8d81ab4 100644
 --- a/src/Repository/GenusRepository.php
 +++ b/src/Repository/GenusRepository.php
 @@ -3,11 +3,18 @@
