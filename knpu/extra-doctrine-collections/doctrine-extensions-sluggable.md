@@ -19,7 +19,7 @@ If you are on Symfony 3.2 or higher, you don't have to specify the bundle's vers
 ***
 
 ```terminal-silent
-composer require stof/doctrine-extensions-bundle:1.2
+composer require "stof/doctrine-extensions-bundle:1.3"
 ```
 
 Second, plug the bundle into your `AppKernel`: copy the `new` bundle statement,
