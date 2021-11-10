@@ -18,7 +18,7 @@ it into your terminal:
 If you are on Symfony 3.2 or higher, you don't have to specify the bundle's version 
 ***
 
-```bash
+```terminal-silent
 composer require stof/doctrine-extensions-bundle:1.2
 ```
 
