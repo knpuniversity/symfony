@@ -21,7 +21,6 @@ Here's the point: the base `Controller` class has a lot of shortcut methods that
 you'll use. But behind the scenes, these don't activate some weird, core functionality
 in Symfony. Instead, everything is done by one of the services in the container.
 Symfony doesn't really *do* anything: all the work is done by different services.
-That's awesome. 
 
 ## What Services are there?
 
